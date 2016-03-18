@@ -1,10 +1,10 @@
 #!/bin/bash
 
-version="1.0"
+version="1.01"
 
 function check_monitor() {
 	echo
-	mode=`iwconfig $interface 2> /dev/null |cut -d ' ' -f 6`
+	mode=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}'`
 
 	if [[ $mode == "Mode:Monitor" ]]; then
 		echo_warning "This interface ($interface) is already in monitor mode"
@@ -13,12 +13,21 @@ function check_monitor() {
 	return 0
 }
 
+function disable_rfkill() {
+	rfkill unblock 0
+	for i in {0..5}; do
+	  rfkill unblock $i
+	done
+}
+
 function monitor() {
-	
+
 	check_monitor
 	if [ "$?" != "0" ]; then
 		return
 	fi
+
+	disable_rfkill
 
 	echo_prompt "Putting your interface in monitor mode..."
 	echo_prompt "Please be patient. Maybe killing some conflicting processes..."
@@ -35,28 +44,33 @@ function monitor() {
 
 	airmon-ng check kill > /dev/null 2>&1
 
-	new_interface=$(airmon-ng start $interface|grep monitor|cut -d ']' -f 3)
+	if [ "$distro" == "kali" ]; then
+		new_interface=$(airmon-ng start $interface | grep monitor | cut -d ']' -f 3)
+	else
+		new_interface=$(airmon-ng start $interface | grep monitor | awk '{print $5}')
+	fi
+
 	new_interface=${new_interface:: -1}
-	
+
 	if [ "$interface" != "$new_interface" ]; then
 		echo
 		echo_warning "The interface changed its name while putting in monitor mode."
 		interface=$new_interface
 	fi
-	
+
 	echo
 	echo_warning "Monitor mode now is set on $interface"
 	sleep 2
 }
 
 function set_interface() {
-	
-	ifaces=`ifconfig |grep HWaddr|cut -d ' ' -f 1`
+
+	ifaces=`ifconfig -a|grep HWaddr|cut -d ' ' -f 1`
 	echo_error "*****************************Interface selection********************************"
 	echo_message "Select an interface to work with :"
         echo
 	option_counter=0
-	for item in $ifaces 
+	for item in $ifaces
 	do
 		option_counter=$[option_counter + 1]
 	        echo "$option_counter. $item"
@@ -68,13 +82,13 @@ function set_interface() {
 			invalid_iface_option
 		else
 			option_counter2=0
-			for item2 in $ifaces 
+			for item2 in $ifaces
 			do
 				option_counter2=$[option_counter2 + 1]
 				if [[ "$iface" == "$option_counter2" ]]; then
 					interface=$item2
 					break;
-				fi				
+				fi
 			done
 		fi
 	fi
@@ -96,7 +110,7 @@ function exec_mdk3deauth() {
 	echo
 	echo_error "*********************************Mdk3 action************************************"
 	echo_message "All parameters set"
-	
+
 	echo $bssid > /tmp/bl
 
 	echo
@@ -108,7 +122,7 @@ function menu_options() {
 	echo
 	echo_error "************************************Menu****************************************"
 	echo_message "Select your option :"
-    echo 
+    echo
     echo "1. Deauthentication / Disassociation mdk3 mode"
 	echo "2. Credits & About"
     echo "3. Exit script"
@@ -121,7 +135,7 @@ if [ -z $option ]; then
 	else if [ $option -eq 1 ]; then
 		echo_error "*******************************Mdk3 parameters**********************************"
 		echo_message "Deauthentication / Dissasociation mdk3 mode choosen"
-	
+
 		monitor
 
 		while [[ ! ${bssid} =~ ^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$ ]]; do
@@ -135,9 +149,9 @@ if [ -z $option ]; then
 		done
 		echo
 		echo_warning "Channel set to ${channel}"
-	
+
 		exec_mdk3deauth
-		
+
 		else if [ $option -eq 2 ]; then
 			credits
 
@@ -153,7 +167,7 @@ fi
 }
 
 function credits() {
-	
+
 	echo_error "******************************Credits & About***********************************"
 	echo
 	echo "airgeddon script v$version developed by :"
@@ -180,14 +194,14 @@ function credits() {
 }
 
 function invalid_menu_option() {
-	echo	
+	echo
 	echo_warning -n "Invalid menu option was choosen"
 	echo
 	menu_options
 }
 
 function invalid_iface_option() {
-	echo	
+	echo
 	echo_warning -n "Invalid interface was choosen"
 	echo
 	echo
@@ -202,11 +216,37 @@ function exit_script() {
 	exit 0
 }
 
+function detect_distro() {
+
+	uname -a | grep kali > /dev/null
+	if [ "$?" == "0" ]; then
+		echo_warning "Kali Linux distro detected. Script can continue..."
+		distro="kali"
+		echo
+		return
+	fi
+
+	uname -a | grep wifislax > /dev/null
+	if [ "$?" == "0" ]; then
+		echo_warning "Wifislax Linux distro detected"
+		distro="wifislax"
+		echo
+		return
+	fi
+
+	echo_warning "No compatible distro detected"
+	exit_script
+}
+
 function welcome() {
 	clear
-	echo	
+	echo_error "***********************************Welcome**************************************"
+	echo
 	echo_prompt "Welcome to airgeddon script"
 	echo
+	echo_prompt "This script is only working on Kali Linux and Wifislax"
+	echo
+	detect_distro
 	set_interface
 	menu_options
 }
