@@ -1,5 +1,5 @@
 #airgeddon
-Version 1.01<br>
+Version 1.02<br>
 This is a DoS (Denial of Service) script for wireless networks.<br>
 
 #Requirements
@@ -23,3 +23,8 @@ Initial commit<br>
 Detect distro functionality included<br>
 Kali and Wifislax Linux compatibility<br>
 Rfkill added<br>
+<br>
+1.02<br>
+Improved echo messages and colors<br>
+aireplay deauth attack included<br>
+monitor and managed options added<br>
