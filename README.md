@@ -1,5 +1,5 @@
 #airgeddon
-Version 1.02<br>
+Version 1.03<br>
 This is a DoS (Denial of Service) script for wireless networks.<br>
 
 #Requirements
@@ -28,3 +28,8 @@ Rfkill added<br>
 Improved echo messages and colors<br>
 aireplay deauth attack included<br>
 monitor and managed options added<br>
+<br>
+1.03<br>
+Secondary xterm windows added<br>
+Explore neighbourhood feature included<br>
+Code improvements<br>
