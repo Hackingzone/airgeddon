@@ -1,18 +1,20 @@
 #!/bin/bash
 
-version="2.01"
+version="2.02"
 
-trap killing_script INT
-
-#change this line to select another default language
+#Change these lines to select another default language
 language="english"
 #language="spanish"
+
+#General vars
+urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
+mail="v1s1t0r.1sh3r3@gmail.com"
 
 function language_strings() {
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
-	arr["spanish",0]="Este interfaz $interface ya est· en modo managed"
+	arr["spanish",0]="Este interfaz $interface ya est√° en modo managed"
 
 	arr["english",1]="This interface $interface is not a wifi card. It doesn't support managed mode"
 	arr["spanish",1]="Este interfaz $interface no es una tarjeta wifi. No soporta modo managed"
@@ -21,7 +23,7 @@ function language_strings() {
 	arr["spanish",2]="Distro Kali Linux detectada. El script puede continuar..."
 
 	arr["english",3]="Script language changed automatically to english"
-	arr["spanish",3]="Cambio autom·tico del idioma del script a espaÒol"
+	arr["spanish",3]="Cambio autom√°tico del idioma del script a espa√±ol"
 
 	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
 	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
@@ -29,35 +31,35 @@ function language_strings() {
 	arr["english",5]="No compatible distro detected"
 	arr["spanish",5]="No se ha detectado una distro compatible"
 
-	arr["english",6]="Welcome to airgeddon script"
-	arr["spanish",6]="Bienvenido al airgeddon script"
+	arr["english",6]="Welcome to airgeddon script v$version"
+	arr["spanish",6]="Bienvenido al airgeddon script v$version"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
-	arr["spanish",7]="Este script se ha hecho sÛlo con fines educativos. Sed buen@s chic@s"
+	arr["spanish",7]="Este script se ha hecho s√≥lo con fines educativos. Sed buen@s chic@s"
 
-	arr["english",8]="This script is only working on Kali Linux and Wifislax"
-	arr["spanish",8]="Este script sÛlo funciona en Kali Linux y Wifislax"
+	arr["english",8]="Supported distros for this script: Kali and Wifislax"
+	arr["spanish",8]="Distros soportadas por este script: Kali y Wifislax"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
 
 	arr["english",10]="This interface $interface is already in monitor mode"
-	arr["spanish",10]="Este interfaz $interface ya est· en modo monitor"
+	arr["spanish",10]="Este interfaz $interface ya est√° en modo monitor"
 
 	arr["english",11]="Exiting airgeddon script - 2016 - See you soon! :)"
-	arr["spanish",11]="Saliendo del airgeddon scr1pt - 2016 - Nos vemos pronto! :)"
+	arr["spanish",11]="Saliendo de airgeddon script - 2016 - Nos vemos pronto! :)"
 
 	arr["english",12]="Please, exit properly using menu option"
-	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opciÛn del men˙"
+	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opci√≥n del men√∫"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Este interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
 
 	arr["english",14]="This interface $interface is not in monitor mode"
-	arr["spanish",14]="Este interfaz $interface no est· en modo monitor"
+	arr["spanish",14]="Este interfaz $interface no est√° en modo monitor"
 
 	arr["english",15]="The interface changed its name while putting in managed mode. Autoselected"
-	arr["spanish",15]="Este interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado autom·ticamente"
+	arr["spanish",15]="Este interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado autom√°ticamente"
 
 	arr["english",16]="Managed mode now is set on $interface"
 	arr["spanish",16]="Se ha puesto el modo managed en $interface"
@@ -69,13 +71,13 @@ function language_strings() {
 	arr["spanish",18]="Poniendo el interfaz en modo monitor..."
 
 	arr["english",19]="Please be patient. Maybe killing some conflicting processes..."
-	arr["spanish",19]="Por favor ten paciencia. Puede que estÈ matando algunos procesos que podrÌan causar conflicto..."
+	arr["spanish",19]="Por favor ten paciencia. Puede que est√© matando algunos procesos que podr√≠an causar conflicto..."
 
 	arr["english",20]="This interface $interface doesn't support monitor mode"
 	arr["spanish",20]="Este interfaz $interface no soporta modo monitor"
 
 	arr["english",21]="The interface changed its name while putting in monitor mode. Autoselected"
-	arr["spanish",21]="Este interfaz ha cambiado su nombre al ponerlo en modo monitor. Se ha seleccionado autom·ticamente"
+	arr["spanish",21]="Este interfaz ha cambiado su nombre al ponerlo en modo monitor. Se ha seleccionado autom√°ticamente"
 
 	arr["english",22]="Monitor mode now is set on $interface"
 	arr["spanish",22]="Se ha puesto el modo monitor en $interface"
@@ -84,7 +86,7 @@ function language_strings() {
 	arr["spanish",23]="Hay un problema con el interfaz seleccionado. Redirigiendo a la salida del script"
 
 	arr["english",24]="Select an interface to work with :"
-	arr["spanish",24]="Selecciona un interfaz para trabajar con Èl :"
+	arr["spanish",24]="Selecciona un interfaz para trabajar con √©l :"
 
 	arr["english",25]="Set channel (1-14) :"
 	arr["spanish",25]="Selecciona un canal (1-14) :"
@@ -108,19 +110,19 @@ function language_strings() {
 	arr["spanish",31]="ESSID elegido ${essid}"
 
 	arr["english",32]="All parameters set"
-	arr["spanish",32]="Todos los par·metros est·n listos"
+	arr["spanish",32]="Todos los par√°metros est√°n listos"
 
 	arr["english",33]="Starting attack. When started, press Ctrl+C to stop..."
 	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
 
 	arr["english",34]="Selected interface $interface is in monitor mode. Attack can be performed"
-	arr["spanish",34]="El interfaz seleccionado $interfaz est· en modo monitor. El ataque se puede realizar"
+	arr["spanish",34]="El interfaz seleccionado $interfaz est√° en modo monitor. El ataque se puede realizar"
 
 	arr["english",35]="Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
-	arr["spanish",35]="Elegido ataque de DesautenticaciÛn / DesasociaciÛn mdk3 (modo monitor requerido)"
+	arr["spanish",35]="Elegido ataque de Desautenticaci√≥n / Desasociaci√≥n mdk3 (modo monitor requerido)"
 
 	arr["english",36]="Deauthentication aireplay attack chosen (monitor mode needed)"
-	arr["spanish",36]="Elegido ataque de DesautenticaciÛn aireplay (modo monitor requerido)"
+	arr["spanish",36]="Elegido ataque de Desautenticaci√≥n aireplay (modo monitor requerido)"
 
 	arr["english",37]="WIDS / WIPS / WDS Confusion attack chosen (monitor mode needed)"
 	arr["spanish",37]="Elegido ataque Confusion WIDS / WIPS / WDS (modo monitor requerido)"
@@ -135,7 +137,7 @@ function language_strings() {
 	arr["spanish",40]="Elegido ataque Michael Shutdown (TKIP) (modo monitor requerido)"
 
 	arr["english",41]="No interface selected. You'll be redirected to select one"
-	arr["spanish",41]="No hay interfaz seleccionado. Ser·s redirigido para seleccionar uno"
+	arr["spanish",41]="No hay interfaz seleccionado. Ser√°s redirigido para seleccionar uno"
 
 	arr["english",42]="Interface $interface selected. Mode: $ifacemode"
 	arr["spanish",42]="Interfaz $interface seleccionado. Modo: $ifacemode"
@@ -153,7 +155,7 @@ function language_strings() {
 	arr["spanish",46]="ESSID seleccionado: $essid"
 
 	arr["english",47]="Select an option from menu :"
-	arr["spanish",47]="Selecciona una opciÛn del men˙ :"
+	arr["spanish",47]="Selecciona una opci√≥n del men√∫ :"
 
 	arr["english",48]="1.  Select another network interface"
 	arr["spanish",48]="1.  Selecciona otro interfaz de red"
@@ -174,7 +176,7 @@ function language_strings() {
 	arr["spanish",53]="5.  Ataque WIDS / WIPS / WDS Confusion"
 
 	arr["english",54]="6.  Old \"obsolete/non very effective\" attacks menu"
-	arr["spanish",54]="6.  Men˙ de antiguos ataques \"obsoletos/no muy efectivos\""
+	arr["spanish",54]="6.  Men√∫ de antiguos ataques \"obsoletos/no muy efectivos\""
 
 	arr["english",55]="7.  Put interface in monitor mode"
 	arr["spanish",55]="7.  Poner el interfaz en modo monitor"
@@ -189,10 +191,10 @@ function language_strings() {
 	arr["spanish",58]="7.  Poner el interfaz en modo managed"
 
 	arr["english",59]="8.  Return to main menu"
-	arr["spanish",59]="8.  Volver al men˙ principal"
+	arr["spanish",59]="8.  Volver al men√∫ principal"
 
 	arr["english",60]="9.  About & Credits"
-	arr["spanish",60]="9.  Acerca de & CrÈditos"
+	arr["spanish",60]="9.  Acerca de & Cr√©ditos"
 
 	arr["english",61]="11. Exit script"
 	arr["spanish",61]="11. Salir del script"
@@ -207,10 +209,10 @@ function language_strings() {
 	arr["spanish",64]="5.  Ataque Michael shutdown exploitation (TKIP)"
 
 	arr["english",65]="Exploring neighbourhood option chosen (monitor mode needed)"
-	arr["spanish",65]="Elegida opciÛn de exploraciÛn del vecindario (modo monitor requerido)"
+	arr["spanish",65]="Elegida opci√≥n de exploraci√≥n del vecindario (modo monitor requerido)"
 
 	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
-	arr["spanish",66]="El interfaz seleccionado $interfaz est· en modo monitor. La exploraciÛn se puede realizar"
+	arr["spanish",66]="El interfaz seleccionado $interfaz est√° en modo monitor. La exploraci√≥n se puede realizar"
 
 	arr["english",67]="When started, press Ctrl+C to stop..."
 	arr["spanish",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
@@ -222,52 +224,118 @@ function language_strings() {
 	arr["spanish",69]="  N.         BSSID       CANAL   PWR       ESSID"
 
 	arr["english",70]="Only one target detected. Autoselected"
-	arr["spanish",70]="SÛlo un objetivo detectado. Se ha seleccionado autom·ticamente"
+	arr["spanish",70]="S√≥lo un objetivo detectado. Se ha seleccionado autom√°ticamente"
 
 	arr["english",71]="(*) Network with clients"
 	arr["spanish",71]="(*) Red con clientes"
 
 	arr["english",72]="Invalid target network was chosen"
-	arr["spanish",72]="Red objetivo elegida no v·lida"
+	arr["spanish",72]="Red objetivo elegida no v√°lida"
 
 	arr["english",73]="airgeddon script v$version developed by :"
 	arr["spanish",73]="airgeddon script v$version programado por :"
 
 	arr["english",74]="This script is under GPLv2 (or later) License"
-	arr["spanish",74]="Este script est· bajo Licencia GPLv2 (o posterior)"
+	arr["spanish",74]="Este script est√° bajo Licencia GPLv2 (o posterior)"
 
-	arr["english",75]="Thanks to the \"Spanish pen testing crew\" for beta testing and support received"
-	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" por el beta testing y el apoyo recibido"
+	arr["english",75]="Thanks to the \"Spanish pen testing crew\" and \"Wifislax Staff\" for beta testing and support received"
+	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" y al \"Wifislax Staff\" por el beta testing y el apoyo recibido"
 
 	arr["english",76]="Invalid menu option was chosen"
-	arr["spanish",76]="OpciÛn del men˙ no v·lida"
+	arr["spanish",76]="Opci√≥n del men√∫ no v√°lida"
 
 	arr["english",77]="Invalid interface was chosen"
-	arr["spanish",77]="Interfaz no v·lida"
+	arr["spanish",77]="Interfaz no v√°lida"
 
 	arr["english",78]="10. Change language"
 	arr["spanish",78]="10. Cambiar idioma"
 
 	arr["english",79]="1.  English"
-	arr["spanish",79]="1.  InglÈs"
+	arr["spanish",79]="1.  Ingl√©s"
 
 	arr["english",80]="2.  Spanish"
-	arr["spanish",80]="2.  EspaÒol"
+	arr["spanish",80]="2.  Espa√±ol"
 
 	arr["english",81]="Select a language :"
 	arr["spanish",81]="Selecciona un idioma :"
 
 	arr["english",82]="Invalid language was chosen"
-	arr["spanish",82]="Idioma no v·lido"
+	arr["spanish",82]="Idioma no v√°lido"
 
 	arr["english",83]="Language changed to English"
-	arr["spanish",83]="Idioma cambiado a InglÈs"
+	arr["spanish",83]="Idioma cambiado a Ingl√©s"
 
 	arr["english",84]="Language changed to Spanish"
-	arr["spanish",84]="Idioma cambiado a EspaÒol"
+	arr["spanish",84]="Idioma cambiado a Espa√±ol"
 
-	arr["english",85]="Send me bugs or suggestions to v1s1t0r.1sh3r3@gmail.com"
-	arr["spanish",85]="Enviadme errores o sugerencias a v1s1t0r.1sh3r3@gmail.com"
+	arr["english",85]="Send me bugs or suggestions to $mail"
+	arr["spanish",85]="Enviadme errores o sugerencias a $mail"
+
+	arr["english",86]="Welcome"
+	arr["spanish",86]="Bienvenid@"
+
+	arr["english",87]="Change language"
+	arr["spanish",87]="Cambiar idioma"
+
+	arr["english",88]="Interface selection"
+	arr["spanish",88]="Selecci√≥n de interfaz"
+
+	arr["english",89]="Mdk3 amok action"
+	arr["spanish",89]="Acci√≥n mdk3 amok"
+
+	arr["english",90]="Aireplay deauth action"
+	arr["spanish",90]="Acci√≥n aireplay deauth"
+
+	arr["english",91]="WIDS / WIPS / WDS confusion action"
+	arr["spanish",91]="Acci√≥n WIDS / WIPS / WDS confusion"
+
+	arr["english",92]="Beacon flood action"
+	arr["spanish",92]="Acci√≥n Beacon flood"
+
+	arr["english",93]="Auth DoS action"
+	arr["spanish",93]="Acci√≥n Auth DoS"
+
+	arr["english",94]="Michael Shutdown action"
+	arr["spanish",94]="Acci√≥n Michael Shutdown"
+
+	arr["english",95]="Mdk3 amok parameters"
+	arr["spanish",95]="Par√°metros Mdk3 amok"
+
+	arr["english",96]="Aireplay deauth parameters"
+	arr["spanish",96]="Par√°metros Aireplay deauth"
+
+	arr["english",97]="WIDS / WIPS / WDS parameters"
+	arr["spanish",97]="Par√°metros WIDS / WIPS / WDS"
+
+	arr["english",98]="Beacon flood parameters"
+	arr["spanish",98]="Par√°metros Beacon flood"
+
+	arr["english",99]="Auth DoS parameters"
+	arr["spanish",99]="Par√°metros Auth DoS"
+
+	arr["english",100]="Michael Shutdown parameters"
+	arr["spanish",100]="Par√°metros Michael Shutdown"
+
+	arr["english",101]="Airgeddon script menu"
+	arr["spanish",101]="Men√∫ airgeddon script"
+
+	arr["english",102]="Old attacks menu"
+	arr["spanish",102]="Men√∫ ataques antiguos"
+
+	arr["english",103]="Exploring Neighbourhood"
+	arr["spanish",103]="Explorar vecindario"
+
+	arr["english",104]="Select target"
+	arr["spanish",104]="Seleccionar objetivo"
+
+	arr["english",105]="About & Credits"
+	arr["spanish",105]="Acerca de & Cr√©ditos"
+
+	arr["english",106]="Exiting"
+	arr["spanish",106]="Saliendo"
+
+	arr["english",107]="Join the project at $urlgithub"
+	arr["spanish",107]="√önete al proyecto en $urlgithub"
 
 	case "$3" in
 		"yellow")
@@ -277,7 +345,26 @@ function language_strings() {
 			echo_blue "${arr[$1,$2]}"
 		;;
 		"red")
-			echo_red "${arr[$1,$2]}"
+			ncharstitle=80
+			titlechar="*"
+			titletext="${arr[$1,$2]}"
+			titlelength=${#titletext}
+			finaltitle=""
+
+			for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+				finaltitle="$finaltitle$titlechar"
+			done
+
+			finaltitle+="$titletext"
+
+			for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+				finaltitle="$finaltitle$titlechar"
+			done
+
+			if [ $(($titlelength % 2)) -gt 0 ]; then
+				finaltitle+="$titlechar"
+			fi
+			echo_red "$finaltitle"
 		;;
 		"green")
 			echo_green "${arr[$1,$2]}"
@@ -391,7 +478,7 @@ function disable_rfkill() {
 
 	rfkill unblock 0
 	for i in {0..5}; do
-	  rfkill unblock $i
+		rfkill unblock $i
 	done
 }
 
@@ -506,7 +593,7 @@ function check_interface_mode() {
 function language_option() {
 
 	clear
-	echo_red "*******************************Change language**********************************"
+	language_strings $language 87 "red"
 	language_strings $language 81 "green"
 	echo
 	language_strings $language 79
@@ -533,7 +620,7 @@ function language_option() {
 function select_interface() {
 
 	clear
-	echo_red "*****************************Interface selection********************************"
+	language_strings $language 88 "red"
 	language_strings $language 24 "green"
 	echo
 	ifaces=`ifconfig -a|grep HWaddr|cut -d ' ' -f 1`
@@ -619,7 +706,7 @@ function ask_essid() {
 function exec_mdk3deauth() {
 
 	echo
-	echo_red "******************************Mdk3 amok action**********************************"
+	language_strings $language 89 "red"
 	language_strings $language 32 "green"
 
 	rm -rf /tmp/bl.txt > /dev/null 2>&1
@@ -634,7 +721,7 @@ function exec_mdk3deauth() {
 function exec_aireplaydeauth() {
 
 	echo
-	echo_red "***************************Aireplay deauth action*******************************"
+	language_strings $language 90 "red"
 	language_strings $language 32 "green"
 
 	airmon-ng start $interface $channel > /dev/null 2>&1
@@ -648,7 +735,7 @@ function exec_aireplaydeauth() {
 function exec_wdsconfusion() {
 
 	echo
-	echo_red "*********************WIDS / WIPS / WDS confusion action*************************"
+	language_strings $language 91 "red"
 	language_strings $language 32 "green"
 
 	echo
@@ -660,7 +747,7 @@ function exec_wdsconfusion() {
 function exec_beaconflood() {
 
 	echo
-	echo_red "****************************Beacon flood action*********************************"
+	language_strings $language 92 "red"
 	language_strings $language 32 "green"
 
 	echo
@@ -672,7 +759,7 @@ function exec_beaconflood() {
 function exec_authdos() {
 
 	echo
-	echo_red "******************************Auth DoS action***********************************"
+	language_strings $language 93 "red"
 	language_strings $language 32 "green"
 
 	echo
@@ -684,7 +771,7 @@ function exec_authdos() {
 function exec_michaelshutdown() {
 
 	echo
-	echo_red "**************************Michael Shutdown action*******************************"
+	language_strings $language 94 "red"
 	language_strings $language 32 "green"
 
 	echo
@@ -696,7 +783,7 @@ function exec_michaelshutdown() {
 function mdk3_deauth_option() {
 
 	echo
-	echo_red "****************************Mdk3 amok parameters********************************"
+	language_strings $language 95 "red"
 	language_strings $language 35 "green"
 
 	check_monitor_enabled
@@ -715,7 +802,7 @@ function mdk3_deauth_option() {
 function aireplay_deauth_option() {
 
 	echo
-	echo_red "*************************Aireplay deauth parameters*****************************"
+	language_strings $language 96 "red"
 	language_strings $language 36 "green"
 
 	check_monitor_enabled
@@ -734,7 +821,7 @@ function aireplay_deauth_option() {
 function wds_confusion_option() {
 
 	echo
-	echo_red "************************WIDS / WIPS / WDS parameters****************************"
+	language_strings $language 97 "red"
 	language_strings $language 37 "green"
 
 	check_monitor_enabled
@@ -753,7 +840,7 @@ function wds_confusion_option() {
 function beacon_flood_option() {
 
 	echo
-	echo_red "***************************Beacon flood parameters******************************"
+	language_strings $language 98 "red"
 	language_strings $language 38 "green"
 
 	check_monitor_enabled
@@ -772,7 +859,7 @@ function beacon_flood_option() {
 function auth_dos_option() {
 
 	echo
-	echo_red "*****************************Auth DoS parameters********************************"
+	language_strings $language 99 "red"
 	language_strings $language 39 "green"
 
 	check_monitor_enabled
@@ -790,7 +877,7 @@ function auth_dos_option() {
 function michael_shutdown_option() {
 
 	echo
-	echo_red "************************Michael Shutdown parameters*****************************"
+	language_strings $language 100 "red"
 	language_strings $language 40 "green"
 
 	check_monitor_enabled
@@ -830,14 +917,13 @@ function print_selections() {
 				language_strings $language 46 "blue"
 			fi
 		fi
-
 	fi
 }
 
 function menu_options() {
 
 	clear
-	echo_red "*****************************airgeddon script menu********************************"
+	language_strings $language 101 "red"
 	current_menu="main"
 	print_selections
 	echo
@@ -905,7 +991,7 @@ function menu_options() {
 function old_attacks_menu() {
 
 	clear
-	echo_red "*******************************Old attacks menu*********************************"
+	language_strings $language 102 "red"
 	current_menu="old"
 	print_selections
 	echo
@@ -972,7 +1058,7 @@ function old_attacks_menu() {
 function explore_neighbourhood_option() {
 
 	echo
-	echo_red "***************************Exploring Neighbourhood******************************"
+	language_strings $language 103 "red"
 	language_strings $language 65 "green"
 
 	check_monitor_enabled
@@ -1040,7 +1126,7 @@ function explore_neighbourhood_option() {
 function select_target() {
 
 	clear
-	echo_red "*******************************Select target************************************"
+	language_strings $language 104 "red"
 	language_strings $language 69
 	echo_blue "-------------------------------------------------------"
 	i=0
@@ -1113,7 +1199,7 @@ function select_target() {
 function credits_option() {
 
 	clear
-	echo_red "******************************About & Credits***********************************"
+	language_strings $language 105 "red"
 	language_strings $language 73 "green"
 	echo "       ____        ____  __   _______"
 	echo "___  _/_   | _____/_   |/  |_ \   _  \_______"
@@ -1134,7 +1220,9 @@ function credits_option() {
 	echo
 	language_strings $language 74 "blue"
 	language_strings $language 75 "blue"
-	language_strings $language 85 "blue"
+	echo
+	language_strings $language 85 "green"
+	language_strings $language 107 "green"
 	do_read
 }
 
@@ -1183,7 +1271,7 @@ function killing_script() {
 function exit_script_option() {
 
 	echo
-	echo_red "************************************Exit****************************************"
+	language_strings $language 106 "red"
 	language_strings $language 11 "blue"
 	echo
 	exit
@@ -1196,7 +1284,7 @@ function detect_distro() {
 		language_strings $language 2 "yellow"
 		distro="Kali"
 		distro_language="english"
-		if [ "$distro_language" != "$language" ];then
+		if [ "$distro_language" != "$language" ]; then
 			echo
 			language=$distro_language
 			language_strings $language 3 "yellow"
@@ -1210,7 +1298,7 @@ function detect_distro() {
 		language_strings $language 4 "yellow"
 		distro="Wifislax"
 		distro_language="spanish"
-		if [ "$distro_language" != "$language" ];then
+		if [ "$distro_language" != "$language" ]; then
 			echo
 			language=$distro_language
 			language_strings $language 3 "yellow"
@@ -1227,7 +1315,7 @@ function welcome() {
 
 	clear
 	current_menu="main"
-	echo_red "***********************************Welcome**************************************"
+	language_strings $language 86 "red"
 	language_strings $language 6 "blue"
 	echo
 	language_strings $language 7 "green"
@@ -1270,4 +1358,5 @@ function echo_red() {
 	tput sgr0
 }
 
+trap killing_script INT
 welcome

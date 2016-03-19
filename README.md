@@ -1,5 +1,5 @@
 #airgeddon
-Version 2.01<br>
+Version 2.02<br>
 This is a DoS (Denial of Service) bash script for wireless networks.<br>
 
 #Requirements
@@ -49,3 +49,8 @@ Traps managing feature<br>
 2.01<br>
 Multilanguage support feature included<br>
 English and Spanish languages added<br>
+<br>
+2.02<br>
+Menu titles improvement<br>
+Converted to UTF-8 enconding. Special spanish chars bug fixed<br>
+Some minor code improvements<br>
