@@ -1,6 +1,6 @@
 #airgeddon
-Version 1.03<br>
-This is a DoS (Denial of Service) script for wireless networks.<br>
+Version 2.0<br>
+This is a DoS (Denial of Service) bash script for wireless networks.<br>
 
 #Requirements
 Must be run under this Linux distros:<br>
@@ -33,3 +33,9 @@ monitor and managed options added<br>
 Secondary xterm windows added<br>
 Explore neighbourhood feature included<br>
 Code improvements<br>
+<br>
+2.0<br>
+Code restructuration<br>
+WIDS confusion attack added<br>
+Old attacks menu included<br>
+Traps managing feature<br>

