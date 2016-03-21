@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.02"
+version="2.03"
 
 #Change these lines to select another default language
 language="english"
