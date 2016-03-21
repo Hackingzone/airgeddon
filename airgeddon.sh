@@ -623,7 +623,7 @@ function select_interface() {
 	language_strings $language 88 "red"
 	language_strings $language 24 "green"
 	echo
-	ifaces=`ifconfig -a|grep HWaddr|cut -d ' ' -f 1`
+	ifaces=`ip link|egrep "^[0-9]+"|cut -d ':' -f 2|awk {'print $1'}|grep lo -v`
 	option_counter=0
 	for item in $ifaces
 	do

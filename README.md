@@ -1,11 +1,11 @@
 #airgeddon
-Version 2.02<br>
+Version 2.03<br>
 This is a DoS (Denial of Service) bash script for wireless networks.<br>
 
 #Requirements
 Must be run under this Linux distros:<br>
-Kali<br>
-Wifislax<br>
+Kali. Tested on 2.0 and 2016.1<br>
+Wifislax. Tested on 4.11.1<br>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br>
@@ -54,3 +54,7 @@ English and Spanish languages added<br>
 Menu titles improvement<br>
 Converted to UTF-8 enconding. Special spanish chars bug fixed<br>
 Some minor code improvements<br>
+<br>
+2.03<br>
+Interface detection method changed<br>
+Fixed bug for Kali 2016.1<br>
