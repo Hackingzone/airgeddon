@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.21"
+version="2.22"
 
 #Change these lines to select another default language
 language="english"
@@ -30,17 +30,17 @@ function language_strings() {
 	arr["english",1]="This interface $interface is not a wifi card. It doesn't support managed mode"
 	arr["spanish",1]="Este interfaz $interface no es una tarjeta wifi. No soporta modo managed"
 
-	arr["english",2]="Kali Linux distro detected. Script can continue..."
-	arr["spanish",2]="Distro Kali Linux detectada. El script puede continuar..."
+	arr["english",2]="Kali Linux distro detected, is 100% compatible. Script can continue..."
+	arr["spanish",2]="Distro Kali Linux detectada, es 100% compatible. El script puede continuar..."
 
 	arr["english",3]="Script language changed automatically to english"
 	arr["spanish",3]="Cambio automático del idioma del script a español"
 
-	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
-	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
+	arr["english",4]="Wifislax Linux distro detected, is 100% compatible. Script can continue..."
+	arr["spanish",4]="Distro Wifislax Linux detectada, es 100% compatible. El script puede continuar..."
 
-	arr["english",5]="A distro 100% compatible can't be detected"
-	arr["spanish",5]="No se ha podido detectar una distro 100& compatible"
+	arr["english",5]="A distro 100% compatible can't be detected. Checkings must be done"
+	arr["spanish",5]="No se ha podido detectar una distro 100% compatible. Se deben realizar comprobaciones"
 
 	arr["english",6]="Welcome to airgeddon script v$version"
 	arr["spanish",6]="Bienvenido al airgeddon script v$version"
@@ -49,7 +49,7 @@ function language_strings() {
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
 
 	arr["english",8]="Known supported 100% compatible distros for this script: Kali and Wifislax"
-	arr["spanish",8]="Distros conocidas 100% soportadas por este script: Kali y Wifislax"
+	arr["spanish",8]="Distros conocidas 100% soportadas para este script: Kali y Wifislax"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
@@ -127,7 +127,7 @@ function language_strings() {
 	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
 
 	arr["english",34]="Selected interface $interface is in monitor mode. Attack can be performed"
-	arr["spanish",34]="El interfaz seleccionado $interfaz está en modo monitor. El ataque se puede realizar"
+	arr["spanish",34]="El interfaz seleccionado $interface está en modo monitor. El ataque se puede realizar"
 
 	arr["english",35]="Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
 	arr["spanish",35]="Elegido ataque de Desautenticación / Desasociación mdk3 (modo monitor requerido)"
@@ -223,7 +223,7 @@ function language_strings() {
 	arr["spanish",65]="Elegida opción de exploración del vecindario (modo monitor requerido)"
 
 	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
-	arr["spanish",66]="El interfaz seleccionado $interfaz está en modo monitor. La exploración se puede realizar"
+	arr["spanish",66]="El interfaz seleccionado $interface está en modo monitor. La exploración se puede realizar"
 
 	arr["english",67]="When started, press Ctrl+C to stop..."
 	arr["spanish",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
@@ -249,8 +249,8 @@ function language_strings() {
 	arr["english",74]="This script is under GPLv2 (or later) License"
 	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
 
-	arr["english",75]="Thanks to all the people who supported me and Wifislax Staff"
-	arr["spanish",75]="Gracias a todos aquellos que me han apoyado y al Wifislax Staff"
+	arr["english",75]="Thanks to Wifislax Staff and all the people who supported me"
+	arr["spanish",75]="Gracias al Wifislax Staff y a todos aquellos que me han apoyado"
 
 	arr["english",76]="Invalid menu option was chosen"
 	arr["spanish",76]="Opción del menú no válida"
@@ -267,7 +267,7 @@ function language_strings() {
 	arr["english",80]="2.  Spanish"
 	arr["spanish",80]="2.  Español"
 
-	arr["english",81]="Select a language :"
+	arr["english",81]="Select language :"
 	arr["spanish",81]="Selecciona un idioma :"
 
 	arr["english",82]="Invalid language was chosen"
@@ -352,13 +352,22 @@ function language_strings() {
 	arr["spanish",108]="Vamos a chequear si tienes instalado lo que el script usa"
 
 	arr["english",109]="Checking..."
-	arr["spanish",109]="Chequeando..."
+	arr["spanish",109]="Comprobando..."
 
 	arr["english",110]="Your distro is compatible. Script can continue..."
 	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
 
 	arr["english",111]="You need to install some tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
+
+	arr["english",112]="Ubuntu Linux distro detected. Is not a 100% compatible distro..."
+	arr["spanish",112]="Distro Ubuntu Linux detectada. No es una distro 100% compatible..."
+
+	arr["english",113]="Debian Linux distro detected. Is not a 100% compatible distro..."
+	arr["spanish",113]="Distro Debian Linux detectada. No es una distro 100% compatible..."
+
+	arr["english",114]="Use it only on your own networks!!"
+	arr["spanish",114]="Utilízalo solo en tus propias redes!!"
 
 	case "$3" in
 		"yellow")
@@ -1225,7 +1234,7 @@ function credits_option() {
 	echo -e $green_color"                .-\"\"\"\"-."
 	echo -e "               /        \ "
 	echo -e "              /_        _\ "
-	echo -e "             // \      / \\ "
+	echo -e "             // \      / \\\\\ "
 	echo -e "             |\__\    /__/|"
 	echo -e "              \    ||    /"
 	echo -e "               \        /"
@@ -1297,44 +1306,48 @@ function detect_distro() {
 	distro="Standard Linux"
 	airmon="airmon-ng"
 
-	uname -a | grep kali > /dev/null
-	if [ "$?" = "0" ]; then
+	uname -a | grep kali -i > /dev/null
+	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
 		language_strings $language 2 "yellow"
 		distro="Kali"
 		distro_language="english"
-		if [ "$distro_language" != "$language" ]; then
-			echo
-			compatible=1
-			language=$distro_language
-			language_strings $language 3 "yellow"
-		fi
-		echo
-		return
+		compatible=1
 	fi
 
-	uname -a | grep wifislax > /dev/null
-	if [ "$?" = "0" ]; then
+	uname -a | grep wifislax -i > /dev/null
+	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
 		language_strings $language 4 "yellow"
 		distro="Wifislax"
 		distro_language="spanish"
+		compatible=1
 
 		if hash airmon-zc 2> /dev/null; then
 			airmon="airmon-zc"
 		fi
-
-		if [ "$distro_language" != "$language" ]; then
-			echo
-			compatible=1
-			language=$distro_language
-			language_strings $language 3 "yellow"
-		fi
-		echo
-		return
 	fi
 
-	language_strings $language 5 "yellow"
+	uname -a | grep ubuntu -i > /dev/null
+	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
+		language_strings $language 112 "yellow"
+		distro="Ubuntu"
+		distro_language="english"
+		compatible=0
+	fi
+
+	uname -a | grep debian -i > /dev/null
+	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
+		language_strings $language 113 "yellow"
+		distro="Debian"
+		distro_language="english"
+		compatible=0
+	fi
+
+	check_autochange_language
 	echo
-	language_strings $language 108 "yellow"
+
+	if [ $compatible -eq 1 ]; then
+		return
+	fi
 
 	check_compatibility
 	if [ $compatible -eq 1 ]; then
@@ -1345,8 +1358,19 @@ function detect_distro() {
 	exit_script_option
 }
 
+function check_autochange_language() {
+
+	if [ "$distro_language" != "$language" ]; then
+		echo
+		language=$distro_language
+		language_strings $language 3 "yellow"
+	fi
+}
+
 function check_compatibility() {
 
+	language_strings $language 5 "yellow"
+	language_strings $language 108 "yellow"
 	do_read
 	echo
 	language_strings $language 109 "blue"
@@ -1387,6 +1411,7 @@ function welcome() {
 	language_strings $language 6 "blue"
 	echo
 	language_strings $language 7 "green"
+	language_strings $language 114 "green"
 	echo
 	language_strings $language 8 "blue"
 	language_strings $language 9 "blue"

@@ -49,3 +49,10 @@ Changes to manage Wifislax airmon command in a better way
 2.21
 Compatibility Wifislax 64bits bug fixed
 Removed version from Readme file
+
+2.22
+Minor print fail in ascii art at credits fixed
+Disclaimer and requirements updated
+Some typo errors fixed
+Changes on compatibility check structure
+Ubuntu and Debian Linux compatibility check added
