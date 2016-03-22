@@ -42,3 +42,6 @@ Changelog file added to project
 2.11
 More color features
 Compatibility check minor bug fixed
+
+2.2
+Changes to manage Wifislax airmon command in a better way

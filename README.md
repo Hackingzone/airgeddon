@@ -1,5 +1,5 @@
 #airgeddon
-Version 2.11<br>
+Version 2.2<br>
 This is a DoS (Denial of Service) bash script for wireless networks.<br>
 
 #Requirements

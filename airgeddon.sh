@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.11"
+version="2.2"
 
 #Change these lines to select another default language
 language="english"
@@ -518,12 +518,8 @@ function managed_option() {
 	language_strings $language 17 "blue"
 	ifconfig $interface up
 
-	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
-		new_interface=$(airmon-ng stop $interface | grep station | cut -d ']' -f 2)
-		new_interface=${new_interface:: -1}
-	else
-		new_interface=`airmon-ng stop mon0 | grep -v removed | grep -v Interface | awk '{print $1}'`
-	fi
+	new_interface=$($airmon stop $interface | grep station | cut -d ']' -f 2)
+	new_interface=${new_interface:: -1}
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
@@ -557,13 +553,9 @@ function monitor_option() {
 		return
 	fi
 
-	airmon-ng check kill > /dev/null 2>&1
+	$airmon check kill > /dev/null 2>&1
 
-	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
-		new_interface=$(airmon-ng start $interface | grep monitor | cut -d ']' -f 3)
-	else
-		new_interface=$(airmon-ng start $interface | grep monitor | awk '{print $5}')
-	fi
+	new_interface=$($airmon start $interface | grep monitor | cut -d ']' -f 3)
 
 	new_interface=${new_interface:: -1}
 
@@ -580,32 +572,32 @@ function monitor_option() {
 
 function check_interface_mode() {
 
-	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
-		nowifi=`iwconfig $interface 2> /dev/null`
+	if [ "$distro" = "Wifislax" ]; then
+		nowifi=`iwconfig $interface 2> /dev/null | grep Mode:`
 		if [[ "$?" != "0" ]]; then
 			ifacemode="(Non wifi card)"
 			return 0
 		fi
 	else
-		nowifi=`iwconfig $interface 2> /dev/null | grep Mode:`
+		nowifi=`iwconfig $interface 2> /dev/null`
 		if [[ "$?" != "0" ]]; then
 			ifacemode="(Non wifi card)"
 			return 0
-	      fi
+		fi
 	fi
 
 	modemanaged=`iwconfig $interface 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1`
 
 	if [[ $modemanaged = "Managed" ]]; then
-	      ifacemode="Managed"
-	      return 0
+		ifacemode="Managed"
+		return 0
 	fi
 
 	modemonitor=`iwconfig $interface 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2`
 
 	if [[ $modemonitor = "Monitor" ]]; then
-	      ifacemode="Monitor"
-	      return 0
+		ifacemode="Monitor"
+		return 0
 	fi
 
 	language_strings $language 23 "yellow"
@@ -747,7 +739,7 @@ function exec_aireplaydeauth() {
 	language_strings $language 90 "red"
 	language_strings $language 32 "green"
 
-	airmon-ng start $interface $channel > /dev/null 2>&1
+	$airmon start $interface $channel > /dev/null 2>&1
 
 	echo
 	language_strings $language 33 "blue"
@@ -1303,6 +1295,7 @@ function detect_distro() {
 
 	compatible=0
 	distro="Standard Linux"
+	airmon="airmon-ng"
 
 	uname -a | grep kali > /dev/null
 	if [ "$?" = "0" ]; then
@@ -1324,6 +1317,7 @@ function detect_distro() {
 		language_strings $language 4 "yellow"
 		distro="Wifislax"
 		distro_language="spanish"
+		airmon="airmon-zc"
 		if [ "$distro_language" != "$language" ]; then
 			echo
 			compatible=1
