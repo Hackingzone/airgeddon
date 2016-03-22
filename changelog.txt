@@ -45,3 +45,7 @@ Compatibility check minor bug fixed
 
 2.2
 Changes to manage Wifislax airmon command in a better way
+
+2.21
+Compatibility Wifislax 64bits bug fixed
+Removed version from Readme file

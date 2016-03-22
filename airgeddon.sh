@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.2"
+version="2.21"
 
 #Change these lines to select another default language
 language="english"
@@ -1317,7 +1317,11 @@ function detect_distro() {
 		language_strings $language 4 "yellow"
 		distro="Wifislax"
 		distro_language="spanish"
-		airmon="airmon-zc"
+
+		if hash airmon-zc 2> /dev/null; then
+			airmon="airmon-zc"
+		fi
+
 		if [ "$distro_language" != "$language" ]; then
 			echo
 			compatible=1
