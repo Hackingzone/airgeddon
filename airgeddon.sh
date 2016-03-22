@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.1"
+version="2.11"
 
 #Change these lines to select another default language
 language="english"
@@ -10,6 +10,16 @@ language="english"
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
 tools=(iwconfig awk rfkill airmon-ng airodump-ng aireplay-ng mdk3)
+
+#Colors
+green_color="\033[0;32m"
+magenta_color="\033[0;35m"
+white_color="\033[0;37m"
+grey_color="\033[0;37m"
+red_color="\033[0;31m"
+blue_color="\033[0;34m"
+yellow_color="\033[0;33m"
+normal_color="\e[0m"
 
 function language_strings() {
 
@@ -239,8 +249,8 @@ function language_strings() {
 	arr["english",74]="This script is under GPLv2 (or later) License"
 	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
 
-	arr["english",75]="Thanks to the \"Spanish pen testing crew\" and \"Wifislax Staff\" for beta testing and support received"
-	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" y al \"Wifislax Staff\" por el beta testing y el apoyo recibido"
+	arr["english",75]="Thanks to all the people who supported me and Wifislax Staff"
+	arr["spanish",75]="Gracias a todos aquellos que me han apoyado y al Wifislax Staff"
 
 	arr["english",76]="Invalid menu option was chosen"
 	arr["spanish",76]="Opción del menú no válida"
@@ -508,7 +518,7 @@ function managed_option() {
 	language_strings $language 17 "blue"
 	ifconfig $interface up
 
-	if [ "$distro" = "Kali" ]; then
+	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
 		new_interface=$(airmon-ng stop $interface | grep station | cut -d ']' -f 2)
 		new_interface=${new_interface:: -1}
 	else
@@ -549,7 +559,7 @@ function monitor_option() {
 
 	airmon-ng check kill > /dev/null 2>&1
 
-	if [ "$distro" = "Kali" ]; then
+	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
 		new_interface=$(airmon-ng start $interface | grep monitor | cut -d ']' -f 3)
 	else
 		new_interface=$(airmon-ng start $interface | grep monitor | awk '{print $5}')
@@ -570,7 +580,7 @@ function monitor_option() {
 
 function check_interface_mode() {
 
-	if [ "$distro" = "Kali" ]; then
+	if [ "$distro" = "Kali" ] || [ "$distro" = "Standard Linux" ]; then
 		nowifi=`iwconfig $interface 2> /dev/null`
 		if [[ "$?" != "0" ]]; then
 			ifacemode="(Non wifi card)"
@@ -1214,23 +1224,22 @@ function credits_option() {
 	clear
 	language_strings $language 105 "red"
 	language_strings $language 73 "green"
-	echo "       ____        ____  __   _______"
-	echo "___  _/_   | _____/_   |/  |_ \   _  \_______"
-	echo "\  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \ "
-	echo " \   / |   |\___ \ |   ||  |  \  \_/   \  | \/"
-	echo "  \_/  |___/____  >|___||__|   \_____  /__|"
-	echo "                \/                   \/"
-	echo "		      .-\"\"\"\"-."
-	echo "		     /        \ "
-	echo "		    /_        _\ "
-	echo "		   // \      / \\\ "
-	echo "		   |\__\    /__/|"
-	echo "		    \    ||    /"
-	echo "		     \        /"
-	echo "		      \  __  / "
-	echo "		       '.__.'"
-	echo "		        |  |"
-	echo
+	echo -e $blue_color"       ____        ____  __   _______"
+	echo -e "___  _/_   | _____/_   |/  |_ \   _  \_______"
+	echo -e "\  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \ "
+	echo -e " \   / |   |\___ \ |   ||  |  \  \_/   \  | \/"
+	echo -e "  \_/  |___/____  >|___||__|   \_____  /__|"
+	echo -e "                \/                   \/"$normal_color
+	echo -e $green_color"                .-\"\"\"\"-."
+	echo -e "               /        \ "
+	echo -e "              /_        _\ "
+	echo -e "             // \      / \\ "
+	echo -e "             |\__\    /__/|"
+	echo -e "              \    ||    /"
+	echo -e "               \        /"
+	echo -e "                \  __  / "
+	echo -e "                 '.__.'"
+	echo -e "                  |  |"$normal_color
 	language_strings $language 74 "blue"
 	language_strings $language 75 "blue"
 	echo
@@ -1293,6 +1302,8 @@ function exit_script_option() {
 function detect_distro() {
 
 	compatible=0
+	distro="Standard Linux"
+
 	uname -a | grep kali > /dev/null
 	if [ "$?" = "0" ]; then
 		language_strings $language 2 "yellow"
@@ -1351,10 +1362,10 @@ function check_compatibility() {
 			sleep 0.035
 		done
 		if ! hash $i 2> /dev/null; then
-			echo -e " Error\r"
+			echo -e $red_color" Error\r"$normal_color
 			toolsok=0
 		else
-			echo -e " Ok\r"
+			echo -e $green_color" Ok\r"$normal_color
 		fi
 	done
 

@@ -38,3 +38,7 @@ Fixed bug for Kali 2016.1
 2.1
 Compatibility check at beginning to support more distros
 Changelog file added to project
+
+2.11
+More color features
+Compatibility check minor bug fixed
