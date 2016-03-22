@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.03"
+version="2.1"
 
 #Change these lines to select another default language
 language="english"
@@ -9,6 +9,7 @@ language="english"
 #General vars
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
+tools=(iwconfig awk rfkill airmon-ng airodump-ng aireplay-ng mdk3)
 
 function language_strings() {
 
@@ -28,8 +29,8 @@ function language_strings() {
 	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
 	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
 
-	arr["english",5]="No compatible distro detected"
-	arr["spanish",5]="No se ha detectado una distro compatible"
+	arr["english",5]="A distro 100% compatible can't be detected"
+	arr["spanish",5]="No se ha podido detectar una distro 100& compatible"
 
 	arr["english",6]="Welcome to airgeddon script v$version"
 	arr["spanish",6]="Bienvenido al airgeddon script v$version"
@@ -37,8 +38,8 @@ function language_strings() {
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
 
-	arr["english",8]="Supported distros for this script: Kali and Wifislax"
-	arr["spanish",8]="Distros soportadas por este script: Kali y Wifislax"
+	arr["english",8]="Known supported 100% compatible distros for this script: Kali and Wifislax"
+	arr["spanish",8]="Distros conocidas 100% soportadas por este script: Kali y Wifislax"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
@@ -336,6 +337,18 @@ function language_strings() {
 
 	arr["english",107]="Join the project at $urlgithub"
 	arr["spanish",107]="Únete al proyecto en $urlgithub"
+
+	arr["english",108]="Let's check if you have installed what script needs"
+	arr["spanish",108]="Vamos a chequear si tienes instalado lo que el script usa"
+
+	arr["english",109]="Checking..."
+	arr["spanish",109]="Chequeando..."
+
+	arr["english",110]="Your distro is compatible. Script can continue..."
+	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
+
+	arr["english",111]="You need to install some tools before running this script"
+	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
 
 	case "$3" in
 		"yellow")
@@ -1279,6 +1292,7 @@ function exit_script_option() {
 
 function detect_distro() {
 
+	compatible=0
 	uname -a | grep kali > /dev/null
 	if [ "$?" = "0" ]; then
 		language_strings $language 2 "yellow"
@@ -1286,6 +1300,7 @@ function detect_distro() {
 		distro_language="english"
 		if [ "$distro_language" != "$language" ]; then
 			echo
+			compatible=1
 			language=$distro_language
 			language_strings $language 3 "yellow"
 		fi
@@ -1300,6 +1315,7 @@ function detect_distro() {
 		distro_language="spanish"
 		if [ "$distro_language" != "$language" ]; then
 			echo
+			compatible=1
 			language=$distro_language
 			language_strings $language 3 "yellow"
 		fi
@@ -1308,7 +1324,50 @@ function detect_distro() {
 	fi
 
 	language_strings $language 5 "yellow"
+	echo
+	language_strings $language 108 "yellow"
+
+	check_compatibility
+	if [ $compatible -eq 1 ]; then
+		return
+	fi
+
+	do_read
 	exit_script_option
+}
+
+function check_compatibility() {
+
+	do_read
+	echo
+	language_strings $language 109 "blue"
+	toolsok=1
+	toolstext=""
+
+	for i in "${tools[@]}"; do
+		echo -ne "$i "
+		for j in {0..4}; do
+			echo -ne "."
+			sleep 0.035
+		done
+		if ! hash $i 2> /dev/null; then
+			echo -e " Error\r"
+			toolsok=0
+		else
+			echo -e " Ok\r"
+		fi
+	done
+
+	if [ $toolsok -eq 0 ]; then
+		echo
+		language_strings $language 111 "yellow"
+		echo
+		return
+	fi
+
+	language_strings $language 110 "yellow"
+	echo
+	compatible=1
 }
 
 function welcome() {

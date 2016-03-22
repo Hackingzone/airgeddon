@@ -1,0 +1,40 @@
+1.0
+Initial commit
+
+1.01
+Detect distro functionality included
+Kali and Wifislax Linux compatibility
+Rfkill added
+
+1.02
+Improved echo messages and colors
+aireplay deauth attack included
+monitor and managed options added
+
+1.03
+Secondary xterm windows added
+Explore neighbourhood feature included
+Code improvements
+
+2.0
+Code restructuration
+WIDS confusion attack added
+Old attacks menu included
+Traps managing feature
+
+2.01
+Multilanguage support feature included
+English and Spanish languages added
+
+2.02
+Menu titles improvement<br
+Converted to UTF-8 enconding. Special spanish chars bug fixed
+Some minor code improvements
+
+2.03
+Interface detection method changed
+Fixed bug for Kali 2016.1
+
+2.1
+Compatibility check at beginning to support more distros
+Changelog file added to project
