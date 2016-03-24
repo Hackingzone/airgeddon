@@ -1,54 +1,8 @@
-1.0
-Initial commit
-
-1.01
-Detect distro functionality included
-Kali and Wifislax Linux compatibility
-Rfkill added
-
-1.02
-Improved echo messages and colors
-aireplay deauth attack included
-monitor and managed options added
-
-1.03
-Secondary xterm windows added
-Explore neighbourhood feature included
-Code improvements
-
-2.0
-Code restructuration
-WIDS confusion attack added
-Old attacks menu included
-Traps managing feature
-
-2.01
-Multilanguage support feature included
-English and Spanish languages added
-
-2.02
-Menu titles improvement<br
-Converted to UTF-8 enconding. Special spanish chars bug fixed
-Some minor code improvements
-
-2.03
-Interface detection method changed
-Fixed bug for Kali 2016.1
-
-2.1
-Compatibility check at beginning to support more distros
-Changelog file added to project
-
-2.11
-More color features
-Compatibility check minor bug fixed
-
-2.2
-Changes to manage Wifislax airmon command in a better way
-
-2.21
-Compatibility Wifislax 64bits bug fixed
-Removed version from Readme file
+2.23
+Read "pause" functions now integrated with language strings
+Title generator extracted to function
+Improvements on colors
+Changelog order changed. New changes now upper
 
 2.22
 Minor print fail in ascii art at credits fixed
@@ -56,3 +10,55 @@ Disclaimer and requirements updated
 Some typo errors fixed
 Changes on compatibility check structure
 Ubuntu and Debian Linux compatibility check added
+
+2.21
+Compatibility Wifislax 64bits bug fixed
+Removed version from Readme file
+
+2.2
+Changes to manage Wifislax airmon command in a better way
+
+2.11
+More color features
+Compatibility check minor bug fixed
+
+2.1
+Compatibility check at beginning to support more distros
+Changelog file added to project
+
+2.03
+Interface detection method changed
+Fixed bug for Kali 2016.1
+
+2.02
+Menu titles improvement
+Converted to UTF-8 enconding. Special spanish chars bug fixed
+Some minor code improvements
+
+2.01
+Multilanguage support feature included
+English and Spanish languages added
+
+2.0
+Code restructuration
+WIDS confusion attack added
+Old attacks menu included
+Traps managing feature
+
+1.03
+Secondary xterm windows added
+Explore neighbourhood feature included
+Code improvements
+
+1.02
+Improved echo messages and colors
+aireplay deauth attack included
+monitor and managed options added
+
+1.01
+Detect distro functionality included
+Kali and Wifislax Linux compatibility
+Rfkill added
+
+1.0
+Initial commit

