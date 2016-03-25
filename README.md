@@ -6,17 +6,14 @@ We say a distro is a 100% compatible Linux distro if it has installed by default
 Tested on these 100% compatible Linux distros:<br>
 -Kali. Tested on 2.0 and 2016.1<br>
 -Wifislax. Tested on 4.11.1<br>
+-Backbox. Tested on 4.5.1<br>
+-Parrot. Tested on 2.2.1<br>
+-Blackarch 2016.01.10<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning:<br>
-iwconfig<br>
-airmon-ng<br>
-airodump-ng<br>
-aireplay-ng<br>
-mdk3<br>
-rfkill<br>
-awk<br>
+iwconfig airmon-ng airodump-ng aireplay-ng mdk3 awk<br>
 <br>
-Other (non 100% compatible) distros tested successfully after installing the missing tools:<br>
+Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
 -Debian 8 (Jessie)<br>
 -Ubuntu 15.10<br>
 

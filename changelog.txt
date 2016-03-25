@@ -1,3 +1,10 @@
+2.3
+Compatibility extended for Parrot, Blackarch and Backbox Linux
+Essential tools check improved
+Distro compatibility check improved
+Iwconfig use fix based on version
+Pink color added
+
 2.23
 Read "pause" functions now integrated with language strings
 Title generator extracted to function
@@ -12,7 +19,7 @@ Changes on compatibility check structure
 Ubuntu and Debian Linux compatibility check added
 
 2.21
-Compatibility Wifislax 64bits bug fixed
+Wifislax 64bits compatibility bug fixed
 Removed version from Readme file
 
 2.2

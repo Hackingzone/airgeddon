@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.23"
+version="2.3"
 
 #Change these lines to select another default language
 language="english"
@@ -9,16 +9,17 @@ language="english"
 #General vars
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
-tools=(iwconfig awk rfkill airmon-ng airodump-ng aireplay-ng mdk3)
+essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3)
+#Distro vars
+known_compatible_distros=(wifislax kali parrot backbox blackarch)
+known_nondirectly_compatible_distros=(ubuntu debian)
 
 #Colors
 green_color="\033[1;32m"
-magenta_color="\033[1;35m"
-white_color="\033[1;37m"
-grey_color="\033[1;37m"
 red_color="\033[1;31m"
 blue_color="\033[1;34m"
 yellow_color="\033[1;33m"
+pink_color="\033[1;35m"
 normal_color="\e[1;0m"
 
 function language_strings() {
@@ -48,8 +49,8 @@ function language_strings() {
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
 
-	arr["english",8]="Known supported 100% compatible distros for this script: Kali and Wifislax"
-	arr["spanish",8]="Distros conocidas 100% soportadas para este script: Kali y Wifislax"
+	arr["english",8]="Known supported 100% compatible distros :"
+	arr["spanish",8]="Distros conocidas 100% soportadas para este script :"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
@@ -391,6 +392,9 @@ function language_strings() {
 		"green")
 			echo_green "${arr[$1,$2]}"
 		;;
+		"pink")
+			echo_pink "${arr[$1,$2]}"
+		;;
 		"titlered")
 			generate_title "${arr[$1,$2]}" "red"
 		;;
@@ -499,10 +503,12 @@ function check_monitor_enabled() {
 
 function disable_rfkill() {
 
-	rfkill unblock 0
-	for i in {0..5}; do
-		rfkill unblock $i
-	done
+	if hash rfkill 2> /dev/null; then
+		rfkill unblock 0
+		for i in {0..5}; do
+			rfkill unblock $i > /dev/null
+		done
+	fi
 }
 
 function managed_option() {
@@ -535,6 +541,7 @@ function managed_option() {
 function monitor_option() {
 
 	check_to_set_monitor
+
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -572,18 +579,12 @@ function monitor_option() {
 
 function check_interface_mode() {
 
-	if [ "$distro" = "Wifislax" ]; then
-		nowifi=`iwconfig $interface 2> /dev/null | grep Mode:`
-		if [[ "$?" != "0" ]]; then
-			ifacemode="(Non wifi card)"
-			return 0
-		fi
-	else
-		nowifi=`iwconfig $interface 2> /dev/null`
-		if [[ "$?" != "0" ]]; then
-			ifacemode="(Non wifi card)"
-			return 0
-		fi
+	iwconfig_fix
+	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
+	eval $iwcmd
+	if [[ "$?" != "0" ]]; then
+		ifacemode="(Non wifi card)"
+		return 0
 	fi
 
 	modemanaged=`iwconfig $interface 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1`
@@ -1140,7 +1141,7 @@ function select_target() {
 
 	clear
 	language_strings $language 104 "titlered"
-	language_strings $language 69
+	language_strings $language 69 "green"
 	echo_blue "-------------------------------------------------------"
 	i=0
 	while IFS=, read MAC CHANNEL POWER ESSID; do
@@ -1291,49 +1292,51 @@ function exit_script_option() {
 	exit
 }
 
+function airmon_fix() {
+
+	airmon="airmon-ng"
+
+	if hash airmon-zc 2> /dev/null; then
+		airmon="airmon-zc"
+	fi
+}
+
+function iwconfig_fix() {
+
+	iwversion=`iwconfig --version | grep version | awk '{print $4}'`
+	iwcmdfix=""
+	if [ $iwversion -lt 30 ]; then
+		iwcmdfix=" 2> /dev/null | grep Mode: "
+	fi
+}
+
 function detect_distro() {
 
 	compatible=0
-	distro="Standard Linux"
-	airmon="airmon-ng"
+	distro="Unknown Linux"
+	airmon_fix
 
-	uname -a | grep kali -i > /dev/null
-	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
-		language_strings $language 2 "yellow"
-		distro="Kali"
-		distro_language="english"
-		compatible=1
-	fi
-
-	uname -a | grep wifislax -i > /dev/null
-	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
-		language_strings $language 4 "yellow"
-		distro="Wifislax"
-		distro_language="spanish"
-		compatible=1
-
-		if hash airmon-zc 2> /dev/null; then
-			airmon="airmon-zc"
+	for i in "${known_compatible_distros[@]}"; do
+		uname -a | grep $i -i > /dev/null
+		if [ "$?" = "0" ]; then
+			distro="${i^}"
+			compatible=1
+			break
 		fi
+	done
+
+	if [ $compatible -eq 0 ]; then
+		for i in "${known_nondirectly_compatible_distros[@]}"; do
+			uname -a | grep $i -i > /dev/null
+			if [ "$?" = "0" ]; then
+				distro="${i^}"
+				compatible=0
+				break
+			fi
+		done
 	fi
 
-	uname -a | grep ubuntu -i > /dev/null
-	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
-		language_strings $language 112 "yellow"
-		distro="Ubuntu"
-		distro_language="english"
-		compatible=0
-	fi
-
-	uname -a | grep debian -i > /dev/null
-	if [[ "$?" = "0" ]] && [[ $compatible -eq 0 ]]; then
-		language_strings $language 113 "yellow"
-		distro="Debian"
-		distro_language="english"
-		compatible=0
-	fi
-
-	check_autochange_language
+	echo -e $yellow_color"$distro Linux"$normal_color
 	echo
 
 	if [ $compatible -eq 1 ]; then
@@ -1349,13 +1352,12 @@ function detect_distro() {
 	exit_script_option
 }
 
-function check_autochange_language() {
+function print_known_distros() {
 
-	if [ "$distro_language" != "$language" ]; then
-		echo
-		language=$distro_language
-		language_strings $language 3 "yellow"
-	fi
+	for i in "${known_compatible_distros[@]}"; do
+		echo -ne $pink_color"${i^} "$normal_color
+	done
+	echo
 }
 
 function check_compatibility() {
@@ -1368,7 +1370,7 @@ function check_compatibility() {
 	toolsok=1
 	toolstext=""
 
-	for i in "${tools[@]}"; do
+	for i in "${essential_tools[@]}"; do
 		echo -ne "$i "
 		for j in {0..4}; do
 			echo -ne "."
@@ -1405,8 +1407,9 @@ function welcome() {
 	language_strings $language 114 "green"
 	echo
 	language_strings $language 8 "blue"
-	language_strings $language 9 "blue"
+	print_known_distros
 	echo
+	language_strings $language 9 "blue"
 	detect_distro
 	language_strings $language 115 "read"
 
@@ -1432,6 +1435,11 @@ function echo_yellow() {
 function echo_red() {
 
 	echo -e $red_color"$*"$normal_color
+}
+
+function echo_pink() {
+
+	echo -e $pink_color"$*"$normal_color
 }
 
 trap killing_script INT
