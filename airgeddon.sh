@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="2.31"
+version="2.32"
 
 #Change these lines to select another default language
 language="english"
@@ -11,6 +11,8 @@ language="english"
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
 essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3)
+declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french")
+
 #Distro vars
 known_compatible_distros=(wifislax kali parrot backbox blackarch)
 known_nondirectly_compatible_distros=(ubuntu debian)
@@ -34,33 +36,33 @@ function language_strings() {
 	arr["spanish",1]="Este interfaz $interface no es una tarjeta wifi. No soporta modo managed"
 	arr["french",1]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
 
-	arr["english",2]="Kali Linux distro detected. Script can continue..."
-	arr["spanish",2]="Distro Kali Linux detectada. El script puede continuar..."
-	arr["french",2]="Distro Kali Linux détectée. Le script peut continuer..."
+	arr["english",2]="English O.S. language detected. Supported by script. Automatically changed"
+	arr["spanish",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automaticamente"
+	arr["french",2]="Langue Française de O.S. détectée. Pris en charge par le script. Changé automatiquement"
 
-	arr["english",3]="Script language changed automatically to english"
-	arr["spanish",3]="Cambio automático del idioma del script a español"
-	arr["french",3]="Changement automatique de langage; le script est maintenant en français"
+	arr["english",3]="Select target network :"
+	arr["spanish",3]="Selecciona la red objetivo :"
+	arr["french",3]="Sélectionnez le réseau cible :"
 
-	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
-	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
-	arr["french",4]="Distro Wifislax Linux détectée. Le script peut continuer..."
+	arr["english",4]="Press [Enter] key to start attack..."
+	arr["spanish",4]="Pulse la tecla [Enter] para comenzar el ataque..."
+	arr["french",4]="Pressez [Enter] pour commencer l'attaque..."
 
 	arr["english",5]="No compatible distro detected"
 	arr["spanish",5]="No se ha detectado una distro compatible"
 	arr["french",5]="La distro détectée n'est pas compatible"
 
 	arr["english",6]="Welcome to airgeddon script v$version"
-	arr["spanish",6]="Bienvenido al airgeddon script v$version"
+	arr["spanish",6]="Bienvenid@ al airgeddon script v$version"
 	arr["french",6]="Bienvenue au script airgeddon v$version"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
 	arr["french",7]="Ce script a été fait à des fins purement éducatives. Portez-vous biens!"
 
-	arr["english",8]="Supported distros for this script: Kali and Wifislax"
-	arr["spanish",8]="Distros soportadas por este script: Kali y Wifislax"
-	arr["french",8]="Distros compatibles avec ce script : Kali et Wifislax"
+	arr["english",8]="Known 100% compatible distros with this script :"
+	arr["spanish",8]="Distros conocidas 100% compatibles con este script :"
+	arr["french",8]="Distros connus 100% compatibles avec ce script :"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
@@ -368,7 +370,7 @@ function language_strings() {
 
 	arr["english",85]="Send me bugs or suggestions to $mail"
 	arr["spanish",85]="Enviadme errores o sugerencias a $mail"
-	arr["french",85]="Contactez moi à l'adresse suivante $mail pour reporter des bus ou faire des suggestions"
+	arr["french",85]="Envoyer des erreurs ou des suggestions à $mail"
 
 	arr["english",86]="Welcome"
 	arr["spanish",86]="Bienvenid@"
@@ -468,14 +470,14 @@ function language_strings() {
 
 	arr["english",110]="Your distro is compatible. Script can continue..."
 	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
-	arr["french",110]="Votre distribution est compatible. Le script peut continuer"
+	arr["french",110]="Votre distribution est compatible. Le script peut continuer..."
 
 	arr["english",111]="You need to install some tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
 	arr["french",111]="Vous devez installer quelques programmes avant de pouvoir lancer ce script"
 
 	arr["english",112]="Language changed to French"
-	arr["spanish",112]="Idioma cambiado a Francès"
+	arr["spanish",112]="Idioma cambiado a Francés"
 	arr["french",112]="Le script sera maintenant en Français"
 
 	arr["english",113]="3.  French"
@@ -484,19 +486,11 @@ function language_strings() {
 
 	arr["english",114]="Use it only on your own networks!!"
 	arr["spanish",114]="Utilízalo solo en tus propias redes!!"
-	arr["french",114]="A utiliser uniquement sur son réseau"
+	arr["french",114]="Utilisez-le seulement dans vos propres réseaux!!"
 
 	arr["english",115]="Press [Enter] key to continue..."
 	arr["spanish",115]="Pulse la tecla [Enter] para continuar..."
 	arr["french",115]="Pressez [Enter] pour continuer..."
-
-	arr["english",116]="Press [Enter] key to start attack..."
-	arr["spanish",116]="Pulse la tecla [Enter] para comenzar el ataque..."
-	arr["french",116]="Pressez [Enter] pour commencer l'attaque..."
-
-	arr["english",117]="Select target network :"
-	arr["spanish",117]="Selecciona la red objetivo :"
-	arr["french",117]="Sélectionnez le réseau cible :"
 
 	case "$3" in
 		"yellow")
@@ -853,7 +847,7 @@ function exec_mdk3deauth() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "mdk3 amok attack" -e mdk3 $interface d -b /tmp/bl.txt -c $channel
 }
 
@@ -867,7 +861,7 @@ function exec_aireplaydeauth() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $interface
 }
 
@@ -879,7 +873,7 @@ function exec_wdsconfusion() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "wids / wips / wds confusion attack" -e mdk3 $interface w -e $essid -c $channel
 }
 
@@ -891,7 +885,7 @@ function exec_beaconflood() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "beacon flood attack" -e mdk3 $interface b -n $essid -c $channel -s 1000 -h
 }
 
@@ -903,7 +897,7 @@ function exec_authdos() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "auth dos attack" -e mdk3 $interface a -a $bssid -m -s 1024
 }
 
@@ -915,7 +909,7 @@ function exec_michaelshutdown() {
 
 	echo
 	language_strings $language 33 "blue"
-	language_strings $language 116 "read"
+	language_strings $language 4 "read"
 	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "michael shutdown attack" -e mdk3 $interface m -t $bssid -w 1 -n 1024 -s 1024
 }
 
@@ -1319,7 +1313,7 @@ function select_target() {
 	else
 		language_strings $language 71
 		echo_blue "-------------------------------------------------------"
-		language_strings $language 117 "green"
+		language_strings $language 3 "green"
 		read selected_target_network
 	fi
 
@@ -1327,7 +1321,7 @@ function select_target() {
 		echo
 		language_strings $language 72 "yellow"
 		echo
-		language_strings $language 117 "green"
+		language_strings $language 3 "green"
 		read selected_target_network
 	done
 
@@ -1524,11 +1518,20 @@ function welcome() {
 
 	clear
 	current_menu="main"
+
+	autodetect_language
+
 	language_strings $language 86 "titlered"
 	language_strings $language 6 "blue"
 	echo
 	language_strings $language 7 "green"
 	language_strings $language 114 "green"
+
+	if [ $autochanged_language -eq 1 ]; then
+		echo
+		language_strings $language 2 "yellow"
+	fi
+
 	echo
 	language_strings $language 8 "blue"
 	print_known_distros
@@ -1539,6 +1542,20 @@ function welcome() {
 
 	select_interface
 	menu_options
+}
+
+function autodetect_language() {
+
+	autochanged_language=0
+	lang=`locale | grep LANG | cut -d= -f2 | cut -d_ -f1`
+
+	for lgkey in "${!lang_association[@]}"; do
+		if [[ "$lang" = "$lgkey" ]] && [[ "$language" != ${lang_association["$lgkey"]} ]]; then
+			autochanged_language=1
+			language=${lang_association["$lgkey"]}
+			break
+		fi
+	done
 }
 
 function echo_green() {

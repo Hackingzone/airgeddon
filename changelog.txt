@@ -1,3 +1,7 @@
+2.32
+Autodetect OS language feature added
+Some language strings changed
+
 2.31
 French language translation added (Thanks Kcdtv)
 Only one network autoselect bug fixed
@@ -63,8 +67,8 @@ Code improvements
 
 1.02
 Improved echo messages and colors
-aireplay deauth attack included
-monitor and managed options added
+Aireplay deauth attack included
+Monitor and managed options added
 
 1.01
 Detect distro functionality included
