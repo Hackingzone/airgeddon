@@ -27,6 +27,9 @@ This script is under GPLv2 (or later) License.<br>
 Under Kali Linux and other distros must be used with bash (no sh). Example "bash /path/airgeddon.sh"<br>
 Under Wifislax can be used with bash or sh. Example "sh /path/airgeddon.sh"<br>
 
+#Supported Languages
+English, spanish, french.<br>
+
 #Project Collaboration
 You can join the project:<br>
 -Translations to other languages are welcome.<br>

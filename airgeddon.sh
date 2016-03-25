@@ -1,10 +1,11 @@
 #!/bin/bash
 
-version="2.3"
+version="2.31"
 
 #Change these lines to select another default language
 language="english"
 #language="spanish"
+#language="french"
 
 #General vars
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
@@ -27,357 +28,475 @@ function language_strings() {
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
 	arr["spanish",0]="Este interfaz $interface ya está en modo managed"
+	arr["french",0]="L'interface $interface est déjà en mode managed"
 
 	arr["english",1]="This interface $interface is not a wifi card. It doesn't support managed mode"
 	arr["spanish",1]="Este interfaz $interface no es una tarjeta wifi. No soporta modo managed"
+	arr["french",1]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
 
-	arr["english",2]="Kali Linux distro detected, is 100% compatible. Script can continue..."
-	arr["spanish",2]="Distro Kali Linux detectada, es 100% compatible. El script puede continuar..."
+	arr["english",2]="Kali Linux distro detected. Script can continue..."
+	arr["spanish",2]="Distro Kali Linux detectada. El script puede continuar..."
+	arr["french",2]="Distro Kali Linux détectée. Le script peut continuer..."
 
 	arr["english",3]="Script language changed automatically to english"
 	arr["spanish",3]="Cambio automático del idioma del script a español"
+	arr["french",3]="Changement automatique de langage; le script est maintenant en français"
 
-	arr["english",4]="Wifislax Linux distro detected, is 100% compatible. Script can continue..."
-	arr["spanish",4]="Distro Wifislax Linux detectada, es 100% compatible. El script puede continuar..."
+	arr["english",4]="Wifislax Linux distro detected. Script can continue..."
+	arr["spanish",4]="Distro Wifislax Linux detectada. El script puede continuar..."
+	arr["french",4]="Distro Wifislax Linux détectée. Le script peut continuer..."
 
-	arr["english",5]="A distro 100% compatible can't be detected. Checkings must be done"
-	arr["spanish",5]="No se ha podido detectar una distro 100% compatible. Se deben realizar comprobaciones"
+	arr["english",5]="No compatible distro detected"
+	arr["spanish",5]="No se ha detectado una distro compatible"
+	arr["french",5]="La distro détectée n'est pas compatible"
 
 	arr["english",6]="Welcome to airgeddon script v$version"
 	arr["spanish",6]="Bienvenido al airgeddon script v$version"
+	arr["french",6]="Bienvenue au script airgeddon v$version"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
+	arr["french",7]="Ce script a été fait à des fins purement éducatives. Portez-vous biens!"
 
-	arr["english",8]="Known supported 100% compatible distros :"
-	arr["spanish",8]="Distros conocidas 100% soportadas para este script :"
+	arr["english",8]="Supported distros for this script: Kali and Wifislax"
+	arr["spanish",8]="Distros soportadas por este script: Kali y Wifislax"
+	arr["french",8]="Distros compatibles avec ce script : Kali et Wifislax"
 
 	arr["english",9]="Detecting distro..."
 	arr["spanish",9]="Detectando distro..."
+	arr["french",9]="Détection de la distro..."
 
 	arr["english",10]="This interface $interface is already in monitor mode"
 	arr["spanish",10]="Este interfaz $interface ya está en modo monitor"
+	arr["french",10]="L'interface $interface est déjà en mode moniteur"
 
 	arr["english",11]="Exiting airgeddon script - 2016 - See you soon! :)"
 	arr["spanish",11]="Saliendo de airgeddon script - 2016 - Nos vemos pronto! :)"
+	arr["french",11]="Fermeture du script airgeddon - 2016 - A bientôt! :)"
 
 	arr["english",12]="Please, exit properly using menu option"
 	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opción del menú"
+	arr["french",12]="S'il vous plaît, veuillez utiliser l'option du menue pour arrêter corectement le script"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Este interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
+	arr["french",13]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode moniteur"
 
 	arr["english",14]="This interface $interface is not in monitor mode"
 	arr["spanish",14]="Este interfaz $interface no está en modo monitor"
+	arr["french",14]="L'interface $interface n'est pas en mode moniteur"
 
 	arr["english",15]="The interface changed its name while putting in managed mode. Autoselected"
 	arr["spanish",15]="Este interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado automáticamente"
+	arr["french",15]="Le nom de l'interface a changé lors du passage en mode managed. Elle a été sélectionnée automatiquement"
 
 	arr["english",16]="Managed mode now is set on $interface"
 	arr["spanish",16]="Se ha puesto el modo managed en $interface"
+	arr["french",16]="$interface est maintenant en mode manged"
 
 	arr["english",17]="Putting your interface in managed mode..."
 	arr["spanish",17]="Poniendo el interfaz en modo managed..."
+	arr["french",17]="L'interface est en train de passer en mode managed"
 
 	arr["english",18]="Putting your interface in monitor mode..."
 	arr["spanish",18]="Poniendo el interfaz en modo monitor..."
+	arr["french",18]="L'interface est en train de passer en mode moniteur..."
 
 	arr["english",19]="Please be patient. Maybe killing some conflicting processes..."
 	arr["spanish",19]="Por favor ten paciencia. Puede que esté matando algunos procesos que podrían causar conflicto..."
+	arr["french",19]="Soyez patients s'il vous plaît. Il se peut qu'il faile tuer des processus conflictuels.."
 
 	arr["english",20]="This interface $interface doesn't support monitor mode"
 	arr["spanish",20]="Este interfaz $interface no soporta modo monitor"
+	arr["french",20]="L'interface $interface n'est pas compatible mode moniteur"
 
 	arr["english",21]="The interface changed its name while putting in monitor mode. Autoselected"
 	arr["spanish",21]="Este interfaz ha cambiado su nombre al ponerlo en modo monitor. Se ha seleccionado automáticamente"
+	arr["french",21]="Le nom de l'interface à changé lors de l'activation du mode moniteur. Elle a été automatiquement sélectionnée"
 
 	arr["english",22]="Monitor mode now is set on $interface"
 	arr["spanish",22]="Se ha puesto el modo monitor en $interface"
+	arr["french",22]="Mode moniteur activé sur l'interface $interface"
 
 	arr["english",23]="There is a problem with the interface selected. Redirecting you to script exit"
 	arr["spanish",23]="Hay un problema con el interfaz seleccionado. Redirigiendo a la salida del script"
+	arr["french",23]="Il y a un problème avec l'interface choisie. Vous allez être dirigés vers la sortie du script"
 
 	arr["english",24]="Select an interface to work with :"
 	arr["spanish",24]="Selecciona un interfaz para trabajar con él :"
+	arr["french",24]="Sélectionnez l'interface pour travailler :"
 
 	arr["english",25]="Set channel (1-14) :"
 	arr["spanish",25]="Selecciona un canal (1-14) :"
+	arr["french",25]="Sélectionnez un canal (1-14) :"
 
 	arr["english",26]="Channel set to ${channel}"
 	arr["spanish",26]="Canal elegido ${channel}"
+	arr["french",26]="Le canal ${channel} a été choisi"
 
 	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
 	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
+	arr["french",27]="Veuillez entrer le BSSID de l'objectif (exemple: 00:11:22:33:44:55) :"
 
 	arr["english",28]="BSSID set to ${bssid}"
 	arr["spanish",28]="BSSID elegido ${bssid}"
+	arr["french",28]="Le BSSID choisi est ${bssid}"
 
 	arr["english",29]="Type target ESSID :"
 	arr["spanish",29]="Escribe el ESSID objetivo :"
+	arr["french",29]="Écrivez l'ESSID du réseau cible :"
 
 	arr["english",30]="You have selected a hidden network ESSID. Can't be used. Select another one or perform a BSSID based attack instead of this"
 	arr["spanish",30]="Has seleccionado un ESSID de red oculta. No se puede usar. Selecciona otro o ejecuta un ataque basado en BSSID en lugar de este"
+	arr["french",30]="Vous avez choisi un réseau dont l'ESSID est caché et ce n'est pas possible. Veuillez sélectionner une autre cible ou bien effectuer une attaque qui se fonde sur le BSSID au lieu de celle-ci."
 
 	arr["english",31]="ESSID set to ${essid}"
 	arr["spanish",31]="ESSID elegido ${essid}"
+	arr["french",31]="l'ESSID sélectionné est ${essid}"
 
 	arr["english",32]="All parameters set"
 	arr["spanish",32]="Todos los parámetros están listos"
+	arr["french",32]="Tous les paramètres sont correctement établis"
 
 	arr["english",33]="Starting attack. When started, press Ctrl+C to stop..."
 	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
+	arr["french",33]="L'attaque est lancé. Pressez Ctrl+C pour l'arrêter..."
 
 	arr["english",34]="Selected interface $interface is in monitor mode. Attack can be performed"
 	arr["spanish",34]="El interfaz seleccionado $interface está en modo monitor. El ataque se puede realizar"
+	arr["french",34]="L'interface $interface qui a été sélectionnée est bien en mode moniteur. L'attaque peut être lancée"
 
 	arr["english",35]="Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
 	arr["spanish",35]="Elegido ataque de Desautenticación / Desasociación mdk3 (modo monitor requerido)"
+	arr["french",35]="L'attaque de Dés-authentification / Dissociation mdk3 a été choisie (mode moniteur nécessaire)"
 
 	arr["english",36]="Deauthentication aireplay attack chosen (monitor mode needed)"
 	arr["spanish",36]="Elegido ataque de Desautenticación aireplay (modo monitor requerido)"
+	arr["french",36]="L'attaque de Dés-authentification aireplay a été choisie (mode moniteur nécessaire)"
 
 	arr["english",37]="WIDS / WIPS / WDS Confusion attack chosen (monitor mode needed)"
 	arr["spanish",37]="Elegido ataque Confusion WIDS / WIPS / WDS (modo monitor requerido)"
+	arr["french",37]="L'attaque Confusion WIDS / WIPS / WDS a été choisie (mode moniteur nécessaire)"
 
 	arr["english",38]="Beacon flood attack chosen (monitor mode needed)"
 	arr["spanish",38]="Elegido ataque Beacon flood (modo monitor requerido)"
+	arr["french",38]="L'attaque Beacon flood a été choisie (mode moniteur nécessaire)"
 
 	arr["english",39]="Auth DoS attack chosen (monitor mode needed)"
 	arr["spanish",39]="Elegido ataque Auth DoS (modo monitor requerido)"
+	arr["french",39]="L'attaque Auth DoS a été choisie (modo moniteur nécessaire)"
 
 	arr["english",40]="Michael Shutdown (TKIP) attack chosen (monitor mode needed)"
 	arr["spanish",40]="Elegido ataque Michael Shutdown (TKIP) (modo monitor requerido)"
+	arr["french",40]="L'attaque Michael Shutdown (TKIP) a été choisie (mode moniteur nécessaire)"
 
 	arr["english",41]="No interface selected. You'll be redirected to select one"
 	arr["spanish",41]="No hay interfaz seleccionado. Serás redirigido para seleccionar uno"
+	arr["french",41]="Aucune interface sélectionnée. Vous allez retourner au menu de sélection pour en choisir une"
 
 	arr["english",42]="Interface $interface selected. Mode: $ifacemode"
 	arr["spanish",42]="Interfaz $interface seleccionado. Modo: $ifacemode"
+	arr["french",42]="Interface $interface sélectionnée. Mode: $ifacemode"
 
 	arr["english",43]="Selected BSSID: $bssid"
 	arr["spanish",43]="BSSID seleccionado: $bssid"
+	arr["french",43]="BSSID sélectionné: $bssid"
 
 	arr["english",44]="Selected channel: $channel"
 	arr["spanish",44]="Canal seleccionado: $channel"
+	arr["french",44]="Canal sélectionné: $channel"
 
 	arr["english",45]="Selected ESSID: $essid <- can't be used"
 	arr["spanish",45]="ESSID seleccionado: $essid <- no se puede usar"
+	arr["french",45]="ESSID sélectionné: $essid <- ne peut pas être utilisé"
 
 	arr["english",46]="Selected ESSID: $essid"
 	arr["spanish",46]="ESSID seleccionado: $essid"
+	arr["french",46]="ESSID sélectionné: $essid"
 
 	arr["english",47]="Select an option from menu :"
 	arr["spanish",47]="Selecciona una opción del menú :"
+	arr["french",47]="Choisissez une des options du menu :"
 
 	arr["english",48]="1.  Select another network interface"
 	arr["spanish",48]="1.  Selecciona otro interfaz de red"
+	arr["french",48]="1.  Sélectionnez une autre interface réseaux"
 
 	arr["english",49]="2.  Explore neighbourhood for targets (monitor mode needed)"
 	arr["spanish",49]="2.  Explorar el vecindario para buscar objetivos (modo monitor requerido)"
+	arr["french",49]="2.  Détection des réseaux pour choisir une cible (modo moniteur obligatoire)"
 
 	arr["english",50]="---------(monitor mode needed for attacks)---------"
 	arr["spanish",50]="--------(modo monitor requerido en ataques)--------"
+	arr["french",50]="---(modo moniteur obligatoire pour ces attaques)---"
 
 	arr["english",51]="3.  Deauth / disassoc amok mdk3 attack"
 	arr["spanish",51]="3.  Ataque Deauth / Disassoc amok mdk3"
+	arr["french",51]="3.  Attaque Deauth / Disassoc amok mdk3"
 
 	arr["english",52]="4.  Deauth aireplay attack"
 	arr["spanish",52]="4.  Ataque Deauth aireplay"
+	arr["french",52]="4.  Attaque Deauth aireplay"
 
 	arr["english",53]="5.  WIDS / WIPS / WDS Confusion attack"
 	arr["spanish",53]="5.  Ataque WIDS / WIPS / WDS Confusion"
+	arr["french",53]="5.  Attaque WIDS / WIPS / WDS Confusion"
 
 	arr["english",54]="6.  Old \"obsolete/non very effective\" attacks menu"
 	arr["spanish",54]="6.  Menú de antiguos ataques \"obsoletos/no muy efectivos\""
+	arr["french",54]="6.  Menu des anciennes attaques \"obsolètes/peu efficaces\""
 
 	arr["english",55]="7.  Put interface in monitor mode"
 	arr["spanish",55]="7.  Poner el interfaz en modo monitor"
+	arr["french",55]="7.  Passer l'interface en mode moniteur"
 
 	arr["english",56]="8.  Put interface in managed mode"
 	arr["spanish",56]="8.  Poner el interfaz en modo managed"
+	arr["french",56]="8.  Passer l'interface en mode managed"
 
 	arr["english",57]="6.  Put interface in monitor mode"
 	arr["spanish",57]="6.  Poner el interfaz en modo monitor"
+	arr["french",57]="6.  Passer l'interface en mode moniteur"
 
 	arr["english",58]="7.  Put interface in managed mode"
 	arr["spanish",58]="7.  Poner el interfaz en modo managed"
+	arr["french",58]="7.  Passer l'interface en mode managed"
 
 	arr["english",59]="8.  Return to main menu"
 	arr["spanish",59]="8.  Volver al menú principal"
+	arr["french",59]="8.  Retourner au menu principal"
 
 	arr["english",60]="9.  About & Credits"
 	arr["spanish",60]="9.  Acerca de & Créditos"
+	arr["french",60]="9.  A propos de & Crédits"
 
 	arr["english",61]="11. Exit script"
 	arr["spanish",61]="11. Salir del script"
+	arr["french",61]="11. Sortir du script"
 
 	arr["english",62]="3.  Beacon flood attack"
 	arr["spanish",62]="3.  Ataque Beacon flood"
+	arr["french",62]="3.  Attaque Beacon flood"
 
 	arr["english",63]="4.  Auth DoS attack"
 	arr["spanish",63]="4.  Ataque Auth DoS"
+	arr["french",63]="4.  Attaque Auth DoS"
 
 	arr["english",64]="5.  Michael shutdown exploitation (TKIP) attack"
 	arr["spanish",64]="5.  Ataque Michael shutdown exploitation (TKIP)"
+	arr["french",64]="5.  Attaque Michael shutdown exploitation (TKIP)"
 
 	arr["english",65]="Exploring neighbourhood option chosen (monitor mode needed)"
 	arr["spanish",65]="Elegida opción de exploración del vecindario (modo monitor requerido)"
+	arr["french",65]="L'option découverte des réseaux avoisinants a été choisie (modo moniteur nécessaire)"
 
 	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
 	arr["spanish",66]="El interfaz seleccionado $interface está en modo monitor. La exploración se puede realizar"
+	arr["french",66]="L'interface choisie $interface est en mode moniteur. L'exploration des réseaux environnants peut s'effectuer"
 
 	arr["english",67]="When started, press Ctrl+C to stop..."
 	arr["spanish",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
+	arr["french",67]="Une foi l'opération lancée, veuillez presser Ctrl+C pour l'arrêter..."
 
 	arr["english",68]="No networks found"
 	arr["spanish",68]="No se encontraron redes"
+	arr["french",68]="Aucun réseau détecté"
 
 	arr["english",69]="  N.         BSSID      CHANNEL  PWR       ESSID"
-	arr["spanish",69]="  N.         BSSID       CANAL   PWR       ESSID"
+	arr["spanish",69]="  N.         BSSID        CANAL  PWR       ESSID"
+	arr["french",69]="  N.         BSSID        CANAL  PWR       ESSID"
 
 	arr["english",70]="Only one target detected. Autoselected"
 	arr["spanish",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
+	arr["french",70]="Un seul réseau a été détecté. Il a été automatiquement sélectionné"
 
 	arr["english",71]="(*) Network with clients"
 	arr["spanish",71]="(*) Red con clientes"
+	arr["french",71]="(*) Réseau avec clients"
 
 	arr["english",72]="Invalid target network was chosen"
 	arr["spanish",72]="Red objetivo elegida no válida"
+	arr["french",72]="Le choix du réseau cible est invalide"
 
 	arr["english",73]="airgeddon script v$version developed by :"
 	arr["spanish",73]="airgeddon script v$version programado por :"
+	arr["french",73]="Le script airgeddon v$version a été programmé par :"
 
 	arr["english",74]="This script is under GPLv2 (or later) License"
 	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
+	arr["french",74]="Script publié sous Licence GPLv2 (ou version supèrieure)"
 
-	arr["english",75]="Thanks to Wifislax Staff and all the people who supported me"
-	arr["spanish",75]="Gracias al Wifislax Staff y a todos aquellos que me han apoyado"
+	arr["english",75]="Thanks to the \"Spanish pen testing crew\" and \"Wifislax Staff\" for beta testing and support received"
+	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" y al \"Wifislax Staff\" por el beta testing y el apoyo recibido"
+	arr["french",75]="Merci au \"Spanish pen testing crew\" et au \"Wifislax Staff\" pour les tests en phase bêta et leur soutien"
 
 	arr["english",76]="Invalid menu option was chosen"
 	arr["spanish",76]="Opción del menú no válida"
+	arr["french",76]="Option erronée"
 
 	arr["english",77]="Invalid interface was chosen"
 	arr["spanish",77]="Interfaz no válida"
+	arr["french",77]="L'interface choisie n'existe pas"
 
 	arr["english",78]="10. Change language"
 	arr["spanish",78]="10. Cambiar idioma"
+	arr["french",78]="10. Changer de langue"
 
 	arr["english",79]="1.  English"
 	arr["spanish",79]="1.  Inglés"
+	arr["french",79]="1.  Anglais"
 
 	arr["english",80]="2.  Spanish"
 	arr["spanish",80]="2.  Español"
+	arr["french",80]="2.  Espagnol"
 
-	arr["english",81]="Select language :"
+	arr["english",81]="Select a language :"
 	arr["spanish",81]="Selecciona un idioma :"
+	arr["french",81]="Choisissez une langue :"
 
 	arr["english",82]="Invalid language was chosen"
 	arr["spanish",82]="Idioma no válido"
+	arr["french",82]="Langue non valide"
 
 	arr["english",83]="Language changed to English"
 	arr["spanish",83]="Idioma cambiado a Inglés"
+	arr["french",83]="Le script sera maintenant en Anglais"
 
 	arr["english",84]="Language changed to Spanish"
 	arr["spanish",84]="Idioma cambiado a Español"
+	arr["french",84]="Le script sera maintenant en Espagnol"
 
 	arr["english",85]="Send me bugs or suggestions to $mail"
 	arr["spanish",85]="Enviadme errores o sugerencias a $mail"
+	arr["french",85]="Contactez moi à l'adresse suivante $mail pour reporter des bus ou faire des suggestions"
 
 	arr["english",86]="Welcome"
 	arr["spanish",86]="Bienvenid@"
+	arr["french",86]="Bienvenue"
 
 	arr["english",87]="Change language"
 	arr["spanish",87]="Cambiar idioma"
+	arr["french",87]="Changer de langue"
 
 	arr["english",88]="Interface selection"
 	arr["spanish",88]="Selección de interfaz"
+	arr["french",88]="Sélection de l'interface"
 
 	arr["english",89]="Mdk3 amok action"
 	arr["spanish",89]="Acción mdk3 amok"
+	arr["french",89]="Action mdk3 amok"
 
 	arr["english",90]="Aireplay deauth action"
 	arr["spanish",90]="Acción aireplay deauth"
+	arr["french",90]="Action aireplay deauth"
 
 	arr["english",91]="WIDS / WIPS / WDS confusion action"
 	arr["spanish",91]="Acción WIDS / WIPS / WDS confusion"
+	arr["french",91]="Action WIDS / WIPS / WDS confusion"
 
 	arr["english",92]="Beacon flood action"
 	arr["spanish",92]="Acción Beacon flood"
+	arr["french",92]="Action Beacon flood"
 
 	arr["english",93]="Auth DoS action"
 	arr["spanish",93]="Acción Auth DoS"
+	arr["french",93]="Action Auth DoS"
 
 	arr["english",94]="Michael Shutdown action"
 	arr["spanish",94]="Acción Michael Shutdown"
+	arr["french",94]="Action Michael Shutdown"
 
 	arr["english",95]="Mdk3 amok parameters"
 	arr["spanish",95]="Parámetros Mdk3 amok"
+	arr["french",95]="Paramètres Mdk3 amok"
 
 	arr["english",96]="Aireplay deauth parameters"
 	arr["spanish",96]="Parámetros Aireplay deauth"
+	arr["french",96]="Paramètres Aireplay deauth"
 
 	arr["english",97]="WIDS / WIPS / WDS parameters"
 	arr["spanish",97]="Parámetros WIDS / WIPS / WDS"
+	arr["french",97]="Paramètres WIDS / WIPS / WDS"
 
 	arr["english",98]="Beacon flood parameters"
 	arr["spanish",98]="Parámetros Beacon flood"
+	arr["french",98]="Paramètres Beacon flood"
 
 	arr["english",99]="Auth DoS parameters"
 	arr["spanish",99]="Parámetros Auth DoS"
+	arr["french",99]="Paramètres Auth DoS"
 
 	arr["english",100]="Michael Shutdown parameters"
 	arr["spanish",100]="Parámetros Michael Shutdown"
+	arr["french",100]="Paramètres Michael Shutdown"
 
 	arr["english",101]="Airgeddon script menu"
 	arr["spanish",101]="Menú airgeddon script"
+	arr["french",101]="Menu airgeddon script"
 
 	arr["english",102]="Old attacks menu"
 	arr["spanish",102]="Menú ataques antiguos"
+	arr["french",102]="Menu des vieilles attaques"
 
 	arr["english",103]="Exploring Neighbourhood"
 	arr["spanish",103]="Explorar vecindario"
+	arr["french",103]="Détection des réseaux avoisinants"
 
 	arr["english",104]="Select target"
 	arr["spanish",104]="Seleccionar objetivo"
+	arr["french",104]="Selection de l'objectif"
 
 	arr["english",105]="About & Credits"
 	arr["spanish",105]="Acerca de & Créditos"
+	arr["french",105]="A propos de & Crédits"
 
 	arr["english",106]="Exiting"
 	arr["spanish",106]="Saliendo"
+	arr["french",106]="Sortie du script"
 
 	arr["english",107]="Join the project at $urlgithub"
 	arr["spanish",107]="Únete al proyecto en $urlgithub"
+	arr["french",107]="Rejoignez le projet : $urlgithub"
 
 	arr["english",108]="Let's check if you have installed what script needs"
 	arr["spanish",108]="Vamos a chequear si tienes instalado lo que el script usa"
+	arr["french",108]="Nous allons vérifier si les dépendances sont bien installées"
 
 	arr["english",109]="Checking..."
 	arr["spanish",109]="Comprobando..."
+	arr["french",109]="Vérification..."
 
 	arr["english",110]="Your distro is compatible. Script can continue..."
 	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
+	arr["french",110]="Votre distribution est compatible. Le script peut continuer"
 
 	arr["english",111]="You need to install some tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
+	arr["french",111]="Vous devez installer quelques programmes avant de pouvoir lancer ce script"
 
-	arr["english",112]="Ubuntu Linux distro detected. Is not a 100% compatible distro..."
-	arr["spanish",112]="Distro Ubuntu Linux detectada. No es una distro 100% compatible..."
+	arr["english",112]="Language changed to French"
+	arr["spanish",112]="Idioma cambiado a Francès"
+	arr["french",112]="Le script sera maintenant en Français"
 
-	arr["english",113]="Debian Linux distro detected. Is not a 100% compatible distro..."
-	arr["spanish",113]="Distro Debian Linux detectada. No es una distro 100% compatible..."
+	arr["english",113]="3.  French"
+	arr["spanish",113]="3.  Francés"
+	arr["french",113]="3.  Français"
 
 	arr["english",114]="Use it only on your own networks!!"
 	arr["spanish",114]="Utilízalo solo en tus propias redes!!"
+	arr["french",114]="A utiliser uniquement sur son réseau"
 
 	arr["english",115]="Press [Enter] key to continue..."
 	arr["spanish",115]="Pulse la tecla [Enter] para continuar..."
+	arr["french",115]="Pressez [Enter] pour continuer..."
 
 	arr["english",116]="Press [Enter] key to start attack..."
 	arr["spanish",116]="Pulse la tecla [Enter] para comenzar el ataque..."
+	arr["french",116]="Pressez [Enter] pour commencer l'attaque..."
 
 	arr["english",117]="Select target network :"
 	arr["spanish",117]="Selecciona la red objetivo :"
+	arr["french",117]="Sélectionnez le réseau cible :"
 
 	case "$3" in
 		"yellow")
@@ -614,6 +733,7 @@ function language_option() {
 	echo
 	language_strings $language 79
 	language_strings $language 80
+	language_strings $language 113
 
 	read language_selected
 	case $language_selected in
@@ -625,6 +745,11 @@ function language_option() {
 		2)
 			language="spanish"
 			language_strings $language 84 "yellow"
+			language_strings $language 115 "read"
+		;;
+		3)
+			language="french"
+			language_strings $language 112 "yellow"
 			language_strings $language 115 "read"
 		;;
 		*)
@@ -1189,12 +1314,11 @@ function select_target() {
 	echo
 	if [ $i -eq 1 ]; then
 		language_strings $language 70 "yellow"
-		select_target_network=1
+		selected_target_network=1
 		language_strings $language 115 "read"
 	else
 		language_strings $language 71
 		echo_blue "-------------------------------------------------------"
-		echo
 		language_strings $language 117 "green"
 		read selected_target_network
 	fi

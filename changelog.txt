@@ -1,3 +1,7 @@
+2.31
+French language translation added (Thanks Kcdtv)
+Only one network autoselect bug fixed
+
 2.3
 Compatibility extended for Parrot, Blackarch and Backbox Linux
 Essential tools check improved
