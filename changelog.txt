@@ -1,9 +1,12 @@
+2.33
+Catalan language translation added (Thank you to "El Padrino")
+
 2.32
 Autodetect OS language feature added
 Some language strings changed
 
 2.31
-French language translation added (Thanks Kcdtv)
+French language translation added (Thank you to "Kcdtv")
 Only one network autoselect bug fixed
 
 2.3

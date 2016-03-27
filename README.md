@@ -28,7 +28,7 @@ Under Kali Linux and other distros must be used with bash (no sh). Example "bash
 Under Wifislax can be used with bash or sh. Example "sh /path/airgeddon.sh"<br>
 
 #Supported Languages
-English, spanish, french.<br>
+English, Spanish, French and Catalan.<br>
 
 #Project Collaboration
 You can join the project:<br>
