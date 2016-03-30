@@ -1,3 +1,8 @@
+3.0
+New menus, new structure
+New handshake features
+Code normalization
+
 2.33
 Catalan language translation added (Thank you to "El Padrino")
 

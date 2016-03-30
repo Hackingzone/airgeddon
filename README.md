@@ -1,5 +1,5 @@
 #airgeddon
-This is a DoS (Denial of Service) bash script for wireless networks.<br>
+This is a Multi-use bash script for wireless networks.<br>
 
 #Requirements
 We say a distro is a 100% compatible Linux distro if it has installed by default all the tools script needs to work.<br>
