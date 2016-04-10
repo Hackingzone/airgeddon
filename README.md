@@ -1,5 +1,5 @@
 #airgeddon
-This is a Multi-use bash script for wireless networks.<br>
+This is a Multi-use bash script to audit wireless networks.<br>
 
 #Requirements
 We say a distro is a 100% compatible Linux distro if it has installed by default all the tools script needs to work.<br>
@@ -24,8 +24,9 @@ We are not responsible of its use.<br>
 This script is under GPLv2 (or later) License.<br>
 
 #Use
-Under Kali Linux and other distros must be used with bash (no sh). Example "bash /path/airgeddon.sh"<br>
-Under Wifislax can be used with bash or sh. Example "sh /path/airgeddon.sh"<br>
+Under some distros like Kali Linux must be called only using bash (no sh). Example "bash /path/airgeddon.sh"<br>
+Under Wifislax and others, it can be called using bash or sh. Example "sh /path/airgeddon.sh"<br>
+If you call the script using sh and a "Syntax error" appears, use it with bash instead of sh.<br>
 
 #Supported Languages
 English, Spanish, French and Catalan.<br>
@@ -35,6 +36,7 @@ You can join the project:<br>
 -Translations to other languages are welcome.<br>
 -More distros support compatibility.<br>
 -New features.<br>
+-Testing and feedback is needed too.<br>
 
 #Changelog
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.<br>

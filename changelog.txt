@@ -1,6 +1,12 @@
+3.01
+Handshake tools menu added
+Handshake capture feature
+Handshake cleaning/optimizing feature
+Random helping hints added (regarding the script zone)
+
 3.0
 New menus, new structure
-New handshake features
+New handshake features preparation (not working yet in this revision)
 Code normalization
 
 2.33
@@ -70,7 +76,7 @@ Traps managing feature
 
 1.03
 Secondary xterm windows added
-Explore neighbourhood feature included
+Explore for targets feature included
 Code improvements
 
 1.02
