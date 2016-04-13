@@ -11,7 +11,7 @@ Tested on these 100% compatible Linux distros:<br>
 -Blackarch 2016.01.10<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning:<br>
-iwconfig airmon-ng airodump-ng aireplay-ng mdk3 awk<br>
+iwconfig airmon-ng airodump-ng aireplay-ng mdk3 awk wpaclean<br>
 <br>
 Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
 -Debian 8 (Jessie)<br>

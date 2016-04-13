@@ -1,3 +1,9 @@
+3.02
+Cleaning tasks on exit
+Minor code refactor
+Some language strings changed
+Hint method improved
+
 3.01
 Handshake tools menu added
 Handshake capture feature
