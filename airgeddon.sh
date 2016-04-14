@@ -69,10 +69,10 @@ function language_strings() {
 	arr["french",4]="Pressez [Enter] pour commencer l'attaque..."
 	arr["catalan",4]="Premi la tecla [Enter] per començar l'atac..."
 
-	arr["english",5]="No compatible distro detected"
-	arr["spanish",5]="No se ha detectado una distro compatible"
-	arr["french",5]="La distro détectée n'est pas compatible"
-	arr["catalan",5]="La distro detectada no es compatible"
+	arr["english",5]="No 100% compatible distro detected"
+	arr["spanish",5]="No se ha detectado una distro compatible 100%"
+	arr["french",5]="La distro détectée n'est pas compatible 100%"
+	arr["catalan",5]="La distro detectada no es compatible 100%"
 
 	arr["english",6]="Welcome to airgeddon script v$version"
 	arr["spanish",6]="Bienvenid@ al airgeddon script v$version"
@@ -804,7 +804,7 @@ function language_strings() {
 	arr["french",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans "${normal_color}"$enteredpath"${blue_color}"]"
 	arr["catalan",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
 
-	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session?  "${normal_color}"[y/n]"
+	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session? "${normal_color}"[y/n]"
 	arr["spanish",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? "${normal_color}"[y/n]"
 	arr["french",152]="Voulez-vous nettoyer/optimiser le fichier Handshake capturé pendant cette session? "${normal_color}"[y/n]"
 	arr["catalan",152]="Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
@@ -859,20 +859,35 @@ function language_strings() {
 	arr["french",162]="Félicitations!!"
 	arr["catalan",162]="Enhorabona!!"
 
-	arr["english",163]="It is recommended to launch the script as root user. Make sure you have permission to launch commands like rfkill or airmon"
-	arr["spanish",163]="Se recomienda lanzar el script como usuario root. Asegúrate de tener permisos para lanzar comandos como rfkill o airmon"
-	arr["french",163]="Il est recommandé de lancer le script en tant que root. Assurez-vous que vous disposez bien des privilèges nécessaires à l’exécution de commandes comme rfkill ou airmon"
-	arr["catalan",163]="Es recomana llançar l'script com a usuari root. Assegura't de tenir permisos per llançar ordres com rfkill o airmon"
+	arr["english",163]="It is recommended to launch the script as root user or using \"sudo\". Make sure you have permission to launch commands like rfkill or airmon for example"
+	arr["spanish",163]="Se recomienda lanzar el script como usuario root o usando \"sudo\". Asegúrate de tener permisos para lanzar comandos como rfkill o airmon por ejemplo"
+	arr["french",163]="Il est recommandé de lancer le script en tant que root ou en utilisant \"sudo\". Assurez-vous que vous disposez bien des privilèges nécessaires à l’exécution de commandes comme rfkill ou airmon par exemple"
+	arr["catalan",163]="Es recomana llançar l'script com a usuari root o utilitzeu \"sudo\". Assegura't de tenir permisos per llançar ordres com rfkill o airmon per exemple"
 
 	arr["english",164]="Cleaning temp files"
 	arr["spanish",164]="Limpiando archivos temporales"
 	arr["french",164]="Effacement des fichiers temporaires"
 	arr["catalan",164]="Netejant arxius temporals"
 
-	arr["english",165]="Checking if cleaning tasks are needed..."
-	arr["spanish",165]="Comprobando si hay que realizar tareas de limpieza..."
-	arr["french",165]="Vérification de la nécessité d'effectuer ou pas des opérations de nettoyage..."
-	arr["catalan",165]="Comprovant si cal realitzar tasques de neteja..."
+	arr["english",165]="Checking if cleaning/restoring tasks are needed..."
+	arr["spanish",165]="Comprobando si hay que realizar tareas de limpieza/restauración..."
+	arr["french",165]="Vérification de la nécessité d'effectuer ou pas des opérations de nettoyage/restauration..."
+	arr["catalan",165]="Comprovant si cal realitzar tasques de neteja/restauració..."
+
+	arr["english",166]="Do you want to preserv monitor mode for your card on exit? "${normal_color}"[y/n]"
+	arr["spanish",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? "${normal_color}"[y/n]"
+	arr["french",166]="Voulez-vous laisser votre interface en mode moniteur après l'arrêt du script? "${normal_color}"[y/n]"
+	arr["catalan",166]="Vols conservar el mode monitor del teu interfície en sortir? "${normal_color}"[y/n]"
+
+	arr["english",167]="Putting your interface in managed mode"
+	arr["spanish",167]="Poniendo interfaz en modo managed"
+	arr["french",167]="L'interface est en train de passer en mode managed"
+	arr["catalan",167]="Configurant la interfície en mode managed"
+
+	arr["english",168]="Launching previously killed processes"
+	arr["spanish",168]="Arrancando procesos cerrados anteriormente"
+	arr["french",168]="Lancement des processus précédemment tués"
+	arr["catalan",168]="Llançant processos tancats anteriorment"
 
 	case "$3" in
 		"yellow")
@@ -1052,7 +1067,7 @@ function monitor_option() {
 	disable_rfkill
 
 	language_strings ${language} 18 "blue"
-	language_strings ${language} 19 "blue"
+
 	ifconfig ${interface} up
 	iwconfig ${interface} rate 1M > /dev/null 2>&1
 
@@ -1063,10 +1078,12 @@ function monitor_option() {
 		return
 	fi
 
-	${airmon} check kill > /dev/null 2>&1
+	if [ ${check_kill_needed} -eq 1 ]; then
+		language_strings ${language} 19 "blue"
+		${airmon} check kill > /dev/null 2>&1
+	fi
 
 	new_interface=$(${airmon} start ${interface} | grep monitor | cut -d ']' -f 3)
-
 	new_interface=${new_interface:: -1}
 
 	if [ "$interface" != "$new_interface" ]; then
@@ -2181,6 +2198,7 @@ function killing_script() {
 
 function exit_script_option() {
 
+	action_on_exit_taken=0
 	echo
 	language_strings ${language} 106 "titlered"
 	language_strings ${language} 11 "blue"
@@ -2188,15 +2206,33 @@ function exit_script_option() {
 	echo
 	language_strings ${language} 165 "blue"
 
+	if [ "$ifacemode" = "Monitor" ]; then
+		ask_yesno 166
+		if [ ${yesno} = "n" ]; then
+			action_on_exit_taken=1
+			language_strings ${language} 167 "multiline"
+			${airmon} stop ${interface} > /dev/null 2>&1
+			time_loop
+			echo -e ${green_color}" Ok\r"${normal_color}
+
+			if [ ${check_kill_needed} -eq 1 ]; then
+				language_strings ${language} 168 "multiline"
+				eval ${networkmanager_cmd}" > /dev/null 2>&1"
+				time_loop
+				echo -e ${green_color}" Ok\r"${normal_color}
+			fi
+		fi
+	fi
+
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
-		clean_tmpfiles
-		echo
+		action_on_exit_taken=1
 		language_strings ${language} 164 "multiline"
+		clean_tmpfiles
 		time_loop
 		echo -e ${green_color}" Ok\r"${normal_color}
 	fi
 
-	if [ ${tmpfiles_toclean} -eq 0 ]; then
+	if [ ${action_on_exit_taken} -eq 0 ]; then
 		language_strings ${language} 160 "yellow"
 	fi
 
@@ -2207,7 +2243,7 @@ function exit_script_option() {
 function time_loop() {
 
 	echo -ne " "
-	for i in 0 1 2 3 4; do
+	for j in 0 1 2 3 4; do
 		echo -ne "."
 		sleep 0.035
 	done
@@ -2231,10 +2267,33 @@ function iwconfig_fix() {
 	fi
 }
 
+function special_distro_features() {
+
+	case ${distro} in
+		"Kali")
+			distroyear=`uname -a | grep -oP "20[0-9]{2}\-[0-9]{2}\-[0-9]{2}" | awk -F "-" '{print $1}'`
+			if [ "$distroyear" = "2016" ]; then
+				check_kill_needed=0
+			fi
+		;;
+		"Wifislax")
+			networkmanager_cmd="service restart networkmanager"
+		;;
+		"Backbox")
+			check_kill_needed=0
+		;;
+		"Blackarch")
+			check_kill_needed=0
+		;;
+	esac
+}
+
 function detect_distro() {
 
 	compatible=0
 	distro="Unknown Linux"
+	check_kill_needed=1
+	networkmanager_cmd="service network-manager restart"
 	airmon_fix
 
 	for i in "${known_compatible_distros[@]}"; do
@@ -2256,6 +2315,8 @@ function detect_distro() {
 			fi
 		done
 	fi
+
+	special_distro_features
 
 	echo -e ${yellow_color}"$distro Linux"${normal_color}
 	echo

@@ -1,3 +1,8 @@
+3.1
+Restoring initial state of cards on exit feature
+"No check kill needed" feature added while putting card in monitor mode for some distros
+Fixed bug checking tools
+
 3.02
 Cleaning tasks on exit
 Minor code refactor
