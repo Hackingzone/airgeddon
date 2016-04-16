@@ -1,3 +1,29 @@
+3.11
+Optional autoclean captured Handshake file feature
+Some language strings changed
+
+3.1
+Restoring initial state of cards on exit feature
+"No check kill needed" feature added while putting card in monitor mode for some distros
+Fixed bug checking tools
+
+3.02
+Cleaning tasks on exit
+Minor code refactor
+Some language strings changed
+Hint method improved
+
+3.01
+Handshake tools menu added
+Handshake capture feature
+Handshake cleaning/optimizing feature
+Random helping hints added (regarding the script zone)
+
+3.0
+New menus, new structure
+New Handshake features preparation (not working yet in this revision)
+Code normalization
+
 2.33
 Catalan language translation added (Thank you to "El Padrino")
 
@@ -65,7 +91,7 @@ Traps managing feature
 
 1.03
 Secondary xterm windows added
-Explore neighbourhood feature included
+Explore for targets feature included
 Code improvements
 
 1.02
