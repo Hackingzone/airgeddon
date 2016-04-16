@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="3.02"
+version="3.11"
 
 #Change these lines to select another default language
 language="english"
@@ -597,7 +597,7 @@ function language_strings() {
 	arr["english",110]="Your distro is compatible. Script can continue..."
 	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
 	arr["french",110]="Votre distribution est compatible. Le script peut continuer..."
-	arr["catalan",110]="La teva distro es compatible. L'script pot continuar..."
+	arr["catalan",110]="La teva distro es compatible. El script pot continuar..."
 
 	arr["english",111]="You need to install some tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
@@ -654,10 +654,10 @@ function language_strings() {
 	arr["french",121]="5.  Capture du Handshake"
 	arr["catalan",121]="5.  Captura Handshake"
 
-	arr["english",122]="6.  Clean/optimize captured Handshake file"
-	arr["spanish",122]="6.  Limpiar/optimizar fichero de Handshake capturado"
-	arr["french",122]="6.  Laver/optimiser le fichier Handshake capturé"
-	arr["catalan",122]="6.  Netejar/optimitzar fitxer de Handshake capturat"
+	arr["english",122]="6.  Clean/optimize Handshake file"
+	arr["spanish",122]="6.  Limpiar/optimizar fichero de Handshake"
+	arr["french",122]="6.  Laver/optimiser le fichier Handshake"
+	arr["catalan",122]="6.  Netejar/optimitzar fitxer de Handshake"
 
 	arr["english",123]="7.  Return to main menu"
 	arr["spanish",123]="7.  Volver al menú principal"
@@ -677,7 +677,7 @@ function language_strings() {
 	arr["english",126]="You have a valid WPA/WPA2 target network selected. Script can continue..."
 	arr["spanish",126]="Tienes una red objetivo WPA/WPA2 válida seleccionada. El script puede continuar..."
 	arr["french",126]="Choix du réseau cible WPA/WPA2 valide. Le script peut continuer..."
-	arr["catalan",126]="Tens una xarxa objectiu WPA/WPA2 vàlida seleccionada. L'script pot continuar..."
+	arr["catalan",126]="Tens una xarxa objectiu WPA/WPA2 vàlida seleccionada. El script pot continuar..."
 
 	arr["english",127]="The natural order to proceed in this menu is usually: 1-Select wifi card 2-Put it in monitor mode 3-Select target network 4-Capture Handshake"
 	arr["spanish",127]="El orden natural para proceder en este menú suele ser: 1-Elige tarjeta wifi 2-Ponla en modo monitor 3-Elige red objetivo 4-Captura Handshake"
@@ -697,17 +697,17 @@ function language_strings() {
 	arr["english",130]="Remember to select a target network with clients to capture Handshake"
 	arr["spanish",130]="Recuerda seleccionar una red objetivo con clientes para capturar el Handshake"
 	arr["french",130]="Rappelez-vous de sélectionner un réseau cible avec un/des client(s) connecté(s) pour pouvoir capturer un Handshake"
-	arr["catalan",130]="Recordi que ha de seleccionar una xarxa de destinació amb els clients per capturar el Handshake"
+	arr["catalan",130]="Recorda que has de seleccionar una xarxa de destinació amb clients per capturar el Handshake"
 
 	arr["english",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one ;)"
 	arr["spanish",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro ;)"
 	arr["french",131]="Toutes les attaques n'affectent pas les points d'accès de la même manière. Si une attaque ne donne pas de résultats, choisissez en une autre ;)"
-	arr["catalan",131]="No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant en contra d'un punt d'accés, trie un altre ;)"
+	arr["catalan",131]="No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant cap a un punt d'accés, tria un altre ;)"
 
 	arr["english",132]="After capturing a handshake clean it. It will reduce the file size and will be more optimal for use later"
 	arr["spanish",132]="Tras capturar un Handshake límpialo. Reducirá el tamaño del archivo y será más óptimo para utilizarlo después"
 	arr["french",132]="Après avoir capturé un Handshake il est recommandable de le nettoyer: Vous en réduirez ainsi le poids et il sera optimisé pour être traité a posteriori"
-	arr["catalan",132]="Després capturar un Handshake neteja'l. Reduirà la mida del fitxer i serà més òptim per utilitzar-lo després"
+	arr["catalan",132]="Després de capturar un Handshake neteja'l. Reduirà la mida del fitxer i serà més òptim per utilitzar-lo després"
 
 	arr["english",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["spanish",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
@@ -717,7 +717,7 @@ function language_strings() {
 	arr["english",134]="If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
 	arr["spanish",134]="Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
 	arr["french",134]="Si votre système d'exploitation Linux est lancé dans une machine virtuelle, il est probable que les cartes wifi internes soient détectées comme des cartes ethernet. Il vaut mieux dans ce cas utiliser un dispositif wifi usb"
-	arr["catalan",134]="Si el teu Linux és una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
+	arr["catalan",134]="Si el teu Linux és a una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
 
 	arr["english",135]="Type of encryption: "${pink_color}"$enc"${normal_color}
 	arr["spanish",135]="Tipo de encriptado: "${pink_color}"$enc"${normal_color}
@@ -742,7 +742,7 @@ function language_strings() {
 	arr["english",139]="1.  Deauth / disassoc amok mdk3 attack"
 	arr["spanish",139]="1.  Ataque Deauth / Disassoc amok mdk3"
 	arr["french",139]="1.  Attaque Deauth / Disassoc amok mdk3"
-	arr["catalan",139]="1.  Attaque Deauth / Disassoc amok mdk3"
+	arr["catalan",139]="1.  Atac Deauth / Disassoc amok mdk3"
 
 	arr["english",140]="2.  Deauth aireplay attack"
 	arr["spanish",140]="2.  Ataque Deauth aireplay"
@@ -757,17 +757,17 @@ function language_strings() {
 	arr["english",142]="If the Handshake doesn't appear after an attack, try again or change the type of attack"
 	arr["spanish",142]="Si tras un ataque el Handshake no aparece, vuelve a intentarlo o cambia de ataque hasta conseguirlo"
 	arr["french",142]="Si vous n'obtenez pas le Handshake après une attaque, veuillez recommencer ou bien changer d'attaque jusqu'à son obtention"
-	arr["catalan",142]="Si després d'un atac el Handshake no apareix, torna a intentar-ho o canvia d'atac fins a aconseguir-"
+	arr["catalan",142]="Si després d'un atac el Handshake no apareix, torna a intentar-ho o canvia d'atac fins aconseguir-ho"
 
 	arr["english",143]="Two windows will be opened. One with the Handshake capturer and other with the attack to force clients to reconnect"
 	arr["spanish",143]="Se abrirán dos ventanas. Una con el capturador del Handshake y otra con el ataque para expulsar a los clientes y forzarles a reconectar"
 	arr["french",143]="Deux fenêtres vont s'ouvrir: La première pour capturer le handshake et la deuxième pour effectuer l'attaque visant à expulser les clients du réseau et les forcer à renégocier un Handshake pour se reconnecter"
-	arr["catalan",143]="S'obren dues finestres. Una amb el capturador de Handshake i una altra amb l'atac per expulsar els clients i forçar-los a reconnectar"
+	arr["catalan",143]="S'obriran dues finestres. Una amb el capturador de Handshake i una altra amb l'atac per expulsar als clients i forçar-los a reconnectar"
 
 	arr["english",144]="Don't close any window manually, script will do when needed. In about 20 seconds maximum you'll know if you've got the Handshake"
 	arr["spanish",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos 20 segundos como máximo sabrás si conseguiste el Handshake"
 	arr["french",144]="Ne pas fermer une des fenêtres manuellement:  Le script va le faire automatiquement si besoin est. Vos saurez dans tout a plus 20 secondes si avez obtenu le Handshake"
-	arr["catalan",144]="No tancaments manualment cap finestra, l'script ho farà quan sigui procedent. En uns 20 segons com a màxim sabràs si has aconseguit el Handshake"
+	arr["catalan",144]="No tanquis manualment cap finestra, el script ho farà quan escaigui. En uns 20 segons com a màxim sabràs si vas aconseguir el Handshake"
 
 	arr["english",145]="Did you get the Handshake? "${pink_color}"(Look at the top right corner of the capture window) "${normal_color}"[y/n]"
 	arr["spanish",145]="¿Conseguiste el Handshake? "${pink_color}"(Mira en la parte superior derecha de la ventana de captura) "${normal_color}"[y/n]"
@@ -789,10 +789,10 @@ function language_strings() {
 	arr["french",148]="Entrez le chemin où vous voulez garder le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut"${normal_color}"[$handshakepath]"
 	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte"${normal_color}"[$handshakepath]"
 
-	arr["english",149]="Handshake file generated successfully at ["${normal_color}"$enteredpath"${blue_color}"]. Returning to menu..."
-	arr["spanish",149]="Fichero de Handshake generado con éxito en ["${normal_color}"$enteredpath"${blue_color}"]. Volviendo al menú..."
-	arr["french",149]="Fichier Handshake généré avec succès dans ["${normal_color}"$enteredpath"${blue_color}"]. Retour au menu..."
-	arr["catalan",149]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$enteredpath"${blue_color}"]. Tornant al menú..."
+	arr["english",149]="Handshake file generated successfully at ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["spanish",149]="Fichero de Handshake generado con éxito en ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["french",149]="Fichier Handshake généré avec succès dans ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["catalan",149]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$enteredpath"${blue_color}"]"
 
 	arr["english",150]="No captured Handshake file detected during this session..."
 	arr["spanish",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -822,7 +822,7 @@ function language_strings() {
 	arr["english",155]="The directory exists but you didn't specify filename. It will be autogenerated ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
 	arr["spanish",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
 	arr["french",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
-	arr["catalan",155]="El directori existeix però no s'ha especificat nom de fitxer. es autogenerará ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
+	arr["catalan",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará ["${normal_color}"$standardhandshake_filename"${yellow_color}"]"
 
 	arr["english",156]="Directory not exists"
 	arr["spanish",156]="El directorio no existe"
@@ -832,12 +832,12 @@ function language_strings() {
 	arr["english",157]="The path exists but you don't have write permissions"
 	arr["spanish",157]="La ruta existe pero no tienes permisos de escritura"
 	arr["french",157]="Le chemin existe mais vous ne disposez pas des permis d'écriture"
-	arr["catalan",157]="La route existe, mais vous ne disposez pas des autorisations d'écriture"
+	arr["catalan",157]="La ruta existeix, però no tens permisos d'escriptura"
 
 	arr["english",158]="The path is valid and you have write permissions. Script can continue..."
 	arr["spanish",158]="La ruta es válida y tienes permisos de escritura. El script puede continuar..."
 	arr["french",158]="Le chemin est valide et vous disposez des privilèges nécessaires pour l'écriture. Le script peut continuer..."
-	arr["catalan",158]="La ruta és vàlida i tens permisos d'escriptura. L'script pot continuar..."
+	arr["catalan",158]="La ruta és vàlida i tens permisos d'escriptura. El script pot continuar..."
 
 	arr["english",159]="The file doesn't need to be cleaned/optimized. It is already"
 	arr["spanish",159]="El fichero no necesita ser limpiado/optimizado. Ya lo está"
@@ -877,7 +877,7 @@ function language_strings() {
 	arr["english",166]="Do you want to preserv monitor mode for your card on exit? "${normal_color}"[y/n]"
 	arr["spanish",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? "${normal_color}"[y/n]"
 	arr["french",166]="Voulez-vous laisser votre interface en mode moniteur après l'arrêt du script? "${normal_color}"[y/n]"
-	arr["catalan",166]="Vols conservar el mode monitor del teu interfície en sortir? "${normal_color}"[y/n]"
+	arr["catalan",166]="¿Vols conservar el mode monitor de la teva interfície en sortir? "${normal_color}"[y/n]"
 
 	arr["english",167]="Putting your interface in managed mode"
 	arr["spanish",167]="Poniendo interfaz en modo managed"
@@ -1652,7 +1652,7 @@ function handshake_tools_menu() {
 			capture_handshake
 		;;
 		6)
-			clean_handshake_file
+			clean_handshake_file_option
 		;;
 		7)
 			return
@@ -1665,7 +1665,29 @@ function handshake_tools_menu() {
 	handshake_tools_menu
 }
 
-function clean_handshake_file() {
+function clean_captured_handshake_file() {
+
+	ask_yesno 152
+	if [ ${yesno} = "y" ]; then
+		filetoclean=${enteredpath}
+		exec_clean_handshake_file
+	fi
+}
+
+function exec_clean_handshake_file() {
+
+	handshakefilesize=`wc -c ${filetoclean} 2> /dev/null | awk -F " " '{print$1}'`
+	echo
+	if [ ${handshakefilesize} -gt 1024 ]; then
+		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
+		language_strings ${language} 153 "yellow"
+	else
+		language_strings ${language} 159 "yellow"
+	fi
+	language_strings ${language} 115 "read"
+}
+
+function clean_handshake_file_option() {
 
 	echo
 	readpath=0
@@ -1690,15 +1712,7 @@ function clean_handshake_file() {
 		done
 	fi
 
-	handshakefilesize=`wc -c ${filetoclean} 2> /dev/null | awk -F " " '{print$1}'`
-	echo
-	if [ ${handshakefilesize} -gt 1024 ]; then
-		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
-		language_strings ${language} 153 "yellow"
-	else
-		language_strings ${language} 159 "yellow"
-	fi
-	language_strings ${language} 115 "read"
+	exec_clean_handshake_file
 }
 
 function dos_attacks_menu() {
@@ -1887,6 +1901,7 @@ function attack_handshake_menu() {
 			echo
 			language_strings ${language} 149 "blue"
 			language_strings ${language} 115 "read"
+			clean_captured_handshake_file
 			return
 		else
 			echo

@@ -1,3 +1,7 @@
+3.11
+Optional autoclean captured Handshake file feature
+Some language strings changed
+
 3.1
 Restoring initial state of cards on exit feature
 "No check kill needed" feature added while putting card in monitor mode for some distros
@@ -17,7 +21,7 @@ Random helping hints added (regarding the script zone)
 
 3.0
 New menus, new structure
-New handshake features preparation (not working yet in this revision)
+New Handshake features preparation (not working yet in this revision)
 Code normalization
 
 2.33
