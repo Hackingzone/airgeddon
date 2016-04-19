@@ -1,6 +1,6 @@
 #!/bin/bash
 
-version="3.11"
+airgeddon_version="3.2"
 
 #Change these lines to select another default language
 language="english"
@@ -11,7 +11,7 @@ language="english"
 #General vars
 urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
 mail="v1s1t0r.1sh3r3@gmail.com"
-essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean)
+essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean aircrack-ng crunch)
 declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
@@ -26,6 +26,13 @@ declare main_hints=(128 134 163)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
 declare handshake_attack_hints=(142)
+declare decrypt_hints=(171 178 179 208)
+
+#Charset vars
+lowercasecharset="abcdefghijklmnopqrstuvwxyz"
+uppercasecharset="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+numbercharset="0123456789"
+symbolcharset="!#$%/=?{}[]-*:;"
 
 #Colors
 green_color="\033[1;32m"
@@ -74,10 +81,10 @@ function language_strings() {
 	arr["french",5]="La distro détectée n'est pas compatible 100%"
 	arr["catalan",5]="La distro detectada no es compatible 100%"
 
-	arr["english",6]="Welcome to airgeddon script v$version"
-	arr["spanish",6]="Bienvenid@ al airgeddon script v$version"
-	arr["french",6]="Bienvenue au script airgeddon v$version"
-	arr["catalan",6]="Benvingut al airgeddon script v$version"
+	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
+	arr["spanish",6]="Bienvenid@ al airgeddon script v$airgeddon_version"
+	arr["french",6]="Bienvenue au script airgeddon v$airgeddon_version"
+	arr["catalan",6]="Benvingut al airgeddon script v$airgeddon_version"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
@@ -99,10 +106,10 @@ function language_strings() {
 	arr["french",10]="L'interface $interface est déjà en mode moniteur"
 	arr["catalan",10]="Aquesta interfície ja està en mode monitor"
 
-	arr["english",11]="Exiting airgeddon script v$version - See you soon! :)"
-	arr["spanish",11]="Saliendo de airgeddon script v$version - Nos vemos pronto! :)"
-	arr["french",11]="Fermeture du script airgeddon v$version - A bientôt! :)"
-	arr["catalan",11]="Sortint de airgeddon script v$version - Ens veiem aviat! :)"
+	arr["english",11]="Exiting airgeddon script v$airgeddon_version - See you soon! :)"
+	arr["spanish",11]="Saliendo de airgeddon script v$airgeddon_version - Nos vemos pronto! :)"
+	arr["french",11]="Fermeture du script airgeddon v$airgeddon_version - A bientôt! :)"
+	arr["catalan",11]="Sortint de airgeddon script v$airgeddon_version - Ens veiem aviat! :)"
 
 	arr["english",12]="Please, exit properly using menu option"
 	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opción del menú"
@@ -344,15 +351,15 @@ function language_strings() {
 	arr["french",59]="11. Retourner au menu principal"
 	arr["catalan",59]="11. Tornar al menú principal"
 
-	arr["english",60]="6.  About & Credits"
-	arr["spanish",60]="6.  Acerca de & Créditos"
-	arr["french",60]="6.  A propos de & Crédits"
-	arr["catalan",60]="6.  Sobre & Crédits"
+	arr["english",60]="7.  About & Credits"
+	arr["spanish",60]="7.  Acerca de & Créditos"
+	arr["french",60]="7.  A propos de & Crédits"
+	arr["catalan",60]="7.  Sobre & Crédits"
 
-	arr["english",61]="8.  Exit script"
-	arr["spanish",61]="8.  Salir del script"
-	arr["french",61]="8.  Sortir du script"
-	arr["catalan",61]="8.  Sortir del script"
+	arr["english",61]="9.  Exit script"
+	arr["spanish",61]="9.  Salir del script"
+	arr["french",61]="9.  Sortir du script"
+	arr["catalan",61]="9.  Sortir del script"
 
 	arr["english",62]="8.  Beacon flood attack"
 	arr["spanish",62]="8.  Ataque Beacon flood"
@@ -409,10 +416,10 @@ function language_strings() {
 	arr["french",72]="Le choix du réseau cible est invalide"
 	arr["catalan",72]="Xarxa de destí seleccionada no vàlida"
 
-	arr["english",73]="airgeddon script v$version developed by :"
-	arr["spanish",73]="airgeddon script v$version programado por :"
-	arr["french",73]="Le script airgeddon v$version a été programmé par :"
-	arr["catalan",73]="airgeddon script v$version desenvolupat per :"
+	arr["english",73]="airgeddon script v$airgeddon_version developed by :"
+	arr["spanish",73]="airgeddon script v$airgeddon_version programado por :"
+	arr["french",73]="Le script airgeddon v$airgeddon_version a été programmé par :"
+	arr["catalan",73]="airgeddon script v$airgeddon_version desenvolupat per :"
 
 	arr["english",74]="This script is under GPLv2 (or later) License"
 	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
@@ -434,10 +441,10 @@ function language_strings() {
 	arr["french",77]="L'interface choisie n'existe pas"
 	arr["catalan",77]="Interfície no vàlida"
 
-	arr["english",78]="7.  Change language"
-	arr["spanish",78]="7.  Cambiar idioma"
-	arr["french",78]="7.  Changer de langue"
-	arr["catalan",78]="7.  Canviar l'idioma"
+	arr["english",78]="8.  Change language"
+	arr["spanish",78]="8.  Cambiar idioma"
+	arr["french",78]="8.  Changer de langue"
+	arr["catalan",78]="8.  Canviar l'idioma"
 
 	arr["english",79]="1.  English"
 	arr["spanish",79]="1.  Inglés"
@@ -704,10 +711,10 @@ function language_strings() {
 	arr["french",131]="Toutes les attaques n'affectent pas les points d'accès de la même manière. Si une attaque ne donne pas de résultats, choisissez en une autre ;)"
 	arr["catalan",131]="No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant cap a un punt d'accés, tria un altre ;)"
 
-	arr["english",132]="After capturing a handshake clean it. It will reduce the file size and will be more optimal for use later"
-	arr["spanish",132]="Tras capturar un Handshake límpialo. Reducirá el tamaño del archivo y será más óptimo para utilizarlo después"
-	arr["french",132]="Après avoir capturé un Handshake il est recommandable de le nettoyer: Vous en réduirez ainsi le poids et il sera optimisé pour être traité a posteriori"
-	arr["catalan",132]="Després de capturar un Handshake neteja'l. Reduirà la mida del fitxer i serà més òptim per utilitzar-lo després"
+	arr["english",132]="Cleaning a Handshake file is recommended only for big size files. It's better to have a backup, sometimes file can be corrupted while cleaning it"
+	arr["spanish",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
+	arr["french",132]="Épurer le fichier contenant le Handshake est seulement recommandable si le fichier est volumineux. Si vous décidez d'épurer le fichier il est conseillé de faire une copie de sauvegarde du fichier originel, l'opération de nettoyage comporte des risques et peut le rendre illisible"
+	arr["catalan",132]="Netejar un fitxer de Handshake es recomana només per a fitxers grans. És millor fer una còpia de seguretat abans, de vegades el fitxer es pot corrompre a netejar"
 
 	arr["english",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["spanish",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
@@ -807,7 +814,7 @@ function language_strings() {
 	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session? "${normal_color}"[y/n]"
 	arr["spanish",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? "${normal_color}"[y/n]"
 	arr["french",152]="Voulez-vous nettoyer/optimiser le fichier Handshake capturé pendant cette session? "${normal_color}"[y/n]"
-	arr["catalan",152]="Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
+	arr["catalan",152]="¿Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
 
 	arr["english",153]="File cleaned/optimized successfully"
 	arr["spanish",153]="Fichero limpiado/optimizado con éxito"
@@ -888,6 +895,211 @@ function language_strings() {
 	arr["spanish",168]="Arrancando procesos cerrados anteriormente"
 	arr["french",168]="Lancement des processus précédemment tués"
 	arr["catalan",168]="Llançant processos tancats anteriorment"
+
+	arr["english",169]="6.  Offline password decrypt menu"
+	arr["spanish",169]="6.  Menú de desencriptado de contraseñas offline"
+	arr["french",169]="6.  Menu décrypter le mot de passe offline"
+	arr["catalan",169]="6.  Menú de desxifrar contrasenyas offline"
+
+	arr["english",170]="Offline password decrypt menu"
+	arr["spanish",170]="Menú de desencriptado de contraseñas offline"
+	arr["french",170]="Menu décrypter le mot de passe offline"
+	arr["catalan",170]="Menú de desxifrar contrasenyas offline"
+
+	arr["english",171]="The key decrypt process is performed offline on a previously captured file"
+	arr["spanish",171]="El proceso de desencriptado de las claves se realiza de manera offline sobre un fichero capturado previamente"
+	arr["french",171]="Le processus de clé de déchiffrement est effectuée de manière offline sur un fichier précédemment capturé"
+	arr["catalan",171]="El procés de desencriptació de les claus es realitza de manera offline sobre un fitxer capturat prèviament"
+
+	arr["english",172]="1.  Dictionary attack against capture file"
+	arr["spanish",172]="1.  Ataque de diccionario sobre fichero de captura"
+	arr["french",172]="1.  Attaque Dictionnaire sur fichier de capture"
+	arr["catalan",172]="1.  Atac de diccionari sobre fitxer de captura"
+
+	arr["english",173]="Selected captured file: "${pink_color}"$enteredpath"${normal_color}
+	arr["spanish",173]="Fichero capturado seleccionado: "${pink_color}"$enteredpath"${normal_color}
+	arr["french",173]="Fichier de capture sélectionné: "${pink_color}"$enteredpath"${normal_color}
+	arr["catalan",173]="Fitxer capturat seleccionat: "${pink_color}"$enteredpath"${normal_color}
+
+	arr["english",174]="3.  Return to main menu"
+	arr["spanish",174]="3.  Volver al menú principal"
+	arr["french",174]="3.  Retourner au menu principal"
+	arr["catalan",174]="3.  Tornar al menú principal"
+
+	arr["english",175]="2.  Bruteforce attack against capture file"
+	arr["spanish",175]="2.  Ataque de fuerza bruta sobre fichero de captura"
+	arr["french",175]="2.  Attaque en force brute sur fichier de capture"
+	arr["catalan",175]="2.  Atac de força bruta sobre fitxer de captura"
+
+	arr["english",176]="-----------------(aircrack attacks)------------------"
+	arr["spanish",176]="-----------------(ataques aircrack)------------------"
+	arr["french",176]="-----------------(attaques aircrack)-----------------"
+	arr["catalan",176]="------------------(Atacs aircrack)-------------------"
+
+	arr["english",177]="Selected captured file: "${pink_color}"None"${normal_color}
+	arr["spanish",177]="Fichero capturado seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",177]="Fichier de capture sélectionné: "${pink_color}"Aucun ne"${normal_color}
+	arr["catalan",177]="Fitxer capturat seleccionat: "${pink_color}"Ningú"${normal_color}
+
+	arr["english",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake"
+	arr["spanish",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
+	arr["french",178]="Pour déchiffrer la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir une Handshake"
+	arr["catalan",178]="Per desxifrar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
+
+	arr["english",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
+	arr["spanish",179]="Desencriptando por fuerza bruta, podrían pasar horas, días, semanas o incluso meses hasta conseguirlo dependiendo de la complejidad de la contraseña y de tu velocidad de proceso"
+	arr["french",179]="Décryptée par la force brute, ils pourraient passer des heures, des jours, des semaines ou même des mois pour obtenir en fonction de la complexité de la mot de passe et la votre vitesse de traitement"
+	arr["catalan",179]="Desencriptar per força bruta, podrien passar hores, dies, setmanes o fins i tot mesos fins a aconseguir-depenent de la complexitat de la contrasenya i de la teva velocitat de procés"
+
+	arr["english",180]="Enter the path of a dictionary file :"
+	arr["spanish",180]="Introduce la ruta de un fichero de diccionario :"
+	arr["french",180]="Entrez le chemin d'un fichier de dictionnaire :"
+	arr["catalan",180]="Introdueix la ruta d'un fitxer de diccionari :"
+
+	arr["english",181]="The path to the dictionary file is valid. Script can continue..."
+	arr["spanish",181]="La ruta al fichero de diccionario es válida. El script puede continuar..."
+	arr["french",181]="Le chemin au fichier de dictionnaire est valide. Le script peut continuer..."
+	arr["catalan",181]="La ruta al fitxer de diccionari és vàlida. El script pot continuar..."
+
+	arr["english",182]="Selected dictionary file: "${pink_color}"$dictionary"${normal_color}
+	arr["spanish",182]="Fichero de diccionario seleccionado: "${pink_color}"$dictionary"${normal_color}
+	arr["french",182]="Fichier de dictionnaire sélectionné: "${pink_color}"$dictionary"${normal_color}
+	arr["catalan",182]="Fitxer de diccionari seleccionat: "${pink_color}"$dictionary"${normal_color}
+
+	arr["english",183]="You already have selected a dictionary file during this session ["${normal_color}"$dictionary"${blue_color}"]"
+	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión ["${normal_color}"$dictionary"${blue_color}"]"
+	arr["french",183]="Vous avez sélectionné un fichier de dictionnaire pour la session effectuée et se trouve dans "${normal_color}"$dictionary"${blue_color}"]"
+	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió ["${normal_color}"$dictionary"${blue_color}"]"
+
+	arr["english",184]="Do you want to use this already selected dictionary file? "${normal_color}"[y/n]"
+	arr["spanish",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? "${normal_color}"[y/n]"
+	arr["french",184]="Vous souhaitez utiliser ce fichier dictionnaire déjà sélectionné? "${normal_color}"[y/n]"
+	arr["catalan",184]="¿Vols fer servir aquest fitxer de diccionari ja seleccionat? "${normal_color}"[y/n]"
+
+	arr["english",185]="Selected BSSID: "${pink_color}"None"${normal_color}
+	arr["spanish",185]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",185]="BSSID sélectionné: "${pink_color}"Aucun ne"${normal_color}
+	arr["catalan",185]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
+
+	arr["english",186]="You already have selected a capture file during this session ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["spanish",186]="Ya tienes seleccionado un fichero de captura en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["french",186]="Vous avez sélectionné un fichier de capture pour la session effectuée et se trouve dans "${normal_color}"$enteredpath"${blue_color}"]"
+	arr["catalan",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
+
+	arr["english",187]="Do you want to use this already selected capture file? "${normal_color}"[y/n]"
+	arr["spanish",187]="¿Quieres utilizar este fichero de captura ya seleccionado? "${normal_color}"[y/n]"
+	arr["french",187]="Vous souhaitez utiliser ce fichier capture déjà sélectionné? "${normal_color}"[y/n]"
+	arr["catalan",187]="¿Vols fer servir aquest fitxer de captura ja seleccionat? "${normal_color}"[y/n]"
+
+	arr["english",188]="Enter the path of a captured file :"
+	arr["spanish",188]="Introduce la ruta de un fichero de captura :"
+	arr["french",188]="Entrez le chemin d'un fichier de capture :"
+	arr["catalan",188]="Introdueix la ruta d'un fitxer de captura :"
+
+	arr["english",189]="The path to the capture file is valid. Script can continue..."
+	arr["spanish",189]="La ruta al fichero de captura es válida. El script puede continuar..."
+	arr["french",189]="Le chemin au fichier de capture est valide. Le script peut continuer..."
+	arr["catalan",189]="La ruta al fitxer de captura és vàlida. El script pot continuar..."
+
+	arr["english",190]="Starting decrypt. When started, press Ctrl+C to stop..."
+	arr["spanish",190]="Comenzando desencriptado. Una vez empezado, pulse Ctrl+C para pararlo..."
+	arr["french",190]="Décryptée est lancé. Pressez Ctrl+C pour l'arrêter..."
+	arr["catalan",190]="Començant desencriptat. Un cop començat, premeu Ctrl+C per aturar-lo..."
+
+	arr["english",191]="Capture file you selected is an unsupported file format (not a pcap or IVs file)"
+	arr["spanish",191]="El fichero de captura que has seleccionado tiene un formato no soportado (no es un fichero pcap o de IVs)"
+	arr["french",191]="Le fichier de capture que vous avez sélectionné a un format non supporté (pas un pcap de fichier ou IVs)"
+	arr["catalan",191]="El fitxer de captura que has seleccionat té un format no suportat (no és un fitxer pcap o de IVs)"
+
+	arr["english",192]="You already have selected a BSSID during this session ["${normal_color}"$bssid"${blue_color}"]"
+	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión ["${normal_color}"$bssid"${blue_color}"]"
+	arr["french",192]="Vous avez sélectionné un BSSID pour la session effectuée et se trouve dans "${normal_color}"$bssid"${blue_color}"]"
+	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió ["${normal_color}"$bssid"${blue_color}"]"
+
+	arr["english",193]="Do you want to use this already selected BSSID? "${normal_color}"[y/n]"
+	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? "${normal_color}"[y/n]"
+	arr["french",193]="Vous souhaitez utiliser ce BSSID déjà sélectionné? "${normal_color}"[y/n]"
+	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? "${normal_color}"[y/n]"
+
+	arr["english",194]="Enter the minimum length of the key to decrypt (1-99) :"
+	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (1-99) :"
+	arr["french",194]="Entrez la longueur minimale de la clé pour décrypter (1-99) :"
+	arr["catalan",194]="Introdueix la longitud mínima de la clau a desxifrar (1-99) :"
+
+	arr["english",195]="Enter the maximum length of the key to decrypt (1-99) :"
+	arr["spanish",195]="Introduce la longitud máxima de la clave a desencriptar (1-99) :"
+	arr["french",195]="Entrez la longueur maximale de la clé pour décrypter (1-99) :"
+	arr["catalan",195]="Introdueix la longitud màxima de la clau a desxifrar (1-99) :"
+
+	arr["english",196]="Select the character set to use :"
+	arr["spanish",196]="Selecciona el juego de caracteres a utilizar :"
+	arr["french",196]="Sélectionnez le jeu de caractères à utiliser :"
+	arr["catalan",196]="Selecciona el joc de caràcters a utilitzar :"
+
+	arr["english",197]="1.  Lowercase chars"
+	arr["spanish",197]="1.  Carácteres en minúsculas"
+	arr["french",197]="1.  Caractères minuscules"
+	arr["catalan",197]="1.  Caràcters en minúscules"
+
+	arr["english",198]="2.  Uppercase chars"
+	arr["spanish",198]="2.  Carácteres en mayúsculas"
+	arr["french",198]="2.  Caractères majuscules"
+	arr["catalan",198]="2.  Caràcters en majúscules"
+
+	arr["english",199]="3.  Numeric chars"
+	arr["spanish",199]="3.  Carácteres numéricos"
+	arr["french",199]="3.  Caractères numériques"
+	arr["catalan",199]="3.  Caràcters numèrics"
+
+	arr["english",200]="4.  Symbol chars"
+	arr["spanish",200]="4.  Carácteres símbolos"
+	arr["french",200]="4.  Caractères symboles"
+	arr["catalan",200]="4.  Caràcters símbols"
+
+	arr["english",201]="5.  Lowercase + uppercase chars"
+	arr["spanish",201]="5.  Carácteres en minúsculas + mayúsculas"
+	arr["french",201]="5.  Caractères minuscules + majuscules"
+	arr["catalan",201]="5.  Caràcters en minúscules + majúscules"
+
+	arr["english",202]="6.  Lowercase + numeric chars"
+	arr["spanish",202]="6.  Carácteres en minúsculas + numéricos"
+	arr["french",202]="6.  Caractères minuscules + numériques"
+	arr["catalan",202]="6.  Caràcters en minúscules + numèrics"
+
+	arr["english",203]="7.  Uppercase + numeric chars"
+	arr["spanish",203]="7.  Carácteres en mayúsculas + numéricos"
+	arr["french",203]="7.  Caractères majuscules + numériques"
+	arr["catalan",203]="7.  Caràcters en majúscules + numèrics"
+
+	arr["english",204]="8.  Symbol + numeric chars"
+	arr["spanish",204]="8.  Carácteres símbolos + numéricos"
+	arr["french",204]="8.  Caractères symboles + numériques"
+	arr["catalan",204]="8.  Caràcters símbols + numèrics"
+
+	arr["english",205]="9.  Lowercase + uppercase + numeric chars"
+	arr["spanish",205]="9.  Carácteres en minúsculas + mayúsculas + numéricos"
+	arr["french",205]="9.  Caractères minuscules + majuscules + numériques"
+	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
+
+	arr["english",206]="10. Lowercase + uppercase + symbol chars"
+	arr["spanish",206]="10. Carácteres en minúsculas + mayúsculas + símbolos"
+	arr["french",206]="10. Caractères minuscules + majuscules + symboles"
+	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
+
+	arr["english",207]="11. Lowercase + uppercase + numeric + symbol chars"
+	arr["spanish",207]="11. Carácteres en minúsculas + mayúsculas + numéricos + símbolos"
+	arr["french",207]="11. Caractères minuscules + majuscules + numériques + symboles"
+	arr["catalan",207]="11. Caràcters en minúscules + majúscules + numèrics + símbols"
+
+	arr["english",208]="If you choose a big charset and a long key length, the proccess could take so much time"
+	arr["spanish",208]="Si eliges un juego de caracteres amplio y una longitud de clave grande, el proceso podría demorarse mucho tiempo"
+	arr["french",208]="Si vous choisissez un ensemble de caractères larges et une grande longueur de la clé, le processus pourrait prendre un certain temps"
+	arr["catalan",208]="Si tries un joc de caràcters ampli i una longitud de clau gran, el procés podria demorar-se molt temps"
+
+	arr["english",209]="The charset to use is : ["${normal_color}"$charset"${blue_color}"]"
+	arr["spanish",209]="El juego de carácteres elegido es : ["${normal_color}"$charset"${blue_color}"]"
+	arr["french",209]="Le jeu de caractères est choisi : ["${normal_color}"$charset"${blue_color}"]"
+	arr["catalan",209]="El joc de caràcters escollit és : ["${normal_color}"$charset"${blue_color}"]"
 
 	case "$3" in
 		"yellow")
@@ -1461,7 +1673,7 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
-function print_selections() {
+function print_iface_selected() {
 
 	if [ -z "$interface" ]; then
 		language_strings ${language} 41 "blue"
@@ -1473,6 +1685,9 @@ function print_selections() {
 		check_interface_mode
 		language_strings ${language} 42 "blue"
 	fi
+}
+
+function print_all_target_vars() {
 
 	if [ -n "$bssid" ]; then
 		language_strings ${language} 43 "blue"
@@ -1492,12 +1707,39 @@ function print_selections() {
 	fi
 }
 
-function clean_target_network_vars() {
+function print_decrypt_vars() {
 
-	bssid=""
-	essid=""
-	channel=""
-	enc=""
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 185 "blue"
+	fi
+
+	if [ -n "$enteredpath" ]; then
+		language_strings ${language} 173 "blue"
+	else
+		language_strings ${language} 177 "blue"
+	fi
+
+	if [ -n "$dictionary" ]; then
+		language_strings ${language} 182 "blue"
+	fi
+}
+
+function print_selections() {
+
+	case ${current_menu} in
+		"main_menu")
+			print_iface_selected
+		;;
+		"decrypt_menu")
+			print_decrypt_vars
+		;;
+		*)
+			print_iface_selected
+			print_all_target_vars
+		;;
+	esac
 }
 
 function clean_tmpfiles() {
@@ -1550,6 +1792,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-${hintlength} -n 1)
 			strtoprint=${hints[handshake_attack_hints|$randomhint]}
 		;;
+		"decrypt_menu")
+			store_array hints decrypt_hints "${decrypt_hints[@]}"
+			hintlength=${#decrypt_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[decrypt_hints|$randomhint]}
+		;;
 	esac
 
 	echo_blue "---------"
@@ -1560,7 +1809,6 @@ function print_hint() {
 function main_menu() {
 
 	clear
-	clean_target_network_vars
 	language_strings ${language} 101 "titlered"
 	current_menu="main_menu"
 	print_selections
@@ -1573,6 +1821,7 @@ function main_menu() {
 	echo_blue "---------"
 	language_strings ${language} 118
 	language_strings ${language} 119
+	language_strings ${language} 169
 	echo_blue "---------"
 	language_strings ${language} 60
 	language_strings ${language} 78
@@ -1597,12 +1846,15 @@ function main_menu() {
 			handshake_tools_menu
 		;;
 		6)
-			credits_option
+			decrypt_menu
 		;;
 		7)
-			language_option
+			credits_option
 		;;
 		8)
+			language_option
+		;;
+		9)
 			exit_script_option
 		;;
 		*)
@@ -1611,6 +1863,251 @@ function main_menu() {
 	esac
 
 	main_menu
+}
+
+function decrypt_menu() {
+
+	clear
+	language_strings ${language} 170 "titlered"
+	current_menu="decrypt_menu"
+	print_selections
+	echo
+	language_strings ${language} 47 "green"
+	language_strings ${language} 176 "blue"
+	language_strings ${language} 172
+	language_strings ${language} 175
+	echo_blue "---------"
+	language_strings ${language} 174
+	print_hint ${current_menu}
+
+	read decrypt_option
+	case ${decrypt_option} in
+		1)
+			dictionary_attack_option
+		;;
+		2)
+			bruteforce_attack_option
+		;;
+		3)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	decrypt_menu
+}
+
+function ask_dictionary() {
+
+	validpath=1
+	while [[ "$validpath" != "0" ]]; do
+		read_path "dictionary"
+	done
+	language_strings ${language} 181 "yellow"
+}
+
+function ask_capture_file() {
+
+	validpath=1
+	while [[ "$validpath" != "0" ]]; do
+		read_path "targetfilefordecrypt"
+	done
+	language_strings ${language} 189 "yellow"
+}
+
+function ask_bssid_for_decrypt() {
+
+	bssidtodecrypt=""
+	while [[ ! ${bssidtodecrypt} =~ ^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$ ]]; do
+		echo
+		language_strings ${language} 27 "green"
+		read bssidtodecrypt
+	done
+
+	bssid=${bssidtodecrypt}
+}
+
+function dictionary_attack_option() {
+
+	if [ -n "$dictionary" ]; then
+		echo
+		language_strings ${language} 183 "blue"
+		ask_yesno 184
+		if [ ${yesno} = "n" ]; then
+			ask_dictionary
+		fi
+	else
+		ask_dictionary
+	fi
+
+	if [ -n "$enteredpath" ]; then
+		echo
+		language_strings ${language} 186 "blue"
+		ask_yesno 187
+		if [ ${yesno} = "n" ]; then
+			ask_capture_file
+		fi
+	else
+		ask_capture_file
+	fi
+
+	if [ -n "$bssid" ]; then
+		echo
+		language_strings ${language} 192 "blue"
+		ask_yesno 193
+		if [ ${yesno} = "n" ]; then
+			ask_bssid_for_decrypt
+		fi
+	else
+		ask_bssid_for_decrypt
+	fi
+
+	echo
+	language_strings ${language} 190 "yellow"
+	language_strings ${language} 115 "read"
+	exec_dictionary_attack
+}
+
+function set_minlength() {
+
+	minlength=0
+	while [[ ! ${minlength} =~ ^[1-9][0-9]?$ ]]; do
+		echo
+		language_strings ${language} 194 "green"
+		read minlength
+	done
+}
+
+function set_maxlength() {
+
+	maxlength=0
+	while [[ ! ${maxlength} =~ ^[1-9][0-9]?$ ]]; do
+		echo
+		language_strings ${language} 195 "green"
+		read maxlength
+	done
+}
+
+function bruteforce_attack_option() {
+
+	minlength=0
+	maxlength=0
+
+	set_minlength
+
+	while [[ ${maxlength} -lt ${minlength} ]]; do
+		set_maxlength
+	done
+
+	if [ -n "$enteredpath" ]; then
+		echo
+		language_strings ${language} 186 "blue"
+		ask_yesno 187
+		if [ ${yesno} = "n" ]; then
+			ask_capture_file
+		fi
+	else
+		ask_capture_file
+	fi
+
+	if [ -n "$bssid" ]; then
+		echo
+		language_strings ${language} 192 "blue"
+		ask_yesno 193
+		if [ ${yesno} = "n" ]; then
+			ask_bssid_for_decrypt
+		fi
+	else
+		ask_bssid_for_decrypt
+	fi
+
+	charset_option=0
+	while [[ ${charset_option} -lt 1 || ${charset_option} -gt 11 ]]; do
+		set_charset
+	done
+
+	echo
+	language_strings ${language} 209 "blue"
+	echo
+	language_strings ${language} 190 "yellow"
+	language_strings ${language} 115 "read"
+	exec_bruteforce_attack
+}
+
+function set_charset() {
+
+	echo
+	language_strings ${language} 196 "green"
+	echo_blue "---------"
+	language_strings ${language} 197
+	language_strings ${language} 198
+	language_strings ${language} 199
+	language_strings ${language} 200
+	language_strings ${language} 201
+	language_strings ${language} 202
+	language_strings ${language} 203
+	language_strings ${language} 204
+	language_strings ${language} 205
+	language_strings ${language} 206
+	language_strings ${language} 207
+	print_hint ${current_menu}
+
+	read charset_option
+	case ${charset_option} in
+		1)
+			charset=${lowercasecharset}
+		;;
+		2)
+			charset=${uppercasecharset}
+		;;
+		3)
+			charset=${numbercharset}
+		;;
+		4)
+			charset=${symbolcharset}
+		;;
+		5)
+			charset="$lowercasecharset$uppercasecharset"
+		;;
+		6)
+			charset="$lowercasecharset$numbercharset"
+		;;
+		7)
+			charset="$uppercasecharset$numbercharset"
+		;;
+		8)
+			charset="$symbolcharset$numbercharset"
+		;;
+		9)
+			charset="$lowercasecharset$uppercasecharset$numbercharset"
+		;;
+		10)
+			charset="$lowercasecharset$uppercasecharset$symbolcharset"
+		;;
+		11)
+			charset="$lowercasecharset$uppercasecharset$numbercharset$symbolcharset"
+		;;
+	esac
+}
+
+function exec_bruteforce_attack() {
+
+	crunch ${minlength} ${maxlength} ${charset} | aircrack-ng -b ${bssid} -w - ${enteredpath}
+	if [ "$?" != "0" ]; then
+		language_strings ${language} 47 "yellow"
+	fi
+	language_strings ${language} 115 "read"
+}
+
+function exec_dictionary_attack() {
+
+	aircrack-ng -b ${bssid} -w ${dictionary} ${enteredpath}
+	if [ "$?" != "0" ]; then
+		language_strings ${language} 47 "yellow"
+	fi
+	language_strings ${language} 115 "read"
 }
 
 function handshake_tools_menu() {
@@ -1663,15 +2160,6 @@ function handshake_tools_menu() {
 	esac
 
 	handshake_tools_menu
-}
-
-function clean_captured_handshake_file() {
-
-	ask_yesno 152
-	if [ ${yesno} = "y" ]; then
-		filetoclean=${enteredpath}
-		exec_clean_handshake_file
-	fi
 }
 
 function exec_clean_handshake_file() {
@@ -1869,6 +2357,16 @@ function read_path() {
 			read filetoclean
 			check_file_exists ${filetoclean}
 		;;
+		"dictionary")
+			language_strings ${language} 180 "green"
+			read dictionary
+			check_file_exists ${dictionary}
+		;;
+		"targetfilefordecrypt")
+			language_strings ${language} 188 "green"
+			read enteredpath
+			check_file_exists ${enteredpath}
+		;;
 	esac
 
 	validpath="$?"
@@ -1901,7 +2399,6 @@ function attack_handshake_menu() {
 			echo
 			language_strings ${language} 149 "blue"
 			language_strings ${language} 115 "read"
-			clean_captured_handshake_file
 			return
 		else
 			echo
@@ -2204,6 +2701,9 @@ function killing_script() {
 		;;
 		"attack_handshake_menu")
 			attack_handshake_menu "new"
+		;;
+		"decrypt_menu")
+			decrypt_menu
 		;;
 		*)
 			main_menu
