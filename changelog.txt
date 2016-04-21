@@ -1,8 +1,12 @@
+3.21
+Autoupdate feature. Script checks for newer version
+Some language strings changed
+
 3.2
 New offline password decrypt menu
 Aircrack option to perform dictionary/bruteforce attacks against capture files
 Removed autoclean after capturing a Handshake file
-Changed version var to airgeddon_version for future version check (autoupate feature)
+Changed version var to airgeddon_version for future version check (autoupdate feature)
 
 3.11
 Optional autoclean captured Handshake file feature

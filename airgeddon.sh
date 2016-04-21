@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.2"
+airgeddon_version="3.21"
 
 #Change these lines to select another default language
 language="english"
@@ -9,9 +9,14 @@ language="english"
 #language="catalan"
 
 #General vars
-urlgithub="https://github.com/v1s1t0r1sh3r3/airgeddon"
+github_user="v1s1t0r1sh3r3"
+github_repository="airgeddon"
+script_filename="airgeddon.sh"
+urlgithub="https://github.com/$github_user/$github_repository"
+urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
+host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
-essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean aircrack-ng crunch)
+essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean aircrack-ng crunch curl)
 declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
@@ -426,10 +431,10 @@ function language_strings() {
 	arr["french",74]="Script publié sous Licence GPLv2 (ou version supèrieure)"
 	arr["catalan",74]="Aquest script està publicat sota llicència GPLv2 (o versió superior)"
 
-	arr["english",75]="Thanks to the \"Spanish pen testing crew\" and \"Wifislax Staff\" for beta testing and support received"
-	arr["spanish",75]="Gracias al \"Spanish pen testing crew\" y al \"Wifislax Staff\" por el beta testing y el apoyo recibido"
-	arr["french",75]="Merci au \"Spanish pen testing crew\" et au \"Wifislax Staff\" pour les tests en phase bêta et leur soutien"
-	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\" i al \"Wifislax Staff\" per les proves beta i el recolzament rebut"
+	arr["english",75]="Thanks to the \"Spanish pen testing crew\", \"Wifislax Staff\" and special thanks Kcdtv for beta testing and support received"
+	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
+	arr["french",75]="Merci au \"Spanish pen testing crew\" , \"Wifislax Staff\" et au Kcdtv pour les tests en phase bêta et leur soutien"
+	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\", \"Wifislax Staff\" i al Kcdtv per les proves beta i el recolzament rebut"
 
 	arr["english",76]="Invalid menu option was chosen"
 	arr["spanish",76]="Opción del menú no válida"
@@ -714,7 +719,7 @@ function language_strings() {
 	arr["english",132]="Cleaning a Handshake file is recommended only for big size files. It's better to have a backup, sometimes file can be corrupted while cleaning it"
 	arr["spanish",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
 	arr["french",132]="Épurer le fichier contenant le Handshake est seulement recommandable si le fichier est volumineux. Si vous décidez d'épurer le fichier il est conseillé de faire une copie de sauvegarde du fichier originel, l'opération de nettoyage comporte des risques et peut le rendre illisible"
-	arr["catalan",132]="Netejar un fitxer de Handshake es recomana només per a fitxers grans. És millor fer una còpia de seguretat abans, de vegades el fitxer es pot corrompre a netejar"
+	arr["catalan",132]="Netejar un fitxer de Handshake es recomana només per a fitxers grans. És millor fer una còpia de seguretat abans, de vegades el fitxer es pot corrompre al netejar-lo"
 
 	arr["english",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["spanish",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
@@ -898,38 +903,38 @@ function language_strings() {
 
 	arr["english",169]="6.  Offline password decrypt menu"
 	arr["spanish",169]="6.  Menú de desencriptado de contraseñas offline"
-	arr["french",169]="6.  Menu décrypter le mot de passe offline"
-	arr["catalan",169]="6.  Menú de desxifrar contrasenyas offline"
+	arr["french",169]="6.  Menu crack clef offline"
+	arr["catalan",169]="6.  Menú per desxifrar contrasenyes offline"
 
 	arr["english",170]="Offline password decrypt menu"
 	arr["spanish",170]="Menú de desencriptado de contraseñas offline"
-	arr["french",170]="Menu décrypter le mot de passe offline"
-	arr["catalan",170]="Menú de desxifrar contrasenyas offline"
+	arr["french",170]="Menu crack clef offline"
+	arr["catalan",170]="Menú per desxifrar contrasenyes offline"
 
 	arr["english",171]="The key decrypt process is performed offline on a previously captured file"
 	arr["spanish",171]="El proceso de desencriptado de las claves se realiza de manera offline sobre un fichero capturado previamente"
-	arr["french",171]="Le processus de clé de déchiffrement est effectuée de manière offline sur un fichier précédemment capturé"
+	arr["french",171]="Le crack de la clef s'effectue offline en utilisant le fichier capturé antérieurement"
 	arr["catalan",171]="El procés de desencriptació de les claus es realitza de manera offline sobre un fitxer capturat prèviament"
 
-	arr["english",172]="1.  Dictionary attack against capture file"
-	arr["spanish",172]="1.  Ataque de diccionario sobre fichero de captura"
-	arr["french",172]="1.  Attaque Dictionnaire sur fichier de capture"
-	arr["catalan",172]="1.  Atac de diccionari sobre fitxer de captura"
+	arr["english",172]="1.  Dictionary attack against WPA/WPA2 capture file"
+	arr["spanish",172]="1.  Ataque de diccionario sobre fichero de captura WPA/WPA2"
+	arr["french",172]="1.  Attaque de dictionnaire en utilisant le fichier de capture WPA/WPA2"
+	arr["catalan",172]="1.  Atac de diccionari sobre fitxer de captura WPA/WPA2"
 
-	arr["english",173]="Selected captured file: "${pink_color}"$enteredpath"${normal_color}
-	arr["spanish",173]="Fichero capturado seleccionado: "${pink_color}"$enteredpath"${normal_color}
+	arr["english",173]="Selected capture file: "${pink_color}"$enteredpath"${normal_color}
+	arr["spanish",173]="Fichero de captura seleccionado: "${pink_color}"$enteredpath"${normal_color}
 	arr["french",173]="Fichier de capture sélectionné: "${pink_color}"$enteredpath"${normal_color}
-	arr["catalan",173]="Fitxer capturat seleccionat: "${pink_color}"$enteredpath"${normal_color}
+	arr["catalan",173]="Fitxer de captura seleccionat: "${pink_color}"$enteredpath"${normal_color}
 
 	arr["english",174]="3.  Return to main menu"
 	arr["spanish",174]="3.  Volver al menú principal"
 	arr["french",174]="3.  Retourner au menu principal"
 	arr["catalan",174]="3.  Tornar al menú principal"
 
-	arr["english",175]="2.  Bruteforce attack against capture file"
-	arr["spanish",175]="2.  Ataque de fuerza bruta sobre fichero de captura"
-	arr["french",175]="2.  Attaque en force brute sur fichier de capture"
-	arr["catalan",175]="2.  Atac de força bruta sobre fitxer de captura"
+	arr["english",175]="2.  Bruteforce attack against WPA/WPA2 capture file"
+	arr["spanish",175]="2.  Ataque de fuerza bruta sobre fichero de captura WPA/WPA2"
+	arr["french",175]="2.  Attaque de force brute en utilisant le fichier de capture WPA/WPA2"
+	arr["catalan",175]="2.  Atac de força bruta sobre fitxer de captura WPA/WPA2"
 
 	arr["english",176]="-----------------(aircrack attacks)------------------"
 	arr["spanish",176]="-----------------(ataques aircrack)------------------"
@@ -943,37 +948,37 @@ function language_strings() {
 
 	arr["english",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake"
 	arr["spanish",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
-	arr["french",178]="Pour déchiffrer la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir une Handshake"
-	arr["catalan",178]="Per desxifrar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
+	arr["french",178]="Pour cracker la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir un Handshake"
+	arr["catalan",178]="Per desencriptar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
 
 	arr["english",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
 	arr["spanish",179]="Desencriptando por fuerza bruta, podrían pasar horas, días, semanas o incluso meses hasta conseguirlo dependiendo de la complejidad de la contraseña y de tu velocidad de proceso"
-	arr["french",179]="Décryptée par la force brute, ils pourraient passer des heures, des jours, des semaines ou même des mois pour obtenir en fonction de la complexité de la mot de passe et la votre vitesse de traitement"
-	arr["catalan",179]="Desencriptar per força bruta, podrien passar hores, dies, setmanes o fins i tot mesos fins a aconseguir-depenent de la complexitat de la contrasenya i de la teva velocitat de procés"
+	arr["french",179]="Le crack de la clef par attaque de type brute force peut prendre des heures, des jours, des semaines ou même des mois en fonction de la complexité de la clef et de la puissance de calcul de votre matériel"
+	arr["catalan",179]="Desencriptant per força bruta, podrien passar hores, dies, setmanes o fins i tot mesos fins a aconseguir-ho depenent de la complexitat de la contrasenya i de la teva velocitat de procés"
 
 	arr["english",180]="Enter the path of a dictionary file :"
 	arr["spanish",180]="Introduce la ruta de un fichero de diccionario :"
-	arr["french",180]="Entrez le chemin d'un fichier de dictionnaire :"
+	arr["french",180]="Saisissez un chemin vers un dictionnaire d'attaque :"
 	arr["catalan",180]="Introdueix la ruta d'un fitxer de diccionari :"
 
 	arr["english",181]="The path to the dictionary file is valid. Script can continue..."
 	arr["spanish",181]="La ruta al fichero de diccionario es válida. El script puede continuar..."
-	arr["french",181]="Le chemin au fichier de dictionnaire est valide. Le script peut continuer..."
-	arr["catalan",181]="La ruta al fitxer de diccionari és vàlida. El script pot continuar..."
+	arr["french",181]="Le chemin vers le fichier dictionnaire est valide. Le script peut continuer..."
+	arr["catalan",181]="La ruta cap al fitxer de diccionari és vàlida. El script pot continuar..."
 
 	arr["english",182]="Selected dictionary file: "${pink_color}"$dictionary"${normal_color}
 	arr["spanish",182]="Fichero de diccionario seleccionado: "${pink_color}"$dictionary"${normal_color}
-	arr["french",182]="Fichier de dictionnaire sélectionné: "${pink_color}"$dictionary"${normal_color}
+	arr["french",182]="Fichier dictionnaire sélectionné: "${pink_color}"$dictionary"${normal_color}
 	arr["catalan",182]="Fitxer de diccionari seleccionat: "${pink_color}"$dictionary"${normal_color}
 
 	arr["english",183]="You already have selected a dictionary file during this session ["${normal_color}"$dictionary"${blue_color}"]"
 	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["french",183]="Vous avez sélectionné un fichier de dictionnaire pour la session effectuée et se trouve dans "${normal_color}"$dictionary"${blue_color}"]"
+	arr["french",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session "${normal_color}"$dictionary"${blue_color}"]"
 	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió ["${normal_color}"$dictionary"${blue_color}"]"
 
 	arr["english",184]="Do you want to use this already selected dictionary file? "${normal_color}"[y/n]"
 	arr["spanish",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",184]="Vous souhaitez utiliser ce fichier dictionnaire déjà sélectionné? "${normal_color}"[y/n]"
+	arr["french",184]="Souhaitez vous utiliser le dictionnaire déjà sélectionné? "${normal_color}"[y/n]"
 	arr["catalan",184]="¿Vols fer servir aquest fitxer de diccionari ja seleccionat? "${normal_color}"[y/n]"
 
 	arr["english",185]="Selected BSSID: "${pink_color}"None"${normal_color}
@@ -983,53 +988,53 @@ function language_strings() {
 
 	arr["english",186]="You already have selected a capture file during this session ["${normal_color}"$enteredpath"${blue_color}"]"
 	arr["spanish",186]="Ya tienes seleccionado un fichero de captura en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["french",186]="Vous avez sélectionné un fichier de capture pour la session effectuée et se trouve dans "${normal_color}"$enteredpath"${blue_color}"]"
+	arr["french",186]="Vous avez déjà sélectionné un fichier de capture pour cette session "${normal_color}"$enteredpath"${blue_color}"]"
 	arr["catalan",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
 
 	arr["english",187]="Do you want to use this already selected capture file? "${normal_color}"[y/n]"
 	arr["spanish",187]="¿Quieres utilizar este fichero de captura ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",187]="Vous souhaitez utiliser ce fichier capture déjà sélectionné? "${normal_color}"[y/n]"
+	arr["french",187]="Souhaitez vous utiliser le fichier de capture déjà sélectionné? "${normal_color}"[y/n]"
 	arr["catalan",187]="¿Vols fer servir aquest fitxer de captura ja seleccionat? "${normal_color}"[y/n]"
 
 	arr["english",188]="Enter the path of a captured file :"
 	arr["spanish",188]="Introduce la ruta de un fichero de captura :"
-	arr["french",188]="Entrez le chemin d'un fichier de capture :"
+	arr["french",188]="Entrez le chemin vers un fichier de capture :"
 	arr["catalan",188]="Introdueix la ruta d'un fitxer de captura :"
 
 	arr["english",189]="The path to the capture file is valid. Script can continue..."
 	arr["spanish",189]="La ruta al fichero de captura es válida. El script puede continuar..."
-	arr["french",189]="Le chemin au fichier de capture est valide. Le script peut continuer..."
+	arr["french",189]="Le chemin du fichier de capture est valide. Le script peut continuer..."
 	arr["catalan",189]="La ruta al fitxer de captura és vàlida. El script pot continuar..."
 
 	arr["english",190]="Starting decrypt. When started, press Ctrl+C to stop..."
 	arr["spanish",190]="Comenzando desencriptado. Una vez empezado, pulse Ctrl+C para pararlo..."
-	arr["french",190]="Décryptée est lancé. Pressez Ctrl+C pour l'arrêter..."
-	arr["catalan",190]="Començant desencriptat. Un cop començat, premeu Ctrl+C per aturar-lo..."
+	arr["french",190]="Lancement du crack. Pressez Ctrl+C pour l'arrêter..."
+	arr["catalan",190]="Començant el desencriptat. Un cop començat, premeu Ctrl+C per aturar-lo..."
 
 	arr["english",191]="Capture file you selected is an unsupported file format (not a pcap or IVs file)"
 	arr["spanish",191]="El fichero de captura que has seleccionado tiene un formato no soportado (no es un fichero pcap o de IVs)"
-	arr["french",191]="Le fichier de capture que vous avez sélectionné a un format non supporté (pas un pcap de fichier ou IVs)"
+	arr["french",191]="Le fichier de capture que vous avez sélectionné est dans un format non supporté (ce n'est pas un fichier pcap ou IVs)"
 	arr["catalan",191]="El fitxer de captura que has seleccionat té un format no suportat (no és un fitxer pcap o de IVs)"
 
 	arr["english",192]="You already have selected a BSSID during this session ["${normal_color}"$bssid"${blue_color}"]"
 	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión ["${normal_color}"$bssid"${blue_color}"]"
-	arr["french",192]="Vous avez sélectionné un BSSID pour la session effectuée et se trouve dans "${normal_color}"$bssid"${blue_color}"]"
+	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours "${normal_color}"$bssid"${blue_color}"]"
 	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió ["${normal_color}"$bssid"${blue_color}"]"
 
 	arr["english",193]="Do you want to use this already selected BSSID? "${normal_color}"[y/n]"
 	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",193]="Vous souhaitez utiliser ce BSSID déjà sélectionné? "${normal_color}"[y/n]"
+	arr["french",193]="Souhaitez vous utiliser le BSSID déjà sélectionné? "${normal_color}"[y/n]"
 	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? "${normal_color}"[y/n]"
 
-	arr["english",194]="Enter the minimum length of the key to decrypt (1-99) :"
-	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (1-99) :"
-	arr["french",194]="Entrez la longueur minimale de la clé pour décrypter (1-99) :"
-	arr["catalan",194]="Introdueix la longitud mínima de la clau a desxifrar (1-99) :"
+	arr["english",194]="Enter the minimum length of the key to decrypt (8-99) :"
+	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (8-99) :"
+	arr["french",194]="Entrez la longueur minimale de la clef à cracker (8-99) :"
+	arr["catalan",194]="Introdueix la longitud mínima de la clau a desxifrar (8-99) :"
 
-	arr["english",195]="Enter the maximum length of the key to decrypt (1-99) :"
-	arr["spanish",195]="Introduce la longitud máxima de la clave a desencriptar (1-99) :"
-	arr["french",195]="Entrez la longueur maximale de la clé pour décrypter (1-99) :"
-	arr["catalan",195]="Introdueix la longitud màxima de la clau a desxifrar (1-99) :"
+	arr["english",195]="Enter the maximum length of the key to decrypt ($minlength-99) :"
+	arr["spanish",195]="Introduce la longitud máxima de la clave a desencriptar ($minlength-99) :"
+	arr["french",195]="Entrez la longueur maximale de la clef à cracker ($minlength-99) :"
+	arr["catalan",195]="Introdueix la longitud màxima de la clau a desxifrar ($minlength-99) :"
 
 	arr["english",196]="Select the character set to use :"
 	arr["spanish",196]="Selecciona el juego de caracteres a utilizar :"
@@ -1038,68 +1043,98 @@ function language_strings() {
 
 	arr["english",197]="1.  Lowercase chars"
 	arr["spanish",197]="1.  Carácteres en minúsculas"
-	arr["french",197]="1.  Caractères minuscules"
+	arr["french",197]="1.  Lettres minuscules"
 	arr["catalan",197]="1.  Caràcters en minúscules"
 
 	arr["english",198]="2.  Uppercase chars"
 	arr["spanish",198]="2.  Carácteres en mayúsculas"
-	arr["french",198]="2.  Caractères majuscules"
+	arr["french",198]="2.  Lettres majuscules"
 	arr["catalan",198]="2.  Caràcters en majúscules"
 
 	arr["english",199]="3.  Numeric chars"
 	arr["spanish",199]="3.  Carácteres numéricos"
-	arr["french",199]="3.  Caractères numériques"
+	arr["french",199]="3.  Chiffres"
 	arr["catalan",199]="3.  Caràcters numèrics"
 
 	arr["english",200]="4.  Symbol chars"
 	arr["spanish",200]="4.  Carácteres símbolos"
-	arr["french",200]="4.  Caractères symboles"
+	arr["french",200]="4.  Symboles"
 	arr["catalan",200]="4.  Caràcters símbols"
 
 	arr["english",201]="5.  Lowercase + uppercase chars"
 	arr["spanish",201]="5.  Carácteres en minúsculas + mayúsculas"
-	arr["french",201]="5.  Caractères minuscules + majuscules"
+	arr["french",201]="5.  Lettres minuscules + majuscules"
 	arr["catalan",201]="5.  Caràcters en minúscules + majúscules"
 
 	arr["english",202]="6.  Lowercase + numeric chars"
 	arr["spanish",202]="6.  Carácteres en minúsculas + numéricos"
-	arr["french",202]="6.  Caractères minuscules + numériques"
+	arr["french",202]="6.  Lettres minuscules + chiffres"
 	arr["catalan",202]="6.  Caràcters en minúscules + numèrics"
 
 	arr["english",203]="7.  Uppercase + numeric chars"
 	arr["spanish",203]="7.  Carácteres en mayúsculas + numéricos"
-	arr["french",203]="7.  Caractères majuscules + numériques"
+	arr["french",203]="7.  Lettres majuscules + chiffres"
 	arr["catalan",203]="7.  Caràcters en majúscules + numèrics"
 
 	arr["english",204]="8.  Symbol + numeric chars"
 	arr["spanish",204]="8.  Carácteres símbolos + numéricos"
-	arr["french",204]="8.  Caractères symboles + numériques"
+	arr["french",204]="8.   Symboles + chiffres"
 	arr["catalan",204]="8.  Caràcters símbols + numèrics"
 
 	arr["english",205]="9.  Lowercase + uppercase + numeric chars"
 	arr["spanish",205]="9.  Carácteres en minúsculas + mayúsculas + numéricos"
-	arr["french",205]="9.  Caractères minuscules + majuscules + numériques"
+	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
 
 	arr["english",206]="10. Lowercase + uppercase + symbol chars"
 	arr["spanish",206]="10. Carácteres en minúsculas + mayúsculas + símbolos"
-	arr["french",206]="10. Caractères minuscules + majuscules + symboles"
+	arr["french",206]="10. Lettres minuscules et majuscules + symboles"
 	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
 
 	arr["english",207]="11. Lowercase + uppercase + numeric + symbol chars"
 	arr["spanish",207]="11. Carácteres en minúsculas + mayúsculas + numéricos + símbolos"
-	arr["french",207]="11. Caractères minuscules + majuscules + numériques + symboles"
+	arr["french",207]="11. Lettres minuscules et majuscules + chiffres + symboles"
 	arr["catalan",207]="11. Caràcters en minúscules + majúscules + numèrics + símbols"
 
 	arr["english",208]="If you choose a big charset and a long key length, the proccess could take so much time"
 	arr["spanish",208]="Si eliges un juego de caracteres amplio y una longitud de clave grande, el proceso podría demorarse mucho tiempo"
-	arr["french",208]="Si vous choisissez un ensemble de caractères larges et une grande longueur de la clé, le processus pourrait prendre un certain temps"
+	arr["french",208]="Si vous choisissez un jeu de caractères ample et une longitude de clef importante, le processus pourrait prendre beaucoup de temps"
 	arr["catalan",208]="Si tries un joc de caràcters ampli i una longitud de clau gran, el procés podria demorar-se molt temps"
 
 	arr["english",209]="The charset to use is : ["${normal_color}"$charset"${blue_color}"]"
 	arr["spanish",209]="El juego de carácteres elegido es : ["${normal_color}"$charset"${blue_color}"]"
-	arr["french",209]="Le jeu de caractères est choisi : ["${normal_color}"$charset"${blue_color}"]"
+	arr["french",209]="Le jeu de caractères définit est : ["${normal_color}"$charset"${blue_color}"]"
 	arr["catalan",209]="El joc de caràcters escollit és : ["${normal_color}"$charset"${blue_color}"]"
+
+	arr["english",210]="The script will check for internet access looking for a newer version. Please be patient..."
+	arr["spanish",210]="El script va a comprobar si tienes acceso a internet para ver si existe una nueva versión. Por favor ten paciencia..."
+	arr["french",210]="Le script va vérifier si vous avez accès à internet pour voir si une nouvelle version. Soyez patients s'il vous plaît..."
+	arr["catalan",210]="El script va a comprovar si tens accés a internet per veure si hi ha una nova versió. Si us plau té paciència..."
+
+	arr["english",211]="The script can't connect to repository. It will continue without updating..."
+	arr["spanish",211]="El script no puede conectar al repositorio. Continuará sin actualizarse..."
+	arr["french",211]="Le script ne peut pas se connecter au référentiel. Elle continuera sans mise à jour..."
+	arr["catalan",211]="El script no pot connectar al repositori. Continuarà sense actualitzar..."
+
+	arr["english",212]="The script is already in the latest version. It doesn't need to be updated"
+	arr["spanish",212]="El script ya está en la última versión. No necesita ser actualizado"
+	arr["french",212]="Le script est déjà dans la dernière version. Il n'a pas besoin d'être mis à jour"
+	arr["catalan",212]="El script ja està en l'última versió. No necessita ser actualitzat"
+
+	arr["english",213]="A new version of the script exists (v$airgeddon_last_version). It will be downloaded"
+	arr["spanish",213]="Existe una nueva versión del script (v$airgeddon_last_version). Será descargada"
+	arr["french",213]="Une nouvelle version du script (v$airgeddon_last_version). Il sera téléchargé"
+	arr["catalan",213]="Hi ha una nova versió dels script (v$airgeddon_last_version). Serà descarregada"
+
+	arr["english",214]="The new version was successfully downloaded. The script will be launched again"
+	arr["spanish",214]="La nueva versión se ha descargado con éxito. El script se lanzará de nuevo"
+	arr["french",214]="La nouvelle version a été téléchargé avec succès. Le script a été lancé à nouveau"
+	arr["catalan",214]="La nova versió s'ha descarregat amb èxit. El script es llençarà de nou"
+
+	arr["english",215]="WPA/WPA2 passwords always has 8 as a minimum length"
+	arr["spanish",215]="Una contraseña WPA/WPA2 siempre tiene como mínimo una longitud de 8"
+	arr["french",215]="Un mot de passe WPA/WPA2 a une longueur minimale de 8 caractères"
+	arr["catalan",215]="Una contrasenya WPA/WPA2 sempre té com a mínim una longitud de 8"
 
 	case "$3" in
 		"yellow")
@@ -1973,7 +2008,7 @@ function dictionary_attack_option() {
 function set_minlength() {
 
 	minlength=0
-	while [[ ! ${minlength} =~ ^[1-9][0-9]?$ ]]; do
+	while [[ ! ${minlength} =~ ^[8-9]|[1-9][0-9]$ ]]; do
 		echo
 		language_strings ${language} 194 "green"
 		read minlength
@@ -2094,7 +2129,7 @@ function set_charset() {
 
 function exec_bruteforce_attack() {
 
-	crunch ${minlength} ${maxlength} ${charset} | aircrack-ng -b ${bssid} -w - ${enteredpath}
+	crunch ${minlength} ${maxlength} ${charset} | aircrack-ng -a 2 -b ${bssid} -w - ${enteredpath}
 	if [ "$?" != "0" ]; then
 		language_strings ${language} 47 "yellow"
 	fi
@@ -2103,7 +2138,7 @@ function exec_bruteforce_attack() {
 
 function exec_dictionary_attack() {
 
-	aircrack-ng -b ${bssid} -w ${dictionary} ${enteredpath}
+	aircrack-ng -a 2 -b ${bssid} -w ${dictionary} ${enteredpath}
 	if [ "$?" != "0" ]; then
 		language_strings ${language} 47 "yellow"
 	fi
@@ -2915,14 +2950,77 @@ function welcome() {
 	detect_distro
 	language_strings ${language} 115 "read"
 
+	autoupdate_check
 	select_interface
 	main_menu
+}
+
+function compare_floats() {
+	awk -v n1=$1 -v n2=$2 'BEGIN{ if (n1>n2) exit 0; exit 1}'
+}
+
+function check_internet_access() {
+
+	ping -c 1 $1 -W 1 > /dev/null 2>&1
+	return $?
+}
+
+function download_last_version() {
+
+	curl -L ${urlscript_directlink} -s -o $0
+
+	if [ "$?" = "0" ]; then
+		echo
+		language_strings ${language} 214 "yellow"
+
+		echo $0 > /dev/null | grep "/"
+		if [ "$?" != "0" ]; then
+			scriptpath="./$0"
+		else
+			scriptpath=$0
+		fi
+
+		chmod +x ${scriptpath} > /dev/null 2>&1
+		language_strings ${language} 115 "read"
+		exec ${scriptpath}
+	else
+		language_strings ${language} 211 "yellow"
+	fi
+}
+
+function autoupdate_check() {
+
+	echo
+	language_strings ${language} 210 "blue"
+	echo
+	hasinternet_access=0
+
+	check_internet_access ${host_to_check_internet}
+	if [ "$?" = "0" ]; then
+		hasinternet_access=1
+	fi
+
+	if [ ${hasinternet_access} -eq 1 ]; then
+
+		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | cut -d "\"" -f 2`
+
+		if compare_floats ${airgeddon_last_version} ${airgeddon_version}; then
+			language_strings ${language} 213 "yellow"
+			download_last_version
+		else
+			language_strings ${language} 212 "yellow"
+		fi
+	else
+		language_strings ${language} 211 "yellow"
+	fi
+
+	language_strings ${language} 115 "read"
 }
 
 function autodetect_language() {
 
 	autochanged_language=0
-	lang=`locale | grep LANG | cut -d= -f2 | cut -d_ -f1`
+	lang=`locale | grep LANG | cut -d= -f2 | cut -d "_" -f1`
 
 	for lgkey in "${!lang_association[@]}"; do
 		if [[ "$lang" = "$lgkey" ]] && [[ "$language" != ${lang_association["$lgkey"]} ]]; then
