@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.21"
+airgeddon_version="3.22"
 
 #Change these lines to select another default language
 language="english"
@@ -851,10 +851,10 @@ function language_strings() {
 	arr["french",158]="Le chemin est valide et vous disposez des privilèges nécessaires pour l'écriture. Le script peut continuer..."
 	arr["catalan",158]="La ruta és vàlida i tens permisos d'escriptura. El script pot continuar..."
 
-	arr["english",159]="The file doesn't need to be cleaned/optimized. It is already"
-	arr["spanish",159]="El fichero no necesita ser limpiado/optimizado. Ya lo está"
-	arr["french",159]="Le fichier n'a pas besoin d'être nettoyé/optimisé. Il l'est déjà"
-	arr["catalan",159]="El fitxer no necessita ser netejat/optimitzat. Ja ho està"
+	arr["english",159]="The file doesn't need to be cleaned/optimized"
+	arr["spanish",159]="El fichero no necesita ser limpiado/optimizado"
+	arr["french",159]="Le fichier n'a pas besoin d'être nettoyé/optimisé"
+	arr["catalan",159]="El fitxer no necessita ser netejat/optimitzat"
 
 	arr["english",160]="No tasks to perform on exit"
 	arr["spanish",160]="No hay que realizar ninguna tarea a la salida"
@@ -943,7 +943,7 @@ function language_strings() {
 
 	arr["english",177]="Selected captured file: "${pink_color}"None"${normal_color}
 	arr["spanish",177]="Fichero capturado seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",177]="Fichier de capture sélectionné: "${pink_color}"Aucun ne"${normal_color}
+	arr["french",177]="Fichier de capture sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",177]="Fitxer capturat seleccionat: "${pink_color}"Ningú"${normal_color}
 
 	arr["english",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake"
@@ -983,7 +983,7 @@ function language_strings() {
 
 	arr["english",185]="Selected BSSID: "${pink_color}"None"${normal_color}
 	arr["spanish",185]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",185]="BSSID sélectionné: "${pink_color}"Aucun ne"${normal_color}
+	arr["french",185]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",185]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
 
 	arr["english",186]="You already have selected a capture file during this session ["${normal_color}"$enteredpath"${blue_color}"]"
@@ -1016,10 +1016,10 @@ function language_strings() {
 	arr["french",191]="Le fichier de capture que vous avez sélectionné est dans un format non supporté (ce n'est pas un fichier pcap ou IVs)"
 	arr["catalan",191]="El fitxer de captura que has seleccionat té un format no suportat (no és un fitxer pcap o de IVs)"
 
-	arr["english",192]="You already have selected a BSSID during this session ["${normal_color}"$bssid"${blue_color}"]"
-	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión ["${normal_color}"$bssid"${blue_color}"]"
-	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours "${normal_color}"$bssid"${blue_color}"]"
-	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió ["${normal_color}"$bssid"${blue_color}"]"
+	arr["english",192]="You already have selected a BSSID during this session and is present in capture file ["${normal_color}"$bssid"${blue_color}"]"
+	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura ["${normal_color}"$bssid"${blue_color}"]"
+	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture "${normal_color}"$bssid"${blue_color}"]"
+	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura ["${normal_color}"$bssid"${blue_color}"]"
 
 	arr["english",193]="Do you want to use this already selected BSSID? "${normal_color}"[y/n]"
 	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? "${normal_color}"[y/n]"
@@ -1135,6 +1135,16 @@ function language_strings() {
 	arr["spanish",215]="Una contraseña WPA/WPA2 siempre tiene como mínimo una longitud de 8"
 	arr["french",215]="Un mot de passe WPA/WPA2 a une longueur minimale de 8 caractères"
 	arr["catalan",215]="Una contrasenya WPA/WPA2 sempre té com a mínim una longitud de 8"
+
+	arr["english",216]="No networks found on selected file"
+	arr["spanish",216]="No se encontraron redes en el fichero seleccionado"
+	arr["french",216]="Aucun réseau détecté dans le fichier sélectionné"
+	arr["catalan",216]="No s'han trobat xarxes en el fitxer seleccionat"
+
+	arr["english",217]="Only one valid target detected on file. BSSID autoselected ["${normal_color}"$bssid"${blue_color}"]"
+	arr["spanish",217]="Sólo un objetivo valido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
+	arr["french",217]="Un seul réseau valide a été détecté dans le fichier. Il a été automatiquement sélectionné BSSID ["${normal_color}"$bssid"${blue_color}"]"
+	arr["catalan",217]="Només un objectiu valgut detectat en el fitxer. Seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
 
 	case "$3" in
 		"yellow")
@@ -1786,7 +1796,7 @@ function clean_tmpfiles() {
 	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
 }
 
-function store_array {
+function store_array() {
 
 	local var=$1 base_key=$2 values=("${@:3}")
 	for i in "${!values[@]}"; do
@@ -1952,30 +1962,116 @@ function ask_capture_file() {
 	language_strings ${language} 189 "yellow"
 }
 
-function ask_bssid_for_decrypt() {
+function check_valid_file_to_clean() {
 
-	bssidtodecrypt=""
-	while [[ ! ${bssidtodecrypt} =~ ^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$ ]]; do
-		echo
-		language_strings ${language} 27 "green"
-		read bssidtodecrypt
+	nets_from_file=$(echo "1" | aircrack-ng ${1} 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+
+	if [ "$nets_from_file" = "" ]; then
+		return 1
+	fi
+
+	option_counter=0
+	for item in ${nets_from_file}; do
+		if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
+			option_counter=$[option_counter + 1]
+		fi
 	done
 
-	bssid=${bssidtodecrypt}
+	if [ ${option_counter} -le 1 ]; then
+		return 1
+	fi
+
+	handshakefilesize=`wc -c ${filetoclean} 2> /dev/null | awk -F " " '{print$1}'`
+	if [ ${handshakefilesize} -le 1024 ]; then
+		return 1
+	fi
+
+	echo "1" | aircrack-ng ${1} 2> /dev/null | egrep "1 handshake" > /dev/null
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	return 0
+}
+
+function select_wpa_target_from_captured_file() {
+
+	nets_from_file=$(echo "1" | aircrack-ng ${1} 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+
+	echo
+	if [ "$nets_from_file" = "" ]; then
+		language_strings ${language} 216 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	declare -A bssids_detected
+	option_counter=0
+	for item in ${nets_from_file}; do
+		if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
+			option_counter=$[option_counter + 1]
+			bssids_detected["$option_counter"]=${item}
+		fi
+	done
+
+	for targetbssid in ${bssids_detected[@]}; do
+		if [ "$bssid" = "$targetbssid" ]; then
+			language_strings ${language} 192 "blue"
+			ask_yesno 193
+
+			if [ ${yesno} = "y" ]; then
+				bssid=${targetbssid}
+				return 0
+			fi
+			break
+		fi
+	done
+
+	bssid_autoselected=0
+	if [ ${option_counter} -gt 1 ]; then
+		option_counter=0
+		for item in ${nets_from_file}; do
+			if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
+
+				option_counter=$[option_counter + 1]
+
+				if [ ${option_counter} -lt 10 ]; then
+					space=" "
+				else
+					space=""
+				fi
+
+				echo -n "$option_counter.$space$item"
+			elif [[ ${item} =~ \)$ ]]; then
+				echo -en "$item\r\n"
+			else
+				echo -en " $item "
+			fi
+		done
+		print_hint ${current_menu}
+
+		target_network_on_file=0
+		while [[ ${target_network_on_file} -lt 1 || ${target_network_on_file} -gt ${option_counter} ]]; do
+			echo
+			language_strings ${language} 3 "green"
+			read target_network_on_file
+		done
+
+	else
+		target_network_on_file=1
+		bssid_autoselected=1
+	fi
+
+	bssid=${bssids_detected["$target_network_on_file"]}
+
+	if [ ${bssid_autoselected} -eq 1 ]; then
+		language_strings ${language} 217 "blue"
+	fi
+
+	return 0
 }
 
 function dictionary_attack_option() {
-
-	if [ -n "$dictionary" ]; then
-		echo
-		language_strings ${language} 183 "blue"
-		ask_yesno 184
-		if [ ${yesno} = "n" ]; then
-			ask_dictionary
-		fi
-	else
-		ask_dictionary
-	fi
 
 	if [ -n "$enteredpath" ]; then
 		echo
@@ -1988,15 +2084,20 @@ function dictionary_attack_option() {
 		ask_capture_file
 	fi
 
-	if [ -n "$bssid" ]; then
+	select_wpa_target_from_captured_file ${enteredpath}
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	if [ -n "$dictionary" ]; then
 		echo
-		language_strings ${language} 192 "blue"
-		ask_yesno 193
+		language_strings ${language} 183 "blue"
+		ask_yesno 184
 		if [ ${yesno} = "n" ]; then
-			ask_bssid_for_decrypt
+			ask_dictionary
 		fi
 	else
-		ask_bssid_for_decrypt
+		ask_dictionary
 	fi
 
 	echo
@@ -2027,15 +2128,6 @@ function set_maxlength() {
 
 function bruteforce_attack_option() {
 
-	minlength=0
-	maxlength=0
-
-	set_minlength
-
-	while [[ ${maxlength} -lt ${minlength} ]]; do
-		set_maxlength
-	done
-
 	if [ -n "$enteredpath" ]; then
 		echo
 		language_strings ${language} 186 "blue"
@@ -2047,16 +2139,18 @@ function bruteforce_attack_option() {
 		ask_capture_file
 	fi
 
-	if [ -n "$bssid" ]; then
-		echo
-		language_strings ${language} 192 "blue"
-		ask_yesno 193
-		if [ ${yesno} = "n" ]; then
-			ask_bssid_for_decrypt
-		fi
-	else
-		ask_bssid_for_decrypt
+	select_wpa_target_from_captured_file ${enteredpath}
+	if [ "$?" != "0" ]; then
+		return
 	fi
+
+	minlength=0
+	maxlength=0
+	set_minlength
+
+	while [[ ${maxlength} -lt ${minlength} ]]; do
+		set_maxlength
+	done
 
 	charset_option=0
 	while [[ ${charset_option} -lt 1 || ${charset_option} -gt 11 ]]; do
@@ -2199,13 +2293,13 @@ function handshake_tools_menu() {
 
 function exec_clean_handshake_file() {
 
-	handshakefilesize=`wc -c ${filetoclean} 2> /dev/null | awk -F " " '{print$1}'`
 	echo
-	if [ ${handshakefilesize} -gt 1024 ]; then
+	check_valid_file_to_clean ${filetoclean}
+	if [ "$?" != "0" ]; then
+		language_strings ${language} 159 "yellow"
+	else
 		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
 		language_strings ${language} 153 "yellow"
-	else
-		language_strings ${language} 159 "yellow"
 	fi
 	language_strings ${language} 115 "read"
 }
@@ -2334,7 +2428,7 @@ function capture_handshake() {
 
 function check_file_exists() {
 
-	if [ ! -f $1 ]; then
+	if [[ ! -f $1 || -z $1 ]]; then
 		language_strings ${language} 161 "yellow"
 		return 1
 	fi

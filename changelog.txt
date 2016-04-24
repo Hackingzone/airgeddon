@@ -1,3 +1,8 @@
+3.22
+Cleaning handshake files now perform some checks to avoid corruption file problem
+Capture files are checked before cracking looking for Handshakes and easy targeting
+Fixed bug checking existence of files
+
 3.21
 Autoupdate feature. Script checks for newer version
 Some language strings changed

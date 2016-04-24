@@ -5,11 +5,12 @@ This is a Multi-use bash script to audit wireless networks.<br>
 -Interface mode switcher (Monitor-Managed).<br>
 -DoS over wireless networks with different methods.<br>
 -Assisted Handshake file capture.<br>
--Cleaning Handshake captured files.<br>
--Offline password decrypt on captured files (dictionary & bruteforce).<br>
+-Cleaning and optimizing Handshake captured files.<br>
+-Offline password decrypt on WPA/WPA2 captured files (dictionary and bruteforce).<br>
 -Compatibility with many Linux distros (see requirements section).<br>
--Exit controlled. Cleaning tasks and option to keep monitor mode if desired.<br>
--Multilanguage support (see supported languages section).<br>
+-Easy targeting and selection in every section.<br>
+-Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br>
+-Multilanguage support and autodetect OS language feature (see supported languages section).<br>
 -Help hints in every zone/menu for easy use.<br>
 -Autoupdate feature. Script checks for newer version if possible.<br>
 
@@ -27,7 +28,7 @@ iwconfig airmon-ng airodump-ng aireplay-ng mdk3 awk wpaclean aircrack-ng crunch 
 <br>
 Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
 -Debian 8 (Jessie)<br>
--Ubuntu 15.10<br>
+-Ubuntu 15.10 and Xubuntu 15.10<br>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br>
@@ -54,7 +55,7 @@ You can join the project:<br>
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.<br>
 
 #Special Thanks to
-"Kcdtv" for french translations, beta testing, suggestions about new features and support received.<br>
+"Kcdtv" for French translations, beta testing, suggestions about new features and support received.<br>
 "El padrino" for Catalan translations.<br>
 "USUARIONUEVO" and Wifislax staff for helping me to improve the script and for suggestions about new features.<br>
 
