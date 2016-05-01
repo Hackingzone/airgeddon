@@ -1,3 +1,10 @@
+3.23
+Compatibility extended for Cyborg Hawk Linux
+Needed tools divided, essential and optional. Script can run now with essential tools even without some of the optional tools
+Changed "No check kill needed" feature method. Now improved for Kali and Wifislax future versions
+Bug fixed while checking for updates on slow connections
+README.md beautified
+
 3.22
 Cleaning handshake files now perform some checks to avoid corruption file problem
 Capture files are checked before cracking looking for Handshakes and easy targeting

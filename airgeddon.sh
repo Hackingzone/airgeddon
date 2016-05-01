@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.22"
+airgeddon_version="3.23"
 
 #Change these lines to select another default language
 language="english"
@@ -16,14 +16,16 @@ urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
-essential_tools=(iwconfig awk airmon-ng airodump-ng aireplay-ng mdk3 wpaclean aircrack-ng crunch curl)
+essential_tools=(iwconfig awk airmon-ng airodump-ng aircrack-ng curl)
+optional_tools_names=(wpaclean crunch aireplay-ng mdk3)
+declare -A optional_tools=([${optional_tools_names[0]}]=0 [${optional_tools_names[1]}]=0 [${optional_tools_names[2]}]=0 [${optional_tools_names[3]}]=0)
 declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 tmpfiles_toclean=0
 
 #Distro vars
-known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch")
+known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch" "cyborg")
 known_working_nondirectly_compatible_distros=("ubuntu" "debian")
 
 #Hint vars
@@ -42,6 +44,7 @@ symbolcharset="!#$%/=?{}[]-*:;"
 #Colors
 green_color="\033[1;32m"
 red_color="\033[1;31m"
+red_color_slim="\033[0;031m"
 blue_color="\033[1;34m"
 yellow_color="\033[1;33m"
 pink_color="\033[1;35m"
@@ -54,6 +57,12 @@ function language_strings() {
 	hintprefix["spanish"]="Consejo"
 	hintprefix["french"]="Conseil"
 	hintprefix["catalan"]="Consell"
+
+	declare -A optionaltool_needed
+	optionaltool_needed["english"]="Locked option, it needs "
+	optionaltool_needed["spanish"]="Opción bloqueada, requiere "
+	optionaltool_needed["french"]="Option de verrouillage, il faut "
+	optionaltool_needed["catalan"]="Opció bloquejada, necessita "
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -81,10 +90,10 @@ function language_strings() {
 	arr["french",4]="Pressez [Enter] pour commencer l'attaque..."
 	arr["catalan",4]="Premi la tecla [Enter] per començar l'atac..."
 
-	arr["english",5]="No 100% compatible distro detected"
-	arr["spanish",5]="No se ha detectado una distro compatible 100%"
-	arr["french",5]="La distro détectée n'est pas compatible 100%"
-	arr["catalan",5]="La distro detectada no es compatible 100%"
+	arr["english",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
+	arr["spanish",5]="Parece que tu conexión a internet no es estable. El script no puede conectar al repositorio. Continuará sin actualizarse..."
+	arr["french",5]="Il semble que votre connexion Internet est pas stable. Impossible de se connecter aux dépôts. Le script va s’exécuter sans s'actualiser..."
+	arr["catalan",5]="Sembla que la teva connexió a Internet no és estable. El script no pot connectar al repositori. Continuarà sense actualitzar..."
 
 	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
 	arr["spanish",6]="Bienvenid@ al airgeddon script v$airgeddon_version"
@@ -431,10 +440,10 @@ function language_strings() {
 	arr["french",74]="Script publié sous Licence GPLv2 (ou version supèrieure)"
 	arr["catalan",74]="Aquest script està publicat sota llicència GPLv2 (o versió superior)"
 
-	arr["english",75]="Thanks to the \"Spanish pen testing crew\", \"Wifislax Staff\" and special thanks Kcdtv for beta testing and support received"
-	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
-	arr["french",75]="Merci au \"Spanish pen testing crew\" , \"Wifislax Staff\" et au Kcdtv pour les tests en phase bêta et leur soutien"
-	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\", \"Wifislax Staff\" i al Kcdtv per les proves beta i el recolzament rebut"
+	arr["english",75]="Thanks to the \"Spanish pen testing crew\", to the \"Wifislax Staff\" and special thanks Kcdtv for beta testing and support received"
+	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", al \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
+	arr["french",75]="Merci au \"Spanish pen testing crew\" , au \"Wifislax Staff\" et au Kcdtv pour les tests en phase bêta et leur soutien"
+	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\", al \"Wifislax Staff\" i al Kcdtv per les proves beta i el recolzament rebut"
 
 	arr["english",76]="Invalid menu option was chosen"
 	arr["spanish",76]="Opción del menú no válida"
@@ -597,24 +606,24 @@ function language_strings() {
 	arr["catalan",107]="Uneix-te al projecte a $urlgithub"
 
 	arr["english",108]="Let's check if you have installed what script needs"
-	arr["spanish",108]="Vamos a chequear si tienes instalado lo que el script usa"
+	arr["spanish",108]="Vamos a chequear si tienes instalado lo que el script requiere"
 	arr["french",108]="Nous allons vérifier si les dépendances sont bien installées"
 	arr["catalan",108]="Anem a verificar si tens instal·lat el que l'script requereix"
 
-	arr["english",109]="Checking..."
-	arr["spanish",109]="Comprobando..."
-	arr["french",109]="Vérification..."
-	arr["catalan",109]="Comprovant..."
+	arr["english",109]="Essential tools: checking..."
+	arr["spanish",109]="Herramientas esenciales: comprobando..."
+	arr["french",109]="Outils essentiels: vérification..."
+	arr["catalan",109]="Eines essencials: comprovant..."
 
-	arr["english",110]="Your distro is compatible. Script can continue..."
-	arr["spanish",110]="Tu distro es compatible. El script puede continuar..."
-	arr["french",110]="Votre distribution est compatible. Le script peut continuer..."
-	arr["catalan",110]="La teva distro es compatible. El script pot continuar..."
+	arr["english",110]="Your distro has all necessary tools. Script can continue..."
+	arr["spanish",110]="Tu distro tiene todas las herramientas necesarias. El script puede continuar..."
+	arr["french",110]="Votre distro a tous les outils nécessaires. Le script peut continuer..."
+	arr["catalan",110]="La teva distro té totes les eines necessàries. El script pot continuar..."
 
-	arr["english",111]="You need to install some tools before running this script"
-	arr["spanish",111]="Necesitas instalar algunas herramientas antes de lanzar este script"
-	arr["french",111]="Vous devez installer quelques programmes avant de pouvoir lancer ce script"
-	arr["catalan",111]="Necessites instal·lar algunes eines abans d'executar aquest script"
+	arr["english",111]="You need to install some essential tools before running this script"
+	arr["spanish",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
+	arr["french",111]="Vous devez installer quelques programmes essentiels avant de pouvoir lancer ce script"
+	arr["catalan",111]="Necessites instal·lar algunes eines essencials abans d'executar aquest script"
 
 	arr["english",112]="Language changed to French"
 	arr["spanish",112]="Idioma cambiado a Francés"
@@ -1108,27 +1117,27 @@ function language_strings() {
 
 	arr["english",210]="The script will check for internet access looking for a newer version. Please be patient..."
 	arr["spanish",210]="El script va a comprobar si tienes acceso a internet para ver si existe una nueva versión. Por favor ten paciencia..."
-	arr["french",210]="Le script va vérifier si vous avez accès à internet pour voir si une nouvelle version. Soyez patients s'il vous plaît..."
+	arr["french",210]="Le script va vérifier que vous aillez accès à internet pour voir si une nouvelle version du script est disponible. Soyez patients s'il vous plaît..."
 	arr["catalan",210]="El script va a comprovar si tens accés a internet per veure si hi ha una nova versió. Si us plau té paciència..."
 
-	arr["english",211]="The script can't connect to repository. It will continue without updating..."
-	arr["spanish",211]="El script no puede conectar al repositorio. Continuará sin actualizarse..."
-	arr["french",211]="Le script ne peut pas se connecter au référentiel. Elle continuera sans mise à jour..."
-	arr["catalan",211]="El script no pot connectar al repositori. Continuarà sense actualitzar..."
+	arr["english",211]="It seems you have no internet access. The script can't connect to repository. It will continue without updating..."
+	arr["spanish",211]="Parece que no tienes conexión a internet. El script no puede conectar al repositorio. Continuará sin actualizarse..."
+	arr["french",211]="Il semble que vous avez pas de connexion internet. Impossible de se connecter aux dépôts. Le script va s’exécuter sans s'actualiser..."
+	arr["catalan",211]="Sembla que no tens connexió a internet. El script no pot connectar al repositori. Continuarà sense actualitzar..."
 
 	arr["english",212]="The script is already in the latest version. It doesn't need to be updated"
 	arr["spanish",212]="El script ya está en la última versión. No necesita ser actualizado"
-	arr["french",212]="Le script est déjà dans la dernière version. Il n'a pas besoin d'être mis à jour"
+	arr["french",212]="La dernière version du script est déjà installée. Pas de mise à jour possible"
 	arr["catalan",212]="El script ja està en l'última versió. No necessita ser actualitzat"
 
 	arr["english",213]="A new version of the script exists (v$airgeddon_last_version). It will be downloaded"
 	arr["spanish",213]="Existe una nueva versión del script (v$airgeddon_last_version). Será descargada"
-	arr["french",213]="Une nouvelle version du script (v$airgeddon_last_version). Il sera téléchargé"
+	arr["french",213]="Une nouvelle version du script est disponible (v$airgeddon_last_version). Lancement du téléchargement"
 	arr["catalan",213]="Hi ha una nova versió dels script (v$airgeddon_last_version). Serà descarregada"
 
 	arr["english",214]="The new version was successfully downloaded. The script will be launched again"
 	arr["spanish",214]="La nueva versión se ha descargado con éxito. El script se lanzará de nuevo"
-	arr["french",214]="La nouvelle version a été téléchargé avec succès. Le script a été lancé à nouveau"
+	arr["french",214]="Le téléchargement de la dernière version du script a réussit. Le script a été lancé à nouveau"
 	arr["catalan",214]="La nova versió s'ha descarregat amb èxit. El script es llençarà de nou"
 
 	arr["english",215]="WPA/WPA2 passwords always has 8 as a minimum length"
@@ -1145,6 +1154,21 @@ function language_strings() {
 	arr["spanish",217]="Sólo un objetivo valido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
 	arr["french",217]="Un seul réseau valide a été détecté dans le fichier. Il a été automatiquement sélectionné BSSID ["${normal_color}"$bssid"${blue_color}"]"
 	arr["catalan",217]="Només un objectiu valgut detectat en el fitxer. Seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
+
+	arr["english",218]="Optional tools: checking..."
+	arr["spanish",218]="Herramientas opcionales: comprobando..."
+	arr["french",218]="Outils optionnels: vérification..."
+	arr["catalan",218]="Eines opcionals: comprovant..."
+
+	arr["english",219]="Your distro has the essential tools but it hasn't some optional. The script can continue but you can't use some features. It is recommended to install missing tools"
+	arr["spanish",219]="Tu distro tiene las herramientas esenciales pero le faltan algunas opcionales. El script puede continuar pero no podrás utilizar algunas funcionalidades. Es recomendable instalar las herramientas que faltan"
+	arr["french",219]="Votre distro a les outils essentiels, mais manque un peu en option. Le script peut continuer, mais vous ne pouvez pas utiliser certaines fonctionnalités. Il est conseillé d'installer les outils manquants"
+	arr["catalan",219]="La teva distro té les eines essencials però li falten algunes opcionals. El script pot continuar però no podràs utilitzar algunes funcionalitats. És recomanable instal·lar les eines que faltin"
+
+	arr["english",220]="Locked menu option was chosen"
+	arr["spanish",220]="Opción del menú bloqueada"
+	arr["french",220]="Menu option Verrouillé"
+	arr["catalan",220]="Opció del menú bloquejada"
 
 	case "$3" in
 		"yellow")
@@ -1175,9 +1199,23 @@ function language_strings() {
 			echo_pink "*${hintprefix[$language]}* ${arr[$1,$2]}"
 		;;
 		*)
-			echo -e "${arr[$1,$2]}"
+			if [ -z "$3" ]; then
+				echo -e "${arr[$1,$2]}"
+			else
+				special_text_missed_optional_tool $1 $2 $3
+			fi
 		;;
 	esac
+}
+
+function special_text_missed_optional_tool() {
+
+	if [ ${optional_tools[$3]} -eq 1 ]; then
+		echo -e "${arr[$1,$2]}"
+	else
+		echo_red_slim "${arr[$1,$2]}" "(${optionaltool_needed[$1]}$3)"
+		[[ ${arr[$1,$2]} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
+	fi
 }
 
 function generate_title() {
@@ -1771,7 +1809,9 @@ function print_decrypt_vars() {
 	fi
 }
 
-function print_selections() {
+function initialize_menu_and_print_selections() {
+
+	forbidden_options=()
 
 	case ${current_menu} in
 		"main_menu")
@@ -1802,6 +1842,13 @@ function store_array() {
 	for i in "${!values[@]}"; do
 		eval "$1[\${base_key}|${i}]=\${values[i]}"
 	done
+}
+
+contains_element() {
+
+	local e
+	for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+	return 1
 }
 
 function print_hint() {
@@ -1856,7 +1903,7 @@ function main_menu() {
 	clear
 	language_strings ${language} 101 "titlered"
 	current_menu="main_menu"
-	print_selections
+	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
 	echo_blue "---------"
@@ -1915,12 +1962,12 @@ function decrypt_menu() {
 	clear
 	language_strings ${language} 170 "titlered"
 	current_menu="decrypt_menu"
-	print_selections
+	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
 	language_strings ${language} 176 "blue"
-	language_strings ${language} 172
-	language_strings ${language} 175
+	language_strings ${language} 172 ${optional_tools_names[1]}
+	language_strings ${language} 175 ${optional_tools_names[1]}
 	echo_blue "---------"
 	language_strings ${language} 174
 	print_hint ${current_menu}
@@ -1928,10 +1975,20 @@ function decrypt_menu() {
 	read decrypt_option
 	case ${decrypt_option} in
 		1)
-			dictionary_attack_option
+			contains_element "$decrypt_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				dictionary_attack_option
+			fi
 		;;
 		2)
-			bruteforce_attack_option
+			contains_element "$decrypt_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				bruteforce_attack_option
+			fi
 		;;
 		3)
 			return
@@ -2244,7 +2301,7 @@ function handshake_tools_menu() {
 	clear
 	language_strings ${language} 120 "titlered"
 	current_menu="handshake_tools_menu"
-	print_selections
+	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
 	echo_blue "---------"
@@ -2255,7 +2312,7 @@ function handshake_tools_menu() {
 	language_strings ${language} 124 "blue"
 	language_strings ${language} 121
 	echo_blue "---------"
-	language_strings ${language} 122
+	language_strings ${language} 122 ${optional_tools_names[0]}
 	echo_blue "---------"
 	language_strings ${language} 123
 	print_hint ${current_menu}
@@ -2278,7 +2335,12 @@ function handshake_tools_menu() {
 			capture_handshake
 		;;
 		6)
-			clean_handshake_file_option
+			contains_element "$handshake_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				clean_handshake_file_option
+			fi
 		;;
 		7)
 			return
@@ -2337,7 +2399,7 @@ function dos_attacks_menu() {
 	clear
 	language_strings ${language} 102 "titlered"
 	current_menu="dos_attacks_menu"
-	print_selections
+	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
 	echo_blue "---------"
@@ -2346,13 +2408,13 @@ function dos_attacks_menu() {
 	language_strings ${language} 56
 	language_strings ${language} 49
 	language_strings ${language} 50 "blue"
-	language_strings ${language} 51
-	language_strings ${language} 52
-	language_strings ${language} 53
+	language_strings ${language} 51 ${optional_tools_names[3]}
+	language_strings ${language} 52 ${optional_tools_names[2]}
+	language_strings ${language} 53 ${optional_tools_names[3]}
 	language_strings ${language} 54 "blue"
-	language_strings ${language} 62
-	language_strings ${language} 63
-	language_strings ${language} 64
+	language_strings ${language} 62 ${optional_tools_names[3]}
+	language_strings ${language} 63 ${optional_tools_names[3]}
+	language_strings ${language} 64 ${optional_tools_names[3]}
 	echo_blue "---------"
 	language_strings ${language} 59
 	print_hint ${current_menu}
@@ -2372,22 +2434,52 @@ function dos_attacks_menu() {
 			explore_for_targets_option
 		;;
 		5)
-			mdk3_deauth_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				mdk3_deauth_option
+			fi
 		;;
 		6)
-			aireplay_deauth_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				aireplay_deauth_option
+			fi
 		;;
 		7)
-			wds_confusion_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				wds_confusion_option
+			fi
 		;;
 		8)
-			beacon_flood_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				beacon_flood_option
+			fi
 		;;
 		9)
-			auth_dos_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				auth_dos_option
+			fi
 		;;
 		10)
-			michael_shutdown_option
+			contains_element "$dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				michael_shutdown_option
+			fi
 		;;
 		11)
 			return
@@ -2539,13 +2631,13 @@ function attack_handshake_menu() {
 	clear
 	language_strings ${language} 138 "titlered"
 	current_menu="attack_handshake_menu"
-	print_selections
+	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
 	echo_blue "---------"
-	language_strings ${language} 139
-	language_strings ${language} 140
-	language_strings ${language} 141
+	language_strings ${language} 139 ${optional_tools_names[3]}
+	language_strings ${language} 140 ${optional_tools_names[2]}
+	language_strings ${language} 141 ${optional_tools_names[3]}
 	echo_blue "---------"
 	language_strings ${language} 147
 	print_hint ${current_menu}
@@ -2553,22 +2645,40 @@ function attack_handshake_menu() {
 	read attack_handshake_option
 	case ${attack_handshake_option} in
 		1)
-			capture_handshake_window
-			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-			echo ${bssid} > ${tmpdir}"bl.txt"
-			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} &
-			sleeptimeattack=12
+			contains_element "$attack_handshake_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+				attack_handshake_menu "new"
+			else
+				capture_handshake_window
+				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
+				echo ${bssid} > ${tmpdir}"bl.txt"
+				xterm +j -sb -rightbar -geometry 119x20+60+350 -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} &
+				sleeptimeattack=12
+			fi
 		;;
 		2)
-			capture_handshake_window
-			${airmon} start ${interface} ${channel} > /dev/null 2>&1
-			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} &
-			sleeptimeattack=12
+			contains_element "$attack_handshake_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+				attack_handshake_menu "new"
+			else
+				capture_handshake_window
+				${airmon} start ${interface} ${channel} > /dev/null 2>&1
+				xterm +j -sb -rightbar -geometry 119x20+60+350 -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} &
+				sleeptimeattack=12
+			fi
 		;;
 		3)
-			capture_handshake_window
-			xterm +j -sb -rightbar -geometry 119x20+60+350 -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} &
-			sleeptimeattack=16
+			contains_element "$attack_handshake_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+				attack_handshake_menu "new"
+			else
+				capture_handshake_window
+				xterm +j -sb -rightbar -geometry 119x20+60+350 -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} &
+				sleeptimeattack=16
+			fi
 		;;
 		4)
 			return
@@ -2793,6 +2903,13 @@ function invalid_language_selected() {
 	language_option
 }
 
+function forbidden_menu_option() {
+
+	echo
+	language_strings ${language} 220 "yellow"
+	language_strings ${language} 115 "read"
+}
+
 function invalid_menu_option() {
 
 	echo
@@ -2915,13 +3032,28 @@ function special_distro_features() {
 
 	case ${distro} in
 		"Kali")
+			check_kill_needed=0
 			distroyear=`uname -a | grep -oP "20[0-9]{2}\-[0-9]{2}\-[0-9]{2}" | awk -F "-" '{print $1}'`
-			if [ "$distroyear" = "2016" ]; then
-				check_kill_needed=0
+			if [ ${distroyear} -le 2015 ]; then
+				check_kill_needed=1
 			fi
 		;;
 		"Wifislax")
-			networkmanager_cmd="service restart networkmanager"
+			check_kill_needed=0
+			wifislax_version=`cat /etc/wifislax-version | cut -d " " -f 2`
+			[[ ${wifislax_version} =~ ^([^\.]+)\.(.*)$ ]] && main_wifislax_version_number="${BASH_REMATCH[1]}" && secondary_wifislax_version_number="${BASH_REMATCH[2]}"
+
+			if [ ${main_wifislax_version_number} -lt 4 ]; then
+				check_kill_needed=1
+				networkmanager_cmd="service restart networkmanager"
+			else
+				if [ ${main_wifislax_version_number} -eq 4 ]; then
+					if compare_floats 12 ${secondary_wifislax_version_number}; then
+						check_kill_needed=1
+						networkmanager_cmd="service restart networkmanager"
+					fi
+				fi
+			fi
 		;;
 		"Backbox")
 			check_kill_needed=0
@@ -2944,17 +3076,15 @@ function detect_distro() {
 		uname -a | grep ${i} -i > /dev/null
 		if [ "$?" = "0" ]; then
 			distro="${i^}"
-			compatible=1
 			break
 		fi
 	done
 
-	if [ ${compatible} -eq 0 ]; then
+	if [ "$distro" = "Unknown Linux" ]; then
 		for i in "${known_working_nondirectly_compatible_distros[@]}"; do
 			uname -a | grep ${i} -i > /dev/null
 			if [ "$?" = "0" ]; then
 				distro="${i^}"
-				compatible=0
 				break
 			fi
 		done
@@ -2962,11 +3092,10 @@ function detect_distro() {
 
 	special_distro_features
 
-	echo -e ${yellow_color}"$distro Linux"${normal_color}
-	echo
-
-	if [ ${compatible} -eq 1 ]; then
-		return
+	if [ "$distro" = "Unknown Linux" ]; then
+		echo -e ${yellow_color}"$distro"${normal_color}
+	else
+		echo -e ${yellow_color}"$distro Linux"${normal_color}
 	fi
 
 	check_compatibility
@@ -2988,35 +3117,59 @@ function print_known_distros() {
 
 function check_compatibility() {
 
-	language_strings ${language} 5 "yellow"
-	language_strings ${language} 108 "yellow"
+	echo
+	language_strings ${language} 108 "blue"
 	language_strings ${language} 115 "read"
+
 	echo
 	language_strings ${language} 109 "blue"
-	toolsok=1
-	toolstext=""
 
+	essential_toolsok=1
 	for i in "${essential_tools[@]}"; do
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
 			echo -e ${red_color}" Error\r"${normal_color}
-			toolsok=0
+			essential_toolsok=0
 		else
 			echo -e ${green_color}" Ok\r"${normal_color}
 		fi
 	done
 
-	if [ ${toolsok} -eq 0 ]; then
+	echo
+	language_strings ${language} 218 "blue"
+
+	optional_toolsok=1
+	for i in "${!optional_tools[@]}"; do
+		echo -ne "$i"
+		time_loop
+		if ! hash ${i} 2> /dev/null; then
+			echo -e ${red_color}" Error\r"${normal_color}
+			optional_toolsok=0
+		else
+			echo -e ${green_color}" Ok\r"${normal_color}
+			optional_tools[$i]=1
+		fi
+	done
+
+	if [ ${essential_toolsok} -eq 0 ]; then
 		echo
 		language_strings ${language} 111 "yellow"
 		echo
 		return
 	fi
 
-	language_strings ${language} 110 "yellow"
-	echo
 	compatible=1
+
+	if [ ${optional_toolsok} -eq 0 ]; then
+		echo
+		language_strings ${language} 219 "yellow"
+		echo
+		return
+	fi
+
+	echo
+	language_strings ${language} 110 "yellow"
 }
 
 function welcome() {
@@ -3078,7 +3231,7 @@ function download_last_version() {
 		language_strings ${language} 115 "read"
 		exec ${scriptpath}
 	else
-		language_strings ${language} 211 "yellow"
+		language_strings ${language} 5 "yellow"
 	fi
 }
 
@@ -3098,11 +3251,15 @@ function autoupdate_check() {
 
 		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | cut -d "\"" -f 2`
 
-		if compare_floats ${airgeddon_last_version} ${airgeddon_version}; then
-			language_strings ${language} 213 "yellow"
-			download_last_version
+		if [ "$airgeddon_last_version" != "" ]; then
+			if compare_floats ${airgeddon_last_version} ${airgeddon_version}; then
+				language_strings ${language} 213 "yellow"
+				download_last_version
+			else
+				language_strings ${language} 212 "yellow"
+			fi
 		else
-			language_strings ${language} 212 "yellow"
+			language_strings ${language} 5 "yellow"
 		fi
 	else
 		language_strings ${language} 211 "yellow"
@@ -3143,6 +3300,11 @@ function echo_yellow() {
 function echo_red() {
 
 	echo -e ${red_color}"$*"${normal_color}
+}
+
+function echo_red_slim() {
+
+	echo -e ${red_color_slim}"$*"${normal_color}
 }
 
 function echo_pink() {
