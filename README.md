@@ -1,5 +1,5 @@
 #airgeddon
-This is a multi-use bash script to audit wireless networks.<br>
+This is a multi-use bash script for Linux systems to audit wireless networks.<br>
 
 #Features
 - Interface mode switcher (Monitor-Managed).<br>
@@ -15,6 +15,8 @@ This is a multi-use bash script to audit wireless networks.<br>
 - Autoupdate. Script checks for newer version if possible.<br>
 
 #Requirements
+Bash version 4 or later needed.<br>
+<br>
 We say a distro is a 100% compatible Linux distro if it has installed by default all the essential tools script needs to work.<br><br>
 Tested on these 100% compatible Linux distros:<br>
 *-Kali. 2.0 and 2016.1*<br>
@@ -26,13 +28,19 @@ Tested on these 100% compatible Linux distros:<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br><br>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br>
-`iwconfig awk airmon-ng airodump-ng aircrack-ng curl`<br><br>
+`iwconfig iw awk airmon-ng airodump-ng aircrack-ng curl`<br><br>
 Optional tools: <- *not necessary to work, only needed for some features*<br>
 `wpaclean crunch aireplay-ng mdk3`<br>
 <br>
 Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
 *-Debian 8 (Jessie)*<br>
 *-Ubuntu 15.10 and Xubuntu 15.10*<br>
+*-OpenSUSE Leap 42.1*<br>
+<br>
+Impossible compatibility for Mac OSX at the moment. Some reasons:<br>
+*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the problem<br>
+*-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br>
+*-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br>

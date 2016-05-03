@@ -1,3 +1,13 @@
+3.3
+SIGTSTP trap now handled
+Minimum bash version check (v4)
+Some language strings changed
+Non Linux OS check added (Solaris, FreeBSD, OSX)
+Compatibility extended for OpenSUSE Linux
+README.md updated about Mac OSX incompatibility
+Improved OS language detection method
+Fixed bug in autoupdate
+
 3.23
 Compatibility extended for Cyborg Hawk Linux
 Needed tools divided, essential and optional. Script can run now with essential tools even without some of the optional tools

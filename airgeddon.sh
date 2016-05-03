@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.23"
+airgeddon_version="3.3"
 
 #Change these lines to select another default language
 language="english"
@@ -16,17 +16,18 @@ urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
-essential_tools=(iwconfig awk airmon-ng airodump-ng aircrack-ng curl)
+essential_tools=(iwconfig iw awk airmon-ng airodump-ng aircrack-ng curl)
 optional_tools_names=(wpaclean crunch aireplay-ng mdk3)
 declare -A optional_tools=([${optional_tools_names[0]}]=0 [${optional_tools_names[1]}]=0 [${optional_tools_names[2]}]=0 [${optional_tools_names[3]}]=0)
 declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 tmpfiles_toclean=0
+minimum_bash_version_required=4
 
 #Distro vars
 known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch" "cyborg")
-known_working_nondirectly_compatible_distros=("ubuntu" "debian")
+known_working_nondirectly_compatible_distros=("ubuntu" "debian" "linux-1mdx")
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -61,7 +62,7 @@ function language_strings() {
 	declare -A optionaltool_needed
 	optionaltool_needed["english"]="Locked option, it needs "
 	optionaltool_needed["spanish"]="Opción bloqueada, requiere "
-	optionaltool_needed["french"]="Option de verrouillage, il faut "
+	optionaltool_needed["french"]="Option bloquée parce qu’il manque "
 	optionaltool_needed["catalan"]="Opció bloquejada, necessita "
 
 	declare -A arr
@@ -92,8 +93,8 @@ function language_strings() {
 
 	arr["english",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
 	arr["spanish",5]="Parece que tu conexión a internet no es estable. El script no puede conectar al repositorio. Continuará sin actualizarse..."
-	arr["french",5]="Il semble que votre connexion Internet est pas stable. Impossible de se connecter aux dépôts. Le script va s’exécuter sans s'actualiser..."
-	arr["catalan",5]="Sembla que la teva connexió a Internet no és estable. El script no pot connectar al repositori. Continuarà sense actualitzar..."
+	arr["french",5]="Votre connexion Internet est trop médiocre pour pouvoir se connecter aux dépôts comme ils se doit. Le script va s’exécuter sans s'actualiser..."
+	arr["catalan",5]="Sembla que la teva connexió a Internet no és estable. El script no pot connectar amb el repositori. Continuarà sense actualitzar-se..."
 
 	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
 	arr["spanish",6]="Bienvenid@ al airgeddon script v$airgeddon_version"
@@ -110,10 +111,10 @@ function language_strings() {
 	arr["french",8]="Distros connus 100% compatibles avec ce script :"
 	arr["catalan",8]="Distros conegudes 100% compatibles amb aquest script :"
 
-	arr["english",9]="Detecting distro..."
-	arr["spanish",9]="Detectando distro..."
-	arr["french",9]="Détection de la distro..."
-	arr["catalan",9]="Detecció de la distro..."
+	arr["english",9]="Detecting system..."
+	arr["spanish",9]="Detectando sistema..."
+	arr["french",9]="Détection du système..."
+	arr["catalan",9]="Detecció del sistema..."
 
 	arr["english",10]="This interface $interface is already in monitor mode"
 	arr["spanish",10]="Esta interfaz $interface ya está en modo monitor"
@@ -125,10 +126,10 @@ function language_strings() {
 	arr["french",11]="Fermeture du script airgeddon v$airgeddon_version - A bientôt! :)"
 	arr["catalan",11]="Sortint de airgeddon script v$airgeddon_version - Ens veiem aviat! :)"
 
-	arr["english",12]="Please, exit properly using menu option"
-	arr["spanish",12]="Por favor, sal del script correctamente utilizando la opción del menú"
-	arr["french",12]="S'il vous plaît, veuillez utiliser l'option du menue pour arrêter corectement le script"
-	arr["catalan",12]="Si us plau, utilitzeu l'opció del menu per sortir correctament del script"
+	arr["english",12]="Please don't break the script. Exit properly using menu option"
+	arr["spanish",12]="Por favor, no interrumpas el script. Sal del script correctamente utilizando la opción del menú"
+	arr["french",12]="S'il vous plaît, ne pas interrompre le script. Veuillez utiliser l'option du menue pour arrêter corectement le script"
+	arr["catalan",12]="Si us plau, no interrompis l'script. Utilitzeu l'opció del menu per sortir correctament del script"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
@@ -612,17 +613,17 @@ function language_strings() {
 
 	arr["english",109]="Essential tools: checking..."
 	arr["spanish",109]="Herramientas esenciales: comprobando..."
-	arr["french",109]="Outils essentiels: vérification..."
+	arr["french",109]="Vérification de la présence des outils nécessaires..."
 	arr["catalan",109]="Eines essencials: comprovant..."
 
 	arr["english",110]="Your distro has all necessary tools. Script can continue..."
 	arr["spanish",110]="Tu distro tiene todas las herramientas necesarias. El script puede continuar..."
-	arr["french",110]="Votre distro a tous les outils nécessaires. Le script peut continuer..."
+	arr["french",110]="Les outils nécessaires au bon fonctionnement du programme sont tous présents dans votre système. Le script peut continuer..."
 	arr["catalan",110]="La teva distro té totes les eines necessàries. El script pot continuar..."
 
 	arr["english",111]="You need to install some essential tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
-	arr["french",111]="Vous devez installer quelques programmes essentiels avant de pouvoir lancer ce script"
+	arr["french",111]="Vous devez installer quelques programmes avant de pouvoir lancer ce script"
 	arr["catalan",111]="Necessites instal·lar algunes eines essencials abans d'executar aquest script"
 
 	arr["english",112]="Language changed to French"
@@ -1122,8 +1123,8 @@ function language_strings() {
 
 	arr["english",211]="It seems you have no internet access. The script can't connect to repository. It will continue without updating..."
 	arr["spanish",211]="Parece que no tienes conexión a internet. El script no puede conectar al repositorio. Continuará sin actualizarse..."
-	arr["french",211]="Il semble que vous avez pas de connexion internet. Impossible de se connecter aux dépôts. Le script va s’exécuter sans s'actualiser..."
-	arr["catalan",211]="Sembla que no tens connexió a internet. El script no pot connectar al repositori. Continuarà sense actualitzar..."
+	arr["french",211]="Il semble que vous ne pouvez pas vous connecter à Internet. Impossible dans ces conditions de pouvoir accéder aux dépôts. Le script va donc s’exécuter sans s'actualiser..."
+	arr["catalan",211]="Sembla que no tens connexió a internet. El script no pot connectar al repositori. Continuarà sense actualitzar-se..."
 
 	arr["english",212]="The script is already in the latest version. It doesn't need to be updated"
 	arr["spanish",212]="El script ya está en la última versión. No necesita ser actualizado"
@@ -1152,23 +1153,33 @@ function language_strings() {
 
 	arr["english",217]="Only one valid target detected on file. BSSID autoselected ["${normal_color}"$bssid"${blue_color}"]"
 	arr["spanish",217]="Sólo un objetivo valido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
-	arr["french",217]="Un seul réseau valide a été détecté dans le fichier. Il a été automatiquement sélectionné BSSID ["${normal_color}"$bssid"${blue_color}"]"
-	arr["catalan",217]="Només un objectiu valgut detectat en el fitxer. Seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
+	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est ["${normal_color}"$bssid"${blue_color}"]"
+	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
 
 	arr["english",218]="Optional tools: checking..."
 	arr["spanish",218]="Herramientas opcionales: comprobando..."
-	arr["french",218]="Outils optionnels: vérification..."
+	arr["french",218]="Vérification de la présence des outils optionnels..."
 	arr["catalan",218]="Eines opcionals: comprovant..."
 
 	arr["english",219]="Your distro has the essential tools but it hasn't some optional. The script can continue but you can't use some features. It is recommended to install missing tools"
 	arr["spanish",219]="Tu distro tiene las herramientas esenciales pero le faltan algunas opcionales. El script puede continuar pero no podrás utilizar algunas funcionalidades. Es recomendable instalar las herramientas que faltan"
-	arr["french",219]="Votre distro a les outils essentiels, mais manque un peu en option. Le script peut continuer, mais vous ne pouvez pas utiliser certaines fonctionnalités. Il est conseillé d'installer les outils manquants"
+	arr["french",219]="Votre système contient les outils fondamentaux nécessaires à l’exécution du script mais il manque quelques outils pour pouvoir utiliser pleinement toutes les fonctionnalités proposées par le script. Le script va pouvoir être exécuté mais il est conseillé d'installer les outils manquants."
 	arr["catalan",219]="La teva distro té les eines essencials però li falten algunes opcionals. El script pot continuar però no podràs utilitzar algunes funcionalitats. És recomanable instal·lar les eines que faltin"
 
 	arr["english",220]="Locked menu option was chosen"
 	arr["spanish",220]="Opción del menú bloqueada"
-	arr["french",220]="Menu option Verrouillé"
+	arr["french",220]="Cette option du menu est bloquée"
 	arr["catalan",220]="Opció del menú bloquejada"
+
+	arr["english",221]="Accepted bash version ($BASH_VERSION). Minimum required version: $minimum_bash_version_required"
+	arr["spanish",221]="Versión de bash ($BASH_VERSION) aceptada. Mínimo requerido versión: $minimum_bash_version_required"
+	arr["french",221]="Votre version de bash ($BASH_VERSION) est acceptée. Version minimale requise: $minimum_bash_version_required"
+	arr["catalan",221]="Versió de bash ($BASH_VERSION) acceptada. Versió minima requerida: $minimum_bash_version_required"
+
+	arr["english",222]="Insufficient bash version ($BASH_VERSION). Minimum required version: $minimum_bash_version_required"
+	arr["spanish",222]="Versión de bash insuficiente ($BASH_VERSION). Mínimo requerido versión: $minimum_bash_version_required"
+	arr["french",222]="Votre version de bash ($BASH_VERSION) n'est pas suffisante. Version minimale requise: $minimum_bash_version_required"
+	arr["catalan",222]="Versió de bash insuficient ($BASH_VERSION). Versió mínima requerida: $minimum_bash_version_required"
 
 	case "$3" in
 		"yellow")
@@ -1431,8 +1442,10 @@ function language_option() {
 	language_strings ${language} 80
 	language_strings ${language} 113
 	language_strings ${language} 116
+	echo_blue "---------"
 
 	read language_selected
+	echo
 	case ${language_selected} in
 		1)
 			language="english"
@@ -2927,14 +2940,8 @@ function invalid_iface_selected() {
 	select_interface
 }
 
-function killing_script() {
+function launch_current_menu() {
 
-	echo
-	echo
-	language_strings ${language} 12 "yellow"
-	echo
-	language_strings ${language} 115 "read"
-	
 	case ${current_menu} in
 		"main_menu")
 			main_menu
@@ -2951,10 +2958,26 @@ function killing_script() {
 		"decrypt_menu")
 			decrypt_menu
 		;;
+		"pre_main_menu")
+			exit_script_option
+		;;
 		*)
 			main_menu
 		;;
 	esac
+}
+
+function capture_traps() {
+
+	echo
+	if [ "$current_menu" != "pre_main_menu" ]; then
+		echo
+		language_strings ${language} 12 "yellow"
+		echo
+		language_strings ${language} 115 "read"
+	fi
+
+	launch_current_menu
 }
 
 function exit_script_option() {
@@ -3028,6 +3051,21 @@ function iwconfig_fix() {
 	fi
 }
 
+function non_linux_os_check() {
+
+	case "$OSTYPE" in
+		solaris*)
+			distro="Solaris"
+		;;
+		darwin*)
+			distro="Mac OSX"
+		;;
+		bsd*)
+			distro="FreeBSD"
+		;;
+	esac
+}
+
 function special_distro_features() {
 
 	case ${distro} in
@@ -3061,6 +3099,13 @@ function special_distro_features() {
 		"Blackarch")
 			check_kill_needed=0
 		;;
+		"Linux-1mdx")
+			distro="SUSE"
+			networkmanager_cmd="service NetworkManager restart"
+			if ! hash NetworkManager 2> /dev/null; then
+				check_kill_needed=0
+			fi
+		;;
 	esac
 }
 
@@ -3093,6 +3138,7 @@ function detect_distro() {
 	special_distro_features
 
 	if [ "$distro" = "Unknown Linux" ]; then
+		non_linux_os_check
 		echo -e ${yellow_color}"$distro"${normal_color}
 	else
 		echo -e ${yellow_color}"$distro Linux"${normal_color}
@@ -3172,10 +3218,22 @@ function check_compatibility() {
 	language_strings ${language} 110 "yellow"
 }
 
+function check_bash_version() {
+
+	echo
+	[[ ${BASH_VERSION} =~ ^([^\.]+)\.(.*)$ ]] && vbash="${BASH_REMATCH[1]}"
+	if [ ${vbash} -ge ${minimum_bash_version_required} ]; then
+		language_strings ${language} 221 "yellow"
+	else
+		language_strings ${language} 222 "yellow"
+		exit_script_option
+	fi
+}
+
 function welcome() {
 
 	clear
-	current_menu="main"
+	current_menu="pre_main_menu"
 	autodetect_language
 
 	language_strings ${language} 86 "titlered"
@@ -3188,6 +3246,8 @@ function welcome() {
 		echo
 		language_strings ${language} 2 "yellow"
 	fi
+
+	check_bash_version
 
 	echo
 	language_strings ${language} 8 "blue"
@@ -3249,7 +3309,7 @@ function autoupdate_check() {
 
 	if [ ${hasinternet_access} -eq 1 ]; then
 
-		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | cut -d "\"" -f 2`
+		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2`
 
 		if [ "$airgeddon_last_version" != "" ]; then
 			if compare_floats ${airgeddon_last_version} ${airgeddon_version}; then
@@ -3271,7 +3331,7 @@ function autoupdate_check() {
 function autodetect_language() {
 
 	autochanged_language=0
-	lang=`locale | grep LANG | cut -d= -f2 | cut -d "_" -f1`
+	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
 
 	for lgkey in "${!lang_association[@]}"; do
 		if [[ "$lang" = "$lgkey" ]] && [[ "$language" != ${lang_association["$lgkey"]} ]]; then
@@ -3312,5 +3372,6 @@ function echo_pink() {
 	echo -e ${pink_color}"$*"${normal_color}
 }
 
-trap killing_script INT
+trap capture_traps INT
+trap capture_traps SIGTSTP
 welcome
