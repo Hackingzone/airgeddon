@@ -1,5 +1,6 @@
 #airgeddon
 This is a multi-use bash script for Linux systems to audit wireless networks.<br>
+<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/airgeddon_banner.png" title="We'll conquer the earth!!">
 
 #Features
 - Interface mode switcher (Monitor-Managed).<br>
