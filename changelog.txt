@@ -1,3 +1,8 @@
+3.31
+Check for root permissions after failed essential tools check
+Improved missing optional tools detection method and integration with menus
+Menu separator lines extracted to functions
+
 3.3
 SIGTSTP trap now handled
 Minimum bash version check (v4)

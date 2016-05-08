@@ -1,14 +1,16 @@
 #!/bin/bash
 
-airgeddon_version="3.3"
+airgeddon_version="3.31"
 
+#Language vars
 #Change these lines to select another default language
 language="english"
 #language="spanish"
 #language="french"
 #language="catalan"
+declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
 
-#General vars
+#Repository and contact vars
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
 script_filename="airgeddon.sh"
@@ -16,16 +18,19 @@ urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
+
+#Tools vars
 essential_tools=(iwconfig iw awk airmon-ng airodump-ng aircrack-ng curl)
 optional_tools_names=(wpaclean crunch aireplay-ng mdk3)
 declare -A optional_tools=([${optional_tools_names[0]}]=0 [${optional_tools_names[1]}]=0 [${optional_tools_names[2]}]=0 [${optional_tools_names[3]}]=0)
-declare -A lang_association=(["en"]="english" ["es"]="spanish" ["fr"]="french" ["ca"]="catalan")
+
+#General vars
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 tmpfiles_toclean=0
 minimum_bash_version_required=4
 
-#Distro vars
+#Distros vars
 known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch" "cyborg")
 known_working_nondirectly_compatible_distros=("ubuntu" "debian" "linux-1mdx")
 
@@ -42,7 +47,7 @@ uppercasecharset="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 numbercharset="0123456789"
 symbolcharset="!#$%/=?{}[]-*:;"
 
-#Colors
+#Colors vars
 green_color="\033[1;32m"
 red_color="\033[1;31m"
 red_color_slim="\033[0;031m"
@@ -60,10 +65,10 @@ function language_strings() {
 	hintprefix["catalan"]="Consell"
 
 	declare -A optionaltool_needed
-	optionaltool_needed["english"]="Locked option, it needs "
-	optionaltool_needed["spanish"]="Opción bloqueada, requiere "
-	optionaltool_needed["french"]="Option bloquée parce qu’il manque "
-	optionaltool_needed["catalan"]="Opció bloquejada, necessita "
+	optionaltool_needed["english"]="Locked option, it needs: "
+	optionaltool_needed["spanish"]="Opción bloqueada, requiere: "
+	optionaltool_needed["french"]="Option bloquée parce qu’il manque: "
+	optionaltool_needed["catalan"]="Opció bloquejada, necessita: "
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -1181,6 +1186,11 @@ function language_strings() {
 	arr["french",222]="Votre version de bash ($BASH_VERSION) n'est pas suffisante. Version minimale requise: $minimum_bash_version_required"
 	arr["catalan",222]="Versió de bash insuficient ($BASH_VERSION). Versió mínima requerida: $minimum_bash_version_required"
 
+	arr["english",223]="Maybe the essential tools check has failed because you are not root user or don't have enough privileges. Launch the script as root user or using \"sudo\""
+	arr["spanish",223]="Es posible que el chequeo de las herramientas esenciales haya fallado porque no eres usuario root o no tienes privilegios suficientes. Lanza el script como usuario root o usando \"sudo\""
+	arr["french",223]="Il est possible que la vérification des outils essentiels ait échouée parce que vous n'êtes pas logué comme root ou ne disposez pas des privilèges nécessaires. Lancez le script en tant que root ou en utilisant \"sudo\""
+	arr["catalan",223]="És possible que la revisió de les eines essencials hagi fallat perquè no ets usuari root o no tens privilegis suficients. Llança l'script com a usuari root o utilitzeu \"sudo\""
+
 	case "$3" in
 		"yellow")
 			echo_yellow "${arr[$1,$2]}"
@@ -1213,7 +1223,8 @@ function language_strings() {
 			if [ -z "$3" ]; then
 				echo -e "${arr[$1,$2]}"
 			else
-				special_text_missed_optional_tool $1 $2 $3
+				declare -a argarray=("${!3}")
+				special_text_missed_optional_tool $1 $2 argarray[@]
 			fi
 		;;
 	esac
@@ -1221,11 +1232,23 @@ function language_strings() {
 
 function special_text_missed_optional_tool() {
 
-	if [ ${optional_tools[$3]} -eq 1 ]; then
+	declare -a required_tools=("${!3}")
+
+	allowed_menu_option=1
+	tools_needed="${optionaltool_needed[$1]}"
+	for item in ${required_tools[@]}; do
+		if [ ${optional_tools[$item]} -eq 0 ]; then
+			allowed_menu_option=0
+			tools_needed+="$item "
+		fi
+	done
+
+	if [ ${allowed_menu_option} -eq 1 ]; then
 		echo -e "${arr[$1,$2]}"
 	else
-		echo_red_slim "${arr[$1,$2]}" "(${optionaltool_needed[$1]}$3)"
 		[[ ${arr[$1,$2]} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
+		tools_needed=${tools_needed:: -1}
+		echo_red_slim "${arr[$1,$2]}" "($tools_needed)"
 	fi
 }
 
@@ -1437,12 +1460,12 @@ function language_option() {
 	clear
 	language_strings ${language} 87 "titlered"
 	language_strings ${language} 81 "green"
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 79
 	language_strings ${language} 80
 	language_strings ${language} 113
 	language_strings ${language} 116
-	echo_blue "---------"
+	print_simple_separator
 
 	read language_selected
 	echo
@@ -1478,13 +1501,15 @@ function select_interface() {
 	clear
 	language_strings ${language} 88 "titlered"
 	language_strings ${language} 24 "green"
-	echo_blue "---------"
+	print_simple_separator
 	ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v`
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$[option_counter + 1]
 		echo "$option_counter. $item"
 	done
+	print_simple_separator
+
 	read iface
 	if [ -z ${iface} ]; then
 		invalid_iface_selected
@@ -1822,6 +1847,14 @@ function print_decrypt_vars() {
 	fi
 }
 
+function initialize_menu_options_dependencies() {
+
+	clean_handshake_dependencies=(${optional_tools_names[0]})
+	aircrack_attacks_dependencies=(${optional_tools_names[1]})
+	aireplay_attack_dependencies=(${optional_tools_names[2]})
+	mdk3_attack_dependencies=(${optional_tools_names[3]})
+}
+
 function initialize_menu_and_print_selections() {
 
 	forbidden_options=()
@@ -1832,6 +1865,18 @@ function initialize_menu_and_print_selections() {
 		;;
 		"decrypt_menu")
 			print_decrypt_vars
+		;;
+		"handshake_tools_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
+		"dos_attacks_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
+		"attack_handshake_menu")
+			print_iface_selected
+			print_all_target_vars
 		;;
 		*)
 			print_iface_selected
@@ -1906,9 +1951,9 @@ function print_hint() {
 		;;
 	esac
 
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} ${strtoprint} "hint"
-	echo_blue "---------"
+	print_simple_separator
 }
 
 function main_menu() {
@@ -1919,15 +1964,15 @@ function main_menu() {
 	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 48
 	language_strings ${language} 55
 	language_strings ${language} 56
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 118
 	language_strings ${language} 119
 	language_strings ${language} 169
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 60
 	language_strings ${language} 78
 	language_strings ${language} 61
@@ -1979,9 +2024,9 @@ function decrypt_menu() {
 	echo
 	language_strings ${language} 47 "green"
 	language_strings ${language} 176 "blue"
-	language_strings ${language} 172 ${optional_tools_names[1]}
-	language_strings ${language} 175 ${optional_tools_names[1]}
-	echo_blue "---------"
+	language_strings ${language} 172 aircrack_attacks_dependencies[@]
+	language_strings ${language} 175 aircrack_attacks_dependencies[@]
+	print_simple_separator
 	language_strings ${language} 174
 	print_hint ${current_menu}
 
@@ -2239,7 +2284,7 @@ function set_charset() {
 
 	echo
 	language_strings ${language} 196 "green"
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 197
 	language_strings ${language} 198
 	language_strings ${language} 199
@@ -2317,16 +2362,16 @@ function handshake_tools_menu() {
 	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 48
 	language_strings ${language} 55
 	language_strings ${language} 56
 	language_strings ${language} 49
 	language_strings ${language} 124 "blue"
 	language_strings ${language} 121
-	echo_blue "---------"
-	language_strings ${language} 122 ${optional_tools_names[0]}
-	echo_blue "---------"
+	print_simple_separator
+	language_strings ${language} 122 clean_handshake_dependencies[@]
+	print_simple_separator
 	language_strings ${language} 123
 	print_hint ${current_menu}
 
@@ -2415,20 +2460,20 @@ function dos_attacks_menu() {
 	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
-	echo_blue "---------"
+	print_simple_separator
 	language_strings ${language} 48
 	language_strings ${language} 55
 	language_strings ${language} 56
 	language_strings ${language} 49
 	language_strings ${language} 50 "blue"
-	language_strings ${language} 51 ${optional_tools_names[3]}
-	language_strings ${language} 52 ${optional_tools_names[2]}
-	language_strings ${language} 53 ${optional_tools_names[3]}
+	language_strings ${language} 51 mdk3_attack_dependencies[@]
+	language_strings ${language} 52 aireplay_attack_dependencies[@]
+	language_strings ${language} 53 mdk3_attack_dependencies[@]
 	language_strings ${language} 54 "blue"
-	language_strings ${language} 62 ${optional_tools_names[3]}
-	language_strings ${language} 63 ${optional_tools_names[3]}
-	language_strings ${language} 64 ${optional_tools_names[3]}
-	echo_blue "---------"
+	language_strings ${language} 62 mdk3_attack_dependencies[@]
+	language_strings ${language} 63 mdk3_attack_dependencies[@]
+	language_strings ${language} 64 mdk3_attack_dependencies[@]
+	print_simple_separator
 	language_strings ${language} 59
 	print_hint ${current_menu}
 
@@ -2647,11 +2692,11 @@ function attack_handshake_menu() {
 	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
-	echo_blue "---------"
-	language_strings ${language} 139 ${optional_tools_names[3]}
-	language_strings ${language} 140 ${optional_tools_names[2]}
-	language_strings ${language} 141 ${optional_tools_names[3]}
-	echo_blue "---------"
+	print_simple_separator
+	language_strings ${language} 139 mdk3_attack_dependencies[@]
+	language_strings ${language} 140 aireplay_attack_dependencies[@]
+	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	print_simple_separator
 	language_strings ${language} 147
 	print_hint ${current_menu}
 
@@ -2797,7 +2842,7 @@ function select_target() {
 	clear
 	language_strings ${language} 104 "titlered"
 	language_strings ${language} 69 "green"
-	echo_blue "-------------------------------------------------------"
+	print_large_separator
 	i=0
 	while IFS=, read exp_mac exp_channel exp_power exp_essid exp_enc; do
 
@@ -2851,6 +2896,7 @@ function select_target() {
 		encs[$i]=${exp_enc}
 		echo -e " $sp1$i)$client  $sp5$exp_mac   $sp2$exp_channel    $sp4$exp_power%   $exp_enc$sp6   $exp_essid"
 	done < ${tmpdir}"wnws.txt"
+
 	echo
 	if [ ${i} -eq 1 ]; then
 		language_strings ${language} 70 "yellow"
@@ -2858,7 +2904,7 @@ function select_target() {
 		language_strings ${language} 115 "read"
 	else
 		language_strings ${language} 71
-		echo_blue "-------------------------------------------------------"
+		print_large_separator
 		language_strings ${language} 3 "green"
 		read selected_target_network
 	fi
@@ -3149,8 +3195,19 @@ function detect_distro() {
 		return
 	fi
 
+	check_root_permissions
+
 	language_strings ${language} 115 "read"
 	exit_script_option
+}
+
+function check_root_permissions() {
+
+	user=`whoami`
+
+	if [ "$user" != "root" ]; then
+		language_strings ${language} 223 "yellow"
+	fi
 }
 
 function print_known_distros() {
@@ -3259,10 +3316,12 @@ function welcome() {
 
 	autoupdate_check
 	select_interface
+	initialize_menu_options_dependencies
 	main_menu
 }
 
 function compare_floats() {
+
 	awk -v n1=$1 -v n2=$2 'BEGIN{ if (n1>n2) exit 0; exit 1}'
 }
 
@@ -3340,6 +3399,16 @@ function autodetect_language() {
 			break
 		fi
 	done
+}
+
+function print_simple_separator() {
+
+	echo_blue "---------"
+}
+
+function print_large_separator() {
+
+	echo_blue "-------------------------------------------------------"
 }
 
 function echo_green() {
