@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.31"
+airgeddon_version="3.32"
 
 #Language vars
 #Change these lines to select another default language
@@ -20,19 +20,23 @@ host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
 
 #Tools vars
-essential_tools=(iwconfig iw awk airmon-ng airodump-ng aircrack-ng curl)
-optional_tools_names=(wpaclean crunch aireplay-ng mdk3)
+essential_tools=("iwconfig" "iw" "awk" "airmon-ng" "airodump-ng" "aircrack-ng")
+optional_tools_names=("wpaclean" "crunch" "aireplay-ng" "mdk3")
 declare -A optional_tools=([${optional_tools_names[0]}]=0 [${optional_tools_names[1]}]=0 [${optional_tools_names[2]}]=0 [${optional_tools_names[3]}]=0)
+update_tools=("curl")
 
 #General vars
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 tmpfiles_toclean=0
+osversionfile_dir="/etc/"
 minimum_bash_version_required=4
+resume_message=224
+abort_question=12
 
 #Distros vars
 known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch" "cyborg")
-known_working_nondirectly_compatible_distros=("ubuntu" "debian" "linux-1mdx")
+known_working_nondirectly_compatible_distros=("ubuntu" "debian" "suse" "centos")
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -131,10 +135,10 @@ function language_strings() {
 	arr["french",11]="Fermeture du script airgeddon v$airgeddon_version - A bientôt! :)"
 	arr["catalan",11]="Sortint de airgeddon script v$airgeddon_version - Ens veiem aviat! :)"
 
-	arr["english",12]="Please don't break the script. Exit properly using menu option"
-	arr["spanish",12]="Por favor, no interrumpas el script. Sal del script correctamente utilizando la opción del menú"
-	arr["french",12]="S'il vous plaît, ne pas interrompre le script. Veuillez utiliser l'option du menue pour arrêter corectement le script"
-	arr["catalan",12]="Si us plau, no interrompis l'script. Utilitzeu l'opció del menu per sortir correctament del script"
+	arr["english",12]="Interruption detected. Do you really want to exit? "${normal_color}"[y/n]"
+	arr["spanish",12]="Detectada interrupción. ¿Quieres realmente salir del script? "${normal_color}"[y/n]"
+	arr["french",12]="Interruption détectée. Voulez-vous vraiment arrêter le script? "${normal_color}"[y/n]"
+	arr["catalan",12]="Interrupció detectada. ¿Realment vols sortir de l'script? "${normal_color}"[y/n]"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
@@ -398,7 +402,7 @@ function language_strings() {
 
 	arr["english",65]="Exploring for targets option chosen (monitor mode needed)"
 	arr["spanish",65]="Elegida opción de exploración para buscar objetivos (modo monitor requerido)"
-	arr["french",65]="L'option analyser choisi de rechercher des objectifs a été choisie (modo moniteur nécessaire)"
+	arr["french",65]="L'option de recherche des objectifs a été choisie (modo moniteur nécessaire)"
 	arr["catalan",65]="Seleccionada opció d'exploració per buscar objectius (requerit mode monitor)"
 
 	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
@@ -621,10 +625,10 @@ function language_strings() {
 	arr["french",109]="Vérification de la présence des outils nécessaires..."
 	arr["catalan",109]="Eines essencials: comprovant..."
 
-	arr["english",110]="Your distro has all necessary tools. Script can continue..."
-	arr["spanish",110]="Tu distro tiene todas las herramientas necesarias. El script puede continuar..."
-	arr["french",110]="Les outils nécessaires au bon fonctionnement du programme sont tous présents dans votre système. Le script peut continuer..."
-	arr["catalan",110]="La teva distro té totes les eines necessàries. El script pot continuar..."
+	arr["english",110]="Your distro has all necessary essential tools. Script can continue..."
+	arr["spanish",110]="Tu distro tiene todas las herramientas esenciales necesarias. El script puede continuar..."
+	arr["french",110]="Les outils essentiels nécessaires au bon fonctionnement du programme sont tous présents dans votre système. Le script peut continuer..."
+	arr["catalan",110]="La teva distro té totes les eines essencials necessàries. El script pot continuar..."
 
 	arr["english",111]="You need to install some essential tools before running this script"
 	arr["spanish",111]="Necesitas instalar algunas herramientas esenciales antes de lanzar este script"
@@ -888,7 +892,7 @@ function language_strings() {
 
 	arr["english",163]="It is recommended to launch the script as root user or using \"sudo\". Make sure you have permission to launch commands like rfkill or airmon for example"
 	arr["spanish",163]="Se recomienda lanzar el script como usuario root o usando \"sudo\". Asegúrate de tener permisos para lanzar comandos como rfkill o airmon por ejemplo"
-	arr["french",163]="Il est recommandé de lancer le script en tant que root ou en utilisant \"sudo\". Assurez-vous que vous disposez bien des privilèges nécessaires à l’exécution de commandes comme rfkill ou airmon par exemple"
+	arr["french",163]="Il faut lancer le script en tant que root ou en utilisant \"sudo\". Assurez-vous de bien dsiposer des privilèges nécessaires à l’exécution de commandes comme rfkill ou airmon"
 	arr["catalan",163]="Es recomana llançar l'script com a usuari root o utilitzeu \"sudo\". Assegura't de tenir permisos per llançar ordres com rfkill o airmon per exemple"
 
 	arr["english",164]="Cleaning temp files"
@@ -1191,8 +1195,24 @@ function language_strings() {
 	arr["french",223]="Il est possible que la vérification des outils essentiels ait échouée parce que vous n'êtes pas logué comme root ou ne disposez pas des privilèges nécessaires. Lancez le script en tant que root ou en utilisant \"sudo\""
 	arr["catalan",223]="És possible que la revisió de les eines essencials hagi fallat perquè no ets usuari root o no tens privilegis suficients. Llança l'script com a usuari root o utilitzeu \"sudo\""
 
+	arr["english",224]="The script execution continues from exactly the same point where it was"
+	arr["spanish",224]="El script continua su ejecución desde exactamente el mismo punto en el que estaba"
+	arr["french",224]="L'exécution du script se poursuit à partir exactement le même point où il était"
+	arr["catalan",224]="El script contínua la seva execució des d'exactament el mateix punt en el qual estava"
+
+	arr["english",225]="The script can't check if there is a new version because you haven't installed update tools needed"
+	arr["spanish",225]="El script no puede comprobar si hay una nueva versión porque no tienes instaladas las herramientas de actualización necesarias"
+	arr["french",225]="Le script ne peut pas vérifier si une nouvelle version est disponible parce que vous n'avez pas installé les outils nécessaires de mise à jour"
+	arr["catalan",225]="El script no pot comprovar si hi ha una nova versió perquè no tens instal·lades les eines d'actualització necessàries"
+
+	arr["english",226]="Update tools: checking..."
+	arr["spanish",226]="Herramientas de actualización: comprobando..."
+	arr["french",226]="Vérification de la présence des outils de mise à jour..."
+	arr["catalan",226]="Eines d'actualització: comprovant..."
+
 	case "$3" in
 		"yellow")
+			interrupt_checkpoint ${2} ${3}
 			echo_yellow "${arr[$1,$2]}"
 		;;
 		"blue")
@@ -1202,6 +1222,9 @@ function language_strings() {
 			echo_red "${arr[$1,$2]}"
 		;;
 		"green")
+			if [ ${2} -ne ${abort_question} ]; then
+				interrupt_checkpoint ${2} ${3}
+			fi
 			echo_green "${arr[$1,$2]}"
 		;;
 		"pink")
@@ -1211,6 +1234,7 @@ function language_strings() {
 			generate_title "${arr[$1,$2]}" "red"
 		;;
 		"read")
+			interrupt_checkpoint ${2} ${3}
 			read -p "${arr[$1,$2]}"
 		;;
 		"multiline")
@@ -1228,6 +1252,23 @@ function language_strings() {
 			fi
 		;;
 	esac
+}
+
+function interrupt_checkpoint() {
+
+	if [ -z "$last_buffered_type1" ]; then
+		last_buffered_message1=${1}
+		last_buffered_message2=${1}
+		last_buffered_type1=${2}
+		last_buffered_type2=${2}
+	else
+		if [ ${1} -ne ${resume_message} ]; then
+			last_buffered_message2=${last_buffered_message1}
+			last_buffered_message1=${1}
+			last_buffered_type2=${last_buffered_type1}
+			last_buffered_type1=${2}
+		fi
+	fi
 }
 
 function special_text_missed_optional_tool() {
@@ -1371,8 +1412,8 @@ function managed_option() {
 	language_strings ${language} 17 "blue"
 	ifconfig ${interface} up
 
-	new_interface=$(${airmon} stop ${interface} | grep station | cut -d ']' -f 2)
-	new_interface=${new_interface:: -1}
+	new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
+	[[ ${new_interface} =~ ^(.*)\]+([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[2]}"
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
@@ -1412,8 +1453,8 @@ function monitor_option() {
 		${airmon} check kill > /dev/null 2>&1
 	fi
 
-	new_interface=$(${airmon} start ${interface} | grep monitor | cut -d ']' -f 3)
-	new_interface=${new_interface:: -1}
+	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
+	[[ ${new_interface} =~ ^(.*)\]+([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[2]}"
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
@@ -2947,8 +2988,8 @@ function credits_option() {
 	language_strings ${language} 74 "blue"
 	language_strings ${language} 75 "blue"
 	echo
-	language_strings ${language} 85 "green"
-	language_strings ${language} 107 "green"
+	language_strings ${language} 85 "yellow"
+	language_strings ${language} 107 "yellow"
 	language_strings ${language} 115 "read"
 }
 
@@ -2986,44 +3027,26 @@ function invalid_iface_selected() {
 	select_interface
 }
 
-function launch_current_menu() {
+function capture_traps() {
 
 	case ${current_menu} in
-		"main_menu")
-			main_menu
-		;;
-		"dos_attacks_menu")
-			dos_attacks_menu
-		;;
-		"handshake_tools_menu")
-			handshake_tools_menu
-		;;
-		"attack_handshake_menu")
-			attack_handshake_menu "new"
-		;;
-		"decrypt_menu")
-			decrypt_menu
-		;;
 		"pre_main_menu")
 			exit_script_option
 		;;
 		*)
-			main_menu
+			ask_yesno 12
+			if [ ${yesno} = "y" ]; then
+				exit_script_option
+			else
+				language_strings ${language} 224 "blue"
+				if [ ${last_buffered_type1} = "read" ]; then
+					language_strings ${language} ${last_buffered_message2} ${last_buffered_type2}
+				else
+					language_strings ${language} ${last_buffered_message1} ${last_buffered_type1}
+				fi
+			fi
 		;;
 	esac
-}
-
-function capture_traps() {
-
-	echo
-	if [ "$current_menu" != "pre_main_menu" ]; then
-		echo
-		language_strings ${language} 12 "yellow"
-		echo
-		language_strings ${language} 115 "read"
-	fi
-
-	launch_current_menu
 }
 
 function exit_script_option() {
@@ -3112,6 +3135,41 @@ function non_linux_os_check() {
 	esac
 }
 
+function detect_distro_phase1() {
+
+	for i in "${known_compatible_distros[@]}"; do
+		uname -a | grep ${i} -i > /dev/null
+		if [ "$?" = "0" ]; then
+			distro="${i^}"
+			break
+		fi
+	done
+}
+
+function detect_distro_phase2() {
+
+	if [ "$distro" = "Unknown Linux" ]; then
+		for i in "${known_working_nondirectly_compatible_distros[@]}"; do
+			uname -a | grep ${i} -i > /dev/null
+			if [ "$?" = "0" ]; then
+				distro="${i^}"
+				break
+			fi
+		done
+	fi
+}
+
+function detect_distro_phase3() {
+
+	if [ "$distro" = "Unknown Linux" ]; then
+		if [ -f ${osversionfile_dir}"centos-release" ]; then
+			distro="CentOS"
+		elif [ -f ${osversionfile_dir}"SuSE-release" ]; then
+			distro="SUSE"
+		fi
+	fi
+}
+
 function special_distro_features() {
 
 	case ${distro} in
@@ -3145,17 +3203,19 @@ function special_distro_features() {
 		"Blackarch")
 			check_kill_needed=0
 		;;
-		"Linux-1mdx")
-			distro="SUSE"
+		"SUSE")
 			networkmanager_cmd="service NetworkManager restart"
 			if ! hash NetworkManager 2> /dev/null; then
 				check_kill_needed=0
 			fi
 		;;
+		"CentOS")
+			networkmanager_cmd="service NetworkManager restart"
+		;;
 	esac
 }
 
-function detect_distro() {
+function detect_distro_main() {
 
 	compatible=0
 	distro="Unknown Linux"
@@ -3163,24 +3223,9 @@ function detect_distro() {
 	networkmanager_cmd="service network-manager restart"
 	airmon_fix
 
-	for i in "${known_compatible_distros[@]}"; do
-		uname -a | grep ${i} -i > /dev/null
-		if [ "$?" = "0" ]; then
-			distro="${i^}"
-			break
-		fi
-	done
-
-	if [ "$distro" = "Unknown Linux" ]; then
-		for i in "${known_working_nondirectly_compatible_distros[@]}"; do
-			uname -a | grep ${i} -i > /dev/null
-			if [ "$?" = "0" ]; then
-				distro="${i^}"
-				break
-			fi
-		done
-	fi
-
+	detect_distro_phase1
+	detect_distro_phase2
+	detect_distro_phase3
 	special_distro_features
 
 	if [ "$distro" = "Unknown Linux" ]; then
@@ -3255,6 +3300,21 @@ function check_compatibility() {
 		fi
 	done
 
+	echo
+	language_strings ${language} 226 "blue"
+
+	update_toolsok=1
+	for i in "${update_tools[@]}"; do
+		echo -ne "$i"
+		time_loop
+		if ! hash ${i} 2> /dev/null; then
+			echo -e ${red_color}" Error\r"${normal_color}
+			update_toolsok=0
+		else
+			echo -e ${green_color}" Ok\r"${normal_color}
+		fi
+	done
+
 	if [ ${essential_toolsok} -eq 0 ]; then
 		echo
 		language_strings ${language} 111 "yellow"
@@ -3278,12 +3338,22 @@ function check_compatibility() {
 function check_bash_version() {
 
 	echo
-	[[ ${BASH_VERSION} =~ ^([^\.]+)\.(.*)$ ]] && vbash="${BASH_REMATCH[1]}"
-	if [ ${vbash} -ge ${minimum_bash_version_required} ]; then
+	if [ ${BASH_VERSINFO[0]} -ge ${minimum_bash_version_required} ]; then
 		language_strings ${language} 221 "yellow"
 	else
 		language_strings ${language} 222 "yellow"
 		exit_script_option
+	fi
+}
+
+function check_update_tools() {
+
+	if [ ${update_toolsok} -eq 1 ]; then
+		autoupdate_check
+	else
+		echo
+		language_strings ${language} 225 "yellow"
+		language_strings ${language} 115 "read"
 	fi
 }
 
@@ -3311,10 +3381,11 @@ function welcome() {
 	print_known_distros
 	echo
 	language_strings ${language} 9 "blue"
-	detect_distro
+	detect_distro_main
 	language_strings ${language} 115 "read"
 
-	autoupdate_check
+	check_update_tools
+
 	select_interface
 	initialize_menu_options_dependencies
 	main_menu

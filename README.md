@@ -13,7 +13,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br>
 - Multilanguage support and autodetect OS language feature (see supported languages section).<br>
 - Help hints in every zone/menu for easy use.<br>
-- Autoupdate. Script checks for newer version if possible.<br>
+- Auto-update. Script checks for newer version if possible.<br>
 
 #Requirements
 Bash version 4 or later needed.<br>
@@ -29,14 +29,17 @@ Tested on these 100% compatible Linux distros:<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br><br>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br>
-`iwconfig iw awk airmon-ng airodump-ng aircrack-ng curl`<br><br>
+`iwconfig iw awk airmon-ng airodump-ng aircrack-ng`<br><br>
 Optional tools: <- *not necessary to work, only needed for some features*<br>
 `wpaclean crunch aireplay-ng mdk3`<br>
+Autoupdate tool: <- *not necessary to work, only used for autoupdate*<br>
+`curl`<br>
 <br>
 Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
 *-Debian 8 (Jessie)*<br>
-*-Ubuntu 15.10 and Xubuntu 15.10*<br>
+*-Ubuntu/Xubuntu 15.10 and 16.04*<br>
 *-OpenSUSE Leap 42.1*<br>
+*-CentOS 7*<br>
 <br>
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the problem<br>

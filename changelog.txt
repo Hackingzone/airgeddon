@@ -1,3 +1,10 @@
+3.32
+Bash version check simplified
+Bug with long interface names fixed
+Changed trap management, now with buffered messages
+Curl removed from essential tools. Now the script performs a separated check for update tools only used for auto-update
+Compatibility extended to CentOS Linux
+
 3.31
 Check for root permissions after failed essential tools check
 Improved missing optional tools detection method and integration with menus
@@ -8,13 +15,13 @@ SIGTSTP trap now handled
 Minimum bash version check (v4)
 Some language strings changed
 Non Linux OS check added (Solaris, FreeBSD, OSX)
-Compatibility extended for OpenSUSE Linux
+Compatibility extended to OpenSUSE Linux
 README.md updated about Mac OSX incompatibility
 Improved OS language detection method
-Fixed bug in autoupdate
+Fixed bug in auto-update
 
 3.23
-Compatibility extended for Cyborg Hawk Linux
+Compatibility extended to Cyborg Hawk Linux
 Needed tools divided, essential and optional. Script can run now with essential tools even without some of the optional tools
 Changed "No check kill needed" feature method. Now improved for Kali and Wifislax future versions
 Bug fixed while checking for updates on slow connections
@@ -26,14 +33,14 @@ Capture files are checked before cracking looking for Handshakes and easy target
 Fixed bug checking existence of files
 
 3.21
-Autoupdate feature. Script checks for newer version
+Auto-update feature. Script checks for newer version
 Some language strings changed
 
 3.2
 New offline password decrypt menu
 Aircrack option to perform dictionary/bruteforce attacks against capture files
 Removed autoclean after capturing a Handshake file
-Changed version var to airgeddon_version for future version check (autoupdate feature)
+Changed version var to airgeddon_version for future version check (auto-update feature)
 
 3.11
 Optional autoclean captured Handshake file feature
@@ -73,7 +80,7 @@ French language translation added (Thank you to "Kcdtv")
 Only one network autoselect bug fixed
 
 2.3
-Compatibility extended for Parrot, Blackarch and Backbox Linux
+Compatibility extended to Parrot, Blackarch and Backbox Linux
 Essential tools check improved
 Distro compatibility check improved
 Iwconfig use fix based on version
