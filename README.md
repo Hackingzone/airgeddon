@@ -18,28 +18,25 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 #Requirements
 Bash version 4 or later needed.<br>
 <br>
-We say a distro is a 100% compatible Linux distro if it has installed by default all the essential tools script needs to work.<br><br>
-Tested on these 100% compatible Linux distros:<br>
-*-Kali. 2.0 and 2016.1*<br>
-*-Wifislax. 4.11.1 and 4.12*<br>
-*-Backbox. 4.5.1*<br>
-*-Parrot. 2.2.1*<br>
+Tested on these compatible Linux distros:<br>
+*-Kali 2.0 and 2016.1*<br>
+*-Wifislax 4.11.1 and 4.12*<br>
+*-Backbox 4.5.1*<br>
+*-Parrot 2.2.1*<br>
 *-Blackarch 2016.01.10*<br>
 *-Cyborg Hawk 1.1*<br>
+*-Debian 7 (Wheezy) and 8 (Jessie)*<br>
+*-Ubuntu/Xubuntu 15.10 and 16.04*<br>
+*-OpenSUSE Leap 42.1*<br>
+*-CentOS 6 and 7*<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br><br>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br>
-`iwconfig iw awk airmon-ng airodump-ng aircrack-ng`<br><br>
+`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br><br>
 Optional tools: <- *not necessary to work, only needed for some features*<br>
-`wpaclean crunch aireplay-ng mdk3`<br>
-Autoupdate tool: <- *not necessary to work, only used for autoupdate*<br>
+`wpaclean crunch aireplay-ng mdk3`<br><br>
+Update tools: <- *not necessary to work, only used for auto-update*<br>
 `curl`<br>
-<br>
-Other (non 100% compatible) distros tested successfully after installing missing tools:<br>
-*-Debian 8 (Jessie)*<br>
-*-Ubuntu/Xubuntu 15.10 and 16.04*<br>
-*-OpenSUSE Leap 42.1*<br>
-*-CentOS 7*<br>
 <br>
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the problem<br>
@@ -53,9 +50,9 @@ We are not responsible of its use.<br>
 This script is under GPLv2 (or later) License.<br>
 
 #Use
-Under some distros like Kali Linux must be called only using bash (not sh). Example `bash /path/airgeddon.sh`<br>
-Under Wifislax and others, it can be called using bash or sh. Example `sh /path/airgeddon.sh`<br>
-If you call the script using sh and a *"Syntax error"* appears, use it with bash instead of sh.<br>
+Under some distros like Kali Linux must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br>
+Under Wifislax Linux and others, it can be launched using bash or sh. Example `sh /path/airgeddon.sh`<br>
+If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br>
 
 #Supported Languages
 English, Spanish, French and Catalan.<br>

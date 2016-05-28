@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.32"
+airgeddon_version="3.33"
 
 #Language vars
 #Change these lines to select another default language
@@ -18,9 +18,10 @@ urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
+author="v1s1t0r"
 
 #Tools vars
-essential_tools=("iwconfig" "iw" "awk" "airmon-ng" "airodump-ng" "aircrack-ng")
+essential_tools=("iwconfig" "iw" "awk" "airmon-ng" "airodump-ng" "aircrack-ng" "xterm")
 optional_tools_names=("wpaclean" "crunch" "aireplay-ng" "mdk3")
 declare -A optional_tools=([${optional_tools_names[0]}]=0 [${optional_tools_names[1]}]=0 [${optional_tools_names[2]}]=0 [${optional_tools_names[3]}]=0)
 update_tools=("curl")
@@ -35,8 +36,7 @@ resume_message=224
 abort_question=12
 
 #Distros vars
-known_compatible_distros=("wifislax" "kali" "parrot" "backbox" "blackarch" "cyborg")
-known_working_nondirectly_compatible_distros=("ubuntu" "debian" "suse" "centos")
+known_compatible_distros=("Wifislax" "Kali" "Parrot" "Backbox" "Blackarch" "Cyborg" "Ubuntu" "Debian" "SUSE" "CentOS")
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -106,19 +106,19 @@ function language_strings() {
 	arr["catalan",5]="Sembla que la teva connexió a Internet no és estable. El script no pot connectar amb el repositori. Continuarà sense actualitzar-se..."
 
 	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
-	arr["spanish",6]="Bienvenid@ al airgeddon script v$airgeddon_version"
+	arr["spanish",6]="Bienvenid@ a airgeddon script v$airgeddon_version"
 	arr["french",6]="Bienvenue au script airgeddon v$airgeddon_version"
-	arr["catalan",6]="Benvingut al airgeddon script v$airgeddon_version"
+	arr["catalan",6]="Benvingut a airgeddon script v$airgeddon_version"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s"
 	arr["french",7]="Ce script a été fait à des fins purement éducatives. Portez-vous biens!"
 	arr["catalan",7]="Aquest script s'ha fet només amb fins educatius. Porteu-vos bé!"
 
-	arr["english",8]="Known 100% compatible distros with this script :"
-	arr["spanish",8]="Distros conocidas 100% compatibles con este script :"
-	arr["french",8]="Distros connus 100% compatibles avec ce script :"
-	arr["catalan",8]="Distros conegudes 100% compatibles amb aquest script :"
+	arr["english",8]="Known compatible distros with this script :"
+	arr["spanish",8]="Distros conocidas compatibles con este script :"
+	arr["french",8]="Distros connus compatibles avec ce script :"
+	arr["catalan",8]="Distros conegudes compatibles amb aquest script :"
 
 	arr["english",9]="Detecting system..."
 	arr["spanish",9]="Detectando sistema..."
@@ -1045,15 +1045,15 @@ function language_strings() {
 	arr["french",193]="Souhaitez vous utiliser le BSSID déjà sélectionné? "${normal_color}"[y/n]"
 	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? "${normal_color}"[y/n]"
 
-	arr["english",194]="Enter the minimum length of the key to decrypt (8-99) :"
-	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (8-99) :"
-	arr["french",194]="Entrez la longueur minimale de la clef à cracker (8-99) :"
-	arr["catalan",194]="Introdueix la longitud mínima de la clau a desxifrar (8-99) :"
+	arr["english",194]="Enter the minimum length of the key to decrypt (8-63) :"
+	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (8-63) :"
+	arr["french",194]="Entrez la longueur minimale de la clef à cracker (8-63) :"
+	arr["catalan",194]="Introdueix la longitud mínima de la clau a desxifrar (8-63) :"
 
-	arr["english",195]="Enter the maximum length of the key to decrypt ($minlength-99) :"
-	arr["spanish",195]="Introduce la longitud máxima de la clave a desencriptar ($minlength-99) :"
-	arr["french",195]="Entrez la longueur maximale de la clef à cracker ($minlength-99) :"
-	arr["catalan",195]="Introdueix la longitud màxima de la clau a desxifrar ($minlength-99) :"
+	arr["english",195]="Enter the maximum length of the key to decrypt ($minlength-63) :"
+	arr["spanish",195]="Introduce la longitud máxima de la clave a desencriptar ($minlength-63) :"
+	arr["french",195]="Entrez la longueur maximale de la clef à cracker ($minlength-63) :"
+	arr["catalan",195]="Introdueix la longitud màxima de la clau a desxifrar ($minlength-63) :"
 
 	arr["english",196]="Select the character set to use :"
 	arr["spanish",196]="Selecciona el juego de caracteres a utilizar :"
@@ -1209,6 +1209,16 @@ function language_strings() {
 	arr["spanish",226]="Herramientas de actualización: comprobando..."
 	arr["french",226]="Vérification de la présence des outils de mise à jour..."
 	arr["catalan",226]="Eines d'actualització: comprovant..."
+
+	arr["english",227]="Working...  "
+	arr["spanish",227]="Trabajando...  "
+	arr["french",227]="Travail...  "
+	arr["catalan",227]="Treballant...  "
+
+	arr["english",228]="                             Developed by $author"
+	arr["spanish",228]="                             Programado por $author"
+	arr["french",228]="                             Programmé par $author"
+	arr["catalan",228]="                             Desenvolupat per $author"
 
 	case "$3" in
 		"yellow")
@@ -1393,9 +1403,7 @@ function check_monitor_enabled() {
 function disable_rfkill() {
 
 	if hash rfkill 2> /dev/null; then
-		for i in 0 1 2 3 4 5; do
-			rfkill unblock ${i} > /dev/null
-		done
+		rfkill unblock all > /dev/null 2>&1
 	fi
 }
 
@@ -1939,7 +1947,7 @@ function store_array() {
 
 	local var=$1 base_key=$2 values=("${@:3}")
 	for i in "${!values[@]}"; do
-		eval "$1[\${base_key}|${i}]=\${values[i]}"
+		eval "$1[\$base_key|${i}]=\${values[i]}"
 	done
 }
 
@@ -2265,7 +2273,7 @@ function dictionary_attack_option() {
 function set_minlength() {
 
 	minlength=0
-	while [[ ! ${minlength} =~ ^[8-9]|[1-9][0-9]$ ]]; do
+	while [[ ! ${minlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
 		language_strings ${language} 194 "green"
 		read minlength
@@ -2275,7 +2283,7 @@ function set_minlength() {
 function set_maxlength() {
 
 	maxlength=0
-	while [[ ! ${maxlength} =~ ^[1-9][0-9]?$ ]]; do
+	while [[ ! ${maxlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
 		language_strings ${language} 195 "green"
 		read maxlength
@@ -2968,28 +2976,25 @@ function credits_option() {
 
 	clear
 	language_strings ${language} 105 "titlered"
-	language_strings ${language} 73 "green"
-	echo -e ${blue_color}"       ____        ____  __   _______"
-	echo -e "___  _/_   | _____/_   |/  |_ \   _  \_______"
-	echo -e "\  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \ "
-	echo -e " \   / |   |\___ \ |   ||  |  \  \_/   \  | \/"
-	echo -e "  \_/  |___/____  >|___||__|   \_____  /__|"
-	echo -e "                \/                   \/"${normal_color}
-	echo -e ${green_color}"                .-\"\"\"\"-."
-	echo -e "               /        \ "
-	echo -e "              /_        _\ "
-	echo -e "             // \      / \\\\\ "
-	echo -e "             |\__\    /__/|"
-	echo -e "              \    ||    /"
-	echo -e "               \        /"
-	echo -e "                \  __  / "
-	echo -e "                 '.__.'"
-	echo -e "                  |  |"${normal_color}
-	language_strings ${language} 74 "blue"
+	language_strings ${language} 74 "pink"
+	echo
+	language_strings ${language} 73 "blue"
+	echo
+	echo -e ${green_color}"                                                            .-\"\"\"\"-."
+	sleep 0.15 && echo -e "                                                           /        \ "
+	sleep 0.15 && echo -e ${yellow_color}"         ____        ____  __   _______                  "${green_color}" /_        _\ "
+	sleep 0.15 && echo -e ${yellow_color}"  ___  _/_   | _____/_   |/  |_ \   _  \_______         "${green_color}" // \      / \\\\\ "
+	sleep 0.15 && echo -e ${yellow_color}"  \  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \        "${green_color}" |\__\    /__/|"
+	sleep 0.15 && echo -e ${yellow_color}"   \   / |   |\___ \ |   ||  |  \  \_/   \  | \/         "${green_color}" \    ||    /"
+	sleep 0.15 && echo -e ${yellow_color}"    \_/  |___/____  >|___||__|   \_____  /__|             "${green_color}" \        /"
+	sleep 0.15 && echo -e ${yellow_color}"                  \/                   \/                  "${green_color}" \  __  / "
+	sleep 0.15 && echo -e "                                                             '.__.'"
+	sleep 0.15 && echo -e "                                                              |  |"${normal_color}
+	echo
 	language_strings ${language} 75 "blue"
 	echo
-	language_strings ${language} 85 "yellow"
-	language_strings ${language} 107 "yellow"
+	language_strings ${language} 85 "pink"
+	language_strings ${language} 107 "pink"
 	language_strings ${language} 115 "read"
 }
 
@@ -3096,7 +3101,7 @@ function exit_script_option() {
 function time_loop() {
 
 	echo -ne " "
-	for j in 0 1 2 3 4; do
+	for j in `seq 1 4`; do
 		echo -ne "."
 		sleep 0.035
 	done
@@ -3138,7 +3143,7 @@ function non_linux_os_check() {
 function detect_distro_phase1() {
 
 	for i in "${known_compatible_distros[@]}"; do
-		uname -a | grep ${i} -i > /dev/null
+		uname -a | grep "$i" -i > /dev/null
 		if [ "$?" = "0" ]; then
 			distro="${i^}"
 			break
@@ -3147,19 +3152,6 @@ function detect_distro_phase1() {
 }
 
 function detect_distro_phase2() {
-
-	if [ "$distro" = "Unknown Linux" ]; then
-		for i in "${known_working_nondirectly_compatible_distros[@]}"; do
-			uname -a | grep ${i} -i > /dev/null
-			if [ "$?" = "0" ]; then
-				distro="${i^}"
-				break
-			fi
-		done
-	fi
-}
-
-function detect_distro_phase3() {
 
 	if [ "$distro" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
@@ -3173,60 +3165,63 @@ function detect_distro_phase3() {
 function special_distro_features() {
 
 	case ${distro} in
-		"Kali")
-			check_kill_needed=0
-			distroyear=`uname -a | grep -oP "20[0-9]{2}\-[0-9]{2}\-[0-9]{2}" | awk -F "-" '{print $1}'`
-			if [ ${distroyear} -le 2015 ]; then
-				check_kill_needed=1
-			fi
-		;;
 		"Wifislax")
-			check_kill_needed=0
-			wifislax_version=`cat /etc/wifislax-version | cut -d " " -f 2`
-			[[ ${wifislax_version} =~ ^([^\.]+)\.(.*)$ ]] && main_wifislax_version_number="${BASH_REMATCH[1]}" && secondary_wifislax_version_number="${BASH_REMATCH[2]}"
+			networkmanager_cmd="service restart networkmanager"
+		;;
+		"SUSE"|"CentOS")
+			networkmanager_cmd="service NetworkManager restart"
+		;;
+		*)
+			networkmanager_cmd="service network-manager restart"
+		;;
+	esac
+}
 
-			if [ ${main_wifislax_version_number} -lt 4 ]; then
+function check_if_kill_needed() {
+
+	nm_min_main_version="1"
+	nm_min_subversion="0"
+	nm_min_subversion2="12"
+
+	if ! hash NetworkManager 2> /dev/null; then
+		check_kill_needed=0
+	else
+		nm_system_version=$(NetworkManager --version 2> /dev/null)
+
+		if [ "$nm_system_version" != "" ]; then
+
+			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]+).*?$ ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
+
+			if [ ${nm_main_system_version} -lt ${nm_min_main_version} ]; then
 				check_kill_needed=1
-				networkmanager_cmd="service restart networkmanager"
-			else
-				if [ ${main_wifislax_version_number} -eq 4 ]; then
-					if compare_floats 12 ${secondary_wifislax_version_number}; then
+			elif [ ${nm_main_system_version} -eq ${nm_min_main_version} ]; then
+
+				if [ ${nm_system_subversion} -lt ${nm_min_subversion} ]; then
+					check_kill_needed=1
+				elif [  ${nm_system_subversion} -eq ${nm_min_subversion} ]; then
+
+					if [ ${nm_system_subversion2} -lt ${nm_min_subversion2} ]; then
 						check_kill_needed=1
-						networkmanager_cmd="service restart networkmanager"
 					fi
 				fi
 			fi
-		;;
-		"Backbox")
-			check_kill_needed=0
-		;;
-		"Blackarch")
-			check_kill_needed=0
-		;;
-		"SUSE")
-			networkmanager_cmd="service NetworkManager restart"
-			if ! hash NetworkManager 2> /dev/null; then
-				check_kill_needed=0
-			fi
-		;;
-		"CentOS")
-			networkmanager_cmd="service NetworkManager restart"
-		;;
-	esac
+		else
+			check_kill_needed=1
+		fi
+	fi
 }
 
 function detect_distro_main() {
 
 	compatible=0
 	distro="Unknown Linux"
-	check_kill_needed=1
-	networkmanager_cmd="service network-manager restart"
+	check_kill_needed=0
 	airmon_fix
 
 	detect_distro_phase1
 	detect_distro_phase2
-	detect_distro_phase3
 	special_distro_features
+	check_if_kill_needed
 
 	if [ "$distro" = "Unknown Linux" ]; then
 		non_linux_os_check
@@ -3258,7 +3253,7 @@ function check_root_permissions() {
 function print_known_distros() {
 
 	for i in "${known_compatible_distros[@]}"; do
-		echo -ne ${pink_color}"${i^} "${normal_color}
+		echo -ne ${pink_color}"\"${i}\" "${normal_color}
 	done
 	echo
 }
@@ -3357,6 +3352,19 @@ function check_update_tools() {
 	fi
 }
 
+function print_intro() {
+
+	echo -e ${yellow_color}"                  .__                         .___  .___"
+	sleep 0.15 && echo -e "           _____  |__|______  ____   ____   __| _/__| _/____   ____"
+	sleep 0.15 && echo -e "           \__  \ |  \_  __ \/ ___\_/ __ \ / __ |/ __ |/  _ \ /    \\"
+	sleep 0.15 && echo -e "            / __ \|  ||  | \/ /_/  >  ___// /_/ / /_/ (  <_> )   |  \\"
+	sleep 0.15 && echo -e "           (____  /__||__|  \___  / \___  >____ \____ |\____/|___|  /"
+	sleep 0.15 && echo -e "                \/         /_____/      \/     \/    \/           \/"${normal_color}
+	echo
+	language_strings ${language} 228 "green"
+	sleep 3
+}
+
 function welcome() {
 
 	clear
@@ -3366,8 +3374,12 @@ function welcome() {
 	language_strings ${language} 86 "titlered"
 	language_strings ${language} 6 "blue"
 	echo
-	language_strings ${language} 7 "green"
-	language_strings ${language} 114 "green"
+	print_intro
+
+	clear
+	language_strings ${language} 86 "titlered"
+	language_strings ${language} 7 "pink"
+	language_strings ${language} 114 "pink"
 
 	if [ ${autochanged_language} -eq 1 ]; then
 		echo
@@ -3396,12 +3408,6 @@ function compare_floats() {
 	awk -v n1=$1 -v n2=$2 'BEGIN{ if (n1>n2) exit 0; exit 1}'
 }
 
-function check_internet_access() {
-
-	ping -c 1 $1 -W 1 > /dev/null 2>&1
-	return $?
-}
-
 function download_last_version() {
 
 	curl -L ${urlscript_directlink} -s -o $0
@@ -3410,11 +3416,11 @@ function download_last_version() {
 		echo
 		language_strings ${language} 214 "yellow"
 
-		echo $0 > /dev/null | grep "/"
-		if [ "$?" != "0" ]; then
-			scriptpath="./$0"
-		else
-			scriptpath=$0
+		scriptpath=$0
+		if ! [[ $0 =~ ^/.*$ ]]; then
+			if ! [[ $0 =~ ^.*/.*$ ]]; then
+				scriptpath="./$0"
+			fi
 		fi
 
 		chmod +x ${scriptpath} > /dev/null 2>&1
@@ -3432,7 +3438,7 @@ function autoupdate_check() {
 	echo
 	hasinternet_access=0
 
-	check_internet_access ${host_to_check_internet}
+	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
 	if [ "$?" = "0" ]; then
 		hasinternet_access=1
 	fi

@@ -1,3 +1,10 @@
+3.33
+Bug fixed relaunching script after donwload a new version
+Credits beautified
+Known compatible distros unified in one array
+"No check kill needed" feature method changed. Now based on Network Manager version
+Changes on rfkill method
+
 3.32
 Bash version check simplified
 Bug with long interface names fixed
