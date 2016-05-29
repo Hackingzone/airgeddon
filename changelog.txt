@@ -1,3 +1,8 @@
+3.34
+Ascii art intro added on script startup (animated flying saucer!!)
+Bug fixed after putting card in monitor mode and the card name changed on some distros
+Compatibility extended to Gentoo, Fedora and Red Hat Linux
+
 3.33
 Bug fixed relaunching script after donwload a new version
 Credits beautified

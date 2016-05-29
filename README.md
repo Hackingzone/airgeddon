@@ -29,6 +29,9 @@ Tested on these compatible Linux distros:<br>
 *-Ubuntu/Xubuntu 15.10 and 16.04*<br>
 *-OpenSUSE Leap 42.1*<br>
 *-CentOS 6 and 7*<br>
+*-Gentoo 20160514*<br>
+*-Fedora 24*<br>
+*-Red Hat 7 (Maipo)*<br>
 <br>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br><br>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br>

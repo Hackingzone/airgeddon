@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.33"
+airgeddon_version="3.34"
 
 #Language vars
 #Change these lines to select another default language
@@ -36,7 +36,7 @@ resume_message=224
 abort_question=12
 
 #Distros vars
-known_compatible_distros=("Wifislax" "Kali" "Parrot" "Backbox" "Blackarch" "Cyborg" "Ubuntu" "Debian" "SUSE" "CentOS")
+known_compatible_distros=("Wifislax" "Kali" "Parrot" "Backbox" "Blackarch" "Cyborg" "Ubuntu" "Debian" "SUSE" "CentOS" "Gentoo" "Fedora" "Red Hat")
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -59,6 +59,7 @@ blue_color="\033[1;34m"
 yellow_color="\033[1;33m"
 pink_color="\033[1;35m"
 normal_color="\e[1;0m"
+green_blink="\033[1;5m"
 
 function language_strings() {
 
@@ -1421,7 +1422,7 @@ function managed_option() {
 	ifconfig ${interface} up
 
 	new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
-	[[ ${new_interface} =~ ^(.*)\]+([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[2]}"
+	[[ ${new_interface} =~ ^(.*on[[:space:]])(\[.*\])?([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[3]}"
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
@@ -1462,7 +1463,7 @@ function monitor_option() {
 	fi
 
 	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
-	[[ ${new_interface} =~ ^(.*)\]+([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[2]}"
+	[[ ${new_interface} =~ ^(.*on[[:space:]])(\[.*\])?([a-zA-Z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[3]}"
 
 	if [ "$interface" != "$new_interface" ]; then
 		echo
@@ -3156,6 +3157,12 @@ function detect_distro_phase2() {
 	if [ "$distro" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
 			distro="CentOS"
+		elif [ -f ${osversionfile_dir}"fedora-release" ]; then
+			distro="Fedora"
+		elif [ -f ${osversionfile_dir}"gentoo-release" ]; then
+			distro="Gentoo"
+		elif [ -f ${osversionfile_dir}"redhat-release" ]; then
+			distro="Red Hat"
 		elif [ -f ${osversionfile_dir}"SuSE-release" ]; then
 			distro="SUSE"
 		fi
@@ -3168,7 +3175,7 @@ function special_distro_features() {
 		"Wifislax")
 			networkmanager_cmd="service restart networkmanager"
 		;;
-		"SUSE"|"CentOS")
+		"SUSE"|"CentOS"|"Gentoo"|"Fedora"|"Red Hat")
 			networkmanager_cmd="service NetworkManager restart"
 		;;
 		*)
@@ -3360,9 +3367,64 @@ function print_intro() {
 	sleep 0.15 && echo -e "            / __ \|  ||  | \/ /_/  >  ___// /_/ / /_/ (  <_> )   |  \\"
 	sleep 0.15 && echo -e "           (____  /__||__|  \___  / \___  >____ \____ |\____/|___|  /"
 	sleep 0.15 && echo -e "                \/         /_____/      \/     \/    \/           \/"${normal_color}
-	echo
+	echo -e ${green_blink}
 	language_strings ${language} 228 "green"
-	sleep 3
+	print_animated_flying_saucer
+	sleep 1
+}
+
+function flying_saucer() {
+
+	case $1 in
+		1)
+			echo "                                                             "
+			echo "                         .   *       _.---._  *              "
+			echo "                                   .'       '.       .       "
+			echo "                               _.-~===========~-._          *"
+			echo "                           *  (___________________)     .    "
+			echo "                       .     .      \_______/    *           "
+		;;
+		2)
+			echo "                        *         .  _.---._          .      "
+			echo "                              *    .'       '.  .            "
+			echo "                               _.-~===========~-._ *         "
+			echo "                           .  (___________________)       *  "
+			echo "                            *       \_______/        .       "
+			echo "                                                             "
+		;;
+		3)
+			echo "                                   *                .        "
+			echo "                             *       _.---._              *  "
+			echo "                          .        .'       '.       *       "
+			echo "                       .       _.-~===========~-._     *     "
+			echo "                              (___________________)         ."
+			echo "                       *            \_______/ .              "
+		;;
+		4)
+			echo "                        *         .  _.---._          .      "
+			echo "                              *    .'       '.  .            "
+			echo "                               _.-~===========~-._ *         "
+			echo "                           .  (___________________)       *  "
+			echo "                            *       \_______/        .       "
+			echo "                                                             "
+		;;
+	esac
+	sleep 0.4
+}
+
+function print_animated_flying_saucer() {
+
+	echo -e "\033[s"
+
+	for i in `seq 1 8`; do
+		if [ ${i} -le 4 ]; then
+			saucer_frame=${i}
+		else
+			saucer_frame=$(($i-4))
+		fi
+		echo -e "\033[u"
+		flying_saucer ${saucer_frame}
+	done
 }
 
 function welcome() {
