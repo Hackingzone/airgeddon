@@ -7,16 +7,17 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - DoS over wireless networks with different methods.<br>
 - Assisted Handshake file capture.<br>
 - Cleaning and optimizing Handshake captured files.<br>
-- Offline password decrypt on WPA/WPA2 captured files (dictionary and bruteforce).<br>
+- Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br>
 - Compatibility with many Linux distros (see requirements section).<br>
 - Easy targeting and selection in every section.<br>
+- Drag and drop files on console window for entering file paths.<br>
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br>
 - Multilanguage support and autodetect OS language feature (see supported languages section).<br>
 - Help hints in every zone/menu for easy use.<br>
 - Auto-update. Script checks for newer version if possible.<br>
 
 #Requirements
-Bash version 4 or later needed.<br>
+Bash version 4.0 or later needed.<br>
 <br>
 Tested on these compatible Linux distros:<br>
 *-Kali 2.0 and 2016.1*<br>
@@ -37,12 +38,12 @@ Anyway, can be used with any Linux distro if you have installed the tools what s
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br>
 `iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br><br>
 Optional tools: <- *not necessary to work, only needed for some features*<br>
-`wpaclean crunch aireplay-ng mdk3`<br><br>
+`wpaclean crunch aireplay-ng mdk3 hashcat`<br><br>
 Update tools: <- *not necessary to work, only used for auto-update*<br>
 `curl`<br>
 <br>
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br>
-*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the problem<br>
+*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :)<br>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br>
 *-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br>
 
@@ -66,6 +67,10 @@ You can join the project:<br>
 -More distros support compatibility.<br>
 -New features.<br>
 -Testing and feedback is needed too.<br>
+<br>
+For collaborating developers:<br>
+Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br>
+Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br>
 
 #Changelog
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.<br>

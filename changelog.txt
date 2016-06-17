@@ -1,3 +1,12 @@
+3.4
+Improved regexp to get new interface names after a change
+Fixed bug managing paths containing blank spaces
+New feature, drag and drop files on console window to entering file paths
+New offline decrypting attacks based on cpu hashcat (dictionary, bruteforce and rule based)
+Debug mode for faster development skipping intro and initial checks
+Bash version check improved for future versions
+Exit script code changes to differentiate when script was interrupted
+
 3.34
 Ascii art intro added on script startup (animated flying saucer!!)
 Bug fixed after putting card in monitor mode and the card name changed on some distros
