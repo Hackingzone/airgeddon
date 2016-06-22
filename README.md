@@ -51,7 +51,7 @@ Impossible compatibility for Mac OSX at the moment. Some reasons:<br>
 This script must be used only for educational purposes and Pen testing.<br>
 Use it only on your own networks.<br>
 We are not responsible of its use.<br>
-This script is under GPLv2 (or later) License.<br>
+This script is under GPLv3 (or later) License.<br>
 
 #Use
 Under some distros like Kali Linux must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br>

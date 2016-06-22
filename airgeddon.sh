@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.4"
+airgeddon_version="3.41"
 
 #Language vars
 #Change these lines to select another default language
@@ -59,9 +59,11 @@ osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
 resume_message=224
 abort_question=12
+pending_of_translation="[PoT]"
+escaped_pending_of_translation="\[PoT\]"
 
 #Change this from 0 to 1 to develop faster skipping intro and initial checks
-debug_mode=0
+debug_mode=1
 
 #Distros vars
 known_compatible_distros=(
@@ -86,6 +88,7 @@ declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
 declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
+declare select_interface_hints=(246)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -99,17 +102,28 @@ green_color="\033[1;32m"
 red_color="\033[1;31m"
 red_color_slim="\033[0;031m"
 blue_color="\033[1;34m"
+cyan_color="\033[1;36m"
+brown_color="\033[0;33m"
 yellow_color="\033[1;33m"
 pink_color="\033[1;35m"
 normal_color="\e[1;0m"
 
 function language_strings() {
 
+	declare -A unknown_chipset
+	unknown_chipset["english"]="Unknown"
+	unknown_chipset["spanish"]="Desconocido"
+	unknown_chipset["french"]="Inconnu"
+	unknown_chipset["catalan"]="Desconegut"
+	unknown_chipsetvar="${unknown_chipset["$language"]}"
+
 	declare -A hintprefix
 	hintprefix["english"]="Hint"
 	hintprefix["spanish"]="Consejo"
 	hintprefix["french"]="Conseil"
 	hintprefix["catalan"]="Consell"
+	hintvar="*"${hintprefix[$language]}"*"
+	escaped_hintvar="\*"${hintprefix[$language]}"\*"
 
 	declare -A optionaltool_needed
 	optionaltool_needed["english"]="Locked option, it needs: "
@@ -488,10 +502,10 @@ function language_strings() {
 	arr["french",73]="Le script airgeddon v$airgeddon_version a été programmé par :"
 	arr["catalan",73]="airgeddon script v$airgeddon_version desenvolupat per :"
 
-	arr["english",74]="This script is under GPLv2 (or later) License"
-	arr["spanish",74]="Este script está bajo Licencia GPLv2 (o posterior)"
-	arr["french",74]="Script publié sous Licence GPLv2 (ou version supèrieure)"
-	arr["catalan",74]="Aquest script està publicat sota llicència GPLv2 (o versió superior)"
+	arr["english",74]="This script is under GPLv3 (or later) License"
+	arr["spanish",74]="Este script está bajo Licencia GPLv3 (o posterior)"
+	arr["french",74]="Script publié sous Licence GPLv3 (ou version supèrieure)"
+	arr["catalan",74]="Aquest script està publicat sota llicència GPLv3 (o versió superior)"
 
 	arr["english",75]="Thanks to the \"Spanish pen testing crew\", to the \"Wifislax Staff\" and special thanks Kcdtv for beta testing and support received"
 	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", al \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
@@ -1281,7 +1295,7 @@ function language_strings() {
 	arr["english",232]="5.  (hashcat) Rule based attack against capture file"
 	arr["spanish",232]="5.  (hashcat) Ataque basado en reglas sobre fichero de captura"
 	arr["french",232]="5.  (hashcat) Attaque fondé sur des règles en utilisant le fichier de capture"
-	arr["catalan",232]="5.  (hashcat) Atac basat en regles sobre fitxer de captura"
+	arr["catalan",232]="5.  (hashcat) Atac basat en regles sobre el fitxer de captura"
 
 	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal"${normal_color}"[$hashcat_potpath]"
 	arr["spanish",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$hashcat_potpath]"
@@ -1341,7 +1355,17 @@ function language_strings() {
 	arr["english",244]="Rule based attacks change the words of the dictionary list according to the rules written in the rules file itself. They are very useful. Some distros has predefined rule files (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["spanish",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["french",244]="Les attaques basées sur des règles modifient les mots du dictionnaire selon les règles établies dans le fichier règles. Ils sont très utiles. Certaines distros comportent des fichiers de règles prédéfinies (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
-	arr["catalan",244]="Els atacs basats en regles modifiquen les paraules de la llista del diccionari segons les regles escrites en el propi fitxer de regles. Són molt útils. Algunes distros ja porten fitxers predefinides de regles (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
+	arr["catalan",244]="Els atacs basats en regles modifiquen les paraules de la llista del diccionari segons les regles escrites en el propi fitxer de regles. Són molt útils. Algunes distros ja porten fitxers de regles predefinits (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
+
+	arr["english",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
+	arr["spanish",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
+	arr["french",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
+	arr["catalan",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
+
+	arr["english",246]="Every time you see a text with the prefix "${cyan_color}"$pending_of_translation"${pink_color}" acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
+	arr["spanish",246]="Cada vez que veas un texto con el prefijo "${cyan_color}"$pending_of_translation"${pink_color}" acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
+	arr["french",246]="$pending_of_translation Chaque fois que vous voyez un texte avec le préfixe "${cyan_color}"$pending_of_translation"${pink_color}" acronyme de \"Pending of Translation\", signifie que la traduction a été généré automatiquement et est toujours en attente d'examen"
+	arr["catalan",246]="Cada vegada que vegis un text amb el prefix "${cyan_color}"$pending_of_translation"${pink_color}" acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
 
 	case "$3" in
 		"yellow")
@@ -1374,7 +1398,7 @@ function language_strings() {
 			echo -ne "${arr[$1,$2]}"
 		;;
 		"hint")
-			echo_pink "*${hintprefix[$language]}* ${arr[$1,$2]}"
+			echo_brown "$hintvar "${pink_color}"${arr[$1,$2]}"
 		;;
 		*)
 			if [ -z "$3" ]; then
@@ -1670,19 +1694,76 @@ function language_option() {
 	esac
 }
 
+function set_chipset() {
+
+	chipset=""
+	sedrule1="s/^....//"
+	sedrule2="s/ Network Connection//g"
+	sedrule3="s/ Wireless Adapter//"
+	sedrule4="s/Wireless LAN Controller //g"
+	sedrule5="s/ Wireless Adapter//"
+	sedrule6="s/^ //"
+	sedrule7="s/ Gigabit Ethernet.*//"
+	sedrule8="s/ Fast Ethernet.*//"
+	sedrule9="s/ \[.*//"
+	sedrule10="s/ (.*//"
+
+	sedrulewifi="$sedrule1;$sedrule2;$sedrule3;$sedrule6"
+	sedrulegeneric="$sedrule4;$sedrule2;$sedrule5;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
+	sedruleall="$sedrule1;$sedrule2;$sedrule3;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
+
+	if [ -f /sys/class/net/${1}/device/modalias ]; then
+
+		bus_type=$(cat /sys/class/net/${1}/device/modalias | cut -d ":" -f 1)
+
+		if [ "$bus_type" = "usb" ]; then
+			vendor_and_device=$(cat /sys/class/net/${1}/device/modalias | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
+			chipset=$(lsusb | grep -i "$vendor_and_device" | head -n1 - | cut -f3- -d ":" | sed "$sedrulewifi")
+
+		elif [[ "$bus_type" =~ pci|ssb|bcma|pcmcia ]]; then
+
+			if [[ -f /sys/class/net/${1}/device/vendor && -f /sys/class/net/${1}/device/device ]]; then
+				vendor_and_device=$(cat /sys/class/net/${1}/device/vendor):$(cat /sys/class/net/${1}/device/device)
+				chipset=$(lspci -d ${vendor_and_device} | cut -f3- -d ":" | sed "$sedrulegeneric")
+			else
+				if hash ethtool 2> /dev/null; then
+					ethtool_output="$(ethtool -i ${1} 2>&1)"
+					vendor_and_device=$(printf "$ethtool_output" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
+					chipset=$(lspci | grep "$vendor_and_device" | head -n1 - | cut -f3- -d ":" | sed "$sedrulegeneric")
+				fi
+			fi
+		fi
+	elif [[ -f /sys/class/net/${1}/device/idVendor && -f /sys/class/net/${1}/device/idProduct ]]; then
+		vendor_and_device=$(cat /sys/class/net/${1}/device/idVendor):$(cat /sys/class/net/${1}/device/idProduct)
+		chipset=$(lsusb | grep -i "$vendor_and_device" | head -n1 - | cut -f3- -d ":" | sed "$sedruleall")
+	fi
+}
+
 function select_interface() {
 
 	clear
 	language_strings ${language} 88 "titlered"
+	current_menu="select_interface_menu"
 	language_strings ${language} 24 "green"
 	print_simple_separator
 	ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v`
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$[option_counter + 1]
-		echo "$option_counter. $item"
+		if [ ${#option_counter} -eq 1 ]; then
+			spaceiface="  "
+		else
+			spaceiface=" "
+		fi
+		set_chipset ${item}
+		echo -ne "$option_counter.$spaceiface$item "
+		if [ "$chipset" = "" ]; then
+			language_strings ${language} 245 "blue"
+		else
+			echo -e ${blue_color}"// "${yellow_color}"Chipset:"${normal_color}" $chipset"
+		fi
 	done
-	print_simple_separator
+	print_hint ${current_menu}
 
 	read iface
 	if [ -z ${iface} ]; then
@@ -1975,7 +2056,6 @@ function print_iface_selected() {
 		echo
 		language_strings ${language} 115 "read"
 		select_interface
-		${current_menu}
 	else
 		check_interface_mode
 		language_strings ${language} 42 "blue"
@@ -2128,6 +2208,13 @@ function print_hint() {
 			((hintlength--))
 			randomhint=$(shuf -i 0-${hintlength} -n 1)
 			strtoprint=${hints[decrypt_hints|$randomhint]}
+		;;
+		"select_interface_menu")
+			store_array hints select_interface_hints "${select_interface_hints[@]}"
+			hintlength=${#select_interface_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[select_interface_hints|$randomhint]}
 		;;
 	esac
 
@@ -3431,7 +3518,7 @@ function invalid_iface_selected() {
 function capture_traps() {
 
 	case ${current_menu} in
-		"pre_main_menu")
+		"pre_main_menu"|"select_interface_menu")
 			exit_code=1
 			exit_script_option
 		;;
@@ -3961,34 +4048,67 @@ function print_large_separator() {
 	echo_blue "-------------------------------------------------------"
 }
 
+function check_pending_of_translation() {
+
+	if [[ "$1" =~ ^$escaped_pending_of_translation([[:space:]])(.*)$ ]]; then
+		text=${cyan_color}"$pending_of_translation "${2}"${BASH_REMATCH[2]}"
+		return 1
+	elif [[ "$1" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?($escaped_pending_of_translation)[[:space:]](.*) ]]; then
+		text=${cyan_color}"$pending_of_translation "${brown_color}"$hintvar "${pink_color}"${BASH_REMATCH[3]}"
+		return 1
+	fi
+
+	return 0
+}
+
+function last_echo() {
+
+	check_pending_of_translation "$1" ${2}
+	if [ "$?" != "0" ]; then
+		echo -e ${2}"$text"${normal_color}
+	else
+		echo -e ${2}"$*"${normal_color}
+	fi
+}
+
 function echo_green() {
 
-	echo -e ${green_color}"$*"${normal_color}
+	last_echo "$1" ${green_color}
 }
 
 function echo_blue() {
 
-	echo -e ${blue_color}"$*"${normal_color}
+	last_echo "$1" ${blue_color}
 }
 
 function echo_yellow() {
 
-	echo -e ${yellow_color}"$*"${normal_color}
+	last_echo "$1" ${yellow_color}
 }
 
 function echo_red() {
 
-	echo -e ${red_color}"$*"${normal_color}
+	last_echo "$1" ${red_color}
 }
 
 function echo_red_slim() {
 
-	echo -e ${red_color_slim}"$*"${normal_color}
+	last_echo "$1" ${red_color_slim}
 }
 
 function echo_pink() {
 
-	echo -e ${pink_color}"$*"${normal_color}
+	last_echo "$1" ${pink_color}
+}
+
+function echo_cyan() {
+
+	last_echo "$1" ${cyan_color}
+}
+
+function echo_brown() {
+
+	last_echo "$1" ${brown_color}
 }
 
 trap capture_traps INT
