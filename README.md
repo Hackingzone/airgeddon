@@ -68,9 +68,17 @@ You can join the project:<br>
 -New features.<br>
 -Testing and feedback is needed too.<br>
 <br>
-For collaborating developers:<br>
+*For collaborating translators:*<br>
+There is a `.ods` file to work with. This file extension (Open Document SpreadSheet) is like an Excel but in non propietary format. It contains all the strings to translate.<br>
+Fill or review your language strings and mark with `X` the corresponding reviewed cell each time<br>
+Respect the color style (light red for non reviewed and soft green for reviewed cells).<br>
+<br>
+*For collaborating developers:*<br>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br>
 Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br>
+<br>
+*For beta testers:*<br>
+You can download the master version or the beta testing version from the development branch called `dev`
 
 #Changelog
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.<br>

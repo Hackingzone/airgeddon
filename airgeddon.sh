@@ -63,7 +63,7 @@ pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 
 #Change this from 0 to 1 to develop faster skipping intro and initial checks
-debug_mode=1
+debug_mode=0
 
 #Distros vars
 known_compatible_distros=(
@@ -787,10 +787,10 @@ function language_strings() {
 	arr["french",130]="Rappelez-vous de sélectionner un réseau cible avec un/des client(s) connecté(s) pour pouvoir capturer un Handshake"
 	arr["catalan",130]="Recorda que has de seleccionar una xarxa de destinació amb clients per capturar el Handshake"
 
-	arr["english",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one ;)"
-	arr["spanish",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro ;)"
-	arr["french",131]="Toutes les attaques n'affectent pas les points d'accès de la même manière. Si une attaque ne donne pas de résultats, choisissez en une autre ;)"
-	arr["catalan",131]="No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant cap a un punt d'accés, tria un altre ;)"
+	arr["english",131]="Not all attacks affect all access points. If an attack is not working against an access point, choose another one :)"
+	arr["spanish",131]="No todos los ataques afectan a todos los puntos de acceso. Si un ataque no funciona contra un punto de acceso, elige otro :)"
+	arr["french",131]="Toutes les attaques n'affectent pas les points d'accès de la même manière. Si une attaque ne donne pas de résultats, choisissez en une autre :)"
+	arr["catalan",131]="No tots els atacs afecten tots els punts d'accés. Si un atac no està treballant cap a un punt d'accés, tria un altre :)"
 
 	arr["english",132]="Cleaning a Handshake file is recommended only for big size files. It's better to have a backup, sometimes file can be corrupted while cleaning it"
 	arr["spanish",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
@@ -799,7 +799,7 @@ function language_strings() {
 
 	arr["english",133]="If you select a target network with hidden ESSID, you can't use it, but you can perform BSSID based attacks to that network"
 	arr["spanish",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
-	arr["french",133]="Si vous sélectionnez un réseau cible avec un ESSID caché, vous n'allez pas pouvoir utiliser l'ESSID pour attaquer; mais vous pourrez effectuer les attaques basées sur le BSSID du réseau"
+	arr["french",133]="Si vous sélectionnez un réseau cible avec un ESSID caché, vous n'allez pas pouvoir utiliser l'ESSID pour attaquer, mais vous pourrez effectuer les attaques basées sur le BSSID du réseau"
 	arr["catalan",133]="Si selecciones una xarxa objectiu amb el ESSID ocult, no podràs usar-lo, però pots fer atacs basats en BSSID sobre aquesta xarxa"
 
 	arr["english",134]="If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
@@ -867,7 +867,7 @@ function language_strings() {
 	arr["french",146]="Il semble que c'est un échec... Essayez à nouveau ou choisissez une autre attaque"
 	arr["catalan",146]="Sembla que no ho hem aconseguit... intenta-ho de nou o tria un altre atac"
 
-	arr["english",147]="4.. Return to Handshake tools menu"
+	arr["english",147]="4.  Return to Handshake tools menu"
 	arr["spanish",147]="4.  Volver al menú de herramientas Handshake"
 	arr["french",147]="4.  Retourner au menu des outils pour la capture du handshake"
 	arr["catalan",147]="4.  Tornar al menú d'eines Handshake"
@@ -1015,7 +1015,7 @@ function language_strings() {
 	arr["english",176]="----------(aircrack CPU, non GPU attacks)------------"
 	arr["spanish",176]="-----------(ataques aircrack CPU, no GPU)------------"
 	arr["french",176]="-----------(attaques aircrack CPU, pas GPU)-----------"
-	arr["catalan",176]="------------(Atacs aircrack CPU, no GPU)-------------"
+	arr["catalan",176]="------------(atacs aircrack CPU, no GPU)-------------"
 
 	arr["english",177]="Selected captured file: "${pink_color}"None"${normal_color}
 	arr["spanish",177]="Fichero capturado seleccionado: "${pink_color}"Ninguno"${normal_color}
@@ -1280,7 +1280,7 @@ function language_strings() {
 	arr["english",229]="-----------(hashcat CPU, non GPU attacks)------------"
 	arr["spanish",229]="-------------(ataques hashcat CPU, no GPU)-----------"
 	arr["french",229]="-----------(attaques hashcat CPU, pas GPU)-----------"
-	arr["catalan",229]="-------------(Atacs hashcat CPU, no GPU)-------------"
+	arr["catalan",229]="-------------(atacs hashcat CPU, no GPU)-------------"
 
 	arr["english",230]="3.  (hashcat) Dictionary attack against capture file"
 	arr["spanish",230]="3.  (hashcat) Ataque de diccionario sobre fichero de captura"
