@@ -1448,7 +1448,7 @@ function special_text_missed_optional_tool() {
 	else
 		[[ ${arr[$1,$2]} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
 		tools_needed=${tools_needed:: -1}
-		echo_red_slim "${arr[$1,$2]}" "($tools_needed)"
+		echo_red_slim "${arr[$1,$2]} ($tools_needed)"
 	fi
 }
 
@@ -3131,8 +3131,8 @@ function read_and_clean_path() {
 	shopt -s extglob
 
 	read -r var
-	var=${var##+([ \'])}
-	var=${var%%+([ \'])}
+	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
+	[[ ${var} =~ $regexp ]] && var="${BASH_REMATCH[1]}"
 	eval "$1=\$var"
 
 	eval "${settings}"
