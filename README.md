@@ -33,14 +33,19 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
+*-Arch 4.6.2-1*<br/>
+*-Raspbian 7*<br/>
 <br/>
-It's already available in some repositories like <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> used by some distros (Arch Linux).<br/>
+It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
 <br/>
-Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/><br/>
+Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
+<br/>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br/>
-`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br/><br/>
+`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br/>
+<br/>
 Optional tools: <- *not necessary to work, only needed for some features*<br/>
-`wpaclean crunch aireplay-ng mdk3 hashcat`<br/><br/>
+`wpaclean crunch aireplay-ng mdk3 hashcat`<br/>
+<br/>
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 `curl`<br/>
 <br/>

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.41"
+airgeddon_version="3.42"
 
 #Language vars
 #Change these lines to select another default language
@@ -74,12 +74,14 @@ known_compatible_distros=(
 							"Blackarch"
 							"Cyborg"
 							"Ubuntu"
+							"Raspbian"
 							"Debian"
 							"SUSE"
 							"CentOS"
 							"Gentoo"
 							"Fedora"
 							"Red Hat"
+							"Arch"
 						)
 
 #Hint vars
@@ -1367,6 +1369,11 @@ function language_strings() {
 	arr["french",246]="$pending_of_translation Chaque fois que vous voyez un texte avec le préfixe "${cyan_color}"$pending_of_translation"${pink_color}" acronyme de \"Pending of Translation\", signifie que la traduction a été généré automatiquement et est toujours en attente d'examen"
 	arr["catalan",246]="Cada vegada que vegis un text amb el prefix "${cyan_color}"$pending_of_translation"${pink_color}" acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
 
+	arr["english",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
+	arr["spanish",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
+	arr["french",247]="$pending_of_translation En dépit d'avoir tous les outils essentiels installés, votre système utilise airmon-zc au lieu de airmon-ng. Pour fonctionner, vous devez installer ethtool et vous n'avez pas à ce moment. S'il vous plaît, installez et lancez à nouveau le script"
+	arr["catalan",247]="$pending_of_translation Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat ethtool i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a llançar el script"
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -1707,11 +1714,10 @@ function set_chipset() {
 	sedrule8="s/ Fast Ethernet.*//"
 	sedrule9="s/ \[.*//"
 	sedrule10="s/ (.*//"
-	sedrule11="s/ PCI Express.*//"
 
 	sedrulewifi="$sedrule1;$sedrule2;$sedrule3;$sedrule6"
-	sedrulegeneric="$sedrule4;$sedrule2;$sedrule5;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10;$sedrule11"
-	sedruleall="$sedrule1;$sedrule2;$sedrule3;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10;$sedrule11"
+	sedrulegeneric="$sedrule4;$sedrule2;$sedrule5;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
+	sedruleall="$sedrule1;$sedrule2;$sedrule3;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
 
 	if [ -f /sys/class/net/${1}/device/modalias ]; then
 
@@ -2292,7 +2298,7 @@ function decrypt_menu() {
 	echo
 	language_strings ${language} 47 "green"
 	language_strings ${language} 176 "blue"
-	language_strings ${language} 172 aircrack_attacks_dependencies[@]
+	language_strings ${language} 172
 	language_strings ${language} 175 aircrack_attacks_dependencies[@]
 	language_strings ${language} 229 "blue"
 	language_strings ${language} 230 hashcat_attacks_dependencies[@]
@@ -3650,6 +3656,14 @@ function detect_distro_phase2() {
 			distro="Red Hat"
 		elif [ -f ${osversionfile_dir}"SuSE-release" ]; then
 			distro="SUSE"
+		elif [ -f ${osversionfile_dir}"debian_version" ]; then
+			distro="Debian"
+			if [ -f ${osversionfile_dir}"os-release" ]; then
+				is_raspbian=$(cat ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+				if [[ "$is_raspbian" =~ Raspbian ]];then
+					distro="Raspbian"
+				fi
+			fi
 		fi
 	fi
 }
@@ -3951,12 +3965,27 @@ function welcome() {
 		detect_distro_main
 		language_strings ${language} 115 "read"
 
+		airmonzc_check
 		check_update_tools
 	fi
 
 	select_interface
 	initialize_menu_options_dependencies
 	main_menu
+}
+
+function airmonzc_check() {
+
+	if [ "$airmon" = "airmon-zc" ]; then
+		if ! hash ethtool 2> /dev/null; then
+			echo
+			language_strings ${language} 247 "yellow"
+			echo
+			language_strings ${language} 115 "read"
+			exit_code=1
+			exit_script_option
+		fi
+	fi
 }
 
 function compare_floats_greater_than() {
