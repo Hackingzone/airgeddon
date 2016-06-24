@@ -1,3 +1,10 @@
+3.41
+Show network cards chipset while selecting interface
+Some language strings changed
+License updated to GPL3+
+Added Open Document SpreadSheet for easy translation to be used by collaborating translators
+System of prefixes and colors for hints and strings pending of translation [PoT]
+
 3.4
 Improved regexp to get new interface names after a change
 Fixed bug managing paths containing blank spaces
