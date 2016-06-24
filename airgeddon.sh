@@ -1707,10 +1707,11 @@ function set_chipset() {
 	sedrule8="s/ Fast Ethernet.*//"
 	sedrule9="s/ \[.*//"
 	sedrule10="s/ (.*//"
+	sedrule11="s/ PCI Express.*//"
 
 	sedrulewifi="$sedrule1;$sedrule2;$sedrule3;$sedrule6"
-	sedrulegeneric="$sedrule4;$sedrule2;$sedrule5;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
-	sedruleall="$sedrule1;$sedrule2;$sedrule3;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10"
+	sedrulegeneric="$sedrule4;$sedrule2;$sedrule5;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10;$sedrule11"
+	sedruleall="$sedrule1;$sedrule2;$sedrule3;$sedrule6;$sedrule7;$sedrule8;$sedrule9;$sedrule10;$sedrule11"
 
 	if [ -f /sys/class/net/${1}/device/modalias ]; then
 
