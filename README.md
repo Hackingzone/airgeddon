@@ -34,7 +34,7 @@ Tested on these compatible Linux distros:<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
 *-Arch 4.6.2-1*<br/>
-*-Raspbian 7*<br/>
+*-Raspbian 7 (Wheezy) and 8 (Jessie)*<br/>
 <br/>
 It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
 <br/>
@@ -66,7 +66,7 @@ Under Wifislax Linux and others, it can be launched using bash or sh. Example `s
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
-English, Spanish, French and Catalan.<br/>
+English, Spanish, French, Catalan and Portuguese.<br/>
 
 #Project Collaboration
 You can join the project:<br/>
@@ -94,6 +94,7 @@ See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.tx
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **USUARIONUEVO** and Wifislax staff for helping me to improve the script and for suggestions about new features.<br/>
+**Antonio Da Silva** for Portuguese translations.<br/>
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>

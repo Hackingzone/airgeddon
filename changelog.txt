@@ -2,6 +2,7 @@
 Compatibility extended to Arch Linux
 Compatibility extended to Raspbian Linux for Raspberry Pi
 Additional check for systems which use airmon-zc, now checks for ethtool to avoid errors
+Portuguese language translation added
 
 3.41
 Show network cards chipset while selecting interface
