@@ -37,6 +37,7 @@ Tested on these compatible Linux distros:<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie)*<br/>
 <br/>
 It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
+Repositories versions will have auto-update feature disabled in order to avoid breaking dependencies. There is a var at the beginning of the file, *"auto_update"* can be set to 0 to turn off the auto-update feature.<br/>
 <br/>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
 <br/>

@@ -2,8 +2,17 @@
 
 airgeddon_version="3.42"
 
+#Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
+debug_mode=0
+
+#Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
+auto_update=1
+
+#Enabled 1 / Disabled 0 - Auto change language feature - Default value 1
+auto_change_language=1
+
 #Language vars
-#Change this line to select another default language. Select one from availables in array
+#Change this line to select another default language. Select one from available values in array
 language="english"
 declare -A lang_association=(
 								["en"]="english"
@@ -59,9 +68,6 @@ resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
-
-#Change this from 0 to 1 to develop faster skipping intro and initial checks
-debug_mode=0
 
 #Distros vars
 known_compatible_distros=(
@@ -150,7 +156,7 @@ function language_strings() {
 
 	arr["english",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["spanish",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automaticamente"
-	arr["french",2]="Langue Française de O.S. détectée. Pris en charge par le script. Changé automatiquement"
+	arr["french",2]="S.E. en Français détecté. Langue prise en charge par le script et changé automatiquement"
 	arr["catalan",2]="Idioma Català del S.O. detectat. Suportat pel script. S'ha canviat automàticament"
 	arr["portuguese",2]="$pending_of_translation Portugues do S.O. detectado. Compatível com o script. Ele é automaticamente alterada"
 
@@ -1615,13 +1621,13 @@ function language_strings() {
 
 	arr["english",246]="Every time you see a text with the prefix "${cyan_color}"$pending_of_translation"${pink_color}" acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
 	arr["spanish",246]="Cada vez que veas un texto con el prefijo "${cyan_color}"$pending_of_translation"${pink_color}" acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
-	arr["french",246]="$pending_of_translation Chaque fois que vous voyez un texte avec le préfixe "${cyan_color}"$pending_of_translation"${pink_color}" acronyme de \"Pending of Translation\", signifie que la traduction a été généré automatiquement et est toujours en attente d'examen"
+	arr["french",246]="Chaque fois que vous voyez un texte précédé par "${cyan_color}"$pending_of_translation"${pink_color}" acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
 	arr["catalan",246]="Cada vegada que vegis un text amb el prefix "${cyan_color}"$pending_of_translation"${pink_color}" acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
 	arr["portuguese",246]="$pending_of_translation Cada vez que você vê um texto com o prefixo "${cyan_color}"$pending_of_translation"${pink_color}" acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
 
 	arr["english",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["spanish",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
-	arr["french",247]="$pending_of_translation En dépit d'avoir tous les outils essentiels installés, votre système utilise airmon-zc au lieu de airmon-ng. Pour fonctionner, vous devez installer ethtool et vous n'avez pas à ce moment. S'il vous plaît, installez et lancez à nouveau le script"
+	arr["french",247]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer ethtool que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"
 	arr["catalan",247]="$pending_of_translation Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat ethtool i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a llançar el script"
 	arr["portuguese",247]="$pending_of_translation Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc vez de airmon-ng. Para funcionar você precisa instalar ethtool e você não tem neste momento. Por favor, instale e execute o script novamente"
 
@@ -1639,13 +1645,13 @@ function language_strings() {
 
 	arr["english",250]="If you see any bad translation or just want "${cyan_color}"$pending_of_translation"${pink_color}" marks to dissapear, write me to $mail to collaborate with translations"
 	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas "${cyan_color}"$pending_of_translation"${pink_color}", escríbeme a $mail para colaborar con las traducciones"
-	arr["french",250]="$pending_of_translation Si vous voyez un contresens ou voulez marques "${cyan_color}"$pending_of_translation"${pink_color}", écrivez $mail à collaborer avec les traductions disparaissent"
+	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques "${cyan_color}"$pending_of_translation"${pink_color}" disparaitre, écrivez à $mail pour collaborer avec les traductions"
 	arr["catalan",250]="$pending_of_translation Si veus alguna traducció incorrecta o vols que desapareguin les marques "${cyan_color}"$pending_of_translation"${pink_color}", escriu-me a $mail per col·laborar amb les traduccions"
 	arr["portuguese",250]="$pending_of_translation Se você ver qualquer erro de tradução ou quer marcas "${cyan_color}"$pending_of_translation"${pink_color}", escreva para $mail para colaborar com traduções desaparecer"
 
 	arr["english",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["spanish",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
-	arr["french",251]="$pending_of_translation Vous avez choisi la même langue qui a été sélectionnée. Aucun changement ne sera apporté"
+	arr["french",251]="Vous venez de choisir la langue qui est en usage. Pas de changements"
 	arr["catalan",251]="$pending_of_translation Has triat el mateix idioma que estava seleccionat. No es realitzaran canvis"
 	arr["portuguese",251]="$pending_of_translation Você escolheu o mesmo idioma que foi selecionado. Nenhuma alteração será feita"
 
@@ -4115,20 +4121,23 @@ function check_compatibility() {
 		fi
 	done
 
-	echo
-	language_strings ${language} 226 "blue"
-
 	update_toolsok=1
-	for i in "${update_tools[@]}"; do
-		echo -ne "$i"
-		time_loop
-		if ! hash ${i} 2> /dev/null; then
-			echo -e ${red_color}" Error\r"${normal_color}
-			update_toolsok=0
-		else
-			echo -e ${green_color}" Ok\r"${normal_color}
-		fi
-	done
+	if [ ${auto_update} -eq 1 ]; then
+
+		echo
+		language_strings ${language} 226 "blue"
+
+		for i in "${update_tools[@]}"; do
+			echo -ne "$i"
+			time_loop
+			if ! hash ${i} 2> /dev/null; then
+				echo -e ${red_color}" Error\r"${normal_color}
+				update_toolsok=0
+			else
+				echo -e ${green_color}" Ok\r"${normal_color}
+			fi
+		done
+	fi
 
 	if [ ${essential_toolsok} -eq 0 ]; then
 		echo
@@ -4165,12 +4174,14 @@ function check_bash_version() {
 
 function check_update_tools() {
 
-	if [ ${update_toolsok} -eq 1 ]; then
-		autoupdate_check
-	else
-		echo
-		language_strings ${language} 225 "yellow"
-		language_strings ${language} 115 "read"
+	if [ ${auto_update} -eq 1 ]; then
+		if [ ${update_toolsok} -eq 1 ]; then
+			autoupdate_check
+		else
+			echo
+			language_strings ${language} 225 "yellow"
+			language_strings ${language} 115 "read"
+		fi
 	fi
 }
 
@@ -4247,14 +4258,18 @@ function initialize_script_settings() {
 	exit_code=0
 	check_kill_needed=0
 	airmon_fix
+	autochanged_language=0
 }
 
 function welcome() {
 
 	clear
 	current_menu="pre_main_menu"
-	autodetect_language
 	initialize_script_settings
+
+	if [ ${auto_change_language} -eq 1 ]; then
+		autodetect_language
+	fi
 
 	if [ ${debug_mode} -eq 0 ]; then
 		language_strings ${language} 86 "titlered"
@@ -4373,7 +4388,6 @@ function autoupdate_check() {
 
 function autodetect_language() {
 
-	autochanged_language=0
 	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
 
 	for lgkey in "${!lang_association[@]}"; do
@@ -4402,6 +4416,9 @@ function check_pending_of_translation() {
 		return 1
 	elif [[ "$1" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?($escaped_pending_of_translation)[[:space:]](.*) ]]; then
 		text=${cyan_color}"$pending_of_translation "${brown_color}"$hintvar "${pink_color}"${BASH_REMATCH[3]}"
+		return 1
+	elif [[ "$1" =~ ^(\*+)[[:space:]]$escaped_pending_of_translation[[:space:]]([^\*]+)(\*+)$ ]]; then
+		text=${2}"${BASH_REMATCH[1]}"${cyan_color}" $pending_of_translation "${2}"${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	fi
 
