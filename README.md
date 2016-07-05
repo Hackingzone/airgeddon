@@ -1,6 +1,6 @@
 #airgeddon
 This is a multi-use bash script for Linux systems to audit wireless networks.<br/>
-<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/airgeddon_banner.png" title="We'll conquer the earth!!"/>
+<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/airgeddon_banner.png" title="We'll conquer the earth!!"/>
 
 #Features
 - Interface mode switcher (Monitor-Managed).<br/>
@@ -33,14 +33,20 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
+*-Arch 4.6.2-1*<br/>
+*-Raspbian 7 (Wheezy) and 8 (Jessie)*<br/>
 <br/>
-It's already available in some repositories like <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> used by some distros (Arch Linux).<br/>
+It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
+Repositories versions will have auto-update feature disabled in order to avoid breaking dependencies. There is a var at the beginning of the file, *"auto_update"* can be set to 0 to turn off the auto-update feature.<br/>
 <br/>
-Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/><br/>
+Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
+<br/>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br/>
-`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br/><br/>
+`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br/>
+<br/>
 Optional tools: <- *not necessary to work, only needed for some features*<br/>
-`wpaclean crunch aireplay-ng mdk3 hashcat`<br/><br/>
+`wpaclean crunch aireplay-ng mdk3 hashcat`<br/>
+<br/>
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 `curl`<br/>
 <br/>
@@ -61,7 +67,7 @@ Under Wifislax Linux and others, it can be launched using bash or sh. Example `s
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
-English, Spanish, French and Catalan.<br/>
+English, Spanish, French, Catalan and Portuguese.<br/>
 
 #Project Collaboration
 You can join the project:<br/>
@@ -89,6 +95,7 @@ See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.tx
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **USUARIONUEVO** and Wifislax staff for helping me to improve the script and for suggestions about new features.<br/>
+**Beans** for Portuguese translations.<br/>
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>

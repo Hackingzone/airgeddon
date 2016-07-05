@@ -1,0 +1,13 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Text files and source code
+*.txt text
+*.sh text
+*.md text
+
+# Binary image formats
+*.png binary
+
+# Standard to msysgit
+*.odt binary
