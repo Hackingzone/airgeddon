@@ -4297,7 +4297,7 @@ function welcome() {
 		detect_distro_main
 		language_strings ${language} 115 "read"
 
-		airmonzc_check
+		airmonzc_security_check
 		check_update_tools
 	fi
 
@@ -4306,7 +4306,7 @@ function welcome() {
 	main_menu
 }
 
-function airmonzc_check() {
+function airmonzc_security_check() {
 
 	if [ "$airmon" = "airmon-zc" ]; then
 		if ! hash ethtool 2> /dev/null; then

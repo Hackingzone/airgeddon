@@ -95,7 +95,7 @@ See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.tx
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **USUARIONUEVO** and Wifislax staff for helping me to improve the script and for suggestions about new features.<br/>
-**Antonio Da Silva** for Portuguese translations.<br/>
+**Beans** for Portuguese translations.<br/>
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>
