@@ -25,9 +25,10 @@ declare -A lang_association=(
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
+branch="master"
 script_filename="airgeddon.sh"
 urlgithub="https://github.com/$github_user/$github_repository"
-urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/master/$script_filename"
+urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/$branch/$script_filename"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1sh3r3@gmail.com"
 author="v1s1t0r"
