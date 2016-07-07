@@ -9,5 +9,5 @@
 # Binary image formats
 *.png binary
 
-# Standard to msysgit
-*.odt binary
+# OpenOffice document spreadsheet
+*.ods diff=odf

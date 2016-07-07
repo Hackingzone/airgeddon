@@ -49,11 +49,16 @@ Optional tools: <- *not necessary to work, only needed for some features*<br/>
 <br/>
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 `curl`<br/>
-<br/>
+
+#Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :)<br/>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br/>
 *-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br/>
+
+Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
+*-Bash* <- They have no bash. It can be installed, this is not the real problem<br/>
+*-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs<br/>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br/>

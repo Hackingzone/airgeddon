@@ -1,3 +1,6 @@
+3.43
+Function created to generate dynamic separators on menus
+
 3.42
 Compatibility extended to Arch Linux
 Compatibility extended to Raspbian Linux for Raspberry Pi
