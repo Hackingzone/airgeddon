@@ -10,4 +10,4 @@
 *.png binary
 
 # Standard to msysgit
-*.odt binary
+*.ods diff=odf
