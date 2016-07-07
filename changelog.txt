@@ -1,5 +1,6 @@
 3.43
 Function created to generate dynamic separators on menus
+Some language strings changed
 
 3.42
 Compatibility extended to Arch Linux

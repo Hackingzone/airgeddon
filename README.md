@@ -91,7 +91,7 @@ Debug mode was implemented for faster development skipping intro and initial che
 Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 <br/>
 *For beta testers:*<br/>
-You can download the master version or the beta testing version from the development branch called `dev`
+You can download the master version or the beta testing version from the development branch called `dev`<br/>
 
 #Changelog
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.<br/>

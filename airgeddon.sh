@@ -448,7 +448,7 @@ function language_strings() {
 	arr["spanish",50]="modo monitor requerido en ataques"
 	arr["french",50]="modo moniteur obligatoire pour ces attaques"
 	arr["catalan",50]="mode monitor requerit per atacs"
-	arr["portuguese",50]="$pending_of_translation Necessário no modo ataques monitor"
+	arr["portuguese",50]="$pending_of_translation necessário no modo ataques monitor"
 
 	arr["english",51]="5.  Deauth / disassoc amok mdk3 attack"
 	arr["spanish",51]="5.  Ataque Deauth / Disassoc amok mdk3"
@@ -468,11 +468,11 @@ function language_strings() {
 	arr["catalan",53]="7.  Atac WIDS / WIPS / WDS Confusion"
 	arr["portuguese",53]="$pending_of_translation 7.  Ataque WIDS / WIPS / Confusão WDS"
 
-	arr["english",54]="Old \"obsolete/non very effective\" attacks"
-	arr["spanish",54]="Antiguos ataques \"obsoletos/no muy efectivos\""
-	arr["french",54]="Anciennes attaques \"obsolètes/peu efficaces\""
-	arr["catalan",54]="Antics atacs \"obsolets/no gaire efectius\""
-	arr["portuguese",54]="$pending_of_translation Ataques antigos \"obsoleta/não muito eficaz\""
+	arr["english",54]="old \"obsolete/non very effective\" attacks"
+	arr["spanish",54]="antiguos ataques \"obsoletos/no muy efectivos\""
+	arr["french",54]="anciennes attaques \"obsolètes/peu efficaces\""
+	arr["catalan",54]="antics atacs \"obsolets/no gaire efectius\""
+	arr["portuguese",54]="$pending_of_translation ataques antigos \"obsoleta/não muito eficaz\""
 
 	arr["english",55]="2.  Put interface in monitor mode"
 	arr["spanish",55]="2.  Poner la interfaz en modo monitor"
@@ -892,7 +892,7 @@ function language_strings() {
 	arr["spanish",124]="modo monitor requerido en captura"
 	arr["french",124]="modo moniteur nécessaire pour la capture"
 	arr["catalan",124]="mode monitor requerit en captura"
-	arr["portuguese",124]="$pending_of_translation Modo de captura do monitor necessário"
+	arr["portuguese",124]="$pending_of_translation modo de captura do monitor necessário"
 
 	arr["english",125]="There is no valid target network selected. You'll be redirected to select one"
 	arr["spanish",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
