@@ -452,11 +452,11 @@ function language_strings() {
 	arr["catalan",49]="4.  Explorar per buscar objectius (es requereix mode monitor)"
 	arr["portuguese",49]="$pending_of_translation 4.  Procurar para procurar objetivos (modo monitor obrigatório)"
 
-	arr["english",50]="----------(monitor mode needed for attacks)----------"
-	arr["spanish",50]="---------(modo monitor requerido en ataques)---------"
-	arr["french",50]="----(modo moniteur obligatoire pour ces attaques)----"
-	arr["catalan",50]="----------(mode monitor requerit per atacs)----------"
-	arr["portuguese",50]="$pending_of_translation ---------(Necessário no modo ataques monitor)--------"
+	arr["english",50]="monitor mode needed for attacks"
+	arr["spanish",50]="modo monitor requerido en ataques"
+	arr["french",50]="modo moniteur obligatoire pour ces attaques"
+	arr["catalan",50]="mode monitor requerit per atacs"
+	arr["portuguese",50]="$pending_of_translation necessário no modo ataques monitor"
 
 	arr["english",51]="5.  Deauth / disassoc amok mdk3 attack"
 	arr["spanish",51]="5.  Ataque Deauth / Disassoc amok mdk3"
@@ -476,11 +476,11 @@ function language_strings() {
 	arr["catalan",53]="7.  Atac WIDS / WIPS / WDS Confusion"
 	arr["portuguese",53]="$pending_of_translation 7.  Ataque WIDS / WIPS / Confusão WDS"
 
-	arr["english",54]="-----(Old \"obsolete/non very effective\" attacks)-----"
-	arr["spanish",54]="---(Antiguos ataques \"obsoletos/no muy efectivos\")---"
-	arr["french",54]="----(Anciennes attaques \"obsolètes/peu efficaces\")---"
-	arr["catalan",54]="-----(Antics atacs \"obsolets/no gaire efectius\")-----"
-	arr["portuguese",54]="$pending_of_translation ----(Ataques antigos \"obsoleta/não muito eficaz\")----"
+	arr["english",54]="old \"obsolete/non very effective\" attacks"
+	arr["spanish",54]="antiguos ataques \"obsoletos/no muy efectivos\""
+	arr["french",54]="anciennes attaques \"obsolètes/peu efficaces\""
+	arr["catalan",54]="antics atacs \"obsolets/no gaire efectius\""
+	arr["portuguese",54]="$pending_of_translation ataques antigos \"obsoleta/não muito eficaz\""
 
 	arr["english",55]="2.  Put interface in monitor mode"
 	arr["spanish",55]="2.  Poner la interfaz en modo monitor"
@@ -896,11 +896,11 @@ function language_strings() {
 	arr["catalan",123]="7.  Tornar al menú principal"
 	arr["portuguese",123]="$pending_of_translation 7.  Volte ao menu principal"
 
-	arr["english",124]="---------(monitor mode needed for capturing)---------"
-	arr["spanish",124]="---------(modo monitor requerido en captura)---------"
-	arr["french",124]="------(modo moniteur nécessaire pour la capture)------"
-	arr["catalan",124]="---------(mode monitor requerit en captura)----------"
-	arr["portuguese",124]="$pending_of_translation ---------(Modo de captura do monitor necessário)---------"
+	arr["english",124]="monitor mode needed for capturing"
+	arr["spanish",124]="modo monitor requerido en captura"
+	arr["french",124]="modo moniteur nécessaire pour la capture"
+	arr["catalan",124]="mode monitor requerit en captura"
+	arr["portuguese",124]="$pending_of_translation modo de captura do monitor necessário"
 
 	arr["english",125]="There is no valid target network selected. You'll be redirected to select one"
 	arr["spanish",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
@@ -1208,11 +1208,11 @@ function language_strings() {
 	arr["catalan",175]="2.  (aircrack + crunch) Atac de força bruta sobre fitxer de captura"
 	arr["portuguese",175]="$pending_of_translation 2.  (aircrack + crunch) Ataque de força bruta em arquivo de captura"
 
-	arr["english",176]="----------(aircrack CPU, non GPU attacks)------------"
-	arr["spanish",176]="-----------(ataques aircrack CPU, no GPU)------------"
-	arr["french",176]="-----------(attaques aircrack CPU, pas GPU)-----------"
-	arr["catalan",176]="------------(atacs aircrack CPU, no GPU)-------------"
-	arr["portuguese",176]="$pending_of_translation -----------(ataques aircrack CPU, não GPU)------------"
+	arr["english",176]="aircrack CPU, non GPU attacks"
+	arr["spanish",176]="ataques aircrack CPU, no GPU"
+	arr["french",176]="attaques aircrack CPU, pas GPU"
+	arr["catalan",176]="atacs aircrack CPU, no GPU"
+	arr["portuguese",176]="$pending_of_translation ataques aircrack CPU, não GPU"
 
 	arr["english",177]="Selected captured file: "${pink_color}"None"${normal_color}
 	arr["spanish",177]="Fichero capturado seleccionado: "${pink_color}"Ninguno"${normal_color}
@@ -1526,11 +1526,11 @@ function language_strings() {
 	arr["catalan",228]="                             Desenvolupat per $author"
 	arr["portuguese",228]="                             Programado por $author"
 
-	arr["english",229]="-----------(hashcat CPU, non GPU attacks)------------"
-	arr["spanish",229]="-------------(ataques hashcat CPU, no GPU)-----------"
-	arr["french",229]="-----------(attaques hashcat CPU, pas GPU)-----------"
-	arr["catalan",229]="-------------(atacs hashcat CPU, no GPU)-------------"
-	arr["portuguese",229]="$pending_of_translation ------------(ataques hashcat CPU, não GPU)-----------"
+	arr["english",229]="hashcat CPU, non GPU attacks"
+	arr["spanish",229]="ataques hashcat CPU, no GPU"
+	arr["french",229]="attaques hashcat CPU, pas GPU"
+	arr["catalan",229]="atacs hashcat CPU, no GPU"
+	arr["portuguese",229]="$pending_of_translation ataques hashcat CPU, não GPU"
 
 	arr["english",230]="3.  (hashcat) Dictionary attack against capture file"
 	arr["spanish",230]="3.  (hashcat) Ataque de diccionario sobre fichero de captura"
@@ -1762,8 +1762,8 @@ function language_strings() {
 		"pink")
 			echo_pink "${arr[$1,$2]}"
 		;;
-		"titlered")
-			generate_title "${arr[$1,$2]}" "red"
+		"title")
+			generate_dynamic_line "${arr[$1,$2]}" "title"
 		;;
 		"read")
 			interrupt_checkpoint ${2} ${3}
@@ -1774,6 +1774,9 @@ function language_strings() {
 		;;
 		"hint")
 			echo_brown "$hintvar "${pink_color}"${arr[$1,$2]}"
+		;;
+		"separator")
+			generate_dynamic_line "${arr[$1,$2]}" "separator"
 		;;
 		"under_construction")
 			echo_red_slim "${arr[$1,$2]} ${under_construction["$language"]}"
@@ -1830,11 +1833,18 @@ function special_text_missed_optional_tool() {
 	fi
 }
 
-function generate_title() {
+function generate_dynamic_line() {
 
-	ncharstitle=78
-	titlechar="*"
-	titletext=$1
+	local type=${2}
+	if [ "$type" = "title" ]; then
+		ncharstitle=78
+		titlechar="*"
+	elif [ "$type" = "separator" ]; then
+		ncharstitle=58
+		titlechar="-"
+	fi
+
+	titletext=${1}
 	titlelength=${#titletext}
 	finaltitle=""
 
@@ -1842,7 +1852,11 @@ function generate_title() {
 		finaltitle="$finaltitle$titlechar"
 	done
 
-	finaltitle="$finaltitle $titletext "
+	if [ "$type" = "title" ]; then
+		finaltitle="$finaltitle $titletext "
+	elif [ "$type" = "separator" ]; then
+		finaltitle="$finaltitle ($titletext) "
+	fi
 
 	for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
 		finaltitle="$finaltitle$titlechar"
@@ -1852,26 +1866,11 @@ function generate_title() {
 		finaltitle+="$titlechar"
 	fi
 
-	case "$2" in
-		"yellow")
-			echo_yellow "$finaltitle"
-		;;
-		"red")
-			echo_red "$finaltitle"
-		;;
-		"blue")
-			echo_blue "$finaltitle"
-		;;
-		"green")
-			echo_green "$finaltitle"
-		;;
-		"pink")
-			echo_pink "$finaltitle"
-		;;
-		*)
-			last_echo "$finaltitle"
-		;;
-	esac
+	if [ "$type" = "title" ]; then
+		echo_red "$finaltitle"
+	elif [ "$type" = "separator" ]; then
+		echo_blue "$finaltitle"
+	fi
 }
 
 function check_to_set_managed() {
@@ -2035,7 +2034,7 @@ function check_interface_mode() {
 function language_menu() {
 
 	clear
-	language_strings ${language} 87 "titlered"
+	language_strings ${language} 87 "title"
 	current_menu="language_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -2150,7 +2149,7 @@ function set_chipset() {
 function select_interface() {
 
 	clear
-	language_strings ${language} 88 "titlered"
+	language_strings ${language} 88 "title"
 	current_menu="select_interface_menu"
 	language_strings ${language} 24 "green"
 	print_simple_separator
@@ -2270,7 +2269,7 @@ function ask_essid() {
 function exec_mdk3deauth() {
 
 	echo
-	language_strings ${language} 89 "titlered"
+	language_strings ${language} 89 "title"
 	language_strings ${language} 32 "green"
 
 	tmpfiles_toclean=1
@@ -2286,7 +2285,7 @@ function exec_mdk3deauth() {
 function exec_aireplaydeauth() {
 
 	echo
-	language_strings ${language} 90 "titlered"
+	language_strings ${language} 90 "title"
 	language_strings ${language} 32 "green"
 
 	${airmon} start ${interface} ${channel} > /dev/null 2>&1
@@ -2300,7 +2299,7 @@ function exec_aireplaydeauth() {
 function exec_wdsconfusion() {
 
 	echo
-	language_strings ${language} 91 "titlered"
+	language_strings ${language} 91 "title"
 	language_strings ${language} 32 "green"
 
 	echo
@@ -2312,7 +2311,7 @@ function exec_wdsconfusion() {
 function exec_beaconflood() {
 
 	echo
-	language_strings ${language} 92 "titlered"
+	language_strings ${language} 92 "title"
 	language_strings ${language} 32 "green"
 
 	echo
@@ -2324,7 +2323,7 @@ function exec_beaconflood() {
 function exec_authdos() {
 
 	echo
-	language_strings ${language} 93 "titlered"
+	language_strings ${language} 93 "title"
 	language_strings ${language} 32 "green"
 
 	echo
@@ -2336,7 +2335,7 @@ function exec_authdos() {
 function exec_michaelshutdown() {
 
 	echo
-	language_strings ${language} 94 "titlered"
+	language_strings ${language} 94 "title"
 	language_strings ${language} 32 "green"
 
 	echo
@@ -2348,7 +2347,7 @@ function exec_michaelshutdown() {
 function mdk3_deauth_option() {
 
 	echo
-	language_strings ${language} 95 "titlered"
+	language_strings ${language} 95 "title"
 	language_strings ${language} 35 "green"
 
 	check_monitor_enabled
@@ -2367,7 +2366,7 @@ function mdk3_deauth_option() {
 function aireplay_deauth_option() {
 
 	echo
-	language_strings ${language} 96 "titlered"
+	language_strings ${language} 96 "title"
 	language_strings ${language} 36 "green"
 
 	check_monitor_enabled
@@ -2386,7 +2385,7 @@ function aireplay_deauth_option() {
 function wds_confusion_option() {
 
 	echo
-	language_strings ${language} 97 "titlered"
+	language_strings ${language} 97 "title"
 	language_strings ${language} 37 "green"
 
 	check_monitor_enabled
@@ -2405,7 +2404,7 @@ function wds_confusion_option() {
 function beacon_flood_option() {
 
 	echo
-	language_strings ${language} 98 "titlered"
+	language_strings ${language} 98 "title"
 	language_strings ${language} 38 "green"
 
 	check_monitor_enabled
@@ -2424,7 +2423,7 @@ function beacon_flood_option() {
 function auth_dos_option() {
 
 	echo
-	language_strings ${language} 99 "titlered"
+	language_strings ${language} 99 "title"
 	language_strings ${language} 39 "green"
 
 	check_monitor_enabled
@@ -2442,7 +2441,7 @@ function auth_dos_option() {
 function michael_shutdown_option() {
 
 	echo
-	language_strings ${language} 100 "titlered"
+	language_strings ${language} 100 "title"
 	language_strings ${language} 40 "green"
 
 	check_monitor_enabled
@@ -2655,7 +2654,7 @@ function print_hint() {
 function main_menu() {
 
 	clear
-	language_strings ${language} 101 "titlered"
+	language_strings ${language} 101 "title"
 	current_menu="main_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -2668,7 +2667,6 @@ function main_menu() {
 	language_strings ${language} 118
 	language_strings ${language} 119
 	language_strings ${language} 169
-	language_strings ${language} 252
 	print_simple_separator
 	language_strings ${language} 60
 	language_strings ${language} 78
@@ -2779,15 +2777,15 @@ function evil_twin_attacks_menu() {
 function decrypt_menu() {
 
 	clear
-	language_strings ${language} 170 "titlered"
+	language_strings ${language} 170 "title"
 	current_menu="decrypt_menu"
 	initialize_menu_and_print_selections
 	echo
 	language_strings ${language} 47 "green"
-	language_strings ${language} 176 "blue"
+	language_strings ${language} 176 "separator"
 	language_strings ${language} 172
 	language_strings ${language} 175 aircrack_attacks_dependencies[@]
-	language_strings ${language} 229 "blue"
+	language_strings ${language} 229 "separator"
 	language_strings ${language} 230 hashcat_attacks_dependencies[@]
 	language_strings ${language} 231 hashcat_attacks_dependencies[@]
 	language_strings ${language} 232 hashcat_attacks_dependencies[@]
@@ -3192,7 +3190,7 @@ function set_minlength_and_maxlength() {
 function set_charset() {
 
 	clear
-	language_strings ${language} 238 "titlered"
+	language_strings ${language} 238 "title"
 	language_strings ${language} 196 "green"
 	print_simple_separator
 	language_strings ${language} 197
@@ -3346,7 +3344,7 @@ function convert_cap_to_hashcat_format() {
 function handshake_tools_menu() {
 
 	clear
-	language_strings ${language} 120 "titlered"
+	language_strings ${language} 120 "title"
 	current_menu="handshake_tools_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -3356,7 +3354,7 @@ function handshake_tools_menu() {
 	language_strings ${language} 55
 	language_strings ${language} 56
 	language_strings ${language} 49
-	language_strings ${language} 124 "blue"
+	language_strings ${language} 124 "separator"
 	language_strings ${language} 121
 	print_simple_separator
 	language_strings ${language} 122 clean_handshake_dependencies[@]
@@ -3444,7 +3442,7 @@ function clean_handshake_file_option() {
 function dos_attacks_menu() {
 
 	clear
-	language_strings ${language} 102 "titlered"
+	language_strings ${language} 102 "title"
 	current_menu="dos_attacks_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -3454,11 +3452,11 @@ function dos_attacks_menu() {
 	language_strings ${language} 55
 	language_strings ${language} 56
 	language_strings ${language} 49
-	language_strings ${language} 50 "blue"
+	language_strings ${language} 50 "separator"
 	language_strings ${language} 51 mdk3_attack_dependencies[@]
 	language_strings ${language} 52 aireplay_attack_dependencies[@]
 	language_strings ${language} 53 mdk3_attack_dependencies[@]
-	language_strings ${language} 54 "blue"
+	language_strings ${language} 54 "separator"
 	language_strings ${language} 62 mdk3_attack_dependencies[@]
 	language_strings ${language} 63 mdk3_attack_dependencies[@]
 	language_strings ${language} 64 mdk3_attack_dependencies[@]
@@ -3713,7 +3711,7 @@ function attack_handshake_menu() {
 	fi
 
 	clear
-	language_strings ${language} 138 "titlered"
+	language_strings ${language} 138 "title"
 	current_menu="attack_handshake_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -3794,7 +3792,7 @@ function capture_handshake_window() {
 function explore_for_targets_option() {
 
 	echo
-	language_strings ${language} 103 "titlered"
+	language_strings ${language} 103 "title"
 	language_strings ${language} 65 "green"
 
 	check_monitor_enabled
@@ -3866,7 +3864,7 @@ function explore_for_targets_option() {
 function select_target() {
 
 	clear
-	language_strings ${language} 104 "titlered"
+	language_strings ${language} 104 "title"
 	language_strings ${language} 69 "green"
 	print_large_separator
 	i=0
@@ -3952,7 +3950,7 @@ function select_target() {
 function credits_option() {
 
 	clear
-	language_strings ${language} 105 "titlered"
+	language_strings ${language} 105 "title"
 	language_strings ${language} 74 "pink"
 	echo
 	language_strings ${language} 73 "blue"
@@ -4037,7 +4035,7 @@ function exit_script_option() {
 
 	action_on_exit_taken=0
 	echo
-	language_strings ${language} 106 "titlered"
+	language_strings ${language} 106 "title"
 	language_strings ${language} 11 "blue"
 
 	echo
@@ -4438,13 +4436,13 @@ function welcome() {
 	fi
 
 	if [ ${debug_mode} -eq 0 ]; then
-		language_strings ${language} 86 "titlered"
+		language_strings ${language} 86 "title"
 		language_strings ${language} 6 "blue"
 		echo
 		print_intro
 
 		clear
-		language_strings ${language} 86 "titlered"
+		language_strings ${language} 86 "title"
 		language_strings ${language} 7 "pink"
 		language_strings ${language} 114 "pink"
 
@@ -4594,6 +4592,9 @@ function check_pending_of_translation() {
 		return 1
 	elif [[ "$1" =~ ^(\*+)[[:space:]]$escaped_pending_of_translation[[:space:]]([^\*]+)(\*+)$ ]]; then
 		text=${2}"${BASH_REMATCH[1]}"${cyan_color}" $pending_of_translation "${2}"${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+		return 1
+	elif [[ "$1" =~ ^(\-+)[[:space:]]\($escaped_pending_of_translation[[:space:]]([^\-]+)(\-+)$ ]]; then
+		text=${2}"${BASH_REMATCH[1]} ("${cyan_color}"$pending_of_translation "${2}"${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	fi
 

@@ -59,7 +59,7 @@ Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
 
 Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
 *-Bash* <- They have no bash. It can be installed, this is not the real problem<br/>
-*-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it's not supported. It generates very different outputs<br/>
+*-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs<br/>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br/>
@@ -92,7 +92,7 @@ Debug mode was implemented for faster development skipping intro and initial che
 Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 <br/>
 *For beta testers:*<br/>
-You can download the master version or the beta testing version from the development branch called `dev`
+You can download the master version or the beta testing version from the development branch called `dev`<br/>
 
 #Changelog
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.<br/>
