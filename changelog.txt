@@ -1,3 +1,6 @@
+4.0
+New menu for Evil Twin attacks
+
 3.42
 Compatibility extended to Arch Linux
 Compatibility extended to Raspbian Linux for Raspberry Pi

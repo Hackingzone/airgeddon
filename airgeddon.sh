@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.42"
+airgeddon_version="4.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -97,6 +97,7 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
+declare evil_twin_hints=(254 258 264)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -141,6 +142,13 @@ function language_strings() {
 	optionaltool_needed["french"]="Option bloquée parce qu’il manque: "
 	optionaltool_needed["catalan"]="Opció bloquejada, necessita: "
 	optionaltool_needed["portuguese"]="Opção bloqueado requer :"
+
+	declare -A under_construction
+	under_construction["english"]="(under construction)"
+	under_construction["spanish"]="(en construcción)"
+	under_construction["french"]="(en construction)"
+	under_construction["catalan"]="(en construcció)"
+	under_construction["portuguese"]="(em construção)"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -504,16 +512,16 @@ function language_strings() {
 	arr["catalan",59]="11. Tornar al menú principal"
 	arr["portuguese",59]="$pending_of_translation 11. Volte ao menu principal"
 
-	arr["english",60]="7.  About & Credits"
-	arr["spanish",60]="7.  Acerca de & Créditos"
-	arr["french",60]="7.  A propos de & Crédits"
-	arr["catalan",60]="7.  Sobre & Crédits"
-	arr["portuguese",60]="$pending_of_translation 7.  Sobre & Créditos"
+	arr["english",60]="8.  About & Credits"
+	arr["spanish",60]="8.  Acerca de & Créditos"
+	arr["french",60]="8.  A propos de & Crédits"
+	arr["catalan",60]="8.  Sobre & Crédits"
+	arr["portuguese",60]="$pending_of_translation 8.  Sobre & Créditos"
 
-	arr["english",61]="9.  Exit script"
-	arr["spanish",61]="9.  Salir del script"
-	arr["french",61]="9.  Sortir du script"
-	arr["catalan",61]="9.  Sortir del script"
+	arr["english",61]="10. Exit script"
+	arr["spanish",61]="10. Salir del script"
+	arr["french",61]="10. Sortir du script"
+	arr["catalan",61]="10. Sortir del script"
 	arr["portuguese",61]="$pending_of_translation 9.  Saia do script"
 
 	arr["english",62]="8.  Beacon flood attack"
@@ -612,11 +620,11 @@ function language_strings() {
 	arr["catalan",77]="Interfície no vàlida"
 	arr["portuguese",77]="$pending_of_translation Interface inválida"
 
-	arr["english",78]="8.  Change language"
-	arr["spanish",78]="8.  Cambiar idioma"
-	arr["french",78]="8.  Changer de langue"
-	arr["catalan",78]="8.  Canviar l'idioma"
-	arr["portuguese",78]="$pending_of_translation 8.  Alterar idioma"
+	arr["english",78]="9.  Change language"
+	arr["spanish",78]="9.  Cambiar idioma"
+	arr["french",78]="9.  Changer de langue"
+	arr["catalan",78]="9.  Canviar l'idioma"
+	arr["portuguese",78]="$pending_of_translation 9.  Alterar idioma"
 
 	arr["english",79]="1.  English"
 	arr["spanish",79]="1.  Inglés"
@@ -1656,6 +1664,84 @@ function language_strings() {
 	arr["catalan",251]="$pending_of_translation Has triat el mateix idioma que estava seleccionat. No es realitzaran canvis"
 	arr["portuguese",251]="$pending_of_translation Você escolheu o mesmo idioma que foi selecionado. Nenhuma alteração será feita"
 
+	arr["english",252]="7.  Evil Twin attacks menu"
+	arr["spanish",252]="7.  Menú de ataques Evil Twin"
+	arr["french",252]="$pending_of_translation 7.  Menu des attaques Evil Twin"
+	arr["catalan",252]="$pending_of_translation 7.  Menú d'atacs Evil Twin"
+	arr["portuguese",252]="$pending_of_translation 7.  Ataques Evil Twin menu"
+
+	arr["english",253]="Evil Twin attacks menu"
+	arr["spanish",253]="Menú de ataques Evil Twin"
+	arr["french",253]="$pending_of_translation Menu des attaques Evil Twin"
+	arr["catalan",253]="$pending_of_translation Menú d'atacs Evil Twin"
+	arr["portuguese",253]="$pending_of_translation Ataques Evil Twin menu"
+
+	arr["english",254]="In order to use the Evil Twin attacks with sniffing, you must have another one interface in addition to the network interface will become the AP, which will provide internet access to other clients on the network"
+	arr["spanish",254]="Para utilizar los ataques de Evil Twin con sniffing, deberás tener además de la interfaz que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red"
+	arr["french",254]="$pending_of_translation Pour utiliser les attaques Evil Twin avec sniffing, vous devez avoir plus de l'interface qui deviendra l'AP, une autre interface de réseau avec accès à internet pour fournir ce service à d'autres clients du réseau"
+	arr["catalan",254]="$pending_of_translation Per utilitzar els atacs d'Evil Twin amb sniffing, hauràs de tenir a més de la interfície que es transformarà en el AP, un altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa"
+	arr["portuguese",254]="$pending_of_translation Para usar ataques Evil Twin com sniffing, você deve ter além da interface que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede"
+
+	arr["english",255]="------------(without sniffing, just AP)------------"
+	arr["spanish",255]="--------------(sin sniffing, solo AP)--------------"
+	arr["french",255]="$pending_of_translation --------------(sans sniffing, seul AP)--------------"
+	arr["catalan",255]="$pending_of_translation -------------(sense sniffing, només AP)-------------"
+	arr["portuguese",255]="$pending_of_translation --------------(sem sniffing, única AP)--------------"
+
+	arr["english",256]="5.  AP Evil Twin attack"
+	arr["spanish",256]="5.  Ataque Evil Twin AP"
+	arr["french",256]="$pending_of_translation 5.  Evil Twin Attaque AP"
+	arr["catalan",256]="$pending_of_translation 5.  Atac Evil Twin AP"
+	arr["portuguese",256]="$pending_of_translation 5.  Ataque Evil Twin AP"
+
+	arr["english",257]="------------------(with sniffing)------------------"
+	arr["spanish",257]="------------------(con sniffing)-------------------"
+	arr["french",257]="$pending_of_translation ------------------(avec sniffing)------------------"
+	arr["catalan",257]="$pending_of_translation ------------------(amb sniffing)-------------------"
+	arr["portuguese",257]="$pending_of_translation -------------------(com sniffing)------------------"
+
+	arr["english",258]="If you use the attack without sniffing, just AP, you'll can use any external to script sniffer software"
+	arr["spanish",258]="Si utilizas el ataque sin sniffing, solo AP, podrás usar cualquier programa sniffer externo al script"
+	arr["french",258]="$pending_of_translation Si vous utilisez l'attaque sans sniffing, seul AP, vous pouvez utiliser un programme sniffer externe pour le script"
+	arr["catalan",258]="$pending_of_translation Si utilitzes l'atac sense sniffing, només AP, podràs fer servir qualsevol programa sniffer extern a l'script"
+	arr["portuguese",258]="$pending_of_translation Se você usar o ataque sem sniffing, apenas a AP, você pode usar qualquer programa sniffer externo ao script"
+
+	arr["english",259]="6.  AP Evil Twin attack with sniffing"
+	arr["spanish",259]="6.  Ataque Evil Twin AP con sniffing"
+	arr["french",259]="$pending_of_translation 6.  Evil Twin Attaque AP avec sniffing"
+	arr["catalan",259]="$pending_of_translation 6.  Atac Evil Twin AP amb sniffing"
+	arr["portuguese",259]="$pending_of_translation 6.  Ataque Evil Twin AP com sniffing"
+
+	arr["english",260]="9.  Return to main menu"
+	arr["spanish",260]="9.  Volver al menú principal"
+	arr["french",260]="9.  Retourner au menu principal"
+	arr["catalan",260]="9.  Tornar al menú principal"
+	arr["portuguese",260]="$pending_of_translation 9.  Volte ao menu principal"
+
+	arr["english",261]="7.  AP Evil Twin attack with sniffing and sslstrip"
+	arr["spanish",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
+	arr["french",261]="$pending_of_translation 7.  Evil Twin Attaque AP avec sniffing et sslstrip"
+	arr["catalan",261]="$pending_of_translation 7.  Atac Evil Twin AP amb sniffing i sslstrip"
+	arr["portuguese",261]="$pending_of_translation 7.  Ataque Evil Twin AP com sniffing e sslstrip"
+
+	arr["english",262]="--------(without sniffing, captive portal)---------"
+	arr["spanish",262]="----------(sin sniffing, portal cautivo)-----------"
+	arr["french",262]="$pending_of_translation ----------(sans sniffing, portail captif)----------"
+	arr["catalan",262]="$pending_of_translation ---------(sense sniffing, portal captiu)-----------"
+	arr["portuguese",262]="$pending_of_translation ------------(sem sniffing, portal cativo)----------"
+
+	arr["english",263]="8.  AP Evil Twin attack with captive portal"
+	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo"
+	arr["french",263]="$pending_of_translation 8.  Evil Twin Attaque AP avec portail captif"
+	arr["catalan",263]="$pending_of_translation 8.  Atac Evil Twin AP amb portal captiu"
+	arr["portuguese",263]="$pending_of_translation 8.  Ataque Evil Twin AP com portal cativo"
+
+	arr["english",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
+	arr["spanish",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
+	arr["french",264]="$pending_of_translation Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
+	arr["catalan",264]="$pending_of_translation L'atac del portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
+	arr["portuguese",264]="$pending_of_translation O portal cativo ataque tenta fazer com que um dos clientes da rede nos fornecer a senha para a rede sem fio digitando-o em nosso site"
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -1688,6 +1774,9 @@ function language_strings() {
 		;;
 		"hint")
 			echo_brown "$hintvar "${pink_color}"${arr[$1,$2]}"
+		;;
+		"under_construction")
+			echo_red_slim "${arr[$1,$2]} ${under_construction["$language"]}"
 		;;
 		*)
 			if [ -z "$3" ]; then
@@ -2459,6 +2548,10 @@ function initialize_menu_and_print_selections() {
 		"language_menu")
 			print_iface_selected
 		;;
+		"evil_twin_attacks_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		*)
 			print_iface_selected
 			print_all_target_vars
@@ -2545,6 +2638,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-${hintlength} -n 1)
 			strtoprint=${hints[language_hints|$randomhint]}
 		;;
+		"evil_twin_attacks_menu")
+			store_array hints evil_twin_hints "${evil_twin_hints[@]}"
+			hintlength=${#evil_twin_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[evil_twin_hints|$randomhint]}
+		;;
 	esac
 
 	print_simple_separator
@@ -2568,6 +2668,7 @@ function main_menu() {
 	language_strings ${language} 118
 	language_strings ${language} 119
 	language_strings ${language} 169
+	language_strings ${language} 252
 	print_simple_separator
 	language_strings ${language} 60
 	language_strings ${language} 78
@@ -2595,12 +2696,15 @@ function main_menu() {
 			decrypt_menu
 		;;
 		7)
-			credits_option
+			evil_twin_attacks_menu
 		;;
 		8)
-			language_menu
+			credits_option
 		;;
 		9)
+			language_menu
+		;;
+		10)
 			exit_script_option
 		;;
 		*)
@@ -2609,6 +2713,67 @@ function main_menu() {
 	esac
 
 	main_menu
+}
+
+function evil_twin_attacks_menu() {
+
+	clear
+	language_strings ${language} 253 "titlered"
+	current_menu="evil_twin_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings ${language} 47 "green"
+	print_simple_separator
+	language_strings ${language} 48
+	language_strings ${language} 55
+	language_strings ${language} 56
+	language_strings ${language} 49
+	language_strings ${language} 255 "blue"
+	language_strings ${language} 256 "under_construction"
+	language_strings ${language} 257 "blue"
+	language_strings ${language} 259 "under_construction"
+	language_strings ${language} 261 "under_construction"
+	language_strings ${language} 262 "blue"
+	language_strings ${language} 263 "under_construction"
+	print_simple_separator
+	language_strings ${language} 260
+	print_hint ${current_menu}
+
+	read evilt_option
+	case ${evilt_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			explore_for_targets_option
+		;;
+		5)
+			#TODO: testing Evil Twin AP
+		;;
+		6)
+			#TODO: testing Evil Twin AP with sniffing
+		;;
+		7)
+			#TODO: testing Evil Twin AP with sniffing and sslstrip
+		;;
+		8)
+			#TODO: testing Evil Twin AP with captive portal
+		;;
+		9)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	evil_twin_attacks_menu
 }
 
 function decrypt_menu() {
@@ -4354,19 +4519,28 @@ function download_last_version() {
 	fi
 }
 
+function check_internet_access() {
+
+	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
+	if [ "$?" = "0" ]; then
+		return 0
+	fi
+	return 1
+}
+
 function autoupdate_check() {
 
 	echo
 	language_strings ${language} 210 "blue"
 	echo
-	hasinternet_access=0
+	hasinternet_access_for_update=0
 
-	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
+	check_internet_access ${host_to_check_internet}
 	if [ "$?" = "0" ]; then
-		hasinternet_access=1
+		hasinternet_access_for_update=1
 	fi
 
-	if [ ${hasinternet_access} -eq 1 ]; then
+	if [ ${hasinternet_access_for_update} -eq 1 ]; then
 
 		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2`
 

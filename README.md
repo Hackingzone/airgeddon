@@ -8,6 +8,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Assisted Handshake file capture.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
+- Evil Twin attacks based on different methods (only AP, with sniffing, sslstrip, captive portal).<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -49,11 +50,16 @@ Optional tools: <- *not necessary to work, only needed for some features*<br/>
 <br/>
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 `curl`<br/>
-<br/>
+
+#Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :)<br/>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br/>
 *-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br/>
+
+Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
+*-Bash* <- They have no bash. It can be installed, this is not the real problem<br/>
+*-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it's not supported. It generates very different outputs<br/>
 
 #Disclaimer
 This script must be used only for educational purposes and Pen testing.<br/>
