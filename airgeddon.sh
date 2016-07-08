@@ -49,6 +49,8 @@ optional_tools_names=(
 						"aireplay-ng"
 						"mdk3"
 						"hashcat"
+						"airbase-ng"
+						"dhcpd"
 					)
 declare -A optional_tools=(
 							[${optional_tools_names[0]}]=0
@@ -56,6 +58,8 @@ declare -A optional_tools=(
 							[${optional_tools_names[2]}]=0
 							[${optional_tools_names[3]}]=0
 							[${optional_tools_names[4]}]=0
+							[${optional_tools_names[5]}]=0
+							[${optional_tools_names[6]}]=0
 						)
 update_tools=("curl")
 
@@ -4202,7 +4206,7 @@ function check_if_kill_needed() {
 	fi
 }
 
-function detect_distro_main() {
+function general_checkings() {
 
 	compatible=0
 	distro="Unknown Linux"
@@ -4277,8 +4281,12 @@ function check_compatibility() {
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
-			echo -e ${red_color}" Error\r"${normal_color}
+			echo -ne ${red_color}" Error"${normal_color}
 			optional_toolsok=0
+			if [ ${i} = "${optional_tools_names[6]}" ]; then
+				echo -ne " (isc-dhcp-server)"
+			fi
+			echo -e "\r"
 		else
 			echo -e ${green_color}" Ok\r"${normal_color}
 			optional_tools[$i]=1
@@ -4458,7 +4466,7 @@ function welcome() {
 		print_known_distros
 		echo
 		language_strings ${language} 9 "blue"
-		detect_distro_main
+		general_checkings
 		language_strings ${language} 115 "read"
 
 		airmonzc_security_check
