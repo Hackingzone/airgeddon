@@ -148,11 +148,12 @@ function language_strings() {
 	optionaltool_needed["portuguese"]="Opção bloqueado requer :"
 
 	declare -A under_construction
-	under_construction["english"]="(under construction)"
-	under_construction["spanish"]="(en construcción)"
-	under_construction["french"]="(en construction)"
-	under_construction["catalan"]="(en construcció)"
-	under_construction["portuguese"]="(em construção)"
+	under_construction["english"]="under construction"
+	under_construction["spanish"]="en construcción"
+	under_construction["french"]="en construction"
+	under_construction["catalan"]="en construcció"
+	under_construction["portuguese"]="em construção"
+	under_constructionvar="${under_construction["$language"]}"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -1783,7 +1784,7 @@ function language_strings() {
 			generate_dynamic_line "${arr[$1,$2]}" "separator"
 		;;
 		"under_construction")
-			echo_red_slim "${arr[$1,$2]} ${under_construction["$language"]}"
+			echo_red_slim "${arr[$1,$2]} ($under_constructionvar)"
 		;;
 		*)
 			if [ -z "$3" ]; then
@@ -2523,6 +2524,7 @@ function initialize_menu_options_dependencies() {
 	aireplay_attack_dependencies=(${optional_tools_names[2]})
 	mdk3_attack_dependencies=(${optional_tools_names[3]})
 	hashcat_attacks_dependencies=(${optional_tools_names[4]})
+	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]})
 }
 
 function initialize_menu_and_print_selections() {
@@ -2671,6 +2673,7 @@ function main_menu() {
 	language_strings ${language} 118
 	language_strings ${language} 119
 	language_strings ${language} 169
+	language_strings ${language} 252
 	print_simple_separator
 	language_strings ${language} 60
 	language_strings ${language} 78
@@ -2720,7 +2723,7 @@ function main_menu() {
 function evil_twin_attacks_menu() {
 
 	clear
-	language_strings ${language} 253 "titlered"
+	language_strings ${language} 253 "title"
 	current_menu="evil_twin_attacks_menu"
 	initialize_menu_and_print_selections
 	echo
@@ -2730,19 +2733,19 @@ function evil_twin_attacks_menu() {
 	language_strings ${language} 55
 	language_strings ${language} 56
 	language_strings ${language} 49
-	language_strings ${language} 255 "blue"
-	language_strings ${language} 256 "under_construction"
-	language_strings ${language} 257 "blue"
+	language_strings ${language} 255 "separator"
+	language_strings ${language} 256 et_onlyap_dependencies[@]
+	language_strings ${language} 257 "separator"
 	language_strings ${language} 259 "under_construction"
 	language_strings ${language} 261 "under_construction"
-	language_strings ${language} 262 "blue"
+	language_strings ${language} 262 "separator"
 	language_strings ${language} 263 "under_construction"
 	print_simple_separator
 	language_strings ${language} 260
 	print_hint ${current_menu}
 
-	read evilt_option
-	case ${evilt_option} in
+	read et_option
+	case ${et_option} in
 		1)
 			select_interface
 		;;
@@ -2756,15 +2759,24 @@ function evil_twin_attacks_menu() {
 			explore_for_targets_option
 		;;
 		5)
-			#TODO: testing Evil Twin AP
+			contains_element "$et_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				#TODO: testing Evil Twin AP
+				echo
+			fi
 		;;
 		6)
+			under_construction_message
 			#TODO: testing Evil Twin AP with sniffing
 		;;
 		7)
+			under_construction_message
 			#TODO: testing Evil Twin AP with sniffing and sslstrip
 		;;
 		8)
+			under_construction_message
 			#TODO: testing Evil Twin AP with captive portal
 		;;
 		9)
@@ -4607,6 +4619,14 @@ function check_pending_of_translation() {
 	fi
 
 	return 0
+}
+
+function under_construction_message() {
+
+	local var_uc="${under_constructionvar^}"
+	echo
+	echo_yellow "$var_uc..."
+	language_strings ${language} 115 "read"
 }
 
 function last_echo() {
