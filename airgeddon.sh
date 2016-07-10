@@ -3,7 +3,7 @@
 airgeddon_version="4.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=0
+debug_mode=1
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -30,7 +30,7 @@ script_filename="airgeddon.sh"
 urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/$branch/$script_filename"
 host_to_check_internet="github.com"
-mail="v1s1t0r.1sh3r3@gmail.com"
+mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Tools vars
@@ -101,7 +101,8 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
-declare evil_twin_hints=(254 258 264)
+declare evil_twin_hints=(254 258 264 269 286)
+declare evil_twin_dos_hints=(267 268)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -1681,11 +1682,11 @@ function language_strings() {
 	arr["catalan",253]="$pending_of_translation Menú d'atacs Evil Twin"
 	arr["portuguese",253]="$pending_of_translation Ataques Evil Twin menu"
 
-	arr["english",254]="In order to use the Evil Twin attacks with sniffing, you must have another one interface in addition to the network interface will become the AP, which will provide internet access to other clients on the network"
-	arr["spanish",254]="Para utilizar los ataques de Evil Twin con sniffing, deberás tener además de la interfaz que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red"
-	arr["french",254]="$pending_of_translation Pour utiliser les attaques Evil Twin avec sniffing, vous devez avoir plus de l'interface qui deviendra l'AP, une autre interface de réseau avec accès à internet pour fournir ce service à d'autres clients du réseau"
-	arr["catalan",254]="$pending_of_translation Per utilitzar els atacs d'Evil Twin amb sniffing, hauràs de tenir a més de la interfície que es transformarà en el AP, un altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa"
-	arr["portuguese",254]="$pending_of_translation Para usar ataques Evil Twin com sniffing, você deve ter além da interface que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede"
+	arr["english",254]="In order to use the Evil Twin just AP and sniffing attacks, you must have another one interface in addition to the wifi network interface will become the AP, which will provide internet access to other clients on the network. This doesn't need to be wifi, can be ethernet"
+	arr["spanish",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
+	arr["french",254]="$pending_of_translation Pour utiliser Evil Twin attaques seulement AP et sniffing, vous devez avoir plus de l'interface wifi qui deviendra l'AP, une autre interface de réseau avec accès à internet pour fournir ce service à d'autres clients du réseau. Cela n'a pas besoin d'être wifi, peut être ethernet"
+	arr["catalan",254]="$pending_of_translation Per utilitzar els atacs d'Evil Twin de sol AP i amb sniffing, hauràs de tenir a més de la interfície wifi que es transformarà en el AP, un altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa. Aquesta no cal que sigui wifi, pot ser ethernet"
+	arr["portuguese",254]="$pending_of_translation Para usar ataques Evil Twin única AP e sniffing, você deve ter além da interface wifi que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Isso não precisa ser wifi, pode ser ethernet"
 
 	arr["english",255]="without sniffing, just AP"
 	arr["spanish",255]="sin sniffing, solo AP"
@@ -1693,11 +1694,11 @@ function language_strings() {
 	arr["catalan",255]="$pending_of_translation sense sniffing, només AP"
 	arr["portuguese",255]="$pending_of_translation sem sniffing, única AP"
 
-	arr["english",256]="5.  AP Evil Twin attack"
-	arr["spanish",256]="5.  Ataque Evil Twin AP"
-	arr["french",256]="$pending_of_translation 5.  Evil Twin Attaque AP"
-	arr["catalan",256]="$pending_of_translation 5.  Atac Evil Twin AP"
-	arr["portuguese",256]="$pending_of_translation 5.  Ataque Evil Twin AP"
+	arr["english",256]="5.  Evil Twin attack just AP"
+	arr["spanish",256]="5.  Ataque Evil Twin solo AP"
+	arr["french",256]="$pending_of_translation 5.  Evil Twin Attaque seulement AP"
+	arr["catalan",256]="$pending_of_translation 5.  Atac Evil Twin només AP"
+	arr["portuguese",256]="$pending_of_translation 5.  Ataque Evil Twin só AP"
 
 	arr["english",257]="with sniffing"
 	arr["spanish",257]="con sniffing"
@@ -1746,6 +1747,156 @@ function language_strings() {
 	arr["french",264]="$pending_of_translation Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
 	arr["catalan",264]="$pending_of_translation L'atac del portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
 	arr["portuguese",264]="$pending_of_translation O portal cativo ataque tenta fazer com que um dos clientes da rede nos fornecer a senha para a rede sem fio digitando-o em nosso site"
+
+	arr["english",265]="Attack for Evil Twin"
+	arr["spanish",265]="Ataque para Evil Twin"
+	arr["french",265]="$pending_of_translation Attaque pour Evil Twin"
+	arr["catalan",265]="$pending_of_translation Atac per Evil Twin"
+	arr["portuguese",265]="$pending_of_translation Ataque de Evil Twin"
+
+	arr["english",266]="4.  Return to Evil Twin attacks menu"
+	arr["spanish",266]="4.  Volver al menú de ataques Evil Twin"
+	arr["french",266]="$pending_of_translation 4.  Retour au menu attaques Evil Twin"
+	arr["catalan",266]="$pending_of_translation 4.  Tornar al menú d'atacs Evil Twin"
+	arr["portuguese",266]="$pending_of_translation 4.  Voltar ao menu ataques Evil Twin"
+
+	arr["english",267]="If you can't deauth clients from an AP using an attack, choose another one :)"
+	arr["spanish",267]="Si no consigues desautenticar a los clientes de un AP con un ataque, elige otro :)"
+	arr["french",267]="$pending_of_translation Si vous ne pouvez pas dé-authentification des clients d'un AP avec une attaque, choisir un autre :)"
+	arr["catalan",267]="$pending_of_translation Si no aconsegueixes desautenticar als clients d'un AP amb un atac, tria un altre :)"
+	arr["portuguese",267]="$pending_of_translation Se você não pode clientes de-autenticar um AP com um ataque, escolha outro :)"
+
+	arr["english",268]="With this attack, we'll try to deauth clients from the legitimate AP. Hopefully they'll reconnect to our Evil Twin AP"
+	arr["spanish",268]="Con este ataque, intentaremos desautenticar a los clientes del AP legítimo. Con suerte reconectarán pero a nuestro Evil Twin AP"
+	arr["french",268]="$pending_of_translation Avec cette attaque, nous essayons clients dés-authentification de l'AP légitime. Espérons qu'ils se reconnectent mais notre Evil Twin AP"
+	arr["catalan",268]="$pending_of_translation Amb aquest atac, intentarem desautenticar als clients del AP legítim. Amb sort reconectarán però al nostre Evil Twin AP"
+	arr["portuguese",268]="$pending_of_translation Com este ataque, tentamos clientes de autenticação de legítima do AP. Esperemos que eles se reconectar mas o nosso Evil Twin AP"
+
+	arr["english",269]="To perform an Evil Twin attack you'll need to be very close to the target AP or have a very powerful wifi antenna. Your signal must reach clients equally strong or more than the legitimate AP"
+	arr["spanish",269]="Para realizar un ataque Evil Twin necesitarás estar muy cerca del AP objetivo o tener una antena wifi muy potente. Tu señal ha de llegar a los clientes igual de fuerte o más que la del AP legítimo"
+	arr["french",269]="$pending_of_translation Pour faire une attaque Evil Twin besoin d'être proche de l'AP cible ou avoir une antenne wifi très puissant. Votre signal doit atteindre des clients tout aussi fort ou plus que l'AP légitime"
+	arr["catalan",269]="$pending_of_translation Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
+	arr["portuguese",269]="$pending_of_translation Para fazer um ataque Evil Twin precisa estar perto da AP-alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o legítimo AP"
+
+	arr["english",270]="AP Evil Twin attack"
+	arr["spanish",270]="Ataque Evil Twin AP"
+	arr["french",270]="$pending_of_translation Evil Twin Attaque AP"
+	arr["catalan",270]="$pending_of_translation Atac Evil Twin AP"
+	arr["portuguese",270]="$pending_of_translation Ataque Evil Twin AP"
+
+	arr["english",271]="Selected BSSID: "${pink_color}"None"${normal_color}
+	arr["spanish",271]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",271]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",271]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",271]="$pending_of_translation BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",272]="Deauthentication chosen method: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["spanish",272]="Método elegido de desautenticación: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["french",272]="$pending_of_translation Dés-authentification a été choisie: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["catalan",272]="$pending_of_translation Mètode elegit d'desautenticació: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["portuguese",272]="$pending_of_translation Método escolhido deauth: "${pink_color}"$et_dos_attack"${normal_color}
+
+	arr["english",273]="Selected channel: "${pink_color}"None"${normal_color}
+	arr["spanish",273]="Canal seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",273]="Canal sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",273]="Canal seleecionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",273]="$pending_of_translation Canal selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",274]="Selected ESSID: "${pink_color}"None"${normal_color}
+	arr["spanish",274]="ESSID seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",274]="ESSID sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",274]="ESSID seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",274]="$pending_of_translation ESSID selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",275]="In addition to the software requirements that already meet if you get here, you need to provide target AP data to carry out the attack"
+	arr["spanish",275]="Además de los requisitos de software, que ya cumples si has llegado hasta aquí, es necesario proporcionar los datos del AP objetivo para llevar a cabo el ataque"
+	arr["french",275]="$pending_of_translation En plus des exigences software qui répondent déjà si vous arrivez ici, vous devez fournir des données objectives AP pour mener à bien l'attaque"
+	arr["catalan",275]="$pending_of_translation A més dels requisits de software, que ja compleixes si has arribat fins aquí, cal proporcionar les dades de l'AP objectiu per dur a terme l'atac"
+	arr["portuguese",275]="$pending_of_translation Além dos requisitos de software que já se encontram, se você chegar aqui, você precisa fornecer dados objetivos AP para realizar o ataque"
+
+	arr["english",276]="On top of this screen you can see all that is needed to perform the attack. If any of the parameters has no value, you can enter it manually, or you can go back to select a target and then return here"
+	arr["spanish",276]="En la parte superior de esta pantalla puedes ver todo lo que hace falta para realizar el ataque. Si alguno de los parámetros no tiene valor, puedes introducirlo manualmente, o puedes retroceder para seleccionar un objetivo y regresar aquí"
+	arr["french",276]="$pending_of_translation En plus de cet écran, vous pouvez voir tout ce qui est nécessaire pour effectuer l'attaque. Si l'un des paramètres n'a pas de valeur, vous pouvez l'entrer manuellement, ou vous pouvez revenir en arrière pour sélectionner une cible et revenir ici"
+	arr["catalan",276]="$pending_of_translation A la part superior d'aquesta pantalla pots veure tot el que cal per realitzar l'atac. Si algun dels paràmetres no té valor, pots introduir-lo manualment, o pots retrocedir per a seleccionar un objectiu i tornar aquí"
+	arr["portuguese",276]="$pending_of_translation No topo da tela você pode ver tudo o que é necessário para realizar o ataque. Se qualquer um dos parâmetros não tem nenhum valor, pode introduzi-lo manualmente, ou você pode voltar para selecionar um alvo e voltar aqui"
+
+	arr["english",277]="Do you want to continue? "${normal_color}"[y/n]"
+	arr["spanish",277]="¿Deseas continuar? "${normal_color}"[y/n]"
+	arr["french",277]="$pending_of_translation Vous voulez continuer? "${normal_color}"[y/n]"
+	arr["catalan",277]="$pending_of_translation ¿Vols continuar? "${normal_color}"[y/n]"
+	arr["portuguese",277]="$pending_of_translation Você deseja continuar? "${normal_color}"[y/n]"
+
+	arr["english",278]="Deauthentication chosen method: "${pink_color}"None"${normal_color}
+	arr["spanish",278]="Método elegido de desautenticación: "${pink_color}"Ninguno"${normal_color}
+	arr["french",278]="$pending_of_translation Dés-authentification a été choisie: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",278]="$pending_of_translation Mètode elegit d'desautenticació: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",278]="$pending_of_translation Método escolhido deauth: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",279]="Select another interface with internet access :"
+	arr["spanish",279]="Selecciona otra interfaz que tenga acceso a internet :"
+	arr["french",279]="$pending_of_translation Choisir une autre interface qui a accès à internet :"
+	arr["catalan",279]="$pending_of_translation Selecciona una altra interfície que tingui accés a internet :"
+	arr["portuguese",279]="$pending_of_translation Selecione outra interface que tem acesso à internet :"
+
+	arr["english",280]="On this screen, it's supposed an additional interface to provide internet access is chosen, but you don't have anyone at this moment"
+	arr["spanish",280]="En esta pantalla, se supone que deberías elegir otro interfaz adicional para proporcionar acceso a internet, pero no dispones de ninguno en este momento"
+	arr["french",280]="$pending_of_translation Sur cet écran, vous êtes censé choisir une interface supplémentaire pour fournir un accès à internet, mais ne pas en avoir un à ce moment"
+	arr["catalan",280]="$pending_of_translation En aquesta pantalla, se suposa que hauries de triar un altre interfície addicional per a proporcionar accés a internet, però no disposes de cap en aquest moment"
+	arr["portuguese",280]="$pending_of_translation Nesta tela, você deveria escolher uma interface adicional para fornecer acesso à internet, mas não têm um neste momento"
+
+	arr["english",281]="The interface $interface you have already selected is not a wifi card. This attack needs a wifi card selected"
+	arr["spanish",281]="El interfaz $interface que tienes seleccionado no es una tarjeta wifi. Este ataque necesita que la interfaz seleccionada sea wifi"
+	arr["french",281]="$pending_of_translation L'interface $interface que vous avez sélectionné n'est pas une carte wifi. Cette attaque exige que l'interface sélectionnée est wifi"
+	arr["catalan",281]="$pending_of_translation La interfície $interface que tens seleccionat no és una targeta wifi. Aquest atac necessita que la interfície seleccionada sigui wifi"
+	arr["portuguese",281]="$pending_of_translation A interface $interface que você selecionou não é um cartão de wifi. Este ataque requer que a interface selecionada é wifi"
+
+	arr["english",282]="Selected internet interface: "${pink_color}"$internet_interface"${normal_color}
+	arr["spanish",282]="Interfaz con internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
+	arr["french",282]="$pending_of_translation Interface internet sélectionnée: "${pink_color}"$internet_interface"${normal_color}
+	arr["catalan",282]="$pending_of_translation Interfície amb internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
+	arr["portuguese",282]="$pending_of_translation Interface da internet selecionado: "${pink_color}"$internet_interface"${normal_color}
+
+	arr["english",283]="Selected internet interface: "${pink_color}"None"${normal_color}
+	arr["spanish",283]="Interfaz con internet seleccionada: "${pink_color}"Ninguna"${normal_color}
+	arr["french",283]="$pending_of_translation Interface internet sélectionnée: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",283]="$pending_of_translation Interfície amb internet seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",283]="$pending_of_translation Interface da internet selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",284]="Do you want to use this selected interface? "${normal_color}"[y/n]"
+	arr["spanish",284]="¿Quieres utilizar esta interfaz ya seleccionada? "${normal_color}"[y/n]"
+	arr["french",284]="$pending_of_translation Vous souhaitez utiliser est déjà interface sélectionnée? "${normal_color}"[y/n]"
+	arr["catalan",284]="$pending_of_translation ¿Vols fer servir aquesta interfície ja seleccionat? "${normal_color}"[y/n]"
+	arr["portuguese",284]="$pending_of_translation Você quer usar já estiver selecionada interface? "${normal_color}"[y/n]"
+
+	arr["english",285]="Selected interface with internet access detected during this session ["${normal_color}"$internet_interface"${blue_color}"]"
+	arr["spanish",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión ["${normal_color}"$internet_interface"${blue_color}"]"
+	arr["french",285]="$pending_of_translation Il a été constaté que possède déjà une interface avec un accès Internet sélectionné dans cette session ["${normal_color}"$internet_inferface"${blue_color}"]"
+	arr["catalan",285]="$pending_of_translation S'ha detectat que ja té una interfície amb accés a internet seleccionat en aquesta sessió ["${normal_color}"$internet_inferface"${blue_color}"]"
+	arr["portuguese",285]="$pending_of_translation Verificou-se já que tem uma interface com acesso à internet seleccionado nesta sessão ["${normal_color}"$internet_inferface"${blue_color}"]"
+
+	arr["english",286]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack"
+	arr["spanish",286]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo"
+	arr["french",286]="$pending_of_translation La seule attaque Evil Twin dans lequel il est pas nécessaire d'avoir une interface supplémentaire avec accès à internet est le portail captif"
+	arr["catalan",286]="$pending_of_translation L'únic atac d'Evil Twin en què no cal tenir una interfície addicional amb accés a internet és el del portal captiu"
+	arr["portuguese",286]="$pending_of_translation O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo"
+
+	arr["english",287]="The script will check for internet access. Please be patient..."
+	arr["spanish",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
+	arr["french",287]="Le script va vérifier que vous aillez accès à internet. Soyez patients s'il vous plaît..."
+	arr["catalan",287]="El script va a comprovar si tens accés a internet. Si us plau té paciència..."
+	arr["portuguese",287]="$pending_of_translation O script irá verificar se você tem acesso à internet. Por favor, seja paciente..."
+
+	arr["english",288]="It seems you have no internet access. This attack needs an interface with internet access"
+	arr["spanish",288]="Parece que no tienes conexión a internet. Este ataque necesita una interfaz con acceso a internet"
+	arr["french",288]="$pending_of_translation Il semble que vous ne pouvez pas vous connecter à internet. Cette attaque a besoin d'une interface avec un accès internet"
+	arr["catalan",288]="$pending_of_translation Sembla que no tens connexió a internet. Aquest atac necessita una interfície amb accés a internet"
+	arr["portuguese",288]="$pending_of_translation Parece que você não tem acesso à internet. Este ataque precisa de uma interface com acesso à internet"
+
+	arr["english",289]="It has been verified successfully you have internet access on selected interface. Script can continue..."
+	arr["spanish",289]="Se ha verificado correctamente que tienes acceso a internet en la interfaz seleccionada. El script puede continuar..."
+	arr["french",289]="$pending_of_translation Il a été vérifié avec succès que vous avez accès à internet sur l'interface sélectionnée. Le script peut continuer..."
+	arr["catalan",289]="$pending_of_translation S'ha verificat correctament que tens accés a internet a la interfície seleccionada. El script pot continuar..."
+	arr["portuguese",289]="$pending_of_translation Verificou-se com sucesso que você tem acesso à internet na interface selecionada. O script pode continuar..."
 
 	case "$3" in
 		"yellow")
@@ -1931,6 +2082,24 @@ function check_monitor_enabled() {
 	return 0
 }
 
+function check_interface_wifi() {
+
+	execute_iwconfig_fix
+	if [[ "$?" != "0" ]]; then
+		return 1
+	fi
+	return 0
+}
+
+function execute_iwconfig_fix() {
+
+	iwconfig_fix
+	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
+	eval ${iwcmd}
+
+	return $?
+}
+
 function disable_rfkill() {
 
 	if hash rfkill 2> /dev/null; then
@@ -2008,9 +2177,7 @@ function monitor_option() {
 
 function check_interface_mode() {
 
-	iwconfig_fix
-	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
-	eval ${iwcmd}
+	execute_iwconfig_fix
 	if [[ "$?" != "0" ]]; then
 		ifacemode="(Non wifi card)"
 		return 0
@@ -2148,6 +2315,79 @@ function set_chipset() {
 	elif [[ -f /sys/class/net/${1}/device/idVendor && -f /sys/class/net/${1}/device/idProduct ]]; then
 		vendor_and_device=$(cat /sys/class/net/${1}/device/idVendor):$(cat /sys/class/net/${1}/device/idProduct)
 		chipset=$(lsusb | grep -i "$vendor_and_device" | head -n1 - | cut -f3- -d ":" | sed "$sedruleall")
+	fi
+}
+
+function select_internet_interface() {
+
+	if [ ${return_to_et_main_menu} -eq 1 ]; then
+		return
+	fi
+
+	current_menu="evil_twin_attacks_menu"
+	clear
+	case ${et_mode} in
+		"et_onlyap")
+			language_strings ${language} 265 "title"
+		;;
+		"et_sniffing")
+			#TODO: testing Evil Twin AP with sniffing
+		;;
+		"et_sniffing_sslstrip")
+			#TODO: testing Evil Twin AP with sniffing and sslstrip
+		;;
+	esac
+
+	inet_ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v`
+
+	option_counter=0
+	for item in ${inet_ifaces}; do
+
+		if [ ${option_counter} -eq 0 ]; then
+			language_strings ${language} 279 "green"
+			print_simple_separator
+		fi
+
+		option_counter=$[option_counter + 1]
+		if [ ${#option_counter} -eq 1 ]; then
+			spaceiface="  "
+		else
+			spaceiface=" "
+		fi
+		set_chipset ${item}
+		echo -ne "$option_counter.$spaceiface$item "
+		if [ "$chipset" = "" ]; then
+			language_strings ${language} 245 "blue"
+		else
+			echo -e ${blue_color}"// "${yellow_color}"Chipset:"${normal_color}" $chipset"
+		fi
+	done
+
+	if [ ${option_counter} -eq 0 ]; then
+		return_to_et_main_menu=1
+		echo
+		language_strings ${language} 280 "yellow"
+		language_strings ${language} 115 "read"
+		return
+	fi
+
+	print_hint ${current_menu}
+
+	read inet_iface
+	if [ -z ${inet_iface} ]; then
+		invalid_internet_iface_selected
+		else if [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
+			invalid_internet_iface_selected
+		else
+			option_counter2=0
+			for item2 in ${inet_ifaces}; do
+				option_counter2=$[option_counter2 + 1]
+				if [[ "$inet_iface" = "$option_counter2" ]]; then
+					internet_interface=${item2}
+					break;
+				fi
+			done
+		fi
 	fi
 }
 
@@ -2474,6 +2714,17 @@ function print_iface_selected() {
 	fi
 }
 
+function print_iface_internet_selected() {
+
+	if [ "$et_mode" != "et_captive_portal" ]; then
+		if [ -z "$internet_interface" ]; then
+			language_strings ${language} 283 "blue"
+		else
+			language_strings ${language} 282 "blue"
+		fi
+	fi
+}
+
 function print_all_target_vars() {
 
 	if [ -n "$bssid" ]; then
@@ -2492,6 +2743,57 @@ function print_all_target_vars() {
 			language_strings ${language} 135 "blue"
 		fi
 	fi
+}
+
+function print_all_target_vars_et() {
+
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 271 "blue"
+	fi
+
+	if [ -n "$channel" ]; then
+		language_strings ${language} 44 "blue"
+	else
+		language_strings ${language} 273 "blue"
+	fi
+
+	if [ -n "$essid" ]; then
+		language_strings ${language} 46 "blue"
+	else
+		language_strings ${language} 274 "blue"
+	fi
+}
+
+function print_et_target_vars() {
+
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 271 "blue"
+	fi
+
+	if [ -n "$channel" ]; then
+		language_strings ${language} 44 "blue"
+	else
+		language_strings ${language} 273 "blue"
+	fi
+
+	if [ -n "$essid" ]; then
+		language_strings ${language} 46 "blue"
+	else
+		language_strings ${language} 274 "blue"
+	fi
+
+	if [ "$current_menu" != "et_dos_menu" ]; then
+		if [ -n "$et_dos_attack" ]; then
+			language_strings ${language} 272 "blue"
+		else
+			language_strings ${language} 278 "blue"
+		fi
+	fi
+
 }
 
 function print_decrypt_vars() {
@@ -2554,8 +2856,16 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 		;;
 		"evil_twin_attacks_menu")
+			return_to_et_main_menu=0
+			et_mode=""
 			print_iface_selected
-			print_all_target_vars
+			print_all_target_vars_et
+			print_iface_internet_selected
+		;;
+		"et_dos_menu")
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
 		;;
 		*)
 			print_iface_selected
@@ -2649,6 +2959,13 @@ function print_hint() {
 			((hintlength--))
 			randomhint=$(shuf -i 0-${hintlength} -n 1)
 			strtoprint=${hints[evil_twin_hints|$randomhint]}
+		;;
+		"et_dos_menu")
+			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
+			hintlength=${#evil_twin_dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[evil_twin_dos_hints|$randomhint]}
 		;;
 	esac
 
@@ -2763,21 +3080,34 @@ function evil_twin_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				#TODO: testing Evil Twin AP
-				echo
+				check_interface_wifi
+				if [ "$?" = "0" ]; then
+					et_mode="et_onlyap"
+					et_dos_menu
+				else
+					echo
+					language_strings ${language} 281 "yellow"
+					language_strings ${language} 115 "read"
+				fi
 			fi
 		;;
 		6)
 			under_construction_message
-			#TODO: testing Evil Twin AP with sniffing
+			#TODO: Evil Twin AP with sniffing
+			#et_mode="et_sniffing"
+			#et_dos_menu
 		;;
 		7)
 			under_construction_message
-			#TODO: testing Evil Twin AP with sniffing and sslstrip
+			#TODO: Evil Twin AP with sniffing and sslstrip
+			#et_mode="et_sniffing_sslstrip"
+			#et_dos_menu
 		;;
 		8)
 			under_construction_message
-			#TODO: testing Evil Twin AP with captive portal
+			#TODO: Evil Twin AP with captive portal
+			#et_mode="et_captive_portal"
+			#et_dos_menu
 		;;
 		9)
 			return
@@ -3347,6 +3677,12 @@ function exec_hashcat_rulebased_attack() {
 	convert_cap_to_hashcat_format
 	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "$dictionary" -r "$rules" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
 	language_strings ${language} 115 "read"
+}
+
+function exec_et_onlyap_attack() {
+
+	echo
+	#TODO exec Evil Twin only ap attack
 }
 
 function convert_cap_to_hashcat_format() {
@@ -3963,6 +4299,134 @@ function select_target() {
 	enc=${encs[$selected_target_network]}
 }
 
+function et_prerequisites() {
+
+	current_menu="evil_twin_attacks_menu"
+
+	case ${et_mode} in
+		"et_onlyap")
+			clear
+			language_strings ${language} 270 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
+			echo
+			language_strings ${language} 275 "blue"
+			echo
+			language_strings ${language} 276 "yellow"
+			print_simple_separator
+			ask_yesno 277
+			if [ ${yesno} = "n" ]; then
+				return_to_et_main_menu=1
+				return
+			fi
+			exec_et_onlyap_attack
+		;;
+		"et_sniffing")
+			#TODO: Evil Twin AP with sniffing
+		;;
+		"et_sniffing_sslstrip")
+			#TODO: Evil Twin AP with sniffing and sslstrip
+		;;
+		"et_captive_portal")
+			#TODO: Evil Twin AP with captive portal
+		;;
+	esac
+}
+
+function et_dos_menu() {
+
+	if [ ${return_to_et_main_menu} -eq 1 ]; then
+		return
+	fi
+
+	clear
+	language_strings ${language} 265 "title"
+	current_menu="et_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings ${language} 47 "green"
+	print_simple_separator
+	language_strings ${language} 139 mdk3_attack_dependencies[@]
+	language_strings ${language} 140 aireplay_attack_dependencies[@]
+	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	print_simple_separator
+	language_strings ${language} 266
+	print_hint ${current_menu}
+
+	read et_dos_option
+	case ${et_dos_option} in
+		1)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Mdk3"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		2)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Aireplay"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		3)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Wds Confusion"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		4)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	et_dos_menu
+}
+
+function detect_internet_interface() {
+
+	if [ -n "$internet_interface" ]; then
+		echo
+		language_strings ${language} 285 "blue"
+		ask_yesno 284
+		if [ ${yesno} = "n" ]; then
+			select_internet_interface
+		fi
+	else
+		select_internet_interface
+	fi
+
+	validate_et_internet_interface
+	return $?
+}
+
 function credits_option() {
 
 	clear
@@ -4021,6 +4485,16 @@ function invalid_iface_selected() {
 	language_strings ${language} 115 "read"
 	echo
 	select_interface
+}
+
+function invalid_internet_iface_selected() {
+
+	echo
+	language_strings ${language} 77 "yellow"
+	echo
+	language_strings ${language} 115 "read"
+	echo
+	select_internet_interface
 }
 
 function capture_traps() {
@@ -4535,6 +5009,25 @@ function download_last_version() {
 	else
 		language_strings ${language} 5 "yellow"
 	fi
+}
+
+function validate_et_internet_interface() {
+
+	echo
+	language_strings ${language} 287 "blue"
+	check_internet_access ${host_to_check_internet}
+
+	if [ "$?" != "0" ]; then
+		echo
+		language_strings ${language} 288 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	echo
+	language_strings ${language} 289 "yellow"
+	language_strings ${language} 115 "read"
+	return 0
 }
 
 function check_internet_access() {

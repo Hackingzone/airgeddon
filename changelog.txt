@@ -1,6 +1,7 @@
 4.0
-New menu for Evil Twin attacks
+Evil Twin menu with attacks based on different methods (only AP, with sniffing, sslstrip, captive portal)
 Created under construction message for non finished menu options
+README.md beautified
 
 3.43
 Function created to generate dynamic separators on menus

@@ -43,13 +43,32 @@ Repositories versions will have auto-update feature disabled in order to avoid b
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
 <br/>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*<br/>
-`iwconfig iw awk airmon-ng airodump-ng aircrack-ng xterm`<br/>
-<br/>
+```
+iwconfig
+iw
+awk
+airmon-ng
+airodump-ng
+aircrack-ng
+xterm
+```
+<br/><br/>
 Optional tools: <- *not necessary to work, only needed for some features*<br/>
-`wpaclean crunch aireplay-ng mdk3 hashcat`<br/>
-<br/>
+```
+wpaclean
+crunch
+aireplay-ng
+mdk3
+hashcat
+airbase-ng
+dhcpd (isc-dhcp-server)
+```
+<br/><br/>
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
-`curl`<br/>
+```
+curl
+```
+<br/>
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
