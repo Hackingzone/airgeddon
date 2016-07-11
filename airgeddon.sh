@@ -1712,7 +1712,7 @@ function language_strings() {
 	arr["catalan",258]="$pending_of_translation Si utilitzes l'atac sense sniffing, només AP, podràs fer servir qualsevol programa sniffer extern a l'script"
 	arr["portuguese",258]="$pending_of_translation Se você usar o ataque sem sniffing, apenas a AP, você pode usar qualquer programa sniffer externo ao script"
 
-	arr["english",259]="6.  AP Evil Twin attack with sniffing"
+	arr["english",259]="6.  Evil Twin AP attack with sniffing"
 	arr["spanish",259]="6.  Ataque Evil Twin AP con sniffing"
 	arr["french",259]="$pending_of_translation 6.  Evil Twin Attaque AP avec sniffing"
 	arr["catalan",259]="$pending_of_translation 6.  Atac Evil Twin AP amb sniffing"
@@ -1724,7 +1724,7 @@ function language_strings() {
 	arr["catalan",260]="9.  Tornar al menú principal"
 	arr["portuguese",260]="$pending_of_translation 9.  Volte ao menu principal"
 
-	arr["english",261]="7.  AP Evil Twin attack with sniffing and sslstrip"
+	arr["english",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
 	arr["spanish",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
 	arr["french",261]="$pending_of_translation 7.  Evil Twin Attaque AP avec sniffing et sslstrip"
 	arr["catalan",261]="$pending_of_translation 7.  Atac Evil Twin AP amb sniffing i sslstrip"
@@ -1736,7 +1736,7 @@ function language_strings() {
 	arr["catalan",262]="$pending_of_translation sense sniffing, portal captiu"
 	arr["portuguese",262]="$pending_of_translation sem sniffing, portal cativo"
 
-	arr["english",263]="8.  AP Evil Twin attack with captive portal"
+	arr["english",263]="8.  Evil Twin AP attack with captive portal"
 	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo"
 	arr["french",263]="$pending_of_translation 8.  Evil Twin Attaque AP avec portail captif"
 	arr["catalan",263]="$pending_of_translation 8.  Atac Evil Twin AP amb portal captiu"
@@ -1748,11 +1748,11 @@ function language_strings() {
 	arr["catalan",264]="$pending_of_translation L'atac del portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
 	arr["portuguese",264]="$pending_of_translation O portal cativo ataque tenta fazer com que um dos clientes da rede nos fornecer a senha para a rede sem fio digitando-o em nosso site"
 
-	arr["english",265]="Attack for Evil Twin"
-	arr["spanish",265]="Ataque para Evil Twin"
-	arr["french",265]="$pending_of_translation Attaque pour Evil Twin"
-	arr["catalan",265]="$pending_of_translation Atac per Evil Twin"
-	arr["portuguese",265]="$pending_of_translation Ataque de Evil Twin"
+	arr["english",265]="Evil Twin deauth"
+	arr["spanish",265]="Desautenticación para Evil Twin"
+	arr["french",265]="$pending_of_translation Dés-authentification pour Evil Twin"
+	arr["catalan",265]="$pending_of_translation Desautenticació per Evil Twin"
+	arr["portuguese",265]="$pending_of_translation Deauth para Evil Twin"
 
 	arr["english",266]="4.  Return to Evil Twin attacks menu"
 	arr["spanish",266]="4.  Volver al menú de ataques Evil Twin"
@@ -1778,11 +1778,11 @@ function language_strings() {
 	arr["catalan",269]="$pending_of_translation Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
 	arr["portuguese",269]="$pending_of_translation Para fazer um ataque Evil Twin precisa estar perto da AP-alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o legítimo AP"
 
-	arr["english",270]="AP Evil Twin attack"
-	arr["spanish",270]="Ataque Evil Twin AP"
-	arr["french",270]="$pending_of_translation Evil Twin Attaque AP"
-	arr["catalan",270]="$pending_of_translation Atac Evil Twin AP"
-	arr["portuguese",270]="$pending_of_translation Ataque Evil Twin AP"
+	arr["english",270]="Evil Twin attack just AP"
+	arr["spanish",270]="Ataque Evil Twin solo AP"
+	arr["french",270]="$pending_of_translation Evil Twin Attaque seulement AP"
+	arr["catalan",270]="$pending_of_translation Atac Evil Twin només AP"
+	arr["portuguese",270]="$pending_of_translation Ataque Evil Twin só AP"
 
 	arr["english",271]="Selected BSSID: "${pink_color}"None"${normal_color}
 	arr["spanish",271]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
@@ -1897,6 +1897,30 @@ function language_strings() {
 	arr["french",289]="$pending_of_translation Il a été vérifié avec succès que vous avez accès à internet sur l'interface sélectionnée. Le script peut continuer..."
 	arr["catalan",289]="$pending_of_translation S'ha verificat correctament que tens accés a internet a la interfície seleccionada. El script pot continuar..."
 	arr["portuguese",289]="$pending_of_translation Verificou-se com sucesso que você tem acesso à internet na interface selecionada. O script pode continuar..."
+
+	arr["english",290]="It seems you have internet access but not in the selected interface acting as interface with internet access"
+	arr["spanish",290]="Parece que tienes conexión a internet pero no en la interfaz seleccionada como interfaz con acceso a internet"
+	arr["french",290]="$pending_of_translation Il semble que vous avez internet, mais pas dans l'interface sélectionnée en tant qu'interface avec accès à internet"
+	arr["catalan",290]="$pending_of_translation Sembla que tens connexió a internet però no en la interfície seleccionada com a interfície amb accés a internet"
+	arr["portuguese",290]="$pending_of_translation Parece que você tem internet, mas não na interface selecionada como uma interface com acesso à internet"
+
+	arr["english",291]="Evil Twin AP attack with sniffing"
+	arr["spanish",291]="Ataque Evil Twin AP con sniffing"
+	arr["french",291]="$pending_of_translation Evil Twin Attaque AP avec sniffing"
+	arr["catalan",291]="$pending_of_translation Atac Evil Twin AP amb sniffing"
+	arr["portuguese",291]="$pending_of_translation Ataque Evil Twin AP com sniffing"
+
+	arr["english",292]="Evil Twin AP attack with sniffing and sslstrip"
+	arr["spanish",292]="Ataque Evil Twin AP con sniffing y sslstrip"
+	arr["french",292]="$pending_of_translation Evil Twin Attaque AP avec sniffing et sslstrip"
+	arr["catalan",292]="$pending_of_translation Atac Evil Twin AP amb sniffing i sslstrip"
+	arr["portuguese",292]="$pending_of_translation Ataque Evil Twin AP com sniffing e sslstrip"
+
+	arr["english",293]="Evil Twin AP attack with captive portal"
+	arr["spanish",293]="Ataque Evil Twin AP con portal cautivo"
+	arr["french",293]="$pending_of_translation Evil Twin Attaque AP avec portail captif"
+	arr["catalan",293]="$pending_of_translation Atac Evil Twin AP amb portal captiu"
+	arr["portuguese",293]="$pending_of_translation Ataque Evil Twin AP com portal cativo"
 
 	case "$3" in
 		"yellow")
@@ -2328,13 +2352,13 @@ function select_internet_interface() {
 	clear
 	case ${et_mode} in
 		"et_onlyap")
-			language_strings ${language} 265 "title"
+			language_strings ${language} 270 "title"
 		;;
 		"et_sniffing")
-			#TODO: testing Evil Twin AP with sniffing
+			language_strings ${language} 291 "title"
 		;;
 		"et_sniffing_sslstrip")
-			#TODO: testing Evil Twin AP with sniffing and sslstrip
+			language_strings ${language} 292 "title"
 		;;
 	esac
 
@@ -4324,12 +4348,27 @@ function et_prerequisites() {
 			exec_et_onlyap_attack
 		;;
 		"et_sniffing")
+			clear
+			language_strings ${language} 291 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
 			#TODO: Evil Twin AP with sniffing
 		;;
 		"et_sniffing_sslstrip")
+			language_strings ${language} 292 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
 			#TODO: Evil Twin AP with sniffing and sslstrip
 		;;
 		"et_captive_portal")
+			language_strings ${language} 293 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_hint ${current_menu}
 			#TODO: Evil Twin AP with captive portal
 		;;
 	esac
@@ -5024,6 +5063,14 @@ function validate_et_internet_interface() {
 		return 1
 	fi
 
+	check_default_route ${internet_interface}
+	if [ "$?" != "0" ]; then
+		echo
+		language_strings ${language} 290 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
 	echo
 	language_strings ${language} 289 "yellow"
 	language_strings ${language} 115 "read"
@@ -5033,10 +5080,13 @@ function validate_et_internet_interface() {
 function check_internet_access() {
 
 	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
-	if [ "$?" = "0" ]; then
-		return 0
-	fi
-	return 1
+	return $?
+}
+
+function check_default_route() {
+
+	route | grep ${1} | grep "default" > /dev/null
+	return $?
 }
 
 function autoupdate_check() {
