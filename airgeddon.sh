@@ -1630,7 +1630,7 @@ function language_strings() {
 	arr["english",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["spanish",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
 	arr["french",247]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer ethtool que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"
-	arr["catalan",247]="$pending_of_translation Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat ethtool i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a llançar el script"
+	arr["catalan",247]="Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat ethtool i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a executar el script"
 	arr["portuguese",247]="$pending_of_translation Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc vez de airmon-ng. Para funcionar você precisa instalar ethtool e você não tem neste momento. Por favor, instale e execute o script novamente"
 
 	arr["english",248]="Language changed to Portuguese"
@@ -1648,13 +1648,13 @@ function language_strings() {
 	arr["english",250]="If you see any bad translation or just want "${cyan_color}"$pending_of_translation"${pink_color}" marks to dissapear, write me to $mail to collaborate with translations"
 	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas "${cyan_color}"$pending_of_translation"${pink_color}", escríbeme a $mail para colaborar con las traducciones"
 	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques "${cyan_color}"$pending_of_translation"${pink_color}" disparaitre, écrivez à $mail pour collaborer avec les traductions"
-	arr["catalan",250]="$pending_of_translation Si veus alguna traducció incorrecta o vols que desapareguin les marques "${cyan_color}"$pending_of_translation"${pink_color}", escriu-me a $mail per col·laborar amb les traduccions"
+	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques "${cyan_color}"$pending_of_translation"${pink_color}", escriu-me a $mail per col·laborar amb les traduccions"
 	arr["portuguese",250]="$pending_of_translation Se você ver qualquer erro de tradução ou quer marcas "${cyan_color}"$pending_of_translation"${pink_color}", escreva para $mail para colaborar com traduções desaparecer"
 
 	arr["english",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["spanish",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
 	arr["french",251]="Vous venez de choisir la langue qui est en usage. Pas de changements"
-	arr["catalan",251]="$pending_of_translation Has triat el mateix idioma que estava seleccionat. No es realitzaran canvis"
+	arr["catalan",251]="Has triat el mateix idioma que estava seleccionat. No es realitzaran canvis"
 	arr["portuguese",251]="$pending_of_translation Você escolheu o mesmo idioma que foi selecionado. Nenhuma alteração será feita"
 
 	arr["english",294]="Detecting resolution... Detected! : "${normal_color}"$resolution"
