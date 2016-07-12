@@ -12,6 +12,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
+- Screen resolution detection for optimal windows viewing.<br/>
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br/>
 - Multilanguage support and autodetect OS language feature (see supported languages section).<br/>
 - Help hints in every zone/menu for easy use.<br/>
@@ -102,9 +103,7 @@ You can join the project:<br/>
 -Testing and feedback is needed too.<br/>
 <br/>
 *For collaborating translators:*<br/>
-There is a `.ods` file to work with. This file extension (Open Document SpreadSheet) is like an Excel but in non propietary format. It contains all the strings to translate.<br/>
-Fill or review your language strings and mark with `X` the corresponding reviewed cell each time<br/>
-Respect the color style (light red for non reviewed and soft green for reviewed cells).<br/>
+You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed.<br/>
 <br/>
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
