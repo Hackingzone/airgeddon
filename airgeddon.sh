@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.44"
+airgeddon_version="3.45"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -30,7 +30,7 @@ script_filename="airgeddon.sh"
 urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/$branch/$script_filename"
 host_to_check_internet="github.com"
-mail="v1s1t0r.1sh3r3@gmail.com"
+mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Tools vars
@@ -1660,13 +1660,13 @@ function language_strings() {
 	arr["english",294]="Detecting resolution... Detected! : "${normal_color}"$resolution"
 	arr["spanish",294]="Detectando resolución... Detectada! : "${normal_color}"$resolution"
 	arr["french",294]="$pending_of_translation Détection du résolution... Détectée! : "${normal_color}"$resolution"
-	arr["catalan",294]="$pending_of_translation Detecció resolució... Detectada! : "${normal_color}"$resolution"
+	arr["catalan",294]="Detectant resolució... Detectada! : "${normal_color}"$resolution"
 	arr["portuguese",294]="$pending_of_translation Detecção de resolução... Detectada! : "${normal_color}"$resolution"
 
 	arr["english",295]="Detecting resolution... Can't be detected!, using standard : "${normal_color}"$resolution"
 	arr["spanish",295]="Detectando resolución... No se ha podido detectar!, usando estándar : "${normal_color}"$resolution"
 	arr["french",295]="$pending_of_translation Détection du résolution... Impossible de détecter!, en utilisant la norme : "${normal_color}"$resolution"
-	arr["catalan",295]="$pending_of_translation Detecció resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
+	arr["catalan",295]="Detectant resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
 	arr["portuguese",295]="$pending_of_translation Detectando resolução... Não foi possível detectar!, usando o padrão : "${normal_color}"$resolution"
 
 	case "$3" in
