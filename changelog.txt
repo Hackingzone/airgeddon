@@ -1,7 +1,8 @@
 4.0
-Evil Twin menu with attacks based on different methods (only AP, with sniffing, sslstrip, captive portal)
+Evil Twin attack added: Only AP to sniff with external sniffer
 Created under construction message for non finished menu options
 README.md beautified
+Some minor improvements and bugfixes
 
 3.44
 Screen resolution detection for optimal windows viewing
