@@ -2,6 +2,7 @@
 Evil Twin attack added: Only AP to sniff with external sniffer
 Created under construction message for non finished menu options
 README.md beautified
+Screen resolution correction feature added for some distros
 Some minor improvements and bugfixes
 
 3.44

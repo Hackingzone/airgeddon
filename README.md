@@ -29,7 +29,7 @@ Tested on these compatible Linux distros:<br/>
 *-Blackarch 2016.01.10*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
-*-Ubuntu/Xubuntu 15.10 and 16.04*<br/>
+*-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
 *-OpenSUSE Leap 42.1*<br/>
 *-CentOS 6 and 7*<br/>
 *-Gentoo 20160514*<br/>
@@ -124,6 +124,7 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
 *MI1 -> Airstorm*<br/>
 *MatToufoutu -> Ap-fucker*
+*Coeman76 -> Handshaker*
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>

