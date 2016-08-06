@@ -113,9 +113,9 @@ You can download the master version or the beta testing version from the develop
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net forum people that helped me and the wifi-libre.com forum people.<br/>
+Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net and wifi-libre.com forum people that helped me.<br/>
 <br/>
-**Kcdtv** for French translations, beta testing, suggestions about new features and support received.<br/>
+**Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **Beans** for Portuguese translations.<br/>
