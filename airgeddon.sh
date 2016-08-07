@@ -4055,7 +4055,7 @@ function launch_dhcp_server() {
 		;;
 	esac
 	apply_screen_correction ${dchcpd_scr_window_position}
-	xterm -hold -bg black -fg pink -geometry ${scrdata_corrected} -T "DHCP" -e "dhcpd -d -f -cf \"$tmpdir$dhcpd_file\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg pink -geometry ${scrdata_corrected} -T "DHCP" -e "dhcpd -d -cf \"$tmpdir$dhcpd_file\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -4101,11 +4101,8 @@ function set_control_script() {
 
 	exec 3>"$tmpdir$control_file"
 
-	cat >&3 <<-EOF
-		#!/bin/bash
-	EOF
-
 	cat >&3 <<-'EOF'
+		#!/bin/bash
 		date_counter=`date +%s`
 		while true; do
 			echo
@@ -4143,34 +4140,32 @@ function set_control_script() {
 			echo
 			echo -e "\t${pink_color}${control_msg}${normal_color}\n"
 			echo -e "\t${green_color}${control_window_texts[$language,3]}${normal_color}"
-			readarray -t DHCPCLIENTSWITHHOSTNAME < <(cat "${tmpdir}clts.txt" | grep DHCPACK | grep \()
+			readarray -t DHCPCLIENTS < <(cat "${tmpdir}clts.txt" | grep DHCPACK)
+			client_ips=()
 	EOF
 
 	cat >&3 <<-'EOF'
-			if [ -z "${DHCPCLIENTSWITHHOSTNAME[@]}" ]; then
+			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
 	EOF
 
 	cat >&3 <<-EOF
-				readarray -t DHCPCLIENTS < <(cat "${tmpdir}clts.txt" | grep DHCPACK)
-	EOF
-
-	cat >&3 <<-'EOF'
-				if [ -z "${DHCPCLIENTS[@]}" ]; then
-	EOF
-
-	cat >&3 <<-EOF
-					echo -e "\t${control_window_texts[$language,7]}"
-				else
-	EOF
-
-	cat >&3 <<-'EOF'
-					for client in "${DHCPCLIENTS[@]}"; do
-						echo -e "\t"$(echo $client | awk {'print $3'}) $(echo $client | awk {'print $5'})
-					done
-				fi
+				echo -e "\t${control_window_texts[$language,7]}"
 			else
-				for client in "${DHCPCLIENTSWITHHOSTNAME[@]}"; do
-					echo -e "\t"$(echo $client | awk {'print $3'}) $(echo $client | awk {'print $5'}) $(echo $client | awk {'print $6'})
+	EOF
+
+	cat >&3 <<-'EOF'
+				for client in "${DHCPCLIENTS[@]}"; do
+					[[ ${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="${BASH_REMATCH[1]}" && client_mac="${BASH_REMATCH[2]}"
+					if [[ " ${client_ips[*]} " != *" $client_ip "* ]]; then
+						client_hostname=""
+						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
+						if [[ -z "$client_hostname" ]]; then
+							echo -e "\t$client_ip $client_mac"
+						else
+							echo -e "\t$client_ip $client_mac $client_hostname"
+						fi
+					fi
+					client_ips+=(${client_ip})
 				done
 			fi
 			echo -ne "\033[K\033[u"
