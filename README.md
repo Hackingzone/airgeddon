@@ -61,7 +61,7 @@ aireplay-ng
 mdk3
 hashcat
 hostapd
-dhcpd (isc-dhcp-server)
+dhcpd (isc-dhcp-server / dhcp)
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
@@ -123,7 +123,7 @@ Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwirel
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
 *MI1 -> Airstorm*<br/>
-*MatToufoutu -> Ap-fucker*
+*MatToufoutu -> Ap-fucker*<br/>
 *Coeman76 -> Handshaker*
 
 #Donate
