@@ -24,8 +24,8 @@ Bash version 4.0 or later needed.<br/>
 Tested on these compatible Linux distros:<br/>
 *-Kali 2.0 and 2016.1*<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
-*-Backbox 4.5.1*<br/>
-*-Parrot 2.2.1*<br/>
+*-Backbox 4.5.1 and 4.6*<br/>
+*-Parrot 2.2.1 and 3.1.1*<br/>
 *-Blackarch 2016.01.10*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
