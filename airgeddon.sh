@@ -3052,7 +3052,6 @@ function initialize_menu_and_print_selections() {
 		;;
 		"evil_twin_attacks_menu")
 			return_to_et_main_menu=0
-			dhcpd_path_changed=0
 			et_mode=""
 			et_processes=()
 			print_iface_selected
@@ -5499,6 +5498,7 @@ function initialize_script_settings() {
 	tmpfiles_toclean=0
 	routing_toclean=0
 	screen_correction_needed=0
+	dhcpd_path_changed=0
 }
 
 function detect_screen_resolution() {
