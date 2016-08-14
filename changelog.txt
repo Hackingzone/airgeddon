@@ -1,3 +1,6 @@
+4.01
+Fixed bug cleaning temp files for Evil Twin attack
+
 4.0
 Evil Twin attack added: Only AP to sniff with external sniffer
 Created under construction message for non finished menu options
