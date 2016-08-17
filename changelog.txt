@@ -1,3 +1,9 @@
+4.02
+New windows sizes calculation method for better viewing even in small resolutions. Dynamic system.
+Fixed bug restarting Network Manager on Arch Linux
+Fixed bug restarting Network Manager using debug mode on some distros
+Suggestion added about possible packet names after failing a dependency check
+
 4.01
 Fixed bug cleaning temp files for Evil Twin attack
 

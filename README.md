@@ -12,7 +12,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
-- Screen resolution detection for optimal windows viewing.<br/>
+- Dynamic screen resolution detection and windows auto-sizing for optimal viewing.<br/>
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br/>
 - Multilanguage support and autodetect OS language feature (see supported languages section).<br/>
 - Help hints in every zone/menu for easy use.<br/>
@@ -26,13 +26,13 @@ Tested on these compatible Linux distros:<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1 and 3.1.1*<br/>
-*-Blackarch 2016.01.10*<br/>
+*-Blackarch 2016.01.10 and 2016.04.28*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
 *-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
 *-OpenSUSE Leap 42.1*<br/>
 *-CentOS 6 and 7*<br/>
-*-Gentoo 20160514*<br/>
+*-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
 *-Arch 4.6.2-1*<br/>
@@ -43,29 +43,31 @@ Repositories versions will have auto-update feature disabled in order to avoid b
 <br/>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
 <br/>
+We will enumerate the categories and tools. The format will be: "command -> possible package name". The command can be included in different packages depending of the distro.<br/>
+<br/>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*
 ```
-iwconfig
-iw
-awk
-airmon-ng
-airodump-ng
-aircrack-ng
-xterm
+iwconfig -> wireless-tools
+iw -> iw
+awk -> awk
+airmon-ng -> aircrack-ng
+airodump-ng -> aircrack-ng
+aircrack-ng -> aircrack-ng
+xterm -> xterm
 ```
 Optional tools: <- *not necessary to work, only needed for some features*
 ```
-wpaclean
-crunch
-aireplay-ng
-mdk3
-hashcat
-hostapd
-dhcpd (isc-dhcp-server / dhcp)
+wpaclean -> aircrack-ng
+crunch -> crunch
+aireplay-ng -> aircrack-ng
+mdk3 -> mdk3
+hashcat -> hashcat
+hostapd -> hostapd
+dhcpd -> isc-dhcp-server / dhcp-server / dhcp
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
-curl
+curl -> curl
 ```
 
 #Known incompatibilities
