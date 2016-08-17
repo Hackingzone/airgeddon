@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.01"
+airgeddon_version="4.02"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -34,15 +34,16 @@ mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
 #Tools vars
-essential_tools=(
-					"iwconfig"
-					"iw"
-					"awk"
-					"airmon-ng"
-					"airodump-ng"
-					"aircrack-ng"
-					"xterm"
-				)
+essential_tools_names=(
+						"iwconfig"
+						"iw"
+						"awk"
+						"airmon-ng"
+						"airodump-ng"
+						"aircrack-ng"
+						"xterm"
+					)
+
 optional_tools_names=(
 						"wpaclean"
 						"crunch"
@@ -53,6 +54,7 @@ optional_tools_names=(
 						"dhcpd"
 						"iptables"
 					)
+
 declare -A optional_tools=(
 							[${optional_tools_names[0]}]=0
 							[${optional_tools_names[1]}]=0
@@ -63,7 +65,27 @@ declare -A optional_tools=(
 							[${optional_tools_names[6]}]=0
 							[${optional_tools_names[7]}]=0
 						)
+
 update_tools=("curl")
+
+declare -A possible_package_names=(
+									[${essential_tools_names[0]}]="wireless-tools" #iwconfig
+									[${essential_tools_names[1]}]="iw" #iw
+									[${essential_tools_names[2]}]="awk" #awk
+									[${essential_tools_names[3]}]="aircrack-ng" #airmon-ng
+									[${essential_tools_names[4]}]="aircrack-ng" #airodump-ng
+									[${essential_tools_names[5]}]="aircrack-ng" #aircrack-ng
+									[${essential_tools_names[6]}]="xterm" #xterm
+									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
+									[${optional_tools_names[1]}]="crunch" #crunch
+									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
+									[${optional_tools_names[3]}]="mdk3" #mdk3
+									[${optional_tools_names[4]}]="hashcat" #hashcat
+									[${optional_tools_names[5]}]="hostapd" #hostapd
+									[${optional_tools_names[6]}]="isc-dhcp-server / dhcp-server / dhcp" #dhcpd
+									[${optional_tools_names[7]}]="iptables" #iptables
+									[${update_tools[0]}]="curl" #curl
+								)
 
 #General vars
 standardhandshake_filename="handshake-01.cap"
@@ -181,6 +203,13 @@ function language_strings() {
 	under_construction["catalan"]="en construcció"
 	under_construction["portuguese"]="em construção"
 	under_constructionvar="${under_construction["$language"]}"
+
+	declare -gA possible_package_names
+	possible_package_names["english"]="Possible package name"
+	possible_package_names["spanish"]="Posible nombre del paquete"
+	possible_package_names["french"]="Possible nom du paquet"
+	possible_package_names["catalan"]="Possible nom del paquet"
+	possible_package_names["portuguese"]="Possível nome do pacote"
 
 	declare -gA control_window_texts
 	control_window_texts["english",0]="Evil Twin AP Info"
@@ -2033,6 +2062,12 @@ function language_strings() {
 	arr["catalan",299]="Restablint interfície..."
 	arr["portuguese",299]="$pending_of_translation Interface de restauração..."
 
+	arr["english",300]="If make work xpdyinfo command, the script will be able to calculate your screen resolution and show you the windows in a better way. Depending of the system, the package name could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["spanish",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["french",300]="Si la commande xdpyinfo est installée dans vôtre système le script pourra calculer votre résolution d'écran et optimiser l'affichage en conséquence. Le paquet à installer pour avoir cette commande s'appelle (selon la distribution) x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["catalan",300]="Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["portuguese",300]="$pending_of_translation Se você fizer o comando xdpyinfo para trabalhar em seu sistema, o script irá calcular a sua resolução de tela e janelas de mostra de uma forma mais otimizada. Dependendo do sistema, o pacote pode ser chamado X11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -2705,8 +2740,8 @@ function exec_mdk3deauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -2720,8 +2755,8 @@ function exec_aireplaydeauth() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -2733,8 +2768,8 @@ function exec_wdsconfusion() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -2746,8 +2781,8 @@ function exec_beaconflood() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
 }
 
 function exec_authdos() {
@@ -2759,8 +2794,8 @@ function exec_authdos() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
 }
 
 function exec_michaelshutdown() {
@@ -2772,8 +2807,8 @@ function exec_michaelshutdown() {
 	echo
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
-	apply_screen_correction ${g1_topleft_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
 function mdk3_deauth_option() {
@@ -3966,6 +4001,7 @@ function launch_fake_ap() {
 	${airmon} check kill > /dev/null 2>&1
 	nm_processes_killed=1
 
+	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
 			hostapd_scr_window_position=${g1_topleft_window}
@@ -3974,8 +4010,7 @@ function launch_fake_ap() {
 			hostapd_scr_window_position=${g3_topleft_window}
 		;;
 	esac
-	apply_screen_correction ${hostapd_scr_window_position}
-	xterm -hold -bg black -fg blue -geometry ${scrdata_corrected} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg blue -geometry ${hostapd_scr_window_position} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 3
 }
@@ -4070,6 +4105,7 @@ function launch_dhcp_server() {
 
 	killall dhcpd > /dev/null 2>&1
 
+	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
 			dchcpd_scr_window_position=${g1_bottomleft_window}
@@ -4078,8 +4114,7 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g3_middleleft_window}
 		;;
 	esac
-	apply_screen_correction ${dchcpd_scr_window_position}
-	xterm -hold -bg black -fg pink -geometry ${scrdata_corrected} -T "DHCP" -e "dhcpd -d -cf \"$dhcp_path\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg pink -geometry ${dchcpd_scr_window_position} -T "DHCP" -e "dhcpd -d -cf \"$dhcp_path\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -4105,6 +4140,7 @@ function exec_et_deauth() {
 		;;
 	esac
 
+	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
 			deauth_scr_window_position=${g1_bottomright_window}
@@ -4113,8 +4149,7 @@ function exec_et_deauth() {
 			deauth_scr_window_position=${g3_bottomleft_window}
 		;;
 	esac
-	apply_screen_correction ${deauth_scr_window_position}
-	xterm -hold -bg black -fg red -geometry ${scrdata_corrected} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg red -geometry ${deauth_scr_window_position} -T "Deauth" -e "$deauth_et_cmd" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 1
 }
@@ -4202,6 +4237,7 @@ function set_control_script() {
 
 function launch_control_window() {
 
+	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
 			control_scr_window_position=${g1_topright_window}
@@ -4210,8 +4246,7 @@ function launch_control_window() {
 			control_scr_window_position=${g3_topright_window}
 		;;
 	esac
-	apply_screen_correction ${control_scr_window_position}
-	xterm -hold -bg black -fg white -geometry ${scrdata_corrected} -T "Control" -e "bash \"$tmpdir$control_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg white -geometry ${control_scr_window_position} -T "Control" -e "bash \"$tmpdir$control_file\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -4624,8 +4659,8 @@ function attack_handshake_menu() {
 				capture_handshake_window
 				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 				echo ${bssid} > ${tmpdir}"bl.txt"
-				apply_screen_correction ${g1_bottomleft_window}
-				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+				recalculate_windows_sizes
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4637,8 +4672,8 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				${airmon} start ${interface} ${channel} > /dev/null 2>&1
-				apply_screen_correction ${g1_bottomleft_window}
-				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+				recalculate_windows_sizes
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -4649,8 +4684,8 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				apply_screen_correction ${g1_bottomleft_window}
-				xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+				recalculate_windows_sizes
+				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -4677,8 +4712,8 @@ function capture_handshake_window() {
 	language_strings ${language} 115 "read"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
-	apply_screen_correction ${g1_topright_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
 	processidcapture=$!
 }
 
@@ -4702,8 +4737,8 @@ function explore_for_targets_option() {
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
-	apply_screen_correction ${g1_topright_window}
-	xterm +j -sb -rightbar -geometry ${scrdata_corrected} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
 	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
@@ -5224,13 +5259,108 @@ function special_distro_features() {
 	case ${distro} in
 		"Wifislax")
 			networkmanager_cmd="service restart networkmanager"
-			screen_correction_needed=1
+			xratio=7
+			yratio=15.1
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=-14
 		;;
-		"SUSE"|"CentOS"|"Gentoo"|"Fedora"|"Red Hat")
-			networkmanager_cmd="service NetworkManager restart"
-		;;
-		*)
+		"Backbox")
 			networkmanager_cmd="service network-manager restart"
+			xratio=6
+			yratio=14.2
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=15
+		;;
+		"Ubuntu")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=18
+		;;
+		"Kali")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=18
+		;;
+		"Debian")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=14
+		;;
+		"SUSE")
+			networkmanager_cmd="service NetworkManager restart"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=18
+		;;
+		"CentOS")
+			networkmanager_cmd="service NetworkManager restart"
+			xratio=6.2
+			yratio=14.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=10
+		;;
+		"Parrot")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=10
+		;;
+		"Arch")
+			networkmanager_cmd="systemctl restart NetworkManager.service"
+			xratio=6.2
+			yratio=13.9
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=16
+		;;
+		"Fedora")
+			networkmanager_cmd="service NetworkManager restart"
+			xratio=6
+			yratio=14.1
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=16
+		;;
+		"Gentoo")
+			networkmanager_cmd="service NetworkManager restart"
+			xratio=6.2
+			yratio=14.6
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=-10
+		;;
+		"Red Hat")
+			networkmanager_cmd="service NetworkManager restart"
+			xratio=6.2
+			yratio=15.3
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=10
+		;;
+		"Cyborg")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=14.5
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=10
+		;;
+		"Blackarch")
+			networkmanager_cmd="systemctl restart NetworkManager.service"
+			xratio=7.3
+			yratio=14
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=1
+		;;
+		"Raspbian")
+			networkmanager_cmd="service network-manager restart"
+			xratio=6.2
+			yratio=14
+			ywindow_edge_lines=1
+			ywindow_edge_pixels=0
 		;;
 	esac
 }
@@ -5325,12 +5455,14 @@ function check_compatibility() {
 	language_strings ${language} 109 "blue"
 
 	essential_toolsok=1
-	for i in "${essential_tools[@]}"; do
+	for i in "${essential_tools_names[@]}"; do
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
-			echo -e ${red_color}" Error\r"${normal_color}
+			echo -ne ${red_color}" Error"${normal_color}
 			essential_toolsok=0
+			echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
+			echo -e "\r"
 		else
 			echo -e ${green_color}" Ok\r"${normal_color}
 		fi
@@ -5346,9 +5478,7 @@ function check_compatibility() {
 		if ! hash ${i} 2> /dev/null; then
 			echo -ne ${red_color}" Error"${normal_color}
 			optional_toolsok=0
-			if [ ${i} = "${optional_tools_names[6]}" ]; then
-				echo -ne " (isc-dhcp-server / dhcp)"
-			fi
+			echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
 			echo -e "\r"
 		else
 			echo -e ${green_color}" Ok\r"${normal_color}
@@ -5366,8 +5496,10 @@ function check_compatibility() {
 			echo -ne "$i"
 			time_loop
 			if ! hash ${i} 2> /dev/null; then
-				echo -e ${red_color}" Error\r"${normal_color}
+				echo -ne ${red_color}" Error"${normal_color}
 				update_toolsok=0
+				echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
+				echo -e "\r"
 			else
 				echo -e ${green_color}" Ok\r"${normal_color}
 			fi
@@ -5499,6 +5631,11 @@ function initialize_script_settings() {
 	routing_toclean=0
 	screen_correction_needed=0
 	dhcpd_path_changed=0
+	xratio=6.2
+	yratio=13.9
+	ywindow_edge_lines=2
+	ywindow_edge_pixels=18
+	networkmanager_cmd="service network-manager restart"
 }
 
 function detect_screen_resolution() {
@@ -5521,230 +5658,76 @@ function detect_screen_resolution() {
 
 function set_windows_sizes() {
 
-	# 1) 1024x768
-	# 2) 1280x768
-	# 3) 1280x1024
-	# 4) 1366x768
-	# 5) 1366x1024
-	# 6) 1440x900
-	# 7) 1600x1200
-	# 8) 1920x1080
+	set_xsizes
+	set_ysizes
+	set_ypositions
 
-	case ${resolution_x} in
-		[0-9]|[0-9][0-9]|[0-9][0-9][0-9]|10[0-1][0-9]|102[0-4])
-			#Until 1024 | 1)
-			set_windows_sizes_standard
-		;;
-		102[5-9]|10[3-9][0-9]|11[0-9][0-9]|12[0-7][0-9])
-			#From 1025 until 1279 | 1)
-			set_windows_sizes_standard
-		;;
-		128[0-9]|129[0-9]|13[0-5][0-9]|136[0-5])
-			#From 1280 until 1365 | 2-3)
-			case ${resolution_y} in
-				[0-9]|[0-9][0-9]|[0-6][0-9][0-9]|7[0-5][0-9]|76[0-8])
-					#Until 768 | 2)
-					set_windows_sizes_1280x768
-				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
-					#From 769 until 1023 | 2)
-					set_windows_sizes_1280x768
-				;;
-				*)
-					#From 1024 and so on | 3)
-					set_windows_sizes_1280x1024
-				;;
-			esac
-		;;
-		136[6-9]|13[7-9][0-9]|14[0-3][0-9])
-			#From 1366 until 1439 | 4-5)
-			case ${resolution_y} in
-				[0-9]|[0-9][0-9]|[0-6][0-9][0-9]|7[0-5][0-9]|76[0-8])
-					#Until 768 | 4)
-					set_windows_sizes_1366x768
-				;;
-				769|7[7-9][0-9]|[8-9][0-9][0-9]|10[0-1][0-9]|102[0-3])
-					#From 769 until 1023 | 4)
-					set_windows_sizes_1366x768
-				;;
-				*)
-					#From 1024 and so on | 5)
-					set_windows_sizes_1366x1024
-				;;
-			esac
-		;;
-		14[4-9][0-9]|15[0-9][0-9])
-			#From 1440 until 1599 | 6)
-			set_windows_sizes_1440x900
-		;;
-		1[6-8][0-9][0-9]|19[0-1][0-9])
-			#From 1600 until 1919 | 7)
-			set_windows_sizes_1600x1200
-		;;
-		19[2-9][0-9]|[2-9][0-9][0-9][0-9])
-			#From 1920 and so on | 8)
-			set_windows_sizes_1920x1080
-		;;
-		*)
-			set_windows_sizes_standard
-		;;
-	esac
+	g1_topleft_window="${xwindow}x${ywindowhalf}+0+0"
+	g1_bottomleft_window="${xwindow}x${ywindowhalf}+0-0"
+	g1_topright_window="${xwindow}x${ywindowhalf}-0+0"
+	g1_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
+
+	g2_stdleft_window="${xwindow}x${ywindowone}+0+0"
+	g2_stdright_window="${xwindow}x${ywindowone}-0+0"
+
+	g3_topleft_window="${xwindow}x${ywindowthird}+0+0"
+	g3_middleleft_window="${xwindow}x${ywindowthird}+0+${middle_position}"
+	g3_bottomleft_window="${xwindow}x${ywindowthird}+0-0"
+	g3_topright_window="${xwindow}x${ywindowhalf}-0+0"
+	g3_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
+
+	g4_topleft_window="${xwindow}x${ywindowthird}+0+0"
+	g4_middleleft_window="${xwindow}x${ywindowthird}+0+${middle_position}"
+	g4_bottomleft_window="${xwindow}${ywindowthird}+0-0"
+	g4_topright_window="${xwindow}x${ywindowthird}-0+0"
+	g4_middleright_window="${xwindow}x${ywindowthird}-0+${middle_position}"
+	g4_bottomright_window="${xwindow}x${ywindowthird}-0-0"
 }
 
-function apply_screen_correction() {
+function set_xsizes() {
 
-	[[ ${1} =~ ^([0-9]+)x([0-9]+)([\+\-])([0-9]+)([\+\-])([0-9]+)$ ]] && scr1="${BASH_REMATCH[1]}" && scr2="${BASH_REMATCH[2]}" && scr3="${BASH_REMATCH[3]}" && scr4="${BASH_REMATCH[4]}" && scr5="${BASH_REMATCH[5]}" && scr6="${BASH_REMATCH[6]}"
+	xtotal=$(awk -v n1=${resolution_x} "BEGIN{print n1 / $xratio}")
 
-	if [ ${screen_correction_needed} -eq 1 ]; then
-		scr1=$((${scr1} - 11))
-		scr2=$((${scr2} - 1))
-		if [ ${scr6} -ne 0 ]; then
-			scr6=$((${scr6} - 30))
-		fi
+	xtotaltmp=$(printf "%.0f" ${xtotal} 2> /dev/null)
+	if [ "$?" != "0" ]; then
+		dec_char=","
+		xtotal="${xtotal/./$dec_char}"
+		xtotal=$(printf "%.0f" ${xtotal} 2> /dev/null)
+	else
+		xtotal=${xtotaltmp}
 	fi
 
-	scrdata_corrected="${scr1}x${scr2}${scr3}${scr4}${scr5}${scr6}"
+	xcentral_space=$(($xtotal * 5 / 100))
+	xhalf=$(($xtotal / 2))
+	xwindow=$(($xhalf - $xcentral_space))
 }
 
-function set_windows_sizes_standard() {
+function set_ysizes() {
 
-	set_windows_sizes_1204x768
+	ytotal=$(awk -v n1=${resolution_y} "BEGIN{print n1 / $yratio}")
+	ytotaltmp=$(printf "%.0f" ${ytotal} 2> /dev/null)
+	if [ "$?" != "0" ]; then
+		dec_char=","
+		ytotal="${ytotal/./$dec_char}"
+		ytotal=$(printf "%.0f" ${ytotal} 2> /dev/null)
+	else
+		ytotal=${ytotaltmp}
+	fi
+
+	ywindowone=$(($ytotal - $ywindow_edge_lines))
+	ywindowhalf=$(($ytotal / 2 - $ywindow_edge_lines))
+	ywindowthird=$(($ytotal / 3 - $ywindow_edge_lines))
 }
 
-function set_windows_sizes_1204x768() {
+function set_ypositions() {
 
-	g1_topleft_window="78x25+0+0"
-	g1_bottomleft_window="78x25+0-0"
-	g1_topright_window="78x25-0+0"
-	g1_bottomright_window="78x25-0-0"
-
-	g2_stdleft_window="76x50+0+0"
-	g2_stdright_window="76x50-0+0"
-
-	g3_topleft_window="78x16+0+0"
-	g3_middleleft_window="78x16+0+276"
-	g3_bottomleft_window="78x16+0-0"
-	g3_topright_window="78x25-0+0"
-	g3_bottomright_window="78x25-0-0"
+	middle_position=$(($resolution_y / 3 + $ywindow_edge_pixels))
 }
 
-function set_windows_sizes_1280x768() {
+function recalculate_windows_sizes() {
 
-	g1_topleft_window="96x25+0+0"
-	g1_bottomleft_window="96x25+0-0"
-	g1_topright_window="96x25-0+0"
-	g1_bottomright_window="96x25-0-0"
-
-	g2_stdleft_window="96x50+0+0"
-	g2_stdright_window="96x50-0+0"
-
-	g3_topleft_window="96x16+0+0"
-	g3_middleleft_window="96x16+0+276"
-	g3_bottomleft_window="96x16+0-0"
-	g3_topright_window="96x25-0+0"
-	g3_bottomright_window="96x25-0-0"
-}
-
-function set_windows_sizes_1280x1024() {
-
-	g1_topleft_window="96x35+0+0"
-	g1_bottomleft_window="96x35+0-0"
-	g1_topright_window="96x35-0+0"
-	g1_bottomright_window="96x35-0-0"
-
-	g2_stdleft_window="96x66+0+0"
-	g2_stdright_window="96x66-0+0"
-
-	g3_topleft_window="96x22+0+0"
-	g3_middleleft_window="96x22+0+360"
-	g3_bottomleft_window="96x22+0-0"
-	g3_topright_window="96x35-0+0"
-	g3_bottomright_window="96x35-0-0"
-}
-
-function set_windows_sizes_1366x768() {
-
-	g1_topleft_window="104x25+0+0"
-	g1_bottomleft_window="104x25+0-0"
-	g1_topright_window="104x25-0+0"
-	g1_bottomright_window="104x25-0-0"
-
-	g2_stdleft_window="104x50+0+0"
-	g2_stdright_window="104x50-0+0"
-
-	g3_topleft_window="104x16+0+0"
-	g3_middleleft_window="104x16+0+276"
-	g3_bottomleft_window="104x16+0-0"
-	g3_topright_window="104x25-0+0"
-	g3_bottomright_window="104x25-0-0"
-}
-
-function set_windows_sizes_1366x1024() {
-
-	g1_topleft_window="104x35+0+0"
-	g1_bottomleft_window="104x35+0-0"
-	g1_topright_window="104x35-0+0"
-	g1_bottomright_window="104x35-0-0"
-
-	g2_stdleft_window="104x66+0+0"
-	g2_stdright_window="104x66-0+0"
-
-	g3_topleft_window="104x22+0+0"
-	g3_middleleft_window="104x22+0+360"
-	g3_bottomleft_window="104x22+0-0"
-	g3_topright_window="104x35-0+0"
-	g3_bottomright_window="104x35-0-0"
-}
-
-function set_windows_sizes_1440x900() {
-
-	g1_topleft_window="108x30+0+0"
-	g1_bottomleft_window="108x30+0-0"
-	g1_topright_window="108x30-0+0"
-	g1_bottomright_window="108x30-0-0"
-
-	g2_stdleft_window="108x60+0+0"
-	g2_stdright_window="108x60-0+0"
-
-	g3_topleft_window="108x19+0+0"
-	g3_middleleft_window="108x19+0+322"
-	g3_bottomleft_window="108x19+0-0"
-	g3_topright_window="108x30-0+0"
-	g3_bottomright_window="108x30-0-0"
-}
-
-function set_windows_sizes_1600x1200() {
-
-	g1_topleft_window="120x40+0+0"
-	g1_bottomleft_window="120x40+0-0"
-	g1_topright_window="120x40-0+0"
-	g1_bottomright_window="120x40-0-0"
-
-	g2_stdleft_window="120x70+0+0"
-	g2_stdright_window="120x70-0+0"
-
-	g3_topleft_window="120x26+0+0"
-	g3_middleleft_window="120x26+0+422"
-	g3_bottomleft_window="120x26+0-0"
-	g3_topright_window="120x40-0+0"
-	g3_bottomright_window="120x40-0-0"
-}
-
-function set_windows_sizes_1920x1080() {
-
-	g1_topleft_window="144x37+0+0"
-	g1_bottomleft_window="144x37+0-0"
-	g1_topright_window="144x37-0+0"
-	g1_bottomright_window="144x37-0-0"
-
-	g2_stdleft_window="144x70+0+0"
-	g2_stdright_window="144x70-0+0"
-
-	g3_topleft_window="144x24+0+0"
-	g3_middleleft_window="144x24+0+380"
-	g3_bottomleft_window="144x24+0-0"
-	g3_topright_window="144x37-0+0"
-	g3_bottomright_window="144x37-0-0"
+	detect_screen_resolution
+	set_windows_sizes
 }
 
 function welcome() {
@@ -5758,7 +5741,6 @@ function welcome() {
 	fi
 
 	detect_screen_resolution
-	set_windows_sizes
 
 	if [ ${debug_mode} -eq 0 ]; then
 		language_strings ${language} 86 "title"
@@ -5783,6 +5765,8 @@ function welcome() {
 			language_strings ${language} 294 "blue"
 		else
 			language_strings ${language} 295 "blue"
+			echo
+			language_strings ${language} 300 "yellow"
 		fi
 
 		echo
@@ -5797,6 +5781,7 @@ function welcome() {
 		check_update_tools
 	fi
 
+	set_windows_sizes
 	select_interface
 	initialize_menu_options_dependencies
 	main_menu
