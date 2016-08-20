@@ -1,3 +1,9 @@
+4.03
+Some compatibility improvements for Raspberry Pi Raspbian Linux
+Additional check for systems which use airmon-zc, now checks for lspci to avoid errors
+Compatibility extended to OpenMandriva Linux
+Compatibility extended to Kali arm version on Raspberry Pi
+
 4.02
 New windows sizes calculation method for better viewing even in small resolutions. Dynamic system.
 Fixed bug restarting Network Manager on Arch Linux
