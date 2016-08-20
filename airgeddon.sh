@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.02"
+airgeddon_version="4.03"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -126,6 +126,7 @@ possible_dhcp_leases_files=(
 known_compatible_distros=(
 							"Wifislax"
 							"Kali"
+							"Kali arm"
 							"Parrot"
 							"Backbox"
 							"Blackarch"
@@ -133,12 +134,13 @@ known_compatible_distros=(
 							"Ubuntu"
 							"Raspbian"
 							"Debian"
-							"SUSE"
+							"SuSE"
 							"CentOS"
 							"Gentoo"
 							"Fedora"
 							"Red Hat"
 							"Arch"
+							"OpenMandriva"
 						)
 
 #Hint vars
@@ -2067,6 +2069,12 @@ function language_strings() {
 	arr["french",300]="Si la commande xdpyinfo est installée dans vôtre système le script pourra calculer votre résolution d'écran et optimiser l'affichage en conséquence. Le paquet à installer pour avoir cette commande s'appelle (selon la distribution) x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["catalan",300]="Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["portuguese",300]="$pending_of_translation Se você fizer o comando xdpyinfo para trabalhar em seu sistema, o script irá calcular a sua resolução de tela e janelas de mostra de uma forma mais otimizada. Dependendo do sistema, o pacote pode ser chamado X11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+
+	arr["english",301]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install lspci (pciutils) and you don't have it right now. Please, install it and launch the script again"
+	arr["spanish",301]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado lspci (pciutils) y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
+	arr["french",301]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer lspci (pciutils) que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"
+	arr["catalan",301]="Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat lspci (pciutils) i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a executar el script"
+	arr["portuguese",247]="$pending_of_translation Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc vez de airmon-ng. Para funcionar você precisa instalar lspci (pciutils) e você não tem neste momento. Por favor, instale e execute o script novamente"
 
 	case "$3" in
 		"yellow")
@@ -5231,6 +5239,13 @@ function detect_distro_phase1() {
 
 function detect_distro_phase2() {
 
+	if [ "$distro" = "Kali" ]; then
+		uname -m | grep "arm" > /dev/null
+		if [ "$?" = "0" ]; then
+			distro="Kali arm"
+		fi
+	fi
+
 	if [ "$distro" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
 			distro="CentOS"
@@ -5238,10 +5253,12 @@ function detect_distro_phase2() {
 			distro="Fedora"
 		elif [ -f ${osversionfile_dir}"gentoo-release" ]; then
 			distro="Gentoo"
+		elif [ -f ${osversionfile_dir}"openmandriva-release" ]; then
+			distro="OpenMandriva"
 		elif [ -f ${osversionfile_dir}"redhat-release" ]; then
 			distro="Red Hat"
 		elif [ -f ${osversionfile_dir}"SuSE-release" ]; then
-			distro="SUSE"
+			distro="SuSE"
 		elif [ -f ${osversionfile_dir}"debian_version" ]; then
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
@@ -5278,7 +5295,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=18
 		;;
-		"Kali")
+		"Kali"|"Kali arm")
 			networkmanager_cmd="service network-manager restart"
 			xratio=6.2
 			yratio=13.9
@@ -5292,7 +5309,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=14
 		;;
-		"SUSE")
+		"SuSE")
 			networkmanager_cmd="service NetworkManager restart"
 			xratio=6.2
 			yratio=13.9
@@ -5360,7 +5377,14 @@ function special_distro_features() {
 			xratio=6.2
 			yratio=14
 			ywindow_edge_lines=1
-			ywindow_edge_pixels=0
+			ywindow_edge_pixels=20
+		;;
+		"OpenMandriva")
+			networkmanager_cmd="systemctl restart NetworkManager.service"
+			xratio=6.2
+			yratio=14
+			ywindow_edge_lines=2
+			ywindow_edge_pixels=-10
 		;;
 	esac
 }
@@ -5793,6 +5817,13 @@ function airmonzc_security_check() {
 		if ! hash ethtool 2> /dev/null; then
 			echo
 			language_strings ${language} 247 "yellow"
+			echo
+			language_strings ${language} 115 "read"
+			exit_code=1
+			exit_script_option
+		elif ! hash lspci 2> /dev/null; then
+			echo
+			language_strings ${language} 301 "yellow"
 			echo
 			language_strings ${language} 115 "read"
 			exit_code=1

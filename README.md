@@ -22,7 +22,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 Bash version 4.0 or later needed.<br/>
 <br/>
 Tested on these compatible Linux distros:<br/>
-*-Kali 2.0 and 2016.1*<br/>
+*-Kali 2.0, 2016.1 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1 and 3.1.1*<br/>
@@ -36,7 +36,8 @@ Tested on these compatible Linux distros:<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
 *-Arch 4.6.2-1*<br/>
-*-Raspbian 7 (Wheezy) and 8 (Jessie)*<br/>
+*-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
+*-OpenMandriva LX3*<br/>
 <br/>
 It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
 Repositories versions will have auto-update feature disabled in order to avoid breaking dependencies. There is a var at the beginning of the file, *"auto_update"* can be set to 0 to turn off the auto-update feature.<br/>
@@ -69,6 +70,14 @@ Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
 curl -> curl
 ```
+Internal tools: <- *these are internally checked. Not necessary to work, good to have*<br/>
+```
+xdpyinfo -> x11-utils / xdpyinfo / xorg-xdpyinfo
+ethtool -> ethtool
+lspci -> pciutils
+rfkill -> rfkill
+```
+The internal tools are highly recommended to have them installed. They improve functionality and performance. For example, xdpyinfo allow the script to detect the desktop resolution in order to print windows in a better way.
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
