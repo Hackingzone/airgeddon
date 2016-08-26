@@ -2891,7 +2891,7 @@ function language_menu() {
 			if [ "$language" = "russian" ]; then
                                 language_strings ${language} 251 "yellow"
                         else
-                                language="portuguese"
+                                language="russian"
                         language_strings ${language} 307 "yellow"
                         fi
                         language_strings ${language} 115 "read"
