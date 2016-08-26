@@ -104,7 +104,7 @@ Under Wifislax Linux and others, it can be launched using bash or sh. Example `s
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
-English, Spanish, French, Catalan and Portuguese.
+English, Spanish, French, Catalan, Portuguese and Russian.
 
 #Project Collaboration
 You can join the project:<br/>
@@ -133,6 +133,7 @@ Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwirel
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **Beans** for Portuguese translations.<br/>
+**MiAl** for Russian translations.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
