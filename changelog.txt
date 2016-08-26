@@ -1,3 +1,6 @@
+4.11
+Russian language translation added
+
 4.1
 Evil Twin attack added: with integrated sniffing
 Log parsing for Evil Twin attack with sniffing
