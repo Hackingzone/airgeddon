@@ -1,3 +1,7 @@
+4.2
+Evil Twin attack added: with integrated sniffing using sslstrip
+Evil Twin control window beautified and optimized for small windows
+
 4.11
 Russian language translation added
 

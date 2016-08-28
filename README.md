@@ -8,7 +8,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Assisted Handshake file capture.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
-- Evil Twin attacks: Only AP to sniff with external sniffer and Evil Twin with integrated sniffing. Coming soon with sslstrip and captive portal mode.<br/>
+- 3/4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip and "only AP" version to sniff with external sniffer. Captive portal mode coming soon.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -68,6 +68,7 @@ dhcpd -> isc-dhcp-server / dhcp-server / dhcp
 iptables -> iptables
 ettercap -> ettercap / ettercap-text-only / ettercap-graphical
 etterlog -> ettercap / ettercap-text-only / ettercap-graphical
+sslstrip -> sslstrip
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
