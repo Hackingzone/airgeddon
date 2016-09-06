@@ -1,3 +1,8 @@
+4.3
+Evil Twin attack added: captive portal
+Some language strings changed
+Now initial forwarding state is restored on exit
+
 4.2
 Evil Twin attack added: with integrated sniffing using sslstrip
 Evil Twin control window beautified and optimized for small windows

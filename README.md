@@ -8,7 +8,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Assisted Handshake file capture.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
-- 3/4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip and "only AP" version to sniff with external sniffer. Captive portal mode coming soon.<br/>
+- 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -22,7 +22,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 Bash version 4.0 or later needed.<br/>
 <br/>
 Tested on these compatible Linux distros:<br/>
-*-Kali 2.0, 2016.1 and arm versions (Raspberry Pi)*<br/>
+*-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1 and 3.1.1*<br/>
@@ -69,6 +69,7 @@ iptables -> iptables
 ettercap -> ettercap / ettercap-text-only / ettercap-graphical
 etterlog -> ettercap / ettercap-text-only / ettercap-graphical
 sslstrip -> sslstrip
+lighttpd -> lighttpd
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
@@ -115,11 +116,11 @@ You can join the project:<br/>
 -Testing and feedback is needed too.<br/>
 <br/>
 *For collaborating translators:*<br/>
-You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed.<br/>
+You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed or to add you as a collaborator on github.<br/>
 <br/>
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
-Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
+Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
@@ -130,11 +131,12 @@ See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.tx
 #Special Thanks to
 Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net and wifi-libre.com forum people that helped me.<br/>
 <br/>
-**Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
+**Kcdtv** (@kcdtv on github) for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
+**Magix** (@magixgf on github) for helping and supporting me and for our coffee bets. :coffee:<br/>
 **El padrino** for Catalan translations.<br/>
 **Beans** for Portuguese translations.<br/>
-**MiAl** for Russian translations.<br/>
+**MiAl** (@Mi-Al on github) for Russian translations.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
