@@ -133,7 +133,7 @@ Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwirel
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** for Catalan translations.<br/>
-**Beans** for Portuguese translations.<br/>
+**Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
