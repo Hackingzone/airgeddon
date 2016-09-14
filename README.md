@@ -131,12 +131,11 @@ See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.tx
 #Special Thanks to
 Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net and wifi-libre.com forum people that helped me.<br/>
 <br/>
-**Kcdtv** (@kcdtv on github) for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
+**Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
-**Magix** (@magixgf on github) for helping and supporting me and for our coffee bets. :coffee:<br/>
 **El padrino** for Catalan translations.<br/>
 **Beans** for Portuguese translations.<br/>
-**MiAl** (@Mi-Al on github) for Russian translations.<br/>
+**MiAl** for Russian translations.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>

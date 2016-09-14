@@ -8,7 +8,7 @@ Evil Twin attack added: with integrated sniffing using sslstrip
 Evil Twin control window beautified and optimized for small windows
 
 4.11
-Russian language translation added
+Russian language translation added (Thank you to "MiAl")
 
 4.1
 Evil Twin attack added: with integrated sniffing
@@ -21,7 +21,7 @@ Compatibility extended to OpenMandriva Linux
 Compatibility extended to Kali arm version on Raspberry Pi
 
 4.02
-New windows sizes calculation method for better viewing even in small resolutions. Dynamic system.
+New windows sizes calculation method for better viewing even in small resolutions. Dynamic system
 Fixed bug restarting Network Manager on Arch Linux
 Fixed bug restarting Network Manager using debug mode on some distros
 Suggestion added about possible packet names after failing a dependency check

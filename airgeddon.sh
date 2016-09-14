@@ -3,7 +3,7 @@
 airgeddon_version="4.3"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=0
+debug_mode=1
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -2521,6 +2521,27 @@ function language_strings() {
 	arr["portuguese",316]="$pending_of_translation Para este ataque é selecionado automaticamente o método deauth Aireplay"
 	arr["russian",316]="$pending_of_translation Для этой атаки автоматически выбирается метод deauth Aireplay"
 
+	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. "${green_color}"Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["french",317]="$pending_of_translation Si le mot de passe pour le réseau sans fil avec le portail captif est atteint, décider où enregistrer. "${green_color}"Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["catalan",317]="$pending_of_translation Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["portuguese",317]="$pending_of_translation Se a senha da rede wifi com o portal cativo é alcançado, decidir onde para salvar. "${green_color}"Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar as propostas padrão "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["russian",317]="$pending_of_translation Если пароль для беспроводной сети с адаптивным порталом достигается, решить, куда сохранить. "${green_color}"Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
+
+	arr["english",318]="Choose the language in which network clients will see the captive portal :"
+	arr["spanish",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
+	arr["french",318]="$pending_of_translation Choisissez la langue dans laquelle les clients du réseau verront le portail captif :"
+	arr["catalan",318]="$pending_of_translation Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
+	arr["portuguese",318]="$pending_of_translation Escolha o idioma em que os clientes da rede verá o portal cativo :"
+	arr["russian",318]="$pending_of_translation Выберите язык, на котором клиенты сети будут видеть адаптивный портал :"
+
+	arr["english",319]="The captive portal language has been established"
+	arr["spanish",319]="Se ha establecido el idioma del portal cautivo"
+	arr["french",319]="$pending_of_translation La langue a été mis en place un portail captif"
+	arr["catalan",319]="$pending_of_translation S'ha establert l'idioma del portal captiu"
+	arr["portuguese",319]="$pending_of_translation A língua foi estabelecida portal cativo"
+	arr["russian",319]="$pending_of_translation Язык был создан адаптивный портал"
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -2939,13 +2960,13 @@ function language_menu() {
 		;;
 		6)
 			if [ "$language" = "russian" ]; then
-                                language_strings ${language} 251 "yellow"
-                        else
-                                language="russian"
-                        language_strings ${language} 307 "yellow"
-                        fi
-                        language_strings ${language} 115 "read"
-                ;;
+				language_strings ${language} 251 "yellow"
+			else
+				language="russian"
+				language_strings ${language} 307 "yellow"
+			fi
+			language_strings ${language} 115 "read"
+		;;
 		*)
 			invalid_language_selected
 		;;
@@ -4304,6 +4325,66 @@ function manage_ettercap_log() {
 	fi
 }
 
+function manage_captive_portal_log() {
+
+	default_et_captive_portal_logpath=`env | grep ^HOME | awk -F = '{print $2}'`
+	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
+	if [ "$lastcharetcaptiveportallogpath" != "/" ]; then
+		et_captive_portal_logpath="$default_et_captive_portal_logpath/"
+	fi
+	default_et_captive_portallogfilename="evil_twin_captive_portal_password-$essid.txt"
+	default_et_captive_portal_logpath="$et_captive_portal_logpath$default_et_captive_portallogfilename"
+	validpath=1
+	while [[ "$validpath" != "0" ]]; do
+		read_path "et_captive_portallog"
+	done
+}
+
+function set_captive_portal_language() {
+
+	clear
+	language_strings ${language} 293 "title"
+	print_iface_selected
+	print_et_target_vars
+	print_iface_internet_selected
+	echo
+	language_strings ${language} 318 "green"
+	print_simple_separator
+	language_strings ${language} 79
+	language_strings ${language} 80
+	language_strings ${language} 113
+	language_strings ${language} 116
+	language_strings ${language} 249
+	language_strings ${language} 308
+	print_hint ${current_menu}
+
+	read captive_portal_language_selected
+	echo
+	case ${captive_portal_language_selected} in
+		1)
+			captive_portal_language="english"
+		;;
+		2)
+			captive_portal_language="spanish"
+		;;
+		3)
+			captive_portal_language="french"
+		;;
+		4)
+			captive_portal_language="catalan"
+		;;
+		5)
+			captive_portal_language="portuguese"
+		;;
+		6)
+			captive_portal_language="russian"
+		;;
+		*)
+			invalid_captive_portal_language_selected
+		;;
+	esac
+}
+
 function set_minlength() {
 
 	minlength=0
@@ -5336,6 +5417,14 @@ function read_path() {
 			read_and_clean_path "et_handshake"
 			check_file_exists "$et_handshake"
 		;;
+		"et_captive_portallog")
+			language_strings ${language} 317 "blue"
+			read_and_clean_path "et_captive_portal_logpath"
+			if [ -z "$et_captive_portal_logpath" ]; then
+				et_captive_portal_logpath="$default_et_captive_portal_logpath"
+			fi
+			validate_path "$et_captive_portal_logpath" ${1}
+		;;
 	esac
 
 	validpath="$?"
@@ -5696,6 +5785,13 @@ function et_prerequisites() {
 		manage_ettercap_log
 	fi
 
+	if [ "$et_mode" = "et_captive_portal" ]; then
+		manage_captive_portal_log
+		language_strings ${language} 115 "read"
+		set_captive_portal_language
+		language_strings ${language} 319 "blue"
+	fi
+
 	return_to_et_main_menu=1
 	echo
 	language_strings ${language} 296 "yellow"
@@ -5893,6 +5989,14 @@ function invalid_language_selected() {
 	language_strings ${language} 115 "read"
 	echo
 	language_menu
+}
+
+function invalid_captive_portal_language_selected() {
+
+	language_strings ${language} 82 "yellow"
+	echo
+	language_strings ${language} 115 "read"
+	set_captive_portal_language
 }
 
 function forbidden_menu_option() {
