@@ -144,13 +144,13 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me a coffee through Paypal or sending me a fraction of a bitcoin:<br/>
-Paypal: *<span>v1s1t0r.1s.h3r3@gmail.com</span>*<br/>
+Paypal: *v1s1t0r.1s.h3r3<span>@</span>gmail&#46;com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 <div>
-	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" style="display: inline;" target="_blank">
+	<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" style="display: inline; text-decoration: none;" target="_blank">
 		<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png" title="Show me the money!"/>
 	</a>
-	<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" style="display: inline;" target="_blank"/>
+	<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" style="display: inline; text-decoration: none;" target="_blank">
 		<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/bitcoin_donate.png" title="Show me the money!"/>
 	</a>
 </div>
