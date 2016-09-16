@@ -22,7 +22,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 Bash version 4.0 or later needed.<br/>
 <br/>
 Tested on these compatible Linux distros:<br/>
-*-Kali 2.0, 2016.1 and arm versions (Raspberry Pi)*<br/>
+*-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1 and 3.1.1*<br/>
@@ -143,5 +143,28 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 *Coeman76 -> Handshaker*
 
 #Donate
-If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>
-*3HcTA8H91oPRcd5eu1uJf165sbknQtUSzU*
+If you enjoyed the script, feel free to give a donation. Invite me a coffee through Paypal or sending me a fraction of a bitcoin:<br/>
+Paypal: *v1s1t0r.1s.h3r3@gmail.com*<br/>
+Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
+<table style="width: 100%;">
+	<tr>
+		<td style="vertical-align: top; text-align: left; width: 180px;">
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+				<input type="hidden" name="cmd" value="_donations"/>
+				<input type="hidden" name="business" value="v1s1t0r.1s.h3r3@gmail.com"/>
+				<input type="hidden" name="lc" value="GB"/>
+				<input type="hidden" name="item_name" value="v1s1t0r - airgeddon"/>
+				<input type="hidden" name="no_note" value="0"/>
+				<input type="hidden" name="currency_code" value="EUR"/>
+				<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest"/>
+				<input type="image" src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png" border="0" name="submit" title="Show me the money!"/>
+				<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1"/>
+			</form>
+		</td>
+		<td style="vertical-align: top; text-align: left;">
+			<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH"/>
+				<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/bitcoin_donate.png" title="Show me the money!"/>
+			</a>
+		</td>
+	</tr>
+</table>

@@ -164,7 +164,7 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
-declare evil_twin_hints=(254 258 264 269 286 309)
+declare evil_twin_hints=(254 258 264 269 309)
 declare evil_twin_dos_hints=(267 268)
 
 #Charset vars
@@ -468,7 +468,7 @@ function language_strings() {
 	arr["spanish",24]="Selecciona una interfaz para trabajar con ella :"
 	arr["french",24]="Sélectionnez l'interface pour travailler :"
 	arr["catalan",24]="Seleccionar una interfície per treballar-hi :"
-	arr["portuguese",24]="Seleccionar uma interface para trabalhar:"
+	arr["portuguese",24]="Seleccionar uma interface para trabalhar :"
 	arr["russian",24]="Выберите интерфейс дял работы :"
 
 	arr["english",25]="Set channel (1-14) :"
@@ -825,7 +825,7 @@ function language_strings() {
 	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", al \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
 	arr["french",75]="Merci au \"Spanish pen testing crew\" , au \"Wifislax Staff\" et au Kcdtv pour les tests en phase bêta et leur soutien"
 	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\", al \"Wifislax Staff\" i al Kcdtv per les proves beta i el recolzament rebut"
-	arr["portuguese",75]="Agradecimentos a \"Spanish pen testing crew\" , \"Wifislax Staff\" e especialmente para  Kcdtv por testes beta também a todo apoio recebido"
+	arr["portuguese",75]="Agradecimentos a \"Spanish pen testing crew\", \"Wifislax Staff\" e especialmente para Kcdtv por testes beta também a todo apoio recebido"
 	arr["russian",75]="Спасибо \"Spanish pen testing crew\", за \"Wifislax Staff\" и специальное спасибо Kcdtv за бета тестирование и полученную поддержку"
 
 	arr["english",76]="Invalid menu option was chosen"
@@ -1063,7 +1063,7 @@ function language_strings() {
 	arr["spanish",109]="Herramientas esenciales: comprobando..."
 	arr["french",109]="Vérification de la présence des outils nécessaires..."
 	arr["catalan",109]="Eines essencials: comprovant..."
-	arr["portuguese",109]="Verificando se as  ferramentas necessárias estão presentes..."
+	arr["portuguese",109]="Verificando se as ferramentas necessárias estão presentes..."
 	arr["russian",109]="Основные инструменты: проверка..."
 
 	arr["english",110]="Your distro has all necessary essential tools. Script can continue..."
@@ -1357,7 +1357,7 @@ function language_strings() {
 	arr["spanish",151]="Se ha detectado un fichero de Handshake capturado en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
 	arr["french",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans "${normal_color}"$enteredpath"${blue_color}"]"
 	arr["catalan",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["portuguese",151]="Handshake capturado com sucesso  ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["portuguese",151]="Handshake capturado com sucesso ["${normal_color}"$enteredpath"${blue_color}"]"
 	arr["russian",151]="В этой сессии обнаружен файл с захваченным рукопожатием ["${normal_color}"$enteredpath"${blue_color}"]"
 
 	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session? "${normal_color}"[y/n]"
@@ -1707,14 +1707,14 @@ function language_strings() {
 	arr["spanish",201]="5.  Caracteres en minúsculas + mayúsculas"
 	arr["french",201]="5.  Lettres minuscules + majuscules"
 	arr["catalan",201]="5.  Caràcters en minúscules + majúscules"
-	arr["portuguese",201]="5.  Características Minúscula + maiúsculo"
+	arr["portuguese",201]="5.  Características minúscula + maiúsculo"
 	arr["russian",201]="5.  Буквы верхнего + нижнего регистра"
 
 	arr["english",202]="6.  Lowercase + numeric chars"
 	arr["spanish",202]="6.  Caracteres en minúsculas + numéricos"
 	arr["french",202]="6.  Lettres minuscules + chiffres"
 	arr["catalan",202]="6.  Caràcters en minúscules + numèrics"
-	arr["portuguese",202]="6.  Caracteres em Minúsculo + números"
+	arr["portuguese",202]="6.  Caracteres em minúsculo + números"
 	arr["russian",202]="6.  Буквы нижнего регистра + цифры"
 
 	arr["english",203]="7.  Uppercase + numeric chars"
@@ -1735,21 +1735,21 @@ function language_strings() {
 	arr["spanish",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
 	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
-	arr["portuguese",205]="9.  Caracteres em Minúsculos + maiúsculo + números "
+	arr["portuguese",205]="9.  Caracteres em minúsculos + maiúsculo + números "
 	arr["russian",205]="9.  Буквы нижнего регистра + верхнего регистра + цифры "
 
 	arr["english",206]="10. Lowercase + uppercase + symbol chars"
 	arr["spanish",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
 	arr["french",206]="10. Lettres minuscules et majuscules + symboles"
 	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
-	arr["portuguese",206]="10. Caracteres em Minúsculos + maiúsculo + Símbolos"
+	arr["portuguese",206]="10. Caracteres em minúsculos + maiúsculo + Símbolos"
 	arr["russian",206]="10. Буквы нижнего регистра + верхнего регистра + символы "
 
 	arr["english",207]="11. Lowercase + uppercase + numeric + symbol chars"
 	arr["spanish",207]="11. Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
 	arr["french",207]="11. Lettres minuscules et majuscules + chiffres + symboles"
 	arr["catalan",207]="11. Caràcters en minúscules + majúscules + numèrics + símbols"
-	arr["portuguese",207]="11. Caracteres em Minúsculo + maiúsculo +números + símbolos"
+	arr["portuguese",207]="11. Caracteres em minúsculo + maiúsculo + números + símbolos"
 	arr["russian",207]="11. Буквы нижнего регистра + верхнего регистра + цифры + символы"
 
 	arr["english",208]="If you choose a big charset and a long key length, the proccess could take so much time"

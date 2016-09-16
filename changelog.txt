@@ -1,5 +1,8 @@
 4.21
-Portuguese Translations Updated
+Portuguese Translations updated (Thank you to "Luan")
+Paypal donate button added on README.md
+Bitcoin hash changed and bitcoin donate button added on README.md
+Tested compatibility with Kali Linux 2016.2
 
 4.2
 Evil Twin attack added: with integrated sniffing using sslstrip
