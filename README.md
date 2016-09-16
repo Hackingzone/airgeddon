@@ -155,7 +155,7 @@ Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 		<input type="hidden" name="no_note" value="0"/>
 		<input type="hidden" name="currency_code" value="EUR"/>
 		<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_SM.gif:NonHostedGuest"/>
-		<input type="image" src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png" border="0" name="submit" title="Show me the money!" style="cursor: pointer; cursor: hand;"/>
+		<input type="submit" style="background-image: url(https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png); width: 175px; height: 27px; border: none; background-color: transparent; cursor: pointer;" value=""/>
 		<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1"/>
 	</form>
 	<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" style="display: inline;"/>
