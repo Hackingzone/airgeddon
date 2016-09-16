@@ -1,5 +1,5 @@
 4.21
-Portuguese Translations updated (Thank you to "Luan")
+Portuguese translation updated (Thank you to "Luan")
 Paypal donate button added on README.md
 Bitcoin hash changed and bitcoin donate button added on README.md
 Tested compatibility with Kali Linux 2016.2
