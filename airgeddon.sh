@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.2"
+airgeddon_version="4.21"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
