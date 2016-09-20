@@ -39,7 +39,7 @@ Tested on these compatible Linux distros:<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
-It's already available in <a href="https://archstrike.org/wiki" target="_blank">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
+It's already available in <a href="https://archstrike.org/wiki">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
 Repositories versions will have auto-update feature disabled in order to avoid breaking dependencies. There is a var at the beginning of the file, *"auto_update"* can be set to 0 to turn off the auto-update feature.<br/>
 <br/>
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
@@ -106,7 +106,7 @@ Under Wifislax Linux and others, it can be launched using bash or sh. Example `s
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
-English, Spanish, French, Catalan, Portuguese and Russian.
+English, Spanish, French, Catalan, Portuguese, Russian and Greek.
 
 #Project Collaboration
 You can join the project:<br/>
@@ -126,7 +126,7 @@ Please, respect the tab indentation, code style and the UTF-8 files format only 
 You can download the master version or the beta testing version from the development branch called `dev`
 
 #Changelog
-See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt" target="_blank">Changelog</a> file to review changes.
+See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
 
 #Special Thanks to
 Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net and wifi-libre.com forum people that helped me.<br/>
@@ -134,8 +134,9 @@ Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwirel
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** for Catalan translations.<br/>
-**Beans** for Portuguese translations.<br/>
+**Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
+**xtonousou** for Greek translations.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
@@ -144,5 +145,10 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 *Coeman76 -> Handshaker*
 
 #Donate
-If you enjoyed the script, feel free to give a donation. Invite me a coffee sending me a fraction of a bitcoin:<br/>
-*3HcTA8H91oPRcd5eu1uJf165sbknQtUSzU*
+If you enjoyed the script, feel free to give a donation. Invite me a coffee through Paypal or sending me a fraction of a bitcoin:<br/>
+Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
+Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
+<br/>
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" title="Show me the money!">![Show me the money!][1]</a>&nbsp;<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" title="Show me the money!">![Show me the money!][2]</a>
+[1]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png
+[2]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/bitcoin_donate.png
