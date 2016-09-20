@@ -876,8 +876,8 @@ function language_strings() {
 	arr["french",70]="Un seul réseau a été détecté. Il a été automatiquement sélectionné"
 	arr["catalan",70]="Només un objectiu detectat. Seleccionat automàticament"
 	arr["portuguese",70]="$pending_of_translation Apenas um alvo detectado. Foi seleccionado automaticamente"
-	arr["russian",70]="Обнаружена только одна цель. Выбрана автоматически "
-	arr["greek",70]="Εντοπίστηκε μόνο ένας στόχος. Επιλέχθηκε αυτόματα "
+	arr["russian",70]="Обнаружена только одна цель. Выбрана автоматически"
+	arr["greek",70]="Εντοπίστηκε μόνο ένας στόχος. Επιλέχθηκε αυτόματα"
 
 	arr["english",71]="(*) Network with clients"
 	arr["spanish",71]="(*) Red con clientes"
@@ -1581,7 +1581,7 @@ function language_strings() {
 	arr["catalan",158]="La ruta és vàlida i tens permisos d'escriptura. El script pot continuar..."
 	arr["portuguese",158]="$pending_of_translation A rota é válida e você tem permissões de gravação. O script pode continuar..."
 	arr["russian",158]="Путь существует и у вас есть права на запись. Скрипт может продолжить..."
-	arr["greek",158]="Το μονοπάτι είναι έγκυρο και έχετε δικαιώματα εγγραφής. Το script μπορεί να συνεχίσει ..."
+	arr["greek",158]="Το μονοπάτι είναι έγκυρο και έχετε δικαιώματα εγγραφής. Το script μπορεί να συνεχίσει..."
 
 	arr["english",159]="The file doesn't need to be cleaned/optimized"
 	arr["spanish",159]="El fichero no necesita ser limpiado/optimizado"
@@ -2132,8 +2132,8 @@ function language_strings() {
 	arr["french",227]="Travail...  "
 	arr["catalan",227]="Treballant...  "
 	arr["portuguese",227]="$pending_of_translation Trabalhando...  "
-	arr["russian",227]="Работаем..."
-	arr["greek",227]="Δουλεύει..."
+	arr["russian",227]="Работаем...  "
+	arr["greek",227]="Δουλεύει...  "
 
 	arr["english",228]="                             Developed by $author"
 	arr["spanish",228]="                             Programado por $author"
@@ -2178,10 +2178,10 @@ function language_strings() {
 	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal"${normal_color}"[$hashcat_potpath]"
 	arr["spanish",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$hashcat_potpath]"
 	arr["french",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$hashcat_potpath]"
-	arr["catalan",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte"${normal_color}"[$hashcat_potpath]"
+	arr["catalan",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$hashcat_potpath]"
 	arr["portuguese",233]="$pending_of_translation Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar as propostas padrão "${normal_color}"[$hashcat_potpath]"
-	arr["russian",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию"${normal_color}"[$hashcat_potpath]"
-	arr["greek",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή"${normal_color}"[$hashcat_potpath]"
+	arr["russian",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию "${normal_color}"[$hashcat_potpath]"
+	arr["greek",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$hashcat_potpath]"
 
 	arr["english",234]="Contratulations!! It seems the key has been decrypted"
 	arr["spanish",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
@@ -2792,11 +2792,11 @@ function language_strings() {
 	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"
 
 	arr["english",310]="7.  Greek"
-	arr["spanish",310]="7.  Griega"
+	arr["spanish",310]="7.  Griego"
 	arr["french",310]="7.  Grecque"
-	arr["catalan",310]="7.  Grega"
-	arr["portuguese",310]="7.  $pending_of_translation Grega"
-	arr["russian",310]="7.  $pending_of_translation греческий"
+	arr["catalan",310]="7.  Grec"
+	arr["portuguese",310]="7.  Grego"
+	arr["russian",310]="7.  греческий"
 	arr["greek",310]="7.  Ελληνικά"
 
 	case "$3" in
@@ -3219,21 +3219,21 @@ function language_menu() {
 		6)
 			if [ "$language" = "russian" ]; then
 				language_strings ${language} 251 "yellow"
-            else
-                language="russian"
-                language_strings ${language} 307 "yellow"
-            fi
-                language_strings ${language} 115 "read"
-        ;;
-        7)
+			else
+				language="russian"
+				language_strings ${language} 307 "yellow"
+			fi
+			language_strings ${language} 115 "read"
+		;;
+		7)
 			if [ "$language" = "greek" ]; then
 				language_strings ${language} 251 "yellow"
-            else
-                language="greek"
-                language_strings ${language} 310 "yellow"
-            fi
-                language_strings ${language} 115 "read"
-        ;;
+			else
+				language="greek"
+				language_strings ${language} 310 "yellow"
+			fi
+			language_strings ${language} 115 "read"
+		;;
 		*)
 			invalid_language_selected
 		;;
