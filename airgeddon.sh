@@ -3,7 +3,7 @@
 airgeddon_version="4.3"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=1
+debug_mode=0
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -135,6 +135,9 @@ control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
 webdir="www/"
 indexfile="index.htm"
+checkfile="check.htm"
+cssfile="portal.css"
+jsfile="portal.js"
 possible_dhcp_leases_files=(
 							"/var/lib/dhcp/dhcpd.leases"
 							"/var/state/dhcp/dhcpd.leases"
@@ -300,6 +303,41 @@ function language_strings() {
 	et_misc_texts["catalan",8]="Airgeddon. Contrasenyes capturades amb atac Evil Twin"
 	et_misc_texts["portuguese",8]="Airgeddon. Senhas capturado no ataque ataque Evil Twin"
 	et_misc_texts["russian",8]="Airgeddon. Атака Злой Двойник захватила пароли"
+
+	et_misc_texts["english",9]="Wireless network, ESSID:"
+	et_misc_texts["spanish",9]="Red inalámbrica, ESSID:"
+	et_misc_texts["french",9]="Réseau sans fil, ESSID:"
+	et_misc_texts["catalan",9]="Xarxa sense fils, ESSID:"
+	et_misc_texts["portuguese",9]="Rede sem fio, ESSID:"
+	et_misc_texts["russian",9]="беспроводная сеть, ESSID:"
+
+	et_misc_texts["english",10]="Enter your wireless network password to get internet access"
+	et_misc_texts["spanish",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
+	et_misc_texts["french",10]="Entrez votre accès d'aile de mot de passe du réseau sans fil d&#39;accès à internet"
+	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés ala xarxa sense fils per poder accedir a internet"
+	et_misc_texts["portuguese",10]="Digite sua senha de acesso de rede asa sem fio para acesso à internet"
+	et_misc_texts["russian",10]="Введите свой беспроводной доступ к сети Интернет доступа пароль крыло"
+
+	et_misc_texts["english",11]="Password"
+	et_misc_texts["spanish",11]="Contraseña"
+	et_misc_texts["french",11]="Mot de passe"
+	et_misc_texts["catalan",11]="Contrasenya"
+	et_misc_texts["portuguese",11]="Senha"
+	et_misc_texts["russian",11]="пароль"
+
+	et_misc_texts["english",12]="Show password"
+	et_misc_texts["spanish",12]="Mostrar contraseña"
+	et_misc_texts["french",12]="Afficher le mot de passe"
+	et_misc_texts["catalan",12]="Mostra la contrasenya"
+	et_misc_texts["portuguese",12]="Mostrar senha"
+	et_misc_texts["russian",12]="Показать пароль"
+
+	et_misc_texts["english",13]="Submit"
+	et_misc_texts["spanish",13]="Enviar"
+	et_misc_texts["french",13]="Soumettre"
+	et_misc_texts["catalan",13]="Enviar"
+	et_misc_texts["portuguese",13]="Enviar"
+	et_misc_texts["russian",13]="послать"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -2307,7 +2345,7 @@ function language_strings() {
 	arr["english",286]="If you don't have a captured Handshake file from the target network you can get it using this script choosing the appropriate submenu option before coming here to launch this attack"
 	arr["spanish",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo con este script en el submenú adecuado antes de venir aquí a lanzar este ataque"
 	arr["french",286]="$pending_of_translation Si vous ne disposez pas d'un fichier de Handshake capturé de la cible réseau peut obtenir avec ce script dans le sous-menu approprié avant de venir ici pour lancer cette attaque"
-	arr["catalan",286]="$pending_of_translation Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo amb aquest script en el submenú adequat abans de venir aquí a llançar aquest atac"
+	arr["catalan",286]="Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo amb aquest script en el submenú adequat abans de venir aquí a llançar aquest atac"
 	arr["portuguese",286]="$pending_of_translation Se você não tem um arquivo handshake capturado a partir do alvo da rede pode obtê-lo com este script no submenu apropriado antes de vir aqui para lançar este ataque"
 	arr["russian",286]="$pending_of_translation Если у вас нет файла квитирующего захваченного из целевой сети может получить его с помощью этого сценария в соответствующем подменю до приезда сюда, чтобы запустить эту атаку"
 
@@ -2475,49 +2513,49 @@ function language_strings() {
 	arr["english",310]="Handshake file selected: "${pink_color}"None"${normal_color}
 	arr["spanish",310]="Fichero de handshake seleccionado: "${pink_color}"Ninguno"${normal_color}
 	arr["french",310]="$pending_of_translation Fichier Handshake sélectionnée: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",310]="$pending_of_translation Fitxer de handshake seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["catalan",310]="Fitxer de handshake seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",310]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"Nenhum"${normal_color}
 	arr["russian",310]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"None"${normal_color}
 
 	arr["english",311]="Handshake file selected: "${pink_color}"$et_handshake"${normal_color}
 	arr["spanish",311]="Fichero de handshake seleccionado: "${pink_color}"$et_handshake"${normal_color}
 	arr["french",311]="$pending_of_translation Fichier Handshake sélectionnée: "${pink_color}"$et_handshake"${normal_color}
-	arr["catalan",311]="$pending_of_translation Fitxer de handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
+	arr["catalan",311]="Fitxer de handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
 	arr["portuguese",311]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"$et_handshake"${normal_color}
 	arr["russian",311]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"$et_handshake"${normal_color}
 
 	arr["english",312]="No selected Handshake file detected during this session..."
 	arr["spanish",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
 	arr["french",312]="$pending_of_translation Aucun fichier Handshake sélectionné détecté durant cette session..."
-	arr["catalan",312]="$pending_of_translation No s'ha detectat un fitxer de Handshake seleccionat en aquesta sessió..."
+	arr["catalan",312]="No s'ha detectat un fitxer de Handshake seleccionat en aquesta sessió..."
 	arr["portuguese",312]="$pending_of_translation Não é detectado arquivo Handshake selecionado nesta sessão..."
 	arr["russian",312]="$pending_of_translation не обнаружен Рукопожатие файл, выбранный в этой сессии..."
 
 	arr["english",313]="Handshake selected file detected during this session ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["spanish",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["french",313]="$pending_of_translation Fichier Handshake détecté sélectionné dans cette session "${normal_color}"$et_handshake"${blue_color}"]"
-	arr["catalan",313]="$pending_of_translation S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["catalan",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["portuguese",313]="$pending_of_translation Arquivo Handshake detectado selecionado nesta sessão ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["russian",313]="$pending_of_translation Обнаружен файл Рукопожатие выбран в этой сессии ["${normal_color}"$et_handshake"${blue_color}"]"
 
 	arr["english",314]="Handshake file selected: "${pink_color}"$enteredpath"${normal_color}
 	arr["spanish",314]="Fichero de handshake seleccionado: "${pink_color}"$enteredpath"${normal_color}
 	arr["french",314]="$pending_of_translation Fichier Handshake sélectionnée: "${pink_color}"$enteredpath"${normal_color}
-	arr["catalan",314]="$pending_of_translation Fitxer de handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
+	arr["catalan",314]="Fitxer de handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
 	arr["portuguese",314]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"$enteredpath"${normal_color}
 	arr["russian",314]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"$enteredpath"${normal_color}
 
 	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file. Network data for the attack will be obtained from the file"
 	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2. Los datos de la red para el ataque serán obtenidos del fichero"
 	arr["french",315]="$pending_of_translation Cette attaque exige que vous avez déjà capturé un fichier à partir d'un réseau Handshake WPA/WPA2. Réseau de données pour l'attaque être obtenu à partir du fichier"
-	arr["catalan",315]="$pending_of_translation Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2. Les dades de la xarxa per a l'atac seran obtinguts del fitxer"
+	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2. Les dades de la xarxa per a l'atac seran obtinguts del fitxer"
 	arr["portuguese",315]="$pending_of_translation Este ataque requer que você já capturou um arquivo a partir de uma rede Handshake WPA/WPA2. Rede de dados para o ataque ser obtido a partir do ficheiro"
 	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2. Сеть передачи данных для атаки можно получить из файла"
 
 	arr["english",316]="For this attack is automatically selected Aireplay deauth method"
 	arr["spanish",316]="Para este ataque se ha seleccionado automáticamente el método de desautenticación Aireplay"
 	arr["french",316]="$pending_of_translation Pour cette attaque est automatiquement sélectionné la méthode deauth Aireplay"
-	arr["catalan",316]="$pending_of_translation Per aquest atac s'ha seleccionat automàticament el mètode de desautenticación Aireplay"
+	arr["catalan",316]="Per aquest atac s'ha seleccionat automàticament el mètode de desautenticació Aireplay"
 	arr["portuguese",316]="$pending_of_translation Para este ataque é selecionado automaticamente o método deauth Aireplay"
 	arr["russian",316]="$pending_of_translation Для этой атаки автоматически выбирается метод deauth Aireplay"
 
@@ -4948,10 +4986,8 @@ function set_webserver_config() {
 
 	echo -e "server.document-root = \"$tmpdir$webdir\"\n" > "$tmpdir$webserver_file"
 	echo -e "server.modules = (" >> "$tmpdir$webserver_file"
-	echo -e "\"mod_accesslog\"," >> "$tmpdir$webserver_file"
-	echo -e "\"mod_fastcgi\"," >> "$tmpdir$webserver_file"
+	echo -e "\"mod_cgi\"," >> "$tmpdir$webserver_file"
 	echo -e "\"mod_rewrite\"," >> "$tmpdir$webserver_file"
-	echo -e "\"mod_auth\"," >> "$tmpdir$webserver_file"
 	echo -e "\"mod_redirect\"" >> "$tmpdir$webserver_file"
 	echo -e ")\n" >> "$tmpdir$webserver_file"
 	echo -e "server.port = 80\n" >> "$tmpdir$webserver_file"
@@ -4959,12 +4995,10 @@ function set_webserver_config() {
 	echo -e "server.error-handler-404 = \"/\"\n" >> "$tmpdir$webserver_file"
 	echo -e "mimetype.assign = (" >> "$tmpdir$webserver_file"
 	echo -e "\".html\" => \"text/html\"," >> "$tmpdir$webserver_file"
-	echo -e "\".htm\" => \"text/html\"," >> "$tmpdir$webserver_file"
-	echo -e "\".txt\" => \"text/plain\"," >> "$tmpdir$webserver_file"
-	echo -e "\".jpg\" => \"image/jpeg\"," >> "$tmpdir$webserver_file"
-	echo -e "\".png\" => \"image/png\"," >> "$tmpdir$webserver_file"
-	echo -e "\".css\" => \"text/css\"" >> "$tmpdir$webserver_file"
-	echo -e ")" >> "$tmpdir$webserver_file"
+	echo -e "\".css\" => \"text/css\"," >> "$tmpdir$webserver_file"
+	echo -e "\".js\" => \"text/javascript\"" >> "$tmpdir$webserver_file"
+	echo -e ")\n" >> "$tmpdir$webserver_file"
+	echo -e "cgi.assign = ( \".htm\" => \"/bin/bash\" )" >> "$tmpdir$webserver_file"
 	sleep 2
 }
 
@@ -4973,14 +5007,123 @@ function set_captive_portal_page() {
 	rm -rf -R "$tmpdir$webdir" > /dev/null 2>&1
 	mkdir "$tmpdir$webdir" > /dev/null 2>&1
 
-	#TODO make captive portal page
+	echo -e "body * {" > "$tmpdir$webdir$cssfile"
+	echo -e "box-sizing: border-box;" >> "$tmpdir$webdir$cssfile"
+	echo -e "font-family: Helvetica, Arial, sans-serif;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e ".button {" >> "$tmpdir$webdir$cssfile"
+	echo -e "color: #ffffff;" >> "$tmpdir$webdir$cssfile"
+	echo -e "background-color: #1b5e20;" >> "$tmpdir$webdir$cssfile"
+	echo -e "border-radius: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "cursor: pointer;" >> "$tmpdir$webdir$cssfile"
+	echo -e "height: 30px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e ".content {" >> "$tmpdir$webdir$cssfile"
+	echo -e "width: 100%;" >> "$tmpdir$webdir$cssfile"
+	echo -e "background-color: #43a047;" >> "$tmpdir$webdir$cssfile"
+	echo -e "padding: 20px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "margin: 15px auto 0;" >> "$tmpdir$webdir$cssfile"
+	echo -e "border-radius: 15px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "color: #ffffff;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e ".title {" >> "$tmpdir$webdir$cssfile"
+	echo -e "text-align: center;" >> "$tmpdir$webdir$cssfile"
+	echo -e "margin-bottom: 15px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "#password {" >> "$tmpdir$webdir$cssfile"
+	echo -e "width: 100%;" >> "$tmpdir$webdir$cssfile"
+	echo -e "margin-bottom: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "border-radius: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "height: 30px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "#password:hover," >> "$tmpdir$webdir$cssfile"
+	echo -e "#password:focus {" >> "$tmpdir$webdir$cssfile"
+	echo -e "box-shadow: 0 0 10px #69f0ae;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e ".bold {" >> "$tmpdir$webdir$cssfile"
+	echo -e "font-weight: bold;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "#showpass {" >> "$tmpdir$webdir$cssfile"
+	echo -e "vertical-align: top;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}" >> "$tmpdir$webdir$cssfile"
 
-	echo -e "<html>" > "$tmpdir$webdir$indexfile"
-	echo -e "<head><title>Login page</title></head>" >> "$tmpdir$webdir$indexfile"
-	echo -e "<body>" >> "$tmpdir$webdir$indexfile"
-	echo -e "Test captive portal page. Pending to do." >> "$tmpdir$webdir$indexfile"
-	echo -e "</body>" >> "$tmpdir$webdir$indexfile"
-	echo -e "</html>" >> "$tmpdir$webdir$indexfile"
+	echo -e "(function() {" > "$tmpdir$webdir$jsfile"
+	echo -e "var onLoad = function() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "var password = document.getElementById(\"password\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "var showpass = function() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "password.setAttribute(\"type\", password.type == \"text\" ? \"password\" : \"text\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "}" >> "$tmpdir$webdir$jsfile"
+	echo -e "document.getElementById(\"showpass\").addEventListener(\"click\", showpass);" >> "$tmpdir$webdir$jsfile"
+	echo -e "document.getElementById(\"showpass\").checked = false;" >> "$tmpdir$webdir$jsfile"
+	echo -e "};" >> "$tmpdir$webdir$jsfile"
+	echo -e "document.readyState != 'loading' ? onLoad() : document.addEventListener('DOMContentLoaded', onLoad);" >> "$tmpdir$webdir$jsfile"
+	echo -e "})();" >> "$tmpdir$webdir$jsfile"
+
+	echo -e "#!/bin/bash" > "$tmpdir$webdir$indexfile"
+	echo -e "echo '<!DOCTYPE html>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<html>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<head>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<title>Internet</title>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<link rel=\"stylesheet\" type=\"text/css\" href=\"$cssfile\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<script type=\"text/javascript\" src=\"$jsfile\"></script>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</head>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<body>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<div class=\"content\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<form method=\"post\" name=\"loginform\" action=\"check.htm\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<div class=\"title\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,9]}</p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<span class=\"bold\">$essid</span>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</div>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,10]}</p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<label>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<input id=\"password\" type=\"password\" name=\"password\" maxlength=\"63\" size=\"20\" placeholder=\"${et_misc_texts[$captive_portal_language,11]}\"/><br/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</label>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,12]} <input type=\"checkbox\" id=\"showpass\"/></p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '<input class=\"button\" type=\"submit\" value=\"${et_misc_texts[$captive_portal_language,13]}\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</form>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</div>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</body>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo '</html>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "exit 0" >> "$tmpdir$webdir$indexfile"
+
+	exec 6>"$tmpdir$webdir$checkfile"
+
+	cat >&6 <<-EOF
+		#!/bin/bash
+		#POST_DATA=$(cat /dev/stdin)
+		echo '<!DOCTYPE html>'
+		echo '<html>'
+		echo '<head>'
+		echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>'
+		echo '<title>Internet</title>'
+		echo '<link rel="stylesheet" type="text/css" href="${cssfile}"/>'
+		echo '<script type="text/javascript" src="${jsfile}"></script>'
+		echo '</head>'
+		echo '<body>'
+	EOF
+
+	cat >&6 <<-'EOF'
+		#if [ "$REQUEST_METHOD" = "POST" ]; then
+		#	if [ "$CONTENT_LENGTH" -gt 0 ]; then
+		#		read -n $CONTENT_LENGTH POST_DATA <&0
+		#	fi
+		#fi
+		if [ "${REQUEST_METHOD}" = "POST" ] && [ ! -z "${CONTENT_LENGTH}" ]; then
+			read -n ${CONTENT_LENGTH} POST_DATA
+		fi
+		echo "1. $POST_DATA"
+		[[ "$REQUEST_METHOD" = "POST" ]] && [[ ${CONTENT_LENGTH} -gt 0 ]] && [[ ${POST_DATA} =~ ^password=(.*)$ ]] && password="${BASH_REMATCH[1]}"
+		[[ -n ${password} ]] && echo 'Test. Reading POST<br/>' && echo $password
+		[[ -z ${password} ]] && echo 'An error happened' && exit 1
+		echo '</body>'
+		echo '</html>'
+		exit 0
+	EOF
+
+	exec 6>&-
+	#TODO filter <>&*?./ chars to prevent hacker attacks
+
 	sleep 3
 }
 
