@@ -2405,7 +2405,7 @@ function language_strings() {
 	arr["catalan",261]="7.  Atac Evil Twin AP amb sniffing i sslstrip"
 	arr["portuguese",261]="7.  Ataque Evil Twin AP com sniffing e sslstrip"
 	arr["russian",261]="7.  Атака Злой Двойник ТД со сниффингом и sslstrip"
-	arr["greek",261]="7.  Επίθεση Evil Twin Ap με sniffing και sslstrip"
+	arr["greek",261]="7.  Επίθεση Evil Twin AP με sniffing και sslstrip"
 
 	arr["english",262]="without sniffing, captive portal"
 	arr["spanish",262]="sin sniffing, portal cautivo"
@@ -2421,7 +2421,7 @@ function language_strings() {
 	arr["catalan",263]="8.  Atac Evil Twin AP amb portal captiu"
 	arr["portuguese",263]="8.  Ataque Evil Twin AP com portal cativo"
 	arr["russian",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом"
-	arr["greek",263]="8.  Επίθεση Evil Twin Ap με αιχμαλωσία πύλης"
+	arr["greek",263]="8.  Επίθεση Evil Twin AP με αιχμαλωσία πύλης"
 
 	arr["english",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["spanish",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
