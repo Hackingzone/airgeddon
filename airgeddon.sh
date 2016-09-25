@@ -315,7 +315,7 @@ function language_strings() {
 	arr["spanish",0]="Esta interfaz $interface ya está en modo managed"
 	arr["french",0]="L'interface $interface est déjà en mode managed"
 	arr["catalan",0]="Aquesta interfície $interface ja està en mode managed"
-	arr["portuguese",0]="Esta interface $interface já está em modo monitor"
+	arr["portuguese",0]="Esta interface $interface já está em modo managed"
 	arr["russian",0]="Этот интерфейс $interface уже в управляемом режиме"
 	arr["greek",0]="Αυτή η διεπαφή $interface είναι ήδη σε ετερόκλητη κατάσταση"
 
@@ -323,7 +323,7 @@ function language_strings() {
 	arr["spanish",1]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo managed"
 	arr["french",1]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
 	arr["catalan",1]="Aquesta interfície $interface no és una targeta wifi vàlida. No es compatible amb mode managed"
-	arr["portuguese",1]="Esta interface $interface não é wifi. Ela não suporta o modo monitor"
+	arr["portuguese",1]="Esta interface $interface não é wifi. Ela não suporta o modo managed"
 	arr["russian",1]="Этот интерфейс $interface не является Wi-Fi картой. Он не поддерживает управляемый режим"
 	arr["greek",1]="Αυτή η διεπαφή $interface δεν είναι κάρτα wifi. Δεν υποστηρίζει ετερόκλητη κατάσταση."
 
@@ -435,7 +435,7 @@ function language_strings() {
 	arr["spanish",15]="Esta interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado automáticamente"
 	arr["french",15]="Le nom de l'interface a changé lors du passage en mode managed. Elle a été sélectionnée automatiquement"
 	arr["catalan",15]="Aquesta interfície ha canviat de nom al posar-la en mode managed. S'ha triat automàticament"
-	arr["portuguese",15]="Esta interface mudou de nome, colocando em modo monitor e selecionando automaticamente"
+	arr["portuguese",15]="Esta interface mudou de nome, colocando em modo managed e selecionando automaticamente"
 	arr["russian",15]="Интерфейс изменил имя во время перевода в управляемый режим. Выбран автоматически"
 	arr["greek",15]="Η διεπάφη άλλαξε όνομα καθώς ήταν σε ετερόκλητη κατάσταση. Επιλέχθηκε αυτόματα"
 
@@ -443,7 +443,7 @@ function language_strings() {
 	arr["spanish",16]="Se ha puesto el modo managed en $interface"
 	arr["french",16]="$interface est maintenant en mode manged"
 	arr["catalan",16]="$interface s'ha configurat en mode managed"
-	arr["portuguese",16]="Modo monitor configurado em $interface"
+	arr["portuguese",16]="Modo managed configurado em $interface"
 	arr["russian",16]="Управляемый режим теперь установлен на $interface"
 	arr["greek",16]="Η διεπαφή $interface είναι τώρα σε ετερόκλητη κατάσταση"
 
@@ -451,7 +451,7 @@ function language_strings() {
 	arr["spanish",17]="Poniendo la interfaz en modo managed..."
 	arr["french",17]="L'interface est en train de passer en mode managed..."
 	arr["catalan",17]="Configurant la interfície en mode managed..."
-	arr["portuguese",17]="Colocando a interface em modo monitor..."
+	arr["portuguese",17]="Colocando a interface em modo managed..."
 	arr["russian",17]="Переводим ваш интерфейс в управляемый режим..."
 	arr["greek",17]="Ενεργοποιείται η ετερόκλητη κατάσταση στην διεπαφή..."
 
@@ -603,7 +603,7 @@ function language_strings() {
 	arr["spanish",36]="Elegido ataque de Desautenticación aireplay (modo monitor requerido)"
 	arr["french",36]="L'attaque de Dés-authentification aireplay a été choisie (mode moniteur nécessaire)"
 	arr["catalan",36]="Seleccionat atac de Desautenticació aireplay (es requereix mode monitor)"
-	arr["portuguese",36]="$Selecionar ataque de desautenticação com Aireplay (modo monitor obrigatório)"
+	arr["portuguese",36]="Selecionar ataque de desautenticação com Aireplay (modo monitor obrigatório)"
 	arr["russian",36]="Выбрана aireplay атака Деаутентификации (необходим режим монитора)"
 	arr["greek",36]="Έχει επιλεχθεί επίθεση deauthentication aireplay (χρειάζεται η κατάσταση παρακολούθησης)"
 
@@ -763,7 +763,7 @@ function language_strings() {
 	arr["spanish",56]="3.  Poner la interfaz en modo managed"
 	arr["french",56]="3.  Passer l'interface en mode managed"
 	arr["catalan",56]="3.  Configurar la interfície en mode managed"
-	arr["portuguese",56]="3.  Colocar a interface em \"mode managed\""
+	arr["portuguese",56]="3.  Colocar a interface em modo managed"
 	arr["russian",56]="3.  Перевести интерфейс в управляемый режим"
 	arr["greek",56]="3.  Βάλτε τη διεπαφή σε ετερόκλητη κατάσταση"
 
@@ -779,7 +779,7 @@ function language_strings() {
 	arr["spanish",58]="7.  Poner el interfaz en modo managed"
 	arr["french",58]="7.  Passer l'interface en mode managed"
 	arr["catalan",58]="7.  Configurar la interfície en mode managed"
-	arr["portuguese",58]="7.  Coloque a interface em modo monitor"
+	arr["portuguese",58]="7.  Coloque a interface em modo managed"
 	arr["russian",58]="7.  Перевести интерфейс в управляемый режим"
 	arr["greek",58]="7.  Βάλτε τη διεπαφή σε ετερόκλητη κατάσταση"
 
@@ -915,7 +915,7 @@ function language_strings() {
 	arr["spanish",75]="Gracias al \"Spanish pen testing crew\", al \"Wifislax Staff\" y en especial a Kcdtv por el beta testing y el apoyo recibido"
 	arr["french",75]="Merci au \"Spanish pen testing crew\" , au \"Wifislax Staff\" et au Kcdtv pour les tests en phase bêta et leur soutien"
 	arr["catalan",75]="Gràcies al \"Spanish pen testing crew\", al \"Wifislax Staff\" i al Kcdtv per les proves beta i el recolzament rebut"
-	arr["portuguese",75]="Agradecimentos a \"Spanish pen testing crew\", \"Wifislax Staff\" , especialmente para Kcdtv por testes beta e também a todo apoio recebido"
+	arr["portuguese",75]="Agradecimentos a \"Spanish pen testing crew\", \"Wifislax Staff\", especialmente para Kcdtv por testes beta e também a todo apoio recebido"
 	arr["russian",75]="Спасибо \"Spanish pen testing crew\", за \"Wifislax Staff\" и специальное спасибо Kcdtv за бета тестирование и полученную поддержку"
 	arr["greek",75]="Τις ευχαριστίες στην \"Ισπανική ομάδα pen testing\", στο \"Wifislax Staff\" και πολλά ευχαριστώ στον Kcdtv για το beta testing και την υποστήριξη που λάβαμε"
 
@@ -1495,10 +1495,10 @@ function language_strings() {
 	arr["russian",147]="4.  Возврат в меню инструментов для работы с рукопожатием"
 	arr["greek",147]="4.  Επιστροφή στο μενού με τα εργαλεία Χειραψίας"
 
-	arr["english",148]="Type the path to store the file or press Enter to accept the default proposal"${normal_color}"[$handshakepath]"
+	arr["english",148]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$handshakepath]"
 	arr["spanish",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$handshakepath]"
-	arr["french",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut"${normal_color}"[$handshakepath]"
-	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte"${normal_color}"[$handshakepath]"
+	arr["french",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut "${normal_color}"[$handshakepath]"
+	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$handshakepath]"
 	arr["portuguese",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão "${normal_color}"[$handshakepath]"
 	arr["russian",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$handshakepath]"
 	arr["greek",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$handshakepath]"
@@ -1947,7 +1947,7 @@ function language_strings() {
 	arr["spanish",204]="8.  Caracteres símbolos + numéricos"
 	arr["french",204]="8.   Symboles + chiffres"
 	arr["catalan",204]="8.  Caràcters símbols + numèrics"
-	arr["portuguese",204]="8.  Símbolos + números  "
+	arr["portuguese",204]="8.  Símbolos + números"
 	arr["russian",204]="8.  Символы + цифры"
 	arr["greek",204]="8.  Σύμβολα + αριθμοί"
 
@@ -1955,7 +1955,7 @@ function language_strings() {
 	arr["spanish",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
 	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
-	arr["portuguese",205]="9.  Caracteres em minúsculos + maiúsculo + números "
+	arr["portuguese",205]="9.  Caracteres em minúsculos + maiúsculo + números"
 	arr["russian",205]="9.  Буквы нижнего регистра + верхнего регистра + цифры"
 	arr["greek",205]="9.  Πεζά + κεφαλαία + αριθμοί"
 
@@ -2059,7 +2059,7 @@ function language_strings() {
 	arr["spanish",218]="Herramientas opcionales: comprobando..."
 	arr["french",218]="Vérification de la présence des outils optionnels..."
 	arr["catalan",218]="Eines opcionals: comprovant..."
-	arr["portuguese",218]="Verificando se as  ferramentas opcionais estão presentes ..."
+	arr["portuguese",218]="Verificando se as  ferramentas opcionais estão presentes..."
 	arr["russian",218]="Опциональные инструменты: проверка..."
 	arr["greek",218]="Προαιρετικά εργαλεία: γίνεται έλεγχος..."
 
@@ -2175,7 +2175,7 @@ function language_strings() {
 	arr["russian",232]="5.  (hashcat) Атака на основе правила в отношении захваченного файла"
 	arr["greek",232]="5.  (hashcat) Επίθεση κανόνων σε αρχείο καταγραφής"
 
-	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal"${normal_color}"[$hashcat_potpath]"
+	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$hashcat_potpath]"
 	arr["spanish",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$hashcat_potpath]"
 	arr["french",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$hashcat_potpath]"
 	arr["catalan",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$hashcat_potpath]"
@@ -2315,9 +2315,9 @@ function language_strings() {
 	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas "${cyan_color}"$pending_of_translation"${pink_color}", escríbeme a $mail para colaborar con las traducciones"
 	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques "${cyan_color}"$pending_of_translation"${pink_color}" disparaitre, écrivez à $mail pour collaborer avec les traductions"
 	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques "${cyan_color}"$pending_of_translation"${pink_color}", escriu-me a $mail per col·laborar amb les traduccions"
-	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas "${cyan_color}"$pending_of_translation"${pink_color}"sejam retiradas, escreva para $mail para colaborar com as traduções"
+	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas "${cyan_color}"$pending_of_translation"${pink_color}" sejam retiradas, escreva para $mail para colaborar com as traduções"
 	arr["russian",250]="Если вы видите плохой перевод или просто хотите снять пометку "${cyan_color}"$pending_of_translation"${pink_color}" напишите мне на $mail для сотрудничества с переводчиками"
-	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια "${cyan_color}"$pending_of_translation"${pink_color}"  να εξαφανιστούν, στείλτε μου στο $mail για να συνεργαστούμε με τις μεταφράσεις"
+	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια "${cyan_color}"$pending_of_translation"${pink_color}" να εξαφανιστούν, στείλτε μου στο $mail για να συνεργαστούμε με τις μεταφράσεις"
 
 	arr["english",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["spanish",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
@@ -2355,7 +2355,7 @@ function language_strings() {
 	arr["spanish",255]="sin sniffing, solo AP"
 	arr["french",255]="rogue AP sans capture des données"
 	arr["catalan",255]="sense sniffing, només AP"
-	arr["portuguese",255]="Somente AP, sem sniffing."
+	arr["portuguese",255]="Somente AP, sem sniffing"
 	arr["russian",255]="без сниффинга, просто ТД"
 	arr["greek",255]="χωρίς sniffing, μόνο AP"
 
@@ -2459,7 +2459,7 @@ function language_strings() {
 	arr["spanish",268]="Con este ataque, intentaremos desautenticar a los clientes del AP legítimo. Con suerte reconectarán pero a nuestro Evil Twin AP"
 	arr["french",268]="Avec cette attaque nous essayons de déconnecter des clients du point d'accès légitime en espérant qu'ils se connectent au notre Evil Twin AP"
 	arr["catalan",268]="Amb aquest atac, intentarem desautenticar als clients del AP legítim. Amb sort reconectarán però al nostre Evil Twin AP"
-	arr["portuguese",268]="Com este ataque, tentamos desautenticar clientes do AP legítimo e esperemos que eles se reconectar mas o nosso AP Evil Twin."
+	arr["portuguese",268]="Com este ataque, tentamos desautenticar clientes do AP legítimo e esperemos que eles se reconectar mas o nosso AP Evil Twin"
 	arr["russian",268]="Этой атакой мы попытаемся деаутентифицировать клиентов от легитимной ТД. В надежде, что они переподключатся к нашему Злому Двойнику ТД"
 	arr["greek",268]="Με αυτήν την επίθεση, θα προσπαθήσουμε να κάνουμε deauth τους χρήστες από το αρχικό AP. Ας ελπίσουμε ότι θα επανασυνδεθούν στο Evil Twin AP μας"
 
@@ -2786,7 +2786,7 @@ function language_strings() {
 	arr["english",309]="Sslstrip technique is not infallible. It depends on many factors and not always work. Some browsers such as Mozilla Firefox latest versions are not affected"
 	arr["spanish",309]="La tecnica sslstrip no es infalible. Depende de muchos factores y no funciona siempre. Algunos navegadores como las últimas versiones de Mozilla Firefox no se ven afectados"
 	arr["french",309]="La technique de sslstrip n'est pas à toute épreuve. Cela dépend de nombreux facteurs et ne fonctionne pas toujours. Certains navigateurs tels que Mozilla Firefox dans leurs versions les plus récentes ne sont pas vulnérables"
-	arr["catalan",309]="$pending_of_translation La tècnica sslstrip no és infal·lible. Depèn de molts factors i no funciona sempre. Alguns navegadors com les últimes versions de Mozilla Firefox no es veuen afectats"
+	arr["catalan",309]="La tècnica sslstrip no és infal·lible. Depèn de molts factors i no funciona sempre. Alguns navegadors com les últimes versions de Mozilla Firefox no es veuen afectats"
 	arr["portuguese",309]="A técnica sslstrip não é infalível. Depende de muitos fatores e nem sempre funciona. Alguns navegadores como o Mozilla Firefox nas versões mais recentes não são afetados"
 	arr["russian",309]="Техника sslstrip не является надёжной. Эффект программы зависит от многих факторов и иногда она просто не работает. Некоторые браузеры, такие как Mozilla Firefox последних версий, не подвержены атаке"
 	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"

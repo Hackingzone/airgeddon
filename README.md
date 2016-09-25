@@ -147,6 +147,7 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 If you enjoyed the script, feel free to give a donation. Invite me a coffee through Paypal or sending me a fraction of a bitcoin:<br/>
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
+<br/>
 <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" title="Show me the money!">![Show me the money!][1]</a>&nbsp;<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" title="Show me the money!">![Show me the money!][2]</a>
 [1]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png
 [2]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/bitcoin_donate.png
