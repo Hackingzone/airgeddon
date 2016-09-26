@@ -144,7 +144,7 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 *Coeman76 -> Handshaker*
 
 #Donate
-If you enjoyed the script, feel free to give a donation. Invite me a coffee through Paypal or sending me a fraction of a bitcoin:<br/>
+If you enjoyed the script, feel free to give a donation. Invite me to a coffee through Paypal or send me a fraction of a bitcoin:<br/>
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 <br/>
