@@ -3572,18 +3572,17 @@ function select_internet_interface() {
 	read inet_iface
 	if [ -z ${inet_iface} ]; then
 		invalid_internet_iface_selected
-		else if [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
+	elif [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
 			invalid_internet_iface_selected
-		else
-			option_counter2=0
-			for item2 in ${inet_ifaces}; do
-				option_counter2=$[option_counter2 + 1]
-				if [[ "$inet_iface" = "$option_counter2" ]]; then
-					internet_interface=${item2}
-					break;
-				fi
-			done
-		fi
+	else
+		option_counter2=0
+		for item2 in ${inet_ifaces}; do
+			option_counter2=$[option_counter2 + 1]
+			if [[ "$inet_iface" = "$option_counter2" ]]; then
+				internet_interface=${item2}
+				break
+			fi
+		done
 	fi
 }
 
@@ -3616,18 +3615,17 @@ function select_interface() {
 	read iface
 	if [ -z ${iface} ]; then
 		invalid_iface_selected
-		else if [[ ${iface} < 1 ]] || [[ ${iface} > ${option_counter} ]]; then
-			invalid_iface_selected
-		else
-			option_counter2=0
-			for item2 in ${ifaces}; do
-				option_counter2=$[option_counter2 + 1]
-				if [[ "$iface" = "$option_counter2" ]]; then
-					interface=${item2}
-					break;
-				fi
-			done
-		fi
+	elif [[ ${iface} < 1 ]] || [[ ${iface} > ${option_counter} ]]; then
+		invalid_iface_selected
+	else
+		option_counter2=0
+		for item2 in ${ifaces}; do
+			option_counter2=$[option_counter2 + 1]
+			if [[ "$iface" = "$option_counter2" ]]; then
+				interface=${item2}
+				break
+			fi
+		done
 	fi
 }
 
@@ -3696,11 +3694,10 @@ function ask_essid() {
 
 	if [ -z "$essid" ]; then
 		read_essid
-		else if [ "$essid" = "(Hidden Network)" ]; then
-			echo
-			language_strings ${language} 30 "yellow"
-			read_essid
-		fi
+	elif [ "$essid" = "(Hidden Network)" ]; then
+		echo
+		language_strings ${language} 30 "yellow"
+		read_essid
 	fi
 
 	echo
