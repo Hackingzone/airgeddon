@@ -2941,18 +2941,20 @@ function language_strings() {
 	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"
 
 	arr["english",310]="Handshake file selected: "${pink_color}"None"${normal_color}
-	arr["spanish",310]="Fichero de handshake seleccionado: "${pink_color}"Ninguno"${normal_color}
+	arr["spanish",310]="Fichero de Handshake seleccionado: "${pink_color}"Ninguno"${normal_color}
 	arr["french",310]="Fichier Handshake sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",310]="Fitxer de handshake seleccionat: "${pink_color}"Ningú"${normal_color}
+	arr["catalan",310]="Fitxer de Handshake seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",310]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",310]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"None"${normal_color}
+	arr["russian",310]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"None"${normal_color}
+	arr["greek",310]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",311]="Handshake file selected: "${pink_color}"$et_handshake"${normal_color}
-	arr["spanish",311]="Fichero de handshake seleccionado: "${pink_color}"$et_handshake"${normal_color}
-	arr["french",311]="Fichier handshake sélectionnée: "${pink_color}"$et_handshake"${normal_color}
-	arr["catalan",311]="Fitxer de handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
-	arr["portuguese",311]="$pending_of_translation Arquivo handshake selecionado: "${pink_color}"$et_handshake"${normal_color}
-	arr["russian",311]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"$et_handshake"${normal_color}
+	arr["spanish",311]="Fichero de Handshake seleccionado: "${pink_color}"$et_handshake"${normal_color}
+	arr["french",311]="Fichier Handshake sélectionnée: "${pink_color}"$et_handshake"${normal_color}
+	arr["catalan",311]="Fitxer de Handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
+	arr["portuguese",311]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"$et_handshake"${normal_color}
+	arr["russian",311]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"$et_handshake"${normal_color}
+	arr["greek",311]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"$et_handshake"${normal_color}
 
 	arr["english",312]="No selected Handshake file detected during this session..."
 	arr["spanish",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -2960,6 +2962,7 @@ function language_strings() {
 	arr["catalan",312]="No s'ha detectat un fitxer de Handshake seleccionat en aquesta sessió..."
 	arr["portuguese",312]="$pending_of_translation Não é detectado arquivo Handshake selecionado nesta sessão..."
 	arr["russian",312]="$pending_of_translation не обнаружен Рукопожатие файл, выбранный в этой сессии..."
+	arr["greek",312]="$pending_of_translation δεν έχει εντοπιστεί το αρχείο Χειραψία επιλεγεί σε αυτή τη σύνοδο..."
 
 	arr["english",313]="Handshake selected file detected during this session ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["spanish",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión ["${normal_color}"$et_handshake"${blue_color}"]"
@@ -2967,20 +2970,23 @@ function language_strings() {
 	arr["catalan",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["portuguese",313]="$pending_of_translation Arquivo Handshake detectado selecionado nesta sessão ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["russian",313]="$pending_of_translation Обнаружен файл Рукопожатие выбран в этой сессии ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["greek",313]="$pending_of_translation Εντοπίστηκε αρχείο Χειραψία επιλεγεί σε αυτή τη σύνοδο ["${normal_color}"$et_handshake"${blue_color}"]"
 
 	arr["english",314]="Handshake file selected: "${pink_color}"$enteredpath"${normal_color}
-	arr["spanish",314]="Fichero de handshake seleccionado: "${pink_color}"$enteredpath"${normal_color}
-	arr["french",314]="Fichier handshake sélectionné: "${pink_color}"$enteredpath"${normal_color}
-	arr["catalan",314]="Fitxer de handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
-	arr["portuguese",314]="$pending_of_translation Arquivo handshake selecionado: "${pink_color}"$enteredpath"${normal_color}
-	arr["russian",314]="$pending_of_translation Выбран рукопожатием файл: "${pink_color}"$enteredpath"${normal_color}
+	arr["spanish",314]="Fichero de Handshake seleccionado: "${pink_color}"$enteredpath"${normal_color}
+	arr["french",314]="Fichier Handshake sélectionné: "${pink_color}"$enteredpath"${normal_color}
+	arr["catalan",314]="Fitxer de Handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
+	arr["portuguese",314]="$pending_of_translation Arquivo Handshake selecionado: "${pink_color}"$enteredpath"${normal_color}
+	arr["russian",314]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"$enteredpath"${normal_color}
+	arr["greek",314]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"$enteredpath"${normal_color}
 
 	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file. Network data for the attack will be obtained from the file"
 	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2. Los datos de la red para el ataque serán obtenidos del fichero"
-	arr["french",315]="Vous devez déjà avoir capturé un handshke WPA/WPA2 pour pouvoir lancer cette attaque. Les données employées pour l'attaque proviennent du fichier de captures"
+	arr["french",315]="Vous devez déjà avoir capturé un Handshke WPA/WPA2 pour pouvoir lancer cette attaque. Les données employées pour l'attaque proviennent du fichier de captures"
 	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2. Les dades de la xarxa per a l'atac seran obtinguts del fitxer"
 	arr["portuguese",315]="$pending_of_translation Este ataque requer que você já capturou um arquivo a partir de uma rede Handshake WPA/WPA2. Rede de dados para o ataque ser obtido a partir do ficheiro"
 	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2. Сеть передачи данных для атаки можно получить из файла"
+	arr["greek",315]="$pending_of_translation Η επίθεση αυτή προϋποθέτει ότι έχετε συλληφθεί στο παρελθόν αρχείο χειραψία ένα δίκτυο WPA/WPA2. Δίκτυο δεδομένων για την επίθεση να ληφθεί από το αρχείο"
 
 	arr["english",316]="For this attack is automatically selected Aireplay deauth method"
 	arr["spanish",316]="Para este ataque se ha seleccionado automáticamente el método de desautenticación Aireplay"
@@ -2988,6 +2994,7 @@ function language_strings() {
 	arr["catalan",316]="Per aquest atac s'ha seleccionat automàticament el mètode de desautenticació Aireplay"
 	arr["portuguese",316]="$pending_of_translation Para este ataque é selecionado automaticamente o método deauth Aireplay"
 	arr["russian",316]="$pending_of_translation Для этой атаки автоматически выбирается метод deauth Aireplay"
+	arr["greek",316]="$pending_of_translation Για την επίθεση αυτή επιλέγεται αυτόματα τη μέθοδο deauth Aireplay"
 
 	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. "${green_color}"Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
@@ -2995,6 +3002,7 @@ function language_strings() {
 	arr["catalan",317]="$pending_of_translation Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["portuguese",317]="$pending_of_translation Se a senha da rede wifi com o portal cativo é alcançado, decidir onde para salvar. "${green_color}"Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar as propostas padrão "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["russian",317]="$pending_of_translation Если пароль для беспроводной сети с адаптивным порталом достигается, решить, куда сохранить. "${green_color}"Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["greek",317]="$pending_of_translation Εάν επιτευχθεί ο κωδικός πρόσβασης για το ασύρματο δίκτυο με την αιχμαλωσία πύλη, να αποφασίσει πού να αποθηκεύσετε. "${green_color}"Πληκτρολογήστε τη διαδρομή όπου αποθηκεύουμε το αρχείο ή πατήστε Enter για να αποδεχτείτε την προτεινόμενη προεπιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
 
 	arr["english",318]="Choose the language in which network clients will see the captive portal :"
 	arr["spanish",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
@@ -3002,6 +3010,7 @@ function language_strings() {
 	arr["catalan",318]="$pending_of_translation Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
 	arr["portuguese",318]="$pending_of_translation Escolha o idioma em que os clientes da rede verá o portal cativo :"
 	arr["russian",318]="$pending_of_translation Выберите язык, на котором клиенты сети будут видеть адаптивный портал :"
+	arr["greek",318]="$pending_of_translation Επιλέξτε τη γλώσσα στην οποία οι πελάτες του δικτύου θα δείτε την αιχμαλωσία πύλη :"
 
 	arr["english",319]="The captive portal language has been established"
 	arr["spanish",319]="Se ha establecido el idioma del portal cautivo"
@@ -3009,6 +3018,7 @@ function language_strings() {
 	arr["catalan",319]="$pending_of_translation S'ha establert l'idioma del portal captiu"
 	arr["portuguese",319]="$pending_of_translation A língua foi estabelecida portal cativo"
 	arr["russian",319]="$pending_of_translation Язык был создан адаптивный портал"
+	arr["greek",319]="$pending_of_translation Η γλώσσα έχει καθιερωθεί αιχμαλωσία πύλη"
 
 	arr["english",320]="7.  Greek"
 	arr["spanish",320]="7.  Griego"
