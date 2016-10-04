@@ -3,7 +3,7 @@
 airgeddon_version="4.3"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=0
+debug_mode=1
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -334,7 +334,7 @@ function language_strings() {
 	et_misc_texts["english",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["spanish",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
 	et_misc_texts["french",10]="Entrez votre accès d&#39;aile de mot de passe du réseau sans fil d&#39;accès à internet"
-	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés ala xarxa sense fils per poder accedir a internet"
+	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés a la xarxa sense fils per poder accedir a internet"
 	et_misc_texts["portuguese",10]="Digite sua senha de acesso de rede asa sem fio para acesso à internet"
 	et_misc_texts["russian",10]="Введите свой беспроводной доступ к сети Интернет доступа пароль крыло"
 	et_misc_texts["greek",10]="Εισάγετε ασύρματη πρόσβαση στο κωδικό πρόσβασης δικτύου πτέρυγα σας να έχουν πρόσβαση στο διαδίκτυο"
@@ -398,7 +398,7 @@ function language_strings() {
 	et_misc_texts["english",18]="The password is correct, the connection will be restablished in a few moments"
 	et_misc_texts["spanish",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
 	et_misc_texts["french",18]="Le mot de passe est correct, la connexion sera établie dans quelques instants"
-	et_misc_texts["catalan",18]="La contrasenya és correcta, la connexió es restableix en uns moments"
+	et_misc_texts["catalan",18]="La contrasenya és correcta, la connexió es restablirà en uns moments"
 	et_misc_texts["portuguese",18]="A senha está correta, a conexão será estabelecida em alguns momentos"
 	et_misc_texts["russian",18]="Пароль правильный, то соединение будет установлено через несколько минут"
 	et_misc_texts["greek",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα δημιουργηθεί σε λίγα λεπτά"
@@ -1345,7 +1345,7 @@ function language_strings() {
 	arr["french",110]="Les outils essentiels nécessaires au bon fonctionnement du programme sont tous présents dans votre système. Le script peut continuer..."
 	arr["catalan",110]="La teva distro té totes les eines essencials necessàries. El script pot continuar..."
 	arr["portuguese",110]="Sua distro tem as ferramentas essenciais. O script pode continuar..."
-	arr["russian",110]="Ваша система имеет все необходимые основные инструменты..."
+	arr["russian",110]="Ваша система имеет все необходимые основные инструменты. Скрипт может продолжать..."
 	arr["greek",110]="Η διανομή σας έχει όλα τα απαραίτητα εργαλεία. Το script μπορεί να συνεχίσει..."
 
 	arr["english",111]="You need to install some essential tools before running this script"
@@ -2564,13 +2564,13 @@ function language_strings() {
 	arr["russian",262]="без сниффинга, перехватывающий портал"
 	arr["greek",262]="χωρίς sniffing, αιχμαλωσία πύλης"
 
-	arr["english",263]="8.  Evil Twin AP attack with captive portal"
-	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo"
-	arr["french",263]="8.  Attaque Evil Twin avec portail captif"
-	arr["catalan",263]="8.  Atac Evil Twin AP amb portal captiu"
-	arr["portuguese",263]="8.  Ataque Evil Twin AP com portal cativo"
-	arr["russian",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом"
-	arr["greek",263]="8.  Επίθεση Evil Twin AP με αιχμαλωσία πύλης"
+	arr["english",263]="8.  Evil Twin AP attack with captive portal (monitor mode needed)"
+	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
+	arr["french",263]="8.  Attaque Evil Twin avec portail captif (mode moniteur nécessaire)"
+	arr["catalan",263]="8.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
+	arr["portuguese",263]="8.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
+	arr["russian",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
+	arr["greek",263]="8.  Επίθεση Evil Twin AP με αιχμαλωσία πύλης (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["english",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["spanish",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -2748,13 +2748,13 @@ function language_strings() {
 	arr["russian",285]="Во время этой сессии обнаружен выбранный интерфейс с Интернет подключением ["${normal_color}"$internet_interface"${blue_color}"]"
 	arr["greek",285]="Η επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο εντοπίστηκε κατά τη διάρκεια της συνεδρίας ["${normal_color}"$internet_interface"${blue_color}"]"
 
-	arr["english",286]="If you don't have a captured Handshake file from the target network you can get it using this script choosing the appropriate submenu option before coming here to launch this attack"
-	arr["spanish",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo con este script en el submenú adecuado antes de venir aquí a lanzar este ataque"
-	arr["french",286]="Si vous ne disposez pas d'un fichier avec un Handshake provenant du réseau cible, vous pouvez effectuer l'attaque pour l'obtenir depuis le sous menu dédiée et revenir ensuite ici"
-	arr["catalan",286]="Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo amb aquest script en el submenú adequat abans de venir aquí a llançar aquest atac"
-	arr["portuguese",286]="$pending_of_translation Se você não tem um arquivo handshake capturado a partir do alvo da rede pode obtê-lo com este script no submenu apropriado antes de vir aqui para lançar este ataque"
-	arr["russian",286]="$pending_of_translation Если у вас нет файла квитирующего захваченного из целевой сети может получить его с помощью этого сценария в соответствующем подменю до приезда сюда, чтобы запустить эту атаку"
-	arr["greek",286]="$pending_of_translation Εάν δεν έχετε ένα αρχείο χειραψία συλλαμβάνεται από τον στόχο του δικτύου μπορεί να το πάρει με αυτό το σενάριο στο κατάλληλο υπομενού πριν έρθει εδώ για να ξεκινήσει αυτή την επίθεση"
+	arr["english",286]="If you don't have a captured Handshake file from the target network you can get it now"
+	arr["spanish",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo ahora"
+	arr["french",286]="$pending_of_translation Si vous ne disposez pas d'un réseau cible fichier capturé poignée de main, vous pouvez l'obtenir maintenant"
+	arr["catalan",286]="$pending_of_translation Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo ara"
+	arr["portuguese",286]="$pending_of_translation Se você não tem uma rede alvo capturado arquivo Handshake você pode obtê-lo agora"
+	arr["russian",286]="$pending_of_translation Если вы не имеете рукопожатия файл захваченный целевой сети вы можете получить его прямо сейчас"
+	arr["greek",286]="$pending_of_translation Εάν δεν έχετε ένα αρχείο χειραψία συλλαμβάνονται από το δίκτυο στόχος μπορεί να το πάρει τώρα"
 
 	arr["english",287]="The script will check for internet access. Please be patient..."
 	arr["spanish",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
@@ -2980,26 +2980,26 @@ function language_strings() {
 	arr["russian",314]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"$enteredpath"${normal_color}
 	arr["greek",314]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"$enteredpath"${normal_color}
 
-	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file. Network data for the attack will be obtained from the file"
-	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2. Los datos de la red para el ataque serán obtenidos del fichero"
-	arr["french",315]="Vous devez déjà avoir capturé un Handshke WPA/WPA2 pour pouvoir lancer cette attaque. Les données employées pour l'attaque proviennent du fichier de captures"
-	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2. Les dades de la xarxa per a l'atac seran obtinguts del fitxer"
-	arr["portuguese",315]="$pending_of_translation Este ataque requer que você já capturou um arquivo a partir de uma rede Handshake WPA/WPA2. Rede de dados para o ataque ser obtido a partir do ficheiro"
-	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2. Сеть передачи данных для атаки можно получить из файла"
-	arr["greek",315]="$pending_of_translation Η επίθεση αυτή προϋποθέτει ότι έχετε συλληφθεί στο παρελθόν αρχείο χειραψία ένα δίκτυο WPA/WPA2. Δίκτυο δεδομένων για την επίθεση να ληφθεί από το αρχείο"
+	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
+	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
+	arr["french",315]="Vous devez déjà avoir capturé un Handshke WPA/WPA2 pour pouvoir lancer cette attaque"
+	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2"
+	arr["portuguese",315]="$pending_of_translation Este ataque requer que você já capturou um arquivo a partir de uma rede Handshake WPA/WPA2"
+	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2"
+	arr["greek",315]="$pending_of_translation Η επίθεση αυτή προϋποθέτει ότι έχετε συλληφθεί στο παρελθόν αρχείο χειραψία ένα δίκτυο WPA/WPA2"
 
-	arr["english",316]="For this attack is automatically selected Aireplay deauth method"
-	arr["spanish",316]="Para este ataque se ha seleccionado automáticamente el método de desautenticación Aireplay"
-	arr["french",316]="Avec cette attaque la méthode de desautentificacion est configurée automatiquement"
-	arr["catalan",316]="Per aquest atac s'ha seleccionat automàticament el mètode de desautenticació Aireplay"
-	arr["portuguese",316]="$pending_of_translation Para este ataque é selecionado automaticamente o método deauth Aireplay"
-	arr["russian",316]="$pending_of_translation Для этой атаки автоматически выбирается метод deauth Aireplay"
-	arr["greek",316]="$pending_of_translation Για την επίθεση αυτή επιλέγεται αυτόματα τη μέθοδο deauth Aireplay"
+	arr["english",316]="An exploration looking for targets is going to be done..."
+	arr["spanish",316]="Se va a realizar una exploración en busca de objetivos..."
+	arr["french",316]="$pending_of_translation Il effectuera un balayage des cibles..."
+	arr["catalan",316]="$pending_of_translation Es va a realitzar una exploració a la recerca d'objectius..."
+	arr["portuguese",316]="$pending_of_translation Ele irá realizar uma varredura para alvos..."
+	arr["russian",316]="$pending_of_translation Он выполнит сканирование для целей..."
+	arr["greek",316]="$pending_of_translation Θα εκτελέσετε σάρωση για τους στόχους..."
 
 	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. "${green_color}"Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["french",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. "${green_color}"Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["catalan",317]="$pending_of_translation Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["catalan",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["portuguese",317]="$pending_of_translation Se a senha da rede wifi com o portal cativo é alcançado, decidir onde para salvar. "${green_color}"Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar as propostas padrão "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["russian",317]="$pending_of_translation Если пароль для беспроводной сети с адаптивным порталом достигается, решить, куда сохранить. "${green_color}"Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["greek",317]="$pending_of_translation Εάν επιτευχθεί ο κωδικός πρόσβασης για το ασύρματο δίκτυο με την αιχμαλωσία πύλη, να αποφασίσει πού να αποθηκεύσετε. "${green_color}"Πληκτρολογήστε τη διαδρομή όπου αποθηκεύουμε το αρχείο ή πατήστε Enter για να αποδεχτείτε την προτεινόμενη προεπιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
@@ -3007,7 +3007,7 @@ function language_strings() {
 	arr["english",318]="Choose the language in which network clients will see the captive portal :"
 	arr["spanish",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
 	arr["french",318]="Choisissez la langue dans laquelle les clients du réseau verront le portail captif :"
-	arr["catalan",318]="$pending_of_translation Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
+	arr["catalan",318]="Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
 	arr["portuguese",318]="$pending_of_translation Escolha o idioma em que os clientes da rede verá o portal cativo :"
 	arr["russian",318]="$pending_of_translation Выберите язык, на котором клиенты сети будут видеть адаптивный портал :"
 	arr["greek",318]="$pending_of_translation Επιλέξτε τη γλώσσα στην οποία οι πελάτες του δικτύου θα δείτε την αιχμαλωσία πύλη :"
@@ -3015,7 +3015,7 @@ function language_strings() {
 	arr["english",319]="The captive portal language has been established"
 	arr["spanish",319]="Se ha establecido el idioma del portal cautivo"
 	arr["french",319]="La langue pour le portail captif est activée"
-	arr["catalan",319]="$pending_of_translation S'ha establert l'idioma del portal captiu"
+	arr["catalan",319]="S'ha establert l'idioma del portal captiu"
 	arr["portuguese",319]="$pending_of_translation A língua foi estabelecida portal cativo"
 	arr["russian",319]="$pending_of_translation Язык был создан адаптивный портал"
 	arr["greek",319]="$pending_of_translation Η γλώσσα έχει καθιερωθεί αιχμαλωσία πύλη"
@@ -3027,6 +3027,38 @@ function language_strings() {
 	arr["portuguese",320]="7.  Grego"
 	arr["russian",320]="7.  греческий"
 	arr["greek",320]="7.  Ελληνικά"
+
+	arr["english",321]="Do you already have a captured Handshake file? "${blue_color}"Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now "${normal_color}"[y/n]"
+	arr["spanish",321]="¿Tienes ya un fichero de Handshake capturado? "${blue_color}"Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora "${normal_color}"[y/n]"
+	arr["french",321]="$pending_of_translation Avez-vous déjà un fichier de Handshake capturé? "${blue_color}"Réponse oui (\"y\") pour entrer dans le chemin d'accès ou ne répond pas (\"n\") pour capturer un maintenant "${normal_color}"[y/n]"
+	arr["catalan",321]="$pending_of_translation ¿Tens ja un fitxer de Handshake capturat? "${blue_color}"Respon si (\"y\") per introduir la ruta o respon no (\"n\") per capturar un ara "${normal_color}"[y/n]"
+	arr["portuguese",321]="$pending_of_translation Você já tem um arquivo Handshake capturado? "${blue_color}"Responda sim (\"y\") para entrar no caminho ou responder não (\"n\") para capturar um novo agora "${normal_color}"[y/n]"
+	arr["russian",321]="$pending_of_translation У Вас уже есть файл захваченный Рукопожатие? "${blue_color}"Ответ да (\"y\"), чтобы войти в путь или нет ответа Нет (\"n\"), чтобы захватить новую прямо сейчас "${normal_color}"[y/n]"
+	arr["greek",321]="$pending_of_translation Έχετε ήδη καταθέσει ένα κατέλαβε Χειραψία? "${blue_color}"Απάντηση ναι (\"y\") για να εισαγάγετε τη διαδρομή ή να απαντήσει καθόλου (\"n\") για να συλλάβει ένα νέο τώρα "${normal_color}"[y/n]"
+
+	arr["english",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
+	arr["spanish",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
+	arr["french",322]="$pending_of_translation Il a été constaté qu'il existe un Handshake réseau choisi comme cible pour l'exploration dans le fichier de capture sélectionné. Le script peut continuer..."
+	arr["catalan",322]="$pending_of_translation S'ha comprovat que hi ha un Handshake de la xarxa triada com a objectiu durant l'exploració en el fitxer de captura seleccionat. El script pot continuar..."
+	arr["portuguese",322]="$pending_of_translation Verificou-se que existe uma rede de Handshake escolhido como o alvo para a exploração do ficheiro de captura seleccionado. O script pode continuar..."
+	arr["russian",322]="$pending_of_translation Было установлено, что существует сеть Квитирующий выбрана в качестве цели для исследования в выбранном файле записи. Скрипт может продолжать..."
+	arr["greek",322]="$pending_of_translation Έχει βρεθεί ότι υπάρχει μια χειραψία δίκτυο επιλέχθηκε ως το στόχο για εξερεύνηση στο επιλεγμένο αρχείο καταγραφής. Το script μπορεί να συνεχίσει..."
+
+	arr["english",323]="There is no Handshake of the selected network on the capture file"
+	arr["spanish",323]="No se ha encontrado un Handshake de la red seleccionada en el fichero de captura"
+	arr["french",323]="$pending_of_translation Il n'a pas trouvé un Handshake réseau sélectionné dans le fichier de capture"
+	arr["catalan",323]="$pending_of_translation No s'ha trobat un Handshake de la xarxa seleccionada en el fitxer de captura"
+	arr["portuguese",323]="$pending_of_translation Não encontrou um aperto de mão rede selecionada no arquivo de captura"
+	arr["russian",323]="$pending_of_translation Он не нашел сети Рукопожатие, выбранный в файле захвата"
+	arr["greek",323]="$pending_of_translation Δεν έχει βρει μια χειραψία δικτύου έχει επιλεγεί στο αρχείο καταγραφής"
+
+	arr["english",324]="Handshake file generated successfully at ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["spanish",324]="Fichero de Handshake generado con éxito en ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["french",324]="Fichier Handshake généré avec succès dans ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["catalan",324]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["portuguese",324]="Arquivo Handshake gerado com sucesso ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["russian",324]="Файл рукопожания успешно сгенерирован в ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["greek",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο ["${normal_color}"$et_handshake"${blue_color}"]"
 
 	case "$3" in
 		"yellow")
@@ -3532,6 +3564,9 @@ function select_internet_interface() {
 		"et_sniffing_sslstrip")
 			language_strings ${language} 292 "title"
 		;;
+		"et_captive_portal")
+			language_strings ${language} 293 "title"
+		;;
 	esac
 
 	inet_ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v`
@@ -3718,7 +3753,7 @@ function exec_mdk3deauth() {
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -3733,7 +3768,7 @@ function exec_aireplaydeauth() {
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -3746,7 +3781,7 @@ function exec_wdsconfusion() {
 	language_strings ${language} 33 "blue"
 	language_strings ${language} 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -3969,28 +4004,26 @@ function print_all_target_vars_et() {
 
 function print_et_target_vars() {
 
-	if [ "$et_mode" != "et_captive_portal" ]; then
-		if [ -n "$bssid" ]; then
-			language_strings ${language} 43 "blue"
-		else
-			language_strings ${language} 271 "blue"
-		fi
+	if [ -n "$bssid" ]; then
+		language_strings ${language} 43 "blue"
+	else
+		language_strings ${language} 271 "blue"
+	fi
 
-		if [ -n "$channel" ]; then
-			language_strings ${language} 44 "blue"
-		else
-			language_strings ${language} 273 "blue"
-		fi
+	if [ -n "$channel" ]; then
+		language_strings ${language} 44 "blue"
+	else
+		language_strings ${language} 273 "blue"
+	fi
 
-		if [ -n "$essid" ]; then
-			if [ "$essid" = "(Hidden Network)" ]; then
-				language_strings ${language} 45 "blue"
-			else
-				language_strings ${language} 46 "blue"
-			fi
+	if [ -n "$essid" ]; then
+		if [ "$essid" = "(Hidden Network)" ]; then
+			language_strings ${language} 45 "blue"
 		else
-			language_strings ${language} 274 "blue"
+			language_strings ${language} 46 "blue"
 		fi
+	else
+		language_strings ${language} 274 "blue"
 	fi
 
 	if [ "$current_menu" != "et_dos_menu" ]; then
@@ -4047,7 +4080,7 @@ function initialize_menu_options_dependencies() {
 	et_onlyap_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]})
 	et_sniffing_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]})
 	et_sniffing_sslstrip_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]} ${optional_tools_names[10]})
-	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]} ${optional_tools_names[2]})
+	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
 }
 
 function initialize_menu_and_print_selections() {
@@ -4078,12 +4111,18 @@ function initialize_menu_and_print_selections() {
 		;;
 		"evil_twin_attacks_menu")
 			return_to_et_main_menu=0
+			retry_handshake_capture=0
+			retrying_handshake_capture=0
 			et_mode=""
 			et_processes=()
 			print_iface_selected
 			print_all_target_vars_et
 		;;
 		"et_dos_menu")
+			if [ ${retry_handshake_capture} -eq 1 ]; then
+				retry_handshake_capture=0
+				retrying_handshake_capture=1
+			fi
 			print_iface_selected
 			print_et_target_vars
 			print_iface_internet_selected
@@ -4374,7 +4413,14 @@ function evil_twin_attacks_menu() {
 				check_interface_wifi
 				if [ "$?" = "0" ]; then
 					et_mode="et_captive_portal"
-					et_dos_menu
+					echo
+					language_strings ${language} 316 "yellow"
+					language_strings ${language} 115 "read"
+
+					explore_for_targets_option
+					if [ "$?" = "0" ]; then
+						et_dos_menu
+					fi
 				else
 					echo
 					language_strings ${language} 281 "yellow"
@@ -4566,6 +4612,38 @@ function check_valid_file_to_clean() {
 	return 0
 }
 
+function check_bssid_in_captured_file() {
+
+	nets_from_file=$(echo "1" | aircrack-ng "$1" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+
+	echo
+	if [ "$nets_from_file" = "" ]; then
+		language_strings ${language} 216 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	declare -A bssids_detected
+	option_counter=0
+	for item in ${nets_from_file}; do
+		if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
+			option_counter=$[option_counter + 1]
+			bssids_detected["$option_counter"]=${item}
+		fi
+	done
+
+	for targetbssid in ${bssids_detected[@]}; do
+		if [ "$bssid" = "$targetbssid" ]; then
+			language_strings ${language} 322 "yellow"
+			return 0
+		fi
+	done
+
+	language_strings ${language} 323 "yellow"
+	language_strings ${language} 115 "read"
+	return 1
+}
+
 function select_wpa_bssid_target_from_captured_file() {
 
 	nets_from_file=$(echo "1" | aircrack-ng "$1" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
@@ -4578,26 +4656,14 @@ function select_wpa_bssid_target_from_captured_file() {
 	fi
 
 	declare -A bssids_detected
-	declare -A essids_detected
 	option_counter=0
-	next_is_essid=0
 	for item in ${nets_from_file}; do
-		if [ ${next_is_essid} -eq 1 ]; then
-			essids_detected["$option_counter"]="$item"
-			next_is_essid=0
-		elif [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
+		if [[ ${item} =~ ^[0-9a-fA-F]{2}: ]]; then
 			option_counter=$[option_counter + 1]
 			bssids_detected["$option_counter"]=${item}
-			next_is_essid=1
-		elif [[ ${item} =~ ^WPA2?$ ]]; then
-			if [ ${essids_detected["$option_counter"]} != "$last_item" ]; then
-				essids_detected["$option_counter"]+=" $last_item"
-			fi
 		fi
-		last_item=${item}
 	done
 
-	target_number=0
 	for targetbssid in ${bssids_detected[@]}; do
 		if [ "$bssid" = "$targetbssid" ]; then
 			language_strings ${language} 192 "blue"
@@ -4605,15 +4671,10 @@ function select_wpa_bssid_target_from_captured_file() {
 
 			if [ ${yesno} = "y" ]; then
 				bssid=${targetbssid}
-				if [ "$2" = "evil_twin" ]; then
-					target_number=$[target_number + 1]
-					essid=${essids_detected["$target_number"]}
-				fi
 				return 0
 			fi
 			break
 		fi
-		target_number=$[target_number + 1]
 	done
 
 	bssid_autoselected=0
@@ -4657,9 +4718,6 @@ function select_wpa_bssid_target_from_captured_file() {
 		language_strings ${language} 217 "blue"
 	fi
 
-	if [ "$2" = "evil_twin" ]; then
-		essid="${essids_detected["$target_network_on_file"]}"
-	fi
 	return 0
 }
 
@@ -5501,12 +5559,12 @@ function set_control_script() {
 						echo -ne " $open_parenthesis $last_password_msg $last_password $close_parenthesis"
 					fi
 				fi
+				echo
+				echo
 			fi
 	EOF
 
 	cat >&7 <<-EOF
-			echo
-			echo
 			echo -e "\t${green_color}${et_misc_texts[$language,3]}${normal_color}"
 			readarray -t DHCPCLIENTS < <(cat "${tmpdir}clts.txt" | grep DHCPACK)
 			client_ips=()
@@ -6065,6 +6123,73 @@ function dos_attacks_menu() {
 	dos_attacks_menu
 }
 
+function capture_handshake_evil_twin() {
+
+	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
+		echo
+		language_strings ${language} 137 "yellow"
+		language_strings ${language} 115 "read"
+		return 1
+	fi
+
+	capture_handshake_window
+
+	case ${et_dos_attack} in
+		"Mdk3")
+			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
+			echo ${bssid} > ${tmpdir}"bl.txt"
+			recalculate_windows_sizes
+			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+			sleeptimeattack=12
+		;;
+		"Aireplay")
+			${airmon} start ${interface} ${channel} > /dev/null 2>&1
+			recalculate_windows_sizes
+			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+			sleeptimeattack=12
+		;;
+		"Wds Confusion")
+			recalculate_windows_sizes
+			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+			sleeptimeattack=16
+		;;
+	esac
+
+	processidattack=$!
+	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
+
+	ask_yesno 145
+	handshake_captured=${yesno}
+	kill ${processidcapture} &> /dev/null
+	if [ "$handshake_captured" = "y" ]; then
+
+		handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
+		lastcharhandshakepath=${handshakepath: -1}
+		if [ "$lastcharhandshakepath" != "/" ]; then
+			handshakepath="$handshakepath/"
+		fi
+		handshakefilename="handshake-$bssid.cap"
+		handshakepath="$handshakepath$handshakefilename"
+
+		language_strings ${language} 162 "yellow"
+		validpath=1
+		while [[ "$validpath" != "0" ]]; do
+			read_path "writeethandshake"
+		done
+
+		cp "$tmpdir$standardhandshake_filename" ${et_handshake}
+		echo
+		language_strings ${language} 324 "blue"
+		language_strings ${language} 115 "read"
+		return 0
+	else
+		echo
+		language_strings ${language} 146 "yellow"
+		language_strings ${language} 115 "read"
+		return 2
+	fi
+}
+
 function capture_handshake() {
 
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "$essid" = "(Hidden Network)" ]]; then
@@ -6130,6 +6255,10 @@ function validate_path() {
 			"ettercaplog")
 				suggested_filename="$default_ettercaplogfilename"
 				ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
+			;;
+			"writeethandshake")
+				et_handshake="$1$standardhandshake_filename"
+				suggested_filename="$standardhandshake_filename"
 			;;
 		esac
 
@@ -6216,6 +6345,14 @@ function read_path() {
 			read_and_clean_path "et_handshake"
 			check_file_exists "$et_handshake"
 		;;
+		"writeethandshake")
+			language_strings ${language} 148 "green"
+			read_and_clean_path "et_handshake"
+			if [ -z "$et_handshake" ]; then
+				et_handshake="$handshakepath"
+			fi
+			validate_path "$et_handshake" ${1}
+		;;
 		"et_captive_portallog")
 			language_strings ${language} 317 "blue"
 			read_and_clean_path "et_captive_portal_logpath"
@@ -6290,7 +6427,7 @@ function attack_handshake_menu() {
 				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 				echo ${bssid} > ${tmpdir}"bl.txt"
 				recalculate_windows_sizes
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -6303,7 +6440,7 @@ function attack_handshake_menu() {
 				capture_handshake_window
 				${airmon} start ${interface} ${channel} > /dev/null 2>&1
 				recalculate_windows_sizes
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -6315,7 +6452,7 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				recalculate_windows_sizes
-				xterm +j -sb -rightbar -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -6368,7 +6505,7 @@ function explore_for_targets_option() {
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
+	xterm +j -bg black -fg white -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
 	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
 	targetline=`expr ${targetline} - 1`
 
@@ -6380,7 +6517,7 @@ function explore_for_targets_option() {
 		echo
 		language_strings ${language} 68 "yellow"
 		language_strings ${language} 115 "read"
-		return
+		return 1
 	fi
 
 	rm -rf ${tmpdir}"nws.txt" > /dev/null 2>&1
@@ -6508,6 +6645,10 @@ function select_target() {
 
 function et_prerequisites() {
 
+	if [ ${retry_handshake_capture} -eq 1 ]; then
+		return
+	fi
+
 	current_menu="evil_twin_attacks_menu"
 	clear
 
@@ -6545,19 +6686,35 @@ function et_prerequisites() {
 	fi
 
 	if [ "$et_mode" = "et_captive_portal" ]; then
-		language_strings ${language} 316 "blue"
-		echo
+
 		language_strings ${language} 315 "yellow"
 		echo
 		language_strings ${language} 286 "pink"
 		print_simple_separator
-		ask_yesno 277
-		if [ ${yesno} = "n" ]; then
-			return_to_et_main_menu=1
-			return
+		if [ ${retrying_handshake_capture} -eq 0 ]; then
+			ask_yesno 321
 		fi
-		ask_et_handshake_file
-		select_wpa_bssid_target_from_captured_file "$et_handshake" "evil_twin"
+
+		if [[ ${yesno} = "n" || ${retrying_handshake_capture} -eq 1 ]]; then
+			capture_handshake_evil_twin
+			case "$?" in
+				"2")
+					retry_handshake_capture=1
+					return
+				;;
+				"1")
+					return_to_et_main_menu=1
+					return
+				;;
+			#fi
+			esac
+		else
+			ask_et_handshake_file
+		fi
+		retry_handshake_capture=0
+		retrying_handshake_capture=0
+
+		check_bssid_in_captured_file "$et_handshake"
 		if [ "$?" != "0" ]; then
 			return_to_et_main_menu=1
 			return
@@ -6566,9 +6723,6 @@ function et_prerequisites() {
 		echo
 		language_strings ${language} 28 "blue"
 
-		if [ -z ${channel} ]; then
-			channel=$(shuf -i 1-11 -n 1)
-		fi
 		echo
 		language_strings ${language} 26 "blue"
 
@@ -6657,84 +6811,73 @@ function et_dos_menu() {
 		return
 	fi
 
-	if [ "$et_mode" != "et_captive_portal" ]; then
+	clear
+	language_strings ${language} 265 "title"
+	current_menu="et_dos_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings ${language} 47 "green"
+	print_simple_separator
+	language_strings ${language} 139 mdk3_attack_dependencies[@]
+	language_strings ${language} 140 aireplay_attack_dependencies[@]
+	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	print_simple_separator
+	language_strings ${language} 266
+	print_hint ${current_menu}
 
-		clear
-		language_strings ${language} 265 "title"
-		current_menu="et_dos_menu"
-		initialize_menu_and_print_selections
-		echo
-		language_strings ${language} 47 "green"
-		print_simple_separator
-		language_strings ${language} 139 mdk3_attack_dependencies[@]
-		language_strings ${language} 140 aireplay_attack_dependencies[@]
-		language_strings ${language} 141 mdk3_attack_dependencies[@]
-		print_simple_separator
-		language_strings ${language} 266
-		print_hint ${current_menu}
-
-		read et_dos_option
-		case ${et_dos_option} in
-			1)
-				contains_element "$et_dos_option" "${forbidden_options[@]}"
+	read et_dos_option
+	case ${et_dos_option} in
+		1)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Mdk3"
+				detect_internet_interface
 				if [ "$?" = "0" ]; then
-					forbidden_menu_option
+					et_prerequisites
 				else
-					et_dos_attack="Mdk3"
-					detect_internet_interface
-					if [ "$?" = "0" ]; then
-						et_prerequisites
-					else
-						return
-					fi
+					return
 				fi
-			;;
-			2)
-				contains_element "$et_dos_option" "${forbidden_options[@]}"
+			fi
+		;;
+		2)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Aireplay"
+				detect_internet_interface
 				if [ "$?" = "0" ]; then
-					forbidden_menu_option
+					et_prerequisites
 				else
-					et_dos_attack="Aireplay"
-					detect_internet_interface
-					if [ "$?" = "0" ]; then
-						et_prerequisites
-					else
-						return
-					fi
+					return
 				fi
-			;;
-			3)
-				contains_element "$et_dos_option" "${forbidden_options[@]}"
+			fi
+		;;
+		3)
+			contains_element "$et_dos_option" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				et_dos_attack="Wds Confusion"
+				detect_internet_interface
 				if [ "$?" = "0" ]; then
-					forbidden_menu_option
+					et_prerequisites
 				else
-					et_dos_attack="Wds Confusion"
-					detect_internet_interface
-					if [ "$?" = "0" ]; then
-						et_prerequisites
-					else
-						return
-					fi
+					return
 				fi
-			;;
-			4)
-				return
-			;;
-			*)
-				invalid_menu_option
-			;;
-		esac
-
-		et_dos_menu
-	else
-		et_dos_attack="Aireplay"
-		detect_internet_interface
-		if [ "$?" = "0" ]; then
-			et_prerequisites
-		else
+			fi
+		;;
+		4)
 			return
-		fi
-	fi
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	et_dos_menu
 }
 
 function detect_internet_interface() {
