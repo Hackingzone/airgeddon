@@ -3,7 +3,7 @@
 airgeddon_version="4.3"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
-debug_mode=1
+debug_mode=0
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -333,7 +333,7 @@ function language_strings() {
 
 	et_misc_texts["english",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["spanish",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
-	et_misc_texts["french",10]="Entrez votre accès d&#39;aile de mot de passe du réseau sans fil d&#39;accès à internet"
+	et_misc_texts["french",10]="Veuillez saisir la clé de sécurité du réseau wifi pour obtenir accès à internet"
 	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés a la xarxa sense fils per poder accedir a internet"
 	et_misc_texts["portuguese",10]="Digite sua senha de acesso de rede asa sem fio para acesso à internet"
 	et_misc_texts["russian",10]="Введите свой беспроводной доступ к сети Интернет доступа пароль крыло"
@@ -341,7 +341,7 @@ function language_strings() {
 
 	et_misc_texts["english",11]="Password"
 	et_misc_texts["spanish",11]="Contraseña"
-	et_misc_texts["french",11]="Mot de passe"
+	et_misc_texts["french",11]="Clé de sécurité"
 	et_misc_texts["catalan",11]="Contrasenya"
 	et_misc_texts["portuguese",11]="Senha"
 	et_misc_texts["russian",11]="пароль"
@@ -349,7 +349,7 @@ function language_strings() {
 
 	et_misc_texts["english",12]="Show password"
 	et_misc_texts["spanish",12]="Mostrar contraseña"
-	et_misc_texts["french",12]="Afficher le mot de passe"
+	et_misc_texts["french",12]="Afficher les caractères"
 	et_misc_texts["catalan",12]="Mostra la contrasenya"
 	et_misc_texts["portuguese",12]="Mostrar senha"
 	et_misc_texts["russian",12]="Показать пароль"
@@ -357,7 +357,7 @@ function language_strings() {
 
 	et_misc_texts["english",13]="Submit"
 	et_misc_texts["spanish",13]="Enviar"
-	et_misc_texts["french",13]="Soumettre"
+	et_misc_texts["french",13]="Enregistrer"
 	et_misc_texts["catalan",13]="Enviar"
 	et_misc_texts["portuguese",13]="Enviar"
 	et_misc_texts["russian",13]="послать"
@@ -365,7 +365,7 @@ function language_strings() {
 
 	et_misc_texts["english",14]="An unexpected error occurred, redirecting to the main screen"
 	et_misc_texts["spanish",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
-	et_misc_texts["french",14]="Une erreur inattendue est survenue, la redirection vers l&#39;écran principal"
+	et_misc_texts["french",14]="Une erreur inattendue s&#39;est produite, retour à l&#39;écran principal"
 	et_misc_texts["catalan",14]="Hi ha hagut un error inesperat, redirigint a la pantalla principal"
 	et_misc_texts["portuguese",14]="Ocorreu um erro inesperado, redirecionando para a tela principal"
 	et_misc_texts["russian",14]="Произошла неожиданная ошибка, перенаправлять на главный экран"
@@ -381,7 +381,7 @@ function language_strings() {
 
 	et_misc_texts["english",16]="The password must be at least 8 characters"
 	et_misc_texts["spanish",16]="La contraseña debe tener al menos 8 caracteres"
-	et_misc_texts["french",16]="Le mot de passe doit être d'au moins 8 caractères"
+	et_misc_texts["french",16]="La clé de sécurité doit contenir au moins 8 caractères"
 	et_misc_texts["catalan",16]="La contrasenya ha de tenir almenys 8 caràcters"
 	et_misc_texts["portuguese",16]="A senha deve ter pelo menos 8 caracteres"
 	et_misc_texts["russian",16]="Пароль должен быть не менее 8 символов"
@@ -389,7 +389,7 @@ function language_strings() {
 
 	et_misc_texts["english",17]="The password is incorrect, redirecting to the main screen"
 	et_misc_texts["spanish",17]="La contraseña introducida es incorrecta, redirigiendo a la pantalla principal"
-	et_misc_texts["french",17]="Le mot de passe est incorrect, la redirection vers l&#39;écran principal"
+	et_misc_texts["french",17]="Clé de sécurité incorrecte, retour à l&#39;écran principal"
 	et_misc_texts["catalan",17]="La contrasenya introduïda és incorrecta, redirigint a la pantalla principal"
 	et_misc_texts["portuguese",17]="A senha está incorreta, redirecionando para a tela principal"
 	et_misc_texts["russian",17]="Неверный пароль, перенаправление на главный экран"
@@ -397,7 +397,7 @@ function language_strings() {
 
 	et_misc_texts["english",18]="The password is correct, the connection will be restablished in a few moments"
 	et_misc_texts["spanish",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
-	et_misc_texts["french",18]="Le mot de passe est correct, la connexion sera établie dans quelques instants"
+	et_misc_texts["french",18]="Clé de sécurité correcte, la connexion sera établie dans quelques instants"
 	et_misc_texts["catalan",18]="La contrasenya és correcta, la connexió es restablirà en uns moments"
 	et_misc_texts["portuguese",18]="A senha está correta, a conexão será estabelecida em alguns momentos"
 	et_misc_texts["russian",18]="Пароль правильный, то соединение будет установлено через несколько минут"
@@ -405,7 +405,7 @@ function language_strings() {
 
 	et_misc_texts["english",19]="Airgeddon. Captive portal Evil Twin attack captured password"
 	et_misc_texts["spanish",19]="Airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
-	et_misc_texts["french",19]="Airgeddon. Mot de passe capturé sur le portail Evil Twin attaque captive"
+	et_misc_texts["french",19]="Airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
 	et_misc_texts["catalan",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
 	et_misc_texts["portuguese",19]="Airgeddon. Senha capturado no ataque Evil Twin portal cativo"
 	et_misc_texts["russian",19]="Airgeddon. Пароль захватили на адаптивный портал Зла атаки Твин"
@@ -429,7 +429,7 @@ function language_strings() {
 
 	et_misc_texts["english",22]="Captured passwords on failed attemps"
 	et_misc_texts["spanish",22]="Contraseñas capturadas en intentos fallidos"
-	et_misc_texts["french",22]="Les mots de passe saisis dans les tentatives infructueuses"
+	et_misc_texts["french",22]="Mots de passe capturés lors des tentatives infructueuses"
 	et_misc_texts["catalan",22]="Contrasenyes capturades en intents fallits"
 	et_misc_texts["portuguese",22]="Senhas capturadas em tentativas falhadas"
 	et_misc_texts["russian",22]="Пароли, захваченные в неудачных попыток"
@@ -453,7 +453,7 @@ function language_strings() {
 
 	et_misc_texts["english",25]="Press Enter on the main script window to continue, this window will be closed"
 	et_misc_texts["spanish",25]="Pulsa Enter en la ventana principal del script para continuar, esta ventana se cerrará"
-	et_misc_texts["french",25]="Appuyez sur Entrée dans la fenêtre principale du script de continuer, cette fenêtre se fermera"
+	et_misc_texts["french",25]="Appuyez sur Entrée dans la fenêtre principale du script pour continuer, cette fenêtre se fermera"
 	et_misc_texts["catalan",25]="Prem Enter a la finestra principal del script per continuar, aquesta finestra es tancarà"
 	et_misc_texts["portuguese",25]="Pressione Enter na janela principal do script para continuar, esta janela será fechada"
 	et_misc_texts["russian",25]="Нажмите Enter в главном окне сценария для продолжения, это окно будет закрыто"
@@ -3022,7 +3022,7 @@ function language_strings() {
 
 	arr["english",320]="7.  Greek"
 	arr["spanish",320]="7.  Griego"
-	arr["french",320]="7.  Grecque"
+	arr["french",320]="7.  Grec"
 	arr["catalan",320]="7.  Grec"
 	arr["portuguese",320]="7.  Grego"
 	arr["russian",320]="7.  греческий"
@@ -3059,6 +3059,14 @@ function language_strings() {
 	arr["portuguese",324]="Arquivo Handshake gerado com sucesso ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["russian",324]="Файл рукопожания успешно сгенерирован в ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["greek",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο ["${normal_color}"$et_handshake"${blue_color}"]"
+
+	arr["english",325]="Wait. Be patient..."
+	arr["spanish",325]="Espera. Ten un poco de paciencia..."
+	arr["french",325]="$pending_of_translation Attendez. Ayez un peu de patience..."
+	arr["catalan",325]="$pending_of_translation Espera. Tingues una mica de paciència..."
+	arr["portuguese",325]="$pending_of_translation Esperar. Tenha um pouco de paciência..."
+	arr["russian",325]="$pending_of_translation Подождите. Имейте немного терпения..."
+	arr["greek",325]="$pending_of_translation Περιμένετε. Έχετε λίγη υπομονή..."
 
 	case "$3" in
 		"yellow")
@@ -4113,6 +4121,7 @@ function initialize_menu_and_print_selections() {
 			return_to_et_main_menu=0
 			retry_handshake_capture=0
 			retrying_handshake_capture=0
+			internet_interface_selected=0
 			et_mode=""
 			et_processes=()
 			print_iface_selected
@@ -5487,6 +5496,7 @@ function set_control_script() {
 					done
 				fi
 
+				sleep 2
 				killall hostapd > /dev/null 2>&1
 				killall dhcpd > /dev/null 2>&1
 				killall aireplay-ng > /dev/null 2>&1
@@ -6477,6 +6487,8 @@ function capture_handshake_window() {
 	echo
 	language_strings ${language} 144 "yellow"
 	language_strings ${language} 115 "read"
+	echo
+	language_strings ${language} 325 "blue"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
@@ -6706,13 +6718,13 @@ function et_prerequisites() {
 					return_to_et_main_menu=1
 					return
 				;;
-			#fi
 			esac
 		else
 			ask_et_handshake_file
 		fi
 		retry_handshake_capture=0
 		retrying_handshake_capture=0
+		internet_interface_selected=0
 
 		check_bssid_in_captured_file "$et_handshake"
 		if [ "$?" != "0" ]; then
@@ -6881,6 +6893,10 @@ function et_dos_menu() {
 }
 
 function detect_internet_interface() {
+
+	if [ ${internet_interface_selected} -eq 1 ]; then
+		return 0
+	fi
 
 	if [ -n "$internet_interface" ]; then
 		echo
@@ -7760,6 +7776,7 @@ function validate_et_internet_interface() {
 	echo
 	language_strings ${language} 289 "yellow"
 	language_strings ${language} 115 "read"
+	internet_interface_selected=1
 	return 0
 }
 
