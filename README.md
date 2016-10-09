@@ -3,7 +3,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 <img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/airgeddon_banner.png" title="We'll conquer the earth!!"/>
 
 #Features
-- Interface mode switcher (Monitor-Managed).<br/>
+- Interface mode switcher (Monitor-Managed) keeping selection even with interface name changing.<br/>
 - DoS over wireless networks with different methods.<br/>
 - Assisted Handshake file capture.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>

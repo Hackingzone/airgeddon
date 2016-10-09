@@ -3267,6 +3267,53 @@ function execute_iwconfig_fix() {
 	return $?
 }
 
+function renew_ifaces_and_macs_list() {
+
+	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v)
+	declare -gA ifaces_and_macs
+	for iface_name in "${IFACES_AND_MACS[@]}"; do
+		ifaces_and_macs["$iface_name"]=$(ip link show ${iface_name} | awk '/link/ {print $2}')
+	done
+
+	declare -gA ifaces_and_macs_switched
+	for iface_name in "${!ifaces_and_macs[@]}"; do
+		ifaces_and_macs_switched[${ifaces_and_macs[$iface_name]}]=${iface_name}
+	done
+}
+
+function check_interface_coherence() {
+
+	renew_ifaces_and_macs_list
+	interface_auto_change=0
+
+	interface_found=0
+	for iface_name in "${!ifaces_and_macs[@]}"; do
+		if [ "$interface" = "$iface_name" ]; then
+			interface_found=1
+			interface_mac=${ifaces_and_macs["$iface_name"]}
+			break
+		fi
+	done
+
+	if [ ${interface_found} -eq 0 ]; then
+		for iface_mac in "${ifaces_and_macs[@]}"; do
+			iface_mac_tmp=${iface_mac:0:15}
+			interface_mac_tmp=${interface_mac:0:15}
+			if [ "$iface_mac_tmp" = "$interface_mac_tmp" ]; then
+				interface=${ifaces_and_macs_switched["$iface_mac"]}
+				interface_auto_change=1
+				break
+			fi
+		done
+	fi
+
+	if [ ${interface_auto_change} -eq 1 ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
 function prepare_et_monitor() {
 
 	disable_rfkill
@@ -3288,7 +3335,12 @@ function prepare_et_interface() {
 		new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "$interface" != "$new_interface" ]; then
-			interface=${new_interface}
+			check_interface_coherence
+			if [ "$?" = "0" ]; then
+				interface=${new_interface}
+			fi
+			echo
+			language_strings ${language} 15 "yellow"
 		fi
 	fi
 }
@@ -3339,9 +3391,12 @@ function managed_option() {
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "$interface" != "$new_interface" ]; then
+		check_interface_coherence
+		if [ "$?" = "0" ]; then
+			interface=${new_interface}
+		fi
 		echo
 		language_strings ${language} 15 "yellow"
-		interface=${new_interface}
 	fi
 
 	echo
@@ -3381,9 +3436,12 @@ function monitor_option() {
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "$interface" != "$new_interface" ]; then
+		check_interface_coherence
+		if [ "$?" = "0" ]; then
+			interface=${new_interface}
+		fi
 		echo
 		language_strings ${language} 21 "yellow"
-		interface=${new_interface}
 	fi
 
 	echo
@@ -3666,6 +3724,7 @@ function select_interface() {
 			option_counter2=$[option_counter2 + 1]
 			if [[ "$iface" = "$option_counter2" ]]; then
 				interface=${item2}
+				interface_mac=$(ip link show ${interface} | awk '/ether/ {print $2}')
 				break
 			fi
 		done

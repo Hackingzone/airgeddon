@@ -2,6 +2,7 @@
 Evil Twin attack added: captive portal
 Some language strings changed
 Now initial forwarding state is restored on exit
+Fix for Linux which change interface name to a very different name while getting back to managed from monitor mode
 
 4.22
 Portuguese translation updated (Thank you to "Luan")
