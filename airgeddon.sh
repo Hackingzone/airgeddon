@@ -385,7 +385,7 @@ function language_strings() {
 	et_misc_texts["catalan",16]="La contrasenya ha de tenir almenys 8 caràcters"
 	et_misc_texts["portuguese",16]="A senha deve ter no mínimo 8 caracteres"
 	et_misc_texts["russian",16]="Длина пароля должна быть не менее 8 символов"
-	et_misc_texts["greek",16]="Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 8 χαρακτήρες"
+	et_misc_texts["greek",16]="Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες"
 
 	et_misc_texts["english",17]="The password is incorrect, redirecting to the main screen"
 	et_misc_texts["spanish",17]="La contraseña introducida es incorrecta, redirigiendo a la pantalla principal"
@@ -465,7 +465,7 @@ function language_strings() {
 	et_misc_texts["catalan",26]="Error. La contrasenya ha de tenir almenys 8 caràcters. Redirigint a la pantalla principal"
 	et_misc_texts["portuguese",26]="Erro. A senha deve ter no mínimo 8 caracteres. Redirecionando para a pagina principal"
 	et_misc_texts["russian",26]="Ошибка. В пароле должно быть не менее 8 символов. Перенаправление на главный экран"
-	et_misc_texts["greek",26]="σφάλμα. Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
+	et_misc_texts["greek",26]="Σφάλμα. Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -570,7 +570,7 @@ function language_strings() {
 	arr["catalan",12]=${blue_color}"Interrupció detectada. "${green_color}"¿Realment vols sortir de l'script? "${normal_color}"[y/n]"
 	arr["portuguese",12]=${blue_color}"Interrupção detectada. "${green_color}"Você quer realmente sair o script? "${normal_color}"[y/n]"
 	arr["russian",12]=${blue_color}"Обнаружено прерывание. "${green_color}"Вы действительно хотите выйти? "${normal_color}"[y/n]"
-	arr["greek",12]=${blue_color}"Εντοπίστηκε διακοπή. "${green_color}"Είστε σίγουροι ότι θέλετε να τερματίσετε το script? "${normal_color}"[y/n]"
+	arr["greek",12]=${blue_color}"Εντοπίστηκε διακοπή. "${green_color}"Είστε σίγουροι ότι θέλετε να τερματίσετε το script; "${normal_color}"[y/n]"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
@@ -1634,7 +1634,7 @@ function language_strings() {
 	arr["catalan",145]="¿Has aconseguit el Handshake? "${pink_color}"(Mira a la part superior dreta de la finestra de captura) "${normal_color}"[y/n]"
 	arr["portuguese",145]="O Handshake foi obtido? "${pink_color}"(Olhe para o canto superior direito da janela de captura) "${normal_color}"[y/n]"
 	arr["russian",145]="Вы получили рукопожатие? "${pink_color}"(Смотрите на верхний правый угол окна захвата) "${normal_color}"[y/n]"
-	arr["greek",145]="Πήρατε την Χειραψία? "${pink_color}"(Κοιτάξτε στη δεξιά πάνω γωνία του παραθύρου) "${normal_color}"[y/n]"
+	arr["greek",145]="Πήρατε την Χειραψία; "${pink_color}"(Κοιτάξτε στη πάνω δεξιά γωνία του παραθύρου) "${normal_color}"[y/n]"
 
 	arr["english",146]="It seems we failed... try it again or choose another attack"
 	arr["spanish",146]="Parece que no lo hemos conseguido... inténtalo de nuevo o elige otro ataque"
@@ -1690,7 +1690,7 @@ function language_strings() {
 	arr["catalan",152]="¿Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
 	arr["portuguese",152]="Quer limpar/otimizar o arquivo handshake capturado nesta sessão? "${normal_color}"[y/n]"
 	arr["russian",152]="Вы хотите очистить/оптимизировать захваченный за эту сессию файл рукопожания? "${normal_color}"[y/n]"
-	arr["greek",152]="Θέλετε να καθαρήσετε/βελτιστοποιήσετε το αρχείο καταγραφής Χειραψίας της συνεδρίας? "${normal_color}"[y/n]"
+	arr["greek",152]="Θέλετε να καθαρίσετε/βελτιστοποιήσετε το αρχείο καταγραφής Χειραψίας της συνεδρίας; "${normal_color}"[y/n]"
 
 	arr["english",153]="File cleaned/optimized successfully"
 	arr["spanish",153]="Fichero limpiado/optimizado con éxito"
@@ -1946,7 +1946,7 @@ function language_strings() {
 	arr["catalan",184]="¿Vols fer servir aquest fitxer de diccionari ja seleccionat? "${normal_color}"[y/n]"
 	arr["portuguese",184]="Você quer usar esse arquivo de dicionário já seleccionada? "${normal_color}"[y/n]"
 	arr["russian",184]="Вы хотите использовать этот уже выбранный файл словаря? "${normal_color}"[y/n]"
-	arr["greek",184]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο λεξικό? "${normal_color}"[y/n]"
+	arr["greek",184]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο λεξικό; "${normal_color}"[y/n]"
 
 	arr["english",185]="Selected BSSID: "${pink_color}"None"${normal_color}
 	arr["spanish",185]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
@@ -1970,7 +1970,7 @@ function language_strings() {
 	arr["catalan",187]="¿Vols fer servir aquest fitxer de captura ja seleccionat? "${normal_color}"[y/n]"
 	arr["portuguese",187]="Você quer usar esse arquivo de captura selecionado? "${normal_color}"[y/n]"
 	arr["russian",187]="Вы хотите использовать этот уже выбранный файл захвата? "${normal_color}"[y/n]"
-	arr["greek",187]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο καταγραφής? "${normal_color}"[y/n]"
+	arr["greek",187]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο καταγραφής; "${normal_color}"[y/n]"
 
 	arr["english",188]="Enter the path of a captured file :"
 	arr["spanish",188]="Introduce la ruta de un fichero de captura :"
@@ -2018,7 +2018,7 @@ function language_strings() {
 	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? "${normal_color}"[y/n]"
 	arr["portuguese",193]="Você quer usar este BSSID já seleccionada? "${normal_color}"[y/n]"
 	arr["russian",193]="Вы хотите использовать эту уже выбранную BSSID? "${normal_color}"[y/n]"
-	arr["greek",193]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο BSSID? "${normal_color}"[y/n]"
+	arr["greek",193]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο BSSID; "${normal_color}"[y/n]"
 
 	arr["english",194]="Enter the minimum length of the key to decrypt (8-63) :"
 	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (8-63) :"
@@ -2354,7 +2354,7 @@ function language_strings() {
 	arr["catalan",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? "${normal_color}"[y/n]"
 	arr["portuguese",235]="Você quer salvar arquivo com a senha descriptografado?? "${normal_color}"[y/n]"
 	arr["russian",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? "${normal_color}"[y/n]"
-	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης? "${normal_color}"[y/n]"
+	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; "${normal_color}"[y/n]"
 
 	arr["english",236]="Hashcat trophy file generated successfully at ["${normal_color}"$potenteredpath"${blue_color}"]"
 	arr["spanish",236]="Fichero de trofeo hashcat generado con éxito en ["${normal_color}"$potenteredpath"${blue_color}"]"
@@ -2394,7 +2394,7 @@ function language_strings() {
 	arr["catalan",240]="¿Vols fer servir aquest fitxer de regles ja seleccionat? "${normal_color}"[y/n]"
 	arr["portuguese",240]="Você quer usar esse arquivo regras já selecionados? "${normal_color}"[y/n]"
 	arr["russian",240]="Вы хотите использовать этот уже выбранный файл правил? "${normal_color}"[y/n]"
-	arr["greek",240]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο κανόνων? "${normal_color}"[y/n]"
+	arr["greek",240]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο κανόνων; "${normal_color}"[y/n]"
 
 	arr["english",241]="The path to the rules file is valid. Script can continue..."
 	arr["spanish",241]="La ruta al fichero de reglas es válida. El script puede continuar..."
@@ -2690,7 +2690,7 @@ function language_strings() {
 	arr["catalan",277]="¿Vols continuar? "${normal_color}"[y/n]"
 	arr["portuguese",277]="Você deseja continuar? "${normal_color}"[y/n]"
 	arr["russian",277]="Вы хотите продолжить? "${normal_color}"[y/n]"
-	arr["greek",277]="Θέλετε να συνεχίσετε? "${normal_color}"[y/n]"
+	arr["greek",277]="Θέλετε να συνεχίσετε; "${normal_color}"[y/n]"
 
 	arr["english",278]="Deauthentication chosen method: "${pink_color}"None"${normal_color}
 	arr["spanish",278]="Método elegido de desautenticación: "${pink_color}"Ninguno"${normal_color}
@@ -2746,7 +2746,7 @@ function language_strings() {
 	arr["catalan",284]="¿Vols fer servir aquesta interfície ja seleccionada? "${normal_color}"[y/n]"
 	arr["portuguese",284]="Você quer usar essa interface selecionada? "${normal_color}"[y/n]"
 	arr["russian",284]="Вы хотите использовать этот выбранный интерфейс? "${normal_color}"[y/n]"
-	arr["greek",284]="Θέλετε να χρησιμοποιήσετε αυτή την επιλεγμένη διεπαφή? "${normal_color}"[y/n]"
+	arr["greek",284]="Θέλετε να χρησιμοποιήσετε αυτή την επιλεγμένη διεπαφή; "${normal_color}"[y/n]"
 
 	arr["english",285]="Selected interface with internet access detected during this session ["${normal_color}"$internet_interface"${blue_color}"]"
 	arr["spanish",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión ["${normal_color}"$internet_interface"${blue_color}"]"
@@ -2890,7 +2890,7 @@ function language_strings() {
 	arr["catalan",302]="¿Vols guardar en un fitxer les contrasenyes obtingudes del sniffing? "${blue_color}"Si respons que no (\"n\") només es mostraran per pantalla "${normal_color}"[y/n]"
 	arr["portuguese",302]="Você deseja armazenar em um arquivo as senhas obtidas com o sniffer? "${blue_color}"Se você responder não (\"n\") só será mostrado na tela "${normal_color}"[y/n]"
 	arr["russian",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? "${blue_color}"Если ваш ответ нет (\"n\") они будут только показаны на экране "${normal_color}"[y/n]"
-	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης? "${blue_color}"Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη "${normal_color}"[y/n]"
+	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; "${blue_color}"Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη "${normal_color}"[y/n]"
 
 	arr["english",303]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_ettercap_logpath]"
 	arr["spanish",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_ettercap_logpath]"
@@ -2946,7 +2946,7 @@ function language_strings() {
 	arr["catalan",309]="La tècnica sslstrip no és infal·lible. Depèn de molts factors i no funciona sempre. Alguns navegadors com les últimes versions de Mozilla Firefox no es veuen afectats"
 	arr["portuguese",309]="A técnica sslstrip não é infalível. Depende de muitos fatores e nem sempre funciona. Alguns navegadores como o Mozilla Firefox nas versões mais recentes não são afetados"
 	arr["russian",309]="Техника sslstrip не является надёжной. Эффект программы зависит от многих факторов и иногда она просто не работает. Некоторые браузеры, такие как Mozilla Firefox последних версий, не подвержены атаке"
-	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"
+	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές ιστού όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"
 
 	arr["english",310]="Handshake file selected: "${pink_color}"None"${normal_color}
 	arr["spanish",310]="Fichero de Handshake seleccionado: "${pink_color}"Ninguno"${normal_color}
