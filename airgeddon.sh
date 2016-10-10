@@ -289,7 +289,7 @@ function language_strings() {
 	et_misc_texts["catalan",4]="Amb aquest atac has d'utilitzar un sniffer extern per intentar obtenir contrasenyes dels clients connectats a la xarxa"
 	et_misc_texts["portuguese",4]="Com este ataque você tem que usar um sniffer externa para tentar obter as senhas dos clientes conectados à rede"
 	et_misc_texts["russian",4]="С этой атакой вам нужно использовать внешний сниффер для попытки получить пароли клиентов, подключённых к сети"
-	et_misc_texts["greek",4]="Με αυτή την επίθεση θα πρέπει να χρησιμοποιήσετε έναν εξωτερικό sniffer για να μπορέσετε να υποκλέψετε κωδικούς από τους χρήστες που είναι συνδεδεμένοι στο δίκτυο"
+	et_misc_texts["greek",4]="Με αυτή την επίθεση θα πρέπει να χρησιμοποιήσετε έναν εξωτερικό sniffer για να μπορέσετε να υποκλέψετε κωδικούς πρόσβασης από τους χρήστες που είναι συνδεδεμένοι στο δίκτυο"
 
 	et_misc_texts["english",5]="With this attack, watch the sniffer's screen to see if a password appears"
 	et_misc_texts["spanish",5]="Con este ataque, estate atento a la pantalla del sniffer para ver si aparece alguna contraseña"
@@ -297,7 +297,7 @@ function language_strings() {
 	et_misc_texts["catalan",5]="Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya"
 	et_misc_texts["portuguese",5]="Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha"
 	et_misc_texts["russian",5]="С этой атакой смотрите на окно сниффера, чтобы следить за появлением пароля"
-	et_misc_texts["greek",5]="Με αυτή την επίθεση, παρακολουθήστε την οθόνη του sniffer για να δείτε αν εχει εμφανιστεί κάποιος κωδικός"
+	et_misc_texts["greek",5]="Με αυτή την επίθεση, παρακολουθήστε την οθόνη του sniffer για να δείτε αν εχει εμφανιστεί κάποιος κωδικός πρόσβασης"
 
 	et_misc_texts["english",6]="With this attack, we'll wait for a network client to provide us with the password for the wifi network in our captive portal"
 	et_misc_texts["spanish",6]="Con este ataque, esperaremos a que un cliente de la red nos provea de la contraseña de la red wifi en nuestro portal cautivo"
@@ -305,7 +305,7 @@ function language_strings() {
 	et_misc_texts["catalan",6]="Amb aquest atac, esperarem que un client de la xarxa ens proveeixi de la contrasenya de la xarxa wifi al nostre portal captiu"
 	et_misc_texts["portuguese",6]="Com este ataque, vamos esperar que um cliente nos forneça a senha da rede wifi em nosso portal cativo"
 	et_misc_texts["russian",6]="С этой атакой вы будете ожидать, чтобы сетевые клиенты ввели пароль для Wi-Fi сети на нашем перехватывающем портале"
-	et_misc_texts["greek",6]="Με αυτή την επίθεση, θα περιμένουμε για έναν χρήστη του δικτύου να μας παρέχει με τον κωδικό του wifi στην πύλη αιχμάλωσίας"
+	et_misc_texts["greek",6]="Με αυτή την επίθεση, θα περιμένουμε για έναν χρήστη του δικτύου να μας παρέχει με τον κωδικό πρόσβασης του wifi στο captive portal μας"
 
 	et_misc_texts["english",7]="No clients connected yet"
 	et_misc_texts["spanish",7]="No hay clientes conectados aún"
@@ -321,7 +321,7 @@ function language_strings() {
 	et_misc_texts["catalan",8]="Airgeddon. Contrasenyes capturades amb atac Evil Twin"
 	et_misc_texts["portuguese",8]="Airgeddon. Senhas capturado no ataque ataque Evil Twin"
 	et_misc_texts["russian",8]="Airgeddon. Атака Злой Двойник захватила пароли"
-	et_misc_texts["greek",8]="Airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς"
+	et_misc_texts["greek",8]="Airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
 
 	et_misc_texts["english",9]="Wireless network, ESSID:"
 	et_misc_texts["spanish",9]="Red inalámbrica, ESSID:"
@@ -329,7 +329,7 @@ function language_strings() {
 	et_misc_texts["catalan",9]="Xarxa sense fils, ESSID:"
 	et_misc_texts["portuguese",9]="ESSID da rede sem fio:"
 	et_misc_texts["russian",9]="беспроводная сеть, ESSID:"
-	et_misc_texts["greek",9]="Ασύρματο Δίκτυο ESSID:"
+	et_misc_texts["greek",9]="Ασύρματο Δίκτυο, ESSID:"
 
 	et_misc_texts["english",10]="Enter your wireless network password to get internet access"
 	et_misc_texts["spanish",10]="Introduzca su contraseña de acceso a la red inalámbrica para poder acceder a internet"
@@ -337,7 +337,7 @@ function language_strings() {
 	et_misc_texts["catalan",10]="Introduïu la contrasenya d&#39;accés a la xarxa sense fils per poder accedir a internet"
 	et_misc_texts["portuguese",10]="Digite a senha da rede wifi para ter acesso a internet"
 	et_misc_texts["russian",10]="Введите свой беспроводной доступ к сети Интернет доступа пароль крыло"
-	et_misc_texts["greek",10]="Εισάγετε ασύρματη πρόσβαση στο κωδικό πρόσβασης δικτύου πτέρυγα σας να έχουν πρόσβαση στο διαδίκτυο"
+	et_misc_texts["greek",10]="Εισάγετε τον κωδικό πρόσβασης του wifi δικτύου σας για να υπάρξει σύνδεση στο διαδίκτυο"
 
 	et_misc_texts["english",11]="Password"
 	et_misc_texts["spanish",11]="Contraseña"
@@ -345,7 +345,7 @@ function language_strings() {
 	et_misc_texts["catalan",11]="Contrasenya"
 	et_misc_texts["portuguese",11]="Senha"
 	et_misc_texts["russian",11]="пароль"
-	et_misc_texts["greek",11]="κωδικό πρόσβασης"
+	et_misc_texts["greek",11]="Κωδικός πρόσβασης"
 
 	et_misc_texts["english",12]="Show password"
 	et_misc_texts["spanish",12]="Mostrar contraseña"
@@ -361,7 +361,7 @@ function language_strings() {
 	et_misc_texts["catalan",13]="Enviar"
 	et_misc_texts["portuguese",13]="Enviar"
 	et_misc_texts["russian",13]="послать"
-	et_misc_texts["greek",13]="Υποτάσσομαι"
+	et_misc_texts["greek",13]="Υποβολή"
 
 	et_misc_texts["english",14]="An unexpected error occurred, redirecting to the main screen"
 	et_misc_texts["spanish",14]="Ha ocurrido un error inesperado, redirigiendo a la pantalla principal"
@@ -369,7 +369,7 @@ function language_strings() {
 	et_misc_texts["catalan",14]="Hi ha hagut un error inesperat, redirigint a la pantalla principal"
 	et_misc_texts["portuguese",14]="Ocorreu um erro inesperado, redirecionando para a pagina principal"
 	et_misc_texts["russian",14]="Произошла неожиданная ошибка, перенаправлять на главный экран"
-	et_misc_texts["greek",14]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, τον αναπροσανατολισμό προς την κύρια οθόνη"
+	et_misc_texts["greek",14]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, Θα καθοδηγηθείτε στην κύρια οθόνη"
 
 	et_misc_texts["english",15]="Internet Portal"
 	et_misc_texts["spanish",15]="Portal de Internet"
@@ -377,7 +377,7 @@ function language_strings() {
 	et_misc_texts["catalan",15]="Portal d&#39;Internet"
 	et_misc_texts["portuguese",15]="Portal Internet"
 	et_misc_texts["russian",15]="Интернет-портал"
-	et_misc_texts["greek",15]="Διαδικτυακή πύλη"
+	et_misc_texts["greek",15]="Internet Portal"
 
 	et_misc_texts["english",16]="The password must be at least 8 characters"
 	et_misc_texts["spanish",16]="La contraseña debe tener al menos 8 caracteres"
@@ -393,7 +393,7 @@ function language_strings() {
 	et_misc_texts["catalan",17]="La contrasenya introduïda és incorrecta, redirigint a la pantalla principal"
 	et_misc_texts["portuguese",17]="A senha est&aacute; incorreta, redirecionando para a pagina principal"
 	et_misc_texts["russian",17]="Неверный пароль, перенаправление на главный экран"
-	et_misc_texts["greek",17]="Ο κωδικός πρόσβασης είναι λανθασμένος, τον αναπροσανατολισμό προς την κύρια οθόνη"
+	et_misc_texts["greek",17]="Ο κωδικός πρόσβασης είναι λανθασμένος, Θα καθοδηγηθείτε στην κύρια οθόνη"
 
 	et_misc_texts["english",18]="The password is correct, the connection will be restablished in a few moments"
 	et_misc_texts["spanish",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
@@ -401,7 +401,7 @@ function language_strings() {
 	et_misc_texts["catalan",18]="La contrasenya és correcta, la connexió es restablirà en uns moments"
 	et_misc_texts["portuguese",18]="A senha est&aacute; correta, a conex&atilde;o ser&aacute; estabelecida em alguns momentos"
 	et_misc_texts["russian",18]="Пароль правильный, то соединение будет установлено через несколько минут"
-	et_misc_texts["greek",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα δημιουργηθεί σε λίγα λεπτά"
+	et_misc_texts["greek",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα αποκατασταθεί σε λίγα λεπτά"
 
 	et_misc_texts["english",19]="Airgeddon. Captive portal Evil Twin attack captured password"
 	et_misc_texts["spanish",19]="Airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
@@ -409,7 +409,7 @@ function language_strings() {
 	et_misc_texts["catalan",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
 	et_misc_texts["portuguese",19]="Airgeddon. Senha capturada no ataque Evil Twin portal cativo"
 	et_misc_texts["russian",19]="Airgeddon. Пароль захватили на адаптивный портал Зла атаки Твин"
-	et_misc_texts["greek",19]="Airgeddon. Κωδικός πρόσβασης συλληφθεί για την αιχμαλωσία πύλη Evil Twin επίθεση"
+	et_misc_texts["greek",19]="Airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
 
 	et_misc_texts["english",20]="Attempts"
 	et_misc_texts["spanish",20]="Intentos"
@@ -417,7 +417,7 @@ function language_strings() {
 	et_misc_texts["catalan",20]="Intents"
 	et_misc_texts["portuguese",20]="Tentativas"
 	et_misc_texts["russian",20]="пытается"
-	et_misc_texts["greek",20]="προσπαθεί"
+	et_misc_texts["greek",20]="Προσπάθειες"
 
 	et_misc_texts["english",21]="last password:"
 	et_misc_texts["spanish",21]="última contraseña:"
@@ -425,7 +425,7 @@ function language_strings() {
 	et_misc_texts["catalan",21]="última contrasenya:"
 	et_misc_texts["portuguese",21]="última senha:"
 	et_misc_texts["russian",21]="последний пароль:"
-	et_misc_texts["greek",21]="τελευταία κωδικό:"
+	et_misc_texts["greek",21]="τελευταίος κωδικός πρόσβασης:"
 
 	et_misc_texts["english",22]="Captured passwords on failed attemps"
 	et_misc_texts["spanish",22]="Contraseñas capturadas en intentos fallidos"
@@ -433,7 +433,7 @@ function language_strings() {
 	et_misc_texts["catalan",22]="Contrasenyes capturades en intents fallits"
 	et_misc_texts["portuguese",22]="Senhas capturadas em tentativas falhadas"
 	et_misc_texts["russian",22]="Пароли, захваченные в неудачных попыток"
-	et_misc_texts["greek",22]="Οι κωδικοί πρόσβασης δεν σταματούν σε αποτυχημένες προσπάθειες"
+	et_misc_texts["greek",22]="Καταγεγραμμένοι κωδικοί πρόσβασης σε αποτυχημένες προσπάθειες"
 
 	et_misc_texts["english",23]="Password captured successfully"
 	et_misc_texts["spanish",23]="Contraseña capturada con éxito"
@@ -441,7 +441,7 @@ function language_strings() {
 	et_misc_texts["catalan",23]="Contrasenya capturada amb èxit"
 	et_misc_texts["portuguese",23]="Senha capturada com sucesso"
 	et_misc_texts["russian",23]="Пароль успешно захватили"
-	et_misc_texts["greek",23]="Κωδικός πρόσβασης κατέλαβε με επιτυχία"
+	et_misc_texts["greek",23]="Ο κωδικός πρόσβασης καταγράφτηκε επιτυχώς"
 
 	et_misc_texts["english",24]="The password was saved on file"
 	et_misc_texts["spanish",24]="La contraseña se ha guardado en el fichero"
@@ -449,7 +449,7 @@ function language_strings() {
 	et_misc_texts["catalan",24]="La contrasenya s'ha guardat en el fitxer"
 	et_misc_texts["portuguese",24]="A senha foi salva no arquivo"
 	et_misc_texts["russian",24]="Пароль сохраняется в файле"
-	et_misc_texts["greek",24]="Ο κωδικός πρόσβασης αποθηκεύεται στο αρχείο"
+	et_misc_texts["greek",24]="Ο κωδικός πρόσβασης αποθηκεύτηκε σε αρχείο"
 
 	et_misc_texts["english",25]="Press Enter on the main script window to continue, this window will be closed"
 	et_misc_texts["spanish",25]="Pulsa Enter en la ventana principal del script para continuar, esta ventana se cerrará"
@@ -457,7 +457,7 @@ function language_strings() {
 	et_misc_texts["catalan",25]="Prem Enter a la finestra principal del script per continuar, aquesta finestra es tancarà"
 	et_misc_texts["portuguese",25]="Pressione Enter na janela principal do script para continuar e esta janela será fechada"
 	et_misc_texts["russian",25]="Нажмите Enter в главном окне сценария для продолжения, это окно будет закрыто"
-	et_misc_texts["greek",25]="Πατήστε Enter στο κύριο παράθυρο του σεναρίου για να συνεχίσει, αυτό το παράθυρο θα κλείσει"
+	et_misc_texts["greek",25]="Πατήστε Enter στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
 
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
@@ -1282,7 +1282,7 @@ function language_strings() {
 	arr["catalan",102]="Menú d'atacs DoS"
 	arr["portuguese",102]="Menu de ataques DoS"
 	arr["russian",102]="Меню DoS атак"
-	arr["greek",102]="Μενού DoS επιθέσεων"
+	arr["greek",102]="Μενού επιθέσεων DoS"
 
 	arr["english",103]="Exploring for targets"
 	arr["spanish",103]="Explorar para buscar objetivos"
@@ -1410,7 +1410,7 @@ function language_strings() {
 	arr["catalan",118]="4.  Menú d'atacs DoS"
 	arr["portuguese",118]="4.  Menu de ataques DoS"
 	arr["russian",118]="4.  Меню DoS атак"
-	arr["greek",118]="4.  Μενού DoS επιθέσεων"
+	arr["greek",118]="4.  Μενού επιθέσεων DoS"
 
 	arr["english",119]="5.  Handshake tools menu"
 	arr["spanish",119]="5.  Menú de herramientas Handshake"
@@ -1898,7 +1898,7 @@ function language_strings() {
 	arr["catalan",179]="Desencriptant per força bruta, podrien passar hores, dies, setmanes o fins i tot mesos fins a aconseguir-ho depenent de la complexitat de la contrasenya i de la teva velocitat de procés"
 	arr["portuguese",179]="Descriptografar com força bruta pode levar horas, dias, semanas ou mesmo meses dependendo da complexidade de sua senha e velocidade de processamento"
 	arr["russian",179]="Расшифровка грубой силой может занять часы, дни, недели или даже месяцы в зависимости от сложности пароля и вашей скорости обработки"
-	arr["greek",179]="Αποκρυπτογραφώντας με χρήση ωμής βίας, μπορεί να περάσουν ώρες, μέρες, εβδομάδες ή ακόμη και μήνες για να το αποκτήσετε έχοντας υπόψιν την πολυπλοκότητα του κωδικού και την ταχύτητα του επεξεργαστή"
+	arr["greek",179]="Αποκρυπτογραφώντας με χρήση ωμής βίας, μπορεί να περάσουν ώρες, μέρες, εβδομάδες ή ακόμη και μήνες για να το αποκτήσετε έχοντας υπόψιν την πολυπλοκότητα του κωδικού πρόσβασης και την ταχύτητα του επεξεργαστή"
 
 	arr["english",180]="Enter the path of a dictionary file :"
 	arr["spanish",180]="Introduce la ruta de un fichero de diccionario :"
@@ -2186,7 +2186,7 @@ function language_strings() {
 	arr["catalan",215]="Una contrasenya WPA/WPA2 sempre té com a mínim una longitud de 8"
 	arr["portuguese",215]="Uma senha WPA/WPA2 sempre tem no mínimo 8 caracteres"
 	arr["russian",215]="WPA/WPA2 пароли всегда имеют длину минимум в 8 символов"
-	arr["greek",215]="οι κωδικοί WPA/WPA2 έχουν πάντα ελάχιστο μήκος 8"
+	arr["greek",215]="οι κωδικοί πρόσβασης WPA/WPA2 έχουν πάντα ελάχιστο μήκος 8"
 
 	arr["english",216]="No networks found with Handshake captured on the selected file"
 	arr["spanish",216]="No se encontraron redes con Handshake capturado en el fichero seleccionado"
@@ -2346,7 +2346,7 @@ function language_strings() {
 	arr["catalan",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? "${normal_color}"[y/n]"
 	arr["portuguese",235]="Você quer salvar arquivo com a senha descriptografado?? "${normal_color}"[y/n]"
 	arr["russian",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? "${normal_color}"[y/n]"
-	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με το αποκρυπτογραφημένο κλειδί? "${normal_color}"[y/n]"
+	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης? "${normal_color}"[y/n]"
 
 	arr["english",236]="Hashcat trophy file generated successfully at ["${normal_color}"$potenteredpath"${blue_color}"]"
 	arr["spanish",236]="Fichero de trofeo hashcat generado con éxito en ["${normal_color}"$potenteredpath"${blue_color}"]"
@@ -2562,7 +2562,7 @@ function language_strings() {
 	arr["catalan",262]="sense sniffing, portal captiu"
 	arr["portuguese",262]="Sem sniffing, portal cativo"
 	arr["russian",262]="без сниффинга, перехватывающий портал"
-	arr["greek",262]="χωρίς sniffing, αιχμαλωσία πύλης"
+	arr["greek",262]="χωρίς sniffing, captive portal"
 
 	arr["english",263]="8.  Evil Twin AP attack with captive portal (monitor mode needed)"
 	arr["spanish",263]="8.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
@@ -2570,7 +2570,7 @@ function language_strings() {
 	arr["catalan",263]="8.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
 	arr["portuguese",263]="8.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
 	arr["russian",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
-	arr["greek",263]="8.  Επίθεση Evil Twin AP με αιχμαλωσία πύλης (χρειάζεται η κατάσταση παρακολούθησης)"
+	arr["greek",263]="8.  Επίθεση Evil Twin AP με captive portal (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["english",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["spanish",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -2578,7 +2578,7 @@ function language_strings() {
 	arr["catalan",264]="L'atac de portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
 	arr["portuguese",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha  da rede sem fio digitando-o em nosso site"
 	arr["russian",264]="Атака с перехватывающим порталом заключается в том, что мы ждём когда кто-то из пользователей введёт верный пароль от Wi-Fi на веб-странице, которую мы ему показываем"
-	arr["greek",264]="Η επίθεση με αιχμαλωσία πύλης κάνει έναν από τους χρήστες του δικτύου να μας παρέχει τον κωδικό του δικτύου wifi βάζοντάς τον στην πύλη"
+	arr["greek",264]="Η επίθεση captive portal κάνει έναν από τους χρήστες του δικτύου να μας παρέχει τον κωδικό πρόσβασης του δικτύου wifi βάζοντάς τον στο portal μας"
 
 	arr["english",265]="Evil Twin deauth"
 	arr["spanish",265]="Desautenticación para Evil Twin"
@@ -2754,7 +2754,7 @@ function language_strings() {
 	arr["catalan",286]="$pending_of_translation Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo ara"
 	arr["portuguese",286]="Se você não tem um arquivo Handshake capturado da rede alvo você pode obtê-lo agora"
 	arr["russian",286]="$pending_of_translation Если вы не имеете рукопожатия файл захваченный целевой сети вы можете получить его прямо сейчас"
-	arr["greek",286]="$pending_of_translation Εάν δεν έχετε ένα αρχείο χειραψία συλλαμβάνονται από το δίκτυο στόχος μπορεί να το πάρει τώρα"
+	arr["greek",286]="Εάν δεν έχετε κάποιο αρχείο Χειραψίας από το δίκτυο-στόχος μπορείτε να το πάρετε τώρα"
 
 	arr["english",287]="The script will check for internet access. Please be patient..."
 	arr["spanish",287]="El script va a comprobar si tienes acceso a internet. Por favor ten paciencia..."
@@ -2762,7 +2762,7 @@ function language_strings() {
 	arr["catalan",287]="El script comprovarà si tens accés a internet. Si us plau sigues pacient..."
 	arr["portuguese",287]="O script irá verificar se você tem acesso à internet. Por favor,aguarde..."
 	arr["russian",287]="Этот скрипт проверит Интернет доступ. Подождите немного..."
-	arr["greek",287]="Το script θα ελέγξει αν έχετε πρόσβαση στο διαδίκτυο. Παρακαλώ κάντε υπομονή..."
+	arr["greek",287]="Το script θα ελέγξει αν έχετε πρόσβαση στο διαδίκτυο. Παρακαλώ έχετε λίγη υπομονή..."
 
 	arr["english",288]="It seems you have no internet access. This attack needs an interface with internet access"
 	arr["spanish",288]="Parece que no tienes conexión a internet. Este ataque necesita una interfaz con acceso a internet"
@@ -2810,7 +2810,7 @@ function language_strings() {
 	arr["catalan",293]="Atac Evil Twin AP amb portal captiu"
 	arr["portuguese",293]="Ataque Evil Twin AP com portal cativo"
 	arr["russian",293]="Атака Злой Двойник ТД с перехватывающим порталом"
-	arr["greek",293]="Επίθεση Evil Twin AP με αιχμαλωσία πύλης"
+	arr["greek",293]="Επίθεση Evil Twin AP με captive portal"
 
 	arr["english",294]="Detecting resolution... Detected! : "${normal_color}"$resolution"
 	arr["spanish",294]="Detectando resolución... Detectada! : "${normal_color}"$resolution"
@@ -2882,7 +2882,7 @@ function language_strings() {
 	arr["catalan",302]="¿Vols guardar en un fitxer les contrasenyes obtingudes del sniffing? "${blue_color}"Si respons que no (\"n\") només es mostraran per pantalla "${normal_color}"[y/n]"
 	arr["portuguese",302]="Você deseja armazenar em um arquivo as senhas obtidas com o sniffer? "${blue_color}"Se você responder não (\"n\") só será mostrado na tela "${normal_color}"[y/n]"
 	arr["russian",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? "${blue_color}"Если ваш ответ нет (\"n\") они будут только показаны на экране "${normal_color}"[y/n]"
-	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς? "${blue_color}"Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη "${normal_color}"[y/n]"
+	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης? "${blue_color}"Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη "${normal_color}"[y/n]"
 
 	arr["english",303]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_ettercap_logpath]"
 	arr["spanish",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_ettercap_logpath]"
@@ -2906,7 +2906,7 @@ function language_strings() {
 	arr["catalan",305]="No s'ha trobat cap contrasenya en el log del sniffer. No es guarda el fitxer"
 	arr["portuguese",305]="Nenhuma senha foi encontrada no log do sniffer. Arquivo não será salvo"
 	arr["russian",305]="В журнале сниффера паролей не обнаружено. Файл не будет сохранён"
-	arr["greek",305]="Δεν εντοπίστηκαν κωδικοί στο log του sniffer. Το αρχείο δεν θα αποθηκευτεί"
+	arr["greek",305]="Δεν εντοπίστηκαν κωδικοί πρόσβασης στο log του sniffer. Το αρχείο δεν θα αποθηκευτεί"
 
 	arr["english",306]="Passwords captured by sniffer. File saved at "${normal_color}"[$ettercap_logpath]"
 	arr["spanish",306]="El sniffer ha capturado contraseñas. Fichero salvado en "${normal_color}"[$ettercap_logpath]"
@@ -2914,7 +2914,7 @@ function language_strings() {
 	arr["catalan",306]="El sniffer ha capturat contrasenyes. Fitxer desat a "${normal_color}"[$ettercap_logpath]"
 	arr["portuguese",306]="O sniffer capturou senhas. I arquivo salvo no "${normal_color}"[$ettercap_logpath]"
 	arr["russian",306]="Сниффер захватил пароли. Файл сохранён в "${normal_color}"[$ettercap_logpath]"
-	arr["greek",306]="Κωδικοί καταγράφτηκαν από τον sniffer. Το αρχείο αποθηκεύτηκε στο "${normal_color}"[$ettercap_logpath]"
+	arr["greek",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο "${normal_color}"[$ettercap_logpath]"
 
 	arr["english",307]="Language changed to Russian"
 	arr["spanish",307]="Idioma cambiado a Ruso"
@@ -2946,7 +2946,7 @@ function language_strings() {
 	arr["catalan",310]="Fitxer de Handshake seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",310]="Arquivo de Handshake selecionado: "${pink_color}"Nenhum"${normal_color}
 	arr["russian",310]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"None"${normal_color}
-	arr["greek",310]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"Κανένα"${normal_color}
+	arr["greek",310]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",311]="Handshake file selected: "${pink_color}"$et_handshake"${normal_color}
 	arr["spanish",311]="Fichero de Handshake seleccionado: "${pink_color}"$et_handshake"${normal_color}
@@ -2954,7 +2954,7 @@ function language_strings() {
 	arr["catalan",311]="Fitxer de Handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
 	arr["portuguese",311]="Arquivo de Handshake selecionado: "${pink_color}"$et_handshake"${normal_color}
 	arr["russian",311]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"$et_handshake"${normal_color}
-	arr["greek",311]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"$et_handshake"${normal_color}
+	arr["greek",311]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"$et_handshake"${normal_color}
 
 	arr["english",312]="No selected Handshake file detected during this session..."
 	arr["spanish",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -2962,7 +2962,7 @@ function language_strings() {
 	arr["catalan",312]="No s'ha detectat un fitxer de Handshake seleccionat en aquesta sessió..."
 	arr["portuguese",312]="Nenhum arquivo de Handshake foi selecionado nesta sessão..."
 	arr["russian",312]="$pending_of_translation не обнаружен Рукопожатие файл, выбранный в этой сессии..."
-	arr["greek",312]="$pending_of_translation δεν έχει εντοπιστεί το αρχείο Χειραψία επιλεγεί σε αυτή τη σύνοδο..."
+	arr["greek",312]="Δεν εντοπίστηκε κανένα αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
 	arr["english",313]="Handshake selected file detected during this session ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["spanish",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión ["${normal_color}"$et_handshake"${blue_color}"]"
@@ -2970,7 +2970,7 @@ function language_strings() {
 	arr["catalan",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["portuguese",313]="Um arquivo de Handshake foi capturado nesta sessão ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["russian",313]="$pending_of_translation Обнаружен файл Рукопожатие выбран в этой сессии ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["greek",313]="$pending_of_translation Εντοπίστηκε αρχείο Χειραψία επιλεγεί σε αυτή τη σύνοδο ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["greek",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας ["${normal_color}"$et_handshake"${blue_color}"]"
 
 	arr["english",314]="Handshake file selected: "${pink_color}"$enteredpath"${normal_color}
 	arr["spanish",314]="Fichero de Handshake seleccionado: "${pink_color}"$enteredpath"${normal_color}
@@ -2978,7 +2978,7 @@ function language_strings() {
 	arr["catalan",314]="Fitxer de Handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
 	arr["portuguese",314]="Arquivo Handshake selecionado: "${pink_color}"$enteredpath"${normal_color}
 	arr["russian",314]="$pending_of_translation Рукопожатие выбранный файл: "${pink_color}"$enteredpath"${normal_color}
-	arr["greek",314]="$pending_of_translation Αρχείο χειραψία επιλεγμένα: "${pink_color}"$enteredpath"${normal_color}
+	arr["greek",314]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"$enteredpath"${normal_color}
 
 	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -2986,7 +2986,7 @@ function language_strings() {
 	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2"
 	arr["portuguese",315]="Este ataque requer que você já tenha capturado um arquivo Handshke de uma rede WPA/WPA2"
 	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2"
-	arr["greek",315]="$pending_of_translation Η επίθεση αυτή προϋποθέτει ότι έχετε συλληφθεί στο παρελθόν αρχείο χειραψία ένα δίκτυο WPA/WPA2"
+	arr["greek",315]="Αυτή η επίθεση απαιτεί να έχετε προηγουμένως κατεγράψει ένα αρχείο Χειραψίας από WPA/WPA2 δίκτο"
 
 	arr["english",316]="An exploration looking for targets is going to be done..."
 	arr["spanish",316]="Se va a realizar una exploración en busca de objetivos..."
@@ -2994,7 +2994,7 @@ function language_strings() {
 	arr["catalan",316]="$pending_of_translation Es va a realitzar una exploració a la recerca d'objectius..."
 	arr["portuguese",316]="Uma busca por redes wifi será realizada..."
 	arr["russian",316]="$pending_of_translation Он выполнит сканирование для целей..."
-	arr["greek",316]="$pending_of_translation Θα εκτελέσετε σάρωση για τους στόχους..."
+	arr["greek",316]="Πρόκειται να γίνει μία εξερεύνηση για έυρεση στόχων..."
 
 	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. "${green_color}"Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
@@ -3002,7 +3002,7 @@ function language_strings() {
 	arr["catalan",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["portuguese",317]="Se a senha da rede Wi-Fi for conseguida com o portal cativo, onde deseja salvar? "${green_color}"Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["russian",317]="$pending_of_translation Если пароль для беспроводной сети с адаптивным порталом достигается, решить, куда сохранить. "${green_color}"Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["greek",317]="$pending_of_translation Εάν επιτευχθεί ο κωδικός πρόσβασης για το ασύρματο δίκτυο με την αιχμαλωσία πύλη, να αποφασίσει πού να αποθηκεύσετε. "${green_color}"Πληκτρολογήστε τη διαδρομή όπου αποθηκεύουμε το αρχείο ή πατήστε Enter για να αποδεχτείτε την προτεινόμενη προεπιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["greek",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. "${green_color}"Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
 
 	arr["english",318]="Choose the language in which network clients will see the captive portal :"
 	arr["spanish",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
@@ -3010,7 +3010,7 @@ function language_strings() {
 	arr["catalan",318]="Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
 	arr["portuguese",318]="Escolha o idioma em que os clientes da rede irão ver o portal cativo :"
 	arr["russian",318]="$pending_of_translation Выберите язык, на котором клиенты сети будут видеть адаптивный портал :"
-	arr["greek",318]="$pending_of_translation Επιλέξτε τη γλώσσα στην οποία οι πελάτες του δικτύου θα δείτε την αιχμαλωσία πύλη :"
+	arr["greek",318]="Επιλέξτε τη γλώσσα που θα βλέπουν οι χρήστες του δικτύου το captive portal :"
 
 	arr["english",319]="The captive portal language has been established"
 	arr["spanish",319]="Se ha establecido el idioma del portal cautivo"
@@ -3018,7 +3018,7 @@ function language_strings() {
 	arr["catalan",319]="S'ha establert l'idioma del portal captiu"
 	arr["portuguese",319]="A língua foi selecionada portal cativo"
 	arr["russian",319]="$pending_of_translation Язык был создан адаптивный портал"
-	arr["greek",319]="$pending_of_translation Η γλώσσα έχει καθιερωθεί αιχμαλωσία πύλη"
+	arr["greek",319]="Εγκαταστάθηκε η γλώσσα του captive portal"
 
 	arr["english",320]="7.  Greek"
 	arr["spanish",320]="7.  Griego"
@@ -3034,7 +3034,7 @@ function language_strings() {
 	arr["catalan",321]="$pending_of_translation ¿Tens ja un fitxer de Handshake capturat? "${blue_color}"Respon si (\"y\") per introduir la ruta o respon no (\"n\") per capturar un ara "${normal_color}"[y/n]"
 	arr["portuguese",321]="Você já tem um arquivo Handshake capturado? "${blue_color}"Responda sim (\"y\") para colocar o caminho do arquivo ou responda não (\"n\") para capturar um novo arquivo agora "${normal_color}"[y/n]"
 	arr["russian",321]="$pending_of_translation У Вас уже есть файл захваченный Рукопожатие? "${blue_color}"Ответ да (\"y\"), чтобы войти в путь или нет ответа Нет (\"n\"), чтобы захватить новую прямо сейчас "${normal_color}"[y/n]"
-	arr["greek",321]="$pending_of_translation Έχετε ήδη καταθέσει ένα κατέλαβε Χειραψία? "${blue_color}"Απάντηση ναι (\"y\") για να εισαγάγετε τη διαδρομή ή να απαντήσει καθόλου (\"n\") για να συλλάβει ένα νέο τώρα "${normal_color}"[y/n]"
+	arr["greek",321]="Έχετε ήδη κάποιο αρχείο Χειραψίας; "${blue_color}"Απαντήστε ναι (\"y\") για να εισαγάγετε το μονοπάτι ή απαντήστε όχι (\"n\") για να καταγράψετε ένα νέο τώρα "${normal_color}"[y/n]"
 
 	arr["english",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["spanish",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
@@ -3042,7 +3042,7 @@ function language_strings() {
 	arr["catalan",322]="$pending_of_translation S'ha comprovat que hi ha un Handshake de la xarxa triada com a objectiu durant l'exploració en el fitxer de captura seleccionat. El script pot continuar..."
 	arr["portuguese",322]="Verificou-se que no arquivo de captura existe um Handshake da rede da selecionada como o alvo. O script pode continuar..."
 	arr["russian",322]="$pending_of_translation Было установлено, что существует сеть Квитирующий выбрана в качестве цели для исследования в выбранном файле записи. Скрипт может продолжать..."
-	arr["greek",322]="$pending_of_translation Έχει βρεθεί ότι υπάρχει μια χειραψία δίκτυο επιλέχθηκε ως το στόχο για εξερεύνηση στο επιλεγμένο αρχείο καταγραφής. Το script μπορεί να συνεχίσει..."
+	arr["greek",322]="Εντοπίστηκε η παρουσία Χειραψίας για το επιλεγμένο δίκτυο-στόχος καθώς γινόταν έλεγχος του επιλεγμένου αρχείου καταγραφής. Το script μπορεί να συνεχίσει..."
 
 	arr["english",323]="There is no Handshake of the selected network on the capture file"
 	arr["spanish",323]="No se ha encontrado un Handshake de la red seleccionada en el fichero de captura"
@@ -3050,7 +3050,7 @@ function language_strings() {
 	arr["catalan",323]="$pending_of_translation No s'ha trobat un Handshake de la xarxa seleccionada en el fitxer de captura"
 	arr["portuguese",323]="Não foi encontrado nenhum Handshake da rede selecionada no arquivo de captura"
 	arr["russian",323]="$pending_of_translation Он не нашел сети Рукопожатие, выбранный в файле захвата"
-	arr["greek",323]="$pending_of_translation Δεν έχει βρει μια χειραψία δικτύου έχει επιλεγεί στο αρχείο καταγραφής"
+	arr["greek",323]="Δεν υπάρχει Χειραψία του επιλεγμένου δικτύου στο αρχείο καταγραφής"
 
 	arr["english",324]="Handshake file generated successfully at ["${normal_color}"$et_handshake"${blue_color}"]"
 	arr["spanish",324]="Fichero de Handshake generado con éxito en ["${normal_color}"$et_handshake"${blue_color}"]"
@@ -3066,7 +3066,7 @@ function language_strings() {
 	arr["catalan",325]="$pending_of_translation Espera. Tingues una mica de paciència..."
 	arr["portuguese",325]="Aguarde. Por favor, seja paciente..."
 	arr["russian",325]="$pending_of_translation Подождите. Имейте немного терпения..."
-	arr["greek",325]="$pending_of_translation Περιμένετε. Έχετε λίγη υπομονή..."
+	arr["greek",325]="Περιμένετε. Έχετε λίγη υπομονή..."
 
 	case "$3" in
 		"yellow")
