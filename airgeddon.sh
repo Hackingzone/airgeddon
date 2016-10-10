@@ -2758,7 +2758,7 @@ function language_strings() {
 
 	arr["english",286]="If you don't have a captured Handshake file from the target network you can get it now"
 	arr["spanish",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo ahora"
-	arr["french",286]="$pending_of_translation Si vous ne disposez pas d'un réseau cible fichier capturé poignée de main, vous pouvez l'obtenir maintenant"
+	arr["french",286]="Si vous n'avez pas un fichier de capture contenant un Handshake du réseau cible vous pouvez l'obtenir maintenant"
 	arr["catalan",286]="$pending_of_translation Si no tens un fitxer de Handshake capturat de la xarxa objectiu pots obtenir-lo ara"
 	arr["portuguese",286]="Se você não tem um arquivo Handshake capturado da rede alvo você pode obtê-lo agora"
 	arr["russian",286]="Если у вас отсутствует файл с рукопожатием целевой сети, вы можете сейчас захватить его"
@@ -2998,7 +2998,7 @@ function language_strings() {
 
 	arr["english",316]="An exploration looking for targets is going to be done..."
 	arr["spanish",316]="Se va a realizar una exploración en busca de objetivos..."
-	arr["french",316]="$pending_of_translation Il effectuera un balayage des cibles..."
+	arr["french",316]="Recherche de réseaux cible..."
 	arr["catalan",316]="$pending_of_translation Es va a realitzar una exploració a la recerca d'objectius..."
 	arr["portuguese",316]="Uma busca por redes wifi será realizada..."
 	arr["russian",316]="Выполнение сканирования целей..."
@@ -3038,7 +3038,7 @@ function language_strings() {
 
 	arr["english",321]="Do you already have a captured Handshake file? "${blue_color}"Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now "${normal_color}"[y/n]"
 	arr["spanish",321]="¿Tienes ya un fichero de Handshake capturado? "${blue_color}"Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora "${normal_color}"[y/n]"
-	arr["french",321]="$pending_of_translation Avez-vous déjà un fichier de Handshake capturé? "${blue_color}"Réponse oui (\"y\") pour entrer dans le chemin d'accès ou ne répond pas (\"n\") pour capturer un maintenant "${normal_color}"[y/n]"
+	arr["french",321]="Avez-vous déjà un fichier contenant un Handshake capturé? "${blue_color}"Répondre oui (\"y\") pour en saisir la route o buien répondre non (\"n\") pour le capturer "${normal_color}"[y/n]"
 	arr["catalan",321]="$pending_of_translation ¿Tens ja un fitxer de Handshake capturat? "${blue_color}"Respon si (\"y\") per introduir la ruta o respon no (\"n\") per capturar un ara "${normal_color}"[y/n]"
 	arr["portuguese",321]="Você já tem um arquivo Handshake capturado? "${blue_color}"Responda sim (\"y\") para colocar o caminho do arquivo ou responda não (\"n\") para capturar um novo arquivo agora "${normal_color}"[y/n]"
 	arr["russian",321]="У вас уже есть захваченный файл рукопожатия? "${blue_color}"Ответьте Да (\"y\"), для ввода пути или ответьте Нет (\"n\"), для захвата нового рукопожатия "${normal_color}"[y/n]"
@@ -3046,7 +3046,7 @@ function language_strings() {
 
 	arr["english",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["spanish",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
-	arr["french",322]="$pending_of_translation Il a été constaté qu'il existe un Handshake réseau choisi comme cible pour l'exploration dans le fichier de capture sélectionné. Le script peut continuer..."
+	arr["french",322]="Un Handhsake du réseau cible a bien été retrouvé dans le paquet de capture préalablement choisi. Le script peut donc continuer..."
 	arr["catalan",322]="$pending_of_translation S'ha comprovat que hi ha un Handshake de la xarxa triada com a objectiu durant l'exploració en el fitxer de captura seleccionat. El script pot continuar..."
 	arr["portuguese",322]="Verificou-se que no arquivo de captura existe um Handshake da rede da selecionada como o alvo. O script pode continuar..."
 	arr["russian",322]="Проверка подтвердила, что рукопожатие относится к выбранной целевой сети. Скрипт может продолжать..."
@@ -3054,7 +3054,7 @@ function language_strings() {
 
 	arr["english",323]="There is no Handshake of the selected network on the capture file"
 	arr["spanish",323]="No se ha encontrado un Handshake de la red seleccionada en el fichero de captura"
-	arr["french",323]="$pending_of_translation Il n'a pas trouvé un Handshake réseau sélectionné dans le fichier de capture"
+	arr["french",323]="Aucun Handshake du réseau cible n'a été retrouvé dans le fichier de captures"
 	arr["catalan",323]="$pending_of_translation No s'ha trobat un Handshake de la xarxa seleccionada en el fitxer de captura"
 	arr["portuguese",323]="Não foi encontrado nenhum Handshake da rede selecionada no arquivo de captura"
 	arr["russian",323]="В файле захвата отсутствует рукопожатие выбранной сети"
@@ -3070,7 +3070,7 @@ function language_strings() {
 
 	arr["english",325]="Wait. Be patient..."
 	arr["spanish",325]="Espera. Ten un poco de paciencia..."
-	arr["french",325]="$pending_of_translation Attendez. Ayez un peu de patience..."
+	arr["french",325]="Attendez. Soyez un peu patients..."
 	arr["catalan",325]="$pending_of_translation Espera. Tingues una mica de paciència..."
 	arr["portuguese",325]="Aguarde. Por favor, seja paciente..."
 	arr["russian",325]="Пожалуйста, подождите..."
