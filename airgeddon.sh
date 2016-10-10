@@ -459,6 +459,14 @@ function language_strings() {
 	et_misc_texts["russian",25]="Нажмите Enter в главном окне сценария для продолжения, это окно будет закрыто"
 	et_misc_texts["greek",25]="Πατήστε Enter στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
 
+	et_misc_texts["english",26]="Error. The password must be at least 8 characters. Redirecting to the main screen"
+	et_misc_texts["spanish",26]="Error. La contraseña debe tener al menos 8 caracteres. Redirigiendo a la pantalla principal"
+	et_misc_texts["french",26]="Erreur. La clé de sécurité doit contenir au moins 8 caractères. Retour à l&#39;écran principal"
+	et_misc_texts["catalan",26]="Error. La contrasenya ha de tenir almenys 8 caràcters. Redirigint a la pantalla principal"
+	et_misc_texts["portuguese",26]="Erro. A senha deve ter no mínimo 8 caracteres. Redirecionando para a pagina principal"
+	et_misc_texts["russian",26]="ошибка. Пароль должен быть не менее 8 символов. Перенаправление на главный экран"
+	et_misc_texts["greek",26]="σφάλμα. Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
+
 	declare -A arr
 	arr["english",0]="This interface $interface is already in managed mode"
 	arr["spanish",0]="Esta interfaz $interface ya está en modo managed"
@@ -5876,7 +5884,13 @@ function set_captive_portal_page() {
 			fi
 	EOF
 
+	cat >&4 <<-'EOF'
+		elif [[ ${#password} -gt 0 ]] && [[ ${#password} -lt 8 ]]; then
+	EOF
+
 	cat >&4 <<-EOF
+			echo '${et_misc_texts[$captive_portal_language,26]}'
+			et_successful=0
 		else
 			echo '${et_misc_texts[$captive_portal_language,14]}'
 			et_successful=0
