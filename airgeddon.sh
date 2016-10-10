@@ -304,7 +304,7 @@ function language_strings() {
 	et_misc_texts["french",6]="Avec cette attaque nous allons attendre qu'un client rentre le mot de passe du réseau cible dans notre portail captif"
 	et_misc_texts["catalan",6]="Amb aquest atac, esperarem que un client de la xarxa ens proveeixi de la contrasenya de la xarxa wifi al nostre portal captiu"
 	et_misc_texts["portuguese",6]="Com este ataque, vamos esperar que um cliente nos forneça a senha da rede wifi em nosso portal cativo"
-	et_misc_texts["russian",6]="С этой атакой вы будете ожидать, чтобы сетевые клиенты ввели пароль для Wi-Fi сети на нашем перехватывающем портале"
+	et_misc_texts["russian",6]="С этой атакой вы будете ожидать, чтобы сетевые клиенты ввели пароль для wifi сети на нашем перехватывающем портале"
 	et_misc_texts["greek",6]="Με αυτή την επίθεση, θα περιμένουμε για έναν χρήστη του δικτύου να μας παρέχει με τον κωδικό πρόσβασης του wifi στο captive portal μας"
 
 	et_misc_texts["english",7]="No clients connected yet"
@@ -383,7 +383,7 @@ function language_strings() {
 	et_misc_texts["spanish",16]="La contraseña debe tener al menos 8 caracteres"
 	et_misc_texts["french",16]="La clé de sécurité doit contenir au moins 8 caractères"
 	et_misc_texts["catalan",16]="La contrasenya ha de tenir almenys 8 caràcters"
-	et_misc_texts["portuguese",16]="A senha deve ter no m&iacute;nimo 8 caracteres"
+	et_misc_texts["portuguese",16]="A senha deve ter no mínimo 8 caracteres"
 	et_misc_texts["russian",16]="Пароль должен быть не менее 8 символов"
 	et_misc_texts["greek",16]="Ο κωδικός πρόσβασης πρέπει να είναι τουλάχιστον 8 χαρακτήρες"
 
@@ -391,7 +391,7 @@ function language_strings() {
 	et_misc_texts["spanish",17]="La contraseña introducida es incorrecta, redirigiendo a la pantalla principal"
 	et_misc_texts["french",17]="Clé de sécurité incorrecte, retour à l&#39;écran principal"
 	et_misc_texts["catalan",17]="La contrasenya introduïda és incorrecta, redirigint a la pantalla principal"
-	et_misc_texts["portuguese",17]="A senha est&aacute; incorreta, redirecionando para a pagina principal"
+	et_misc_texts["portuguese",17]="A senha está incorreta, redirecionando para a pagina principal"
 	et_misc_texts["russian",17]="Неверный пароль, перенаправление на главный экран"
 	et_misc_texts["greek",17]="Ο κωδικός πρόσβασης είναι λανθασμένος, Θα καθοδηγηθείτε στην κύρια οθόνη"
 
@@ -399,7 +399,7 @@ function language_strings() {
 	et_misc_texts["spanish",18]="La contraseña es correcta, la conexión se restablecerá en unos momentos"
 	et_misc_texts["french",18]="Clé de sécurité correcte, la connexion sera établie dans quelques instants"
 	et_misc_texts["catalan",18]="La contrasenya és correcta, la connexió es restablirà en uns moments"
-	et_misc_texts["portuguese",18]="A senha est&aacute; correta, a conex&atilde;o ser&aacute; estabelecida em alguns momentos"
+	et_misc_texts["portuguese",18]="A senha está correta, a conexão será estabelecida em alguns momentos"
 	et_misc_texts["russian",18]="Пароль правильный, то соединение будет установлено через несколько минут"
 	et_misc_texts["greek",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα αποκατασταθεί σε λίγα λεπτά"
 
@@ -473,7 +473,7 @@ function language_strings() {
 	arr["french",1]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
 	arr["catalan",1]="Aquesta interfície $interface no és una targeta wifi vàlida. No es compatible amb mode managed"
 	arr["portuguese",1]="Esta interface $interface não é wifi. Ela não suporta o modo managed"
-	arr["russian",1]="Этот интерфейс $interface не является Wi-Fi картой. Он не поддерживает управляемый режим"
+	arr["russian",1]="Этот интерфейс $interface не является wifi картой. Он не поддерживает управляемый режим"
 	arr["greek",1]="Αυτή η διεπαφή $interface δεν είναι κάρτα wifi. Δεν υποστηρίζει ετερόκλητη κατάσταση."
 
 	arr["english",2]="English O.S. language detected. Supported by script. Automatically changed"
@@ -569,7 +569,7 @@ function language_strings() {
 	arr["french",13]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode moniteur"
 	arr["catalan",13]="Aquesta interfície $interface no és una targeta wifi vàlida. No es compatible amb mode monitor"
 	arr["portuguese",13]="Esta interface $interface não é wifi. Ela não suporta o modo monitor"
-	arr["russian",13]="Этот интерфейс $interface не является Wi-Fi картой. Он не поддерживает режим монитора"
+	arr["russian",13]="Этот интерфейс $interface не является wifi картой. Он не поддерживает режим монитора"
 	arr["greek",13]="Αυτή η διεπαφή $interface δεν έιναι κάρτα wifi. Δεν υποστηρίζει κατάσταση παρακολούθησης"
 
 	arr["english",14]="This interface $interface is not in monitor mode"
@@ -1481,8 +1481,8 @@ function language_strings() {
 	arr["french",127]="La marche à suivre est généralement: 1-Selectionner la carte wifi 2-Activer le mode moniteur 3-Choisir un réseau cible 4-Capturer le Handshake"
 	arr["catalan",127]="L'ordre natural per procedir a aquest menú sol ser: 1-Tria targeta wifi 2-Posa-la en mode monitor 3-Tria xarxa objectiu 4-Captura Handshake"
 	arr["portuguese",127]="A ordem normal para esse menu é: 1-Escolha de uma interface wifi 2-colocar interface wifi no modo monitor 3-Selecionar uma rede 4-Capturar Handshake"
-	arr["russian",127]="Естественный порядок работы в этом меню: 1-Выбрать Wi-Fi карту 2-Перевести её в режим монитора 3-Выбрать целевую сеть 4-Захватить рукопожание"
-	arr["greek",127]="Η σειρά εντολών για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα Wi-Fi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Καταγράψτε την χειραψία"
+	arr["russian",127]="Естественный порядок работы в этом меню: 1-Выбрать wifi карту 2-Перевести её в режим монитора 3-Выбрать целевую сеть 4-Захватить рукопожание"
+	arr["greek",127]="Η σειρά εντολών για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα wifi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Καταγράψτε την χειραψία"
 
 	arr["english",128]="Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
 	arr["spanish",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
@@ -1537,7 +1537,7 @@ function language_strings() {
 	arr["french",134]="Si votre système d'exploitation Linux est lancé dans une machine virtuelle, il est probable que les cartes wifi internes soient détectées comme des cartes ethernet. Il vaut mieux dans ce cas utiliser un dispositif wifi usb"
 	arr["catalan",134]="Si el teu Linux és a una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
 	arr["portuguese",134]="Se seu Linux é uma máquina virtual, suas placas wireless integradas são detectadas como ethernet. Use uma placa usb externa"
-	arr["russian",134]="Если ваш Linux в виртуально машине, то интегрированная Wi-Fi карта может определиться как Ethernet. Используйте внешнюю USB wifi карту"
+	arr["russian",134]="Если ваш Linux в виртуально машине, то интегрированная wifi карта может определиться как Ethernet. Используйте внешнюю usb wifi карту"
 	arr["greek",134]="Αν το Linux σας είναι εικονική μηχανή, είναι πιθανόν οι ενσωματωμένες κάρτες wifi να εντοπιστούν σαν ethernet. Χρησιμοποιήστε μία εξωτερική usb κάρτα wifi"
 
 	arr["english",135]="Type of encryption: "${pink_color}"$enc"${normal_color}
@@ -2617,7 +2617,7 @@ function language_strings() {
 	arr["french",269]="Pour mener à bien une attaque Evil Twin il vous faut être dans de bonnes conditions d'émission et de réception tantôt avec le point d'accès qu'avec le(s) client(s)"
 	arr["catalan",269]="Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
 	arr["portuguese",269]="Para fazer um ataque Evil Twin você precisa estar perto do alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o AP legítimo"
-	arr["russian",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную Wi-Fi антенну.  Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
+	arr["russian",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную wifi антенну.  Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
 	arr["greek",269]="Για να πραγματοποιηθεί μία επίθεση Evil Twin θα πρέπει να είστε αρκετά κοντά στο AP-στόχο ή να έχετε μία πολύ ισχυρή κεραία. Το σήμα πρέπει να φτάνει στους χρήστες το ίδιο ή περισσότερο από το αρχικό AP"
 
 	arr["english",270]="Evil Twin attack just AP"
@@ -2713,7 +2713,7 @@ function language_strings() {
 	arr["french",281]="L'interface $interface que vous avez sélectionnée n'est pas une carte wifi. Cette attaque exige que l'interface sélectionnée soit une carte wifi"
 	arr["catalan",281]="La interfície $interface que tens seleccionada no és una targeta wifi. Aquest atac necessita que la interfície seleccionada sigui wifi"
 	arr["portuguese",281]="$ A interface $interface que você selecionou não é wifi. Este ataque requer uma interface wifi selecionada"
-	arr["russian",281]="Интерфейс $interface, который вы выбрали не является Wi-Fi картой. Эта атака требует выбрать wifi карту"
+	arr["russian",281]="Интерфейс $interface, который вы выбрали не является wifi картой. Эта атака требует выбрать wifi карту"
 	arr["greek",281]="Η διεπαφή $interface που έχετε ήδη επιλέξει δεν έιναι κάρτα wifi. Αυτή η επίθεση χρειάζεται μία κάρτα wifi επιλεγμένη"
 
 	arr["english",282]="Selected internet interface: "${pink_color}"$internet_interface"${normal_color}
@@ -2982,9 +2982,9 @@ function language_strings() {
 
 	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
-	arr["french",315]="Vous devez déjà avoir capturé un Handshke WPA/WPA2 pour pouvoir lancer cette attaque"
+	arr["french",315]="Vous devez déjà avoir capturé un Handsahke WPA/WPA2 pour pouvoir lancer cette attaque"
 	arr["catalan",315]="Aquest atac requereix que tinguis capturat prèviament un fitxer de Handshake d'una xarxa WPA/WPA2"
-	arr["portuguese",315]="Este ataque requer que você já tenha capturado um arquivo Handshke de uma rede WPA/WPA2"
+	arr["portuguese",315]="Este ataque requer que você já tenha capturado um arquivo Handshake de uma rede WPA/WPA2"
 	arr["russian",315]="$pending_of_translation Эта атака требует, чтобы вы ранее захватили файл из сети Рукопожатие WPA/WPA2"
 	arr["greek",315]="Αυτή η επίθεση απαιτεί να έχετε προηγουμένως κατεγράψει ένα αρχείο Χειραψίας από WPA/WPA2 δίκτο"
 
@@ -3000,7 +3000,7 @@ function language_strings() {
 	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["french",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. "${green_color}"Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["catalan",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["portuguese",317]="Se a senha da rede Wi-Fi for conseguida com o portal cativo, onde deseja salvar? "${green_color}"Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["portuguese",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? "${green_color}"Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["russian",317]="$pending_of_translation Если пароль для беспроводной сети с адаптивным порталом достигается, решить, куда сохранить. "${green_color}"Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
 	arr["greek",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. "${green_color}"Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
 
