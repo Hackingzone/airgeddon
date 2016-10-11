@@ -4694,8 +4694,13 @@ function check_bssid_in_captured_file() {
 
 	echo
 	if [ "$nets_from_file" = "" ]; then
-		language_strings ${language} 216 "yellow"
-		language_strings ${language} 115 "read"
+		if [ ! -f "$1" ]; then
+			language_strings ${language} 161 "yellow"
+			language_strings ${language} 115 "read"
+		else
+			language_strings ${language} 216 "yellow"
+			language_strings ${language} 115 "read"
+		fi
 		return 1
 	fi
 
@@ -5209,6 +5214,7 @@ function exec_et_onlyap_attack() {
 
 	kill_et_windows
 	restore_et_interface
+	clean_tmpfiles
 }
 
 function exec_et_sniffing_attack() {
@@ -5232,6 +5238,7 @@ function exec_et_sniffing_attack() {
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
 	fi
+	clean_tmpfiles
 }
 
 function exec_et_sniffing_sslstrip_attack() {
@@ -5256,6 +5263,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
 	fi
+	clean_tmpfiles
 }
 
 function exec_et_captive_portal_attack() {
@@ -5279,6 +5287,7 @@ function exec_et_captive_portal_attack() {
 
 	kill_et_windows
 	restore_et_interface
+	clean_tmpfiles
 }
 
 function set_hostapd_config() {
@@ -5496,7 +5505,7 @@ function set_control_script() {
 	cat >&7 <<-'EOF'
 			function kill_et_windows() {
 
-				et_processes_to_kill=$(cat "$path_to_processes")
+				et_processes_to_kill=$(cat "$path_to_processes" 2> /dev/null)
 				for item in ${et_processes_to_kill[@]}; do
 					kill ${item} &> /dev/null
 				done
@@ -5790,7 +5799,6 @@ function set_captive_portal_page() {
 	echo -e "}\n" >> "$tmpdir$webdir$jsfile"
 
 	echo -e "#!/bin/bash" > "$tmpdir$webdir$indexfile"
-	echo -e 'Content-type: text/html\n' >> "$tmpdir$webdir$indexfile"
 	echo -e "echo '<!DOCTYPE html>'" >> "$tmpdir$webdir$indexfile"
 	echo -e "echo '<html>'" >> "$tmpdir$webdir$indexfile"
 	echo -e "echo -e '\t<head>'" >> "$tmpdir$webdir$indexfile"
@@ -5822,7 +5830,6 @@ function set_captive_portal_page() {
 
 	cat >&4 <<-EOF
 		#!/bin/bash
-		echo -e 'Content-type: text/html\n'
 		echo '<!DOCTYPE html>'
 		echo '<html>'
 		echo -e '\t<head>'
@@ -5920,7 +5927,7 @@ function launch_webserver() {
 
 	killall lighttpd > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg yellow -geometry ${g3_bottomright_window} -T "Webserver" -e "lighttpd -f \"$tmpdir$webserver_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg yellow -geometry ${g3_bottomright_window} -T "Webserver" -e "lighttpd -D -f \"$tmpdir$webserver_file\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
