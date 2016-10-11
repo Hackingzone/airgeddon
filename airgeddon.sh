@@ -431,7 +431,7 @@ function language_strings() {
 	et_misc_texts["spanish",22]="Contraseñas capturadas en intentos fallidos"
 	et_misc_texts["french",22]="Mots de passe capturés lors des tentatives infructueuses"
 	et_misc_texts["catalan",22]="Contrasenyes capturades en intents fallits"
-	et_misc_texts["portuguese",22]="Senhas capturadas em tentativas falhadas"
+	et_misc_texts["portuguese",22]="Senhas erradas capturadas durante as tentativas"
 	et_misc_texts["russian",22]="Пароли, захваченные в неудачных попытках"
 	et_misc_texts["greek",22]="Καταγεγραμμένοι κωδικοί πρόσβασης σε αποτυχημένες προσπάθειες"
 
