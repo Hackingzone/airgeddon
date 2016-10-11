@@ -464,7 +464,7 @@ function language_strings() {
 	et_misc_texts["french",26]="Erreur. La clé de sécurité doit contenir au moins 8 caractères. Retour à l&#39;écran principal"
 	et_misc_texts["catalan",26]="Error. La contrasenya ha de tenir almenys 8 caràcters. Redirigint a la pantalla principal"
 	et_misc_texts["portuguese",26]="Erro. A senha deve ter no mínimo 8 caracteres. Redirecionando para a pagina principal"
-	et_misc_texts["russian",26]="Ошибка. В пароле должно быть не менее 8 символов. Перенаправление на главный экран"
+	et_misc_texts["russian",26]="Ошибка. В пароле должно быть не менее 8 символов. Перенаправление на главную страницу"
 	et_misc_texts["greek",26]="Σφάλμα. Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
 
 	declare -A arr
@@ -1889,7 +1889,7 @@ function language_strings() {
 	arr["french",177]="Fichier de capture sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",177]="Fitxer capturat seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",177]="Selecione o arquivo capturado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",177]="Выбран захваченный файл: "${pink_color}"None"${normal_color}
+	arr["russian",177]="Выбран файл захвата: "${pink_color}"Нет"${normal_color}
 	arr["greek",177]="Επιλεγμένο αρχείο καταγραφής: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake"
@@ -1953,7 +1953,7 @@ function language_strings() {
 	arr["french",185]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",185]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",185]="BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",185]="Выбранная BSSID: "${pink_color}"None"${normal_color}
+	arr["russian",185]="Выбранная BSSID: "${pink_color}"Нет"${normal_color}
 	arr["greek",185]="Επιλεγμένο BSSID: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",186]="You already have selected a capture file during this session ["${normal_color}"$enteredpath"${blue_color}"]"
@@ -2641,7 +2641,7 @@ function language_strings() {
 	arr["french",271]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",271]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",271]="BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",271]="Выбранная BSSID: "${pink_color}"None"${normal_color}
+	arr["russian",271]="Выбранная BSSID: "${pink_color}"Нет"${normal_color}
 	arr["greek",271]="Επιλεγμένο BSSID: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",272]="Deauthentication chosen method: "${pink_color}"$et_dos_attack"${normal_color}
@@ -2657,7 +2657,7 @@ function language_strings() {
 	arr["french",273]="Canal sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",273]="Canal seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",273]="Canal selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",273]="Выбранный канал: "${pink_color}"None"${normal_color}
+	arr["russian",273]="Выбранный канал: "${pink_color}"Нет"${normal_color}
 	arr["greek",273]="Επιλεγμένο κανάλι: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",274]="Selected ESSID: "${pink_color}"None"${normal_color}
@@ -2665,7 +2665,7 @@ function language_strings() {
 	arr["french",274]="ESSID sélectionné: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",274]="ESSID seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",274]="ESSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",274]="Выбранная ESSID: "${pink_color}"None"${normal_color}
+	arr["russian",274]="Выбранная ESSID: "${pink_color}"Нет"${normal_color}
 	arr["greek",274]="Επιλεγμένο ESSID: "${pink_color}"Κανένα"${normal_color}
 
 	arr["english",275]="In addition to the software requirements that already meet if you get here, you need to provide target AP data to carry out the attack"
@@ -2697,7 +2697,7 @@ function language_strings() {
 	arr["french",278]="Méthode de dés-authentification: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",278]="Mètode elegit d'desautenticació: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",278]="Método de desautenticação escolhido: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",278]="Выбор метода деаутентификации: "${pink_color}"None"${normal_color}
+	arr["russian",278]="Выбор метода деаутентификации: "${pink_color}"Нет"${normal_color}
 	arr["greek",278]="Επιλεγμένη μέθοδος deauthentication: "${pink_color}"Καμία"${normal_color}
 
 	arr["english",279]="Select another interface with internet access :"
@@ -2737,7 +2737,7 @@ function language_strings() {
 	arr["french",283]="Interface internet sélectionnée: "${pink_color}"Aucun"${normal_color}
 	arr["catalan",283]="Interfície amb internet seleccionat: "${pink_color}"Ningú"${normal_color}
 	arr["portuguese",283]="Interface da internet selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",283]="Выбранный Интернет интерфейс: "${pink_color}"Отсутствует"${normal_color}
+	arr["russian",283]="Выбранный Интернет интерфейс: "${pink_color}"Нет"${normal_color}
 	arr["greek",283]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: "${pink_color}"Καμία"${normal_color}
 
 	arr["english",284]="Do you want to use this selected interface? "${normal_color}"[y/n]"
