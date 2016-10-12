@@ -1,3 +1,9 @@
+4.3
+Evil Twin attack added: captive portal
+Some language strings changed
+Now initial forwarding state is restored on exit
+Fix for Linux which change interface name to a very different name while getting back to managed from monitor mode
+
 4.22
 Portuguese translation updated (Thank you to "Luan")
 Paypal donate button added on README.md
@@ -25,7 +31,7 @@ Compatibility extended to OpenMandriva Linux
 Compatibility extended to Kali arm version on Raspberry Pi
 
 4.02
-New windows sizes calculation method for better viewing even in small resolutions. Dynamic system.
+New windows sizes calculation method for better viewing even in small resolutions. Dynamic system
 Fixed bug restarting Network Manager on Arch Linux
 Fixed bug restarting Network Manager using debug mode on some distros
 Suggestion added about possible packet names after failing a dependency check

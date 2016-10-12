@@ -3,12 +3,12 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 <img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/airgeddon_banner.png" title="We'll conquer the earth!!"/>
 
 #Features
-- Interface mode switcher (Monitor-Managed).<br/>
+- Interface mode switcher (Monitor-Managed) keeping selection even with interface name changing.<br/>
 - DoS over wireless networks with different methods.<br/>
 - Assisted Handshake file capture.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
-- 3/4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip and "only AP" version to sniff with external sniffer. Captive portal mode coming soon.<br/>
+- 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -69,6 +69,7 @@ iptables -> iptables
 ettercap -> ettercap / ettercap-text-only / ettercap-graphical
 etterlog -> ettercap / ettercap-text-only / ettercap-graphical
 sslstrip -> sslstrip
+lighttpd -> lighttpd
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
@@ -115,11 +116,11 @@ You can join the project:<br/>
 -Testing and feedback is needed too.<br/>
 <br/>
 *For collaborating translators:*<br/>
-You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed.<br/>
+You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed or to add you as a collaborator on github.<br/>
 <br/>
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
-Please, respect the code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
+Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
@@ -128,7 +129,8 @@ You can download the master version or the beta testing version from the develop
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pen testing crew", the Wifislax staff, the seguridadwireless.net and wifi-libre.com forum people that helped me.<br/>
+Thanks to the "Spanish pen testing crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a> and <a href="https://www.wifi-libre.com">Wifi-libre.com</a> forum people that helped me.<br/>
+Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 <br/>
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
