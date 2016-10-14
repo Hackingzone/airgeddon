@@ -1,3 +1,6 @@
+4.31
+Now optionally on Evil Twin captive portal attack you can choose between to have internet access or use a "dns trick"
+
 4.3
 Evil Twin attack added: captive portal
 Some language strings changed
