@@ -6416,11 +6416,17 @@ function validate_path() {
 	fi
 
 	lastcharmanualpath=${1: -1}
-	if [ "$lastcharmanualpath" = "/" ]; then
+	if [[ "$lastcharmanualpath" = "/" ]] || [[ -d "$1" ]]; then
+
+		if [ "$lastcharmanualpath" != "/" ]; then
+			pathname="$1/"
+		else
+			pathname="$1"
+		fi
 
 		case ${2} in
 			"handshake")
-				enteredpath="$1$standardhandshake_filename"
+				enteredpath="$pathname$standardhandshake_filename"
 				suggested_filename="$standardhandshake_filename"
 			;;
 			"hashcatpot")
@@ -6432,7 +6438,7 @@ function validate_path() {
 				ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
 			;;
 			"writeethandshake")
-				et_handshake="$1$standardhandshake_filename"
+				et_handshake="$pathname$standardhandshake_filename"
 				suggested_filename="$standardhandshake_filename"
 			;;
 		esac
