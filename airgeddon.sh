@@ -3119,6 +3119,14 @@ function language_strings() {
 	arr["russian",330]="$pending_of_translation На данный момент есть два варианта подготовки адаптивный портал. Либо у нас есть интерфейс с доступом в Интернет, или создание ложного DNS с помощью ${optional_tools_names[12]}"
 	arr["greek",330]="$pending_of_translation Σε αυτό το σημείο υπάρχουν δύο επιλογές για την προετοιμασία του αιχμαλωσία πύλη. Είτε έχουμε μια διεπαφή με πρόσβαση στο διαδίκτυο, ή ψευδούς DNS χρησιμοποιώντας ${optional_tools_names[12]}"
 
+	arr["english",331]="$option_counter_back.${spaceiface}Return to Evil Twin attacks menu"
+	arr["spanish",331]="$option_counter_back.${spaceiface}Volver al menú de ataques Evil Twin"
+	arr["french",331]="$option_counter_back.${spaceiface}Retour au menu d'attaques Evil Twin"
+	arr["catalan",331]="$option_counter_back.${spaceiface}Tornar al menú d'atacs Evil Twin"
+	arr["portuguese",331]="$option_counter_back.${spaceiface}Voltar ao menu de ataques Evil Twin"
+	arr["russian",331]="$option_counter_back.${spaceiface}Вернуться в меню атак Злой Двойник"
+	arr["greek",331]="$option_counter_back.${spaceiface}Επιστροφή στο μενού επιθέσεων Evil Twin"
+
 	case "$3" in
 		"yellow")
 			interrupt_checkpoint ${2} ${3}
@@ -3666,7 +3674,7 @@ function set_chipset() {
 function select_internet_interface() {
 
 	if [ ${return_to_et_main_menu} -eq 1 ]; then
-		return
+		return 1
 	fi
 
 	current_menu="evil_twin_attacks_menu"
@@ -3716,16 +3724,25 @@ function select_internet_interface() {
 		echo
 		language_strings ${language} 280 "yellow"
 		language_strings ${language} 115 "read"
-		return
+		return 1
 	fi
 
+	option_counter_back=$[option_counter + 1]
+	if [ ${option_counter: -1} -eq 9 ]; then
+		spaceiface+=" "
+	fi
+	print_simple_separator
+	language_strings ${language} 331
 	print_hint ${current_menu}
 
 	read inet_iface
 	if [ -z ${inet_iface} ]; then
 		invalid_internet_iface_selected
-	elif [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
-			invalid_internet_iface_selected
+	elif [[ ${inet_iface} -lt 1 ]] || [[ ${inet_iface} -gt ${option_counter_back} ]]; then
+		invalid_internet_iface_selected
+	elif [ ${inet_iface} -eq ${option_counter_back} ]; then
+		return_to_et_main_menu=1
+		return 1
 	else
 		option_counter2=0
 		for item2 in ${inet_ifaces}; do
@@ -3735,6 +3752,7 @@ function select_internet_interface() {
 				break
 			fi
 		done
+		return 0
 	fi
 }
 
@@ -7177,6 +7195,10 @@ function detect_internet_interface() {
 		fi
 	else
 		select_internet_interface
+	fi
+
+	if [ "$?" != "0" ]; then
+		return 1
 	fi
 
 	validate_et_internet_interface

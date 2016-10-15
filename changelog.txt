@@ -1,6 +1,7 @@
 4.31
-Now optionally on Evil Twin captive portal attack you can choose between to have internet access or use a "dns trick"
+Now optionally on Evil Twin captive portal attack you can choose between to have internet access or to use a "dns trick"
 Fixed bug writing handshake files on some paths
+Added possibility to get back to Evil Twin main menu from the internet interface selection menu
 
 4.3
 Evil Twin attack added: captive portal
