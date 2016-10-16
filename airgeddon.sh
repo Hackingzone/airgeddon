@@ -739,7 +739,7 @@ function language_strings() {
 	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
 	arr["french",33]="L'attaque est lancé. Pressez Ctrl+C pour l'arrêter..."
 	arr["catalan",33]="Començant l'atac. Un cop començat, premeu Ctrl+C per aturar-lo..."
-	arr["portuguese",33]="Começando ataque. Uma vez iniciado, pressione Ctrl+C para pará-lo..."
+	arr["portuguese",33]="Começando ataque. Uma vez iniciado, pressione Ctrl+C para parar..."
 	arr["russian",33]="Начало атаки. Когда начнётся, нажмите Ctrl+C для остановки..."
 	arr["greek",33]="Έναρξη επίθεσης. Όταν ξεκινήσει, πατήστε Ctrl+C για να σταματήσει..."
 
@@ -2083,7 +2083,7 @@ function language_strings() {
 	arr["spanish",201]="5.  Caracteres en minúsculas + mayúsculas"
 	arr["french",201]="5.  Lettres minuscules + majuscules"
 	arr["catalan",201]="5.  Caràcters en minúscules + majúscules"
-	arr["portuguese",201]="5.  Caracteres minúscula + maiúsculo"
+	arr["portuguese",201]="5.  Caracteres minúsculos + maiúsculos"
 	arr["russian",201]="5.  Буквы верхнего + нижнего регистра"
 	arr["greek",201]="5.  Πεζά + κεφαλαία"
 
@@ -2115,7 +2115,7 @@ function language_strings() {
 	arr["spanish",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
 	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
-	arr["portuguese",205]="9.  Caracteres em minúsculos + maiúsculo + números"
+	arr["portuguese",205]="9.  Caracteres em minúsculo + maiúsculos + números"
 	arr["russian",205]="9.  Буквы нижнего регистра + верхнего регистра + цифры"
 	arr["greek",205]="9.  Πεζά + κεφαλαία + αριθμοί"
 
@@ -2123,7 +2123,7 @@ function language_strings() {
 	arr["spanish",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
 	arr["french",206]="10. Lettres minuscules et majuscules + symboles"
 	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
-	arr["portuguese",206]="10. Caracteres em minúsculos + maiúsculo + símbolos"
+	arr["portuguese",206]="10. Caracteres em minúsculo + maiúsculos + símbolos"
 	arr["russian",206]="10. Буквы нижнего регистра + верхнего регистра + символы"
 	arr["greek",206]="10. Πεζά + κεφαλαία + σύμβολα"
 
@@ -3083,7 +3083,7 @@ function language_strings() {
 	arr["spanish",326]="¿Vas a utilizar el método de la interfaz con acceso a internet? "${pink_color}"Si la respuesta es no (\"n\"), necesitarás tener instalado ${optional_tools_names[12]} para continuar. Ambas cosas se comprobarán "${normal_color}"[y/n]"
 	arr["french",326]="$pending_of_translation Allez-vous utiliser l'interface de méthode avec accès à internet? "${pink_color}"Si la réponse est non (\"n\"), vous aurez besoin d'avoir installé ${optional_tools_names[12]} pour continuer. Les deux seront contrôlés "${normal_color}"[y/n]"
 	arr["catalan",326]="$pending_of_translation Vas a utilitzar el mètode de la interfície amb accés a internet? "${pink_color}"Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran "${normal_color}"[y/n]"
-	arr["portuguese",326]="$pending_of_translation Você vai usar a interface do método com acesso à internet? "${pink_color}"Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados "${normal_color}"[y/n]"
+	arr["portuguese",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? "${pink_color}"Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados "${normal_color}"[y/n]"
 	arr["russian",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? "${pink_color}"Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий "${normal_color}"[y/n]"
 	arr["greek",326]="Σκοπεύετε να χρησιμοποιήσετε την διεπαφή με την μέθοδο πρόσβασης στο διαδίκτυο; "${pink_color}"Αν απαντήσετε όχι (\"n\"), θα πρέπει να έχετε το ${optional_tools_names[12]} εγκατεστημένο για να συνεχίσετε. Και τα δύο ελέγχονται "${normal_color}"[y/n]"
 
@@ -3091,7 +3091,7 @@ function language_strings() {
 	arr["spanish",327]="No tienes instalado ${optional_tools_names[12]}. El script no puede continuar. Redirigiendo a la pantalla principal..."
 	arr["french",327]="$pending_of_translation Vous n'avez pas installé ${optional_tools_names[12]}. Le script ne peut pas continuer. Redirection vers l'écran principal..."
 	arr["catalan",327]="$pending_of_translation No tens instal·lat ${optional_tools_names[12]}. El script no pot continuar. Redirigint a la pantalla principal..."
-	arr["portuguese",327]="$pending_of_translation Você não tiver instalado ${optional_tools_names[12]}. O script não pode continuar. Redirecionando para a tela principal..."
+	arr["portuguese",327]="Você não tem ${optional_tools_names[12]} instalado . O script não pode continuar. Redirecionando para o menu principal..."
 	arr["russian",327]="У вас не установлена программа ${optional_tools_names[12]}. Скрипт не может продолжить. Переход на главный экран…"
 	arr["greek",327]="Το ${optional_tools_names[12]} δεν είναι εγκατεστημένο. Το script δεν μπορεί να συνεχίσει. Θα καθοδηγηθείτε στην κύρια οθόνη..."
 
@@ -3099,7 +3099,7 @@ function language_strings() {
 	arr["spanish",328]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo. Como alternativa necesitarás otro requerimiento adicional: ${optional_tools_names[12]}"
 	arr["french",328]="$pending_of_translation La seule attaque Evil Twin pour laquelle il n'est pas nécessaire d'avoir une interface supplémentaire avec accès à internet est l'attaque portail captif. Sinon, vous aurez besoin d'une exigence supplémentaire: ${optional_tools_names[12]}"
 	arr["catalan",328]="$pending_of_translation L'únic atac d'Evil Twin en què no cal tenir una interfície addicional amb accés a internet és el del portal captiu. Com a alternativa et caldrà un altre requeriment addicional: ${optional_tools_names[12]}"
-	arr["portuguese",328]="$pending_of_translation O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo. Alternativamente, você vai precisar de um requisito adicional: ${optional_tools_names[12]}"
+	arr["portuguese",328]="O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo. Porém você vai precisar ter instalado ${optional_tools_names[12]}"
 	arr["russian",328]="Уникальная атака Злой Двойник, при которой необязательно иметь дополнительный интерфейс с Интернет-доступом в атаке с Перехватывающим Порталом. В качестве альтернативы, вам нужна ещё одна дополнительная зависимость: ${optional_tools_names[12]}"
 	arr["greek",328]="Η μόνη επίθεση Evil Twin στην οποία δεν είναι απαραίτητο να έχετε επιπλέον διεπαφή με πρόσβαση στο διαδίκτυο είναι η επίθεση με captive portal. Εναλλακτικά, θα χρειαστείτε το: ${optional_tools_names[12]}"
 
@@ -3107,7 +3107,7 @@ function language_strings() {
 	arr["spanish",329]="Se ha comprobado que tienes instalado ${optional_tools_names[12]}. El script puede continuar..."
 	arr["french",329]="$pending_of_translation Il a été trouvé que ${optional_tools_names[12]} installé. Le script peut continuer..."
 	arr["catalan",329]="$pending_of_translation S'ha comprovat que tens instal·lat ${optional_tools_names[12]}. El script pot continuar..."
-	arr["portuguese",329]="$pending_of_translation Ele foi encontrado para ter o ${optional_tools_names[12]} instalado. O script pode continuar..."
+	arr["portuguese",329]="${optional_tools_names[12]} Está instalado. O script pode continuar..."
 	arr["russian",329]="Судя по всему, ${optional_tools_names[12]} у вас установлена. Скрипт может продолжить..."
 	arr["greek",329]="Φαίνεται πως το ${optional_tools_names[12]} είναι εγκατεστημένο. Το script μπορεί να συνεχίσει..."
 
@@ -3115,7 +3115,7 @@ function language_strings() {
 	arr["spanish",330]="Llegados a este punto hay dos opciones para preparar el portal cautivo. O bien tenemos una interfaz con acceso a internet, o preparamos un falso DNS usando ${optional_tools_names[12]}"
 	arr["french",330]="$pending_of_translation À ce stade, il y a deux options pour préparer le portail captif. Soit nous avons une interface avec accès à internet, ou de faire un faux DNS en utilisant ${optional_tools_names[12]}"
 	arr["catalan",330]="$pending_of_translation Arribats a aquest punt hi ha dues opcions per preparar el portal captiu. O bé tenim una interfície amb accés a internet, o vam preparar un fals DNS utilitzant ${optional_tools_names[12]}"
-	arr["portuguese",330]="$pending_of_translation Neste momento, existem duas opções para a preparação do portal cativo. Ou temos uma interface com acesso à internet, ou fazer uma falsa DNS usando ${optional_tools_names[12]}"
+	arr["portuguese",330]="$pending_of_translation Neste momento, existem duas opções para o portal cativo. Ou temos uma interface com acesso à internet, ou fazer um falso DNS usando ${optional_tools_names[12]}"
 	arr["russian",330]="На данном этапе у вас две опции для подготовки Перехватывающего Портала. Нужно или иметь сетевой интерфейс с Интернет-доступом, или создать фальшивый DNS используя ${optional_tools_names[12]}"
 	arr["greek",330]="Σε αυτό το σημείο υπάρχουν δύο επιλογές για την προετοιμασία του captive portal. Να έχετε μία διεπαφή με πρόσβαση στο διαδίκτυο, ή να φιάξετε ψευδές DNS χρησιμοποιώντας το ${optional_tools_names[12]}"
 
