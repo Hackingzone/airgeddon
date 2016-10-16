@@ -70,6 +70,7 @@ ettercap -> ettercap / ettercap-text-only / ettercap-graphical
 etterlog -> ettercap / ettercap-text-only / ettercap-graphical
 sslstrip -> sslstrip
 lighttpd -> lighttpd
+dnsspoof -> dsniff
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
