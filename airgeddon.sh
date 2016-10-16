@@ -2051,7 +2051,7 @@ function language_strings() {
 	arr["spanish",197]="1.  Caracteres en minúsculas"
 	arr["french",197]="1.  Lettres minuscules"
 	arr["catalan",197]="1.  Caràcters en minúscules"
-	arr["portuguese",197]="1.  Caracteres em minúsculo"
+	arr["portuguese",197]="1.  Caracteres minúsculos"
 	arr["russian",197]="1.  Символы нижнего регистра"
 	arr["greek",197]="1.  Πεζά"
 
@@ -2059,7 +2059,7 @@ function language_strings() {
 	arr["spanish",198]="2.  Caracteres en mayúsculas"
 	arr["french",198]="2.  Lettres majuscules"
 	arr["catalan",198]="2.  Caràcters en majúscules"
-	arr["portuguese",198]="2.  Caracteres em maiúsculo"
+	arr["portuguese",198]="2.  Caracteres maiúsculos"
 	arr["russian",198]="2.  Символы верхнего регистра"
 	arr["greek",198]="2.  Κεφαλαία"
 
@@ -2091,7 +2091,7 @@ function language_strings() {
 	arr["spanish",202]="6.  Caracteres en minúsculas + numéricos"
 	arr["french",202]="6.  Lettres minuscules + chiffres"
 	arr["catalan",202]="6.  Caràcters en minúscules + numèrics"
-	arr["portuguese",202]="6.  Caracteres em minúsculo + números"
+	arr["portuguese",202]="6.  Caracteres minúsculos + números"
 	arr["russian",202]="6.  Буквы нижнего регистра + цифры"
 	arr["greek",202]="6.  Πεζά + αριθμοί"
 
@@ -2099,7 +2099,7 @@ function language_strings() {
 	arr["spanish",203]="7.  Caracteres en mayúsculas + numéricos"
 	arr["french",203]="7.  Lettres majuscules + chiffres"
 	arr["catalan",203]="7.  Caràcters en majúscules + numèrics"
-	arr["portuguese",203]="7.  Caracteres em maiúsculo + números"
+	arr["portuguese",203]="7.  Caracteres maiúsculos + números"
 	arr["russian",203]="7.  Буквы верхнего регистра + цифры"
 	arr["greek",203]="7.  Κεφαλαία + αριθμοί"
 
@@ -2115,7 +2115,7 @@ function language_strings() {
 	arr["spanish",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
 	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
-	arr["portuguese",205]="9.  Caracteres em minúsculo + maiúsculos + números"
+	arr["portuguese",205]="9.  Caracteres minúsculos + maiúsculos + números"
 	arr["russian",205]="9.  Буквы нижнего регистра + верхнего регистра + цифры"
 	arr["greek",205]="9.  Πεζά + κεφαλαία + αριθμοί"
 
@@ -2123,7 +2123,7 @@ function language_strings() {
 	arr["spanish",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
 	arr["french",206]="10. Lettres minuscules et majuscules + symboles"
 	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
-	arr["portuguese",206]="10. Caracteres em minúsculo + maiúsculos + símbolos"
+	arr["portuguese",206]="10. Caracteres minúsculos + maiúsculos + símbolos"
 	arr["russian",206]="10. Буквы нижнего регистра + верхнего регистра + символы"
 	arr["greek",206]="10. Πεζά + κεφαλαία + σύμβολα"
 
@@ -2131,7 +2131,7 @@ function language_strings() {
 	arr["spanish",207]="11. Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
 	arr["french",207]="11. Lettres minuscules et majuscules + chiffres + symboles"
 	arr["catalan",207]="11. Caràcters en minúscules + majúscules + numèrics + símbols"
-	arr["portuguese",207]="11. Caracteres em minúsculo + maiúsculo + números + símbolos"
+	arr["portuguese",207]="11. Caracteres minúsculos + maiúsculos + números + símbolos"
 	arr["russian",207]="11. Буквы нижнего регистра + верхнего регистра + цифры + символы"
 	arr["greek",207]="11. Πεζά + κεφαλαία + αριθμοί + σύμβολα"
 
