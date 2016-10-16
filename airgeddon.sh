@@ -3084,7 +3084,7 @@ function language_strings() {
 	arr["french",326]="$pending_of_translation Allez-vous utiliser l'interface de méthode avec accès à internet? "${pink_color}"Si la réponse est non (\"n\"), vous aurez besoin d'avoir installé ${optional_tools_names[12]} pour continuer. Les deux seront contrôlés "${normal_color}"[y/n]"
 	arr["catalan",326]="$pending_of_translation Vas a utilitzar el mètode de la interfície amb accés a internet? "${pink_color}"Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran "${normal_color}"[y/n]"
 	arr["portuguese",326]="$pending_of_translation Você vai usar a interface do método com acesso à internet? "${pink_color}"Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados "${normal_color}"[y/n]"
-	arr["russian",326]="$pending_of_translation Вы собираетесь использовать интерфейс метод с доступом в Интернет? "${pink_color}"Если ответ нет (\"п\"), вам потребуется ${optional_tools_names[12]} установлен для продолжения. Оба проверены "${normal_color}"[y/n]"
+	arr["russian",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? "${pink_color}"Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий "${normal_color}"[y/n]"
 	arr["greek",326]="$pending_of_translation Σκοπεύετε να χρησιμοποιήσετε το περιβάλλον μέθοδο με πρόσβαση στο Διαδίκτυο; "${pink_color}"Αν η απάντηση είναι όχι (\"n\"), θα χρειαστείτε ${optional_tools_names[12]} εγκατασταθεί για να συνεχίσετε. Και οι δύο ελέγχονται "${normal_color}"[y/n]"
 
 	arr["english",327]="You don't have ${optional_tools_names[12]} installed. The script can't continue. Redirecting to main screen..."
@@ -3092,7 +3092,7 @@ function language_strings() {
 	arr["french",327]="$pending_of_translation Vous n'avez pas installé ${optional_tools_names[12]}. Le script ne peut pas continuer. Redirection vers l'écran principal..."
 	arr["catalan",327]="$pending_of_translation No tens instal·lat ${optional_tools_names[12]}. El script no pot continuar. Redirigint a la pantalla principal..."
 	arr["portuguese",327]="$pending_of_translation Você não tiver instalado ${optional_tools_names[12]}. O script não pode continuar. Redirecionando para a tela principal..."
-	arr["russian",327]="$pending_of_translation Вы не установили ${optional_tools_names[12]}. Сценарий не может продолжаться. Перенаправление на главном экране..."
+	arr["russian",327]="У вас не установлена программа ${optional_tools_names[12]}. Скрипт не может продолжить. Переход на главный экран…"
 	arr["greek",327]="$pending_of_translation Δεν έχετε εγκαταστήσει ${optional_tools_names[12]}. Το σενάριο δεν μπορεί να συνεχιστεί. Ανακατεύθυνση στην κύρια οθόνη..."
 
 	arr["english",328]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack. As an alternative, you'll need another additional requirement: ${optional_tools_names[12]}"
@@ -3100,7 +3100,7 @@ function language_strings() {
 	arr["french",328]="$pending_of_translation La seule attaque Evil Twin pour laquelle il n'est pas nécessaire d'avoir une interface supplémentaire avec accès à internet est l'attaque portail captif. Sinon, vous aurez besoin d'une exigence supplémentaire: ${optional_tools_names[12]}"
 	arr["catalan",328]="$pending_of_translation L'únic atac d'Evil Twin en què no cal tenir una interfície addicional amb accés a internet és el del portal captiu. Com a alternativa et caldrà un altre requeriment addicional: ${optional_tools_names[12]}"
 	arr["portuguese",328]="$pending_of_translation O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo. Alternativamente, você vai precisar de um requisito adicional: ${optional_tools_names[12]}"
-	arr["russian",328]="$pending_of_translation Уникальная атака Злой Двойник в которой нет необходимости иметь дополнительный интерфейс с Интернет доступом, это атака с перехватывающим порталом. В качестве альтернативы вам потребуется дополнительное требование: ${optional_tools_names[12]}"
+	arr["russian",328]="Уникальная атака Злой Двойник, при которой необязательно иметь дополнительный интерфейс с Интернет-доступом в атаке с Перехватывающим Порталом. В качестве альтернативы, вам нужна ещё одна дополнительная зависимость: ${optional_tools_names[12]}"
 	arr["greek",328]="$pending_of_translation Η μοναδική επίθεση Evil Twin στην οποία δεν είναι απαραίτητο να έχετε επιπλέον διεπαφή με πρόσβαση στο διαδίκτυο είναι η επίθεση με αιχμαλωσία πύ. Εναλλακτικά, θα χρειαστείτε μια πρόσθετη απαίτηση: ${optional_tools_names[12]}"
 
 	arr["english",329]="It seems you have ${optional_tools_names[12]} installed. Script can continue..."
@@ -3108,7 +3108,7 @@ function language_strings() {
 	arr["french",329]="$pending_of_translation Il a été trouvé que ${optional_tools_names[12]} installé. Le script peut continuer..."
 	arr["catalan",329]="$pending_of_translation S'ha comprovat que tens instal·lat ${optional_tools_names[12]}. El script pot continuar..."
 	arr["portuguese",329]="$pending_of_translation Ele foi encontrado para ter o ${optional_tools_names[12]} instalado. O script pode continuar..."
-	arr["russian",329]="$pending_of_translation Было установлено, что установлен ${optional_tools_names[12]}. Скрипт может продолжать..."
+	arr["russian",329]="Судя по всему, ${optional_tools_names[12]} у вас установлена. Скрипт может продолжить..."
 	arr["greek",329]="$pending_of_translation Βρέθηκε να έχετε εγκατεστημένο το ${optional_tools_names[12]}. Το script μπορεί να συνεχίσει..."
 
 	arr["english",330]="At this point there are two options to prepare the captive portal. Either having an interface with internet access, or making a fake DNS using ${optional_tools_names[12]}"
@@ -3116,7 +3116,7 @@ function language_strings() {
 	arr["french",330]="$pending_of_translation À ce stade, il y a deux options pour préparer le portail captif. Soit nous avons une interface avec accès à internet, ou de faire un faux DNS en utilisant ${optional_tools_names[12]}"
 	arr["catalan",330]="$pending_of_translation Arribats a aquest punt hi ha dues opcions per preparar el portal captiu. O bé tenim una interfície amb accés a internet, o vam preparar un fals DNS utilitzant ${optional_tools_names[12]}"
 	arr["portuguese",330]="$pending_of_translation Neste momento, existem duas opções para a preparação do portal cativo. Ou temos uma interface com acesso à internet, ou fazer uma falsa DNS usando ${optional_tools_names[12]}"
-	arr["russian",330]="$pending_of_translation На данный момент есть два варианта подготовки адаптивный портал. Либо у нас есть интерфейс с доступом в Интернет, или создание ложного DNS с помощью ${optional_tools_names[12]}"
+	arr["russian",330]="На данном этапе у вас две опции для подготовки Перехватывающего Портала. Нужно или иметь сетевой интерфейс с Интернет-доступом, или создать фальшивый DNS используя ${optional_tools_names[12]}"
 	arr["greek",330]="$pending_of_translation Σε αυτό το σημείο υπάρχουν δύο επιλογές για την προετοιμασία του αιχμαλωσία πύλη. Είτε έχουμε μια διεπαφή με πρόσβαση στο διαδίκτυο, ή ψευδούς DNS χρησιμοποιώντας ${optional_tools_names[12]}"
 
 	arr["english",331]="$option_counter_back.${spaceiface}Return to Evil Twin attacks menu"
@@ -3124,7 +3124,7 @@ function language_strings() {
 	arr["french",331]="$option_counter_back.${spaceiface}Retour au menu d'attaques Evil Twin"
 	arr["catalan",331]="$option_counter_back.${spaceiface}Tornar al menú d'atacs Evil Twin"
 	arr["portuguese",331]="$option_counter_back.${spaceiface}Voltar ao menu de ataques Evil Twin"
-	arr["russian",331]="$option_counter_back.${spaceiface}Вернуться в меню атак Злой Двойник"
+	arr["russian",331]="$option_counter_back.${spaceiface}Возврат в меню атаки Злой Двойник"
 	arr["greek",331]="$option_counter_back.${spaceiface}Επιστροφή στο μενού επιθέσεων Evil Twin"
 
 	case "$3" in
