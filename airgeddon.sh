@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.3"
+airgeddon_version="4.31"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -59,6 +59,7 @@ optional_tools_names=(
 						"etterlog"
 						"sslstrip"
 						"lighttpd"
+						"dnsspoof"
 					)
 
 declare -A optional_tools=(
@@ -74,6 +75,7 @@ declare -A optional_tools=(
 							[${optional_tools_names[9]}]=0
 							[${optional_tools_names[10]}]=0
 							[${optional_tools_names[11]}]=0
+							[${optional_tools_names[12]}]=0
 						)
 
 update_tools=("curl")
@@ -98,6 +100,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[9]}]="ettercap / ettercap-text-only / ettercap-graphical" #etterlog
 									[${optional_tools_names[10]}]="sslstrip" #sslstrip
 									[${optional_tools_names[11]}]="lighttpd" #lighttpd
+									[${optional_tools_names[12]}]="dsniff" #dnsspoof
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -126,8 +129,8 @@ alt_range_stop="172.16.250.100"
 std_c_mask="255.255.255.0"
 ip_mask="255.255.255.255"
 dhcpd_file="ag.dhcpd.conf"
-dns1="8.8.8.8"
-dns2="8.8.4.4"
+internet_dns1="8.8.8.8"
+internet_dns2="8.8.4.4"
 sslstrip_port="10000"
 sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercaplog"
@@ -178,7 +181,7 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
-declare evil_twin_hints=(254 258 264 269 309)
+declare evil_twin_hints=(254 258 264 269 309 328)
 declare evil_twin_dos_hints=(267 268)
 
 #Charset vars
@@ -589,7 +592,7 @@ function language_strings() {
 	arr["greek",14]="Αυτή η διεπαφή $interface δεν είναι σε κατάσταση παρακολούθησης"
 
 	arr["english",15]="The interface changed its name while putting in managed mode. Autoselected"
-	arr["spanish",15]="Esta interfaz ha cambiado su nombre al ponerlo en modo managed. Se ha seleccionado automáticamente"
+	arr["spanish",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
 	arr["french",15]="Le nom de l'interface a changé lors du passage en mode managed. Elle a été sélectionnée automatiquement"
 	arr["catalan",15]="Aquesta interfície ha canviat de nom al posar-la en mode managed. S'ha triat automàticament"
 	arr["portuguese",15]="Esta interface mudou de nome, colocando em modo managed e selecionando automaticamente"
@@ -736,7 +739,7 @@ function language_strings() {
 	arr["spanish",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
 	arr["french",33]="L'attaque est lancé. Pressez Ctrl+C pour l'arrêter..."
 	arr["catalan",33]="Començant l'atac. Un cop començat, premeu Ctrl+C per aturar-lo..."
-	arr["portuguese",33]="Começando ataque. Uma vez iniciado, pressione Ctrl+C para pará-lo..."
+	arr["portuguese",33]="Começando ataque. Uma vez iniciado, pressione Ctrl+C para parar..."
 	arr["russian",33]="Начало атаки. Когда начнётся, нажмите Ctrl+C для остановки..."
 	arr["greek",33]="Έναρξη επίθεσης. Όταν ξεκινήσει, πατήστε Ctrl+C για να σταματήσει..."
 
@@ -858,7 +861,7 @@ function language_strings() {
 	arr["catalan",48]="1.  Selecciona una altre interfície de xarxa"
 	arr["portuguese",48]="1.  Selecione outra interface de rede"
 	arr["russian",48]="1.  Выбрать другой сетевой интерфейс"
-	arr["greek",48]="1.  Επιλέξτε άλλη διεπαφή"
+	arr["greek",48]="1.  Επιλογή διαφορετικής διεπαφής"
 
 	arr["english",49]="4.  Explore for targets (monitor mode needed)"
 	arr["spanish",49]="4.  Explorar para buscar objetivos (modo monitor requerido)"
@@ -962,7 +965,7 @@ function language_strings() {
 	arr["catalan",61]="10. Sortir del script"
 	arr["portuguese",61]="10. Sair do script"
 	arr["russian",61]="10. Выйти из скрипта"
-	arr["greek",61]="10. Τερματίστε το script"
+	arr["greek",61]="10. Έξοδος script"
 
 	arr["english",62]="8.  Beacon flood attack"
 	arr["spanish",62]="8.  Ataque Beacon flood"
@@ -1098,7 +1101,7 @@ function language_strings() {
 	arr["catalan",78]="9.  Canviar l'idioma"
 	arr["portuguese",78]="9.  Alterar idioma"
 	arr["russian",78]="9.  Сменить язык"
-	arr["greek",78]="9.  Αλλάξτε γλώσσα"
+	arr["greek",78]="9.  Αλλαγή γλώσσας"
 
 	arr["english",79]="1.  English"
 	arr["spanish",79]="1.  Inglés"
@@ -1426,7 +1429,7 @@ function language_strings() {
 	arr["catalan",119]="5.  Menú d'eines Handshake"
 	arr["portuguese",119]="5.  Menu ferramentas Handshake"
 	arr["russian",119]="5.  Меню инструментов для работы с рукопожатием"
-	arr["greek",119]="5.  Μενού εργαλειών χειραψίας"
+	arr["greek",119]="5.  Μενού εργαλειών Χειραψίας"
 
 	arr["english",120]="Handshake tools menu"
 	arr["spanish",120]="Menú de herramientas Handshake"
@@ -1434,7 +1437,7 @@ function language_strings() {
 	arr["catalan",120]="Menú d'eines Handshake"
 	arr["portuguese",120]="Menu de ferramentas Handshake"
 	arr["russian",120]="Меню инструментов для работы с рукопожатием"
-	arr["greek",120]="Μενού εργαλειών χειραψίας"
+	arr["greek",120]="Μενού εργαλειών Χειραψίας"
 
 	arr["english",121]="5.  Capture Handshake"
 	arr["spanish",121]="5.  Capturar Handshake"
@@ -1450,7 +1453,7 @@ function language_strings() {
 	arr["catalan",122]="6.  Netejar/optimitzar fitxer de Handshake"
 	arr["portuguese",122]="6.  Limpar arquivo/otimizar Handshake"
 	arr["russian",122]="6.  Очистка/оптимизация файла рукопожатия"
-	arr["greek",122]="6.  Καθαρισμός/βελτιστοποίηση του αρχείου χειραψίας"
+	arr["greek",122]="6.  Καθαρισμός/βελτιστοποίηση του αρχείου Χειραψίας"
 
 	arr["english",123]="7.  Return to main menu"
 	arr["spanish",123]="7.  Volver al menú principal"
@@ -1490,7 +1493,7 @@ function language_strings() {
 	arr["catalan",127]="L'ordre natural per procedir a aquest menú sol ser: 1-Tria targeta wifi 2-Posa-la en mode monitor 3-Tria xarxa objectiu 4-Captura Handshake"
 	arr["portuguese",127]="A ordem normal para esse menu é: 1-Escolha de uma interface wifi 2-colocar interface wifi no modo monitor 3-Selecionar uma rede 4-Capturar Handshake"
 	arr["russian",127]="Естественный порядок работы в этом меню: 1-Выбрать wifi карту 2-Перевести её в режим монитора 3-Выбрать целевую сеть 4-Захватить рукопожание"
-	arr["greek",127]="Η σειρά εντολών για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα wifi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Καταγράψτε την χειραψία"
+	arr["greek",127]="Η σειρά εντολών για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα wifi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Καταγράψτε την Χειραψία"
 
 	arr["english",128]="Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
 	arr["spanish",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
@@ -2048,7 +2051,7 @@ function language_strings() {
 	arr["spanish",197]="1.  Caracteres en minúsculas"
 	arr["french",197]="1.  Lettres minuscules"
 	arr["catalan",197]="1.  Caràcters en minúscules"
-	arr["portuguese",197]="1.  Caracteres em minúsculo"
+	arr["portuguese",197]="1.  Caracteres minúsculos"
 	arr["russian",197]="1.  Символы нижнего регистра"
 	arr["greek",197]="1.  Πεζά"
 
@@ -2056,7 +2059,7 @@ function language_strings() {
 	arr["spanish",198]="2.  Caracteres en mayúsculas"
 	arr["french",198]="2.  Lettres majuscules"
 	arr["catalan",198]="2.  Caràcters en majúscules"
-	arr["portuguese",198]="2.  Caracteres em maiúsculo"
+	arr["portuguese",198]="2.  Caracteres maiúsculos"
 	arr["russian",198]="2.  Символы верхнего регистра"
 	arr["greek",198]="2.  Κεφαλαία"
 
@@ -2080,7 +2083,7 @@ function language_strings() {
 	arr["spanish",201]="5.  Caracteres en minúsculas + mayúsculas"
 	arr["french",201]="5.  Lettres minuscules + majuscules"
 	arr["catalan",201]="5.  Caràcters en minúscules + majúscules"
-	arr["portuguese",201]="5.  Caracteres minúscula + maiúsculo"
+	arr["portuguese",201]="5.  Caracteres minúsculos + maiúsculos"
 	arr["russian",201]="5.  Буквы верхнего + нижнего регистра"
 	arr["greek",201]="5.  Πεζά + κεφαλαία"
 
@@ -2088,7 +2091,7 @@ function language_strings() {
 	arr["spanish",202]="6.  Caracteres en minúsculas + numéricos"
 	arr["french",202]="6.  Lettres minuscules + chiffres"
 	arr["catalan",202]="6.  Caràcters en minúscules + numèrics"
-	arr["portuguese",202]="6.  Caracteres em minúsculo + números"
+	arr["portuguese",202]="6.  Caracteres minúsculos + números"
 	arr["russian",202]="6.  Буквы нижнего регистра + цифры"
 	arr["greek",202]="6.  Πεζά + αριθμοί"
 
@@ -2096,7 +2099,7 @@ function language_strings() {
 	arr["spanish",203]="7.  Caracteres en mayúsculas + numéricos"
 	arr["french",203]="7.  Lettres majuscules + chiffres"
 	arr["catalan",203]="7.  Caràcters en majúscules + numèrics"
-	arr["portuguese",203]="7.  Caracteres em maiúsculo + números"
+	arr["portuguese",203]="7.  Caracteres maiúsculos + números"
 	arr["russian",203]="7.  Буквы верхнего регистра + цифры"
 	arr["greek",203]="7.  Κεφαλαία + αριθμοί"
 
@@ -2112,7 +2115,7 @@ function language_strings() {
 	arr["spanish",205]="9.  Caracteres en minúsculas + mayúsculas + numéricos"
 	arr["french",205]="9.  Lettres minuscules et majuscules + chiffres"
 	arr["catalan",205]="9.  Caràcters en minúscules + majúscules + numèrics"
-	arr["portuguese",205]="9.  Caracteres em minúsculos + maiúsculo + números"
+	arr["portuguese",205]="9.  Caracteres minúsculos + maiúsculos + números"
 	arr["russian",205]="9.  Буквы нижнего регистра + верхнего регистра + цифры"
 	arr["greek",205]="9.  Πεζά + κεφαλαία + αριθμοί"
 
@@ -2120,7 +2123,7 @@ function language_strings() {
 	arr["spanish",206]="10. Caracteres en minúsculas + mayúsculas + símbolos"
 	arr["french",206]="10. Lettres minuscules et majuscules + symboles"
 	arr["catalan",206]="10. Caràcters en minúscules + majúscules + símbols"
-	arr["portuguese",206]="10. Caracteres em minúsculos + maiúsculo + símbolos"
+	arr["portuguese",206]="10. Caracteres minúsculos + maiúsculos + símbolos"
 	arr["russian",206]="10. Буквы нижнего регистра + верхнего регистра + символы"
 	arr["greek",206]="10. Πεζά + κεφαλαία + σύμβολα"
 
@@ -2128,7 +2131,7 @@ function language_strings() {
 	arr["spanish",207]="11. Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
 	arr["french",207]="11. Lettres minuscules et majuscules + chiffres + symboles"
 	arr["catalan",207]="11. Caràcters en minúscules + majúscules + numèrics + símbols"
-	arr["portuguese",207]="11. Caracteres em minúsculo + maiúsculo + números + símbolos"
+	arr["portuguese",207]="11. Caracteres minúsculos + maiúsculos + números + símbolos"
 	arr["russian",207]="11. Буквы нижнего регистра + верхнего регистра + цифры + символы"
 	arr["greek",207]="11. Πεζά + κεφαλαία + αριθμοί + σύμβολα"
 
@@ -2502,10 +2505,10 @@ function language_strings() {
 
 	arr["english",254]="In order to use the Evil Twin just AP and sniffing attacks, you must have another one interface in addition to the wifi network interface will become the AP, which will provide internet access to other clients on the network. This doesn't need to be wifi, can be ethernet"
 	arr["spanish",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
-	arr["french",254]="Pour effectuer l'attaque Evil Twin combinant Rogue AP et capture des données vous avez besoin d'une interface réseau en plus de celle utilisée pour créer le point d'accès. Cette interface supplémentaire devra être connecté à l'Internet afin d'en proportionner l'accès aux clients du réseau. L'interface peut être une interface ethernet ou wifi"
+	arr["french",254]="Pour effectuer l'attaque Evil Twin combinant Rogue AP et capture des données vous avez besoin d'une interface réseau en plus de celle utilisée pour créer le point d'accès. Cette interface supplémentaire devra être connecté à l'internet afin d'en proportionner l'accès aux clients du réseau. L'interface peut être une interface ethernet ou wifi"
 	arr["catalan",254]="Per utilitzar els atacs d'Evil Twin només amb AP i sniffing, hauràs de tenir a més de la interfície wifi que es transformarà en el AP, una altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa. Aquesta no cal que sigui wifi, pot ser ethernet"
 	arr["portuguese",254]="Para usar ataques Evil Twin Somente AP e com sniffing, você deve ter além da interface wifi que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Não precisa ser wifi, pode ser ethernet"
-	arr["russian",254]="Чтобы использовать Злого Двойника точки доступа и атаки сниффинга, вы должны иметь другой интерфейс в дополнение к сетевому интерфейсу wifi, который станет ТД, которая будет предоставлять доступ в Интернет другим клиентам сети. Ей не обязательно быть wifi, достаточно ethernet"
+	arr["russian",254]="Чтобы использовать Злого Двойника точки доступа и атаку сниффинга, вы должны иметь другой интерфейс в дополнение к сетевому интерфейсу wifi. Сетевой интерфейс wifi станет точкой доступа, к которому будут подключаться жертвы. Для того, чтобы у этой точки доступа было Интернет-подключение и используется второй сетевой адаптер. Ему необязательно быть wifi, достаточно ethernet"
 	arr["greek",254]="Για να χρησιμοποιήσετε τις επιθέσεις sniffing και Evil Twin με AP, πρέπει να έχετε άλλη μία διεπαφή παράλληλα με την διεπαφή δικτύου wifi που θα γίνει AP, η οποία θα παρέχει πρόσβαση στο διαδίκτυο στους άλλες χρήστες του δικτύου. Δεν χρειάζεται να είναι wifi, μπορεί να έιναι και ethernet"
 
 	arr["english",255]="without sniffing, just AP"
@@ -3018,7 +3021,7 @@ function language_strings() {
 	arr["catalan",318]="Tria l'idioma en el qual els clients de la xarxa veuran el portal captiu :"
 	arr["portuguese",318]="Escolha o idioma em que os clientes da rede irão ver o portal cativo :"
 	arr["russian",318]="Выберите язык, на котором клиенты сети будут видеть перехватывающий портал :"
-	arr["greek",318]="Επιλέξτε τη γλώσσα που θα βλέπουν οι χρήστες του δικτύου το captive portal :"
+	arr["greek",318]="Επιλέξτε τη γλώσσα που θα βλέπουν οι χρήστες του δικτύου στο captive portal :"
 
 	arr["english",319]="The captive portal language has been established"
 	arr["spanish",319]="Se ha establecido el idioma del portal cautivo"
@@ -3026,7 +3029,7 @@ function language_strings() {
 	arr["catalan",319]="S'ha establert l'idioma del portal captiu"
 	arr["portuguese",319]="A língua foi selecionada portal cativo"
 	arr["russian",319]="Язык перехватывающего портала установлен"
-	arr["greek",319]="Εγκαταστάθηκε η γλώσσα του captive portal"
+	arr["greek",319]="Εγκαταστάθηκε η γλώσσα στο captive portal"
 
 	arr["english",320]="7.  Greek"
 	arr["spanish",320]="7.  Griego"
@@ -3070,11 +3073,59 @@ function language_strings() {
 
 	arr["english",325]="Wait. Be patient..."
 	arr["spanish",325]="Espera. Ten un poco de paciencia..."
-	arr["french",325]="Attendez. Soyez un peu patients..."
+	arr["french",325]="Ayez un peu de patience s'il vous plait..."
 	arr["catalan",325]="Espera. Tingues una mica de paciència..."
 	arr["portuguese",325]="Aguarde. Por favor, seja paciente..."
 	arr["russian",325]="Пожалуйста, подождите..."
 	arr["greek",325]="Περιμένετε. Έχετε λίγη υπομονή..."
+
+	arr["english",326]="Are you going to use the interface with internet access method? "${pink_color}"If the answer is no (\"n\"), you'll need ${optional_tools_names[12]} installed to continue. Both will be checked "${normal_color}"[y/n]"
+	arr["spanish",326]="¿Vas a utilizar el método de la interfaz con acceso a internet? "${pink_color}"Si la respuesta es no (\"n\"), necesitarás tener instalado ${optional_tools_names[12]} para continuar. Ambas cosas se comprobarán "${normal_color}"[y/n]"
+	arr["french",326]="Allez-vous choisir la méthode qui emploie une interface connectée à internet? "${pink_color}"Si la réponse est non (\"n\"), vous m'avez besoin de ${optional_tools_names[12]}. Une vérication se fera à ce niveau avant de lancer l'une ou l'autre méthode"${normal_color}"[y/n]"
+	arr["catalan",326]="Vas a utilitzar el mètode de la interfície amb accés a internet? "${pink_color}"Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran "${normal_color}"[y/n]"
+	arr["portuguese",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? "${pink_color}"Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados "${normal_color}"[y/n]"
+	arr["russian",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? "${pink_color}"Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий "${normal_color}"[y/n]"
+	arr["greek",326]="Σκοπεύετε να χρησιμοποιήσετε την διεπαφή με την μέθοδο πρόσβασης στο διαδίκτυο; "${pink_color}"Αν απαντήσετε όχι (\"n\"), θα πρέπει να έχετε το ${optional_tools_names[12]} εγκατεστημένο για να συνεχίσετε. Και τα δύο ελέγχονται "${normal_color}"[y/n]"
+
+	arr["english",327]="You don't have ${optional_tools_names[12]} installed. The script can't continue. Redirecting to main screen..."
+	arr["spanish",327]="No tienes instalado ${optional_tools_names[12]}. El script no puede continuar. Redirigiendo a la pantalla principal..."
+	arr["french",327]="${optional_tools_names[12]} n'est pas installé. Le script ne peut pas continuer. Retour au menu principal..."
+	arr["catalan",327]="No tens instal·lat ${optional_tools_names[12]}. El script no pot continuar. Redirigint a la pantalla principal..."
+	arr["portuguese",327]="Você não tem ${optional_tools_names[12]} instalado . O script não pode continuar. Redirecionando para o menu principal..."
+	arr["russian",327]="У вас не установлена программа ${optional_tools_names[12]}. Скрипт не может продолжить. Переход на главный экран…"
+	arr["greek",327]="Το ${optional_tools_names[12]} δεν είναι εγκατεστημένο. Το script δεν μπορεί να συνεχίσει. Θα καθοδηγηθείτε στην κύρια οθόνη..."
+
+	arr["english",328]="The unique Evil Twin attack in which it's not necessary to have an additional interface with internet access is the captive portal attack. As an alternative, you'll need another additional requirement: ${optional_tools_names[12]}"
+	arr["spanish",328]="El único ataque de Evil Twin en el que no es necesario tener una interfaz adicional con acceso a internet es el del portal cautivo. Como alternativa necesitarás otro requerimiento adicional: ${optional_tools_names[12]}"
+	arr["french",328]="La seule attaque Evil Twin pour laquelle il n'est pas nécessaire d'avoir une interface supplémentaire connectée à internet est l'attaque du portail captif. Elle implique l'utilisation d'une dépendance supplémentaire: ${optional_tools_names[12]}"
+	arr["catalan",328]="L'únic atac d'Evil Twin en què no cal tenir una interfície addicional amb accés a internet és el del portal captiu. Com a alternativa et caldrà un altre requeriment addicional: ${optional_tools_names[12]}"
+	arr["portuguese",328]="O único ataque Evil Twin em que não é necessário ter uma interface adicional com acesso à internet é o portal cativo. Porém você vai precisar ter instalado ${optional_tools_names[12]}"
+	arr["russian",328]="Уникальная атака Злой Двойник, при которой необязательно иметь дополнительный интерфейс с Интернет-доступом в атаке с Перехватывающим Порталом. В качестве альтернативы, вам нужна ещё одна дополнительная зависимость: ${optional_tools_names[12]}"
+	arr["greek",328]="Η μόνη επίθεση Evil Twin στην οποία δεν είναι απαραίτητο να έχετε επιπλέον διεπαφή με πρόσβαση στο διαδίκτυο είναι η επίθεση με captive portal. Εναλλακτικά, θα χρειαστείτε το: ${optional_tools_names[12]}"
+
+	arr["english",329]="It seems you have ${optional_tools_names[12]} installed. Script can continue..."
+	arr["spanish",329]="Se ha comprobado que tienes instalado ${optional_tools_names[12]}. El script puede continuar..."
+	arr["french",329]="${optional_tools_names[12]} correctement detecté. Le script peut continuer..."
+	arr["catalan",329]="S'ha comprovat que tens instal·lat ${optional_tools_names[12]}. El script pot continuar..."
+	arr["portuguese",329]="${optional_tools_names[12]} está instalado. O script pode continuar..."
+	arr["russian",329]="Судя по всему, ${optional_tools_names[12]} у вас установлена. Скрипт может продолжить..."
+	arr["greek",329]="Φαίνεται πως το ${optional_tools_names[12]} είναι εγκατεστημένο. Το script μπορεί να συνεχίσει..."
+
+	arr["english",330]="At this point there are two options to prepare the captive portal. Either having an interface with internet access, or making a fake DNS using ${optional_tools_names[12]}"
+	arr["spanish",330]="Llegados a este punto hay dos opciones para preparar el portal cautivo. O bien tenemos una interfaz con acceso a internet, o preparamos un falso DNS usando ${optional_tools_names[12]}"
+	arr["french",330]="Le portail captif peut être déployé de deux manières. Soit en utilisant une interface avec accès internet, si il y en a une disponible. Soit avec un faux DNS crée à l'aide de ${optional_tools_names[12]}"
+	arr["catalan",330]="Arribats a aquest punt hi ha dues opcions per preparar el portal captiu. O bé tenim una interfície amb accés a internet, o vam preparar un fals DNS utilitzant ${optional_tools_names[12]}"
+	arr["portuguese",330]="Neste momento, existem duas opções para o portal cativo. Ou temos uma interface com acesso à internet, ou fazer um falso DNS usando ${optional_tools_names[12]}"
+	arr["russian",330]="На данном этапе у вас две опции для подготовки Перехватывающего Портала. Нужно или иметь сетевой интерфейс с Интернет-доступом, или создать фальшивый DNS используя ${optional_tools_names[12]}"
+	arr["greek",330]="Σε αυτό το σημείο υπάρχουν δύο επιλογές για την προετοιμασία του captive portal. Να έχετε μία διεπαφή με πρόσβαση στο διαδίκτυο, ή να φιάξετε ψευδές DNS χρησιμοποιώντας το ${optional_tools_names[12]}"
+
+	arr["english",331]="$option_counter_back.${spaceiface}Return to Evil Twin attacks menu"
+	arr["spanish",331]="$option_counter_back.${spaceiface}Volver al menú de ataques Evil Twin"
+	arr["french",331]="$option_counter_back.${spaceiface}Retour au menu d'attaques Evil Twin"
+	arr["catalan",331]="$option_counter_back.${spaceiface}Tornar al menú d'atacs Evil Twin"
+	arr["portuguese",331]="$option_counter_back.${spaceiface}Voltar ao menu de ataques Evil Twin"
+	arr["russian",331]="$option_counter_back.${spaceiface}Вернуться в меню атак Злой Двойник"
+	arr["greek",331]="$option_counter_back.${spaceiface}Επιστροφή στο μενού επιθέσεων Evil Twin"
 
 	case "$3" in
 		"yellow")
@@ -3623,7 +3674,7 @@ function set_chipset() {
 function select_internet_interface() {
 
 	if [ ${return_to_et_main_menu} -eq 1 ]; then
-		return
+		return 1
 	fi
 
 	current_menu="evil_twin_attacks_menu"
@@ -3673,16 +3724,25 @@ function select_internet_interface() {
 		echo
 		language_strings ${language} 280 "yellow"
 		language_strings ${language} 115 "read"
-		return
+		return 1
 	fi
 
+	option_counter_back=$[option_counter + 1]
+	if [ ${option_counter: -1} -eq 9 ]; then
+		spaceiface+=" "
+	fi
+	print_simple_separator
+	language_strings ${language} 331
 	print_hint ${current_menu}
 
 	read inet_iface
 	if [ -z ${inet_iface} ]; then
 		invalid_internet_iface_selected
-	elif [[ ${inet_iface} < 1 ]] || [[ ${inet_iface} > ${option_counter} ]]; then
-			invalid_internet_iface_selected
+	elif [[ ${inet_iface} -lt 1 ]] || [[ ${inet_iface} -gt ${option_counter_back} ]]; then
+		invalid_internet_iface_selected
+	elif [ ${inet_iface} -eq ${option_counter_back} ]; then
+		return_to_et_main_menu=1
+		return 1
 	else
 		option_counter2=0
 		for item2 in ${inet_ifaces}; do
@@ -3692,6 +3752,7 @@ function select_internet_interface() {
 				break
 			fi
 		done
+		return 0
 	fi
 }
 
@@ -4025,10 +4086,12 @@ function print_iface_selected() {
 
 function print_iface_internet_selected() {
 
-	if [ -z "$internet_interface" ]; then
-		language_strings ${language} 283 "blue"
-	else
-		language_strings ${language} 282 "blue"
+	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+		if [ -z "$internet_interface" ]; then
+			language_strings ${language} 283 "blue"
+		else
+			language_strings ${language} 282 "blue"
+		fi
 	fi
 }
 
@@ -4189,6 +4252,7 @@ function initialize_menu_and_print_selections() {
 			retry_handshake_capture=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
+			captive_portal_mode="internet"
 			et_mode=""
 			et_processes=()
 			print_iface_selected
@@ -5276,6 +5340,9 @@ function exec_et_captive_portal_attack() {
 	exec_et_deauth
 	set_control_script
 	launch_control_window
+	if [ ${captive_portal_mode} = "dnsblackhole" ]; then
+		launch_dns_blackhole
+	fi
 	set_webserver_config
 	set_captive_portal_page
 	launch_webserver
@@ -5357,7 +5424,13 @@ function set_dhcp_config() {
 	echo -e "\toption broadcast-address $et_broadcast_ip;" >> "$tmpdir$dhcpd_file"
 	echo -e "\toption routers $et_ip_router;" >> "$tmpdir$dhcpd_file"
 	echo -e "\toption subnet-mask $std_c_mask;" >> "$tmpdir$dhcpd_file"
-	echo -e "\toption domain-name-servers $dns1, $dns2;" >> "$tmpdir$dhcpd_file"
+
+	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+		echo -e "\toption domain-name-servers $internet_dns1, $internet_dns2;" >> "$tmpdir$dhcpd_file"
+	else
+		echo -e "\toption domain-name-servers $et_ip_router;" >> "$tmpdir$dhcpd_file"
+	fi
+
 	echo -e "\trange $et_range_start $et_range_stop;" >> "$tmpdir$dhcpd_file"
 	echo -e "}" >> "$tmpdir$dhcpd_file"
 
@@ -5409,20 +5482,31 @@ function set_std_internet_routing_rules() {
 	iptables -X
 	iptables -t nat -X
 
-	iptables -P FORWARD ACCEPT
-	echo "1" > /proc/sys/net/ipv4/ip_forward
+	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+		iptables -P FORWARD ACCEPT
+		echo "1" > /proc/sys/net/ipv4/ip_forward
+	else
+		iptables -P FORWARD DROP
+		echo "0" > /proc/sys/net/ipv4/ip_forward
+	fi
 
 	if [ "$et_mode" = "et_captive_portal" ]; then
 		iptables -t nat -A PREROUTING -p tcp --dport 80 -j DNAT --to-destination ${et_ip_router}:80
 		iptables -t nat -A PREROUTING -p tcp --dport 443 -j DNAT --to-destination ${et_ip_router}:80
 		iptables -A INPUT -p tcp --destination-port 80 -j ACCEPT
 		iptables -A INPUT -p tcp --destination-port 443 -j ACCEPT
+		if [ ${captive_portal_mode} = "dnsblackhole" ]; then
+			iptables -A INPUT -p udp --destination-port 53 -j ACCEPT
+		fi
 	elif [ "$et_mode" = "et_sniffing_sslstrip" ]; then
 		iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port ${sslstrip_port}
 		iptables -A INPUT -p tcp --destination-port ${sslstrip_port} -j ACCEPT
 	fi
 
-	iptables -t nat -A POSTROUTING -o ${internet_interface} -j MASQUERADE
+	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
+		iptables -t nat -A POSTROUTING -o ${internet_interface} -j MASQUERADE
+	fi
+
 	iptables -A INPUT -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
 	iptables -A INPUT -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -j DROP
 	sleep 2
@@ -5689,6 +5773,13 @@ function set_control_script() {
 	sleep 1
 }
 
+function launch_dns_blackhole() {
+
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "DNS" -e "${optional_tools_names[12]} -i $interface" > /dev/null 2>&1 &
+	et_processes+=($!)
+}
+
 function launch_control_window() {
 
 	recalculate_windows_sizes
@@ -5696,8 +5787,15 @@ function launch_control_window() {
 		"et_onlyap")
 			control_scr_window_position=${g1_topright_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing")
 			control_scr_window_position=${g3_topright_window}
+		;;
+		"et_captive_portal")
+			if [ ${captive_portal_mode} = "internet" ]; then
+				control_scr_window_position=${g3_topright_window}
+			else
+				control_scr_window_position=${g4_topright_window}
+			fi
 		;;
 		"et_sniffing_sslstrip")
 			control_scr_window_position=${g4_topright_window}
@@ -5927,7 +6025,12 @@ function launch_webserver() {
 
 	killall lighttpd > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg yellow -geometry ${g3_bottomright_window} -T "Webserver" -e "lighttpd -D -f \"$tmpdir$webserver_file\"" > /dev/null 2>&1 &
+	if [ ${captive_portal_mode} = "internet" ]; then
+		lighttpd_window_position=${g3_bottomright_window}
+	else
+		lighttpd_window_position=${g4_bottomright_window}
+	fi
+	xterm -hold -bg black -fg yellow -geometry ${lighttpd_window_position} -T "Webserver" -e "lighttpd -D -f \"$tmpdir$webserver_file\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -6331,11 +6434,17 @@ function validate_path() {
 	fi
 
 	lastcharmanualpath=${1: -1}
-	if [ "$lastcharmanualpath" = "/" ]; then
+	if [[ "$lastcharmanualpath" = "/" ]] || [[ -d "$1" ]]; then
+
+		if [ "$lastcharmanualpath" != "/" ]; then
+			pathname="$1/"
+		else
+			pathname="$1"
+		fi
 
 		case ${2} in
 			"handshake")
-				enteredpath="$1$standardhandshake_filename"
+				enteredpath="$pathname$standardhandshake_filename"
 				suggested_filename="$standardhandshake_filename"
 			;;
 			"hashcatpot")
@@ -6347,7 +6456,7 @@ function validate_path() {
 				ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
 			;;
 			"writeethandshake")
-				et_handshake="$1$standardhandshake_filename"
+				et_handshake="$pathname$standardhandshake_filename"
 				suggested_filename="$standardhandshake_filename"
 			;;
 		esac
@@ -6925,11 +7034,44 @@ function et_dos_menu() {
 				forbidden_menu_option
 			else
 				et_dos_attack="Mdk3"
-				detect_internet_interface
-				if [ "$?" = "0" ]; then
-					et_prerequisites
+				if [ "$et_mode" = "et_captive_portal" ]; then
+					if [ ${internet_interface_selected} -eq 0 ]; then
+						language_strings ${language} 330 "blue"
+						ask_yesno 326
+						if [ ${yesno} = "n" ]; then
+							check_et_without_internet_compatibility
+							if [ "$?" = "0" ]; then
+								captive_portal_mode="dnsblackhole"
+								internet_interface_selected=1
+								echo
+								language_strings ${language} 329 "yellow"
+								language_strings ${language} 115 "read"
+								et_prerequisites
+							else
+								echo
+								language_strings ${language} 327 "yellow"
+								language_strings ${language} 115 "read"
+								return_to_et_main_menu=1
+								return
+							fi
+						else
+							detect_internet_interface
+							if [ "$?" = "0" ]; then
+								et_prerequisites
+							else
+								return
+							fi
+						fi
+					else
+						et_prerequisites
+					fi
 				else
-					return
+					detect_internet_interface
+					if [ "$?" = "0" ]; then
+						et_prerequisites
+					else
+						return
+					fi
 				fi
 			fi
 		;;
@@ -6939,11 +7081,44 @@ function et_dos_menu() {
 				forbidden_menu_option
 			else
 				et_dos_attack="Aireplay"
-				detect_internet_interface
-				if [ "$?" = "0" ]; then
-					et_prerequisites
+				if [ "$et_mode" = "et_captive_portal" ]; then
+					if [ ${internet_interface_selected} -eq 0 ]; then
+						language_strings ${language} 330 "blue"
+						ask_yesno 326
+						if [ ${yesno} = "n" ]; then
+							check_et_without_internet_compatibility
+							if [ "$?" = "0" ]; then
+								captive_portal_mode="dnsblackhole"
+								internet_interface_selected=1
+								echo
+								language_strings ${language} 329 "yellow"
+								language_strings ${language} 115 "read"
+								et_prerequisites
+							else
+								echo
+								language_strings ${language} 327 "yellow"
+								language_strings ${language} 115 "read"
+								return_to_et_main_menu=1
+								return
+							fi
+						else
+							detect_internet_interface
+							if [ "$?" = "0" ]; then
+								et_prerequisites
+							else
+								return
+							fi
+						fi
+					else
+						et_prerequisites
+					fi
 				else
-					return
+					detect_internet_interface
+					if [ "$?" = "0" ]; then
+						et_prerequisites
+					else
+						return
+					fi
 				fi
 			fi
 		;;
@@ -6953,11 +7128,44 @@ function et_dos_menu() {
 				forbidden_menu_option
 			else
 				et_dos_attack="Wds Confusion"
-				detect_internet_interface
-				if [ "$?" = "0" ]; then
-					et_prerequisites
+				if [ "$et_mode" = "et_captive_portal" ]; then
+					if [ ${internet_interface_selected} -eq 0 ]; then
+						language_strings ${language} 330 "blue"
+						ask_yesno 326
+						if [ ${yesno} = "n" ]; then
+							check_et_without_internet_compatibility
+							if [ "$?" = "0" ]; then
+								captive_portal_mode="dnsblackhole"
+								internet_interface_selected=1
+								echo
+								language_strings ${language} 329 "yellow"
+								language_strings ${language} 115 "read"
+								et_prerequisites
+							else
+								echo
+								language_strings ${language} 327 "yellow"
+								language_strings ${language} 115 "read"
+								return_to_et_main_menu=1
+								return
+							fi
+						else
+							detect_internet_interface
+							if [ "$?" = "0" ]; then
+								et_prerequisites
+							else
+								return
+							fi
+						fi
+					else
+						et_prerequisites
+					fi
 				else
-					return
+					detect_internet_interface
+					if [ "$?" = "0" ]; then
+						et_prerequisites
+					else
+						return
+					fi
 				fi
 			fi
 		;;
@@ -6987,6 +7195,10 @@ function detect_internet_interface() {
 		fi
 	else
 		select_internet_interface
+	fi
+
+	if [ "$?" != "0" ]; then
+		return 1
 	fi
 
 	validate_et_internet_interface
@@ -7903,6 +8115,14 @@ function autoupdate_check() {
 	fi
 
 	language_strings ${language} 115 "read"
+}
+
+function check_et_without_internet_compatibility() {
+
+	if ! hash ${optional_tools_names[12]} 2> /dev/null; then
+		return 1
+	fi
+	return 0
 }
 
 function autodetect_language() {
