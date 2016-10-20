@@ -18,6 +18,12 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Help hints in every zone/menu for easy use.<br/>
 - Auto-update. Script checks for newer version if possible.
 
+#Coming soon
+- WPS scanning
+- WPS Pixie Dust attack
+- WPS Bruteforce PIN attack
+- WPS database search for "easy AP" known PINs
+
 #Requirements
 Bash version 4.0 or later needed.<br/>
 <br/>
@@ -122,6 +128,7 @@ You can take the strings to translate from the code or you can ask me directly b
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
+Use shellcheck to search for errors and warnings on code. <- Thanks xtonousou for the tip :smile:<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
@@ -130,7 +137,7 @@ You can download the master version or the beta testing version from the develop
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pen testing crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a> and <a href="https://www.wifi-libre.com">Wifi-libre.com</a> forum people that helped me.<br/>
+Thanks to the "Spanish pen testing crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 <br/>
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>

@@ -1,3 +1,7 @@
+4.32
+Some code improvements and warnings removed
+README.md small modifications
+
 4.31
 Now optionally on Evil Twin captive portal attack you can choose between to have internet access or to use a "dns trick"
 Fixed bug writing handshake files on some paths

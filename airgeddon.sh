@@ -222,8 +222,8 @@ function language_strings() {
 	hintprefix["portuguese"]="Conselho"
 	hintprefix["russian"]="Подсказка"
 	hintprefix["greek"]="Συμβουλή"
-	hintvar="*"${hintprefix[$language]}"*"
-	escaped_hintvar="\*"${hintprefix[$language]}"\*"
+	hintvar="*${hintprefix[$language]}*"
+	escaped_hintvar="\*${hintprefix[$language]}\*"
 
 	declare -A optionaltool_needed
 	optionaltool_needed["english"]="Locked option, it needs: "
@@ -567,13 +567,13 @@ function language_strings() {
 	arr["russian",11]="Выход из скрипта airgeddon v$airgeddon_version - До встречи! :)"
 	arr["greek",11]="Κλείσιμο του airgeddon v$airgeddon_version - Αντίο :)"
 
-	arr["english",12]=${blue_color}"Interruption detected. "${green_color}"Do you really want to exit? "${normal_color}"[y/n]"
-	arr["spanish",12]=${blue_color}"Detectada interrupción. "${green_color}"¿Quieres realmente salir del script? "${normal_color}"[y/n]"
-	arr["french",12]=${blue_color}"Interruption détectée. "${green_color}"Voulez-vous vraiment arrêter le script? "${normal_color}"[y/n]"
-	arr["catalan",12]=${blue_color}"Interrupció detectada. "${green_color}"¿Realment vols sortir de l'script? "${normal_color}"[y/n]"
-	arr["portuguese",12]=${blue_color}"Interrupção detectada. "${green_color}"Você quer realmente sair o script? "${normal_color}"[y/n]"
-	arr["russian",12]=${blue_color}"Обнаружено прерывание. "${green_color}"Вы действительно хотите выйти? "${normal_color}"[y/n]"
-	arr["greek",12]=${blue_color}"Εντοπίστηκε διακοπή. "${green_color}"Είστε σίγουροι ότι θέλετε να τερματίσετε το script; "${normal_color}"[y/n]"
+	arr["english",12]="${blue_color}Interruption detected. ${green_color}Do you really want to exit? ${normal_color}[y/n]"
+	arr["spanish",12]="${blue_color}Detectada interrupción. ${green_color}¿Quieres realmente salir del script? ${normal_color}[y/n]"
+	arr["french",12]="${blue_color}Interruption détectée. ${green_color}Voulez-vous vraiment arrêter le script? ${normal_color}[y/n]"
+	arr["catalan",12]="${blue_color}Interrupció detectada. ${green_color}¿Realment vols sortir de l'script? ${normal_color}[y/n]"
+	arr["portuguese",12]="${blue_color}Interrupção detectada. ${green_color}Você quer realmente sair o script? ${normal_color}[y/n]"
+	arr["russian",12]="${blue_color}Обнаружено прерывание. ${green_color}Вы действительно хотите выйти? ${normal_color}[y/n]"
+	arr["greek",12]="${blue_color}Εντοπίστηκε διακοπή. ${green_color}Είστε σίγουροι ότι θέλετε να τερματίσετε το script; ${normal_color}[y/n]"
 
 	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
 	arr["spanish",13]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
@@ -679,13 +679,13 @@ function language_strings() {
 	arr["russian",25]="Установите канал (1-14) :"
 	arr["greek",25]="Θέστε κανάλι (1-14) :"
 
-	arr["english",26]="Channel set to "${normal_color}"$channel"
-	arr["spanish",26]="Canal elegido "${normal_color}"$channel"
-	arr["french",26]="Le canal "${normal_color}"$channel"${blue_color}" a été choisi"
-	arr["catalan",26]="El canal "${normal_color}"$channel"${blue_color}" s'ha escollit"
-	arr["portuguese",26]="Canal "${normal_color}"$channel"${blue_color}" selecionado"
-	arr["russian",26]="Канал установлен на "${normal_color}"$channel"
-	arr["greek",26]="Το κανάλι "${normal_color}"$channel"${blue_color}" έχει επιλεχθεί"
+	arr["english",26]="Channel set to ${normal_color}$channel"
+	arr["spanish",26]="Canal elegido ${normal_color}$channel"
+	arr["french",26]="Le canal ${normal_color}$channel${blue_color} a été choisi"
+	arr["catalan",26]="El canal ${normal_color}$channel${blue_color} s'ha escollit"
+	arr["portuguese",26]="Canal ${normal_color}$channel${blue_color} selecionado"
+	arr["russian",26]="Канал установлен на ${normal_color}$channel"
+	arr["greek",26]="Το κανάλι ${normal_color}$channel${blue_color} έχει επιλεχθεί"
 
 	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
 	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
@@ -695,13 +695,13 @@ function language_strings() {
 	arr["russian",27]="Тип целевой BSSID (пример: 00:11:22:33:44:55) :"
 	arr["greek",27]="Πληκτρολογήστε BSSID στόχου (παράδειγμα: 00:11:22:33:44:55) :"
 
-	arr["english",28]="BSSID set to "${normal_color}"$bssid"
-	arr["spanish",28]="BSSID elegido "${normal_color}"$bssid"
-	arr["french",28]="Le BSSID choisi est "${normal_color}"$bssid"
-	arr["catalan",28]="El BSSID escollit "${normal_color}"$bssid"
-	arr["portuguese",28]="BSSID escolhido "${normal_color}"$bssid"
-	arr["russian",28]="BSSID установлена на "${normal_color}"$bssid"
-	arr["greek",28]="Το BSSID τέθηκε σε "${normal_color}"$bssid"
+	arr["english",28]="BSSID set to ${normal_color}$bssid"
+	arr["spanish",28]="BSSID elegido ${normal_color}$bssid"
+	arr["french",28]="Le BSSID choisi est ${normal_color}$bssid"
+	arr["catalan",28]="El BSSID escollit ${normal_color}$bssid"
+	arr["portuguese",28]="BSSID escolhido ${normal_color}$bssid"
+	arr["russian",28]="BSSID установлена на ${normal_color}$bssid"
+	arr["greek",28]="Το BSSID τέθηκε σε ${normal_color}$bssid"
 
 	arr["english",29]="Type target ESSID :"
 	arr["spanish",29]="Escribe el ESSID objetivo :"
@@ -719,13 +719,13 @@ function language_strings() {
 	arr["russian",30]="Вы выбрали сеть со скрытым ESSID. Использование невозможно. Выберите другую или вместо этой выполните атаку, основанную на BSSID"
 	arr["greek",30]="Επιλέξατε ESSID κρυφού δικτύου. Δεν μπορεί να χρησιμοποιηθεί. Επιλέξτε κάποιο άλλο ή ξεκινήστε μία επίθεση βασισμένη στο BSSID αντί αυτού"
 
-	arr["english",31]="ESSID set to "${normal_color}"$essid"
-	arr["spanish",31]="ESSID elegido "${normal_color}"$essid"
-	arr["french",31]="l'ESSID sélectionné est "${normal_color}"$essid"
-	arr["catalan",31]="l'ESSID seleccionat "${normal_color}"$essid"
-	arr["portuguese",31]="ESSID escolhido "${normal_color}"$essid"
-	arr["russian",31]="ESSID установлена на "${normal_color}"$essid"
-	arr["greek",31]="Το ESSID τέθηκε σε "${normal_color}"$essid"
+	arr["english",31]="ESSID set to ${normal_color}$essid"
+	arr["spanish",31]="ESSID elegido ${normal_color}$essid"
+	arr["french",31]="l'ESSID sélectionné est ${normal_color}$essid"
+	arr["catalan",31]="l'ESSID seleccionat ${normal_color}$essid"
+	arr["portuguese",31]="ESSID escolhido ${normal_color}$essid"
+	arr["russian",31]="ESSID установлена на ${normal_color}$essid"
+	arr["greek",31]="Το ESSID τέθηκε σε ${normal_color}$essid"
 
 	arr["english",32]="All parameters set"
 	arr["spanish",32]="Todos los parámetros están listos"
@@ -807,45 +807,45 @@ function language_strings() {
 	arr["russian",41]="Интерфейс не выбран. Вы будете перенаправлены на выбор интерфейса"
 	arr["greek",41]="Δεν έχει επιλεχθεί κάποια διεπαφή. Θα καθοδηγηθείτε για να επιλέξετε μία"
 
-	arr["english",42]="Interface "${pink_color}"$interface"${blue_color}" selected. Mode: "${pink_color}"$ifacemode"${normal_color}
-	arr["spanish",42]="Interfaz "${pink_color}"$interface"${blue_color}" seleccionada. Modo: "${pink_color}"$ifacemode"${normal_color}
-	arr["french",42]="Interface "${pink_color}"$interface"${blue_color}" sélectionnée. Mode: "${pink_color}"$ifacemode"${normal_color}
-	arr["catalan",42]="Interfície "${pink_color}"$interface"${blue_color}" seleccionada. Mode: "${pink_color}"$ifacemode"${normal_color}
-	arr["portuguese",42]="Interface "${pink_color}"$interface"${blue_color}" selecionada. Modo: "${pink_color}"$ifacemode"${normal_color}
-	arr["russian",42]="Интерфейс "${pink_color}"$interface"${blue_color}" выбран. Режим: "${pink_color}"$ifacemode"${normal_color}
-	arr["greek",42]="Η διεπαφή "${pink_color}"$interface"${blue_color}" έχει επιλεχθεί. Κατάσταση: "${pink_color}"$ifacemode"${normal_color}
+	arr["english",42]="Interface ${pink_color}$interface${blue_color} selected. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["spanish",42]="Interfaz ${pink_color}$interface${blue_color} seleccionada. Modo: ${pink_color}$ifacemode${normal_color}"
+	arr["french",42]="Interface ${pink_color}$interface${blue_color} sélectionnée. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["catalan",42]="Interfície ${pink_color}$interface${blue_color} seleccionada. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["portuguese",42]="Interface ${pink_color}$interface${blue_color} selecionada. Modo: ${pink_color}$ifacemode${normal_color}"
+	arr["russian",42]="Интерфейс ${pink_color}$interface${blue_color} выбран. Режим: ${pink_color}$ifacemode${normal_color}"
+	arr["greek",42]="Η διεπαφή ${pink_color}$interface${blue_color} έχει επιλεχθεί. Κατάσταση: ${pink_color}$ifacemode${normal_color}"
 
-	arr["english",43]="Selected BSSID: "${pink_color}"$bssid"${normal_color}
-	arr["spanish",43]="BSSID seleccionado: "${pink_color}"$bssid"${normal_color}
-	arr["french",43]="BSSID sélectionné: "${pink_color}"$bssid"${normal_color}
-	arr["catalan",43]="BSSID seleccionat: "${pink_color}"$bssid"${normal_color}
-	arr["portuguese",43]="BSSID selecionado: "${pink_color}"$bssid"${normal_color}
-	arr["russian",43]="Выбранный BSSID: "${pink_color}"$bssid"${normal_color}
-	arr["greek",43]="Επιλεγμένο BSSID: "${pink_color}"$bssid"${normal_color}
+	arr["english",43]="Selected BSSID: ${pink_color}$bssid${normal_color}"
+	arr["spanish",43]="BSSID seleccionado: ${pink_color}$bssid${normal_color}"
+	arr["french",43]="BSSID sélectionné: ${pink_color}$bssid${normal_color}"
+	arr["catalan",43]="BSSID seleccionat: ${pink_color}$bssid${normal_color}"
+	arr["portuguese",43]="BSSID selecionado: ${pink_color}$bssid${normal_color}"
+	arr["russian",43]="Выбранный BSSID: ${pink_color}$bssid${normal_color}"
+	arr["greek",43]="Επιλεγμένο BSSID: ${pink_color}$bssid${normal_color}"
 
-	arr["english",44]="Selected channel: "${pink_color}"$channel"${normal_color}
-	arr["spanish",44]="Canal seleccionado: "${pink_color}"$channel"${normal_color}
-	arr["french",44]="Canal sélectionné: "${pink_color}"$channel"${normal_color}
-	arr["catalan",44]="Canal seleecionat: "${pink_color}"$channel"${normal_color}
-	arr["portuguese",44]="Canal selecionado: "${pink_color}"$channel"${normal_color}
-	arr["russian",44]="Выбранный канал: "${pink_color}"$channel"${normal_color}
-	arr["greek",44]="Επιλεγμένο κανάλι: "${pink_color}"$channel"${normal_color}
+	arr["english",44]="Selected channel: ${pink_color}$channel${normal_color}"
+	arr["spanish",44]="Canal seleccionado: ${pink_color}$channel${normal_color}"
+	arr["french",44]="Canal sélectionné: ${pink_color}$channel${normal_color}"
+	arr["catalan",44]="Canal seleecionat: ${pink_color}$channel${normal_color}"
+	arr["portuguese",44]="Canal selecionado: ${pink_color}$channel${normal_color}"
+	arr["russian",44]="Выбранный канал: ${pink_color}$channel${normal_color}"
+	arr["greek",44]="Επιλεγμένο κανάλι: ${pink_color}$channel${normal_color}"
 
-	arr["english",45]="Selected ESSID: "${pink_color}"$essid"${blue_color}" <- can't be used"
-	arr["spanish",45]="ESSID seleccionado: "${pink_color}"$essid"${blue_color}" <- no se puede usar"
-	arr["french",45]="ESSID sélectionné: "${pink_color}"$essid"${blue_color}" <- ne peut pas être utilisé"
-	arr["catalan",45]="ESSID seleccionat: "${pink_color}"$essid"${blue_color}" <- no es pot utilitzar"
-	arr["portuguese",45]="ESSID selecionado: "${pink_color}"$essid"${blue_color}" <- não pode ser utilizada"
-	arr["russian",45]="Выбранный ESSID: "${pink_color}"$essid"${blue_color}" <- не может быть использован"
-	arr["greek",45]="Επιλεγμένο ESSID: "${pink_color}"$essid"${blue_color}" <- δεν μπορεί να χρησιμοποιηθεί"
+	arr["english",45]="Selected ESSID: ${pink_color}$essid${blue_color} <- can't be used"
+	arr["spanish",45]="ESSID seleccionado: ${pink_color}$essid${blue_color} <- no se puede usar"
+	arr["french",45]="ESSID sélectionné: ${pink_color}$essid${blue_color} <- ne peut pas être utilisé"
+	arr["catalan",45]="ESSID seleccionat: ${pink_color}$essid${blue_color} <- no es pot utilitzar"
+	arr["portuguese",45]="ESSID selecionado: ${pink_color}$essid${blue_color} <- não pode ser utilizada"
+	arr["russian",45]="Выбранный ESSID: ${pink_color}$essid${blue_color} <- не может быть использован"
+	arr["greek",45]="Επιλεγμένο ESSID: ${pink_color}$essid${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 
-	arr["english",46]="Selected ESSID: "${pink_color}"$essid"${normal_color}
-	arr["spanish",46]="ESSID seleccionado: "${pink_color}"$essid"${normal_color}
-	arr["french",46]="ESSID sélectionné: "${pink_color}"$essid"${normal_color}
-	arr["catalan",46]="ESSID seleccionat: "${pink_color}"$essid"${normal_color}
-	arr["portuguese",46]="ESSID selecionado: "${pink_color}"$essid"${normal_color}
-	arr["russian",46]="Выбранный ESSID: "${pink_color}"$essid"${normal_color}
-	arr["greek",46]="Επιλεγμένο ESSID: "${pink_color}"$essid"${normal_color}
+	arr["english",46]="Selected ESSID: ${pink_color}$essid${normal_color}"
+	arr["spanish",46]="ESSID seleccionado: ${pink_color}$essid${normal_color}"
+	arr["french",46]="ESSID sélectionné: ${pink_color}$essid${normal_color}"
+	arr["catalan",46]="ESSID seleccionat: ${pink_color}$essid${normal_color}"
+	arr["portuguese",46]="ESSID selecionado: ${pink_color}$essid${normal_color}"
+	arr["russian",46]="Выбранный ESSID: ${pink_color}$essid${normal_color}"
+	arr["greek",46]="Επιλεγμένο ESSID: ${pink_color}$essid${normal_color}"
 
 	arr["english",47]="Select an option from menu :"
 	arr["spanish",47]="Selecciona una opción del menú :"
@@ -1551,13 +1551,13 @@ function language_strings() {
 	arr["russian",134]="Если ваш Linux в виртуально машине, то интегрированная wifi карта может определиться как Ethernet. Используйте внешнюю usb wifi карту"
 	arr["greek",134]="Αν το Linux σας είναι εικονική μηχανή, είναι πιθανόν οι ενσωματωμένες κάρτες wifi να εντοπιστούν σαν ethernet. Χρησιμοποιήστε μία εξωτερική usb κάρτα wifi"
 
-	arr["english",135]="Type of encryption: "${pink_color}"$enc"${normal_color}
-	arr["spanish",135]="Tipo de encriptado: "${pink_color}"$enc"${normal_color}
-	arr["french",135]="Type de chiffrement: "${pink_color}"$enc"${normal_color}
-	arr["catalan",135]="Tipus d'encriptat: "${pink_color}"$enc"${normal_color}
-	arr["portuguese",135]="Tipo de criptografia: "${pink_color}"$enc"${normal_color}
-	arr["russian",135]="Тип шифрования: "${pink_color}"$enc"${normal_color}
-	arr["greek",135]="Τύπος κρυπτογράφησης: "${pink_color}"$enc"${normal_color}
+	arr["english",135]="Type of encryption: ${pink_color}$enc${normal_color}"
+	arr["spanish",135]="Tipo de encriptado: ${pink_color}$enc${normal_color}"
+	arr["french",135]="Type de chiffrement: ${pink_color}$enc${normal_color}"
+	arr["catalan",135]="Tipus d'encriptat: ${pink_color}$enc${normal_color}"
+	arr["portuguese",135]="Tipo de criptografia: ${pink_color}$enc${normal_color}"
+	arr["russian",135]="Тип шифрования: ${pink_color}$enc${normal_color}"
+	arr["greek",135]="Τύπος κρυπτογράφησης: ${pink_color}$enc${normal_color}"
 
 	arr["english",136]="Obtaining a Handshake is only for networks with encryption WPA or WPA2"
 	arr["spanish",136]="La obtención de un Handshake es solo para redes con encriptación WPA o WPA2"
@@ -1631,13 +1631,13 @@ function language_strings() {
 	arr["russian",144]="Не закрывайте вручную какое-либо окно, скрипт сделает это когда нужно. Примерно в максимум 20 секунд вы узнаете, получили ли вы рукопожатие"
 	arr["greek",144]="Μην επιχειρήσετε το κλείσιμο κάποιου παραθύρου χειροκίνητα, εάν χρειαστεί το script θα το κάνει μόνο του. Σε περίπου 20 δευτερόλεπτα το μέγιστο θα μάθετε αν αποκτήσατε την Χειραψία"
 
-	arr["english",145]="Did you get the Handshake? "${pink_color}"(Look at the top right corner of the capture window) "${normal_color}"[y/n]"
-	arr["spanish",145]="¿Conseguiste el Handshake? "${pink_color}"(Mira en la parte superior derecha de la ventana de captura) "${normal_color}"[y/n]"
-	arr["french",145]="Avez-vous obtenu le Handshake? "${pink_color}"(Regardez dans le coin supérieur en haut à droite de la fenêtre de capture) "${normal_color}"[y/n]"
-	arr["catalan",145]="¿Has aconseguit el Handshake? "${pink_color}"(Mira a la part superior dreta de la finestra de captura) "${normal_color}"[y/n]"
-	arr["portuguese",145]="O Handshake foi obtido? "${pink_color}"(Olhe para o canto superior direito da janela de captura) "${normal_color}"[y/n]"
-	arr["russian",145]="Вы получили рукопожатие? "${pink_color}"(Смотрите на верхний правый угол окна захвата) "${normal_color}"[y/n]"
-	arr["greek",145]="Πήρατε την Χειραψία; "${pink_color}"(Κοιτάξτε στη πάνω δεξιά γωνία του παραθύρου) "${normal_color}"[y/n]"
+	arr["english",145]="Did you get the Handshake? ${pink_color}(Look at the top right corner of the capture window) ${normal_color}[y/n]"
+	arr["spanish",145]="¿Conseguiste el Handshake? ${pink_color}(Mira en la parte superior derecha de la ventana de captura) ${normal_color}[y/n]"
+	arr["french",145]="Avez-vous obtenu le Handshake? ${pink_color}(Regardez dans le coin supérieur en haut à droite de la fenêtre de capture) ${normal_color}[y/n]"
+	arr["catalan",145]="¿Has aconseguit el Handshake? ${pink_color}(Mira a la part superior dreta de la finestra de captura) ${normal_color}[y/n]"
+	arr["portuguese",145]="O Handshake foi obtido? ${pink_color}(Olhe para o canto superior direito da janela de captura) ${normal_color}[y/n]"
+	arr["russian",145]="Вы получили рукопожатие? ${pink_color}(Смотрите на верхний правый угол окна захвата) ${normal_color}[y/n]"
+	arr["greek",145]="Πήρατε την Χειραψία; ${pink_color}(Κοιτάξτε στη πάνω δεξιά γωνία του παραθύρου) ${normal_color}[y/n]"
 
 	arr["english",146]="It seems we failed... try it again or choose another attack"
 	arr["spanish",146]="Parece que no lo hemos conseguido... inténtalo de nuevo o elige otro ataque"
@@ -1655,21 +1655,21 @@ function language_strings() {
 	arr["russian",147]="4.  Возврат в меню инструментов для работы с рукопожатием"
 	arr["greek",147]="4.  Επιστροφή στο μενού με τα εργαλεία Χειραψίας"
 
-	arr["english",148]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$handshakepath]"
-	arr["spanish",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$handshakepath]"
-	arr["french",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut "${normal_color}"[$handshakepath]"
-	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$handshakepath]"
-	arr["portuguese",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão "${normal_color}"[$handshakepath]"
-	arr["russian",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$handshakepath]"
-	arr["greek",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$handshakepath]"
+	arr["english",148]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$handshakepath]"
+	arr["spanish",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$handshakepath]"
+	arr["french",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut ${normal_color}[$handshakepath]"
+	arr["catalan",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$handshakepath]"
+	arr["portuguese",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão ${normal_color}[$handshakepath]"
+	arr["russian",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию ${normal_color}[$handshakepath]"
+	arr["greek",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$handshakepath]"
 
-	arr["english",149]="Handshake file generated successfully at ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["spanish",149]="Fichero de Handshake generado con éxito en ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["french",149]="Fichier Handshake généré avec succès dans ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["catalan",149]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["portuguese",149]="Arquivo Handshake gerado com sucesso ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["russian",149]="Файл рукопожания успешно сгенерирован в ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["greek",149]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["english",149]="Handshake file generated successfully at [${normal_color}$enteredpath${blue_color}]"
+	arr["spanish",149]="Fichero de Handshake generado con éxito en [${normal_color}$enteredpath${blue_color}]"
+	arr["french",149]="Fichier Handshake généré avec succès dans [${normal_color}$enteredpath${blue_color}]"
+	arr["catalan",149]="Fitxer de Handshake generat amb èxit a [${normal_color}$enteredpath${blue_color}]"
+	arr["portuguese",149]="Arquivo Handshake gerado com sucesso [${normal_color}$enteredpath${blue_color}]"
+	arr["russian",149]="Файл рукопожания успешно сгенерирован в [${normal_color}$enteredpath${blue_color}]"
+	arr["greek",149]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}$enteredpath${blue_color}]"
 
 	arr["english",150]="No captured Handshake file detected during this session..."
 	arr["spanish",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -1679,21 +1679,21 @@ function language_strings() {
 	arr["russian",150]="За эту сессию не обнаружено захваченного рукопожатия..."
 	arr["greek",150]="Δεν εντοπίστηκε κάποιο αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
-	arr["english",151]="Handshake captured file detected during this session ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["spanish",151]="Se ha detectado un fichero de Handshake capturado en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["french",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans "${normal_color}"$enteredpath"${blue_color}"]"
-	arr["catalan",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["portuguese",151]="Handshake capturado com sucesso ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["russian",151]="В этой сессии обнаружен файл с захваченным рукопожатием ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["greek",151]="Εντοπίστηκε αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["english",151]="Handshake captured file detected during this session [${normal_color}$enteredpath${blue_color}]"
+	arr["spanish",151]="Se ha detectado un fichero de Handshake capturado en esta sesión [${normal_color}$enteredpath${blue_color}]"
+	arr["french",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans ${normal_color}$enteredpath${blue_color}]"
+	arr["catalan",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió [${normal_color}$enteredpath${blue_color}]"
+	arr["portuguese",151]="Handshake capturado com sucesso [${normal_color}$enteredpath${blue_color}]"
+	arr["russian",151]="В этой сессии обнаружен файл с захваченным рукопожатием [${normal_color}$enteredpath${blue_color}]"
+	arr["greek",151]="Εντοπίστηκε αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}$enteredpath${blue_color}]"
 
-	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session? "${normal_color}"[y/n]"
-	arr["spanish",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? "${normal_color}"[y/n]"
-	arr["french",152]="Voulez-vous nettoyer/optimiser le fichier Handshake capturé pendant cette session? "${normal_color}"[y/n]"
-	arr["catalan",152]="¿Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? "${normal_color}"[y/n]"
-	arr["portuguese",152]="Quer limpar/otimizar o arquivo handshake capturado nesta sessão? "${normal_color}"[y/n]"
-	arr["russian",152]="Вы хотите очистить/оптимизировать захваченный за эту сессию файл рукопожания? "${normal_color}"[y/n]"
-	arr["greek",152]="Θέλετε να καθαρίσετε/βελτιστοποιήσετε το αρχείο καταγραφής Χειραψίας της συνεδρίας; "${normal_color}"[y/n]"
+	arr["english",152]="Do you want to clean/optimize the Handshake captured file during this session? ${normal_color}[y/n]"
+	arr["spanish",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? ${normal_color}[y/n]"
+	arr["french",152]="Voulez-vous nettoyer/optimiser le fichier Handshake capturé pendant cette session? ${normal_color}[y/n]"
+	arr["catalan",152]="¿Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? ${normal_color}[y/n]"
+	arr["portuguese",152]="Quer limpar/otimizar o arquivo handshake capturado nesta sessão? ${normal_color}[y/n]"
+	arr["russian",152]="Вы хотите очистить/оптимизировать захваченный за эту сессию файл рукопожания? ${normal_color}[y/n]"
+	arr["greek",152]="Θέλετε να καθαρίσετε/βελτιστοποιήσετε το αρχείο καταγραφής Χειραψίας της συνεδρίας; ${normal_color}[y/n]"
 
 	arr["english",153]="File cleaned/optimized successfully"
 	arr["spanish",153]="Fichero limpiado/optimizado con éxito"
@@ -1711,13 +1711,13 @@ function language_strings() {
 	arr["russian",154]="Установить путь до файла :"
 	arr["greek",154]="Θέστε μονοπάτι για το αρχείο :"
 
-	arr["english",155]="The directory exists but you didn't specify filename. It will be autogenerated ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["spanish",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["french",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["catalan",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["portuguese",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["russian",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически ["${normal_color}"$suggested_filename"${yellow_color}"]"
-	arr["greek",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου ["${normal_color}"$suggested_filename"${yellow_color}"]"
+	arr["english",155]="The directory exists but you didn't specify filename. It will be autogenerated [${normal_color}$suggested_filename${yellow_color}]"
+	arr["spanish",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [${normal_color}$suggested_filename${yellow_color}]"
+	arr["french",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé [${normal_color}$suggested_filename${yellow_color}]"
+	arr["catalan",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará [${normal_color}$suggested_filename${yellow_color}]"
+	arr["portuguese",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}$suggested_filename${yellow_color}]"
+	arr["russian",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически [${normal_color}$suggested_filename${yellow_color}]"
+	arr["greek",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [${normal_color}$suggested_filename${yellow_color}]"
 
 	arr["english",156]="Directory not exists"
 	arr["spanish",156]="El directorio no existe"
@@ -1799,13 +1799,13 @@ function language_strings() {
 	arr["russian",165]="Проверка, нужны ли задачи по очистке/восстановлению..."
 	arr["greek",165]="Γίνεται έλεγχος αν χρειάζονται tasks καθαρισμού/αποκατάστασης..."
 
-	arr["english",166]="Do you want to preserve monitor mode for your card on exit? "${normal_color}"[y/n]"
-	arr["spanish",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? "${normal_color}"[y/n]"
-	arr["french",166]="Voulez-vous laisser votre interface en mode moniteur après l'arrêt du script? "${normal_color}"[y/n]"
-	arr["catalan",166]="¿Vols conservar el mode monitor de la teva interfície en sortir? "${normal_color}"[y/n]"
-	arr["portuguese",166]="Quer manter sua interface em modo monitor ao sair do script? "${normal_color}"[y/n]"
-	arr["russian",166]="Вы хотите сохранить режим монитора вашей карты при выходе? "${normal_color}"[y/n]"
-	arr["greek",166]="Θέλετε να παραμείνει η κάρτα σε κατάσταση παρακολούθησης κατά την έξοδο; "${normal_color}"[y/n]"
+	arr["english",166]="Do you want to preserve monitor mode for your card on exit? ${normal_color}[y/n]"
+	arr["spanish",166]="¿Deseas conservar el modo monitor de tu interfaz al salir? ${normal_color}[y/n]"
+	arr["french",166]="Voulez-vous laisser votre interface en mode moniteur après l'arrêt du script? ${normal_color}[y/n]"
+	arr["catalan",166]="¿Vols conservar el mode monitor de la teva interfície en sortir? ${normal_color}[y/n]"
+	arr["portuguese",166]="Quer manter sua interface em modo monitor ao sair do script? ${normal_color}[y/n]"
+	arr["russian",166]="Вы хотите сохранить режим монитора вашей карты при выходе? ${normal_color}[y/n]"
+	arr["greek",166]="Θέλετε να παραμείνει η κάρτα σε κατάσταση παρακολούθησης κατά την έξοδο; ${normal_color}[y/n]"
 
 	arr["english",167]="Putting your interface in managed mode"
 	arr["spanish",167]="Poniendo interfaz en modo managed"
@@ -1855,13 +1855,13 @@ function language_strings() {
 	arr["russian",172]="1.  (aircrack) Атака по словарю в отношении захваченного файла"
 	arr["greek",172]="1.  (aircrack) Επίθεση με χρήση λεξικού σε αρχείο καταγραφής"
 
-	arr["english",173]="Selected capture file: "${pink_color}"$enteredpath"${normal_color}
-	arr["spanish",173]="Fichero de captura seleccionado: "${pink_color}"$enteredpath"${normal_color}
-	arr["french",173]="Fichier de capture sélectionné: "${pink_color}"$enteredpath"${normal_color}
-	arr["catalan",173]="Fitxer de captura seleccionat: "${pink_color}"$enteredpath"${normal_color}
-	arr["portuguese",173]="Seleccionado arquivo de captura: "${pink_color}"$enteredpath"${normal_color}
-	arr["russian",173]="Выбранный файл захвата: "${pink_color}"$enteredpath"${normal_color}
-	arr["greek",173]="Επιλεγμένο αρχείο καταγραφής: "${pink_color}"$enteredpath"${normal_color}
+	arr["english",173]="Selected capture file: ${pink_color}$enteredpath${normal_color}"
+	arr["spanish",173]="Fichero de captura seleccionado: ${pink_color}$enteredpath${normal_color}"
+	arr["french",173]="Fichier de capture sélectionné: ${pink_color}$enteredpath${normal_color}"
+	arr["catalan",173]="Fitxer de captura seleccionat: ${pink_color}$enteredpath${normal_color}"
+	arr["portuguese",173]="Seleccionado arquivo de captura: ${pink_color}$enteredpath${normal_color}"
+	arr["russian",173]="Выбранный файл захвата: ${pink_color}$enteredpath${normal_color}"
+	arr["greek",173]="Επιλεγμένο αρχείο καταγραφής: ${pink_color}$enteredpath${normal_color}"
 
 	arr["english",174]="6.  Return to main menu"
 	arr["spanish",174]="6.  Volver al menú principal"
@@ -1887,13 +1887,13 @@ function language_strings() {
 	arr["russian",176]="aircrack атаки с использованием процессора, а не видеокарты"
 	arr["greek",176]="επιθέσεις aircrack CPU, όχι GPU"
 
-	arr["english",177]="Selected captured file: "${pink_color}"None"${normal_color}
-	arr["spanish",177]="Fichero capturado seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",177]="Fichier de capture sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",177]="Fitxer capturat seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",177]="Selecione o arquivo capturado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",177]="Выбран файл захвата: "${pink_color}"Нет"${normal_color}
-	arr["greek",177]="Επιλεγμένο αρχείο καταγραφής: "${pink_color}"Κανένα"${normal_color}
+	arr["english",177]="Selected captured file: ${pink_color}None${normal_color}"
+	arr["spanish",177]="Fichero capturado seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",177]="Fichier de capture sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",177]="Fitxer capturat seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",177]="Selecione o arquivo capturado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",177]="Выбран файл захвата: ${pink_color}Нет${normal_color}"
+	arr["greek",177]="Επιλεγμένο αρχείο καταγραφής: ${pink_color}Κανένα${normal_color}"
 
 	arr["english",178]="To decrypt the key of a WPA/WPA2 network, the capture file must contain a Handshake"
 	arr["spanish",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
@@ -1927,53 +1927,53 @@ function language_strings() {
 	arr["russian",181]="Путь до файла словаря правильный. Скрипт может продолжить..."
 	arr["greek",181]="Το μονοπάτι για το λεξικό είναι έγκυρο. Το script μπορεί να συνεχίσει..."
 
-	arr["english",182]="Selected dictionary file: "${pink_color}"$dictionary"${normal_color}
-	arr["spanish",182]="Fichero de diccionario seleccionado: "${pink_color}"$dictionary"${normal_color}
-	arr["french",182]="Fichier dictionnaire sélectionné: "${pink_color}"$dictionary"${normal_color}
-	arr["catalan",182]="Fitxer de diccionari seleccionat: "${pink_color}"$dictionary"${normal_color}
-	arr["portuguese",182]="Dicionário seleccionado: "${pink_color}"$dictionary"${normal_color}
-	arr["russian",182]="Выбранный файл словаря: "${pink_color}"$dictionary"${normal_color}
-	arr["greek",182]="Επιλεγμένο λεξικό: "${pink_color}"$dictionary"${normal_color}
+	arr["english",182]="Selected dictionary file: ${pink_color}$dictionary${normal_color}"
+	arr["spanish",182]="Fichero de diccionario seleccionado: ${pink_color}$dictionary${normal_color}"
+	arr["french",182]="Fichier dictionnaire sélectionné: ${pink_color}$dictionary${normal_color}"
+	arr["catalan",182]="Fitxer de diccionari seleccionat: ${pink_color}$dictionary${normal_color}"
+	arr["portuguese",182]="Dicionário seleccionado: ${pink_color}$dictionary${normal_color}"
+	arr["russian",182]="Выбранный файл словаря: ${pink_color}$dictionary${normal_color}"
+	arr["greek",182]="Επιλεγμένο λεξικό: ${pink_color}$dictionary${normal_color}"
 
-	arr["english",183]="You already have selected a dictionary file during this session ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["french",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session "${normal_color}"$dictionary"${blue_color}"]"
-	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["portuguese",183]="Você selecionou um arquivo de dicionário nesta sessão ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["russian",183]="Во время этой сессии вы выбрали файл словаря ["${normal_color}"$dictionary"${blue_color}"]"
-	arr["greek",183]="Έχετε ήδη επιλέξει λεξικό κατά τη διάρκεια της συνεδρίας ["${normal_color}"$dictionary"${blue_color}"]"
+	arr["english",183]="You already have selected a dictionary file during this session [${normal_color}$dictionary${blue_color}]"
+	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [${normal_color}$dictionary${blue_color}]"
+	arr["french",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session ${normal_color}$dictionary${blue_color}]"
+	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió [${normal_color}$dictionary${blue_color}]"
+	arr["portuguese",183]="Você selecionou um arquivo de dicionário nesta sessão [${normal_color}$dictionary${blue_color}]"
+	arr["russian",183]="Во время этой сессии вы выбрали файл словаря [${normal_color}$dictionary${blue_color}]"
+	arr["greek",183]="Έχετε ήδη επιλέξει λεξικό κατά τη διάρκεια της συνεδρίας [${normal_color}$dictionary${blue_color}]"
 
-	arr["english",184]="Do you want to use this already selected dictionary file? "${normal_color}"[y/n]"
-	arr["spanish",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",184]="Souhaitez vous utiliser le dictionnaire déjà sélectionné? "${normal_color}"[y/n]"
-	arr["catalan",184]="¿Vols fer servir aquest fitxer de diccionari ja seleccionat? "${normal_color}"[y/n]"
-	arr["portuguese",184]="Você quer usar esse arquivo de dicionário já seleccionada? "${normal_color}"[y/n]"
-	arr["russian",184]="Вы хотите использовать этот уже выбранный файл словаря? "${normal_color}"[y/n]"
-	arr["greek",184]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο λεξικό; "${normal_color}"[y/n]"
+	arr["english",184]="Do you want to use this already selected dictionary file? ${normal_color}[y/n]"
+	arr["spanish",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? ${normal_color}[y/n]"
+	arr["french",184]="Souhaitez vous utiliser le dictionnaire déjà sélectionné? ${normal_color}[y/n]"
+	arr["catalan",184]="¿Vols fer servir aquest fitxer de diccionari ja seleccionat? ${normal_color}[y/n]"
+	arr["portuguese",184]="Você quer usar esse arquivo de dicionário já seleccionada? ${normal_color}[y/n]"
+	arr["russian",184]="Вы хотите использовать этот уже выбранный файл словаря? ${normal_color}[y/n]"
+	arr["greek",184]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο λεξικό; ${normal_color}[y/n]"
 
-	arr["english",185]="Selected BSSID: "${pink_color}"None"${normal_color}
-	arr["spanish",185]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",185]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",185]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",185]="BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",185]="Выбранная BSSID: "${pink_color}"Нет"${normal_color}
-	arr["greek",185]="Επιλεγμένο BSSID: "${pink_color}"Κανένα"${normal_color}
+	arr["english",185]="Selected BSSID: ${pink_color}None${normal_color}"
+	arr["spanish",185]="BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",185]="BSSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",185]="BSSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",185]="BSSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",185]="Выбранная BSSID: ${pink_color}Нет${normal_color}"
+	arr["greek",185]="Επιλεγμένο BSSID: ${pink_color}Κανένα${normal_color}"
 
-	arr["english",186]="You already have selected a capture file during this session ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["spanish",186]="Ya tienes seleccionado un fichero de captura en esta sesión ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["french",186]="Vous avez déjà sélectionné un fichier de capture pour cette session "${normal_color}"$enteredpath"${blue_color}"]"
-	arr["catalan",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["portuguese",186]="Você selecionou um arquivo de captura nesta sessão ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["russian",186]="Вы уже выбрали файл захвата во время этой сессии ["${normal_color}"$enteredpath"${blue_color}"]"
-	arr["greek",186]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας ["${normal_color}"$enteredpath"${blue_color}"]"
+	arr["english",186]="You already have selected a capture file during this session [${normal_color}$enteredpath${blue_color}]"
+	arr["spanish",186]="Ya tienes seleccionado un fichero de captura en esta sesión [${normal_color}$enteredpath${blue_color}]"
+	arr["french",186]="Vous avez déjà sélectionné un fichier de capture pour cette session ${normal_color}$enteredpath${blue_color}]"
+	arr["catalan",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió [${normal_color}$enteredpath${blue_color}]"
+	arr["portuguese",186]="Você selecionou um arquivo de captura nesta sessão [${normal_color}$enteredpath${blue_color}]"
+	arr["russian",186]="Вы уже выбрали файл захвата во время этой сессии [${normal_color}$enteredpath${blue_color}]"
+	arr["greek",186]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας [${normal_color}$enteredpath${blue_color}]"
 
-	arr["english",187]="Do you want to use this already selected capture file? "${normal_color}"[y/n]"
-	arr["spanish",187]="¿Quieres utilizar este fichero de captura ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",187]="Souhaitez vous utiliser le fichier de capture déjà sélectionné? "${normal_color}"[y/n]"
-	arr["catalan",187]="¿Vols fer servir aquest fitxer de captura ja seleccionat? "${normal_color}"[y/n]"
-	arr["portuguese",187]="Você quer usar esse arquivo de captura selecionado? "${normal_color}"[y/n]"
-	arr["russian",187]="Вы хотите использовать этот уже выбранный файл захвата? "${normal_color}"[y/n]"
-	arr["greek",187]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο καταγραφής; "${normal_color}"[y/n]"
+	arr["english",187]="Do you want to use this already selected capture file? ${normal_color}[y/n]"
+	arr["spanish",187]="¿Quieres utilizar este fichero de captura ya seleccionado? ${normal_color}[y/n]"
+	arr["french",187]="Souhaitez vous utiliser le fichier de capture déjà sélectionné? ${normal_color}[y/n]"
+	arr["catalan",187]="¿Vols fer servir aquest fitxer de captura ja seleccionat? ${normal_color}[y/n]"
+	arr["portuguese",187]="Você quer usar esse arquivo de captura selecionado? ${normal_color}[y/n]"
+	arr["russian",187]="Вы хотите использовать этот уже выбранный файл захвата? ${normal_color}[y/n]"
+	arr["greek",187]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο καταγραφής; ${normal_color}[y/n]"
 
 	arr["english",188]="Enter the path of a captured file :"
 	arr["spanish",188]="Introduce la ruta de un fichero de captura :"
@@ -2007,21 +2007,21 @@ function language_strings() {
 	arr["russian",191]="Файл захвата, который вы выбрали, в неподдерживаемом формате (это не файл pcap или IVs)"
 	arr["greek",191]="Η επέκταση του αρχείου καταγραφής που έχετε επιλέξει δεν υποστηρίζεται (δεν είναι pcap ούτε IVs αρχείο)"
 
-	arr["english",192]="You already have selected a BSSID during this session and is present in capture file ["${normal_color}"$bssid"${blue_color}"]"
-	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura ["${normal_color}"$bssid"${blue_color}"]"
-	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture "${normal_color}"$bssid"${blue_color}"]"
-	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura ["${normal_color}"$bssid"${blue_color}"]"
-	arr["portuguese",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura ["${normal_color}"$bssid"${blue_color}"]"
-	arr["russian",192]="У вас уже есть выбранная во время этой сессии BSSID и она пресутствует в файле захвата ["${normal_color}"$bssid"${blue_color}"]"
-	arr["greek",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής ["${normal_color}"$bssid"${blue_color}"]"
+	arr["english",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}$bssid${blue_color}]"
+	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}$bssid${blue_color}]"
+	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture ${normal_color}$bssid${blue_color}]"
+	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura [${normal_color}$bssid${blue_color}]"
+	arr["portuguese",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura [${normal_color}$bssid${blue_color}]"
+	arr["russian",192]="У вас уже есть выбранная во время этой сессии BSSID и она пресутствует в файле захвата [${normal_color}$bssid${blue_color}]"
+	arr["greek",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής [${normal_color}$bssid${blue_color}]"
 
-	arr["english",193]="Do you want to use this already selected BSSID? "${normal_color}"[y/n]"
-	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",193]="Souhaitez vous utiliser le BSSID déjà sélectionné? "${normal_color}"[y/n]"
-	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? "${normal_color}"[y/n]"
-	arr["portuguese",193]="Você quer usar este BSSID já seleccionada? "${normal_color}"[y/n]"
-	arr["russian",193]="Вы хотите использовать эту уже выбранную BSSID? "${normal_color}"[y/n]"
-	arr["greek",193]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο BSSID; "${normal_color}"[y/n]"
+	arr["english",193]="Do you want to use this already selected BSSID? ${normal_color}[y/n]"
+	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? ${normal_color}[y/n]"
+	arr["french",193]="Souhaitez vous utiliser le BSSID déjà sélectionné? ${normal_color}[y/n]"
+	arr["catalan",193]="¿Vols fer servir aquest BSSID ja seleccionat? ${normal_color}[y/n]"
+	arr["portuguese",193]="Você quer usar este BSSID já seleccionada? ${normal_color}[y/n]"
+	arr["russian",193]="Вы хотите использовать эту уже выбранную BSSID? ${normal_color}[y/n]"
+	arr["greek",193]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο BSSID; ${normal_color}[y/n]"
 
 	arr["english",194]="Enter the minimum length of the key to decrypt (8-63) :"
 	arr["spanish",194]="Introduce la longitud mínima de la clave a desencriptar (8-63) :"
@@ -2143,13 +2143,13 @@ function language_strings() {
 	arr["russian",208]="Если вы выберете большой набор символов и большую длинну ключа, процесс может занять очень много времени"
 	arr["greek",208]="Αν επιλέξετε μεγάλη συμβολοσειρά και μεγάλο μήκος κλειδιού, η διεργασία θα διαρκέσει αρκετά"
 
-	arr["english",209]="The charset to use is : ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["spanish",209]="El juego de caracteres elegido es : ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["french",209]="Le jeu de caractères définit est : ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["catalan",209]="El joc de caràcters escollit és : ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["portuguese",209]="O conjunto de caracteres é:: ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["russian",209]="Символы для использования : ["${normal_color}"$showcharset"${blue_color}"]"
-	arr["greek",209]="Η συμβολοσειρά που θα χρησιμοποιηθεί είναι : ["${normal_color}"$showcharset"${blue_color}"]"
+	arr["english",209]="The charset to use is : [${normal_color}$showcharset${blue_color}]"
+	arr["spanish",209]="El juego de caracteres elegido es : [${normal_color}$showcharset${blue_color}]"
+	arr["french",209]="Le jeu de caractères définit est : [${normal_color}$showcharset${blue_color}]"
+	arr["catalan",209]="El joc de caràcters escollit és : [${normal_color}$showcharset${blue_color}]"
+	arr["portuguese",209]="O conjunto de caracteres é:: [${normal_color}$showcharset${blue_color}]"
+	arr["russian",209]="Символы для использования : [${normal_color}$showcharset${blue_color}]"
+	arr["greek",209]="Η συμβολοσειρά που θα χρησιμοποιηθεί είναι : [${normal_color}$showcharset${blue_color}]"
 
 	arr["english",210]="The script will check for internet access looking for a newer version. Please be patient..."
 	arr["spanish",210]="El script va a comprobar si tienes acceso a internet para ver si existe una nueva versión. Por favor ten paciencia..."
@@ -2207,13 +2207,13 @@ function language_strings() {
 	arr["russian",216]="В выбранном файле сети с захваченным рукопожатием не найдены"
 	arr["greek",216]="Δεν βρέθηκαν δίκτυα με Χειραψία στο επιλεγμένο αρχείο"
 
-	arr["english",217]="Only one valid target detected on file. BSSID autoselected ["${normal_color}"$bssid"${blue_color}"]"
-	arr["spanish",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID ["${normal_color}"$bssid"${blue_color}"]"
-	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est ["${normal_color}"$bssid"${blue_color}"]"
-	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID ["${normal_color}"$bssid"${blue_color}"]"
-	arr["portuguese",217]="Apenas um alvo válido detectado no arquivo. BSSID selecionado automaticamente ["${normal_color}"$bssid"${blue_color}"]"
-	arr["russian",217]="В файле обнаружена только одна подходящая цель. BSSID выбрана автоматически ["${normal_color}"$bssid"${blue_color}"]"
-	arr["greek",217]="Μόνο ένας έγκυρος στόχος εντοπίστηκε στο αρχείο. Επιλέχθηκε αυτόματα το BSSID ["${normal_color}"$bssid"${blue_color}"]"
+	arr["english",217]="Only one valid target detected on file. BSSID autoselected [${normal_color}$bssid${blue_color}]"
+	arr["spanish",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID [${normal_color}$bssid${blue_color}]"
+	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est [${normal_color}$bssid${blue_color}]"
+	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID [${normal_color}$bssid${blue_color}]"
+	arr["portuguese",217]="Apenas um alvo válido detectado no arquivo. BSSID selecionado automaticamente [${normal_color}$bssid${blue_color}]"
+	arr["russian",217]="В файле обнаружена только одна подходящая цель. BSSID выбрана автоматически [${normal_color}$bssid${blue_color}]"
+	arr["greek",217]="Μόνο ένας έγκυρος στόχος εντοπίστηκε στο αρχείο. Επιλέχθηκε αυτόματα το BSSID [${normal_color}$bssid${blue_color}]"
 
 	arr["english",218]="Optional tools: checking..."
 	arr["spanish",218]="Herramientas opcionales: comprobando..."
@@ -2335,13 +2335,13 @@ function language_strings() {
 	arr["russian",232]="5.  (hashcat) Атака на основе правила в отношении захваченного файла"
 	arr["greek",232]="5.  (hashcat) Επίθεση κανόνων σε αρχείο καταγραφής"
 
-	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$hashcat_potpath]"
-	arr["spanish",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$hashcat_potpath]"
-	arr["french",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$hashcat_potpath]"
-	arr["catalan",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$hashcat_potpath]"
-	arr["portuguese",233]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$hashcat_potpath]"
-	arr["russian",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию "${normal_color}"[$hashcat_potpath]"
-	arr["greek",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$hashcat_potpath]"
+	arr["english",233]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$hashcat_potpath]"
+	arr["spanish",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$hashcat_potpath]"
+	arr["french",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$hashcat_potpath]"
+	arr["catalan",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$hashcat_potpath]"
+	arr["portuguese",233]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$hashcat_potpath]"
+	arr["russian",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию ${normal_color}[$hashcat_potpath]"
+	arr["greek",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$hashcat_potpath]"
 
 	arr["english",234]="Contratulations!! It seems the key has been decrypted"
 	arr["spanish",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
@@ -2351,21 +2351,21 @@ function language_strings() {
 	arr["russian",234]="Поздравления!! Похоже на то, что ключ был расшифрован"
 	arr["greek",234]="Συγχαρητήρια!! Φαίνεται πως το κλειδί αποκρυπτογραφήθηκε"
 
-	arr["english",235]="Do you want to save the trophy file with the decrypted password? "${normal_color}"[y/n]"
-	arr["spanish",235]="¿Quieres guardar el fichero de trofeo con la clave desencriptada? "${normal_color}"[y/n]"
-	arr["french",235]="Voulez-vous enregistrer le fichier trophée avec le mot de passe déchiffré? "${normal_color}"[y/n]"
-	arr["catalan",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? "${normal_color}"[y/n]"
-	arr["portuguese",235]="Você quer salvar arquivo com a senha descriptografado? "${normal_color}"[y/n]"
-	arr["russian",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? "${normal_color}"[y/n]"
-	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; "${normal_color}"[y/n]"
+	arr["english",235]="Do you want to save the trophy file with the decrypted password? ${normal_color}[y/n]"
+	arr["spanish",235]="¿Quieres guardar el fichero de trofeo con la clave desencriptada? ${normal_color}[y/n]"
+	arr["french",235]="Voulez-vous enregistrer le fichier trophée avec le mot de passe déchiffré? ${normal_color}[y/n]"
+	arr["catalan",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? ${normal_color}[y/n]"
+	arr["portuguese",235]="Você quer salvar arquivo com a senha descriptografado? ${normal_color}[y/n]"
+	arr["russian",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? ${normal_color}[y/n]"
+	arr["greek",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; ${normal_color}[y/n]"
 
-	arr["english",236]="Hashcat trophy file generated successfully at ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["spanish",236]="Fichero de trofeo hashcat generado con éxito en ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["french",236]="Le fichier trophée Hashcat a bien été crée dans ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["catalan",236]="Fitxer de trofeu hashcat generat amb èxit a ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["portuguese",236]="Arquivo troféu Hashcat gerado com sucesso ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["russian",236]="Трофейный файл Hashcat был успешно сгенерирован в ["${normal_color}"$potenteredpath"${blue_color}"]"
-	arr["greek",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς ["${normal_color}"$potenteredpath"${blue_color}"]"
+	arr["english",236]="Hashcat trophy file generated successfully at [${normal_color}$potenteredpath${blue_color}]"
+	arr["spanish",236]="Fichero de trofeo hashcat generado con éxito en [${normal_color}$potenteredpath${blue_color}]"
+	arr["french",236]="Le fichier trophée Hashcat a bien été crée dans [${normal_color}$potenteredpath${blue_color}]"
+	arr["catalan",236]="Fitxer de trofeu hashcat generat amb èxit a [${normal_color}$potenteredpath${blue_color}]"
+	arr["portuguese",236]="Arquivo troféu Hashcat gerado com sucesso [${normal_color}$potenteredpath${blue_color}]"
+	arr["russian",236]="Трофейный файл Hashcat был успешно сгенерирован в [${normal_color}$potenteredpath${blue_color}]"
+	arr["greek",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}$potenteredpath${blue_color}]"
 
 	arr["english",237]="5.  Lowercase + uppercase + numeric + symbol chars"
 	arr["spanish",237]="5.  Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
@@ -2383,21 +2383,21 @@ function language_strings() {
 	arr["russian",238]="Меню выбора набора символов"
 	arr["greek",238]="Μενού επιλογής συμβολοσειράς"
 
-	arr["english",239]="You already have selected a rules file during this session ["${normal_color}"$rules"${blue_color}"]"
-	arr["spanish",239]="Ya tienes seleccionado un fichero de reglas en esta sesión ["${normal_color}"$rules"${blue_color}"]"
-	arr["french",239]="Vous avez déjà sélectionné un fichier règles pour cette session "${normal_color}"$rules"${blue_color}"]"
-	arr["catalan",239]="Ja tens seleccionat un fitxer de regles en aquesta sessió ["${normal_color}"$rules"${blue_color}"]"
-	arr["portuguese",239]="Você selecionou um arquivo de regras nesta sessão ["${normal_color}"$rules"${blue_color}"]"
-	arr["russian",239]="Во время этой сессии вы уже выбрали файл с правилами ["${normal_color}"$rules"${blue_color}"]"
-	arr["greek",239]="Έχετε ήδη επιλέξει αρχείο κανόνων κατά τη διάρκεια τησ συνεδρίας ["${normal_color}"$rules"${blue_color}"]"
+	arr["english",239]="You already have selected a rules file during this session [${normal_color}$rules${blue_color}]"
+	arr["spanish",239]="Ya tienes seleccionado un fichero de reglas en esta sesión [${normal_color}$rules${blue_color}]"
+	arr["french",239]="Vous avez déjà sélectionné un fichier règles pour cette session ${normal_color}$rules${blue_color}]"
+	arr["catalan",239]="Ja tens seleccionat un fitxer de regles en aquesta sessió [${normal_color}$rules${blue_color}]"
+	arr["portuguese",239]="Você selecionou um arquivo de regras nesta sessão [${normal_color}$rules${blue_color}]"
+	arr["russian",239]="Во время этой сессии вы уже выбрали файл с правилами [${normal_color}$rules${blue_color}]"
+	arr["greek",239]="Έχετε ήδη επιλέξει αρχείο κανόνων κατά τη διάρκεια τησ συνεδρίας [${normal_color}$rules${blue_color}]"
 
-	arr["english",240]="Do you want to use this already selected rules file? "${normal_color}"[y/n]"
-	arr["spanish",240]="¿Quieres utilizar este fichero de reglas ya seleccionado? "${normal_color}"[y/n]"
-	arr["french",240]="Souhaitez vous utiliser les règles déjà sélectionné? "${normal_color}"[y/n]"
-	arr["catalan",240]="¿Vols fer servir aquest fitxer de regles ja seleccionat? "${normal_color}"[y/n]"
-	arr["portuguese",240]="Você quer usar esse arquivo regras já selecionados? "${normal_color}"[y/n]"
-	arr["russian",240]="Вы хотите использовать этот уже выбранный файл правил? "${normal_color}"[y/n]"
-	arr["greek",240]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο κανόνων; "${normal_color}"[y/n]"
+	arr["english",240]="Do you want to use this already selected rules file? ${normal_color}[y/n]"
+	arr["spanish",240]="¿Quieres utilizar este fichero de reglas ya seleccionado? ${normal_color}[y/n]"
+	arr["french",240]="Souhaitez vous utiliser les règles déjà sélectionné? ${normal_color}[y/n]"
+	arr["catalan",240]="¿Vols fer servir aquest fitxer de regles ja seleccionat? ${normal_color}[y/n]"
+	arr["portuguese",240]="Você quer usar esse arquivo regras já selecionados? ${normal_color}[y/n]"
+	arr["russian",240]="Вы хотите использовать этот уже выбранный файл правил? ${normal_color}[y/n]"
+	arr["greek",240]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο αρχείο κανόνων; ${normal_color}[y/n]"
 
 	arr["english",241]="The path to the rules file is valid. Script can continue..."
 	arr["spanish",241]="La ruta al fichero de reglas es válida. El script puede continuar..."
@@ -2415,13 +2415,13 @@ function language_strings() {
 	arr["russian",242]="Введите путь файла с правилами :"
 	arr["greek",242]="Εισάγετε το μονοπάτι για ένα αρχείο κανόνων :"
 
-	arr["english",243]="Selected rules file: "${pink_color}"$rules"${normal_color}
-	arr["spanish",243]="Fichero de reglas seleccionado: "${pink_color}"$rules"${normal_color}
-	arr["french",243]="Fichier règles sélectionné: "${pink_color}"$rules"${normal_color}
-	arr["catalan",243]="Fitxer de regles seleccionat: "${pink_color}"$rules"${normal_color}
-	arr["portuguese",243]="Arquivo regras selecionadas: "${pink_color}"$rules"${normal_color}
-	arr["russian",243]="Выбранный файл правил: "${pink_color}"$rules"${normal_color}
-	arr["greek",243]="Επιλεγμένο αρχείο κανόνων: "${pink_color}"$rules"${normal_color}
+	arr["english",243]="Selected rules file: ${pink_color}$rules${normal_color}"
+	arr["spanish",243]="Fichero de reglas seleccionado: ${pink_color}$rules${normal_color}"
+	arr["french",243]="Fichier règles sélectionné: ${pink_color}$rules${normal_color}"
+	arr["catalan",243]="Fitxer de regles seleccionat: ${pink_color}$rules${normal_color}"
+	arr["portuguese",243]="Arquivo regras selecionadas: ${pink_color}$rules${normal_color}"
+	arr["russian",243]="Выбранный файл правил: ${pink_color}$rules${normal_color}"
+	arr["greek",243]="Επιλεγμένο αρχείο κανόνων: ${pink_color}$rules${normal_color}"
 
 	arr["english",244]="Rule based attacks change the words of the dictionary list according to the rules written in the rules file itself. They are very useful. Some distros has predefined rule files (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["spanish",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
@@ -2431,21 +2431,21 @@ function language_strings() {
 	arr["russian",244]="Атака, основанная на правилах, изменяет слова из словаря в соответствии с правилами, написанными в самом файле правил. Они очень полезны. Некоторые дистрибутивы имеют предустановленные правила (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["greek",244]="Οι επιθέσεις κανόνων αλλάζουν τις λέξεις του λεξικού ανάλογα με τους κανόνες που έχουν γραφτεί στο αρχείο κανόνων. Είναι πολύ χρήσιμοι. Κάποιες διανομές έχουν προκαθορισμένα αρχεία κανόνων (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 
-	arr["english",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["spanish",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["french",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["catalan",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["portuguese",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["russian",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
-	arr["greek",245]="// "${yellow_color}"Chipset:"${normal_color}" $unknown_chipsetvar"
+	arr["english",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["spanish",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["french",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["catalan",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["portuguese",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["russian",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
+	arr["greek",245]="// ${yellow_color}Chipset:${normal_color} $unknown_chipsetvar"
 
-	arr["english",246]="Every time you see a text with the prefix "${cyan_color}"$pending_of_translation"${pink_color}" acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
-	arr["spanish",246]="Cada vez que veas un texto con el prefijo "${cyan_color}"$pending_of_translation"${pink_color}" acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
-	arr["french",246]="Chaque fois que vous voyez un texte précédé par "${cyan_color}"$pending_of_translation"${pink_color}" acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
-	arr["catalan",246]="Cada vegada que vegis un text amb el prefix "${cyan_color}"$pending_of_translation"${pink_color}" acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
-	arr["portuguese",246]="Cada vez que você vê um texto com o prefixo "${cyan_color}"$pending_of_translation"${pink_color}" acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
-	arr["russian",246]="Каждый раз, когда вы видитте текст с префиксом "${cyan_color}"$pending_of_translation"${pink_color}" (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
-	arr["greek",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα "${cyan_color}"$pending_of_translation"${pink_color}" ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
+	arr["english",246]="Every time you see a text with the prefix ${cyan_color}$pending_of_translation${pink_color} acronym for \"Pending of Translation\", means the translation has been automatically generated and is still pending of review"
+	arr["spanish",246]="Cada vez que veas un texto con el prefijo ${cyan_color}$pending_of_translation${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
+	arr["french",246]="Chaque fois que vous voyez un texte précédé par ${cyan_color}$pending_of_translation${pink_color} acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
+	arr["catalan",246]="Cada vegada que vegis un text amb el prefix ${cyan_color}$pending_of_translation${pink_color} acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
+	arr["portuguese",246]="Cada vez que você vê um texto com o prefixo ${cyan_color}$pending_of_translation${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
+	arr["russian",246]="Каждый раз, когда вы видитте текст с префиксом ${cyan_color}$pending_of_translation${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
+	arr["greek",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα ${cyan_color}$pending_of_translation${pink_color} ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
 
 	arr["english",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
 	arr["spanish",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -2471,13 +2471,13 @@ function language_strings() {
 	arr["russian",249]="5.  Португальский"
 	arr["greek",249]="5.  Πορτογαλικά"
 
-	arr["english",250]="If you see any bad translation or just want "${cyan_color}"$pending_of_translation"${pink_color}" marks to dissapear, write me to $mail to collaborate with translations"
-	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas "${cyan_color}"$pending_of_translation"${pink_color}", escríbeme a $mail para colaborar con las traducciones"
-	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques "${cyan_color}"$pending_of_translation"${pink_color}" disparaitre, écrivez à $mail pour collaborer avec les traductions"
-	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques "${cyan_color}"$pending_of_translation"${pink_color}", escriu-me a $mail per col·laborar amb les traduccions"
-	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas "${cyan_color}"$pending_of_translation"${pink_color}" sejam retiradas, escreva para $mail para colaborar com as traduções"
-	arr["russian",250]="Если вы видите плохой перевод или просто хотите снять пометку "${cyan_color}"$pending_of_translation"${pink_color}" напишите мне на $mail для сотрудничества с переводчиками"
-	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια "${cyan_color}"$pending_of_translation"${pink_color}" να εξαφανιστούν, στείλτε μου στο $mail για να συνεργαστούμε με τις μεταφράσεις"
+	arr["english",250]="If you see any bad translation or just want ${cyan_color}$pending_of_translation${pink_color} marks to dissapear, write me to $mail to collaborate with translations"
+	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas ${cyan_color}$pending_of_translation${pink_color}, escríbeme a $mail para colaborar con las traducciones"
+	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques ${cyan_color}$pending_of_translation${pink_color} disparaitre, écrivez à $mail pour collaborer avec les traductions"
+	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques ${cyan_color}$pending_of_translation${pink_color}, escriu-me a $mail per col·laborar amb les traduccions"
+	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas ${cyan_color}$pending_of_translation${pink_color} sejam retiradas, escreva para $mail para colaborar com as traduções"
+	arr["russian",250]="Если вы видите плохой перевод или просто хотите снять пометку ${cyan_color}$pending_of_translation${pink_color} напишите мне на $mail для сотрудничества с переводчиками"
+	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια ${cyan_color}$pending_of_translation${pink_color} να εξαφανιστούν, στείλτε μου στο $mail για να συνεργαστούμε με τις μεταφράσεις"
 
 	arr["english",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["spanish",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
@@ -2639,37 +2639,37 @@ function language_strings() {
 	arr["russian",270]="Атака Злой Двойник, просто ТД"
 	arr["greek",270]="Επίθεση Evil Twin μόνο AP"
 
-	arr["english",271]="Selected BSSID: "${pink_color}"None"${normal_color}
-	arr["spanish",271]="BSSID seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",271]="BSSID sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",271]="BSSID seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",271]="BSSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",271]="Выбранная BSSID: "${pink_color}"Нет"${normal_color}
-	arr["greek",271]="Επιλεγμένο BSSID: "${pink_color}"Κανένα"${normal_color}
+	arr["english",271]="Selected BSSID: ${pink_color}None${normal_color}"
+	arr["spanish",271]="BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",271]="BSSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",271]="BSSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",271]="BSSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",271]="Выбранная BSSID: ${pink_color}Нет${normal_color}"
+	arr["greek",271]="Επιλεγμένο BSSID: ${pink_color}Κανένα${normal_color}"
 
-	arr["english",272]="Deauthentication chosen method: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["spanish",272]="Método elegido de desautenticación: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["french",272]="Méthode de dés-authentification: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["catalan",272]="Mètode elegit d'desautenticació: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["portuguese",272]="Método de desautenticação escolhido: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["russian",272]="Выбор метода деаутентификации: "${pink_color}"$et_dos_attack"${normal_color}
-	arr["greek",272]="Επιλεγμένη μέθοδος για deauthentication: "${pink_color}"$et_dos_attack"${normal_color}
+	arr["english",272]="Deauthentication chosen method: ${pink_color}$et_dos_attack${normal_color}"
+	arr["spanish",272]="Método elegido de desautenticación: ${pink_color}$et_dos_attack${normal_color}"
+	arr["french",272]="Méthode de dés-authentification: ${pink_color}$et_dos_attack${normal_color}"
+	arr["catalan",272]="Mètode elegit d'desautenticació: ${pink_color}$et_dos_attack${normal_color}"
+	arr["portuguese",272]="Método de desautenticação escolhido: ${pink_color}$et_dos_attack${normal_color}"
+	arr["russian",272]="Выбор метода деаутентификации: ${pink_color}$et_dos_attack${normal_color}"
+	arr["greek",272]="Επιλεγμένη μέθοδος για deauthentication: ${pink_color}$et_dos_attack${normal_color}"
 
-	arr["english",273]="Selected channel: "${pink_color}"None"${normal_color}
-	arr["spanish",273]="Canal seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",273]="Canal sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",273]="Canal seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",273]="Canal selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",273]="Выбранный канал: "${pink_color}"Нет"${normal_color}
-	arr["greek",273]="Επιλεγμένο κανάλι: "${pink_color}"Κανένα"${normal_color}
+	arr["english",273]="Selected channel: ${pink_color}None${normal_color}"
+	arr["spanish",273]="Canal seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",273]="Canal sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",273]="Canal seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",273]="Canal selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",273]="Выбранный канал: ${pink_color}Нет${normal_color}"
+	arr["greek",273]="Επιλεγμένο κανάλι: ${pink_color}Κανένα${normal_color}"
 
-	arr["english",274]="Selected ESSID: "${pink_color}"None"${normal_color}
-	arr["spanish",274]="ESSID seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",274]="ESSID sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",274]="ESSID seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",274]="ESSID selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",274]="Выбранная ESSID: "${pink_color}"Нет"${normal_color}
-	arr["greek",274]="Επιλεγμένο ESSID: "${pink_color}"Κανένα"${normal_color}
+	arr["english",274]="Selected ESSID: ${pink_color}None${normal_color}"
+	arr["spanish",274]="ESSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",274]="ESSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",274]="ESSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",274]="ESSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",274]="Выбранная ESSID: ${pink_color}Нет${normal_color}"
+	arr["greek",274]="Επιλεγμένο ESSID: ${pink_color}Κανένα${normal_color}"
 
 	arr["english",275]="In addition to the software requirements that already meet if you get here, you need to provide target AP data to carry out the attack"
 	arr["spanish",275]="Además de los requisitos de software, que ya cumples si has llegado hasta aquí, es necesario proporcionar los datos del AP objetivo para llevar a cabo el ataque"
@@ -2687,21 +2687,21 @@ function language_strings() {
 	arr["russian",276]="Наверху экрана вы можете увидеть всё, что вам нужно для выполнения этой атаки. Если какие-либо из этих параметров не имеют значения, вы можете ввести их вручную или вы можете вернуться назад для выбора цели, а затем вернуться сюда"
 	arr["greek",276]="Πάνω από αυτή την οθόνη μπορείτε να δείτε ό,τι χρειάζεται για να εκτελεστεί η επίθεση. Αν κάποια παραμέτρος δεν έχει τιμή, μπορείτε να την εισάγετε χειροκίνητα, ή μπορείτε να πάτε πίσω για να επιλέξετε εαν στόχο και μετά να επιστρέψετε εδώ"
 
-	arr["english",277]="Do you want to continue? "${normal_color}"[y/n]"
-	arr["spanish",277]="¿Deseas continuar? "${normal_color}"[y/n]"
-	arr["french",277]="Voulez-vous continuer? "${normal_color}"[y/n]"
-	arr["catalan",277]="¿Vols continuar? "${normal_color}"[y/n]"
-	arr["portuguese",277]="Você deseja continuar? "${normal_color}"[y/n]"
-	arr["russian",277]="Вы хотите продолжить? "${normal_color}"[y/n]"
-	arr["greek",277]="Θέλετε να συνεχίσετε; "${normal_color}"[y/n]"
+	arr["english",277]="Do you want to continue? ${normal_color}[y/n]"
+	arr["spanish",277]="¿Deseas continuar? ${normal_color}[y/n]"
+	arr["french",277]="Voulez-vous continuer? ${normal_color}[y/n]"
+	arr["catalan",277]="¿Vols continuar? ${normal_color}[y/n]"
+	arr["portuguese",277]="Você deseja continuar? ${normal_color}[y/n]"
+	arr["russian",277]="Вы хотите продолжить? ${normal_color}[y/n]"
+	arr["greek",277]="Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
 
-	arr["english",278]="Deauthentication chosen method: "${pink_color}"None"${normal_color}
-	arr["spanish",278]="Método elegido de desautenticación: "${pink_color}"Ninguno"${normal_color}
-	arr["french",278]="Méthode de dés-authentification: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",278]="Mètode elegit d'desautenticació: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",278]="Método de desautenticação escolhido: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",278]="Выбор метода деаутентификации: "${pink_color}"Нет"${normal_color}
-	arr["greek",278]="Επιλεγμένη μέθοδος deauthentication: "${pink_color}"Καμία"${normal_color}
+	arr["english",278]="Deauthentication chosen method: ${pink_color}None${normal_color}"
+	arr["spanish",278]="Método elegido de desautenticación: ${pink_color}Ninguno${normal_color}"
+	arr["french",278]="Méthode de dés-authentification: ${pink_color}Aucun${normal_color}"
+	arr["catalan",278]="Mètode elegit d'desautenticació: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",278]="Método de desautenticação escolhido: ${pink_color}Nenhum${normal_color}"
+	arr["russian",278]="Выбор метода деаутентификации: ${pink_color}Нет${normal_color}"
+	arr["greek",278]="Επιλεγμένη μέθοδος deauthentication: ${pink_color}Καμία${normal_color}"
 
 	arr["english",279]="Select another interface with internet access :"
 	arr["spanish",279]="Selecciona otra interfaz que tenga acceso a internet :"
@@ -2727,37 +2727,37 @@ function language_strings() {
 	arr["russian",281]="Интерфейс $interface, который вы выбрали не является wifi картой. Эта атака требует выбрать wifi карту"
 	arr["greek",281]="Η διεπαφή $interface που έχετε ήδη επιλέξει δεν έιναι κάρτα wifi. Αυτή η επίθεση χρειάζεται μία κάρτα wifi επιλεγμένη"
 
-	arr["english",282]="Selected internet interface: "${pink_color}"$internet_interface"${normal_color}
-	arr["spanish",282]="Interfaz con internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
-	arr["french",282]="Interface internet sélectionnée: "${pink_color}"$internet_interface"${normal_color}
-	arr["catalan",282]="Interfície amb internet seleccionada: "${pink_color}"$internet_interface"${normal_color}
-	arr["portuguese",282]="Interface da internet selecionado: "${pink_color}"$internet_interface"${normal_color}
-	arr["russian",282]="Выбранный Интернет интерфейс: "${pink_color}"$internet_interface"${normal_color}
-	arr["greek",282]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: "${pink_color}"$internet_interface"${normal_color}
+	arr["english",282]="Selected internet interface: ${pink_color}$internet_interface${normal_color}"
+	arr["spanish",282]="Interfaz con internet seleccionada: ${pink_color}$internet_interface${normal_color}"
+	arr["french",282]="Interface internet sélectionnée: ${pink_color}$internet_interface${normal_color}"
+	arr["catalan",282]="Interfície amb internet seleccionada: ${pink_color}$internet_interface${normal_color}"
+	arr["portuguese",282]="Interface da internet selecionado: ${pink_color}$internet_interface${normal_color}"
+	arr["russian",282]="Выбранный Интернет интерфейс: ${pink_color}$internet_interface${normal_color}"
+	arr["greek",282]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: ${pink_color}$internet_interface${normal_color}"
 
-	arr["english",283]="Selected internet interface: "${pink_color}"None"${normal_color}
-	arr["spanish",283]="Interfaz con internet seleccionada: "${pink_color}"Ninguna"${normal_color}
-	arr["french",283]="Interface internet sélectionnée: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",283]="Interfície amb internet seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",283]="Interface da internet selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",283]="Выбранный Интернет интерфейс: "${pink_color}"Нет"${normal_color}
-	arr["greek",283]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: "${pink_color}"Καμία"${normal_color}
+	arr["english",283]="Selected internet interface: ${pink_color}None${normal_color}"
+	arr["spanish",283]="Interfaz con internet seleccionada: ${pink_color}Ninguna${normal_color}"
+	arr["french",283]="Interface internet sélectionnée: ${pink_color}Aucun${normal_color}"
+	arr["catalan",283]="Interfície amb internet seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",283]="Interface da internet selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",283]="Выбранный Интернет интерфейс: ${pink_color}Нет${normal_color}"
+	arr["greek",283]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: ${pink_color}Καμία${normal_color}"
 
-	arr["english",284]="Do you want to use this selected interface? "${normal_color}"[y/n]"
-	arr["spanish",284]="¿Quieres utilizar esta interfaz ya seleccionada? "${normal_color}"[y/n]"
-	arr["french",284]="Souhaitez-vous utiliser l'interface déjà sélectionnée? "${normal_color}"[y/n]"
-	arr["catalan",284]="¿Vols fer servir aquesta interfície ja seleccionada? "${normal_color}"[y/n]"
-	arr["portuguese",284]="Você quer usar essa interface selecionada? "${normal_color}"[y/n]"
-	arr["russian",284]="Вы хотите использовать этот выбранный интерфейс? "${normal_color}"[y/n]"
-	arr["greek",284]="Θέλετε να χρησιμοποιήσετε αυτή την επιλεγμένη διεπαφή; "${normal_color}"[y/n]"
+	arr["english",284]="Do you want to use this selected interface? ${normal_color}[y/n]"
+	arr["spanish",284]="¿Quieres utilizar esta interfaz ya seleccionada? ${normal_color}[y/n]"
+	arr["french",284]="Souhaitez-vous utiliser l'interface déjà sélectionnée? ${normal_color}[y/n]"
+	arr["catalan",284]="¿Vols fer servir aquesta interfície ja seleccionada? ${normal_color}[y/n]"
+	arr["portuguese",284]="Você quer usar essa interface selecionada? ${normal_color}[y/n]"
+	arr["russian",284]="Вы хотите использовать этот выбранный интерфейс? ${normal_color}[y/n]"
+	arr["greek",284]="Θέλετε να χρησιμοποιήσετε αυτή την επιλεγμένη διεπαφή; ${normal_color}[y/n]"
 
-	arr["english",285]="Selected interface with internet access detected during this session ["${normal_color}"$internet_interface"${blue_color}"]"
-	arr["spanish",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión ["${normal_color}"$internet_interface"${blue_color}"]"
-	arr["french",285]="Une interface avec accès à internet a déjà été sélectionné pour cette session ["${normal_color}"$internet_inferface"${blue_color}"]"
-	arr["catalan",285]="S'ha detectat que ja té una interfície amb accés a internet seleccionada en aquesta sessió ["${normal_color}"$internet_inferface"${blue_color}"]"
-	arr["portuguese",285]="Verificou-se que há uma interface com acesso à internet seleccionado nesta sessão ["${normal_color}"$internet_inferface"${blue_color}"]"
-	arr["russian",285]="Во время этой сессии обнаружен выбранный интерфейс с Интернет подключением ["${normal_color}"$internet_interface"${blue_color}"]"
-	arr["greek",285]="Η επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο εντοπίστηκε κατά τη διάρκεια της συνεδρίας ["${normal_color}"$internet_interface"${blue_color}"]"
+	arr["english",285]="Selected interface with internet access detected during this session [${normal_color}$internet_interface${blue_color}]"
+	arr["spanish",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión [${normal_color}$internet_interface${blue_color}]"
+	arr["french",285]="Une interface avec accès à internet a déjà été sélectionné pour cette session [${normal_color}$internet_inferface${blue_color}]"
+	arr["catalan",285]="S'ha detectat que ja té una interfície amb accés a internet seleccionada en aquesta sessió [${normal_color}$internet_inferface${blue_color}]"
+	arr["portuguese",285]="Verificou-se que há uma interface com acesso à internet seleccionado nesta sessão [${normal_color}$internet_inferface${blue_color}]"
+	arr["russian",285]="Во время этой сессии обнаружен выбранный интерфейс с Интернет подключением [${normal_color}$internet_interface${blue_color}]"
+	arr["greek",285]="Η επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο εντοπίστηκε κατά τη διάρκεια της συνεδρίας [${normal_color}$internet_interface${blue_color}]"
 
 	arr["english",286]="If you don't have a captured Handshake file from the target network you can get it now"
 	arr["spanish",286]="Si no tienes un fichero de Handshake capturado de la red objetivo puedes obtenerlo ahora"
@@ -2823,21 +2823,21 @@ function language_strings() {
 	arr["russian",293]="Атака Злой Двойник ТД с перехватывающим порталом"
 	arr["greek",293]="Επίθεση Evil Twin AP με captive portal"
 
-	arr["english",294]="Detecting resolution... Detected! : "${normal_color}"$resolution"
-	arr["spanish",294]="Detectando resolución... Detectada! : "${normal_color}"$resolution"
-	arr["french",294]="Détection de la résolution... Détectée! : "${normal_color}"$resolution"
-	arr["catalan",294]="Detectant resolució... Detectada! : "${normal_color}"$resolution"
-	arr["portuguese",294]="Detectando resolução... Detectada! : "${normal_color}"$resolution"
-	arr["russian",294]="Определение разрешения... Определено! : "${normal_color}"$resolution"
-	arr["greek",294]="Εντοπίζεται η ανάλυση... Εντοπίστηκε! : "${normal_color}"$resolution"
+	arr["english",294]="Detecting resolution... Detected! : ${normal_color}$resolution"
+	arr["spanish",294]="Detectando resolución... Detectada! : ${normal_color}$resolution"
+	arr["french",294]="Détection de la résolution... Détectée! : ${normal_color}$resolution"
+	arr["catalan",294]="Detectant resolució... Detectada! : ${normal_color}$resolution"
+	arr["portuguese",294]="Detectando resolução... Detectada! : ${normal_color}$resolution"
+	arr["russian",294]="Определение разрешения... Определено! : ${normal_color}$resolution"
+	arr["greek",294]="Εντοπίζεται η ανάλυση... Εντοπίστηκε! : ${normal_color}$resolution"
 
-	arr["english",295]="Detecting resolution... Can't be detected!, using standard : "${normal_color}"$resolution"
-	arr["spanish",295]="Detectando resolución... No se ha podido detectar!, usando estándar : "${normal_color}"$resolution"
-	arr["french",295]="Détection de la résolution... Impossible à détecter!, utilisation de la résolution : "${normal_color}"$resolution"
-	arr["catalan",295]="Detectant resolució... No s'ha pogut detectar!, usant estàndard : "${normal_color}"$resolution"
-	arr["portuguese",295]="Detectando resolução... Não foi possível detectar!, usando o padrão : "${normal_color}"$resolution"
-	arr["russian",295]="Определение разрешения... Не получается определить!, используется стандартное : "${normal_color}"$resolution"
-	arr["greek",295]="Εντοπίζεται η ανάλυση... Δεν μπορεί να εντοπιστεί!, χρησιμοποιείται η προεπιλεγμένη : "${normal_color}"$resolution"
+	arr["english",295]="Detecting resolution... Can't be detected!, using standard : ${normal_color}$resolution"
+	arr["spanish",295]="Detectando resolución... No se ha podido detectar!, usando estándar : ${normal_color}$resolution"
+	arr["french",295]="Détection de la résolution... Impossible à détecter!, utilisation de la résolution : ${normal_color}$resolution"
+	arr["catalan",295]="Detectant resolució... No s'ha pogut detectar!, usant estàndard : ${normal_color}$resolution"
+	arr["portuguese",295]="Detectando resolução... Não foi possível detectar!, usando o padrão : ${normal_color}$resolution"
+	arr["russian",295]="Определение разрешения... Не получается определить!, используется стандартное : ${normal_color}$resolution"
+	arr["greek",295]="Εντοπίζεται η ανάλυση... Δεν μπορεί να εντοπιστεί!, χρησιμοποιείται η προεπιλεγμένη : ${normal_color}$resolution"
 
 	arr["english",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press Enter on this window and the script will automatically close them all"
 	arr["spanish",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa Enter en esta ventana y el script cerrará automaticamente todo"
@@ -2887,21 +2887,21 @@ function language_strings() {
 	arr["russian",301]="Не смотря на то, что установлены все необходимые основные инструменты, ваша система использует airmon-zc вместо airmon-ng. Чтобы работа проходила должным образом, вам нужно установить lspci (pciutils), которых в данный момент у вас нет. Пожалуйста, установите их и запустите скрипт снова"
 	arr["greek",301]="Παρά του ότι είναι εγκατεστημένα όλα τα απραίτητα εργαλεία, το σύστημά σας χρησιμοποιεί το airmon-zc αντί το airmon-ng. Για να λειτουργήσει σωστά πρέπει να εγκαταστήσετε το lspci (pciutils) το οποίο δεν το έχετε αυτή τη στιγμή. Παρακαλώ, εγκαταστήστε το και ξανανοίξτε το script"
 
-	arr["english",302]="Do you want to store in a file the sniffed captured passwords? "${blue_color}"If you answer no (\"n\") they will be only shown on screen "${normal_color}"[y/n]"
-	arr["spanish",302]="¿Deseas guardar en un fichero las contraseñas obtenidas del sniffing? "${blue_color}"Si respondes que no (\"n\") solo se mostrarán por pantalla "${normal_color}"[y/n]"
-	arr["french",302]="Voulez vous garder les mots de passe capturés dans un fichier? "${blue_color}"Si vous répondez non (\"n\") les mots de passe s'afficheront à l'écran "${normal_color}"[y/n]"
-	arr["catalan",302]="¿Vols guardar en un fitxer les contrasenyes obtingudes del sniffing? "${blue_color}"Si respons que no (\"n\") només es mostraran per pantalla "${normal_color}"[y/n]"
-	arr["portuguese",302]="Você deseja armazenar em um arquivo as senhas obtidas com o sniffer? "${blue_color}"Se você responder não (\"n\") só será mostrado na tela "${normal_color}"[y/n]"
-	arr["russian",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? "${blue_color}"Если ваш ответ нет (\"n\") они будут только показаны на экране "${normal_color}"[y/n]"
-	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; "${blue_color}"Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη "${normal_color}"[y/n]"
+	arr["english",302]="Do you want to store in a file the sniffed captured passwords? ${blue_color}If you answer no (\"n\") they will be only shown on screen ${normal_color}[y/n]"
+	arr["spanish",302]="¿Deseas guardar en un fichero las contraseñas obtenidas del sniffing? ${blue_color}Si respondes que no (\"n\") solo se mostrarán por pantalla ${normal_color}[y/n]"
+	arr["french",302]="Voulez vous garder les mots de passe capturés dans un fichier? ${blue_color}Si vous répondez non (\"n\") les mots de passe s'afficheront à l'écran ${normal_color}[y/n]"
+	arr["catalan",302]="¿Vols guardar en un fitxer les contrasenyes obtingudes del sniffing? ${blue_color}Si respons que no (\"n\") només es mostraran per pantalla ${normal_color}[y/n]"
+	arr["portuguese",302]="Você deseja armazenar em um arquivo as senhas obtidas com o sniffer? ${blue_color}Se você responder não (\"n\") só será mostrado na tela ${normal_color}[y/n]"
+	arr["russian",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? ${blue_color}Если ваш ответ нет (\"n\") они будут только показаны на экране ${normal_color}[y/n]"
+	arr["greek",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; ${blue_color}Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη ${normal_color}[y/n]"
 
-	arr["english",303]="Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_ettercap_logpath]"
-	arr["spanish",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_ettercap_logpath]"
-	arr["french",303]="Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$default_ettercap_logpath]"
-	arr["catalan",303]="Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_ettercap_logpath]"
-	arr["portuguese",303]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$default_ettercap_logpath]"
-	arr["russian",303]="Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию "${normal_color}"[$default_ettercap_logpath]"
-	arr["greek",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$default_ettercap_logpath]"
+	arr["english",303]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$default_ettercap_logpath]"
+	arr["spanish",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$default_ettercap_logpath]"
+	arr["french",303]="Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$default_ettercap_logpath]"
+	arr["catalan",303]="Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$default_ettercap_logpath]"
+	arr["portuguese",303]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$default_ettercap_logpath]"
+	arr["russian",303]="Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию ${normal_color}[$default_ettercap_logpath]"
+	arr["greek",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$default_ettercap_logpath]"
 
 	arr["english",304]="Parsing sniffer log..."
 	arr["spanish",304]="Analizando log del sniffer.."
@@ -2919,13 +2919,13 @@ function language_strings() {
 	arr["russian",305]="В журнале сниффера паролей не обнаружено. Файл не будет сохранён"
 	arr["greek",305]="Δεν εντοπίστηκαν κωδικοί πρόσβασης στο log του sniffer. Το αρχείο δεν θα αποθηκευτεί"
 
-	arr["english",306]="Passwords captured by sniffer. File saved at "${normal_color}"[$ettercap_logpath]"
-	arr["spanish",306]="El sniffer ha capturado contraseñas. Fichero salvado en "${normal_color}"[$ettercap_logpath]"
-	arr["french",306]="Des mots de passe ont été capturé et ont été enregistré dans "${normal_color}"[$ettercap_logpath]"
-	arr["catalan",306]="El sniffer ha capturat contrasenyes. Fitxer desat a "${normal_color}"[$ettercap_logpath]"
-	arr["portuguese",306]="O sniffer capturou senhas. I arquivo salvo no "${normal_color}"[$ettercap_logpath]"
-	arr["russian",306]="Сниффер захватил пароли. Файл сохранён в "${normal_color}"[$ettercap_logpath]"
-	arr["greek",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο "${normal_color}"[$ettercap_logpath]"
+	arr["english",306]="Passwords captured by sniffer. File saved at ${normal_color}[$ettercap_logpath]"
+	arr["spanish",306]="El sniffer ha capturado contraseñas. Fichero salvado en ${normal_color}[$ettercap_logpath]"
+	arr["french",306]="Des mots de passe ont été capturé et ont été enregistré dans ${normal_color}[$ettercap_logpath]"
+	arr["catalan",306]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[$ettercap_logpath]"
+	arr["portuguese",306]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[$ettercap_logpath]"
+	arr["russian",306]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[$ettercap_logpath]"
+	arr["greek",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[$ettercap_logpath]"
 
 	arr["english",307]="Language changed to Russian"
 	arr["spanish",307]="Idioma cambiado a Ruso"
@@ -2951,21 +2951,21 @@ function language_strings() {
 	arr["russian",309]="Техника sslstrip не является надёжной. Эффект программы зависит от многих факторов и иногда она просто не работает. Некоторые браузеры, такие как Mozilla Firefox последних версий, не подвержены атаке"
 	arr["greek",309]="Η τεχνική sslstrip δεν είναι αλάνθαστη. Εξαρτάται από πολλούς παράγοντες και δεν δουλεύει πάντα. Κάποιοι περιηγητές ιστού όπως οι τελευταίες εκδόσεις του Mozilla Firefox δεν επηρεάζονται"
 
-	arr["english",310]="Handshake file selected: "${pink_color}"None"${normal_color}
-	arr["spanish",310]="Fichero de Handshake seleccionado: "${pink_color}"Ninguno"${normal_color}
-	arr["french",310]="Fichier Handshake sélectionné: "${pink_color}"Aucun"${normal_color}
-	arr["catalan",310]="Fitxer de Handshake seleccionat: "${pink_color}"Ningú"${normal_color}
-	arr["portuguese",310]="Arquivo de Handshake selecionado: "${pink_color}"Nenhum"${normal_color}
-	arr["russian",310]="Выбранный файл рукопожатия: "${pink_color}"Отсутствует"${normal_color}
-	arr["greek",310]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"Κανένα"${normal_color}
+	arr["english",310]="Handshake file selected: ${pink_color}None${normal_color}"
+	arr["spanish",310]="Fichero de Handshake seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["french",310]="Fichier Handshake sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["catalan",310]="Fitxer de Handshake seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["portuguese",310]="Arquivo de Handshake selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["russian",310]="Выбранный файл рукопожатия: ${pink_color}Отсутствует${normal_color}"
+	arr["greek",310]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}Κανένα${normal_color}"
 
-	arr["english",311]="Handshake file selected: "${pink_color}"$et_handshake"${normal_color}
-	arr["spanish",311]="Fichero de Handshake seleccionado: "${pink_color}"$et_handshake"${normal_color}
-	arr["french",311]="Fichier Handshake sélectionnée: "${pink_color}"$et_handshake"${normal_color}
-	arr["catalan",311]="Fitxer de Handshake seleccionat: "${pink_color}"$et_handshake"${normal_color}
-	arr["portuguese",311]="Arquivo de Handshake selecionado: "${pink_color}"$et_handshake"${normal_color}
-	arr["russian",311]="Выбранный файл рукопожатия: "${pink_color}"$et_handshake"${normal_color}
-	arr["greek",311]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"$et_handshake"${normal_color}
+	arr["english",311]="Handshake file selected: ${pink_color}$et_handshake${normal_color}"
+	arr["spanish",311]="Fichero de Handshake seleccionado: ${pink_color}$et_handshake${normal_color}"
+	arr["french",311]="Fichier Handshake sélectionnée: ${pink_color}$et_handshake${normal_color}"
+	arr["catalan",311]="Fitxer de Handshake seleccionat: ${pink_color}$et_handshake${normal_color}"
+	arr["portuguese",311]="Arquivo de Handshake selecionado: ${pink_color}$et_handshake${normal_color}"
+	arr["russian",311]="Выбранный файл рукопожатия: ${pink_color}$et_handshake${normal_color}"
+	arr["greek",311]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}$et_handshake${normal_color}"
 
 	arr["english",312]="No selected Handshake file detected during this session..."
 	arr["spanish",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -2975,21 +2975,21 @@ function language_strings() {
 	arr["russian",312]="Во время этой сессии выбранный файл рукопожатия не обнаружен..."
 	arr["greek",312]="Δεν εντοπίστηκε κανένα αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
-	arr["english",313]="Handshake selected file detected during this session ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["spanish",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["french",313]="Le fichier handshake suivant a été détecté comme étant sélectionné pour cette session ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["catalan",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["portuguese",313]="Um arquivo de Handshake foi capturado nesta sessão ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["russian",313]="Обнаружен файл рукопожатия, выбранный в этой сессии ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["greek",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["english",313]="Handshake selected file detected during this session [${normal_color}$et_handshake${blue_color}]"
+	arr["spanish",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [${normal_color}$et_handshake${blue_color}]"
+	arr["french",313]="Le fichier handshake suivant a été détecté comme étant sélectionné pour cette session [${normal_color}$et_handshake${blue_color}]"
+	arr["catalan",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió [${normal_color}$et_handshake${blue_color}]"
+	arr["portuguese",313]="Um arquivo de Handshake foi capturado nesta sessão [${normal_color}$et_handshake${blue_color}]"
+	arr["russian",313]="Обнаружен файл рукопожатия, выбранный в этой сессии [${normal_color}$et_handshake${blue_color}]"
+	arr["greek",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}$et_handshake${blue_color}]"
 
-	arr["english",314]="Handshake file selected: "${pink_color}"$enteredpath"${normal_color}
-	arr["spanish",314]="Fichero de Handshake seleccionado: "${pink_color}"$enteredpath"${normal_color}
-	arr["french",314]="Fichier Handshake sélectionné: "${pink_color}"$enteredpath"${normal_color}
-	arr["catalan",314]="Fitxer de Handshake seleccionat: "${pink_color}"$enteredpath"${normal_color}
-	arr["portuguese",314]="Arquivo Handshake selecionado: "${pink_color}"$enteredpath"${normal_color}
-	arr["russian",314]="Выбранный файл рукопожатия: "${pink_color}"$enteredpath"${normal_color}
-	arr["greek",314]="Επιλεγμένο αρχείο Χειραψίας: "${pink_color}"$enteredpath"${normal_color}
+	arr["english",314]="Handshake file selected: ${pink_color}$enteredpath${normal_color}"
+	arr["spanish",314]="Fichero de Handshake seleccionado: ${pink_color}$enteredpath${normal_color}"
+	arr["french",314]="Fichier Handshake sélectionné: ${pink_color}$enteredpath${normal_color}"
+	arr["catalan",314]="Fitxer de Handshake seleccionat: ${pink_color}$enteredpath${normal_color}"
+	arr["portuguese",314]="Arquivo Handshake selecionado: ${pink_color}$enteredpath${normal_color}"
+	arr["russian",314]="Выбранный файл рукопожатия: ${pink_color}$enteredpath${normal_color}"
+	arr["greek",314]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}$enteredpath${normal_color}"
 
 	arr["english",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["spanish",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -3007,13 +3007,13 @@ function language_strings() {
 	arr["russian",316]="Выполнение сканирования целей..."
 	arr["greek",316]="Πρόκειται να γίνει μία εξερεύνηση για έυρεση στόχων..."
 
-	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. "${green_color}"Type the path to store the file or press Enter to accept the default proposal "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. "${green_color}"Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["french",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. "${green_color}"Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["catalan",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. "${green_color}"Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["portuguese",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? "${green_color}"Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["russian",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. "${green_color}"Впишите путь до файла или нажмите Enter для принятия значения по умолчанию "${normal_color}"[$default_et_captive_portal_logpath]"
-	arr["greek",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. "${green_color}"Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή "${normal_color}"[$default_et_captive_portal_logpath]"
+	arr["english",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["spanish",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["french",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. ${green_color}Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["catalan",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. ${green_color}Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["portuguese",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? ${green_color}Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["russian",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. ${green_color}Впишите путь до файла или нажмите Enter для принятия значения по умолчанию ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["greek",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$default_et_captive_portal_logpath]"
 
 	arr["english",318]="Choose the language in which network clients will see the captive portal :"
 	arr["spanish",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
@@ -3039,13 +3039,13 @@ function language_strings() {
 	arr["russian",320]="7.  Греческий"
 	arr["greek",320]="7.  Ελληνικά"
 
-	arr["english",321]="Do you already have a captured Handshake file? "${blue_color}"Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now "${normal_color}"[y/n]"
-	arr["spanish",321]="¿Tienes ya un fichero de Handshake capturado? "${blue_color}"Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora "${normal_color}"[y/n]"
-	arr["french",321]="Avez-vous déjà un fichier contenant un Handshake capturé? "${blue_color}"Répondre oui (\"y\") pour en saisir la route o buien répondre non (\"n\") pour le capturer "${normal_color}"[y/n]"
-	arr["catalan",321]="¿Tens ja un fitxer de Handshake capturat? "${blue_color}"Respon si (\"y\") per introduir la ruta o respon no (\"n\") per capturar-ne un ara "${normal_color}"[y/n]"
-	arr["portuguese",321]="Você já tem um arquivo Handshake capturado? "${blue_color}"Responda sim (\"y\") para colocar o caminho do arquivo ou responda não (\"n\") para capturar um novo arquivo agora "${normal_color}"[y/n]"
-	arr["russian",321]="У вас уже есть захваченный файл рукопожатия? "${blue_color}"Ответьте Да (\"y\"), для ввода пути или ответьте Нет (\"n\"), для захвата нового рукопожатия "${normal_color}"[y/n]"
-	arr["greek",321]="Έχετε ήδη κάποιο αρχείο Χειραψίας; "${blue_color}"Απαντήστε ναι (\"y\") για να εισαγάγετε το μονοπάτι ή απαντήστε όχι (\"n\") για να καταγράψετε ένα νέο τώρα "${normal_color}"[y/n]"
+	arr["english",321]="Do you already have a captured Handshake file? ${blue_color}Answer yes (\"y\") to enter the path or answer no (\"n\") to capture a new one now ${normal_color}[y/n]"
+	arr["spanish",321]="¿Tienes ya un fichero de Handshake capturado? ${blue_color}Responde sí (\"y\") para introducir la ruta o responde no (\"n\") para capturar uno ahora ${normal_color}[y/n]"
+	arr["french",321]="Avez-vous déjà un fichier contenant un Handshake capturé? ${blue_color}Répondre oui (\"y\") pour en saisir la route o buien répondre non (\"n\") pour le capturer ${normal_color}[y/n]"
+	arr["catalan",321]="¿Tens ja un fitxer de Handshake capturat? ${blue_color}Respon si (\"y\") per introduir la ruta o respon no (\"n\") per capturar-ne un ara ${normal_color}[y/n]"
+	arr["portuguese",321]="Você já tem um arquivo Handshake capturado? ${blue_color}Responda sim (\"y\") para colocar o caminho do arquivo ou responda não (\"n\") para capturar um novo arquivo agora ${normal_color}[y/n]"
+	arr["russian",321]="У вас уже есть захваченный файл рукопожатия? ${blue_color}Ответьте Да (\"y\"), для ввода пути или ответьте Нет (\"n\"), для захвата нового рукопожатия ${normal_color}[y/n]"
+	arr["greek",321]="Έχετε ήδη κάποιο αρχείο Χειραψίας; ${blue_color}Απαντήστε ναι (\"y\") για να εισαγάγετε το μονοπάτι ή απαντήστε όχι (\"n\") για να καταγράψετε ένα νέο τώρα ${normal_color}[y/n]"
 
 	arr["english",322]="It has been checked that there is a Handshake of the chosen target network while checking the selected capture file. Script can continue..."
 	arr["spanish",322]="Se ha comprobado que existe un Handshake de la red elegida como objetivo durante la exploración en el fichero de captura seleccionado. El script puede continuar..."
@@ -3063,13 +3063,13 @@ function language_strings() {
 	arr["russian",323]="В файле захвата отсутствует рукопожатие выбранной сети"
 	arr["greek",323]="Δεν υπάρχει Χειραψία του επιλεγμένου δικτύου στο αρχείο καταγραφής"
 
-	arr["english",324]="Handshake file generated successfully at ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["spanish",324]="Fichero de Handshake generado con éxito en ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["french",324]="Fichier Handshake généré avec succès dans ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["catalan",324]="Fitxer de Handshake generat amb èxit a ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["portuguese",324]="Arquivo Handshake gerado com sucesso ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["russian",324]="Файл рукопожатия успешно создан в ["${normal_color}"$et_handshake"${blue_color}"]"
-	arr["greek",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο ["${normal_color}"$et_handshake"${blue_color}"]"
+	arr["english",324]="Handshake file generated successfully at [${normal_color}$et_handshake${blue_color}]"
+	arr["spanish",324]="Fichero de Handshake generado con éxito en [${normal_color}$et_handshake${blue_color}]"
+	arr["french",324]="Fichier Handshake généré avec succès dans [${normal_color}$et_handshake${blue_color}]"
+	arr["catalan",324]="Fitxer de Handshake generat amb èxit a [${normal_color}$et_handshake${blue_color}]"
+	arr["portuguese",324]="Arquivo Handshake gerado com sucesso [${normal_color}$et_handshake${blue_color}]"
+	arr["russian",324]="Файл рукопожатия успешно создан в [${normal_color}$et_handshake${blue_color}]"
+	arr["greek",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}$et_handshake${blue_color}]"
 
 	arr["english",325]="Wait. Be patient..."
 	arr["spanish",325]="Espera. Ten un poco de paciencia..."
@@ -3079,13 +3079,13 @@ function language_strings() {
 	arr["russian",325]="Пожалуйста, подождите..."
 	arr["greek",325]="Περιμένετε. Έχετε λίγη υπομονή..."
 
-	arr["english",326]="Are you going to use the interface with internet access method? "${pink_color}"If the answer is no (\"n\"), you'll need ${optional_tools_names[12]} installed to continue. Both will be checked "${normal_color}"[y/n]"
-	arr["spanish",326]="¿Vas a utilizar el método de la interfaz con acceso a internet? "${pink_color}"Si la respuesta es no (\"n\"), necesitarás tener instalado ${optional_tools_names[12]} para continuar. Ambas cosas se comprobarán "${normal_color}"[y/n]"
-	arr["french",326]="Allez-vous choisir la méthode qui emploie une interface connectée à internet? "${pink_color}"Si la réponse est non (\"n\"), vous m'avez besoin de ${optional_tools_names[12]}. Une vérication se fera à ce niveau avant de lancer l'une ou l'autre méthode"${normal_color}"[y/n]"
-	arr["catalan",326]="Vas a utilitzar el mètode de la interfície amb accés a internet? "${pink_color}"Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran "${normal_color}"[y/n]"
-	arr["portuguese",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? "${pink_color}"Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados "${normal_color}"[y/n]"
-	arr["russian",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? "${pink_color}"Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий "${normal_color}"[y/n]"
-	arr["greek",326]="Σκοπεύετε να χρησιμοποιήσετε την διεπαφή με την μέθοδο πρόσβασης στο διαδίκτυο; "${pink_color}"Αν απαντήσετε όχι (\"n\"), θα πρέπει να έχετε το ${optional_tools_names[12]} εγκατεστημένο για να συνεχίσετε. Και τα δύο ελέγχονται "${normal_color}"[y/n]"
+	arr["english",326]="Are you going to use the interface with internet access method? ${pink_color}If the answer is no (\"n\"), you'll need ${optional_tools_names[12]} installed to continue. Both will be checked ${normal_color}[y/n]"
+	arr["spanish",326]="¿Vas a utilizar el método de la interfaz con acceso a internet? ${pink_color}Si la respuesta es no (\"n\"), necesitarás tener instalado ${optional_tools_names[12]} para continuar. Ambas cosas se comprobarán ${normal_color}[y/n]"
+	arr["french",326]="Allez-vous choisir la méthode qui emploie une interface connectée à internet? ${pink_color}Si la réponse est non (\"n\"), vous m'avez besoin de ${optional_tools_names[12]}. Une vérication se fera à ce niveau avant de lancer l'une ou l'autre méthode${normal_color}[y/n]"
+	arr["catalan",326]="Vas a utilitzar el mètode de la interfície amb accés a internet? ${pink_color}Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran ${normal_color}[y/n]"
+	arr["portuguese",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? ${pink_color}Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados ${normal_color}[y/n]"
+	arr["russian",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? ${pink_color}Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий ${normal_color}[y/n]"
+	arr["greek",326]="Σκοπεύετε να χρησιμοποιήσετε την διεπαφή με την μέθοδο πρόσβασης στο διαδίκτυο; ${pink_color}Αν απαντήσετε όχι (\"n\"), θα πρέπει να έχετε το ${optional_tools_names[12]} εγκατεστημένο για να συνεχίσετε. Και τα δύο ελέγχονται ${normal_color}[y/n]"
 
 	arr["english",327]="You don't have ${optional_tools_names[12]} installed. The script can't continue. Redirecting to main screen..."
 	arr["spanish",327]="No tienes instalado ${optional_tools_names[12]}. El script no puede continuar. Redirigiendo a la pantalla principal..."
@@ -3158,7 +3158,7 @@ function language_strings() {
 			echo -ne "${arr[$1,$2]}"
 		;;
 		"hint")
-			echo_brown "$hintvar "${pink_color}"${arr[$1,$2]}"
+			echo_brown "$hintvar ${pink_color}${arr[$1,$2]}"
 		;;
 		"separator")
 			generate_dynamic_line "${arr[$1,$2]}" "separator"
@@ -3715,7 +3715,7 @@ function select_internet_interface() {
 		if [ "$chipset" = "" ]; then
 			language_strings ${language} 245 "blue"
 		else
-			echo -e ${blue_color}"// "${yellow_color}"Chipset:"${normal_color}" $chipset"
+			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} $chipset"
 		fi
 	done
 
@@ -3777,7 +3777,7 @@ function select_interface() {
 		if [ "$chipset" = "" ]; then
 			language_strings ${language} 245 "blue"
 		else
-			echo -e ${blue_color}"// "${yellow_color}"Chipset:"${normal_color}" $chipset"
+			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} $chipset"
 		fi
 	done
 	print_hint ${current_menu}
@@ -7215,14 +7215,14 @@ function credits_option() {
 	echo
 	echo -e ${green_color}"                                                            .-\"\"\"\"-."
 	sleep 0.15 && echo -e "                                                           /        \ "
-	sleep 0.15 && echo -e ${yellow_color}"         ____        ____  __   _______                  "${green_color}" /_        _\ "
-	sleep 0.15 && echo -e ${yellow_color}"  ___  _/_   | _____/_   |/  |_ \   _  \_______         "${green_color}" // \      / \\\\\ "
-	sleep 0.15 && echo -e ${yellow_color}"  \  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \        "${green_color}" |\__\    /__/|"
-	sleep 0.15 && echo -e ${yellow_color}"   \   / |   |\___ \ |   ||  |  \  \_/   \  | \/         "${green_color}" \    ||    /"
-	sleep 0.15 && echo -e ${yellow_color}"    \_/  |___/____  >|___||__|   \_____  /__|             "${green_color}" \        /"
-	sleep 0.15 && echo -e ${yellow_color}"                  \/                   \/                  "${green_color}" \  __  / "
+	sleep 0.15 && echo -e "${yellow_color}         ____        ____  __   _______                  ${green_color} /_        _\ "
+	sleep 0.15 && echo -e "${yellow_color}  ___  _/_   | _____/_   |/  |_ \   _  \_______         ${green_color} // \      / \\\\\ "
+	sleep 0.15 && echo -e "${yellow_color}  \  \/ /|   |/  ___/|   \   __\/  /_\  \_  __ \        ${green_color} |\__\    /__/|"
+	sleep 0.15 && echo -e "${yellow_color}   \   / |   |\___ \ |   ||  |  \  \_/   \  | \/         ${green_color} \    ||    /"
+	sleep 0.15 && echo -e "${yellow_color}    \_/  |___/____  >|___||__|   \_____  /__|             ${green_color} \        /"
+	sleep 0.15 && echo -e "${yellow_color}                  \/                   \/                  ${green_color} \  __  / "
 	sleep 0.15 && echo -e "                                                             '.__.'"
-	sleep 0.15 && echo -e "                                                              |  |"${normal_color}
+	sleep 0.15 && echo -e "                                                              |  |${normal_color}"
 	echo
 	language_strings ${language} 75 "blue"
 	echo
@@ -7324,7 +7324,7 @@ function exit_script_option() {
 			language_strings ${language} 167 "multiline"
 			${airmon} stop ${interface} > /dev/null 2>&1
 			time_loop
-			echo -e ${green_color}" Ok\r"${normal_color}
+			echo -e ${green_color}" Ok\r${normal_color}"
 		fi
 	fi
 
@@ -7333,7 +7333,7 @@ function exit_script_option() {
 		language_strings ${language} 168 "multiline"
 		eval ${networkmanager_cmd}" > /dev/null 2>&1"
 		time_loop
-		echo -e ${green_color}" Ok\r"${normal_color}
+		echo -e ${green_color}" Ok\r${normal_color}"
 	fi
 
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
@@ -7341,7 +7341,7 @@ function exit_script_option() {
 		language_strings ${language} 164 "multiline"
 		clean_tmpfiles
 		time_loop
-		echo -e ${green_color}" Ok\r"${normal_color}
+		echo -e ${green_color}" Ok\r${normal_color}"
 	fi
 
 	if [ ${routing_toclean} -eq 1 ]; then
@@ -7352,7 +7352,7 @@ function exit_script_option() {
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
 		time_loop
-		echo -e ${green_color}" Ok\r"${normal_color}
+		echo -e ${green_color}" Ok\r${normal_color}"
 	fi
 
 	if [ ${action_on_exit_taken} -eq 0 ]; then
@@ -7614,9 +7614,9 @@ function general_checkings() {
 
 	if [ "$distro" = "Unknown Linux" ]; then
 		non_linux_os_check
-		echo -e ${yellow_color}"$distro"${normal_color}
+		echo -e ${yellow_color}"$distro${normal_color}"
 	else
-		echo -e ${yellow_color}"$distro Linux"${normal_color}
+		echo -e ${yellow_color}"$distro Linux${normal_color}"
 	fi
 
 	check_compatibility
@@ -7643,7 +7643,7 @@ function check_root_permissions() {
 function print_known_distros() {
 
 	for i in "${known_compatible_distros[@]}"; do
-		echo -ne ${pink_color}"\"${i}\" "${normal_color}
+		echo -ne ${pink_color}"\"${i}\" ${normal_color}"
 	done
 	echo
 }
@@ -7662,12 +7662,12 @@ function check_compatibility() {
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
-			echo -ne ${red_color}" Error"${normal_color}
+			echo -ne ${red_color}" Error${normal_color}"
 			essential_toolsok=0
 			echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
 			echo -e "\r"
 		else
-			echo -e ${green_color}" Ok\r"${normal_color}
+			echo -e ${green_color}" Ok\r${normal_color}"
 		fi
 	done
 
@@ -7679,12 +7679,12 @@ function check_compatibility() {
 		echo -ne "$i"
 		time_loop
 		if ! hash ${i} 2> /dev/null; then
-			echo -ne ${red_color}" Error"${normal_color}
+			echo -ne ${red_color}" Error${normal_color}"
 			optional_toolsok=0
 			echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
 			echo -e "\r"
 		else
-			echo -e ${green_color}" Ok\r"${normal_color}
+			echo -e ${green_color}" Ok\r${normal_color}"
 			optional_tools[$i]=1
 		fi
 	done
@@ -7699,12 +7699,12 @@ function check_compatibility() {
 			echo -ne "$i"
 			time_loop
 			if ! hash ${i} 2> /dev/null; then
-				echo -ne ${red_color}" Error"${normal_color}
+				echo -ne ${red_color}" Error${normal_color}"
 				update_toolsok=0
 				echo -ne " (${possible_package_names[$language]} : ${possible_package_names[$i]})"
 				echo -e "\r"
 			else
-				echo -e ${green_color}" Ok\r"${normal_color}
+				echo -e ${green_color}" Ok\r${normal_color}"
 			fi
 		done
 	fi
@@ -7762,7 +7762,7 @@ function print_intro() {
 	sleep 0.15 && echo -e "           \__  \ |  \_  __ \/ ___\_/ __ \ / __ |/ __ |/  _ \ /    \\"
 	sleep 0.15 && echo -e "            / __ \|  ||  | \/ /_/  >  ___// /_/ / /_/ (  <_> )   |  \\"
 	sleep 0.15 && echo -e "           (____  /__||__|  \___  / \___  >____ \____ |\____/|___|  /"
-	sleep 0.15 && echo -e "                \/         /_____/      \/     \/    \/           \/"${normal_color}
+	sleep 0.15 && echo -e "                \/         /_____/      \/     \/    \/           \/${normal_color}"
 	echo
 	language_strings ${language} 228 "green"
 	print_animated_flying_saucer
@@ -8151,16 +8151,16 @@ function print_large_separator() {
 function check_pending_of_translation() {
 
 	if [[ "$1" =~ ^$escaped_pending_of_translation([[:space:]])(.*)$ ]]; then
-		text=${cyan_color}"$pending_of_translation "${2}"${BASH_REMATCH[2]}"
+		text=${cyan_color}"$pending_of_translation ${2}${BASH_REMATCH[2]}"
 		return 1
 	elif [[ "$1" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?($escaped_pending_of_translation)[[:space:]](.*) ]]; then
-		text=${cyan_color}"$pending_of_translation "${brown_color}"$hintvar "${pink_color}"${BASH_REMATCH[3]}"
+		text=${cyan_color}"$pending_of_translation ${brown_color}$hintvar ${pink_color}${BASH_REMATCH[3]}"
 		return 1
 	elif [[ "$1" =~ ^(\*+)[[:space:]]$escaped_pending_of_translation[[:space:]]([^\*]+)(\*+)$ ]]; then
-		text=${2}"${BASH_REMATCH[1]}"${cyan_color}" $pending_of_translation "${2}"${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+		text=${2}"${BASH_REMATCH[1]}${cyan_color} $pending_of_translation ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	elif [[ "$1" =~ ^(\-+)[[:space:]]\($escaped_pending_of_translation[[:space:]]([^\-]+)(\-+)$ ]]; then
-		text=${2}"${BASH_REMATCH[1]} ("${cyan_color}"$pending_of_translation "${2}"${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
+		text=${2}"${BASH_REMATCH[1]} (${cyan_color}$pending_of_translation ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	fi
 
@@ -8179,9 +8179,9 @@ function last_echo() {
 
 	check_pending_of_translation "$1" ${2}
 	if [ "$?" != "0" ]; then
-		echo -e ${2}"$text"${normal_color}
+		echo -e ${2}"$text${normal_color}"
 	else
-		echo -e ${2}"$*"${normal_color}
+		echo -e ${2}"$*${normal_color}"
 	fi
 }
 
