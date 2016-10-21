@@ -3553,7 +3553,7 @@ function language_menu() {
 	language_strings "${language}" 320
 	print_hint ${current_menu}
 
-	read language_selected
+	read -r language_selected
 	echo
 	case ${language_selected} in
 		1)
@@ -3734,7 +3734,7 @@ function select_internet_interface() {
 	language_strings "${language}" 331
 	print_hint ${current_menu}
 
-	read inet_iface
+	read -r inet_iface
 	if [ -z ${inet_iface} ]; then
 		invalid_internet_iface_selected
 	elif [[ ${inet_iface} -lt 1 ]] || [[ ${inet_iface} -gt ${option_counter_back} ]]; then
@@ -3781,7 +3781,7 @@ function select_interface() {
 	done
 	print_hint ${current_menu}
 
-	read iface
+	read -r iface
 	if [ -z ${iface} ]; then
 		invalid_iface_selected
 	elif [[ ${iface} < 1 ]] || [[ ${iface} > ${option_counter} ]]; then
@@ -3803,7 +3803,7 @@ function read_yesno() {
 
 	echo
 	language_strings "${language}" $1 "green"
-	read yesno
+	read -r yesno
 }
 
 function ask_yesno() {
@@ -3825,7 +3825,7 @@ function read_channel() {
 
 	echo
 	language_strings "${language}" 25 "green"
-	read channel
+	read -r channel
 }
 
 function ask_channel() {
@@ -3841,7 +3841,7 @@ function read_bssid() {
 
 	echo
 	language_strings "${language}" 27 "green"
-	read bssid
+	read -r bssid
 }
 
 function ask_bssid() {
@@ -3857,7 +3857,7 @@ function read_essid() {
 
 	echo
 	language_strings "${language}" 29 "green"
-	read essid
+	read -r essid
 }
 
 function ask_essid() {
@@ -4418,7 +4418,7 @@ function main_menu() {
 	language_strings "${language}" 61
 	print_hint ${current_menu}
 
-	read main_option
+	read -r main_option
 	case ${main_option} in
 		1)
 			select_interface
@@ -4482,7 +4482,7 @@ function evil_twin_attacks_menu() {
 	language_strings "${language}" 260
 	print_hint ${current_menu}
 
-	read et_option
+	read -r et_option
 	case ${et_option} in
 		1)
 			select_interface
@@ -4597,7 +4597,7 @@ function decrypt_menu() {
 	language_strings "${language}" 174
 	print_hint ${current_menu}
 
-	read decrypt_option
+	read -r decrypt_option
 	case ${decrypt_option} in
 		1)
 			contains_element "$decrypt_option" "${forbidden_options[@]}"
@@ -4848,7 +4848,7 @@ function select_wpa_bssid_target_from_captured_file() {
 		while [[ ${target_network_on_file} -lt 1 || ${target_network_on_file} -gt ${option_counter} ]]; do
 			echo
 			language_strings "${language}" 3 "green"
-			read target_network_on_file
+			read -r target_network_on_file
 		done
 
 	else
@@ -5055,7 +5055,7 @@ function set_captive_portal_language() {
 	language_strings "${language}" 320
 	print_hint ${current_menu}
 
-	read captive_portal_language_selected
+	read -r captive_portal_language_selected
 	echo
 	case ${captive_portal_language_selected} in
 		1)
@@ -5091,7 +5091,7 @@ function set_minlength() {
 	while [[ ! ${minlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
 		language_strings "${language}" 194 "green"
-		read minlength
+		read -r minlength
 	done
 }
 
@@ -5101,7 +5101,7 @@ function set_maxlength() {
 	while [[ ! ${maxlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
 		language_strings "${language}" 195 "green"
-		read maxlength
+		read -r maxlength
 	done
 }
 
@@ -5135,7 +5135,7 @@ function set_charset() {
 			language_strings "${language}" 206
 			language_strings "${language}" 207
 			print_hint ${current_menu}
-			read charset_option
+			read -r charset_option
 			case ${charset_option} in
 				1)
 					charset=${crunch_lowercasecharset}
@@ -5175,7 +5175,7 @@ function set_charset() {
 		"hashcat")
 			language_strings "${language}" 237
 			print_hint ${current_menu}
-			read charset_option
+			read -r charset_option
 			case ${charset_option} in
 				1)
 					charset="?l"
@@ -6140,7 +6140,7 @@ function handshake_tools_menu() {
 	language_strings "${language}" 123
 	print_hint ${current_menu}
 
-	read handshake_option
+	read -r handshake_option
 	case ${handshake_option} in
 		1)
 			select_interface
@@ -6242,7 +6242,7 @@ function dos_attacks_menu() {
 	language_strings "${language}" 59
 	print_hint ${current_menu}
 
-	read dos_option
+	read -r dos_option
 	case ${dos_option} in
 		1)
 			select_interface
@@ -6613,7 +6613,7 @@ function attack_handshake_menu() {
 	language_strings "${language}" 147
 	print_hint ${current_menu}
 
-	read attack_handshake_option
+	read -r attack_handshake_option
 	case ${attack_handshake_option} in
 		1)
 			contains_element "$attack_handshake_option" "${forbidden_options[@]}"
@@ -6723,7 +6723,7 @@ function explore_for_targets_option() {
 	rm -rf ${tmpdir}"nws.txt" > /dev/null 2>&1
 	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
 	i=0
-	while IFS=, read exp_mac exp_fts exp_lts exp_channel exp_speed exp_enc exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
+	while IFS=, read -r exp_mac exp_fts exp_lts exp_channel exp_speed exp_enc exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
 
 		chars_mac=${#exp_mac}
 		if [ ${chars_mac} -ge 17 ]; then
@@ -6764,7 +6764,7 @@ function select_target() {
 	language_strings "${language}" 69 "green"
 	print_large_separator
 	i=0
-	while IFS=, read exp_mac exp_channel exp_power exp_essid exp_enc; do
+	while IFS=, read -r exp_mac exp_channel exp_power exp_essid exp_enc; do
 
 		i=$((i+1))
 
@@ -6826,7 +6826,7 @@ function select_target() {
 		language_strings "${language}" 71
 		print_large_separator
 		language_strings "${language}" 3 "green"
-		read selected_target_network
+		read -r selected_target_network
 	fi
 
 	while [[ ${selected_target_network} -lt 1 ]] || [[ ${selected_target_network} -gt ${i} ]]; do
@@ -6834,7 +6834,7 @@ function select_target() {
 		language_strings "${language}" 72 "yellow"
 		echo
 		language_strings "${language}" 3 "green"
-		read selected_target_network
+		read -r selected_target_network
 	done
 
 	essid=${network_names[$selected_target_network]}
@@ -7025,7 +7025,7 @@ function et_dos_menu() {
 	language_strings "${language}" 266
 	print_hint ${current_menu}
 
-	read et_dos_option
+	read -r et_dos_option
 	case ${et_dos_option} in
 		1)
 			contains_element "$et_dos_option" "${forbidden_options[@]}"
