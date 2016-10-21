@@ -93,12 +93,12 @@ Is highly recommended to have the internal tools installed. They improve functio
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
-*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :)<br/>
+*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :smile:<br/>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br/>
 *-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br/>
 
 Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
-*-Bash* <- They have no bash. It can be installed, this is not the real problem<br/>
+*-Bash* <- They have no bash. It can be installed, this is not the real problem again :sweat_smile:<br/>
 *-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs
 
 #Disclaimer
@@ -128,7 +128,7 @@ You can take the strings to translate from the code or you can ask me directly b
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
-Use shellcheck to search for errors and warnings on code. <- Thanks xtonousou for the tip :smile:<br/>
+Use shellcheck to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
@@ -145,7 +145,7 @@ Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations.<br/>
+**xtonousou** for Greek translations and the help received fixing code warnings.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
