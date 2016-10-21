@@ -1,5 +1,5 @@
 4.32
-Some code improvements and warnings removed
+Some code improvements and refactors. Warnings removed
 README.md small modifications
 
 4.31

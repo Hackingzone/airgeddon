@@ -3232,7 +3232,7 @@ function generate_dynamic_line() {
 	titlelength=${#titletext}
 	finaltitle=""
 
-	for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+	for ((i=0; i < (ncharstitle/2 - titlelength+(titlelength/2)); i++)); do
 		finaltitle="$finaltitle$titlechar"
 	done
 
@@ -3242,11 +3242,11 @@ function generate_dynamic_line() {
 		finaltitle="$finaltitle ($titletext) "
 	fi
 
-	for ((i=0; i < ($ncharstitle/2 - $titlelength+($titlelength/2)); i++)); do
+	for ((i=0; i < (ncharstitle/2 - titlelength+(titlelength/2)); i++)); do
 		finaltitle="$finaltitle$titlechar"
 	done
 
-	if [ $(($titlelength % 2)) -gt 0 ]; then
+	if [ $((titlelength % 2)) -gt 0 ]; then
 		finaltitle+="$titlechar"
 	fi
 
@@ -3299,7 +3299,7 @@ function check_to_set_monitor() {
 
 function check_monitor_enabled() {
 
-	mode=`iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2`
+	mode=$(iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${mode} != "Monitor" ]]; then
 		echo
@@ -3515,14 +3515,14 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	modemanaged=`iwconfig ${interface} 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1`
+	modemanaged=$(iwconfig ${interface} 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1)
 
 	if [[ ${modemanaged} = "Managed" ]]; then
 		ifacemode="Managed"
 		return 0
 	fi
 
-	modemonitor=`iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2`
+	modemonitor=$(iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${modemonitor} = "Monitor" ]]; then
 		ifacemode="Monitor"
@@ -3693,7 +3693,7 @@ function select_internet_interface() {
 		;;
 	esac
 
-	inet_ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v`
+	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v | grep ${interface} -v)
 
 	option_counter=0
 	for item in ${inet_ifaces}; do
@@ -3762,7 +3762,7 @@ function select_interface() {
 	current_menu="select_interface_menu"
 	language_strings "${language}" 24 "green"
 	print_simple_separator
-	ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v`
+	ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v)
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$[option_counter + 1]
@@ -4738,7 +4738,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	handshakefilesize=`wc -c "$filetoclean" 2> /dev/null | awk -F " " '{print$1}'`
+	handshakefilesize=$(wc -c "$filetoclean" 2> /dev/null | awk -F " " '{print$1}')
 	if [ ${handshakefilesize} -le 1024 ]; then
 		return 1
 	fi
@@ -4978,7 +4978,7 @@ function manage_hashcat_pot() {
 		ask_yesno 235
 		if [ ${yesno} = "y" ]; then
 
-			hashcat_potpath=`env | grep ^HOME | awk -F = '{print $2}'`
+			hashcat_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhashcat_potpath=${hashcat_potpath: -1}
 			if [ "$lastcharhashcat_potpath" != "/" ]; then
 				hashcat_potpath="$hashcat_potpath/"
@@ -5023,7 +5023,7 @@ function manage_ettercap_log() {
 
 function manage_captive_portal_log() {
 
-	default_et_captive_portal_logpath=`env | grep ^HOME | awk -F = '{print $2}'`
+	default_et_captive_portal_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
 	if [ "$lastcharetcaptiveportallogpath" != "/" ]; then
 		et_captive_portal_logpath="$default_et_captive_portal_logpath/"
@@ -5195,7 +5195,7 @@ function set_charset() {
 			esac
 
 			charset_tmp=${charset}
-			for ((i=0; i < $maxlength - 1; i++)); do
+			for ((i=0; i < maxlength - 1; i++)); do
 				charset+=${charset_tmp}
 			done
 		;;
@@ -5667,7 +5667,7 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-		date_counter=`date +%s`
+		date_counter=$(date +%s)
 		while true; do
 	EOF
 
@@ -5691,9 +5691,9 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-			hours=$(date -u --date @$((`date +%s` - ${date_counter})) +%H)
-			mins=$(date -u --date @$((`date +%s` - ${date_counter})) +%M)
-			secs=$(date -u --date @$((`date +%s` - ${date_counter})) +%S)
+			hours=$(date -u --date @$(($(date +%s) - ${date_counter})) +%H)
+			mins=$(date -u --date @$(($(date +%s) - ${date_counter})) +%M)
+			secs=$(date -u --date @$(($(date +%s) - ${date_counter})) +%S)
 			echo -e "\t$hours:$mins:$secs"
 	EOF
 
@@ -6573,7 +6573,7 @@ function attack_handshake_menu() {
 		kill ${processidcapture} &> /dev/null
 		if [ "$handshake_captured" = "y" ]; then
 
-			handshakepath=`env | grep ^HOME | awk -F = '{print $2}'`
+			handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhandshakepath=${handshakepath: -1}
 			if [ "$lastcharhandshakepath" != "/" ]; then
 				handshakepath="$handshakepath/"
@@ -6706,13 +6706,13 @@ function explore_for_targets_option() {
 	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
-	targetline=`cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}'`
-	targetline=`expr ${targetline} - 1`
+	targetline=$(cat ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
+	targetline=$(expr ${targetline} - 1)
 
 	head -n ${targetline} ${tmpdir}"nws-01.csv" &> ${tmpdir}"nws.csv"
 	tail -n +${targetline} ${tmpdir}"nws-01.csv" &> ${tmpdir}"clts.csv"
 
-	csvline=`wc -l ${tmpdir}"nws.csv" 2> /dev/null | awk '{print $1}'`
+	csvline=$(wc -l ${tmpdir}"nws.csv" 2> /dev/null | awk '{print $1}')
 	if [ ${csvline} -le 3 ]; then
 		echo
 		language_strings "${language}" 68 "yellow"
@@ -6727,28 +6727,28 @@ function explore_for_targets_option() {
 
 		chars_mac=${#exp_mac}
 		if [ ${chars_mac} -ge 17 ]; then
-			i=$(($i+1))
+			i=$((i+1))
 			if [[ ${exp_power} -lt 0 ]]; then
 				if [[ ${exp_power} -eq -1 ]]; then
 					exp_power=0
 				else
-					exp_power=`expr ${exp_power} + 100`
+					exp_power=$(expr ${exp_power} + 100)
 				fi
 			fi
 
-			exp_power=`echo ${exp_power} | awk '{gsub(/ /,""); print}'`
-			exp_essid=`expr substr "$exp_essid" 2 ${exp_idlength}`
+			exp_power=$(echo ${exp_power} | awk '{gsub(/ /,""); print}')
+			exp_essid=$(expr substr "$exp_essid" 2 ${exp_idlength})
 			if [ ${exp_channel} -gt 14 ] || [ ${exp_channel} -lt 1 ]; then
 				exp_channel=0
 			else
-				exp_channel=`echo ${exp_channel} | awk '{gsub(/ /,""); print}'`
+				exp_channel=$(echo ${exp_channel} | awk '{gsub(/ /,""); print}')
 			fi
 
 			if [ "$exp_essid" = "" ] || [ "$exp_channel" = "-1" ]; then
 				exp_essid="(Hidden Network)"
 			fi
 
-			exp_enc=`echo ${exp_enc} | awk '{print $1}'`
+			exp_enc=$(echo ${exp_enc} | awk '{print $1}')
 
 			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid,$exp_enc" >> ${tmpdir}"nws.txt"
 		fi
@@ -6766,7 +6766,7 @@ function select_target() {
 	i=0
 	while IFS=, read exp_mac exp_channel exp_power exp_essid exp_enc; do
 
-		i=$(($i+1))
+		i=$((i+1))
 
 		if [ ${i} -le 9 ]; then
 			sp1=" "
@@ -6793,7 +6793,7 @@ function select_target() {
 			sp4=""
 		fi
 
-		client=`cat ${tmpdir}"clts.csv" | grep ${exp_mac}`
+		client=$(cat ${tmpdir}"clts.csv" | grep ${exp_mac})
 		if [ "$client" != "" ]; then
 			client="*"
 			sp5=""
@@ -7365,7 +7365,7 @@ function exit_script_option() {
 function time_loop() {
 
 	echo -ne " "
-	for j in `seq 1 4`; do
+	for j in $(seq 1 4); do
 		echo -ne "."
 		sleep 0.035
 	done
@@ -7382,7 +7382,7 @@ function airmon_fix() {
 
 function iwconfig_fix() {
 
-	iwversion=`iwconfig --version | grep version | awk '{print $4}'`
+	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
 	iwcmdfix=""
 	if [ ${iwversion} -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
@@ -7632,7 +7632,7 @@ function general_checkings() {
 
 function check_root_permissions() {
 
-	user=`whoami`
+	user=$(whoami)
 
 	if [ "$user" != "root" ]; then
 		language_strings "${language}" 223 "yellow"
@@ -7811,11 +7811,11 @@ function print_animated_flying_saucer() {
 
 	echo -e "\033[s"
 
-	for i in `seq 1 8`; do
-		if [ ${i} -le 4 ]; then
+	for i in $(seq 1 8); do
+		if [ "${i}" -le 4 ]; then
 			saucer_frame=${i}
 		else
-			saucer_frame=$(($i-4))
+			saucer_frame=$((i-4))
 		fi
 		echo -e "\033[u"
 		flying_saucer ${saucer_frame}
@@ -7899,9 +7899,9 @@ function set_xsizes() {
 		xtotal=${xtotaltmp}
 	fi
 
-	xcentral_space=$(($xtotal * 5 / 100))
-	xhalf=$(($xtotal / 2))
-	xwindow=$(($xhalf - $xcentral_space))
+	xcentral_space=$((xtotal * 5 / 100))
+	xhalf=$((xtotal / 2))
+	xwindow=$((xhalf - xcentral_space))
 }
 
 function set_ysizes() {
@@ -7916,14 +7916,14 @@ function set_ysizes() {
 		ytotal=${ytotaltmp}
 	fi
 
-	ywindowone=$(($ytotal - $ywindow_edge_lines))
-	ywindowhalf=$(($ytotal / 2 - $ywindow_edge_lines))
-	ywindowthird=$(($ytotal / 3 - $ywindow_edge_lines))
+	ywindowone=$((ytotal - ywindow_edge_lines))
+	ywindowhalf=$((ytotal / 2 - ywindow_edge_lines))
+	ywindowthird=$((ytotal / 3 - ywindow_edge_lines))
 }
 
 function set_ypositions() {
 
-	middle_position=$(($resolution_y / 3 + $ywindow_edge_pixels))
+	middle_position=$((resolution_y / 3 + ywindow_edge_pixels))
 }
 
 function recalculate_windows_sizes() {
