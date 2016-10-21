@@ -2933,7 +2933,7 @@ function language_strings() {
 	arr["catalan",307]="Idioma canviat a Rus"
 	arr["portuguese",307]="Idioma alterado para Russo"
 	arr["russian",307]="Язык изменён на русский"
-	arr["greek",307]="Η γλάσσα άλλαξε σε Ρωσικά"
+	arr["greek",307]="Η γλώσσα άλλαξε σε Ρωσικά"
 
 	arr["english",308]="6.  Russian"
 	arr["spanish",308]="6.  Ruso"
@@ -3126,6 +3126,14 @@ function language_strings() {
 	arr["portuguese",331]="$option_counter_back.${spaceiface}Voltar ao menu de ataques Evil Twin"
 	arr["russian",331]="$option_counter_back.${spaceiface}Вернуться в меню атак Злой Двойник"
 	arr["greek",331]="$option_counter_back.${spaceiface}Επιστροφή στο μενού επιθέσεων Evil Twin"
+
+  arr["english",332]="Language changed to Greek"
+	arr["spanish",332]="$pending_of_translation Idioma cambiado a Griego"
+	arr["french",332]="$pending_of_translation Le script sera maintenant en Grec"
+	arr["catalan",332]="$pending_of_translation Idioma canviat a Grec"
+	arr["portuguese",332]="$pending_of_translation Idioma alterado para Grego"
+	arr["russian",332]="$pending_of_translation Язык изменён на Греческий"
+	arr["greek",332]="Η γλώσσα άλλαξε σε Ελληνικά"
 
 	case "$3" in
 		"yellow")
@@ -3615,7 +3623,7 @@ function language_menu() {
 				language_strings "${language}" 251 "yellow"
 			else
 				language="greek"
-				language_strings "${language}" 310 "yellow"
+				language_strings "${language}" 332 "yellow"
 			fi
 			language_strings "${language}" 115 "read"
 		;;
