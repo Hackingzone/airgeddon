@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.31"
+airgeddon_version="4.32"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -3264,14 +3264,14 @@ function check_to_set_managed() {
 	case "$ifacemode" in
 		"Managed")
 			echo
-			language_strings ${language} 0 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 0 "yellow"
+			language_strings "${language}" 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			language_strings ${language} 1 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 1 "yellow"
+			language_strings "${language}" 115 "read"
 			return 1
 		;;
 	esac
@@ -3284,14 +3284,14 @@ function check_to_set_monitor() {
 	case "$ifacemode" in
 		"Monitor")
 			echo
-			language_strings ${language} 10 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 10 "yellow"
+			language_strings "${language}" 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			language_strings ${language} 13 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 13 "yellow"
+			language_strings "${language}" 115 "read"
 			return 1
 		;;
 	esac
@@ -3304,8 +3304,8 @@ function check_monitor_enabled() {
 
 	if [[ ${mode} != "Monitor" ]]; then
 		echo
-		language_strings ${language} 14 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 14 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 	return 0
@@ -3399,7 +3399,7 @@ function prepare_et_interface() {
 				interface=${new_interface}
 			fi
 			echo
-			language_strings ${language} 15 "yellow"
+			language_strings "${language}" 15 "yellow"
 		fi
 	fi
 }
@@ -3407,7 +3407,7 @@ function prepare_et_interface() {
 function restore_et_interface() {
 
 	echo
-	language_strings ${language} 299 "blue"
+	language_strings "${language}" 299 "blue"
 
 	disable_rfkill
 
@@ -3443,7 +3443,7 @@ function managed_option() {
 
 	disable_rfkill
 
-	language_strings ${language} 17 "blue"
+	language_strings "${language}" 17 "blue"
 	ifconfig ${interface} up
 
 	new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
@@ -3455,12 +3455,12 @@ function managed_option() {
 			interface=${new_interface}
 		fi
 		echo
-		language_strings ${language} 15 "yellow"
+		language_strings "${language}" 15 "yellow"
 	fi
 
 	echo
-	language_strings ${language} 16 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 16 "yellow"
+	language_strings "${language}" 115 "read"
 }
 
 function monitor_option() {
@@ -3473,20 +3473,20 @@ function monitor_option() {
 
 	disable_rfkill
 
-	language_strings ${language} 18 "blue"
+	language_strings "${language}" 18 "blue"
 
 	ifconfig ${interface} up
 	iwconfig ${interface} rate 1M > /dev/null 2>&1
 
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings ${language} 20 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 20 "yellow"
+		language_strings "${language}" 115 "read"
 		return
 	fi
 
 	if [ ${check_kill_needed} -eq 1 ]; then
-		language_strings ${language} 19 "blue"
+		language_strings "${language}" 19 "blue"
 		${airmon} check kill > /dev/null 2>&1
 		nm_processes_killed=1
 	fi
@@ -3500,12 +3500,12 @@ function monitor_option() {
 			interface=${new_interface}
 		fi
 		echo
-		language_strings ${language} 21 "yellow"
+		language_strings "${language}" 21 "yellow"
 	fi
 
 	echo
-	language_strings ${language} 22 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 22 "yellow"
+	language_strings "${language}" 115 "read"
 }
 
 function check_interface_mode() {
@@ -3530,8 +3530,8 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	language_strings ${language} 23 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 23 "yellow"
+	language_strings "${language}" 115 "read"
 	exit_code=1
 	exit_script_option
 }
@@ -3539,19 +3539,19 @@ function check_interface_mode() {
 function language_menu() {
 
 	clear
-	language_strings ${language} 87 "title"
+	language_strings "${language}" 87 "title"
 	current_menu="language_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 81 "green"
+	language_strings "${language}" 81 "green"
 	print_simple_separator
-	language_strings ${language} 79
-	language_strings ${language} 80
-	language_strings ${language} 113
-	language_strings ${language} 116
-	language_strings ${language} 249
-	language_strings ${language} 308
-	language_strings ${language} 320
+	language_strings "${language}" 79
+	language_strings "${language}" 80
+	language_strings "${language}" 113
+	language_strings "${language}" 116
+	language_strings "${language}" 249
+	language_strings "${language}" 308
+	language_strings "${language}" 320
 	print_hint ${current_menu}
 
 	read language_selected
@@ -3559,66 +3559,66 @@ function language_menu() {
 	case ${language_selected} in
 		1)
 			if [ "$language" = "english" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="english"
-				language_strings ${language} 83 "yellow"
+				language_strings "${language}" 83 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		2)
 			if [ "$language" = "spanish" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="spanish"
-				language_strings ${language} 84 "yellow"
+				language_strings "${language}" 84 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		3)
 			if [ "$language" = "french" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="french"
-				language_strings ${language} 112 "yellow"
+				language_strings "${language}" 112 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		4)
 			if [ "$language" = "catalan" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="catalan"
-				language_strings ${language} 117 "yellow"
+				language_strings "${language}" 117 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		5)
 			if [ "$language" = "portuguese" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="portuguese"
-				language_strings ${language} 248 "yellow"
+				language_strings "${language}" 248 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		6)
 			if [ "$language" = "russian" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="russian"
-				language_strings ${language} 307 "yellow"
+				language_strings "${language}" 307 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		7)
 			if [ "$language" = "greek" ]; then
-				language_strings ${language} 251 "yellow"
+				language_strings "${language}" 251 "yellow"
 			else
 				language="greek"
-				language_strings ${language} 310 "yellow"
+				language_strings "${language}" 310 "yellow"
 			fi
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 		;;
 		*)
 			invalid_language_selected
@@ -3681,16 +3681,16 @@ function select_internet_interface() {
 	clear
 	case ${et_mode} in
 		"et_onlyap")
-			language_strings ${language} 270 "title"
+			language_strings "${language}" 270 "title"
 		;;
 		"et_sniffing")
-			language_strings ${language} 291 "title"
+			language_strings "${language}" 291 "title"
 		;;
 		"et_sniffing_sslstrip")
-			language_strings ${language} 292 "title"
+			language_strings "${language}" 292 "title"
 		;;
 		"et_captive_portal")
-			language_strings ${language} 293 "title"
+			language_strings "${language}" 293 "title"
 		;;
 	esac
 
@@ -3700,7 +3700,7 @@ function select_internet_interface() {
 	for item in ${inet_ifaces}; do
 
 		if [ ${option_counter} -eq 0 ]; then
-			language_strings ${language} 279 "green"
+			language_strings "${language}" 279 "green"
 			print_simple_separator
 		fi
 
@@ -3713,7 +3713,7 @@ function select_internet_interface() {
 		set_chipset ${item}
 		echo -ne "$option_counter.$spaceiface$item "
 		if [ "$chipset" = "" ]; then
-			language_strings ${language} 245 "blue"
+			language_strings "${language}" 245 "blue"
 		else
 			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} $chipset"
 		fi
@@ -3722,8 +3722,8 @@ function select_internet_interface() {
 	if [ ${option_counter} -eq 0 ]; then
 		return_to_et_main_menu=1
 		echo
-		language_strings ${language} 280 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 280 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
@@ -3732,7 +3732,7 @@ function select_internet_interface() {
 		spaceiface+=" "
 	fi
 	print_simple_separator
-	language_strings ${language} 331
+	language_strings "${language}" 331
 	print_hint ${current_menu}
 
 	read inet_iface
@@ -3759,9 +3759,9 @@ function select_internet_interface() {
 function select_interface() {
 
 	clear
-	language_strings ${language} 88 "title"
+	language_strings "${language}" 88 "title"
 	current_menu="select_interface_menu"
-	language_strings ${language} 24 "green"
+	language_strings "${language}" 24 "green"
 	print_simple_separator
 	ifaces=`ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk {'print $1'} | grep lo -v`
 	option_counter=0
@@ -3775,7 +3775,7 @@ function select_interface() {
 		set_chipset ${item}
 		echo -ne "$option_counter.$spaceiface$item "
 		if [ "$chipset" = "" ]; then
-			language_strings ${language} 245 "blue"
+			language_strings "${language}" 245 "blue"
 		else
 			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} $chipset"
 		fi
@@ -3803,7 +3803,7 @@ function select_interface() {
 function read_yesno() {
 
 	echo
-	language_strings ${language} $1 "green"
+	language_strings "${language}" $1 "green"
 	read yesno
 }
 
@@ -3825,7 +3825,7 @@ function ask_yesno() {
 function read_channel() {
 
 	echo
-	language_strings ${language} 25 "green"
+	language_strings "${language}" 25 "green"
 	read channel
 }
 
@@ -3835,13 +3835,13 @@ function ask_channel() {
 		read_channel
 	done
 	echo
-	language_strings ${language} 26 "blue"
+	language_strings "${language}" 26 "blue"
 }
 
 function read_bssid() {
 
 	echo
-	language_strings ${language} 27 "green"
+	language_strings "${language}" 27 "green"
 	read bssid
 }
 
@@ -3851,13 +3851,13 @@ function ask_bssid() {
 		read_bssid
 	done
 	echo
-	language_strings ${language} 28 "blue"
+	language_strings "${language}" 28 "blue"
 }
 
 function read_essid() {
 
 	echo
-	language_strings ${language} 29 "green"
+	language_strings "${language}" 29 "green"
 	read essid
 }
 
@@ -3867,27 +3867,27 @@ function ask_essid() {
 		read_essid
 	elif [ "$essid" = "(Hidden Network)" ]; then
 		echo
-		language_strings ${language} 30 "yellow"
+		language_strings "${language}" 30 "yellow"
 		read_essid
 	fi
 
 	echo
-	language_strings ${language} 31 "blue"
+	language_strings "${language}" 31 "blue"
 }
 
 function exec_mdk3deauth() {
 
 	echo
-	language_strings ${language} 89 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 89 "title"
+	language_strings "${language}" 32 "green"
 
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 	echo ${bssid} > ${tmpdir}"bl.txt"
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
 }
@@ -3895,14 +3895,14 @@ function exec_mdk3deauth() {
 function exec_aireplaydeauth() {
 
 	echo
-	language_strings ${language} 90 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 90 "title"
+	language_strings "${language}" 32 "green"
 
 	${airmon} start ${interface} ${channel} > /dev/null 2>&1
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
 }
@@ -3910,12 +3910,12 @@ function exec_aireplaydeauth() {
 function exec_wdsconfusion() {
 
 	echo
-	language_strings ${language} 91 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 91 "title"
+	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
 }
@@ -3923,12 +3923,12 @@ function exec_wdsconfusion() {
 function exec_beaconflood() {
 
 	echo
-	language_strings ${language} 92 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 92 "title"
+	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
 }
@@ -3936,12 +3936,12 @@ function exec_beaconflood() {
 function exec_authdos() {
 
 	echo
-	language_strings ${language} 93 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 93 "title"
+	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
 }
@@ -3949,12 +3949,12 @@ function exec_authdos() {
 function exec_michaelshutdown() {
 
 	echo
-	language_strings ${language} 94 "title"
-	language_strings ${language} 32 "green"
+	language_strings "${language}" 94 "title"
+	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings ${language} 33 "blue"
-	language_strings ${language} 4 "read"
+	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
@@ -3962,8 +3962,8 @@ function exec_michaelshutdown() {
 function mdk3_deauth_option() {
 
 	echo
-	language_strings ${language} 95 "title"
-	language_strings ${language} 35 "green"
+	language_strings "${language}" 95 "title"
+	language_strings "${language}" 35 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -3971,7 +3971,7 @@ function mdk3_deauth_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
 	ask_channel
@@ -3981,8 +3981,8 @@ function mdk3_deauth_option() {
 function aireplay_deauth_option() {
 
 	echo
-	language_strings ${language} 96 "title"
-	language_strings ${language} 36 "green"
+	language_strings "${language}" 96 "title"
+	language_strings "${language}" 36 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -3990,7 +3990,7 @@ function aireplay_deauth_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
 	ask_channel
@@ -4000,8 +4000,8 @@ function aireplay_deauth_option() {
 function wds_confusion_option() {
 
 	echo
-	language_strings ${language} 97 "title"
-	language_strings ${language} 37 "green"
+	language_strings "${language}" 97 "title"
+	language_strings "${language}" 37 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4009,7 +4009,7 @@ function wds_confusion_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_essid
 	ask_channel
@@ -4019,8 +4019,8 @@ function wds_confusion_option() {
 function beacon_flood_option() {
 
 	echo
-	language_strings ${language} 98 "title"
-	language_strings ${language} 38 "green"
+	language_strings "${language}" 98 "title"
+	language_strings "${language}" 38 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4028,7 +4028,7 @@ function beacon_flood_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_essid
 	ask_channel
@@ -4038,8 +4038,8 @@ function beacon_flood_option() {
 function auth_dos_option() {
 
 	echo
-	language_strings ${language} 99 "title"
-	language_strings ${language} 39 "green"
+	language_strings "${language}" 99 "title"
+	language_strings "${language}" 39 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4047,7 +4047,7 @@ function auth_dos_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
 	exec_authdos
@@ -4056,8 +4056,8 @@ function auth_dos_option() {
 function michael_shutdown_option() {
 
 	echo
-	language_strings ${language} 100 "title"
-	language_strings ${language} 40 "green"
+	language_strings "${language}" 100 "title"
+	language_strings "${language}" 40 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4065,7 +4065,7 @@ function michael_shutdown_option() {
 	fi
 
 	echo
-	language_strings ${language} 34 "yellow"
+	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
 	exec_michaelshutdown
@@ -4074,13 +4074,13 @@ function michael_shutdown_option() {
 function print_iface_selected() {
 
 	if [ -z "$interface" ]; then
-		language_strings ${language} 41 "blue"
+		language_strings "${language}" 41 "blue"
 		echo
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 115 "read"
 		select_interface
 	else
 		check_interface_mode
-		language_strings ${language} 42 "blue"
+		language_strings "${language}" 42 "blue"
 	fi
 }
 
@@ -4088,9 +4088,9 @@ function print_iface_internet_selected() {
 
 	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
 		if [ -z "$internet_interface" ]; then
-			language_strings ${language} 283 "blue"
+			language_strings "${language}" 283 "blue"
 		else
-			language_strings ${language} 282 "blue"
+			language_strings "${language}" 282 "blue"
 		fi
 	fi
 }
@@ -4098,19 +4098,19 @@ function print_iface_internet_selected() {
 function print_all_target_vars() {
 
 	if [ -n "$bssid" ]; then
-		language_strings ${language} 43 "blue"
+		language_strings "${language}" 43 "blue"
 		if [ -n "$channel" ]; then
-			language_strings ${language} 44 "blue"
+			language_strings "${language}" 44 "blue"
 		fi
 		if [ -n "$essid" ]; then
 			if [ "$essid" = "(Hidden Network)" ]; then
-				language_strings ${language} 45 "blue"
+				language_strings "${language}" 45 "blue"
 			else
-				language_strings ${language} 46 "blue"
+				language_strings "${language}" 46 "blue"
 			fi
 		fi
 		if [ -n "$enc" ]; then
-			language_strings ${language} 135 "blue"
+			language_strings "${language}" 135 "blue"
 		fi
 	fi
 }
@@ -4118,68 +4118,68 @@ function print_all_target_vars() {
 function print_all_target_vars_et() {
 
 	if [ -n "$bssid" ]; then
-		language_strings ${language} 43 "blue"
+		language_strings "${language}" 43 "blue"
 	else
-		language_strings ${language} 271 "blue"
+		language_strings "${language}" 271 "blue"
 	fi
 
 	if [ -n "$channel" ]; then
-		language_strings ${language} 44 "blue"
+		language_strings "${language}" 44 "blue"
 	else
-		language_strings ${language} 273 "blue"
+		language_strings "${language}" 273 "blue"
 	fi
 
 	if [ -n "$essid" ]; then
 		if [ "$essid" = "(Hidden Network)" ]; then
-			language_strings ${language} 45 "blue"
+			language_strings "${language}" 45 "blue"
 		else
-			language_strings ${language} 46 "blue"
+			language_strings "${language}" 46 "blue"
 		fi
 	else
-		language_strings ${language} 274 "blue"
+		language_strings "${language}" 274 "blue"
 	fi
 }
 
 function print_et_target_vars() {
 
 	if [ -n "$bssid" ]; then
-		language_strings ${language} 43 "blue"
+		language_strings "${language}" 43 "blue"
 	else
-		language_strings ${language} 271 "blue"
+		language_strings "${language}" 271 "blue"
 	fi
 
 	if [ -n "$channel" ]; then
-		language_strings ${language} 44 "blue"
+		language_strings "${language}" 44 "blue"
 	else
-		language_strings ${language} 273 "blue"
+		language_strings "${language}" 273 "blue"
 	fi
 
 	if [ -n "$essid" ]; then
 		if [ "$essid" = "(Hidden Network)" ]; then
-			language_strings ${language} 45 "blue"
+			language_strings "${language}" 45 "blue"
 		else
-			language_strings ${language} 46 "blue"
+			language_strings "${language}" 46 "blue"
 		fi
 	else
-		language_strings ${language} 274 "blue"
+		language_strings "${language}" 274 "blue"
 	fi
 
 	if [ "$current_menu" != "et_dos_menu" ]; then
 		if [ -n "$et_dos_attack" ]; then
-			language_strings ${language} 272 "blue"
+			language_strings "${language}" 272 "blue"
 		else
-			language_strings ${language} 278 "blue"
+			language_strings "${language}" 278 "blue"
 		fi
 	fi
 
 	if [ "$et_mode" = "et_captive_portal" ]; then
 		if [ -n "$et_handshake" ]; then
-			language_strings ${language} 311 "blue"
+			language_strings "${language}" 311 "blue"
 		else
 			if [ -n "$enteredpath" ]; then
-				language_strings ${language} 314 "blue"
+				language_strings "${language}" 314 "blue"
 			else
-				language_strings ${language} 310 "blue"
+				language_strings "${language}" 310 "blue"
 			fi
 		fi
 	fi
@@ -4188,23 +4188,23 @@ function print_et_target_vars() {
 function print_decrypt_vars() {
 
 	if [ -n "$bssid" ]; then
-		language_strings ${language} 43 "blue"
+		language_strings "${language}" 43 "blue"
 	else
-		language_strings ${language} 185 "blue"
+		language_strings "${language}" 185 "blue"
 	fi
 
 	if [ -n "$enteredpath" ]; then
-		language_strings ${language} 173 "blue"
+		language_strings "${language}" 173 "blue"
 	else
-		language_strings ${language} 177 "blue"
+		language_strings "${language}" 177 "blue"
 	fi
 
 	if [ -n "$dictionary" ]; then
-		language_strings ${language} 182 "blue"
+		language_strings "${language}" 182 "blue"
 	fi
 
 	if [ -n "$rules" ]; then
-		language_strings ${language} 243 "blue"
+		language_strings "${language}" 243 "blue"
 	fi
 }
 
@@ -4392,31 +4392,31 @@ function print_hint() {
 	esac
 
 	print_simple_separator
-	language_strings ${language} ${strtoprint} "hint"
+	language_strings "${language}" "${strtoprint}" "hint"
 	print_simple_separator
 }
 
 function main_menu() {
 
 	clear
-	language_strings ${language} 101 "title"
+	language_strings "${language}" 101 "title"
 	current_menu="main_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 48
-	language_strings ${language} 55
-	language_strings ${language} 56
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
 	print_simple_separator
-	language_strings ${language} 118
-	language_strings ${language} 119
-	language_strings ${language} 169
-	language_strings ${language} 252
+	language_strings "${language}" 118
+	language_strings "${language}" 119
+	language_strings "${language}" 169
+	language_strings "${language}" 252
 	print_simple_separator
-	language_strings ${language} 60
-	language_strings ${language} 78
-	language_strings ${language} 61
+	language_strings "${language}" 60
+	language_strings "${language}" 78
+	language_strings "${language}" 61
 	print_hint ${current_menu}
 
 	read main_option
@@ -4462,25 +4462,25 @@ function main_menu() {
 function evil_twin_attacks_menu() {
 
 	clear
-	language_strings ${language} 253 "title"
+	language_strings "${language}" 253 "title"
 	current_menu="evil_twin_attacks_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 48
-	language_strings ${language} 55
-	language_strings ${language} 56
-	language_strings ${language} 49
-	language_strings ${language} 255 "separator"
-	language_strings ${language} 256 et_onlyap_dependencies[@]
-	language_strings ${language} 257 "separator"
-	language_strings ${language} 259 et_sniffing_dependencies[@]
-	language_strings ${language} 261 et_sniffing_sslstrip_dependencies[@]
-	language_strings ${language} 262 "separator"
-	language_strings ${language} 263 et_captive_portal_dependencies[@]
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 255 "separator"
+	language_strings "${language}" 256 et_onlyap_dependencies[@]
+	language_strings "${language}" 257 "separator"
+	language_strings "${language}" 259 et_sniffing_dependencies[@]
+	language_strings "${language}" 261 et_sniffing_sslstrip_dependencies[@]
+	language_strings "${language}" 262 "separator"
+	language_strings "${language}" 263 et_captive_portal_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 260
+	language_strings "${language}" 260
 	print_hint ${current_menu}
 
 	read et_option
@@ -4508,8 +4508,8 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings ${language} 281 "yellow"
-					language_strings ${language} 115 "read"
+					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
@@ -4524,8 +4524,8 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings ${language} 281 "yellow"
-					language_strings ${language} 115 "read"
+					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
@@ -4540,8 +4540,8 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings ${language} 281 "yellow"
-					language_strings ${language} 115 "read"
+					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
@@ -4554,8 +4554,8 @@ function evil_twin_attacks_menu() {
 				if [ "$?" = "0" ]; then
 					et_mode="et_captive_portal"
 					echo
-					language_strings ${language} 316 "yellow"
-					language_strings ${language} 115 "read"
+					language_strings "${language}" 316 "yellow"
+					language_strings "${language}" 115 "read"
 
 					explore_for_targets_option
 					if [ "$?" = "0" ]; then
@@ -4563,8 +4563,8 @@ function evil_twin_attacks_menu() {
 					fi
 				else
 					echo
-					language_strings ${language} 281 "yellow"
-					language_strings ${language} 115 "read"
+					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
@@ -4582,20 +4582,20 @@ function evil_twin_attacks_menu() {
 function decrypt_menu() {
 
 	clear
-	language_strings ${language} 170 "title"
+	language_strings "${language}" 170 "title"
 	current_menu="decrypt_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
-	language_strings ${language} 176 "separator"
-	language_strings ${language} 172
-	language_strings ${language} 175 aircrack_attacks_dependencies[@]
-	language_strings ${language} 229 "separator"
-	language_strings ${language} 230 hashcat_attacks_dependencies[@]
-	language_strings ${language} 231 hashcat_attacks_dependencies[@]
-	language_strings ${language} 232 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 47 "green"
+	language_strings "${language}" 176 "separator"
+	language_strings "${language}" 172
+	language_strings "${language}" 175 aircrack_attacks_dependencies[@]
+	language_strings "${language}" 229 "separator"
+	language_strings "${language}" 230 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 231 hashcat_attacks_dependencies[@]
+	language_strings "${language}" 232 hashcat_attacks_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 174
+	language_strings "${language}" 174
 	print_hint ${current_menu}
 
 	read decrypt_option
@@ -4657,7 +4657,7 @@ function ask_rules() {
 	while [[ "$validpath" != "0" ]]; do
 		read_path "rules"
 	done
-	language_strings ${language} 241 "yellow"
+	language_strings "${language}" 241 "yellow"
 }
 
 function ask_dictionary() {
@@ -4666,7 +4666,7 @@ function ask_dictionary() {
 	while [[ "$validpath" != "0" ]]; do
 		read_path "dictionary"
 	done
-	language_strings ${language} 181 "yellow"
+	language_strings "${language}" 181 "yellow"
 }
 
 function ask_capture_file() {
@@ -4675,14 +4675,14 @@ function ask_capture_file() {
 	while [[ "$validpath" != "0" ]]; do
 		read_path "targetfilefordecrypt"
 	done
-	language_strings ${language} 189 "yellow"
+	language_strings "${language}" 189 "yellow"
 }
 
 function manage_asking_for_captured_file() {
 
 	if [ -n "$enteredpath" ]; then
 		echo
-		language_strings ${language} 186 "blue"
+		language_strings "${language}" 186 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "n" ]; then
 			ask_capture_file
@@ -4696,7 +4696,7 @@ function manage_asking_for_dictionary_file() {
 
 	if [ -n "$dictionary" ]; then
 		echo
-		language_strings ${language} 183 "blue"
+		language_strings "${language}" 183 "blue"
 		ask_yesno 184
 		if [ ${yesno} = "n" ]; then
 			ask_dictionary
@@ -4710,7 +4710,7 @@ function manage_asking_for_rule_file() {
 
 	if [ -n "$rules" ]; then
 		echo
-		language_strings ${language} 239 "blue"
+		language_strings "${language}" 239 "blue"
 		ask_yesno 240
 		if [ ${yesno} = "n" ]; then
 			ask_rules
@@ -4759,11 +4759,11 @@ function check_bssid_in_captured_file() {
 	echo
 	if [ "$nets_from_file" = "" ]; then
 		if [ ! -f "$1" ]; then
-			language_strings ${language} 161 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 161 "yellow"
+			language_strings "${language}" 115 "read"
 		else
-			language_strings ${language} 216 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 216 "yellow"
+			language_strings "${language}" 115 "read"
 		fi
 		return 1
 	fi
@@ -4779,13 +4779,13 @@ function check_bssid_in_captured_file() {
 
 	for targetbssid in ${bssids_detected[@]}; do
 		if [ "$bssid" = "$targetbssid" ]; then
-			language_strings ${language} 322 "yellow"
+			language_strings "${language}" 322 "yellow"
 			return 0
 		fi
 	done
 
-	language_strings ${language} 323 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 323 "yellow"
+	language_strings "${language}" 115 "read"
 	return 1
 }
 
@@ -4795,8 +4795,8 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	echo
 	if [ "$nets_from_file" = "" ]; then
-		language_strings ${language} 216 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 216 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
@@ -4811,7 +4811,7 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	for targetbssid in ${bssids_detected[@]}; do
 		if [ "$bssid" = "$targetbssid" ]; then
-			language_strings ${language} 192 "blue"
+			language_strings "${language}" 192 "blue"
 			ask_yesno 193
 
 			if [ ${yesno} = "y" ]; then
@@ -4848,7 +4848,7 @@ function select_wpa_bssid_target_from_captured_file() {
 		target_network_on_file=0
 		while [[ ${target_network_on_file} -lt 1 || ${target_network_on_file} -gt ${option_counter} ]]; do
 			echo
-			language_strings ${language} 3 "green"
+			language_strings "${language}" 3 "green"
 			read target_network_on_file
 		done
 
@@ -4860,7 +4860,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	bssid=${bssids_detected["$target_network_on_file"]}
 
 	if [ ${bssid_autoselected} -eq 1 ]; then
-		language_strings ${language} 217 "blue"
+		language_strings "${language}" 217 "blue"
 	fi
 
 	return 0
@@ -4878,8 +4878,8 @@ function aircrack_dictionary_attack_option() {
 	manage_asking_for_dictionary_file
 
 	echo
-	language_strings ${language} 190 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
 	exec_aircrack_dictionary_attack
 }
 
@@ -4900,10 +4900,10 @@ function aircrack_bruteforce_attack_option() {
 	done
 
 	echo
-	language_strings ${language} 209 "blue"
+	language_strings "${language}" 209 "blue"
 	echo
-	language_strings ${language} 190 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
 	exec_aircrack_bruteforce_attack
 }
 
@@ -4919,8 +4919,8 @@ function hashcat_dictionary_attack_option() {
 	manage_asking_for_dictionary_file
 
 	echo
-	language_strings ${language} 190 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
 	exec_hashcat_dictionary_attack
 	manage_hashcat_pot
 }
@@ -4942,10 +4942,10 @@ function hashcat_bruteforce_attack_option() {
 	done
 
 	echo
-	language_strings ${language} 209 "blue"
+	language_strings "${language}" 209 "blue"
 	echo
-	language_strings ${language} 190 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
 	exec_hashcat_bruteforce_attack
 	manage_hashcat_pot
 }
@@ -4964,8 +4964,8 @@ function hashcat_rulebased_attack_option() {
 	manage_asking_for_rule_file
 
 	echo
-	language_strings ${language} 190 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 190 "yellow"
+	language_strings "${language}" 115 "read"
 	exec_hashcat_rulebased_attack
 	manage_hashcat_pot
 }
@@ -4975,7 +4975,7 @@ function manage_hashcat_pot() {
 	if [[ ${hashcat_output} =~ "All hashes have been recovered" ]]; then
 
 		echo
-		language_strings ${language} 234 "yellow"
+		language_strings "${language}" 234 "yellow"
 		ask_yesno 235
 		if [ ${yesno} = "y" ]; then
 
@@ -4994,8 +4994,8 @@ function manage_hashcat_pot() {
 
 			cp ${tmpdir}"hctmp.pot" "$potenteredpath"
 			echo
-			language_strings ${language} 236 "blue"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 236 "blue"
+			language_strings "${language}" 115 "read"
 		fi
 	fi
 }
@@ -5040,20 +5040,20 @@ function manage_captive_portal_log() {
 function set_captive_portal_language() {
 
 	clear
-	language_strings ${language} 293 "title"
+	language_strings "${language}" 293 "title"
 	print_iface_selected
 	print_et_target_vars
 	print_iface_internet_selected
 	echo
-	language_strings ${language} 318 "green"
+	language_strings "${language}" 318 "green"
 	print_simple_separator
-	language_strings ${language} 79
-	language_strings ${language} 80
-	language_strings ${language} 113
-	language_strings ${language} 116
-	language_strings ${language} 249
-	language_strings ${language} 308
-	language_strings ${language} 320
+	language_strings "${language}" 79
+	language_strings "${language}" 80
+	language_strings "${language}" 113
+	language_strings "${language}" 116
+	language_strings "${language}" 249
+	language_strings "${language}" 308
+	language_strings "${language}" 320
 	print_hint ${current_menu}
 
 	read captive_portal_language_selected
@@ -5091,7 +5091,7 @@ function set_minlength() {
 	minlength=0
 	while [[ ! ${minlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
-		language_strings ${language} 194 "green"
+		language_strings "${language}" 194 "green"
 		read minlength
 	done
 }
@@ -5101,7 +5101,7 @@ function set_maxlength() {
 	maxlength=0
 	while [[ ! ${maxlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
-		language_strings ${language} 195 "green"
+		language_strings "${language}" 195 "green"
 		read maxlength
 	done
 }
@@ -5118,23 +5118,23 @@ function set_minlength_and_maxlength() {
 function set_charset() {
 
 	clear
-	language_strings ${language} 238 "title"
-	language_strings ${language} 196 "green"
+	language_strings "${language}" 238 "title"
+	language_strings "${language}" 196 "green"
 	print_simple_separator
-	language_strings ${language} 197
-	language_strings ${language} 198
-	language_strings ${language} 199
-	language_strings ${language} 200
+	language_strings "${language}" 197
+	language_strings "${language}" 198
+	language_strings "${language}" 199
+	language_strings "${language}" 200
 
 	case ${1} in
 		"aircrack")
-			language_strings ${language} 201
-			language_strings ${language} 202
-			language_strings ${language} 203
-			language_strings ${language} 204
-			language_strings ${language} 205
-			language_strings ${language} 206
-			language_strings ${language} 207
+			language_strings "${language}" 201
+			language_strings "${language}" 202
+			language_strings "${language}" 203
+			language_strings "${language}" 204
+			language_strings "${language}" 205
+			language_strings "${language}" 206
+			language_strings "${language}" 207
 			print_hint ${current_menu}
 			read charset_option
 			case ${charset_option} in
@@ -5174,7 +5174,7 @@ function set_charset() {
 			esac
 		;;
 		"hashcat")
-			language_strings ${language} 237
+			language_strings "${language}" 237
 			print_hint ${current_menu}
 			read charset_option
 			case ${charset_option} in
@@ -5231,34 +5231,34 @@ function set_show_charset() {
 function exec_aircrack_bruteforce_attack() {
 
 	crunch ${minlength} ${maxlength} ${charset} | aircrack-ng -a 2 -b ${bssid} -w - "$enteredpath"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function exec_aircrack_dictionary_attack() {
 
 	aircrack-ng -a 2 -b ${bssid} -w "$dictionary" "$enteredpath"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
 	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "$dictionary" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_bruteforce_attack() {
 
 	convert_cap_to_hashcat_format
 	hashcat_output=$(hashcat -m 2500 -a 3 ${tmpdir}"hctmp.hccap" ${charset} --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
 	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "$dictionary" -r "$rules" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function exec_et_onlyap_attack() {
@@ -5273,8 +5273,8 @@ function exec_et_onlyap_attack() {
 	launch_control_window
 
 	echo
-	language_strings ${language} 298 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
 
 	kill_et_windows
 	restore_et_interface
@@ -5294,8 +5294,8 @@ function exec_et_sniffing_attack() {
 	launch_control_window
 
 	echo
-	language_strings ${language} 298 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
 
 	kill_et_windows
 	restore_et_interface
@@ -5319,8 +5319,8 @@ function exec_et_sniffing_sslstrip_attack() {
 	launch_control_window
 
 	echo
-	language_strings ${language} 298 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
 
 	kill_et_windows
 	restore_et_interface
@@ -5349,8 +5349,8 @@ function exec_et_captive_portal_attack() {
 	write_et_processes
 
 	echo
-	language_strings ${language} 298 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
 
 	kill_et_windows
 	restore_et_interface
@@ -6065,7 +6065,7 @@ function launch_sniffing() {
 function parse_ettercap_log() {
 
 	echo
-	language_strings ${language} 304 "blue"
+	language_strings "${language}" 304 "blue"
 
 	readarray -t CAPTUREDPASS < <(etterlog -L -p -i "${tmp_ettercaplog}.eci" 2> /dev/null | egrep -i "USER:|PASS:")
 
@@ -6087,14 +6087,14 @@ function parse_ettercap_log() {
 	done
 
 	if [ ${pass_counter} -eq 0 ]; then
-		language_strings ${language} 305 "yellow"
+		language_strings "${language}" 305 "yellow"
 	else
-		language_strings ${language} 306 "blue"
+		language_strings "${language}" 306 "blue"
 		cp "${tmpdir}parsed_file" "${ettercap_logpath}" > /dev/null 2>&1
 	fi
 
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function write_et_processes() {
@@ -6123,22 +6123,22 @@ function convert_cap_to_hashcat_format() {
 function handshake_tools_menu() {
 
 	clear
-	language_strings ${language} 120 "title"
+	language_strings "${language}" 120 "title"
 	current_menu="handshake_tools_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 48
-	language_strings ${language} 55
-	language_strings ${language} 56
-	language_strings ${language} 49
-	language_strings ${language} 124 "separator"
-	language_strings ${language} 121
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 124 "separator"
+	language_strings "${language}" 121
 	print_simple_separator
-	language_strings ${language} 122 clean_handshake_dependencies[@]
+	language_strings "${language}" 122 clean_handshake_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 123
+	language_strings "${language}" 123
 	print_hint ${current_menu}
 
 	read handshake_option
@@ -6182,12 +6182,12 @@ function exec_clean_handshake_file() {
 	echo
 	check_valid_file_to_clean ${filetoclean}
 	if [ "$?" != "0" ]; then
-		language_strings ${language} 159 "yellow"
+		language_strings "${language}" 159 "yellow"
 	else
 		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
-		language_strings ${language} 153 "yellow"
+		language_strings "${language}" 153 "yellow"
 	fi
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function clean_handshake_file_option() {
@@ -6196,10 +6196,10 @@ function clean_handshake_file_option() {
 	readpath=0
 
 	if [ -z "$enteredpath" ]; then
-		language_strings ${language} 150 "blue"
+		language_strings "${language}" 150 "blue"
 		readpath=1
 	else
-		language_strings ${language} 151 "blue"
+		language_strings "${language}" 151 "blue"
 		ask_yesno 152
 		if [ ${yesno} = "y" ]; then
 			filetoclean="$enteredpath"
@@ -6221,26 +6221,26 @@ function clean_handshake_file_option() {
 function dos_attacks_menu() {
 
 	clear
-	language_strings ${language} 102 "title"
+	language_strings "${language}" 102 "title"
 	current_menu="dos_attacks_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 48
-	language_strings ${language} 55
-	language_strings ${language} 56
-	language_strings ${language} 49
-	language_strings ${language} 50 "separator"
-	language_strings ${language} 51 mdk3_attack_dependencies[@]
-	language_strings ${language} 52 aireplay_attack_dependencies[@]
-	language_strings ${language} 53 mdk3_attack_dependencies[@]
-	language_strings ${language} 54 "separator"
-	language_strings ${language} 62 mdk3_attack_dependencies[@]
-	language_strings ${language} 63 mdk3_attack_dependencies[@]
-	language_strings ${language} 64 mdk3_attack_dependencies[@]
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 51 mdk3_attack_dependencies[@]
+	language_strings "${language}" 52 aireplay_attack_dependencies[@]
+	language_strings "${language}" 53 mdk3_attack_dependencies[@]
+	language_strings "${language}" 54 "separator"
+	language_strings "${language}" 62 mdk3_attack_dependencies[@]
+	language_strings "${language}" 63 mdk3_attack_dependencies[@]
+	language_strings "${language}" 64 mdk3_attack_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 59
+	language_strings "${language}" 59
 	print_hint ${current_menu}
 
 	read dos_option
@@ -6320,8 +6320,8 @@ function capture_handshake_evil_twin() {
 
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
 		echo
-		language_strings ${language} 137 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 137 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
@@ -6364,7 +6364,7 @@ function capture_handshake_evil_twin() {
 		handshakefilename="handshake-$bssid.cap"
 		handshakepath="$handshakepath$handshakefilename"
 
-		language_strings ${language} 162 "yellow"
+		language_strings "${language}" 162 "yellow"
 		validpath=1
 		while [[ "$validpath" != "0" ]]; do
 			read_path "writeethandshake"
@@ -6372,13 +6372,13 @@ function capture_handshake_evil_twin() {
 
 		cp "$tmpdir$standardhandshake_filename" ${et_handshake}
 		echo
-		language_strings ${language} 324 "blue"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 324 "blue"
+		language_strings "${language}" 115 "read"
 		return 0
 	else
 		echo
-		language_strings ${language} 146 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 146 "yellow"
+		language_strings "${language}" 115 "read"
 		return 2
 	fi
 }
@@ -6387,8 +6387,8 @@ function capture_handshake() {
 
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "$essid" = "(Hidden Network)" ]]; then
 		echo
-		language_strings ${language} 125 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 125 "yellow"
+		language_strings "${language}" 115 "read"
 		explore_for_targets_option
 	fi
 
@@ -6398,13 +6398,13 @@ function capture_handshake() {
 
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
 		echo
-		language_strings ${language} 137 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 137 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
-	language_strings ${language} 126 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 126 "yellow"
+	language_strings "${language}" 115 "read"
 
 	attack_handshake_menu "new"
 }
@@ -6412,7 +6412,7 @@ function capture_handshake() {
 function check_file_exists() {
 
 	if [[ ! -f "$1" || -z "$1" ]]; then
-		language_strings ${language} 161 "yellow"
+		language_strings "${language}" 161 "yellow"
 		return 1
 	fi
 	return 0
@@ -6423,13 +6423,13 @@ function validate_path() {
 	dirname=${1%/*}
 
 	if [[ ! -d "$dirname" ]] || [[ "$dirname" = "." ]]; then
-		language_strings ${language} 156 "yellow"
+		language_strings "${language}" 156 "yellow"
 		return 1
 	fi
 
 	check_write_permissions "$dirname"
 	if [ "$?" != "0" ]; then
-		language_strings ${language} 157 "yellow"
+		language_strings "${language}" 157 "yellow"
 		return 1
 	fi
 
@@ -6462,11 +6462,11 @@ function validate_path() {
 		esac
 
 		echo
-		language_strings ${language} 155 "yellow"
+		language_strings "${language}" 155 "yellow"
 		return 0
 	fi
 
-	language_strings ${language} 158 "yellow"
+	language_strings "${language}" 158 "yellow"
 	return 0
 }
 
@@ -6496,7 +6496,7 @@ function read_path() {
 	echo
 	case ${1} in
 		"handshake")
-			language_strings ${language} 148 "green"
+			language_strings "${language}" 148 "green"
 			read_and_clean_path "enteredpath"
 			if [ -z "$enteredpath" ]; then
 				enteredpath="$handshakepath"
@@ -6504,27 +6504,27 @@ function read_path() {
 			validate_path "$enteredpath" ${1}
 		;;
 		"cleanhandshake")
-			language_strings ${language} 154 "green"
+			language_strings "${language}" 154 "green"
 			read_and_clean_path "filetoclean"
 			check_file_exists "$filetoclean"
 		;;
 		"dictionary")
-			language_strings ${language} 180 "green"
+			language_strings "${language}" 180 "green"
 			read_and_clean_path "dictionary"
 			check_file_exists "$dictionary"
 		;;
 		"targetfilefordecrypt")
-			language_strings ${language} 188 "green"
+			language_strings "${language}" 188 "green"
 			read_and_clean_path "enteredpath"
 			check_file_exists "$enteredpath"
 		;;
 		"rules")
-			language_strings ${language} 242 "green"
+			language_strings "${language}" 242 "green"
 			read_and_clean_path "rules"
 			check_file_exists "$rules"
 		;;
 		"hashcatpot")
-			language_strings ${language} 233 "green"
+			language_strings "${language}" 233 "green"
 			read_and_clean_path "potenteredpath"
 			if [ -z "$potenteredpath" ]; then
 				potenteredpath="$hashcat_potpath"
@@ -6532,7 +6532,7 @@ function read_path() {
 			validate_path "$potenteredpath" ${1}
 		;;
 		"ettercaplog")
-			language_strings ${language} 303 "green"
+			language_strings "${language}" 303 "green"
 			read_and_clean_path "ettercap_logpath"
 			if [ -z "$ettercap_logpath" ]; then
 				ettercap_logpath="$default_ettercap_logpath"
@@ -6540,12 +6540,12 @@ function read_path() {
 			validate_path "$ettercap_logpath" ${1}
 		;;
 		"ethandshake")
-			language_strings ${language} 154 "green"
+			language_strings "${language}" 154 "green"
 			read_and_clean_path "et_handshake"
 			check_file_exists "$et_handshake"
 		;;
 		"writeethandshake")
-			language_strings ${language} 148 "green"
+			language_strings "${language}" 148 "green"
 			read_and_clean_path "et_handshake"
 			if [ -z "$et_handshake" ]; then
 				et_handshake="$handshakepath"
@@ -6553,7 +6553,7 @@ function read_path() {
 			validate_path "$et_handshake" ${1}
 		;;
 		"et_captive_portallog")
-			language_strings ${language} 317 "blue"
+			language_strings "${language}" 317 "blue"
 			read_and_clean_path "et_captive_portal_logpath"
 			if [ -z "$et_captive_portal_logpath" ]; then
 				et_captive_portal_logpath="$default_et_captive_portal_logpath"
@@ -6582,7 +6582,7 @@ function attack_handshake_menu() {
 			handshakefilename="handshake-$bssid.cap"
 			handshakepath="$handshakepath$handshakefilename"
 
-			language_strings ${language} 162 "yellow"
+			language_strings "${language}" 162 "yellow"
 			validpath=1
 			while [[ "$validpath" != "0" ]]; do
 				read_path "handshake"
@@ -6590,28 +6590,28 @@ function attack_handshake_menu() {
 
 			cp "$tmpdir$standardhandshake_filename" ${enteredpath}
 			echo
-			language_strings ${language} 149 "blue"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 149 "blue"
+			language_strings "${language}" 115 "read"
 			return
 		else
 			echo
-			language_strings ${language} 146 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 146 "yellow"
+			language_strings "${language}" 115 "read"
 		fi
 	fi
 
 	clear
-	language_strings ${language} 138 "title"
+	language_strings "${language}" 138 "title"
 	current_menu="attack_handshake_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 139 mdk3_attack_dependencies[@]
-	language_strings ${language} 140 aireplay_attack_dependencies[@]
-	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	language_strings "${language}" 139 mdk3_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk3_attack_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 147
+	language_strings "${language}" 147
 	print_hint ${current_menu}
 
 	read attack_handshake_option
@@ -6672,12 +6672,12 @@ function attack_handshake_menu() {
 
 function capture_handshake_window() {
 
-	language_strings ${language} 143 "blue"
+	language_strings "${language}" 143 "blue"
 	echo
-	language_strings ${language} 144 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 144 "yellow"
+	language_strings "${language}" 115 "read"
 	echo
-	language_strings ${language} 325 "blue"
+	language_strings "${language}" 325 "blue"
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
@@ -6688,8 +6688,8 @@ function capture_handshake_window() {
 function explore_for_targets_option() {
 
 	echo
-	language_strings ${language} 103 "title"
-	language_strings ${language} 65 "green"
+	language_strings "${language}" 103 "title"
+	language_strings "${language}" 65 "green"
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -6697,10 +6697,10 @@ function explore_for_targets_option() {
 	fi
 
 	echo
-	language_strings ${language} 66 "yellow"
+	language_strings "${language}" 66 "yellow"
 	echo
-	language_strings ${language} 67 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 67 "yellow"
+	language_strings "${language}" 115 "read"
 
 	tmpfiles_toclean=1
 	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
@@ -6716,8 +6716,8 @@ function explore_for_targets_option() {
 	csvline=`wc -l ${tmpdir}"nws.csv" 2> /dev/null | awk '{print $1}'`
 	if [ ${csvline} -le 3 ]; then
 		echo
-		language_strings ${language} 68 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 68 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
@@ -6761,8 +6761,8 @@ function explore_for_targets_option() {
 function select_target() {
 
 	clear
-	language_strings ${language} 104 "title"
-	language_strings ${language} 69 "green"
+	language_strings "${language}" 104 "title"
+	language_strings "${language}" 69 "green"
 	print_large_separator
 	i=0
 	while IFS=, read exp_mac exp_channel exp_power exp_essid exp_enc; do
@@ -6820,21 +6820,21 @@ function select_target() {
 
 	echo
 	if [ ${i} -eq 1 ]; then
-		language_strings ${language} 70 "yellow"
+		language_strings "${language}" 70 "yellow"
 		selected_target_network=1
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 115 "read"
 	else
-		language_strings ${language} 71
+		language_strings "${language}" 71
 		print_large_separator
-		language_strings ${language} 3 "green"
+		language_strings "${language}" 3 "green"
 		read selected_target_network
 	fi
 
 	while [[ ${selected_target_network} -lt 1 ]] || [[ ${selected_target_network} -gt ${i} ]]; do
 		echo
-		language_strings ${language} 72 "yellow"
+		language_strings "${language}" 72 "yellow"
 		echo
-		language_strings ${language} 3 "green"
+		language_strings "${language}" 3 "green"
 		read selected_target_network
 	done
 
@@ -6855,16 +6855,16 @@ function et_prerequisites() {
 
 	case ${et_mode} in
 		"et_onlyap")
-			language_strings ${language} 270 "title"
+			language_strings "${language}" 270 "title"
 		;;
 		"et_sniffing")
-			language_strings ${language} 291 "title"
+			language_strings "${language}" 291 "title"
 		;;
 		"et_sniffing_sslstrip")
-			language_strings ${language} 292 "title"
+			language_strings "${language}" 292 "title"
 		;;
 		"et_captive_portal")
-			language_strings ${language} 293 "title"
+			language_strings "${language}" 293 "title"
 		;;
 	esac
 
@@ -6875,9 +6875,9 @@ function et_prerequisites() {
 	echo
 
 	if [ "$et_mode" != "et_captive_portal" ]; then
-		language_strings ${language} 275 "blue"
+		language_strings "${language}" 275 "blue"
 		echo
-		language_strings ${language} 276 "yellow"
+		language_strings "${language}" 276 "yellow"
 		print_simple_separator
 		ask_yesno 277
 		if [ ${yesno} = "n" ]; then
@@ -6888,9 +6888,9 @@ function et_prerequisites() {
 
 	if [ "$et_mode" = "et_captive_portal" ]; then
 
-		language_strings ${language} 315 "yellow"
+		language_strings "${language}" 315 "yellow"
 		echo
-		language_strings ${language} 286 "pink"
+		language_strings "${language}" 286 "pink"
 		print_simple_separator
 		if [ ${retrying_handshake_capture} -eq 0 ]; then
 			ask_yesno 321
@@ -6922,13 +6922,13 @@ function et_prerequisites() {
 		fi
 
 		echo
-		language_strings ${language} 28 "blue"
+		language_strings "${language}" 28 "blue"
 
 		echo
-		language_strings ${language} 26 "blue"
+		language_strings "${language}" 26 "blue"
 
 		echo
-		language_strings ${language} 31 "blue"
+		language_strings "${language}" 31 "blue"
 	else
 		ask_bssid
 		ask_channel
@@ -6941,15 +6941,15 @@ function et_prerequisites() {
 
 	if [ "$et_mode" = "et_captive_portal" ]; then
 		manage_captive_portal_log
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 115 "read"
 		set_captive_portal_language
-		language_strings ${language} 319 "blue"
+		language_strings "${language}" 319 "blue"
 	fi
 
 	return_to_et_main_menu=1
 	echo
-	language_strings ${language} 296 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 296 "yellow"
+	language_strings "${language}" 115 "read"
 	prepare_et_interface
 
 	case ${et_mode} in
@@ -6974,16 +6974,16 @@ function ask_et_handshake_file() {
 	readpath=0
 
 	if [[ -z "$enteredpath" ]] && [[ -z "$et_handshake" ]]; then
-		language_strings ${language} 312 "blue"
+		language_strings "${language}" 312 "blue"
 		readpath=1
 	elif [[ -z "$enteredpath" ]] && [[ -n "$et_handshake" ]]; then
-		language_strings ${language} 313 "blue"
+		language_strings "${language}" 313 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "n" ]; then
 			readpath=1
 		fi
 	elif [[ -n "$enteredpath" ]] && [[ -z "$et_handshake" ]]; then
-		language_strings ${language} 151 "blue"
+		language_strings "${language}" 151 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "y" ]; then
 			et_handshake="$enteredpath"
@@ -6991,7 +6991,7 @@ function ask_et_handshake_file() {
 			readpath=1
 		fi
 	elif [[ -n "$enteredpath" ]] && [[ -n "$et_handshake" ]]; then
-		language_strings ${language} 313 "blue"
+		language_strings "${language}" 313 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "n" ]; then
 			readpath=1
@@ -7013,17 +7013,17 @@ function et_dos_menu() {
 	fi
 
 	clear
-	language_strings ${language} 265 "title"
+	language_strings "${language}" 265 "title"
 	current_menu="et_dos_menu"
 	initialize_menu_and_print_selections
 	echo
-	language_strings ${language} 47 "green"
+	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings ${language} 139 mdk3_attack_dependencies[@]
-	language_strings ${language} 140 aireplay_attack_dependencies[@]
-	language_strings ${language} 141 mdk3_attack_dependencies[@]
+	language_strings "${language}" 139 mdk3_attack_dependencies[@]
+	language_strings "${language}" 140 aireplay_attack_dependencies[@]
+	language_strings "${language}" 141 mdk3_attack_dependencies[@]
 	print_simple_separator
-	language_strings ${language} 266
+	language_strings "${language}" 266
 	print_hint ${current_menu}
 
 	read et_dos_option
@@ -7036,7 +7036,7 @@ function et_dos_menu() {
 				et_dos_attack="Mdk3"
 				if [ "$et_mode" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings ${language} 330 "blue"
+						language_strings "${language}" 330 "blue"
 						ask_yesno 326
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
@@ -7044,13 +7044,13 @@ function et_dos_menu() {
 								captive_portal_mode="dnsblackhole"
 								internet_interface_selected=1
 								echo
-								language_strings ${language} 329 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 329 "yellow"
+								language_strings "${language}" 115 "read"
 								et_prerequisites
 							else
 								echo
-								language_strings ${language} 327 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
 							fi
@@ -7083,7 +7083,7 @@ function et_dos_menu() {
 				et_dos_attack="Aireplay"
 				if [ "$et_mode" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings ${language} 330 "blue"
+						language_strings "${language}" 330 "blue"
 						ask_yesno 326
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
@@ -7091,13 +7091,13 @@ function et_dos_menu() {
 								captive_portal_mode="dnsblackhole"
 								internet_interface_selected=1
 								echo
-								language_strings ${language} 329 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 329 "yellow"
+								language_strings "${language}" 115 "read"
 								et_prerequisites
 							else
 								echo
-								language_strings ${language} 327 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
 							fi
@@ -7130,7 +7130,7 @@ function et_dos_menu() {
 				et_dos_attack="Wds Confusion"
 				if [ "$et_mode" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
-						language_strings ${language} 330 "blue"
+						language_strings "${language}" 330 "blue"
 						ask_yesno 326
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
@@ -7138,13 +7138,13 @@ function et_dos_menu() {
 								captive_portal_mode="dnsblackhole"
 								internet_interface_selected=1
 								echo
-								language_strings ${language} 329 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 329 "yellow"
+								language_strings "${language}" 115 "read"
 								et_prerequisites
 							else
 								echo
-								language_strings ${language} 327 "yellow"
-								language_strings ${language} 115 "read"
+								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
 							fi
@@ -7188,7 +7188,7 @@ function detect_internet_interface() {
 
 	if [ -n "$internet_interface" ]; then
 		echo
-		language_strings ${language} 285 "blue"
+		language_strings "${language}" 285 "blue"
 		ask_yesno 284
 		if [ ${yesno} = "n" ]; then
 			select_internet_interface
@@ -7208,10 +7208,10 @@ function detect_internet_interface() {
 function credits_option() {
 
 	clear
-	language_strings ${language} 105 "title"
-	language_strings ${language} 74 "pink"
+	language_strings "${language}" 105 "title"
+	language_strings "${language}" 74 "pink"
 	echo
-	language_strings ${language} 73 "blue"
+	language_strings "${language}" 73 "blue"
 	echo
 	echo -e ${green_color}"                                                            .-\"\"\"\"-."
 	sleep 0.15 && echo -e "                                                           /        \ "
@@ -7224,51 +7224,51 @@ function credits_option() {
 	sleep 0.15 && echo -e "                                                             '.__.'"
 	sleep 0.15 && echo -e "                                                              |  |${normal_color}"
 	echo
-	language_strings ${language} 75 "blue"
+	language_strings "${language}" 75 "blue"
 	echo
-	language_strings ${language} 85 "pink"
-	language_strings ${language} 107 "pink"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 85 "pink"
+	language_strings "${language}" 107 "pink"
+	language_strings "${language}" 115 "read"
 }
 
 function invalid_language_selected() {
 
 	echo
-	language_strings ${language} 82 "yellow"
+	language_strings "${language}" 82 "yellow"
 	echo
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 	echo
 	language_menu
 }
 
 function invalid_captive_portal_language_selected() {
 
-	language_strings ${language} 82 "yellow"
+	language_strings "${language}" 82 "yellow"
 	echo
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 	set_captive_portal_language
 }
 
 function forbidden_menu_option() {
 
 	echo
-	language_strings ${language} 220 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 220 "yellow"
+	language_strings "${language}" 115 "read"
 }
 
 function invalid_menu_option() {
 
 	echo
-	language_strings ${language} 76 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 76 "yellow"
+	language_strings "${language}" 115 "read"
 }
 
 function invalid_iface_selected() {
 
 	echo
-	language_strings ${language} 77 "yellow"
+	language_strings "${language}" 77 "yellow"
 	echo
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 	echo
 	select_interface
 }
@@ -7276,9 +7276,9 @@ function invalid_iface_selected() {
 function invalid_internet_iface_selected() {
 
 	echo
-	language_strings ${language} 77 "yellow"
+	language_strings "${language}" 77 "yellow"
 	echo
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 	echo
 	select_internet_interface
 }
@@ -7296,11 +7296,11 @@ function capture_traps() {
 				exit_code=1
 				exit_script_option
 			else
-				language_strings ${language} 224 "blue"
+				language_strings "${language}" 224 "blue"
 				if [ ${last_buffered_type1} = "read" ]; then
-					language_strings ${language} ${last_buffered_message2} ${last_buffered_type2}
+					language_strings "${language}" ${last_buffered_message2} ${last_buffered_type2}
 				else
-					language_strings ${language} ${last_buffered_message1} ${last_buffered_type1}
+					language_strings "${language}" ${last_buffered_message1} ${last_buffered_type1}
 				fi
 			fi
 		;;
@@ -7311,17 +7311,17 @@ function exit_script_option() {
 
 	action_on_exit_taken=0
 	echo
-	language_strings ${language} 106 "title"
-	language_strings ${language} 11 "blue"
+	language_strings "${language}" 106 "title"
+	language_strings "${language}" 11 "blue"
 
 	echo
-	language_strings ${language} 165 "blue"
+	language_strings "${language}" 165 "blue"
 
 	if [ "$ifacemode" = "Monitor" ]; then
 		ask_yesno 166
 		if [ ${yesno} = "n" ]; then
 			action_on_exit_taken=1
-			language_strings ${language} 167 "multiline"
+			language_strings "${language}" 167 "multiline"
 			${airmon} stop ${interface} > /dev/null 2>&1
 			time_loop
 			echo -e ${green_color}" Ok\r${normal_color}"
@@ -7330,7 +7330,7 @@ function exit_script_option() {
 
 	if [ ${nm_processes_killed} -eq 1 ]; then
 		action_on_exit_taken=1
-		language_strings ${language} 168 "multiline"
+		language_strings "${language}" 168 "multiline"
 		eval ${networkmanager_cmd}" > /dev/null 2>&1"
 		time_loop
 		echo -e ${green_color}" Ok\r${normal_color}"
@@ -7338,7 +7338,7 @@ function exit_script_option() {
 
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
 		action_on_exit_taken=1
-		language_strings ${language} 164 "multiline"
+		language_strings "${language}" 164 "multiline"
 		clean_tmpfiles
 		time_loop
 		echo -e ${green_color}" Ok\r${normal_color}"
@@ -7346,7 +7346,7 @@ function exit_script_option() {
 
 	if [ ${routing_toclean} -eq 1 ]; then
 		action_on_exit_taken=1
-		language_strings ${language} 297 "multiline"
+		language_strings "${language}" 297 "multiline"
 		clean_routing_rules
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
@@ -7356,7 +7356,7 @@ function exit_script_option() {
 	fi
 
 	if [ ${action_on_exit_taken} -eq 0 ]; then
-		language_strings ${language} 160 "yellow"
+		language_strings "${language}" 160 "yellow"
 	fi
 
 	echo
@@ -7626,7 +7626,7 @@ function general_checkings() {
 
 	check_root_permissions
 
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 	exit_code=1
 	exit_script_option
 }
@@ -7636,7 +7636,7 @@ function check_root_permissions() {
 	user=`whoami`
 
 	if [ "$user" != "root" ]; then
-		language_strings ${language} 223 "yellow"
+		language_strings "${language}" 223 "yellow"
 	fi
 }
 
@@ -7651,11 +7651,11 @@ function print_known_distros() {
 function check_compatibility() {
 
 	echo
-	language_strings ${language} 108 "blue"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 108 "blue"
+	language_strings "${language}" 115 "read"
 
 	echo
-	language_strings ${language} 109 "blue"
+	language_strings "${language}" 109 "blue"
 
 	essential_toolsok=1
 	for i in "${essential_tools_names[@]}"; do
@@ -7672,7 +7672,7 @@ function check_compatibility() {
 	done
 
 	echo
-	language_strings ${language} 218 "blue"
+	language_strings "${language}" 218 "blue"
 
 	optional_toolsok=1
 	for i in "${!optional_tools[@]}"; do
@@ -7693,7 +7693,7 @@ function check_compatibility() {
 	if [ ${auto_update} -eq 1 ]; then
 
 		echo
-		language_strings ${language} 226 "blue"
+		language_strings "${language}" 226 "blue"
 
 		for i in "${update_tools[@]}"; do
 			echo -ne "$i"
@@ -7711,7 +7711,7 @@ function check_compatibility() {
 
 	if [ ${essential_toolsok} -eq 0 ]; then
 		echo
-		language_strings ${language} 111 "yellow"
+		language_strings "${language}" 111 "yellow"
 		echo
 		return
 	fi
@@ -7720,13 +7720,13 @@ function check_compatibility() {
 
 	if [ ${optional_toolsok} -eq 0 ]; then
 		echo
-		language_strings ${language} 219 "yellow"
+		language_strings "${language}" 219 "yellow"
 		echo
 		return
 	fi
 
 	echo
-	language_strings ${language} 110 "yellow"
+	language_strings "${language}" 110 "yellow"
 }
 
 function check_bash_version() {
@@ -7734,9 +7734,9 @@ function check_bash_version() {
 	echo
 	bashversion="${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}"
 	if compare_floats_greater_or_equal ${bashversion} ${minimum_bash_version_required}; then
-		language_strings ${language} 221 "yellow"
+		language_strings "${language}" 221 "yellow"
 	else
-		language_strings ${language} 222 "yellow"
+		language_strings "${language}" 222 "yellow"
 		exit_code=1
 		exit_script_option
 	fi
@@ -7749,8 +7749,8 @@ function check_update_tools() {
 			autoupdate_check
 		else
 			echo
-			language_strings ${language} 225 "yellow"
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 225 "yellow"
+			language_strings "${language}" 115 "read"
 		fi
 	fi
 }
@@ -7764,7 +7764,7 @@ function print_intro() {
 	sleep 0.15 && echo -e "           (____  /__||__|  \___  / \___  >____ \____ |\____/|___|  /"
 	sleep 0.15 && echo -e "                \/         /_____/      \/     \/    \/           \/${normal_color}"
 	echo
-	language_strings ${language} 228 "green"
+	language_strings "${language}" 228 "green"
 	print_animated_flying_saucer
 	sleep 1
 }
@@ -7946,39 +7946,39 @@ function welcome() {
 	detect_screen_resolution
 
 	if [ ${debug_mode} -eq 0 ]; then
-		language_strings ${language} 86 "title"
-		language_strings ${language} 6 "blue"
+		language_strings "${language}" 86 "title"
+		language_strings "${language}" 6 "blue"
 		echo
 		print_intro
 
 		clear
-		language_strings ${language} 86 "title"
-		language_strings ${language} 7 "pink"
-		language_strings ${language} 114 "pink"
+		language_strings "${language}" 86 "title"
+		language_strings "${language}" 7 "pink"
+		language_strings "${language}" 114 "pink"
 
 		if [ ${autochanged_language} -eq 1 ]; then
 			echo
-			language_strings ${language} 2 "yellow"
+			language_strings "${language}" 2 "yellow"
 		fi
 
 		check_bash_version
 
 		echo
 		if [ ${resolution_detected} -eq 1 ]; then
-			language_strings ${language} 294 "blue"
+			language_strings "${language}" 294 "blue"
 		else
-			language_strings ${language} 295 "blue"
+			language_strings "${language}" 295 "blue"
 			echo
-			language_strings ${language} 300 "yellow"
+			language_strings "${language}" 300 "yellow"
 		fi
 
 		echo
-		language_strings ${language} 8 "blue"
+		language_strings "${language}" 8 "blue"
 		print_known_distros
 		echo
-		language_strings ${language} 9 "blue"
+		language_strings "${language}" 9 "blue"
 		general_checkings
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 115 "read"
 
 		airmonzc_security_check
 		check_update_tools
@@ -7995,16 +7995,16 @@ function airmonzc_security_check() {
 	if [ "$airmon" = "airmon-zc" ]; then
 		if ! hash ethtool 2> /dev/null; then
 			echo
-			language_strings ${language} 247 "yellow"
+			language_strings "${language}" 247 "yellow"
 			echo
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 			exit_code=1
 			exit_script_option
 		elif ! hash lspci 2> /dev/null; then
 			echo
-			language_strings ${language} 301 "yellow"
+			language_strings "${language}" 301 "yellow"
 			echo
-			language_strings ${language} 115 "read"
+			language_strings "${language}" 115 "read"
 			exit_code=1
 			exit_script_option
 		fi
@@ -8013,61 +8013,61 @@ function airmonzc_security_check() {
 
 function compare_floats_greater_than() {
 
-	awk -v n1=$1 -v n2=$2 'BEGIN{if (n1>n2) exit 0; exit 1}'
+	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
 
 function compare_floats_greater_or_equal() {
 
-	awk -v n1=$1 -v n2=$2 'BEGIN{if (n1>=n2) exit 0; exit 1}'
+	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>=n2) exit 0; exit 1}'
 }
 
 function download_last_version() {
 
-	curl -L ${urlscript_directlink} -s -o $0
+	curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
 		echo
-		language_strings ${language} 214 "yellow"
+		language_strings "${language}" 214 "yellow"
 
-		scriptpath=$0
-		if ! [[ $0 =~ ^/.*$ ]]; then
-			if ! [[ $0 =~ ^.*/.*$ ]]; then
-				scriptpath="./$0"
+		scriptpath=${0}
+		if ! [[ ${0} =~ ^/.*$ ]]; then
+			if ! [[ ${0} =~ ^.*/.*$ ]]; then
+				scriptpath="./${0}"
 			fi
 		fi
 
-		chmod +x ${scriptpath} > /dev/null 2>&1
-		language_strings ${language} 115 "read"
-		exec ${scriptpath}
+		chmod +x "${scriptpath}" > /dev/null 2>&1
+		language_strings "${language}" 115 "read"
+		exec "${scriptpath}"
 	else
-		language_strings ${language} 5 "yellow"
+		language_strings "${language}" 5 "yellow"
 	fi
 }
 
 function validate_et_internet_interface() {
 
 	echo
-	language_strings ${language} 287 "blue"
+	language_strings "${language}" 287 "blue"
 	check_internet_access ${host_to_check_internet}
 
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings ${language} 288 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 288 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
-	check_default_route ${internet_interface}
+	check_default_route "${internet_interface}"
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings ${language} 290 "yellow"
-		language_strings ${language} 115 "read"
+		language_strings "${language}" 290 "yellow"
+		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
 	echo
-	language_strings ${language} 289 "yellow"
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 289 "yellow"
+	language_strings "${language}" 115 "read"
 	internet_interface_selected=1
 	return 0
 }
@@ -8080,14 +8080,14 @@ function check_internet_access() {
 
 function check_default_route() {
 
-	route | grep ${1} | grep "default" > /dev/null
+	route | grep "${1}" | grep "default" > /dev/null
 	return $?
 }
 
 function autoupdate_check() {
 
 	echo
-	language_strings ${language} 210 "blue"
+	language_strings "${language}" 210 "blue"
 	echo
 	hasinternet_access_for_update=0
 
@@ -8098,28 +8098,28 @@ function autoupdate_check() {
 
 	if [ ${hasinternet_access_for_update} -eq 1 ]; then
 
-		airgeddon_last_version=`timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2`
+		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2)
 
 		if [ "$airgeddon_last_version" != "" ]; then
-			if compare_floats_greater_than ${airgeddon_last_version} ${airgeddon_version}; then
-				language_strings ${language} 213 "yellow"
+			if compare_floats_greater_than "${airgeddon_last_version}" "${airgeddon_version}"; then
+				language_strings "${language}" 213 "yellow"
 				download_last_version
 			else
-				language_strings ${language} 212 "yellow"
+				language_strings "${language}" 212 "yellow"
 			fi
 		else
-			language_strings ${language} 5 "yellow"
+			language_strings "${language}" 5 "yellow"
 		fi
 	else
-		language_strings ${language} 211 "yellow"
+		language_strings "${language}" 211 "yellow"
 	fi
 
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function check_et_without_internet_compatibility() {
 
-	if ! hash ${optional_tools_names[12]} 2> /dev/null; then
+	if ! hash "${optional_tools_names[12]}" 2> /dev/null; then
 		return 1
 	fi
 	return 0
@@ -8130,7 +8130,7 @@ function autodetect_language() {
 	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
 
 	for lgkey in "${!lang_association[@]}"; do
-		if [[ "$lang" = "$lgkey" ]] && [[ "$language" != ${lang_association["$lgkey"]} ]]; then
+		if [[ "$lang" = "$lgkey" ]] && [[ "$language" != "${lang_association[${lgkey}]}" ]]; then
 			autochanged_language=1
 			language=${lang_association["$lgkey"]}
 			break
@@ -8172,57 +8172,57 @@ function under_construction_message() {
 	local var_uc="${under_constructionvar^}"
 	echo
 	echo_yellow "$var_uc..."
-	language_strings ${language} 115 "read"
+	language_strings "${language}" 115 "read"
 }
 
 function last_echo() {
 
-	check_pending_of_translation "$1" ${2}
+	check_pending_of_translation "${1}" "${2}"
 	if [ "$?" != "0" ]; then
-		echo -e ${2}"$text${normal_color}"
+		echo -e "${2}${text}${normal_color}"
 	else
-		echo -e ${2}"$*${normal_color}"
+		echo -e "${2}$*${normal_color}"
 	fi
 }
 
 function echo_green() {
 
-	last_echo "$1" ${green_color}
+	last_echo "$1" "${green_color}"
 }
 
 function echo_blue() {
 
-	last_echo "$1" ${blue_color}
+	last_echo "$1" "${blue_color}"
 }
 
 function echo_yellow() {
 
-	last_echo "$1" ${yellow_color}
+	last_echo "$1" "${yellow_color}"
 }
 
 function echo_red() {
 
-	last_echo "$1" ${red_color}
+	last_echo "$1" "${red_color}"
 }
 
 function echo_red_slim() {
 
-	last_echo "$1" ${red_color_slim}
+	last_echo "$1" "${red_color_slim}"
 }
 
 function echo_pink() {
 
-	last_echo "$1" ${pink_color}
+	last_echo "$1" "${pink_color}"
 }
 
 function echo_cyan() {
 
-	last_echo "$1" ${cyan_color}
+	last_echo "$1" "${cyan_color}"
 }
 
 function echo_brown() {
 
-	last_echo "$1" ${brown_color}
+	last_echo "$1" "${brown_color}"
 }
 
 trap capture_traps INT
