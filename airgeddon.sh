@@ -29,8 +29,8 @@ github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
 branch="master"
 script_filename="airgeddon.sh"
-urlgithub="https://github.com/$github_user/$github_repository"
-urlscript_directlink="https://raw.githubusercontent.com/$github_user/$github_repository/$branch/$script_filename"
+urlgithub="https://github.com/${github_user}/${github_repository}"
+urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
@@ -471,21 +471,21 @@ function language_strings() {
 	et_misc_texts["greek",26]="Σφάλμα. Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
 
 	declare -A arr
-	arr["english",0]="This interface $interface is already in managed mode"
-	arr["spanish",0]="Esta interfaz $interface ya está en modo managed"
-	arr["french",0]="L'interface $interface est déjà en mode managed"
-	arr["catalan",0]="Aquesta interfície $interface ja està en mode managed"
-	arr["portuguese",0]="Esta interface $interface já está em modo managed"
-	arr["russian",0]="Этот интерфейс $interface уже в управляемом режиме"
-	arr["greek",0]="Αυτή η διεπαφή $interface είναι ήδη σε ετερόκλητη κατάσταση"
+	arr["english",0]="This interface ${interface} is already in managed mode"
+	arr["spanish",0]="Esta interfaz ${interface} ya está en modo managed"
+	arr["french",0]="L'interface ${interface} est déjà en mode managed"
+	arr["catalan",0]="Aquesta interfície ${interface} ja està en mode managed"
+	arr["portuguese",0]="Esta interface ${interface} já está em modo managed"
+	arr["russian",0]="Этот интерфейс ${interface} уже в управляемом режиме"
+	arr["greek",0]="Αυτή η διεπαφή ${interface} είναι ήδη σε ετερόκλητη κατάσταση"
 
-	arr["english",1]="This interface $interface is not a wifi card. It doesn't support managed mode"
-	arr["spanish",1]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo managed"
-	arr["french",1]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
-	arr["catalan",1]="Aquesta interfície $interface no és una targeta wifi vàlida. No es compatible amb mode managed"
-	arr["portuguese",1]="Esta interface $interface não é wifi. Ela não suporta o modo managed"
-	arr["russian",1]="Этот интерфейс $interface не является wifi картой. Он не поддерживает управляемый режим"
-	arr["greek",1]="Αυτή η διεπαφή $interface δεν είναι κάρτα wifi. Δεν υποστηρίζει ετερόκλητη κατάσταση."
+	arr["english",1]="This interface ${interface} is not a wifi card. It doesn't support managed mode"
+	arr["spanish",1]="Esta interfaz ${interface} no es una tarjeta wifi. No soporta modo managed"
+	arr["french",1]="L'interface ${interface} n'est pas une carte wifi. Elle n'est donc pas compatible mode managed"
+	arr["catalan",1]="Aquesta interfície ${interface} no és una targeta wifi vàlida. No es compatible amb mode managed"
+	arr["portuguese",1]="Esta interface ${interface} não é wifi. Ela não suporta o modo managed"
+	arr["russian",1]="Этот интерфейс ${interface} не является wifi картой. Он не поддерживает управляемый режим"
+	arr["greek",1]="Αυτή η διεπαφή ${interface} δεν είναι κάρτα wifi. Δεν υποστηρίζει ετερόκλητη κατάσταση."
 
 	arr["english",2]="English O.S. language detected. Supported by script. Automatically changed"
 	arr["spanish",2]="Idioma Español del S.O. detectado. Soportado por el script. Se cambió automaticamente"
@@ -519,13 +519,13 @@ function language_strings() {
 	arr["russian",5]="Интернет-подключение кажется нестабильным. Скрипт не может подключиться к репозиторию. Он продолжит без обновления..."
 	arr["greek",5]="Φαίνεται πως η σύνδεση με το διαδίκτυο δεν είναι σταθερή. Το script δεν μπορεί να συνδεθεί στο repository. Θα συνεχίσει χωρίς να έχει ενημερωθεί..."
 
-	arr["english",6]="Welcome to airgeddon script v$airgeddon_version"
-	arr["spanish",6]="Bienvenid@ a airgeddon script v$airgeddon_version"
-	arr["french",6]="Bienvenue au script airgeddon v$airgeddon_version"
-	arr["catalan",6]="Benvingut a airgeddon script v$airgeddon_version"
-	arr["portuguese",6]="Bem-vindo ao script airgeddon v$airgeddon_version"
-	arr["russian",6]="Добро пожаловать в скрипт airgeddon v$airgeddon_version"
-	arr["greek",6]="Καλωσήρθατε στο airgeddon v$airgeddon_version"
+	arr["english",6]="Welcome to airgeddon script v${airgeddon_version}"
+	arr["spanish",6]="Bienvenid@ a airgeddon script v${airgeddon_version}"
+	arr["french",6]="Bienvenue au script airgeddon v${airgeddon_version}"
+	arr["catalan",6]="Benvingut a airgeddon script v${airgeddon_version}"
+	arr["portuguese",6]="Bem-vindo ao script airgeddon v${airgeddon_version}"
+	arr["russian",6]="Добро пожаловать в скрипт airgeddon v${airgeddon_version}"
+	arr["greek",6]="Καλωσήρθατε στο airgeddon v${airgeddon_version}"
 
 	arr["english",7]="This script is only for educational purposes. Be good boyz&girlz!"
 	arr["spanish",7]="Este script se ha hecho sólo con fines educativos. Sed buen@s chic@s!"
@@ -551,21 +551,21 @@ function language_strings() {
 	arr["russian",9]="Определяем систему..."
 	arr["greek",9]="Το σύστημα εντοπίζεται..."
 
-	arr["english",10]="This interface $interface is already in monitor mode"
-	arr["spanish",10]="Esta interfaz $interface ya está en modo monitor"
-	arr["french",10]="L'interface $interface est déjà en mode moniteur"
+	arr["english",10]="This interface ${interface} is already in monitor mode"
+	arr["spanish",10]="Esta interfaz ${interface} ya está en modo monitor"
+	arr["french",10]="L'interface ${interface} est déjà en mode moniteur"
 	arr["catalan",10]="Aquesta interfície ja està en mode monitor"
-	arr["portuguese",10]="Esta interface $interface já está em modo monitor"
-	arr["russian",10]="Этот интерфейс $interface уже в режиме монитора"
-	arr["greek",10]="Αυτή η διεπαφή $interface είναι ήδη σε κατάσταση παρακολούθησης"
+	arr["portuguese",10]="Esta interface ${interface} já está em modo monitor"
+	arr["russian",10]="Этот интерфейс ${interface} уже в режиме монитора"
+	arr["greek",10]="Αυτή η διεπαφή ${interface} είναι ήδη σε κατάσταση παρακολούθησης"
 
-	arr["english",11]="Exiting airgeddon script v$airgeddon_version - See you soon! :)"
-	arr["spanish",11]="Saliendo de airgeddon script v$airgeddon_version - Nos vemos pronto! :)"
-	arr["french",11]="Fermeture du script airgeddon v$airgeddon_version - A bientôt! :)"
-	arr["catalan",11]="Sortint de airgeddon script v$airgeddon_version - Ens veiem aviat! :)"
-	arr["portuguese",11]="Saindo do script airgeddon  v$airgeddon_version - Até breve! :)"
-	arr["russian",11]="Выход из скрипта airgeddon v$airgeddon_version - До встречи! :)"
-	arr["greek",11]="Κλείσιμο του airgeddon v$airgeddon_version - Αντίο :)"
+	arr["english",11]="Exiting airgeddon script v${airgeddon_version} - See you soon! :)"
+	arr["spanish",11]="Saliendo de airgeddon script v${airgeddon_version} - Nos vemos pronto! :)"
+	arr["french",11]="Fermeture du script airgeddon v${airgeddon_version} - A bientôt! :)"
+	arr["catalan",11]="Sortint de airgeddon script v${airgeddon_version} - Ens veiem aviat! :)"
+	arr["portuguese",11]="Saindo do script airgeddon  v${airgeddon_version} - Até breve! :)"
+	arr["russian",11]="Выход из скрипта airgeddon v${airgeddon_version} - До встречи! :)"
+	arr["greek",11]="Κλείσιμο του airgeddon v${airgeddon_version} - Αντίο :)"
 
 	arr["english",12]="${blue_color}Interruption detected. ${green_color}Do you really want to exit? ${normal_color}[y/n]"
 	arr["spanish",12]="${blue_color}Detectada interrupción. ${green_color}¿Quieres realmente salir del script? ${normal_color}[y/n]"
@@ -575,21 +575,21 @@ function language_strings() {
 	arr["russian",12]="${blue_color}Обнаружено прерывание. ${green_color}Вы действительно хотите выйти? ${normal_color}[y/n]"
 	arr["greek",12]="${blue_color}Εντοπίστηκε διακοπή. ${green_color}Είστε σίγουροι ότι θέλετε να τερματίσετε το script; ${normal_color}[y/n]"
 
-	arr["english",13]="This interface $interface is not a wifi card. It doesn't support monitor mode"
-	arr["spanish",13]="Esta interfaz $interface no es una tarjeta wifi. No soporta modo monitor"
-	arr["french",13]="L'interface $interface n'est pas une carte wifi. Elle n'est donc pas compatible mode moniteur"
-	arr["catalan",13]="Aquesta interfície $interface no és una targeta wifi vàlida. No es compatible amb mode monitor"
-	arr["portuguese",13]="Esta interface $interface não é wifi. Ela não suporta o modo monitor"
-	arr["russian",13]="Этот интерфейс $interface не является wifi картой. Он не поддерживает режим монитора"
-	arr["greek",13]="Αυτή η διεπαφή $interface δεν έιναι κάρτα wifi. Δεν υποστηρίζει κατάσταση παρακολούθησης"
+	arr["english",13]="This interface ${interface} is not a wifi card. It doesn't support monitor mode"
+	arr["spanish",13]="Esta interfaz ${interface} no es una tarjeta wifi. No soporta modo monitor"
+	arr["french",13]="L'interface ${interface} n'est pas une carte wifi. Elle n'est donc pas compatible mode moniteur"
+	arr["catalan",13]="Aquesta interfície ${interface} no és una targeta wifi vàlida. No es compatible amb mode monitor"
+	arr["portuguese",13]="Esta interface ${interface} não é wifi. Ela não suporta o modo monitor"
+	arr["russian",13]="Этот интерфейс ${interface} не является wifi картой. Он не поддерживает режим монитора"
+	arr["greek",13]="Αυτή η διεπαφή ${interface} δεν έιναι κάρτα wifi. Δεν υποστηρίζει κατάσταση παρακολούθησης"
 
-	arr["english",14]="This interface $interface is not in monitor mode"
-	arr["spanish",14]="Esta interfaz $interface no está en modo monitor"
-	arr["french",14]="L'interface $interface n'est pas en mode moniteur"
-	arr["catalan",14]="Aquesta interfície $interface no està en mode monitor"
-	arr["portuguese",14]="Esta interface $interface não está em modo monitor"
-	arr["russian",14]="Этот интерфейс $interface не в режиме монитора"
-	arr["greek",14]="Αυτή η διεπαφή $interface δεν είναι σε κατάσταση παρακολούθησης"
+	arr["english",14]="This interface ${interface} is not in monitor mode"
+	arr["spanish",14]="Esta interfaz ${interface} no está en modo monitor"
+	arr["french",14]="L'interface ${interface} n'est pas en mode moniteur"
+	arr["catalan",14]="Aquesta interfície ${interface} no està en mode monitor"
+	arr["portuguese",14]="Esta interface ${interface} não está em modo monitor"
+	arr["russian",14]="Этот интерфейс ${interface} не в режиме монитора"
+	arr["greek",14]="Αυτή η διεπαφή ${interface} δεν είναι σε κατάσταση παρακολούθησης"
 
 	arr["english",15]="The interface changed its name while putting in managed mode. Autoselected"
 	arr["spanish",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
@@ -599,13 +599,13 @@ function language_strings() {
 	arr["russian",15]="Интерфейс изменил имя во время перевода в управляемый режим. Выбран автоматически"
 	arr["greek",15]="Η διεπάφη άλλαξε όνομα καθώς ήταν σε ετερόκλητη κατάσταση. Επιλέχθηκε αυτόματα"
 
-	arr["english",16]="Managed mode now is set on $interface"
-	arr["spanish",16]="Se ha puesto el modo managed en $interface"
-	arr["french",16]="$interface est maintenant en mode manged"
-	arr["catalan",16]="$interface s'ha configurat en mode managed"
-	arr["portuguese",16]="Modo managed configurado em $interface"
-	arr["russian",16]="Управляемый режим теперь установлен на $interface"
-	arr["greek",16]="Η διεπαφή $interface είναι τώρα σε ετερόκλητη κατάσταση"
+	arr["english",16]="Managed mode now is set on ${interface}"
+	arr["spanish",16]="Se ha puesto el modo managed en ${interface}"
+	arr["french",16]="${interface} est maintenant en mode manged"
+	arr["catalan",16]="${interface} s'ha configurat en mode managed"
+	arr["portuguese",16]="Modo managed configurado em ${interface}"
+	arr["russian",16]="Управляемый режим теперь установлен на ${interface}"
+	arr["greek",16]="Η διεπαφή ${interface} είναι τώρα σε ετερόκλητη κατάσταση"
 
 	arr["english",17]="Putting your interface in managed mode..."
 	arr["spanish",17]="Poniendo la interfaz en modo managed..."
@@ -631,13 +631,13 @@ function language_strings() {
 	arr["russian",19]="Пожалуйста, будьте терпеливы. Возможно убийство некоторых конфликтующих процессов..."
 	arr["greek",19]="Παρακαλώ δείξτε υπομονή. Ίσως τερματίζουν κάποιες εμπλέκουσες διεργασίες..."
 
-	arr["english",20]="This interface $interface doesn't support monitor mode"
-	arr["spanish",20]="Esta interfaz $interface no soporta modo monitor"
-	arr["french",20]="L'interface $interface n'est pas compatible mode moniteur"
-	arr["catalan",20]="Aquesta interfície $interface no suporta mode monitor"
-	arr["portuguese",20]="Esta interface $interface não suporta o modo monitor"
-	arr["russian",20]="Этот интерфейс $interface не поддерживает режим монитора"
-	arr["greek",20]="Αυτή η διεπαφή $interface δεν υποστηρίζει κατάσταση παρακολούθησης"
+	arr["english",20]="This interface ${interface} doesn't support monitor mode"
+	arr["spanish",20]="Esta interfaz ${interface} no soporta modo monitor"
+	arr["french",20]="L'interface ${interface} n'est pas compatible mode moniteur"
+	arr["catalan",20]="Aquesta interfície ${interface} no suporta mode monitor"
+	arr["portuguese",20]="Esta interface ${interface} não suporta o modo monitor"
+	arr["russian",20]="Этот интерфейс ${interface} не поддерживает режим монитора"
+	arr["greek",20]="Αυτή η διεπαφή ${interface} δεν υποστηρίζει κατάσταση παρακολούθησης"
 
 	arr["english",21]="The interface changed its name while putting in monitor mode. Autoselected"
 	arr["spanish",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
@@ -647,13 +647,13 @@ function language_strings() {
 	arr["russian",21]="Этот интерфейс изменил своё имя во время перевода в режим монитора. Выбран автоматически"
 	arr["greek",21]="Η διεπαφή άλλαξε όνομα καθώς ήταν σε κατάσταση παρακολούθησης"
 
-	arr["english",22]="Monitor mode now is set on $interface"
-	arr["spanish",22]="Se ha puesto el modo monitor en $interface"
-	arr["french",22]="Mode moniteur activé sur l'interface $interface"
-	arr["catalan",22]="S'ha configurat el mode monitor en $interface"
-	arr["portuguese",22]="Modo monitor foi ativo em $interface"
-	arr["russian",22]="Режим монитора установлен на $interface"
-	arr["greek",22]="Η διεπαφή $interface είναι τώρα σε κατάσταση παρακολούθησης"
+	arr["english",22]="Monitor mode now is set on ${interface}"
+	arr["spanish",22]="Se ha puesto el modo monitor en ${interface}"
+	arr["french",22]="Mode moniteur activé sur l'interface ${interface}"
+	arr["catalan",22]="S'ha configurat el mode monitor en ${interface}"
+	arr["portuguese",22]="Modo monitor foi ativo em ${interface}"
+	arr["russian",22]="Режим монитора установлен на ${interface}"
+	arr["greek",22]="Η διεπαφή ${interface} είναι τώρα σε κατάσταση παρακολούθησης"
 
 	arr["english",23]="There is a problem with the interface selected. Redirecting you to script exit"
 	arr["spanish",23]="Hay un problema con la interfaz seleccionada. Redirigiendo a la salida del script"
@@ -679,13 +679,13 @@ function language_strings() {
 	arr["russian",25]="Установите канал (1-14) :"
 	arr["greek",25]="Θέστε κανάλι (1-14) :"
 
-	arr["english",26]="Channel set to ${normal_color}$channel"
-	arr["spanish",26]="Canal elegido ${normal_color}$channel"
-	arr["french",26]="Le canal ${normal_color}$channel${blue_color} a été choisi"
-	arr["catalan",26]="El canal ${normal_color}$channel${blue_color} s'ha escollit"
-	arr["portuguese",26]="Canal ${normal_color}$channel${blue_color} selecionado"
-	arr["russian",26]="Канал установлен на ${normal_color}$channel"
-	arr["greek",26]="Το κανάλι ${normal_color}$channel${blue_color} έχει επιλεχθεί"
+	arr["english",26]="Channel set to ${normal_color}${channel}"
+	arr["spanish",26]="Canal elegido ${normal_color}${channel}"
+	arr["french",26]="Le canal ${normal_color}${channel}${blue_color} a été choisi"
+	arr["catalan",26]="El canal ${normal_color}${channel}${blue_color} s'ha escollit"
+	arr["portuguese",26]="Canal ${normal_color}${channel}${blue_color} selecionado"
+	arr["russian",26]="Канал установлен на ${normal_color}${channel}"
+	arr["greek",26]="Το κανάλι ${normal_color}${channel}${blue_color} έχει επιλεχθεί"
 
 	arr["english",27]="Type target BSSID (example: 00:11:22:33:44:55) :"
 	arr["spanish",27]="Escribe el BSSID objetivo (ejemplo: 00:11:22:33:44:55) :"
@@ -695,13 +695,13 @@ function language_strings() {
 	arr["russian",27]="Тип целевой BSSID (пример: 00:11:22:33:44:55) :"
 	arr["greek",27]="Πληκτρολογήστε BSSID στόχου (παράδειγμα: 00:11:22:33:44:55) :"
 
-	arr["english",28]="BSSID set to ${normal_color}$bssid"
-	arr["spanish",28]="BSSID elegido ${normal_color}$bssid"
-	arr["french",28]="Le BSSID choisi est ${normal_color}$bssid"
-	arr["catalan",28]="El BSSID escollit ${normal_color}$bssid"
-	arr["portuguese",28]="BSSID escolhido ${normal_color}$bssid"
-	arr["russian",28]="BSSID установлена на ${normal_color}$bssid"
-	arr["greek",28]="Το BSSID τέθηκε σε ${normal_color}$bssid"
+	arr["english",28]="BSSID set to ${normal_color}${bssid}"
+	arr["spanish",28]="BSSID elegido ${normal_color}${bssid}"
+	arr["french",28]="Le BSSID choisi est ${normal_color}${bssid}"
+	arr["catalan",28]="El BSSID escollit ${normal_color}${bssid}"
+	arr["portuguese",28]="BSSID escolhido ${normal_color}${bssid}"
+	arr["russian",28]="BSSID установлена на ${normal_color}${bssid}"
+	arr["greek",28]="Το BSSID τέθηκε σε ${normal_color}${bssid}"
 
 	arr["english",29]="Type target ESSID :"
 	arr["spanish",29]="Escribe el ESSID objetivo :"
@@ -719,13 +719,13 @@ function language_strings() {
 	arr["russian",30]="Вы выбрали сеть со скрытым ESSID. Использование невозможно. Выберите другую или вместо этой выполните атаку, основанную на BSSID"
 	arr["greek",30]="Επιλέξατε ESSID κρυφού δικτύου. Δεν μπορεί να χρησιμοποιηθεί. Επιλέξτε κάποιο άλλο ή ξεκινήστε μία επίθεση βασισμένη στο BSSID αντί αυτού"
 
-	arr["english",31]="ESSID set to ${normal_color}$essid"
-	arr["spanish",31]="ESSID elegido ${normal_color}$essid"
-	arr["french",31]="l'ESSID sélectionné est ${normal_color}$essid"
-	arr["catalan",31]="l'ESSID seleccionat ${normal_color}$essid"
-	arr["portuguese",31]="ESSID escolhido ${normal_color}$essid"
-	arr["russian",31]="ESSID установлена на ${normal_color}$essid"
-	arr["greek",31]="Το ESSID τέθηκε σε ${normal_color}$essid"
+	arr["english",31]="ESSID set to ${normal_color}${essid}"
+	arr["spanish",31]="ESSID elegido ${normal_color}${essid}"
+	arr["french",31]="l'ESSID sélectionné est ${normal_color}${essid}"
+	arr["catalan",31]="l'ESSID seleccionat ${normal_color}${essid}"
+	arr["portuguese",31]="ESSID escolhido ${normal_color}${essid}"
+	arr["russian",31]="ESSID установлена на ${normal_color}${essid}"
+	arr["greek",31]="Το ESSID τέθηκε σε ${normal_color}${essid}"
 
 	arr["english",32]="All parameters set"
 	arr["spanish",32]="Todos los parámetros están listos"
@@ -743,13 +743,13 @@ function language_strings() {
 	arr["russian",33]="Начало атаки. Когда начнётся, нажмите Ctrl+C для остановки..."
 	arr["greek",33]="Έναρξη επίθεσης. Όταν ξεκινήσει, πατήστε Ctrl+C για να σταματήσει..."
 
-	arr["english",34]="Selected interface $interface is in monitor mode. Attack can be performed"
-	arr["spanish",34]="La interfaz seleccionado $interface está en modo monitor. El ataque se puede realizar"
-	arr["french",34]="L'interface $interface qui a été sélectionnée est bien en mode moniteur. L'attaque peut être lancée"
-	arr["catalan",34]="La interfície seleccionada $interface està configurada en mode monitor. L'atac es pot realitzar"
-	arr["portuguese",34]="Interface selecionada $interface está em modo monitor. O ataque pode ser realizada"
-	arr["russian",34]="Выбранный интерфейс $interface в режиме монитора. Можно выполнить атаку"
-	arr["greek",34]="Η επιλεγμένη διεπαφή $interface είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει επίθεση"
+	arr["english",34]="Selected interface ${interface} is in monitor mode. Attack can be performed"
+	arr["spanish",34]="La interfaz seleccionado ${interface} está en modo monitor. El ataque se puede realizar"
+	arr["french",34]="L'interface ${interface} qui a été sélectionnée est bien en mode moniteur. L'attaque peut être lancée"
+	arr["catalan",34]="La interfície seleccionada ${interface} està configurada en mode monitor. L'atac es pot realitzar"
+	arr["portuguese",34]="Interface selecionada ${interface} está em modo monitor. O ataque pode ser realizada"
+	arr["russian",34]="Выбранный интерфейс ${interface} в режиме монитора. Можно выполнить атаку"
+	arr["greek",34]="Η επιλεγμένη διεπαφή ${interface} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει επίθεση"
 
 	arr["english",35]="Deauthentication / Dissasociation mdk3 attack chosen (monitor mode needed)"
 	arr["spanish",35]="Elegido ataque de Desautenticación / Desasociación mdk3 (modo monitor requerido)"
@@ -807,45 +807,45 @@ function language_strings() {
 	arr["russian",41]="Интерфейс не выбран. Вы будете перенаправлены на выбор интерфейса"
 	arr["greek",41]="Δεν έχει επιλεχθεί κάποια διεπαφή. Θα καθοδηγηθείτε για να επιλέξετε μία"
 
-	arr["english",42]="Interface ${pink_color}$interface${blue_color} selected. Mode: ${pink_color}$ifacemode${normal_color}"
-	arr["spanish",42]="Interfaz ${pink_color}$interface${blue_color} seleccionada. Modo: ${pink_color}$ifacemode${normal_color}"
-	arr["french",42]="Interface ${pink_color}$interface${blue_color} sélectionnée. Mode: ${pink_color}$ifacemode${normal_color}"
-	arr["catalan",42]="Interfície ${pink_color}$interface${blue_color} seleccionada. Mode: ${pink_color}$ifacemode${normal_color}"
-	arr["portuguese",42]="Interface ${pink_color}$interface${blue_color} selecionada. Modo: ${pink_color}$ifacemode${normal_color}"
-	arr["russian",42]="Интерфейс ${pink_color}$interface${blue_color} выбран. Режим: ${pink_color}$ifacemode${normal_color}"
-	arr["greek",42]="Η διεπαφή ${pink_color}$interface${blue_color} έχει επιλεχθεί. Κατάσταση: ${pink_color}$ifacemode${normal_color}"
+	arr["english",42]="Interface ${pink_color}${interface}${blue_color} selected. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["spanish",42]="Interfaz ${pink_color}${interface}${blue_color} seleccionada. Modo: ${pink_color}$ifacemode${normal_color}"
+	arr["french",42]="Interface ${pink_color}${interface}${blue_color} sélectionnée. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["catalan",42]="Interfície ${pink_color}${interface}${blue_color} seleccionada. Mode: ${pink_color}$ifacemode${normal_color}"
+	arr["portuguese",42]="Interface ${pink_color}${interface}${blue_color} selecionada. Modo: ${pink_color}$ifacemode${normal_color}"
+	arr["russian",42]="Интерфейс ${pink_color}${interface}${blue_color} выбран. Режим: ${pink_color}$ifacemode${normal_color}"
+	arr["greek",42]="Η διεπαφή ${pink_color}${interface}${blue_color} έχει επιλεχθεί. Κατάσταση: ${pink_color}$ifacemode${normal_color}"
 
-	arr["english",43]="Selected BSSID: ${pink_color}$bssid${normal_color}"
-	arr["spanish",43]="BSSID seleccionado: ${pink_color}$bssid${normal_color}"
-	arr["french",43]="BSSID sélectionné: ${pink_color}$bssid${normal_color}"
-	arr["catalan",43]="BSSID seleccionat: ${pink_color}$bssid${normal_color}"
-	arr["portuguese",43]="BSSID selecionado: ${pink_color}$bssid${normal_color}"
-	arr["russian",43]="Выбранный BSSID: ${pink_color}$bssid${normal_color}"
-	arr["greek",43]="Επιλεγμένο BSSID: ${pink_color}$bssid${normal_color}"
+	arr["english",43]="Selected BSSID: ${pink_color}${bssid}${normal_color}"
+	arr["spanish",43]="BSSID seleccionado: ${pink_color}${bssid}${normal_color}"
+	arr["french",43]="BSSID sélectionné: ${pink_color}${bssid}${normal_color}"
+	arr["catalan",43]="BSSID seleccionat: ${pink_color}${bssid}${normal_color}"
+	arr["portuguese",43]="BSSID selecionado: ${pink_color}${bssid}${normal_color}"
+	arr["russian",43]="Выбранный BSSID: ${pink_color}${bssid}${normal_color}"
+	arr["greek",43]="Επιλεγμένο BSSID: ${pink_color}${bssid}${normal_color}"
 
-	arr["english",44]="Selected channel: ${pink_color}$channel${normal_color}"
-	arr["spanish",44]="Canal seleccionado: ${pink_color}$channel${normal_color}"
-	arr["french",44]="Canal sélectionné: ${pink_color}$channel${normal_color}"
-	arr["catalan",44]="Canal seleecionat: ${pink_color}$channel${normal_color}"
-	arr["portuguese",44]="Canal selecionado: ${pink_color}$channel${normal_color}"
-	arr["russian",44]="Выбранный канал: ${pink_color}$channel${normal_color}"
-	arr["greek",44]="Επιλεγμένο κανάλι: ${pink_color}$channel${normal_color}"
+	arr["english",44]="Selected channel: ${pink_color}${channel}${normal_color}"
+	arr["spanish",44]="Canal seleccionado: ${pink_color}${channel}${normal_color}"
+	arr["french",44]="Canal sélectionné: ${pink_color}${channel}${normal_color}"
+	arr["catalan",44]="Canal seleecionat: ${pink_color}${channel}${normal_color}"
+	arr["portuguese",44]="Canal selecionado: ${pink_color}${channel}${normal_color}"
+	arr["russian",44]="Выбранный канал: ${pink_color}${channel}${normal_color}"
+	arr["greek",44]="Επιλεγμένο κανάλι: ${pink_color}${channel}${normal_color}"
 
-	arr["english",45]="Selected ESSID: ${pink_color}$essid${blue_color} <- can't be used"
-	arr["spanish",45]="ESSID seleccionado: ${pink_color}$essid${blue_color} <- no se puede usar"
-	arr["french",45]="ESSID sélectionné: ${pink_color}$essid${blue_color} <- ne peut pas être utilisé"
-	arr["catalan",45]="ESSID seleccionat: ${pink_color}$essid${blue_color} <- no es pot utilitzar"
-	arr["portuguese",45]="ESSID selecionado: ${pink_color}$essid${blue_color} <- não pode ser utilizada"
-	arr["russian",45]="Выбранный ESSID: ${pink_color}$essid${blue_color} <- не может быть использован"
-	arr["greek",45]="Επιλεγμένο ESSID: ${pink_color}$essid${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
+	arr["english",45]="Selected ESSID: ${pink_color}${essid}${blue_color} <- can't be used"
+	arr["spanish",45]="ESSID seleccionado: ${pink_color}${essid}${blue_color} <- no se puede usar"
+	arr["french",45]="ESSID sélectionné: ${pink_color}${essid}${blue_color} <- ne peut pas être utilisé"
+	arr["catalan",45]="ESSID seleccionat: ${pink_color}${essid}${blue_color} <- no es pot utilitzar"
+	arr["portuguese",45]="ESSID selecionado: ${pink_color}${essid}${blue_color} <- não pode ser utilizada"
+	arr["russian",45]="Выбранный ESSID: ${pink_color}${essid}${blue_color} <- не может быть использован"
+	arr["greek",45]="Επιλεγμένο ESSID: ${pink_color}${essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 
-	arr["english",46]="Selected ESSID: ${pink_color}$essid${normal_color}"
-	arr["spanish",46]="ESSID seleccionado: ${pink_color}$essid${normal_color}"
-	arr["french",46]="ESSID sélectionné: ${pink_color}$essid${normal_color}"
-	arr["catalan",46]="ESSID seleccionat: ${pink_color}$essid${normal_color}"
-	arr["portuguese",46]="ESSID selecionado: ${pink_color}$essid${normal_color}"
-	arr["russian",46]="Выбранный ESSID: ${pink_color}$essid${normal_color}"
-	arr["greek",46]="Επιλεγμένο ESSID: ${pink_color}$essid${normal_color}"
+	arr["english",46]="Selected ESSID: ${pink_color}${essid}${normal_color}"
+	arr["spanish",46]="ESSID seleccionado: ${pink_color}${essid}${normal_color}"
+	arr["french",46]="ESSID sélectionné: ${pink_color}${essid}${normal_color}"
+	arr["catalan",46]="ESSID seleccionat: ${pink_color}${essid}${normal_color}"
+	arr["portuguese",46]="ESSID selecionado: ${pink_color}${essid}${normal_color}"
+	arr["russian",46]="Выбранный ESSID: ${pink_color}${essid}${normal_color}"
+	arr["greek",46]="Επιλεγμένο ESSID: ${pink_color}${essid}${normal_color}"
 
 	arr["english",47]="Select an option from menu :"
 	arr["spanish",47]="Selecciona una opción del menú :"
@@ -999,13 +999,13 @@ function language_strings() {
 	arr["russian",65]="Выбранные опции для сканирования целей (необходим режим монитора)"
 	arr["greek",65]="Η επιλογή για εξερεύνηση στόχων έχει επιλεχθεί (χρειάζεται η κατάσταση παρακολούθησης)"
 
-	arr["english",66]="Selected interface $interface is in monitor mode. Exploration can be performed"
-	arr["spanish",66]="La interfaz seleccionada $interface está en modo monitor. La exploración se puede realizar"
-	arr["french",66]="L'interface choisie $interface est en mode moniteur. L'exploration des réseaux environnants peut s'effectuer"
-	arr["catalan",66]="La interfície seleccionada $interface està en mode monitor. L'exploració es pot realitzar"
-	arr["portuguese",66]="A interface selecionada $interface está no modo monitor. A verificação pode ser realizada"
-	arr["russian",66]="Выбранный интерфейс $interface в режиме монитора. Сканирование может быть выполнена"
-	arr["greek",66]="Η επιλεγμένη διεπαφή $interface είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
+	arr["english",66]="Selected interface ${interface} is in monitor mode. Exploration can be performed"
+	arr["spanish",66]="La interfaz seleccionada ${interface} está en modo monitor. La exploración se puede realizar"
+	arr["french",66]="L'interface choisie ${interface} est en mode moniteur. L'exploration des réseaux environnants peut s'effectuer"
+	arr["catalan",66]="La interfície seleccionada ${interface} està en mode monitor. L'exploració es pot realitzar"
+	arr["portuguese",66]="A interface selecionada ${interface} está no modo monitor. A verificação pode ser realizada"
+	arr["russian",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнена"
+	arr["greek",66]="Η επιλεγμένη διεπαφή ${interface} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
 
 	arr["english",67]="When started, press Ctrl+C to stop..."
 	arr["spanish",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
@@ -1055,13 +1055,13 @@ function language_strings() {
 	arr["russian",72]="Была выбрана неподходящая целевая сеть"
 	arr["greek",72]="Επιλέχθηκε άκυρο δίκτυο"
 
-	arr["english",73]="airgeddon script v$airgeddon_version developed by :"
-	arr["spanish",73]="airgeddon script v$airgeddon_version programado por :"
-	arr["french",73]="Le script airgeddon v$airgeddon_version a été programmé par :"
-	arr["catalan",73]="airgeddon script v$airgeddon_version desenvolupat per :"
-	arr["portuguese",73]="Script airgeddon v$airgeddon_version desenvolvido por :"
-	arr["russian",73]="скрипт airgeddon v$airgeddon_version создал :"
-	arr["greek",73]="airgeddon script v$airgeddon_version προγραμματίστηκε από :"
+	arr["english",73]="airgeddon script v${airgeddon_version} developed by :"
+	arr["spanish",73]="airgeddon script v${airgeddon_version} programado por :"
+	arr["french",73]="Le script airgeddon v${airgeddon_version} a été programmé par :"
+	arr["catalan",73]="airgeddon script v${airgeddon_version} desenvolupat per :"
+	arr["portuguese",73]="Script airgeddon v${airgeddon_version} desenvolvido por :"
+	arr["russian",73]="скрипт airgeddon v${airgeddon_version} создал :"
+	arr["greek",73]="airgeddon script v${airgeddon_version} προγραμματίστηκε από :"
 
 	arr["english",74]="This script is under GPLv3 (or later) License"
 	arr["spanish",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -1151,13 +1151,13 @@ function language_strings() {
 	arr["russian",84]="Язык изменён на испанский"
 	arr["greek",84]="Η γλώσσα άλλαξε σε Ισπανικά"
 
-	arr["english",85]="Send me bugs or suggestions to $mail"
-	arr["spanish",85]="Enviadme errores o sugerencias a $mail"
-	arr["french",85]="Envoyer des erreurs ou des suggestions à $mail"
-	arr["catalan",85]="Envieu-me errorrs o suggeriments a $mail"
-	arr["portuguese",85]="Enviar erros ou sugestões para $mail"
-	arr["russian",85]="Отправляйте ошибки и предложения мне на почту $mail"
-	arr["greek",85]="Στείλτε μου αναφορές για bugs ή συστάσεις στο $mail"
+	arr["english",85]="Send me bugs or suggestions to ${mail}"
+	arr["spanish",85]="Enviadme errores o sugerencias a ${mail}"
+	arr["french",85]="Envoyer des erreurs ou des suggestions à ${mail}"
+	arr["catalan",85]="Envieu-me errorrs o suggeriments a ${mail}"
+	arr["portuguese",85]="Enviar erros ou sugestões para ${mail}"
+	arr["russian",85]="Отправляйте ошибки и предложения мне на почту ${mail}"
+	arr["greek",85]="Στείλτε μου αναφορές για bugs ή συστάσεις στο ${mail}"
 
 	arr["english",86]="Welcome"
 	arr["spanish",86]="Bienvenid@"
@@ -1927,21 +1927,21 @@ function language_strings() {
 	arr["russian",181]="Путь до файла словаря правильный. Скрипт может продолжить..."
 	arr["greek",181]="Το μονοπάτι για το λεξικό είναι έγκυρο. Το script μπορεί να συνεχίσει..."
 
-	arr["english",182]="Selected dictionary file: ${pink_color}$dictionary${normal_color}"
-	arr["spanish",182]="Fichero de diccionario seleccionado: ${pink_color}$dictionary${normal_color}"
-	arr["french",182]="Fichier dictionnaire sélectionné: ${pink_color}$dictionary${normal_color}"
-	arr["catalan",182]="Fitxer de diccionari seleccionat: ${pink_color}$dictionary${normal_color}"
-	arr["portuguese",182]="Dicionário seleccionado: ${pink_color}$dictionary${normal_color}"
-	arr["russian",182]="Выбранный файл словаря: ${pink_color}$dictionary${normal_color}"
-	arr["greek",182]="Επιλεγμένο λεξικό: ${pink_color}$dictionary${normal_color}"
+	arr["english",182]="Selected dictionary file: ${pink_color}${dictionary}${normal_color}"
+	arr["spanish",182]="Fichero de diccionario seleccionado: ${pink_color}${dictionary}${normal_color}"
+	arr["french",182]="Fichier dictionnaire sélectionné: ${pink_color}${dictionary}${normal_color}"
+	arr["catalan",182]="Fitxer de diccionari seleccionat: ${pink_color}${dictionary}${normal_color}"
+	arr["portuguese",182]="Dicionário seleccionado: ${pink_color}${dictionary}${normal_color}"
+	arr["russian",182]="Выбранный файл словаря: ${pink_color}${dictionary}${normal_color}"
+	arr["greek",182]="Επιλεγμένο λεξικό: ${pink_color}${dictionary}${normal_color}"
 
-	arr["english",183]="You already have selected a dictionary file during this session [${normal_color}$dictionary${blue_color}]"
-	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [${normal_color}$dictionary${blue_color}]"
-	arr["french",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session ${normal_color}$dictionary${blue_color}]"
-	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió [${normal_color}$dictionary${blue_color}]"
-	arr["portuguese",183]="Você selecionou um arquivo de dicionário nesta sessão [${normal_color}$dictionary${blue_color}]"
-	arr["russian",183]="Во время этой сессии вы выбрали файл словаря [${normal_color}$dictionary${blue_color}]"
-	arr["greek",183]="Έχετε ήδη επιλέξει λεξικό κατά τη διάρκεια της συνεδρίας [${normal_color}$dictionary${blue_color}]"
+	arr["english",183]="You already have selected a dictionary file during this session [${normal_color}${dictionary}${blue_color}]"
+	arr["spanish",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [${normal_color}${dictionary}${blue_color}]"
+	arr["french",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session ${normal_color}${dictionary}${blue_color}]"
+	arr["catalan",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió [${normal_color}${dictionary}${blue_color}]"
+	arr["portuguese",183]="Você selecionou um arquivo de dicionário nesta sessão [${normal_color}${dictionary}${blue_color}]"
+	arr["russian",183]="Во время этой сессии вы выбрали файл словаря [${normal_color}${dictionary}${blue_color}]"
+	arr["greek",183]="Έχετε ήδη επιλέξει λεξικό κατά τη διάρκεια της συνεδρίας [${normal_color}${dictionary}${blue_color}]"
 
 	arr["english",184]="Do you want to use this already selected dictionary file? ${normal_color}[y/n]"
 	arr["spanish",184]="¿Quieres utilizar este fichero de diccionario ya seleccionado? ${normal_color}[y/n]"
@@ -2007,13 +2007,13 @@ function language_strings() {
 	arr["russian",191]="Файл захвата, который вы выбрали, в неподдерживаемом формате (это не файл pcap или IVs)"
 	arr["greek",191]="Η επέκταση του αρχείου καταγραφής που έχετε επιλέξει δεν υποστηρίζεται (δεν είναι pcap ούτε IVs αρχείο)"
 
-	arr["english",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}$bssid${blue_color}]"
-	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}$bssid${blue_color}]"
-	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture ${normal_color}$bssid${blue_color}]"
-	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura [${normal_color}$bssid${blue_color}]"
-	arr["portuguese",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura [${normal_color}$bssid${blue_color}]"
-	arr["russian",192]="У вас уже есть выбранная во время этой сессии BSSID и она пресутствует в файле захвата [${normal_color}$bssid${blue_color}]"
-	arr["greek",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής [${normal_color}$bssid${blue_color}]"
+	arr["english",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
+	arr["spanish",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
+	arr["french",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture ${normal_color}${bssid}${blue_color}]"
+	arr["catalan",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura [${normal_color}${bssid}${blue_color}]"
+	arr["portuguese",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura [${normal_color}${bssid}${blue_color}]"
+	arr["russian",192]="У вас уже есть выбранная во время этой сессии BSSID и она пресутствует в файле захвата [${normal_color}${bssid}${blue_color}]"
+	arr["greek",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής [${normal_color}${bssid}${blue_color}]"
 
 	arr["english",193]="Do you want to use this already selected BSSID? ${normal_color}[y/n]"
 	arr["spanish",193]="¿Quieres utilizar este BSSID ya seleccionado? ${normal_color}[y/n]"
@@ -2207,13 +2207,13 @@ function language_strings() {
 	arr["russian",216]="В выбранном файле сети с захваченным рукопожатием не найдены"
 	arr["greek",216]="Δεν βρέθηκαν δίκτυα με Χειραψία στο επιλεγμένο αρχείο"
 
-	arr["english",217]="Only one valid target detected on file. BSSID autoselected [${normal_color}$bssid${blue_color}]"
-	arr["spanish",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID [${normal_color}$bssid${blue_color}]"
-	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est [${normal_color}$bssid${blue_color}]"
-	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID [${normal_color}$bssid${blue_color}]"
-	arr["portuguese",217]="Apenas um alvo válido detectado no arquivo. BSSID selecionado automaticamente [${normal_color}$bssid${blue_color}]"
-	arr["russian",217]="В файле обнаружена только одна подходящая цель. BSSID выбрана автоматически [${normal_color}$bssid${blue_color}]"
-	arr["greek",217]="Μόνο ένας έγκυρος στόχος εντοπίστηκε στο αρχείο. Επιλέχθηκε αυτόματα το BSSID [${normal_color}$bssid${blue_color}]"
+	arr["english",217]="Only one valid target detected on file. BSSID autoselected [${normal_color}${bssid}${blue_color}]"
+	arr["spanish",217]="Sólo un objetivo válido detectado en el fichero. Se ha seleccionado automáticamente el BSSID [${normal_color}${bssid}${blue_color}]"
+	arr["french",217]="Le seul réseau valide présent dans le fichier choisi a été sélectionné automatiquement, son BSSID est [${normal_color}${bssid}${blue_color}]"
+	arr["catalan",217]="Només un objectiu vàlid detectat en el fitxer. S'ha seleccionat automàticament el BSSID [${normal_color}${bssid}${blue_color}]"
+	arr["portuguese",217]="Apenas um alvo válido detectado no arquivo. BSSID selecionado automaticamente [${normal_color}${bssid}${blue_color}]"
+	arr["russian",217]="В файле обнаружена только одна подходящая цель. BSSID выбрана автоматически [${normal_color}${bssid}${blue_color}]"
+	arr["greek",217]="Μόνο ένας έγκυρος στόχος εντοπίστηκε στο αρχείο. Επιλέχθηκε αυτόματα το BSSID [${normal_color}${bssid}${blue_color}]"
 
 	arr["english",218]="Optional tools: checking..."
 	arr["spanish",218]="Herramientas opcionales: comprobando..."
@@ -2239,21 +2239,21 @@ function language_strings() {
 	arr["russian",220]="Была выбрана заблокированная опция меню"
 	arr["greek",220]="Επιλέχθηκε κλειδωμένη επιλογή"
 
-	arr["english",221]="Accepted bash version ($BASH_VERSION). Minimum required version: $minimum_bash_version_required"
-	arr["spanish",221]="Versión de bash ($BASH_VERSION) aceptada. Mínimo requerido versión: $minimum_bash_version_required"
-	arr["french",221]="Votre version de bash ($BASH_VERSION) est acceptée. Version minimale requise: $minimum_bash_version_required"
-	arr["catalan",221]="Versió de bash ($BASH_VERSION) acceptada. Versió minima requerida: $minimum_bash_version_required"
-	arr["portuguese",221]="Versão Bash ($BASH_VERSION) aceita. Versão mínima exigida: $minimum_bash_version_required"
-	arr["russian",221]="Используемая версия bash ($BASH_VERSION). Минимальная требуемая версия: $minimum_bash_version_required"
-	arr["greek",221]="Αποδεκτή έκδοση bash ($BASH_VERSION). Ελάχιστη απαιτούμενη έκδοση: $minimum_bash_version_required"
+	arr["english",221]="Accepted bash version ($BASH_VERSION). Minimum required version: ${minimum_bash_version_required}"
+	arr["spanish",221]="Versión de bash ($BASH_VERSION) aceptada. Mínimo requerido versión: ${minimum_bash_version_required}"
+	arr["french",221]="Votre version de bash ($BASH_VERSION) est acceptée. Version minimale requise: ${minimum_bash_version_required}"
+	arr["catalan",221]="Versió de bash ($BASH_VERSION) acceptada. Versió minima requerida: ${minimum_bash_version_required}"
+	arr["portuguese",221]="Versão Bash ($BASH_VERSION) aceita. Versão mínima exigida: ${minimum_bash_version_required}"
+	arr["russian",221]="Используемая версия bash ($BASH_VERSION). Минимальная требуемая версия: ${minimum_bash_version_required}"
+	arr["greek",221]="Αποδεκτή έκδοση bash ($BASH_VERSION). Ελάχιστη απαιτούμενη έκδοση: ${minimum_bash_version_required}"
 
-	arr["english",222]="Insufficient bash version ($BASH_VERSION). Minimum required version: $minimum_bash_version_required"
-	arr["spanish",222]="Versión de bash insuficiente ($BASH_VERSION). Mínimo requerido versión: $minimum_bash_version_required"
-	arr["french",222]="Votre version de bash ($BASH_VERSION) n'est pas suffisante. Version minimale requise: $minimum_bash_version_required"
-	arr["catalan",222]="Versió de bash insuficient ($BASH_VERSION). Versió mínima requerida: $minimum_bash_version_required"
-	arr["portuguese",222]="Versão Bash insuficiente ($BASH_VERSION). Versão mínima exigida: $minimum_bash_version_required"
-	arr["russian",222]="Неудовлетворительная версия bash ($BASH_VERSION). Минимальная требуемая версия: $minimum_bash_version_required"
-	arr["greek",222]="Ανεπαρκής έκδοση bash ($BASH_VERSION). Ελάχιστη απαιτούμενη έκδοση:: $minimum_bash_version_required"
+	arr["english",222]="Insufficient bash version ($BASH_VERSION). Minimum required version: ${minimum_bash_version_required}"
+	arr["spanish",222]="Versión de bash insuficiente ($BASH_VERSION). Mínimo requerido versión: ${minimum_bash_version_required}"
+	arr["french",222]="Votre version de bash ($BASH_VERSION) n'est pas suffisante. Version minimale requise: ${minimum_bash_version_required}"
+	arr["catalan",222]="Versió de bash insuficient ($BASH_VERSION). Versió mínima requerida: ${minimum_bash_version_required}"
+	arr["portuguese",222]="Versão Bash insuficiente ($BASH_VERSION). Versão mínima exigida: ${minimum_bash_version_required}"
+	arr["russian",222]="Неудовлетворительная версия bash ($BASH_VERSION). Минимальная требуемая версия: ${minimum_bash_version_required}"
+	arr["greek",222]="Ανεπαρκής έκδοση bash ($BASH_VERSION). Ελάχιστη απαιτούμενη έκδοση: ${minimum_bash_version_required}"
 
 	arr["english",223]="Maybe the essential tools check has failed because you are not root user or don't have enough privileges. Launch the script as root user or using \"sudo\""
 	arr["spanish",223]="Es posible que el chequeo de las herramientas esenciales haya fallado porque no eres usuario root o no tienes privilegios suficientes. Lanza el script como usuario root o usando \"sudo\""
@@ -2295,13 +2295,13 @@ function language_strings() {
 	arr["russian",227]="Работаем...  "
 	arr["greek",227]="Δουλεύει...  "
 
-	arr["english",228]="                             Developed by $author"
-	arr["spanish",228]="                             Programado por $author"
-	arr["french",228]="                             Programmé par $author"
-	arr["catalan",228]="                             Desenvolupat per $author"
-	arr["portuguese",228]="                             Programado por $author"
-	arr["russian",228]="                             Создал $author"
-	arr["greek",228]="                             Προγραμματισμένο από $author"
+	arr["english",228]="                             Developed by ${author}"
+	arr["spanish",228]="                             Programado por ${author}"
+	arr["french",228]="                             Programmé par ${author}"
+	arr["catalan",228]="                             Desenvolupat per ${author}"
+	arr["portuguese",228]="                             Programado por ${author}"
+	arr["russian",228]="                             Создал ${author}"
+	arr["greek",228]="                             Προγραμματισμένο από ${author}"
 
 	arr["english",229]="hashcat CPU, non GPU attacks"
 	arr["spanish",229]="ataques hashcat CPU, no GPU"
@@ -2471,13 +2471,13 @@ function language_strings() {
 	arr["russian",249]="5.  Португальский"
 	arr["greek",249]="5.  Πορτογαλικά"
 
-	arr["english",250]="If you see any bad translation or just want ${cyan_color}$pending_of_translation${pink_color} marks to dissapear, write me to $mail to collaborate with translations"
-	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas ${cyan_color}$pending_of_translation${pink_color}, escríbeme a $mail para colaborar con las traducciones"
-	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques ${cyan_color}$pending_of_translation${pink_color} disparaitre, écrivez à $mail pour collaborer avec les traductions"
-	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques ${cyan_color}$pending_of_translation${pink_color}, escriu-me a $mail per col·laborar amb les traduccions"
-	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas ${cyan_color}$pending_of_translation${pink_color} sejam retiradas, escreva para $mail para colaborar com as traduções"
-	arr["russian",250]="Если вы видите плохой перевод или просто хотите снять пометку ${cyan_color}$pending_of_translation${pink_color} напишите мне на $mail для сотрудничества с переводчиками"
-	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια ${cyan_color}$pending_of_translation${pink_color} να εξαφανιστούν, στείλτε μου στο $mail για να συνεργαστούμε με τις μεταφράσεις"
+	arr["english",250]="If you see any bad translation or just want ${cyan_color}$pending_of_translation${pink_color} marks to dissapear, write me to ${mail} to collaborate with translations"
+	arr["spanish",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas ${cyan_color}$pending_of_translation${pink_color}, escríbeme a ${mail} para colaborar con las traducciones"
+	arr["french",250]="Si vous voyez des erreurs contresens ou voulez voir les marques ${cyan_color}$pending_of_translation${pink_color} disparaitre, écrivez à ${mail} pour collaborer avec les traductions"
+	arr["catalan",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques ${cyan_color}$pending_of_translation${pink_color}, escriu-me a ${mail} per col·laborar amb les traduccions"
+	arr["portuguese",250]="Se você ver qualquer erro de tradução ou quer que as marcas ${cyan_color}$pending_of_translation${pink_color} sejam retiradas, escreva para ${mail} para colaborar com as traduções"
+	arr["russian",250]="Если вы видите плохой перевод или просто хотите снять пометку ${cyan_color}$pending_of_translation${pink_color} напишите мне на ${mail} для сотрудничества с переводчиками"
+	arr["greek",250]="Αν δείτε κάποια κακή μετάφραση ή απλά θέλετε τα σημάδια ${cyan_color}$pending_of_translation${pink_color} να εξαφανιστούν, στείλτε μου στο ${mail} για να συνεργαστούμε με τις μεταφράσεις"
 
 	arr["english",251]="You have chosen the same language that was selected. No changes will be done"
 	arr["spanish",251]="Has elegido el mismo idioma que estaba seleccionado. No se realizarán cambios"
@@ -2719,13 +2719,13 @@ function language_strings() {
 	arr["russian",280]="На этом экране предполагается, что выбран дополнительный интерфейс для предоставления Интернет доступа, но у вас его на текущий момент нет"
 	arr["greek",280]="Σε αυτή την οθόνη, υποτίθεται πως επιλέγεται μία επιπρόσθετη διεπαφή που παρέχει πρόσβαση στο διαδίκτυο, αλλά δεν έχετε κανέναν αυτή τη στιγμή"
 
-	arr["english",281]="The interface $interface you have already selected is not a wifi card. This attack needs a wifi card selected"
-	arr["spanish",281]="El interfaz $interface que tienes seleccionado no es una tarjeta wifi. Este ataque necesita que la interfaz seleccionada sea wifi"
-	arr["french",281]="L'interface $interface que vous avez sélectionnée n'est pas une carte wifi. Cette attaque exige que l'interface sélectionnée soit une carte wifi"
-	arr["catalan",281]="La interfície $interface que tens seleccionada no és una targeta wifi. Aquest atac necessita que la interfície seleccionada sigui wifi"
-	arr["portuguese",281]="$ A interface $interface que você selecionou não é wifi. Este ataque requer uma interface wifi selecionada"
-	arr["russian",281]="Интерфейс $interface, который вы выбрали не является wifi картой. Эта атака требует выбрать wifi карту"
-	arr["greek",281]="Η διεπαφή $interface που έχετε ήδη επιλέξει δεν έιναι κάρτα wifi. Αυτή η επίθεση χρειάζεται μία κάρτα wifi επιλεγμένη"
+	arr["english",281]="The interface ${interface} you have already selected is not a wifi card. This attack needs a wifi card selected"
+	arr["spanish",281]="El interfaz ${interface} que tienes seleccionado no es una tarjeta wifi. Este ataque necesita que la interfaz seleccionada sea wifi"
+	arr["french",281]="L'interface ${interface} que vous avez sélectionnée n'est pas une carte wifi. Cette attaque exige que l'interface sélectionnée soit une carte wifi"
+	arr["catalan",281]="La interfície ${interface} que tens seleccionada no és una targeta wifi. Aquest atac necessita que la interfície seleccionada sigui wifi"
+	arr["portuguese",281]="$ A interface ${interface} que você selecionou não é wifi. Este ataque requer uma interface wifi selecionada"
+	arr["russian",281]="Интерфейс ${interface}, который вы выбрали не является wifi картой. Эта атака требует выбрать wifi карту"
+	arr["greek",281]="Η διεπαφή ${interface} που έχετε ήδη επιλέξει δεν έιναι κάρτα wifi. Αυτή η επίθεση χρειάζεται μία κάρτα wifi επιλεγμένη"
 
 	arr["english",282]="Selected internet interface: ${pink_color}$internet_interface${normal_color}"
 	arr["spanish",282]="Interfaz con internet seleccionada: ${pink_color}$internet_interface${normal_color}"
@@ -3129,49 +3129,48 @@ function language_strings() {
 
 	case "$3" in
 		"yellow")
-			interrupt_checkpoint ${2} ${3}
-			echo_yellow "${arr[$1,$2]}"
+			interrupt_checkpoint "${2}" "${3}"
+			echo_yellow "${arr[${1},${2}]}"
 		;;
 		"blue")
-			echo_blue "${arr[$1,$2]}"
+			echo_blue "${arr[${1},${2}]}"
 		;;
 		"red")
-			echo_red "${arr[$1,$2]}"
+			echo_red "${arr[${1},${2}]}"
 		;;
 		"green")
-			if [ ${2} -ne ${abort_question} ]; then
-				interrupt_checkpoint ${2} ${3}
+			if [ "${2}" -ne ${abort_question} ]; then
+				interrupt_checkpoint "${2}" "${3}"
 			fi
-			echo_green "${arr[$1,$2]}"
+			echo_green "${arr[${1},${2}]}"
 		;;
 		"pink")
-			echo_pink "${arr[$1,$2]}"
+			echo_pink "${arr[${1},${2}]}"
 		;;
 		"title")
-			generate_dynamic_line "${arr[$1,$2]}" "title"
+			generate_dynamic_line "${arr[${1},${2}]}" "title"
 		;;
 		"read")
-			interrupt_checkpoint ${2} ${3}
-			read -p "${arr[$1,$2]}"
+			interrupt_checkpoint "${2}" "${3}"
+			read -p "${arr[${1},${2}]}"
 		;;
 		"multiline")
-			echo -ne "${arr[$1,$2]}"
+			echo -ne "${arr[${1},${2}]}"
 		;;
 		"hint")
-			echo_brown "$hintvar ${pink_color}${arr[$1,$2]}"
+			echo_brown "$hintvar ${pink_color}${arr[${1},${2}]}"
 		;;
 		"separator")
-			generate_dynamic_line "${arr[$1,$2]}" "separator"
+			generate_dynamic_line "${arr[${1},${2}]}" "separator"
 		;;
 		"under_construction")
-			echo_red_slim "${arr[$1,$2]} ($under_constructionvar)"
+			echo_red_slim "${arr[${1},${2}]} (${under_constructionvar})"
 		;;
 		*)
 			if [ -z "$3" ]; then
-				last_echo "${arr[$1,$2]}" ${normal_color}
+				last_echo "${arr[${1},${2}]}" ${normal_color}
 			else
-				declare -a argarray=("${!3}")
-				special_text_missed_optional_tool $1 $2 argarray[@]
+				special_text_missed_optional_tool "${1}" "${2}" "${3}"
 			fi
 		;;
 	esac
@@ -3320,7 +3319,7 @@ function check_interface_wifi() {
 function execute_iwconfig_fix() {
 
 	iwconfig_fix
-	iwcmd="iwconfig $interface $iwcmdfix > /dev/null 2> /dev/null"
+	iwcmd="iwconfig ${interface} $iwcmdfix > /dev/null 2> /dev/null"
 	eval ${iwcmd}
 
 	return $?
@@ -3347,7 +3346,7 @@ function check_interface_coherence() {
 
 	interface_found=0
 	for iface_name in "${!ifaces_and_macs[@]}"; do
-		if [ "$interface" = "$iface_name" ]; then
+		if [ "${interface}" = "$iface_name" ]; then
 			interface_found=1
 			interface_mac=${ifaces_and_macs["$iface_name"]}
 			break
@@ -3358,7 +3357,7 @@ function check_interface_coherence() {
 		for iface_mac in "${ifaces_and_macs[@]}"; do
 			iface_mac_tmp=${iface_mac:0:15}
 			interface_mac_tmp=${interface_mac:0:15}
-			if [ "$iface_mac_tmp" = "$interface_mac_tmp" ]; then
+			if [ "$iface_mac_tmp" = "${interface}_mac_tmp" ]; then
 				interface=${ifaces_and_macs_switched["$iface_mac"]}
 				interface_auto_change=1
 				break
@@ -3377,7 +3376,7 @@ function prepare_et_monitor() {
 
 	disable_rfkill
 
-	phy_iface=$(ls -l "/sys/class/net/$interface/phy80211" | sed 's/^.*\/\([a-zA-Z0-9_-]*\)$/\1/' 2> /dev/null)
+	phy_iface=$(ls -l "/sys/class/net/${interface}/phy80211" | sed 's/^.*\/\([a-zA-Z0-9_-]*\)$/\1/' 2> /dev/null)
 	iface_phy_number=${phy_iface:3:1}
 	iface_monitor_et_deauth="mon$iface_phy_number"
 
@@ -3393,7 +3392,7 @@ function prepare_et_interface() {
 	if [ ${ifacemode} != "Managed" ]; then
 		new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
-		if [ "$interface" != "$new_interface" ]; then
+		if [ "${interface}" != "$new_interface" ]; then
 			check_interface_coherence
 			if [ "$?" = "0" ]; then
 				interface=${new_interface}
@@ -3420,7 +3419,7 @@ function restore_et_interface() {
 	else
 		new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
-		if [ "$interface" != "$new_interface" ]; then
+		if [ "${interface}" != "$new_interface" ]; then
 			interface=${new_interface}
 		fi
 	fi
@@ -3449,7 +3448,7 @@ function managed_option() {
 	new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
-	if [ "$interface" != "$new_interface" ]; then
+	if [ "${interface}" != "$new_interface" ]; then
 		check_interface_coherence
 		if [ "$?" = "0" ]; then
 			interface=${new_interface}
@@ -3494,7 +3493,7 @@ function monitor_option() {
 	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
-	if [ "$interface" != "$new_interface" ]; then
+	if [ "${interface}" != "$new_interface" ]; then
 		check_interface_coherence
 		if [ "$?" = "0" ]; then
 			interface=${new_interface}
@@ -3863,9 +3862,9 @@ function read_essid() {
 
 function ask_essid() {
 
-	if [ -z "$essid" ]; then
+	if [ -z "${essid}" ]; then
 		read_essid
-	elif [ "$essid" = "(Hidden Network)" ]; then
+	elif [ "${essid}" = "(Hidden Network)" ]; then
 		echo
 		language_strings "${language}" 30 "yellow"
 		read_essid
@@ -4073,7 +4072,7 @@ function michael_shutdown_option() {
 
 function print_iface_selected() {
 
-	if [ -z "$interface" ]; then
+	if [ -z "${interface}" ]; then
 		language_strings "${language}" 41 "blue"
 		echo
 		language_strings "${language}" 115 "read"
@@ -4097,13 +4096,13 @@ function print_iface_internet_selected() {
 
 function print_all_target_vars() {
 
-	if [ -n "$bssid" ]; then
+	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
-		if [ -n "$channel" ]; then
+		if [ -n "${channel}" ]; then
 			language_strings "${language}" 44 "blue"
 		fi
-		if [ -n "$essid" ]; then
-			if [ "$essid" = "(Hidden Network)" ]; then
+		if [ -n "${essid}" ]; then
+			if [ "${essid}" = "(Hidden Network)" ]; then
 				language_strings "${language}" 45 "blue"
 			else
 				language_strings "${language}" 46 "blue"
@@ -4117,20 +4116,20 @@ function print_all_target_vars() {
 
 function print_all_target_vars_et() {
 
-	if [ -n "$bssid" ]; then
+	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 	else
 		language_strings "${language}" 271 "blue"
 	fi
 
-	if [ -n "$channel" ]; then
+	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
 	else
 		language_strings "${language}" 273 "blue"
 	fi
 
-	if [ -n "$essid" ]; then
-		if [ "$essid" = "(Hidden Network)" ]; then
+	if [ -n "${essid}" ]; then
+		if [ "${essid}" = "(Hidden Network)" ]; then
 			language_strings "${language}" 45 "blue"
 		else
 			language_strings "${language}" 46 "blue"
@@ -4142,20 +4141,20 @@ function print_all_target_vars_et() {
 
 function print_et_target_vars() {
 
-	if [ -n "$bssid" ]; then
+	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 	else
 		language_strings "${language}" 271 "blue"
 	fi
 
-	if [ -n "$channel" ]; then
+	if [ -n "${channel}" ]; then
 		language_strings "${language}" 44 "blue"
 	else
 		language_strings "${language}" 273 "blue"
 	fi
 
-	if [ -n "$essid" ]; then
-		if [ "$essid" = "(Hidden Network)" ]; then
+	if [ -n "${essid}" ]; then
+		if [ "${essid}" = "(Hidden Network)" ]; then
 			language_strings "${language}" 45 "blue"
 		else
 			language_strings "${language}" 46 "blue"
@@ -4187,7 +4186,7 @@ function print_et_target_vars() {
 
 function print_decrypt_vars() {
 
-	if [ -n "$bssid" ]; then
+	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 	else
 		language_strings "${language}" 185 "blue"
@@ -4199,7 +4198,7 @@ function print_decrypt_vars() {
 		language_strings "${language}" 177 "blue"
 	fi
 
-	if [ -n "$dictionary" ]; then
+	if [ -n "${dictionary}" ]; then
 		language_strings "${language}" 182 "blue"
 	fi
 
@@ -4276,28 +4275,28 @@ function initialize_menu_and_print_selections() {
 
 function clean_tmpfiles() {
 
-	rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"clts"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
-	rm -rf ${tmpdir}"hctmp"* > /dev/null 2>&1
-	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
-	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
-	rm -rf "$tmpdir$control_file" > /dev/null 2>&1
-	rm -rf "$tmpdir$ettercap_file"* > /dev/null 2>&1
-	rm -rf "$tmpdir$sslstrip_file" > /dev/null 2>&1
-	rm -rf "$tmpdir$webserver_file" > /dev/null 2>&1
-	rm -rf -R "$tmpdir$webdir" > /dev/null 2>&1
+	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
+	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
+	rm -rf "${tmpdir}clts"* > /dev/null 2>&1
+	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
+	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
+	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
 	if [ ${dhcpd_path_changed} -eq 1 ]; then
-		rm -rf "$dhcp_path" > /dev/null 2>&1
+		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
 }
 
 function clean_routing_rules() {
 
 	if [ -n ${original_routing_state} ]; then
-		echo "$original_routing_state" > /proc/sys/net/ipv4/ip_forward
+		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
 
 	iptables -F
@@ -4308,7 +4307,7 @@ function clean_routing_rules() {
 
 function store_array() {
 
-	local var=$1 base_key=$2 values=("${@:3}")
+	local var=${1} base_key=${2} values=("${@:3}")
 	for i in "${!values[@]}"; do
 		eval "$1[\$base_key|${i}]=\${values[i]}"
 	done
@@ -4317,7 +4316,7 @@ function store_array() {
 contains_element() {
 
 	local e
-	for e in "${@:2}"; do [[ "$e" == "$1" ]] && return 0; done
+	for e in "${@:2}"; do [[ "$e" == "${1}" ]] && return 0; done
 	return 1
 }
 
@@ -4694,7 +4693,7 @@ function manage_asking_for_captured_file() {
 
 function manage_asking_for_dictionary_file() {
 
-	if [ -n "$dictionary" ]; then
+	if [ -n "${dictionary}" ]; then
 		echo
 		language_strings "${language}" 183 "blue"
 		ask_yesno 184
@@ -4778,7 +4777,7 @@ function check_bssid_in_captured_file() {
 	done
 
 	for targetbssid in ${bssids_detected[@]}; do
-		if [ "$bssid" = "$targetbssid" ]; then
+		if [ "${bssid}" = "$targetbssid" ]; then
 			language_strings "${language}" 322 "yellow"
 			return 0
 		fi
@@ -4810,7 +4809,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	done
 
 	for targetbssid in ${bssids_detected[@]}; do
-		if [ "$bssid" = "$targetbssid" ]; then
+		if [ "${bssid}" = "$targetbssid" ]; then
 			language_strings "${language}" 192 "blue"
 			ask_yesno 193
 
@@ -4984,7 +4983,7 @@ function manage_hashcat_pot() {
 			if [ "$lastcharhashcat_potpath" != "/" ]; then
 				hashcat_potpath="$hashcat_potpath/"
 			fi
-			hashcatpot_filename="hashcat-$bssid.pot"
+			hashcatpot_filename="hashcat-${bssid}.pot"
 			hashcat_potpath="$hashcat_potpath$hashcatpot_filename"
 
 			validpath=1
@@ -5006,14 +5005,14 @@ function manage_ettercap_log() {
 	ask_yesno 302
 	if [ ${yesno} = "y" ]; then
 		ettercap_log=1
-		default_ettercap_logpath=`env | grep ^HOME | awk -F = '{print $2}'`
+		default_ettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharettercaplogpath=${default_ettercap_logpath: -1}
 		if [ "$lastcharettercaplogpath" != "/" ]; then
 			ettercap_logpath="$default_ettercap_logpath/"
 		fi
-		default_ettercaplogfilename="evil_twin_captured_passwords-$essid.txt"
-		rm -rf "$tmpdir$ettercap_file"* > /dev/null 2>&1
-		tmp_ettercaplog="$tmpdir$ettercap_file"
+		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
+		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
+		tmp_ettercaplog="${tmpdir}${ettercap_file}"
 		default_ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
 		validpath=1
 		while [[ "$validpath" != "0" ]]; do
@@ -5029,7 +5028,7 @@ function manage_captive_portal_log() {
 	if [ "$lastcharetcaptiveportallogpath" != "/" ]; then
 		et_captive_portal_logpath="$default_et_captive_portal_logpath/"
 	fi
-	default_et_captive_portallogfilename="evil_twin_captive_portal_password-$essid.txt"
+	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
 	default_et_captive_portal_logpath="$et_captive_portal_logpath$default_et_captive_portallogfilename"
 	validpath=1
 	while [[ "$validpath" != "0" ]]; do
@@ -5236,14 +5235,14 @@ function exec_aircrack_bruteforce_attack() {
 
 function exec_aircrack_dictionary_attack() {
 
-	aircrack-ng -a 2 -b ${bssid} -w "$dictionary" "$enteredpath"
+	aircrack-ng -a 2 -b ${bssid} -w "${dictionary}" "$enteredpath"
 	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "$dictionary" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
+	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "${dictionary}" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
 	language_strings "${language}" 115 "read"
 }
 
@@ -5257,7 +5256,7 @@ function exec_hashcat_bruteforce_attack() {
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "$dictionary" -r "$rules" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
+	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "${dictionary}" -r "$rules" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
 	language_strings "${language}" 115 "read"
 }
 
@@ -5360,16 +5359,16 @@ function exec_et_captive_portal_attack() {
 function set_hostapd_config() {
 
 	tmpfiles_toclean=1
-	rm -rf "$tmpdir$hostapd_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
 	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n100 | grep -v "${bssid:10:1}" | head -c 1)
 	et_bssid=${bssid::10}${different_mac_digit}${bssid:11:6}
 
-	echo -e "interface=$interface" > "$tmpdir$hostapd_file"
-	echo -e "driver=nl80211" >> "$tmpdir$hostapd_file"
-	echo -e "ssid=$essid" >> "$tmpdir$hostapd_file"
-	echo -e "channel=$channel" >> "$tmpdir$hostapd_file"
-	echo -e "bssid=$et_bssid" >> "$tmpdir$hostapd_file"
+	echo -e "interface=${interface}" > "${tmpdir}${hostapd_file}"
+	echo -e "driver=nl80211" >> "${tmpdir}${hostapd_file}"
+	echo -e "ssid=${essid}" >> "${tmpdir}${hostapd_file}"
+	echo -e "channel=${channel}" >> "${tmpdir}${hostapd_file}"
+	echo -e "bssid=$et_bssid" >> "${tmpdir}${hostapd_file}"
 }
 
 function launch_fake_ap() {
@@ -5390,7 +5389,7 @@ function launch_fake_ap() {
 			hostapd_scr_window_position=${g4_topleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg blue -geometry ${hostapd_scr_window_position} -T "AP" -e "hostapd \"$tmpdir$hostapd_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg blue -geometry ${hostapd_scr_window_position} -T "AP" -e "hostapd \"${tmpdir}${hostapd_file}\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 3
 }
@@ -5413,26 +5412,26 @@ function set_dhcp_config() {
 	fi
 
 	tmpfiles_toclean=1
-	rm -rf "$tmpdir$dhcpd_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
 	ifconfig ${interface} up
 
-	echo -e "authoritative;" > "$tmpdir$dhcpd_file"
-	echo -e "default-lease-time 600;" >> "$tmpdir$dhcpd_file"
-	echo -e "max-lease-time 7200;" >> "$tmpdir$dhcpd_file"
-	echo -e "subnet $et_ip_range netmask $std_c_mask {" >> "$tmpdir$dhcpd_file"
-	echo -e "\toption broadcast-address $et_broadcast_ip;" >> "$tmpdir$dhcpd_file"
-	echo -e "\toption routers $et_ip_router;" >> "$tmpdir$dhcpd_file"
-	echo -e "\toption subnet-mask $std_c_mask;" >> "$tmpdir$dhcpd_file"
+	echo -e "authoritative;" > "${tmpdir}${dhcpd_file}"
+	echo -e "default-lease-time 600;" >> "${tmpdir}${dhcpd_file}"
+	echo -e "max-lease-time 7200;" >> "${tmpdir}${dhcpd_file}"
+	echo -e "subnet $et_ip_range netmask ${std_c_mask} {" >> "${tmpdir}${dhcpd_file}"
+	echo -e "\toption broadcast-address ${et_broadcast_ip};" >> "${tmpdir}${dhcpd_file}"
+	echo -e "\toption routers ${et_ip_router};" >> "${tmpdir}${dhcpd_file}"
+	echo -e "\toption subnet-mask ${std_c_mask};" >> "${tmpdir}${dhcpd_file}"
 
 	if [[ "$et_mode" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
-		echo -e "\toption domain-name-servers $internet_dns1, $internet_dns2;" >> "$tmpdir$dhcpd_file"
+		echo -e "\toption domain-name-servers ${internet_dns1}, ${internet_dns2};" >> "${tmpdir}${dhcpd_file}"
 	else
-		echo -e "\toption domain-name-servers $et_ip_router;" >> "$tmpdir$dhcpd_file"
+		echo -e "\toption domain-name-servers ${et_ip_router};" >> "${tmpdir}${dhcpd_file}"
 	fi
 
-	echo -e "\trange $et_range_start $et_range_stop;" >> "$tmpdir$dhcpd_file"
-	echo -e "}" >> "$tmpdir$dhcpd_file"
+	echo -e "\trange ${et_range_start} ${et_range_stop};" >> "${tmpdir}${dhcpd_file}"
+	echo -e "}" >> "${tmpdir}${dhcpd_file}"
 
 	leases_found=0
 	for item in ${!possible_dhcp_leases_files[@]}; do
@@ -5444,27 +5443,27 @@ function set_dhcp_config() {
 	done
 
 	if [ ${leases_found} -eq 1 ]; then
-		echo -e "lease-file-name \"${possible_dhcp_leases_files[$key_leases_found]}\";" >> "$tmpdir$dhcpd_file"
+		echo -e "lease-file-name \"${possible_dhcp_leases_files[$key_leases_found]}\";" >> "${tmpdir}${dhcpd_file}"
 		chmod a+w "${possible_dhcp_leases_files[$key_leases_found]}" > /dev/null 2>&1
 	else
 		touch "${possible_dhcp_leases_files[0]}"
-		echo -e "lease-file-name \"${possible_dhcp_leases_files[0]}\";" >> "$tmpdir$dhcpd_file"
+		echo -e "lease-file-name \"${possible_dhcp_leases_files[0]}\";" >> "${tmpdir}${dhcpd_file}"
 		chmod a+w "${possible_dhcp_leases_files[0]}" > /dev/null 2>&1
 	fi
 
-	dhcp_path="$tmpdir$dhcpd_file"
+	dhcp_path="${tmpdir}${dhcpd_file}"
 	if hash apparmor_status 2> /dev/null; then
 		apparmor_status | grep dhcpd > /dev/null
 		if [ "$?" = "0" ]; then
 			if [ -d /etc/dhcpd ]; then
-				cp "$tmpdir$dhcpd_file" /etc/dhcpd/ 2> /dev/null
-				dhcp_path="/etc/dhcpd/$dhcpd_file"
+				cp "${tmpdir}${dhcpd_file}" /etc/dhcpd/ 2> /dev/null
+				dhcp_path="/etc/dhcpd/${dhcpd_file}"
 			elif [ -d /etc/dhcp ]; then
-				cp "$tmpdir$dhcpd_file" /etc/dhcp/ 2> /dev/null
-				dhcp_path="/etc/dhcp/$dhcpd_file"
+				cp "${tmpdir}${dhcpd_file}" /etc/dhcp/ 2> /dev/null
+				dhcp_path="/etc/dhcp/${dhcpd_file}"
 			else
-				cp "$tmpdir$dhcpd_file" /etc/ 2> /dev/null
-				dhcp_path="/etc/$dhcpd_file"
+				cp "${tmpdir}${dhcpd_file}" /etc/ 2> /dev/null
+				dhcp_path="/etc/${dhcpd_file}"
 			fi
 			dhcpd_path_changed=1
 		fi
@@ -5528,7 +5527,7 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg pink -geometry ${dchcpd_scr_window_position} -T "DHCP" -e "dhcpd -d -cf \"$dhcp_path\" $interface 2>&1 | tee -a $tmpdir/clts.txt" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg pink -geometry ${dchcpd_scr_window_position} -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -5542,15 +5541,15 @@ function exec_et_deauth() {
 			killall mdk3 > /dev/null 2>&1
 			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
 			echo ${bssid} > ${tmpdir}"bl.txt"
-			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} d -b $tmpdir\"bl.txt\" -c $channel"
+			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
 		;;
 		"Aireplay")
 			killall aireplay-ng > /dev/null 2>&1
-			deauth_et_cmd="aireplay-ng --deauth 0 -a $bssid --ignore-negative-one $iface_monitor_et_deauth"
+			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one $iface_monitor_et_deauth"
 		;;
 		"Wds Confusion")
 			killall mdk3 > /dev/null 2>&1
-			deauth_et_cmd="mdk3 $iface_monitor_et_deauth w -e $essid -c $channel"
+			deauth_et_cmd="mdk3 $iface_monitor_et_deauth w -e ${essid} -c ${channel}"
 		;;
 	esac
 
@@ -5573,9 +5572,9 @@ function exec_et_deauth() {
 
 function set_control_script() {
 
-	rm -rf "$tmpdir$control_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
 
-	exec 7>"$tmpdir$control_file"
+	exec 7>"${tmpdir}${control_file}"
 
 	cat >&7 <<-EOF
 		#!/bin/bash
@@ -5776,7 +5775,7 @@ function set_control_script() {
 function launch_dns_blackhole() {
 
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "DNS" -e "${optional_tools_names[12]} -i $interface" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -5801,130 +5800,130 @@ function launch_control_window() {
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
-	xterm -hold -bg black -fg white -geometry ${control_scr_window_position} -T "Control" -e "bash \"$tmpdir$control_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg white -geometry ${control_scr_window_position} -T "Control" -e "bash \"${tmpdir}${control_file}\"" > /dev/null 2>&1 &
 	et_process_control_window=$!
 }
 
 function set_webserver_config() {
 
-	rm -rf "$tmpdir$webserver_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 
-	echo -e "server.document-root = \"$tmpdir$webdir\"\n" > "$tmpdir$webserver_file"
-	echo -e "server.modules = (" >> "$tmpdir$webserver_file"
-	echo -e "\"mod_cgi\"" >> "$tmpdir$webserver_file"
-	echo -e ")\n" >> "$tmpdir$webserver_file"
-	echo -e "server.port = 80\n" >> "$tmpdir$webserver_file"
-	echo -e "index-file.names = ( \"$indexfile\" )\n" >> "$tmpdir$webserver_file"
-	echo -e "server.error-handler-404 = \"/\"\n" >> "$tmpdir$webserver_file"
-	echo -e "mimetype.assign = (" >> "$tmpdir$webserver_file"
-	echo -e "\".css\" => \"text/css\"," >> "$tmpdir$webserver_file"
-	echo -e "\".js\" => \"text/javascript\"" >> "$tmpdir$webserver_file"
-	echo -e ")\n" >> "$tmpdir$webserver_file"
-	echo -e "cgi.assign = ( \".htm\" => \"/bin/bash\" )" >> "$tmpdir$webserver_file"
+	echo -e "server.document-root = \"${tmpdir}${webdir}\"\n" > "${tmpdir}${webserver_file}"
+	echo -e "server.modules = (" >> "${tmpdir}${webserver_file}"
+	echo -e "\"mod_cgi\"" >> "${tmpdir}${webserver_file}"
+	echo -e ")\n" >> "${tmpdir}${webserver_file}"
+	echo -e "server.port = 80\n" >> "${tmpdir}${webserver_file}"
+	echo -e "index-file.names = ( \"${indexfile}\" )\n" >> "${tmpdir}${webserver_file}"
+	echo -e "server.error-handler-404 = \"/\"\n" >> "${tmpdir}${webserver_file}"
+	echo -e "mimetype.assign = (" >> "${tmpdir}${webserver_file}"
+	echo -e "\".css\" => \"text/css\"," >> "${tmpdir}${webserver_file}"
+	echo -e "\".js\" => \"text/javascript\"" >> "${tmpdir}${webserver_file}"
+	echo -e ")\n" >> "${tmpdir}${webserver_file}"
+	echo -e "cgi.assign = ( \".htm\" => \"/bin/bash\" )" >> "${tmpdir}${webserver_file}"
 	sleep 2
 }
 
 function set_captive_portal_page() {
 
-	rm -rf -R "$tmpdir$webdir" > /dev/null 2>&1
-	mkdir "$tmpdir$webdir" > /dev/null 2>&1
+	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
+	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
 
-	echo -e "body * {" > "$tmpdir$webdir$cssfile"
-	echo -e "\tbox-sizing: border-box;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tfont-family: Helvetica, Arial, sans-serif;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e ".button {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tcolor: #ffffff;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tbackground-color: #1b5e20;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tborder-radius: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tcursor: pointer;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\theight: 30px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e ".content {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\twidth: 100%;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tbackground-color: #43a047;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tpadding: 20px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tmargin: 15px auto 0;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tborder-radius: 15px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tcolor: #ffffff;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e ".title {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\ttext-align: center;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tmargin-bottom: 15px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e "#password {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\twidth: 100%;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tmargin-bottom: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tborder-radius: 5px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "\theight: 30px;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e "#password:hover," >> "$tmpdir$webdir$cssfile"
-	echo -e "#password:focus {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tbox-shadow: 0 0 10px #69f0ae;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e ".bold {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tfont-weight: bold;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
-	echo -e "#showpass {" >> "$tmpdir$webdir$cssfile"
-	echo -e "\tvertical-align: top;" >> "$tmpdir$webdir$cssfile"
-	echo -e "}\n" >> "$tmpdir$webdir$cssfile"
+	echo -e "body * {" > "${tmpdir}${webdir}$cssfile"
+	echo -e "\tbox-sizing: border-box;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tfont-family: Helvetica, Arial, sans-serif;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e ".button {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tcolor: #ffffff;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tbackground-color: #1b5e20;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tborder-radius: 5px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tcursor: pointer;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\theight: 30px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e ".content {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\twidth: 100%;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tbackground-color: #43a047;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tpadding: 20px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tmargin: 15px auto 0;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tborder-radius: 15px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tcolor: #ffffff;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e ".title {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\ttext-align: center;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tmargin-bottom: 15px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "#password {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\twidth: 100%;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tmargin-bottom: 5px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tborder-radius: 5px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\theight: 30px;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "#password:hover," >> "${tmpdir}${webdir}$cssfile"
+	echo -e "#password:focus {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tbox-shadow: 0 0 10px #69f0ae;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e ".bold {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tfont-weight: bold;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "#showpass {" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "\tvertical-align: top;" >> "${tmpdir}${webdir}$cssfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$cssfile"
 
-	echo -e "(function() {\n" > "$tmpdir$webdir$jsfile"
-	echo -e "\tvar onLoad = function() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\tvar formElement = document.getElementById(\"loginform\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\tif (formElement != null) {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tvar password = document.getElementById(\"password\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tvar showpass = function() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\tpassword.setAttribute(\"type\", password.type == \"text\" ? \"password\" : \"text\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t}" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tdocument.getElementById(\"showpass\").addEventListener(\"click\", showpass);" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tdocument.getElementById(\"showpass\").checked = false;\n" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tvar validatepass = function() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\tif (password.value.length < 8) {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\t\talert(\"${et_misc_texts[$captive_portal_language,16]}\");" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\t}" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\telse {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\t\tformElement.submit();" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t\t}" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\t}" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t\tdocument.getElementById(\"formbutton\").addEventListener(\"click\", validatepass);" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t\t}" >> "$tmpdir$webdir$jsfile"
-	echo -e "\t};\n" >> "$tmpdir$webdir$jsfile"
-	echo -e "\tdocument.readyState != 'loading' ? onLoad() : document.addEventListener('DOMContentLoaded', onLoad);" >> "$tmpdir$webdir$jsfile"
-	echo -e "})();\n" >> "$tmpdir$webdir$jsfile"
-	echo -e "function redirect() {" >> "$tmpdir$webdir$jsfile"
-	echo -e "\tdocument.location = \"$indexfile\";" >> "$tmpdir$webdir$jsfile"
-	echo -e "}\n" >> "$tmpdir$webdir$jsfile"
+	echo -e "(function() {\n" > "${tmpdir}${webdir}$jsfile"
+	echo -e "\tvar onLoad = function() {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\tvar formElement = document.getElementById(\"loginform\");" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\tif (formElement != null) {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tvar password = document.getElementById(\"password\");" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tvar showpass = function() {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\tpassword.setAttribute(\"type\", password.type == \"text\" ? \"password\" : \"text\");" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t}" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"showpass\").addEventListener(\"click\", showpass);" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"showpass\").checked = false;\n" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tvar validatepass = function() {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\tif (password.value.length < 8) {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\t\talert(\"${et_misc_texts[${captive_portal_language},16]}\");" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\t}" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\telse {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\t\tformElement.submit();" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t\t}" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\t}" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t\tdocument.getElementById(\"formbutton\").addEventListener(\"click\", validatepass);" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t\t}" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\t};\n" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\tdocument.readyState != 'loading' ? onLoad() : document.addEventListener('DOMContentLoaded', onLoad);" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "})();\n" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "function redirect() {" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "\tdocument.location = \"${indexfile}\";" >> "${tmpdir}${webdir}$jsfile"
+	echo -e "}\n" >> "${tmpdir}${webdir}$jsfile"
 
-	echo -e "#!/bin/bash" > "$tmpdir$webdir$indexfile"
-	echo -e "echo '<!DOCTYPE html>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '<html>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t<head>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t<title>${et_misc_texts[$captive_portal_language,15]}</title>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"$cssfile\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t<script type=\"text/javascript\" src=\"$jsfile\"></script>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t</head>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t<body>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t<div class=\"content\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t<form method=\"post\" id=\"loginform\" name=\"loginform\" action=\"check.htm\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t<div class=\"title\">'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t\t<p>${et_misc_texts[$captive_portal_language,9]}</p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t\t<span class=\"bold\">$essid</span>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t</div>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[$captive_portal_language,10]}</p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t<label>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t\t<input id=\"password\" type=\"password\" name=\"password\" maxlength=\"63\" size=\"20\" placeholder=\"${et_misc_texts[$captive_portal_language,11]}\"/><br/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t</label>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[$captive_portal_language,12]} <input type=\"checkbox\" id=\"showpass\"/></p>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t\t<input class=\"button\" id=\"formbutton\" type=\"button\" value=\"${et_misc_texts[$captive_portal_language,13]}\"/>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t\t</form>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t\t</div>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo -e '\t</body>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "echo '</html>'" >> "$tmpdir$webdir$indexfile"
-	echo -e "exit 0" >> "$tmpdir$webdir$indexfile"
+	echo -e "#!/bin/bash" > "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo '<!DOCTYPE html>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo '<html>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t<head>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"/>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t<title>${et_misc_texts[${captive_portal_language},15]}</title>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"$cssfile\"/>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t<script type=\"text/javascript\" src=\"$jsfile\"></script>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t</head>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t<body>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t<div class=\"content\">'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t<form method=\"post\" id=\"loginform\" name=\"loginform\" action=\"check.htm\">'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t<div class=\"title\">'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t\t<p>${et_misc_texts[${captive_portal_language},9]}</p>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t\t<span class=\"bold\">${essid}</span>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t</div>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[${captive_portal_language},10]}</p>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t<label>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t\t<input id=\"password\" type=\"password\" name=\"password\" maxlength=\"63\" size=\"20\" placeholder=\"${et_misc_texts[${captive_portal_language},11]}\"/><br/>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t</label>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t<p>${et_misc_texts[${captive_portal_language},12]} <input type=\"checkbox\" id=\"showpass\"/></p>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t\t<input class=\"button\" id=\"formbutton\" type=\"button\" value=\"${et_misc_texts[${captive_portal_language},13]}\"/>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t\t</form>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t\t</div>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo -e '\t</body>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "echo '</html>'" >> "${tmpdir}${webdir}${indexfile}"
+	echo -e "exit 0" >> "${tmpdir}${webdir}${indexfile}"
 
-	exec 4>"$tmpdir$webdir$checkfile"
+	exec 4>"${tmpdir}${webdir}${checkfile}"
 
 	cat >&4 <<-EOF
 		#!/bin/bash
@@ -5932,7 +5931,7 @@ function set_captive_portal_page() {
 		echo '<html>'
 		echo -e '\t<head>'
 		echo -e '\t\t<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>'
-		echo -e '\t\t<title>${et_misc_texts[$captive_portal_language,15]}</title>'
+		echo -e '\t\t<title>${et_misc_texts[${captive_portal_language},15]}</title>'
 		echo -e '\t\t<link rel="stylesheet" type="text/css" href="${cssfile}"/>'
 		echo -e '\t\t<script type="text/javascript" src="${jsfile}"></script>'
 		echo -e '\t</head>'
@@ -5973,7 +5972,7 @@ function set_captive_portal_page() {
 
 	cat >&4 <<-EOF
 				touch "${tmpdir}${webdir}${successfile}"
-				echo '${et_misc_texts[$captive_portal_language,18]}'
+				echo '${et_misc_texts[${captive_portal_language},18]}'
 				et_successful=1
 			else
 	EOF
@@ -5984,7 +5983,7 @@ function set_captive_portal_page() {
 
 	cat >&4 <<-EOF
 				"${tmpdir}${webdir}${attemptsfile}"
-				echo '${et_misc_texts[$captive_portal_language,17]}'
+				echo '${et_misc_texts[${captive_portal_language},17]}'
 				et_successful=0
 			fi
 	EOF
@@ -5994,10 +5993,10 @@ function set_captive_portal_page() {
 	EOF
 
 	cat >&4 <<-EOF
-			echo '${et_misc_texts[$captive_portal_language,26]}'
+			echo '${et_misc_texts[${captive_portal_language},26]}'
 			et_successful=0
 		else
-			echo '${et_misc_texts[$captive_portal_language,14]}'
+			echo '${et_misc_texts[${captive_portal_language},14]}'
 			et_successful=0
 		fi
 		echo -e '\t\t\t</p></center>'
@@ -6030,15 +6029,15 @@ function launch_webserver() {
 	else
 		lighttpd_window_position=${g4_bottomright_window}
 	fi
-	xterm -hold -bg black -fg yellow -geometry ${lighttpd_window_position} -T "Webserver" -e "lighttpd -D -f \"$tmpdir$webserver_file\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg yellow -geometry ${lighttpd_window_position} -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
 function launch_sslstrip() {
 
-	rm -rf "$tmpdir$sslstrip_file" > /dev/null 2>&1
+	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "Sslstrip" -e "sslstrip -w \"$tmpdir$sslstrip_file\" -p -l $sslstrip_port -f -k" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -6053,7 +6052,7 @@ function launch_sniffing() {
 			sniffing_scr_window_position=${g4_bottomright_window}
 		;;
 	esac
-	ettercap_cmd="ettercap -i $interface -q -T -z -S -u"
+	ettercap_cmd="ettercap -i ${interface} -q -T -z -S -u"
 	if [ ${ettercap_log} -eq 1 ]; then
 		ettercap_cmd+=" -l \"$tmp_ettercaplog\""
 	fi
@@ -6073,9 +6072,9 @@ function parse_ettercap_log() {
 	echo $(date +%Y-%m-%d) >> "${tmpdir}parsed_file"
 	echo ${et_misc_texts[$language,8]} >> "${tmpdir}parsed_file"
 	echo "" >> "${tmpdir}parsed_file"
-	echo "BSSID: $bssid" >> "${tmpdir}parsed_file"
-	echo ${et_misc_texts[$language,1]}": $channel" >> "${tmpdir}parsed_file"
-	echo "ESSID: $essid" >> "${tmpdir}parsed_file"
+	echo "BSSID: ${bssid}" >> "${tmpdir}parsed_file"
+	echo ${et_misc_texts[$language,1]}": ${channel}" >> "${tmpdir}parsed_file"
+	echo "ESSID: ${essid}" >> "${tmpdir}parsed_file"
 	echo "" >> "${tmpdir}parsed_file"
 	echo "---------------" >> "${tmpdir}parsed_file"
 	echo "" >> "${tmpdir}parsed_file"
@@ -6361,7 +6360,7 @@ function capture_handshake_evil_twin() {
 		if [ "$lastcharhandshakepath" != "/" ]; then
 			handshakepath="$handshakepath/"
 		fi
-		handshakefilename="handshake-$bssid.cap"
+		handshakefilename="handshake-${bssid}.cap"
 		handshakepath="$handshakepath$handshakefilename"
 
 		language_strings "${language}" 162 "yellow"
@@ -6370,7 +6369,7 @@ function capture_handshake_evil_twin() {
 			read_path "writeethandshake"
 		done
 
-		cp "$tmpdir$standardhandshake_filename" ${et_handshake}
+		cp "${tmpdir}$standardhandshake_filename" ${et_handshake}
 		echo
 		language_strings "${language}" 324 "blue"
 		language_strings "${language}" 115 "read"
@@ -6385,7 +6384,7 @@ function capture_handshake_evil_twin() {
 
 function capture_handshake() {
 
-	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "$essid" = "(Hidden Network)" ]]; then
+	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
 		echo
 		language_strings "${language}" 125 "yellow"
 		language_strings "${language}" 115 "read"
@@ -6511,7 +6510,7 @@ function read_path() {
 		"dictionary")
 			language_strings "${language}" 180 "green"
 			read_and_clean_path "dictionary"
-			check_file_exists "$dictionary"
+			check_file_exists "${dictionary}"
 		;;
 		"targetfilefordecrypt")
 			language_strings "${language}" 188 "green"
@@ -6579,7 +6578,7 @@ function attack_handshake_menu() {
 			if [ "$lastcharhandshakepath" != "/" ]; then
 				handshakepath="$handshakepath/"
 			fi
-			handshakefilename="handshake-$bssid.cap"
+			handshakefilename="handshake-${bssid}.cap"
 			handshakepath="$handshakepath$handshakefilename"
 
 			language_strings "${language}" 162 "yellow"
@@ -6588,7 +6587,7 @@ function attack_handshake_menu() {
 				read_path "handshake"
 			done
 
-			cp "$tmpdir$standardhandshake_filename" ${enteredpath}
+			cp "${tmpdir}$standardhandshake_filename" ${enteredpath}
 			echo
 			language_strings "${language}" 149 "blue"
 			language_strings "${language}" 115 "read"
@@ -7907,7 +7906,7 @@ function set_xsizes() {
 
 function set_ysizes() {
 
-	ytotal=$(awk -v n1=${resolution_y} "BEGIN{print n1 / $yratio}")
+	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / $yratio}")
 	ytotaltmp=$(printf "%.0f" ${ytotal} 2> /dev/null)
 	if [ "$?" != "0" ]; then
 		dec_char=","
@@ -8048,7 +8047,7 @@ function validate_et_internet_interface() {
 
 	echo
 	language_strings "${language}" 287 "blue"
-	check_internet_access ${host_to_check_internet}
+	check_internet_access "${host_to_check_internet}"
 
 	if [ "$?" != "0" ]; then
 		echo
@@ -8150,16 +8149,16 @@ function print_large_separator() {
 
 function check_pending_of_translation() {
 
-	if [[ "$1" =~ ^$escaped_pending_of_translation([[:space:]])(.*)$ ]]; then
+	if [[ "$1" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text=${cyan_color}"$pending_of_translation ${2}${BASH_REMATCH[2]}"
 		return 1
-	elif [[ "$1" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?($escaped_pending_of_translation)[[:space:]](.*) ]]; then
+	elif [[ "$1" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?(${escaped_pending_of_translation})[[:space:]](.*) ]]; then
 		text=${cyan_color}"$pending_of_translation ${brown_color}$hintvar ${pink_color}${BASH_REMATCH[3]}"
 		return 1
-	elif [[ "$1" =~ ^(\*+)[[:space:]]$escaped_pending_of_translation[[:space:]]([^\*]+)(\*+)$ ]]; then
+	elif [[ "$1" =~ ^(\*+)[[:space:]]${escaped_pending_of_translation}[[:space:]]([^\*]+)(\*+)$ ]]; then
 		text=${2}"${BASH_REMATCH[1]}${cyan_color} $pending_of_translation ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
-	elif [[ "$1" =~ ^(\-+)[[:space:]]\($escaped_pending_of_translation[[:space:]]([^\-]+)(\-+)$ ]]; then
+	elif [[ "$1" =~ ^(\-+)[[:space:]]\(${escaped_pending_of_translation}[[:space:]]([^\-]+)(\-+)$ ]]; then
 		text=${2}"${BASH_REMATCH[1]} (${cyan_color}$pending_of_translation ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	fi
