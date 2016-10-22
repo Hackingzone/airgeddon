@@ -1077,7 +1077,7 @@ function language_strings() {
 	arr["CATALAN",75]="${pending_of_translation} Gràcies al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv per les proves beta i el recolzament rebut"
 	arr["PORTUGUESE",75]="${pending_of_translation} Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", a pessoas de fóruns para me ajudar, minha equipe, tradutores e especialmente para Kcdtv por testes beta e também a todo apoio recebido"
 	arr["RUSSIAN",75]="${pending_of_translation} Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", люди из форумов, чтобы помочь мне, мои сотрудники, переводчики и особенно Kcdtv за бета тестирование и полученную поддержку"
-	arr["GREEK",75]="${pending_of_translation} Τις ευχαριστίες στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", άτομα από το φόρουμ για να με βοηθήσει, το προσωπικό, οι μεταφραστές μου και ειδικά Kcdtv για το beta testing και την υποστήριξη που λάβαμε"
+	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
 	arr["SPANISH",76]="Opción del menú no válida"
@@ -1317,7 +1317,7 @@ function language_strings() {
 	arr["CATALAN",105]="Sobre de & Crédits"
 	arr["PORTUGUESE",105]="Sobre & Créditos"
 	arr["RUSSIAN",105]="О программе и Благодарности"
-	arr["GREEK",105]="Σχετικά με & Συστάσεις"
+	arr["GREEK",105]="Σχετικά με & Εύσυμα"
 
 	arr["ENGLISH",106]="Exiting"
 	arr["SPANISH",106]="Saliendo"
@@ -3663,7 +3663,7 @@ function set_chipset() {
 			else
 				if hash ethtool 2> /dev/null; then
 					ethtool_output="$(ethtool -i ${1} 2>&1)"
-					vendor_and_device=$(printf "${ethtool_output}" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
+					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
 					chipset=$(lspci | grep "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulegeneric}")
 				fi
 			fi
