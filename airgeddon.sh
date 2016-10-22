@@ -3176,7 +3176,7 @@ function language_strings() {
 		;;
 		*)
 			if [ -z "$3" ]; then
-				last_echo "${arr[${1},${2}]}" ${normal_color}
+				last_echo "${arr[${1},${2}]}" "${normal_color}"
 			else
 				special_text_missed_optional_tool "${1}" "${2}" "${3}"
 			fi
@@ -3192,7 +3192,7 @@ function interrupt_checkpoint() {
 		last_buffered_type1=${2}
 		last_buffered_type2=${2}
 	else
-		if [ ${1} -ne ${resume_message} ]; then
+		if [ "${1}" -ne ${resume_message} ]; then
 			last_buffered_message2=${last_buffered_message1}
 			last_buffered_message1=${1}
 			last_buffered_type2=${last_buffered_type1}
@@ -3209,7 +3209,7 @@ function special_text_missed_optional_tool() {
 	if [ ${debug_mode} -eq 0 ]; then
 		tools_needed="${optionaltool_needed[${1}]}"
 		for item in ${required_tools[@]}; do
-			if [ ${optional_tools[${item}]} -eq 0 ]; then
+			if [ "${optional_tools[${item}]}" -eq 0 ]; then
 				allowed_menu_option=0
 				tools_needed+="${item} "
 			fi
@@ -3217,7 +3217,7 @@ function special_text_missed_optional_tool() {
 	fi
 
 	if [ ${allowed_menu_option} -eq 1 ]; then
-		last_echo "${arr[${1},${2}]}" ${normal_color}
+		last_echo "${arr[${1},${2}]}" "${normal_color}"
 	else
 		[[ ${arr[${1},${2}]} =~ ^([0-9]+)\.(.*)$ ]] && forbidden_options+=("${BASH_REMATCH[1]}")
 		tools_needed=${tools_needed:: -1}
@@ -3307,7 +3307,7 @@ function check_to_set_monitor() {
 
 function check_monitor_enabled() {
 
-	mode=$(iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
+	mode=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${mode} != "Monitor" ]]; then
 		echo
@@ -3328,17 +3328,17 @@ function execute_iwconfig_fix() {
 
 	iwconfig_fix
 	iwcmd="iwconfig ${interface} $iwcmdfix > /dev/null 2> /dev/null"
-	eval ${iwcmd}
+	eval "${iwcmd}"
 
 	return $?
 }
 
 function renew_ifaces_and_macs_list() {
 
-	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep ${interface} -v)
+	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
-		ifaces_and_macs[${iface_name}]=$(ip link show ${iface_name} | awk '/link/ {print $2}')
+		ifaces_and_macs[${iface_name}]=$(ip link show "${iface_name}" | awk '/link/ {print $2}')
 	done
 
 	declare -gA ifaces_and_macs_switched
@@ -3384,17 +3384,17 @@ function prepare_et_monitor() {
 	iface_phy_number=${phy_iface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
-	iw phy ${phy_iface} interface add ${iface_monitor_et_deauth} type monitor 2> /dev/null
-	ifconfig ${iface_monitor_et_deauth} up > /dev/null 2>&1
-	iwconfig ${iface_monitor_et_deauth} channel ${channel} > /dev/null 2>&1
+	iw phy "${phy_iface}" interface add "${iface_monitor_et_deauth}" type monitor 2> /dev/null
+	ifconfig "${iface_monitor_et_deauth}" up > /dev/null 2>&1
+	iwconfig "${iface_monitor_et_deauth}" channel "${channel}" > /dev/null 2>&1
 }
 
 function prepare_et_interface() {
 
 	et_initial_state=${ifacemode}
 
-	if [ ${ifacemode} != "Managed" ]; then
-		new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
+	if [ "${ifacemode}" != "Managed" ]; then
+		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			check_interface_coherence
@@ -3414,14 +3414,14 @@ function restore_et_interface() {
 
 	disable_rfkill
 
-	iw dev ${iface_monitor_et_deauth} del > /dev/null 2>&1
+	iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
-	if [ ${et_initial_state} = "Managed" ]; then
-		ifconfig ${interface} down > /dev/null 2>&1
-		iwconfig ${interface} mode managed > /dev/null 2>&1
-		ifconfig ${interface} up > /dev/null 2>&1
+	if [ "${et_initial_state}" = "Managed" ]; then
+		ifconfig "${interface}" down > /dev/null 2>&1
+		iwconfig "${interface}" mode managed > /dev/null 2>&1
+		ifconfig "${interface}" up > /dev/null 2>&1
 	else
-		new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
+		new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			interface=${new_interface}
@@ -3447,9 +3447,9 @@ function managed_option() {
 	disable_rfkill
 
 	language_strings "${language}" 17 "blue"
-	ifconfig ${interface} up
+	ifconfig "${interface}" up
 
-	new_interface=$(${airmon} stop ${interface} 2> /dev/null | grep station)
+	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -3478,8 +3478,8 @@ function monitor_option() {
 
 	language_strings "${language}" 18 "blue"
 
-	ifconfig ${interface} up
-	iwconfig ${interface} rate 1M > /dev/null 2>&1
+	ifconfig "${interface}" up
+	iwconfig "${interface}" rate 1M > /dev/null 2>&1
 
 	if [ "$?" != "0" ]; then
 		echo
@@ -3488,13 +3488,13 @@ function monitor_option() {
 		return
 	fi
 
-	if [ ${check_kill_needed} -eq 1 ]; then
+	if [ "${check_kill_needed}" -eq 1 ]; then
 		language_strings "${language}" 19 "blue"
 		${airmon} check kill > /dev/null 2>&1
 		nm_processes_killed=1
 	fi
 
-	new_interface=$(${airmon} start ${interface} 2> /dev/null | grep monitor)
+	new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -3519,14 +3519,14 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	modemanaged=$(iwconfig ${interface} 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1)
+	modemanaged=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1)
 
 	if [[ ${modemanaged} = "Managed" ]]; then
 		ifacemode="Managed"
 		return 0
 	fi
 
-	modemonitor=$(iwconfig ${interface} 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
+	modemonitor=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${modemonitor} = "Monitor" ]]; then
 		ifacemode="Monitor"
@@ -3647,7 +3647,7 @@ function set_chipset() {
 	sedrulegeneric="${sedrule4};${sedrule2};${sedrule5};${sedrule6};${sedrule7};${sedrule8};${sedrule9};${sedrule10}"
 	sedruleall="${sedrule1};${sedrule2};${sedrule3};${sedrule6};${sedrule7};${sedrule8};${sedrule9};${sedrule10}"
 
-	if [ -f /sys/class/net/${1}/device/modalias ]; then
+	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
 
 		bus_type=$(cat < /sys/class/net/${1}/device/modalias | cut -d ":" -f 1)
 
@@ -3658,8 +3658,8 @@ function set_chipset() {
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
 
 			if [[ -f /sys/class/net/${1}/device/vendor && -f /sys/class/net/${1}/device/device ]]; then
-				vendor_and_device=$(cat /sys/class/net/${1}/device/vendor):$(cat /sys/class/net/${1}/device/device)
-				chipset=$(lspci -d ${vendor_and_device} | cut -f3- -d ":" | sed "${sedrulegeneric}")
+				vendor_and_device=$(cat "/sys/class/net/${1}/device/vendor"):$(cat "/sys/class/net/${1}/device/device")
+				chipset=$(lspci -d "${vendor_and_device}" | cut -f3- -d ":" | sed "${sedrulegeneric}")
 			else
 				if hash ethtool 2> /dev/null; then
 					ethtool_output="$(ethtool -i ${1} 2>&1)"
@@ -3669,14 +3669,14 @@ function set_chipset() {
 			fi
 		fi
 	elif [[ -f /sys/class/net/${1}/device/idVendor && -f /sys/class/net/${1}/device/idProduct ]]; then
-		vendor_and_device=$(cat /sys/class/net/${1}/device/idVendor):$(cat /sys/class/net/${1}/device/idProduct)
+		vendor_and_device=$(cat "/sys/class/net/${1}/device/idVendor"):$(cat "/sys/class/net/${1}/device/idProduct")
 		chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedruleall}")
 	fi
 }
 
 function select_internet_interface() {
 
-	if [ ${return_to_et_main_menu} -eq 1 ]; then
+	if [ "${return_to_et_main_menu}" -eq 1 ]; then
 		return 1
 	fi
 
@@ -3697,7 +3697,7 @@ function select_internet_interface() {
 		;;
 	esac
 
-	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep ${interface} -v)
+	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 
 	option_counter=0
 	for item in ${inet_ifaces}; do
@@ -3713,7 +3713,7 @@ function select_internet_interface() {
 		else
 			spaceiface=" "
 		fi
-		set_chipset ${item}
+		set_chipset "${item}"
 		echo -ne "${option_counter}.${spaceiface}${item} "
 		if [ "${chipset}" = "" ]; then
 			language_strings "${language}" 245 "blue"
@@ -3739,18 +3739,18 @@ function select_internet_interface() {
 	print_hint ${current_menu}
 
 	read -r inet_iface
-	if [ -z ${inet_iface} ]; then
+	if [ -z "${inet_iface}" ]; then
 		invalid_internet_iface_selected
 	elif [[ ${inet_iface} -lt 1 ]] || [[ ${inet_iface} -gt ${option_counter_back} ]]; then
 		invalid_internet_iface_selected
-	elif [ ${inet_iface} -eq ${option_counter_back} ]; then
+	elif [ "${inet_iface}" -eq ${option_counter_back} ]; then
 		return_to_et_main_menu=1
 		return 1
 	else
 		option_counter2=0
 		for item2 in ${inet_ifaces}; do
 			option_counter2=$((option_counter2 + 1))
-			if [[ "$inet_iface" = "${option_counter2}" ]]; then
+			if [[ "${inet_iface}" = "${option_counter2}" ]]; then
 				internet_interface=${item2}
 				break
 			fi
@@ -3775,7 +3775,7 @@ function select_interface() {
 		else
 			spaceiface=" "
 		fi
-		set_chipset ${item}
+		set_chipset "${item}"
 		echo -ne "${option_counter}.${spaceiface}${item} "
 		if [ "${chipset}" = "" ]; then
 			language_strings "${language}" 245 "blue"
@@ -3786,17 +3786,17 @@ function select_interface() {
 	print_hint ${current_menu}
 
 	read -r iface
-	if [ -z ${iface} ]; then
+	if [ -z "${iface}" ]; then
 		invalid_iface_selected
-	elif [[ ${iface} < 1 ]] || [[ ${iface} > ${option_counter} ]]; then
+	elif [[ ${iface} -lt 1 ]] || [[ ${iface} -gt ${option_counter} ]]; then
 		invalid_iface_selected
 	else
 		option_counter2=0
 		for item2 in ${ifaces}; do
 			option_counter2=$((option_counter2 + 1))
-			if [[ "$iface" = "${option_counter2}" ]]; then
+			if [[ "${iface}" = "${option_counter2}" ]]; then
 				interface=${item2}
-				interface_mac=$(ip link show ${interface} | awk '/ether/ {print $2}')
+				interface_mac=$(ip link show "${interface}" | awk '/ether/ {print $2}')
 				break
 			fi
 		done
@@ -3814,7 +3814,7 @@ function ask_yesno() {
 
 	yesno=""
 	while [[ ! ${yesno} =~ ^[YyNn]$ ]]; do
-		read_yesno ${1}
+		read_yesno "${1}"
 	done
 
 	if [ "${yesno}" = "Y" ]; then
@@ -3885,14 +3885,14 @@ function exec_mdk3deauth() {
 	language_strings "${language}" 32 "green"
 
 	tmpfiles_toclean=1
-	rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-	echo ${bssid} > ${tmpdir}"bl.txt"
+	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+	echo "${bssid}" > "${tmpdir}bl.txt"
 
 	echo
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "mdk3 amok attack" -e mdk3 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
 }
 
 function exec_aireplaydeauth() {
@@ -3901,13 +3901,13 @@ function exec_aireplaydeauth() {
 	language_strings "${language}" 90 "title"
 	language_strings "${language}" 32 "green"
 
-	${airmon} start ${interface} ${channel} > /dev/null 2>&1
+	${airmon} start "${interface}" ${channel} > /dev/null 2>&1
 
 	echo
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1
 }
 
 function exec_wdsconfusion() {
@@ -3920,7 +3920,7 @@ function exec_wdsconfusion() {
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -bg black -fg red -geometry ${g1_topleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1
+	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk3 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
 }
 
 function exec_beaconflood() {
@@ -3933,7 +3933,7 @@ function exec_beaconflood() {
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "beacon flood attack" -e mdk3 ${interface} b -n ${essid} -c ${channel} -s 1000 -h > /dev/null 2>&1
+	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "beacon flood attack" -e mdk3 "${interface}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1
 }
 
 function exec_authdos() {
@@ -3946,7 +3946,7 @@ function exec_authdos() {
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "auth dos attack" -e mdk3 ${interface} a -a ${bssid} -m -s 1024 > /dev/null 2>&1
+	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk3 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
 }
 
 function exec_michaelshutdown() {
@@ -3959,7 +3959,7 @@ function exec_michaelshutdown() {
 	language_strings "${language}" 33 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topleft_window} -T "michael shutdown attack" -e mdk3 ${interface} m -t ${bssid} -w 1 -n 1024 -s 1024 > /dev/null 2>&1
+	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk3 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
 function mdk3_deauth_option() {
@@ -4292,14 +4292,14 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
-	if [ ${dhcpd_path_changed} -eq 1 ]; then
+	if [ "${dhcpd_path_changed}" -eq 1 ]; then
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
 }
 
 function clean_routing_rules() {
 
-	if [ -n ${original_routing_state} ]; then
+	if [ -n "${original_routing_state}" ]; then
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
 
@@ -4745,7 +4745,7 @@ function check_valid_file_to_clean() {
 	fi
 
 	handshakefilesize=$(wc -c "$filetoclean" 2> /dev/null | awk -F " " '{print$1}')
-	if [ ${handshakefilesize} -le 1024 ]; then
+	if [ "${handshakefilesize}" -le 1024 ]; then
 		return 1
 	fi
 
@@ -5207,7 +5207,7 @@ function set_charset() {
 		;;
 	esac
 
-	set_show_charset ${1}
+	set_show_charset "${1}"
 }
 
 function set_show_charset() {
@@ -5248,21 +5248,21 @@ function exec_aircrack_dictionary_attack() {
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "${DICTIONARY}" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
+	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
 	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_bruteforce_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 3 ${tmpdir}"hctmp.hccap" ${charset} --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
+	hashcat_output=$(hashcat -m 2500 -a 3 "${tmpdir}hctmp.hccap" "${charset}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
 	language_strings "${language}" 115 "read"
 }
 
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 ${tmpdir}"hctmp.hccap" "${DICTIONARY}" -r "${RULES}" --potfile-disable -o ${tmpdir}"hctmp.pot" | tee /dev/fd/5)
+	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" -r "${RULES}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
 	language_strings "${language}" 115 "read"
 }
 
@@ -5395,7 +5395,7 @@ function launch_fake_ap() {
 			hostapd_scr_window_position=${g4_topleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg blue -geometry ${hostapd_scr_window_position} -T "AP" -e "hostapd \"${tmpdir}${hostapd_file}\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg blue -geometry "${hostapd_scr_window_position}" -T "AP" -e "hostapd \"${tmpdir}${hostapd_file}\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 3
 }
@@ -5480,7 +5480,7 @@ function set_std_internet_routing_rules() {
 
 	routing_toclean=1
 	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
-	ifconfig ${interface} ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
 
 	iptables -F
 	iptables -t nat -F
@@ -5509,7 +5509,7 @@ function set_std_internet_routing_rules() {
 	fi
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
-		iptables -t nat -A POSTROUTING -o ${internet_interface} -j MASQUERADE
+		iptables -t nat -A POSTROUTING -o "${internet_interface}" -j MASQUERADE
 	fi
 
 	iptables -A INPUT -p icmp --icmp-type 8 -s ${et_ip_range}/${std_c_mask} -d ${et_ip_router}/${ip_mask} -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
@@ -5533,7 +5533,7 @@ function launch_dhcp_server() {
 			dchcpd_scr_window_position=${g4_middleleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg pink -geometry ${dchcpd_scr_window_position} -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg pink -geometry "${dchcpd_scr_window_position}" -T "DHCP" -e "dhcpd -d -cf \"${dhcp_path}\" ${interface} 2>&1 | tee -a ${tmpdir}/clts.txt" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 2
 }
@@ -5545,17 +5545,17 @@ function exec_et_deauth() {
 	case ${et_dos_attack} in
 		"Mdk3")
 			killall mdk3 > /dev/null 2>&1
-			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-			echo ${bssid} > ${tmpdir}"bl.txt"
+			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+			echo "${bssid}" > "${tmpdir}bl.txt"
 			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} d -b ${tmpdir}\"bl.txt\" -c ${channel}"
 		;;
 		"Aireplay")
 			killall aireplay-ng > /dev/null 2>&1
-			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one $iface_monitor_et_deauth"
+			deauth_et_cmd="aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${iface_monitor_et_deauth}"
 		;;
 		"Wds Confusion")
 			killall mdk3 > /dev/null 2>&1
-			deauth_et_cmd="mdk3 $iface_monitor_et_deauth w -e ${essid} -c ${channel}"
+			deauth_et_cmd="mdk3 ${iface_monitor_et_deauth} w -e ${essid} -c ${channel}"
 		;;
 	esac
 
@@ -5571,7 +5571,7 @@ function exec_et_deauth() {
 			deauth_scr_window_position=${g4_bottomleft_window}
 		;;
 	esac
-	xterm -hold -bg black -fg red -geometry ${deauth_scr_window_position} -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
 	et_processes+=($!)
 	sleep 1
 }
@@ -5781,7 +5781,7 @@ function set_control_script() {
 function launch_dns_blackhole() {
 
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -5806,7 +5806,7 @@ function launch_control_window() {
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
-	xterm -hold -bg black -fg white -geometry ${control_scr_window_position} -T "Control" -e "bash \"${tmpdir}${control_file}\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg white -geometry "${control_scr_window_position}" -T "Control" -e "bash \"${tmpdir}${control_file}\"" > /dev/null 2>&1 &
 	et_process_control_window=$!
 }
 
@@ -6035,7 +6035,7 @@ function launch_webserver() {
 	else
 		lighttpd_window_position=${g4_bottomright_window}
 	fi
-	xterm -hold -bg black -fg yellow -geometry ${lighttpd_window_position} -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg yellow -geometry "${lighttpd_window_position}" -T "Webserver" -e "lighttpd -D -f \"${tmpdir}${webserver_file}\"" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -6043,7 +6043,7 @@ function launch_sslstrip() {
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg green -geometry ${g4_middleright_window} -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -6063,7 +6063,7 @@ function launch_sniffing() {
 		ettercap_cmd+=" -l \"${tmp_ettercaplog}\""
 	fi
 
-	xterm -hold -bg black -fg yellow -geometry ${sniffing_scr_window_position} -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
+	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -6076,10 +6076,10 @@ function parse_ettercap_log() {
 
 	echo "" > "${tmpdir}parsed_file"
 	echo $(date +%Y-%m-%d) >> "${tmpdir}parsed_file"
-	echo ${et_misc_texts[${language},8]} >> "${tmpdir}parsed_file"
+	echo "${et_misc_texts[${language},8]}" >> "${tmpdir}parsed_file"
 	echo "" >> "${tmpdir}parsed_file"
 	echo "BSSID: ${bssid}" >> "${tmpdir}parsed_file"
-	echo ${et_misc_texts[${language},1]}": ${channel}" >> "${tmpdir}parsed_file"
+	echo "${et_misc_texts[${language},1]}: ${channel}" >> "${tmpdir}parsed_file"
 	echo "ESSID: ${essid}" >> "${tmpdir}parsed_file"
 	echo "" >> "${tmpdir}parsed_file"
 	echo "---------------" >> "${tmpdir}parsed_file"
@@ -6087,7 +6087,7 @@ function parse_ettercap_log() {
 
 	pass_counter=0
 	for cpass in "${CAPTUREDPASS[@]}"; do
-		echo ${cpass} >> "${tmpdir}parsed_file"
+		echo "${cpass}" >> "${tmpdir}parsed_file"
 		pass_counter=$((pass_counter + 1))
 	done
 
@@ -6105,14 +6105,14 @@ function parse_ettercap_log() {
 function write_et_processes() {
 
 	for item in ${et_processes[@]}; do
-		echo ${item} >> "${tmpdir}${webdir}${processesfile}"
+		echo "${item}" >> "${tmpdir}${webdir}${processesfile}"
 	done
 }
 
 function kill_et_windows() {
 
 	for item in ${et_processes[@]}; do
-		kill ${item} &> /dev/null
+		kill "${item}" &> /dev/null
 	done
 	kill ${et_process_control_window} &> /dev/null
 }
@@ -6120,8 +6120,8 @@ function kill_et_windows() {
 function convert_cap_to_hashcat_format() {
 
 	tmpfiles_toclean=1
-	rm -rf ${tmpdir}"hctmp"* > /dev/null 2>&1
-	echo "1" | aircrack-ng "$enteredpath" -J ${tmpdir}"hctmp" -b ${bssid} > /dev/null 2>&1
+	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+	echo "1" | aircrack-ng "$enteredpath" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
 	exec 5>&1
 }
 
@@ -6185,11 +6185,11 @@ function handshake_tools_menu() {
 function exec_clean_handshake_file() {
 
 	echo
-	check_valid_file_to_clean ${filetoclean}
+	check_valid_file_to_clean "${filetoclean}"
 	if [ "$?" != "0" ]; then
 		language_strings "${language}" 159 "yellow"
 	else
-		wpaclean ${filetoclean} ${filetoclean} > /dev/null 2>&1
+		wpaclean "${filetoclean}" "${filetoclean}" > /dev/null 2>&1
 		language_strings "${language}" 153 "yellow"
 	fi
 	language_strings "${language}" 115 "read"
@@ -6334,21 +6334,21 @@ function capture_handshake_evil_twin() {
 
 	case ${et_dos_attack} in
 		"Mdk3")
-			rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-			echo ${bssid} > ${tmpdir}"bl.txt"
+			rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+			echo "${bssid}" > "${tmpdir}bl.txt"
 			recalculate_windows_sizes
-			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+			xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "mdk3 amok attack" -e mdk3 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Aireplay")
 			${airmon} start ${interface} ${channel} > /dev/null 2>&1
 			recalculate_windows_sizes
-			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+			xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 			sleeptimeattack=12
 		;;
 		"Wds Confusion")
 			recalculate_windows_sizes
-			xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+			xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk3 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 			sleeptimeattack=16
 		;;
 	esac
@@ -6358,7 +6358,7 @@ function capture_handshake_evil_twin() {
 
 	ask_yesno 145
 	handshake_captured=${yesno}
-	kill ${processidcapture} &> /dev/null
+	kill "${processidcapture}" &> /dev/null
 	if [ "${handshake_captured}" = "y" ]; then
 
 		handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
@@ -6506,7 +6506,7 @@ function read_path() {
 			if [ -z "$enteredpath" ]; then
 				enteredpath="$handshakepath"
 			fi
-			validate_path "$enteredpath" ${1}
+			validate_path "$enteredpath" "${1}"
 		;;
 		"cleanhandshake")
 			language_strings "${language}" 154 "green"
@@ -6534,7 +6534,7 @@ function read_path() {
 			if [ -z "$potenteredpath" ]; then
 				potenteredpath="$hashcat_potpath"
 			fi
-			validate_path "$potenteredpath" ${1}
+			validate_path "$potenteredpath" "${1}"
 		;;
 		"ettercaplog")
 			language_strings "${language}" 303 "green"
@@ -6542,7 +6542,7 @@ function read_path() {
 			if [ -z "$ettercap_logpath" ]; then
 				ettercap_logpath="$default_ettercap_logpath"
 			fi
-			validate_path "$ettercap_logpath" ${1}
+			validate_path "$ettercap_logpath" "${1}"
 		;;
 		"ethandshake")
 			language_strings "${language}" 154 "green"
@@ -6555,7 +6555,7 @@ function read_path() {
 			if [ -z "$et_handshake" ]; then
 				et_handshake="$handshakepath"
 			fi
-			validate_path "$et_handshake" ${1}
+			validate_path "$et_handshake" "${1}"
 		;;
 		"et_captive_portallog")
 			language_strings "${language}" 317 "blue"
@@ -6563,7 +6563,7 @@ function read_path() {
 			if [ -z "$et_captive_portal_logpath" ]; then
 				et_captive_portal_logpath="$default_et_captive_portal_logpath"
 			fi
-			validate_path "$et_captive_portal_logpath" ${1}
+			validate_path "$et_captive_portal_logpath" "${1}"
 		;;
 	esac
 
@@ -6576,7 +6576,7 @@ function attack_handshake_menu() {
 	if [ "$1" = "handshake" ]; then
 		ask_yesno 145
 		handshake_captured=${yesno}
-		kill ${processidcapture} &> /dev/null
+		kill "${processidcapture}" &> /dev/null
 		if [ "${handshake_captured}" = "y" ]; then
 
 			handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
@@ -6593,7 +6593,7 @@ function attack_handshake_menu() {
 				read_path "handshake"
 			done
 
-			cp "${tmpdir}$standardhandshake_filename" ${enteredpath}
+			cp "${tmpdir}$standardhandshake_filename" "${enteredpath}"
 			echo
 			language_strings "${language}" 149 "blue"
 			language_strings "${language}" 115 "read"
@@ -6628,10 +6628,10 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				rm -rf ${tmpdir}"bl.txt" > /dev/null 2>&1
-				echo ${bssid} > ${tmpdir}"bl.txt"
+				rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
+				echo "${bssid}" > "${tmpdir}bl.txt"
 				recalculate_windows_sizes
-				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "mdk3 amok attack" -e mdk3 ${interface} d -b ${tmpdir}"bl.txt" -c ${channel} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "mdk3 amok attack" -e mdk3 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -6642,9 +6642,9 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				${airmon} start ${interface} ${channel} > /dev/null 2>&1
+				${airmon} start "${interface}" ${channel} > /dev/null 2>&1
 				recalculate_windows_sizes
-				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a ${bssid} --ignore-negative-one ${interface} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 				sleeptimeattack=12
 			fi
 		;;
@@ -6656,7 +6656,7 @@ function attack_handshake_menu() {
 			else
 				capture_handshake_window
 				recalculate_windows_sizes
-				xterm +j -bg black -fg red -geometry ${g1_bottomleft_window} -T "wids / wips / wds confusion attack" -e mdk3 ${interface} w -e ${essid} -c ${channel} > /dev/null 2>&1 &
+				xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "wids / wips / wds confusion attack" -e mdk3 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1 &
 				sleeptimeattack=16
 			fi
 		;;
@@ -6686,7 +6686,7 @@ function capture_handshake_window() {
 
 	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm +j -sb -rightbar -geometry ${g1_topright_window} -T "Capturing Handshake" -e airodump-ng -c ${channel} -d ${bssid} -w ${tmpdir}"handshake" ${interface} > /dev/null 2>&1 &
+	xterm +j -sb -rightbar -geometry "${g1_topright_window}" -T "Capturing Handshake" -e airodump-ng -c "${channel}" -d "${bssid}" -w "${tmpdir}handshake" "${interface}" > /dev/null 2>&1 &
 	processidcapture=$!
 }
 
@@ -6708,31 +6708,31 @@ function explore_for_targets_option() {
 	language_strings "${language}" 115 "read"
 
 	tmpfiles_toclean=1
-	rm -rf ${tmpdir}"nws"* > /dev/null 2>&1
-	rm -rf ${tmpdir}"clts.csv" > /dev/null 2>&1
+	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
+	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
-	xterm +j -bg black -fg white -geometry ${g1_topright_window} -T "Exploring for targets" -e airodump-ng -w ${tmpdir}"nws" ${interface} > /dev/null 2>&1
-	targetline=$(cat < ${tmpdir}"nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
+	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
+	targetline=$(cat < "${tmpdir}nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
 	targetline=$(expr ${targetline} - 1)
 
-	head -n ${targetline} ${tmpdir}"nws-01.csv" &> ${tmpdir}"nws.csv"
-	tail -n +${targetline} ${tmpdir}"nws-01.csv" &> ${tmpdir}"clts.csv"
+	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
+	tail -n +${targetline} "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
 
 	csvline=$(wc -l ${tmpdir}"nws.csv" 2> /dev/null | awk '{print $1}')
-	if [ ${csvline} -le 3 ]; then
+	if [ "${csvline}" -le 3 ]; then
 		echo
 		language_strings "${language}" 68 "yellow"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
 
-	rm -rf ${tmpdir}"nws.txt" > /dev/null 2>&1
-	rm -rf ${tmpdir}"wnws.txt" > /dev/null 2>&1
+	rm -rf "${tmpdir}nws.txt" > /dev/null 2>&1
+	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
 	i=0
 	while IFS=, read -r exp_mac exp_fts exp_lts exp_channel exp_speed exp_enc exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
 
 		chars_mac=${#exp_mac}
-		if [ ${chars_mac} -ge 17 ]; then
+		if [ "${chars_mac}" -ge 17 ]; then
 			i=$((i+1))
 			if [[ ${exp_power} -lt 0 ]]; then
 				if [[ ${exp_power} -eq -1 ]]; then
@@ -6742,19 +6742,19 @@ function explore_for_targets_option() {
 				fi
 			fi
 
-			exp_power=$(echo ${exp_power} | awk '{gsub(/ /,""); print}')
+			exp_power=$(echo "${exp_power}" | awk '{gsub(/ /,""); print}')
 			exp_essid=$(expr substr "$exp_essid" 2 ${exp_idlength})
-			if [ ${exp_channel} -gt 14 ] || [ ${exp_channel} -lt 1 ]; then
+			if [[ "${exp_channel}" -gt 14 ]] || [[ "${exp_channel}" -lt 1 ]]; then
 				exp_channel=0
 			else
 				exp_channel=$(echo ${exp_channel} | awk '{gsub(/ /,""); print}')
 			fi
 
-			if [ "$exp_essid" = "" ] || [ "$exp_channel" = "-1" ]; then
+			if [[ "$exp_essid" = "" ]] || [[ "$exp_channel" = "-1" ]]; then
 				exp_essid="(Hidden Network)"
 			fi
 
-			exp_enc=$(echo ${exp_enc} | awk '{print $1}')
+			exp_enc=$(echo "${exp_enc}" | awk '{print $1}')
 
 			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid,$exp_enc" >> ${tmpdir}"nws.txt"
 		fi
@@ -6799,7 +6799,7 @@ function select_target() {
 			sp4=""
 		fi
 
-		client=$(cat < ${tmpdir}"clts.csv" | grep ${exp_mac})
+		client=$(cat < "${tmpdir}clts.csv" | grep "${exp_mac}")
 		if [ "$client" != "" ]; then
 			client="*"
 			sp5=""
@@ -6808,9 +6808,9 @@ function select_target() {
 		fi
 
 		enc_length=${#exp_enc}
-		if [ ${enc_length} -gt 3 ]; then
+		if [ "${enc_length}" -gt 3 ]; then
 			sp6=""
-		elif [ ${enc_length} -eq 0 ]; then
+		elif [ "${enc_length}" -eq 0 ]; then
 			sp6="    "
 		else
 			sp6=" "
@@ -7218,7 +7218,7 @@ function credits_option() {
 	echo
 	language_strings "${language}" 73 "blue"
 	echo
-	echo -e ${green_color}"                                                            .-\"\"\"\"-."
+	echo -e "${green_color}                                                            .-\"\"\"\"-."
 	sleep 0.15 && echo -e "                                                           /        \ "
 	sleep 0.15 && echo -e "${yellow_color}         ____        ____  __   _______                  ${green_color} /_        _\ "
 	sleep 0.15 && echo -e "${yellow_color}  ___  _/_   | _____/_   |/  |_ \   _  \_______         ${green_color} // \      / \\\\\ "
@@ -7302,10 +7302,10 @@ function capture_traps() {
 				exit_script_option
 			else
 				language_strings "${language}" 224 "blue"
-				if [ ${last_buffered_type1} = "read" ]; then
-					language_strings "${language}" ${last_buffered_message2} ${last_buffered_type2}
+				if [ "${last_buffered_type1}" = "read" ]; then
+					language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
 				else
-					language_strings "${language}" ${last_buffered_message1} ${last_buffered_type1}
+					language_strings "${language}" "${last_buffered_message1}" "${last_buffered_type1}"
 				fi
 			fi
 		;;
@@ -7327,18 +7327,18 @@ function exit_script_option() {
 		if [ ${yesno} = "n" ]; then
 			action_on_exit_taken=1
 			language_strings "${language}" 167 "multiline"
-			${airmon} stop ${interface} > /dev/null 2>&1
+			${airmon} stop "${interface}" > /dev/null 2>&1
 			time_loop
-			echo -e ${green_color}" Ok\r${normal_color}"
+			echo -e "${green_color} Ok\r${normal_color}"
 		fi
 	fi
 
 	if [ ${nm_processes_killed} -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 168 "multiline"
-		eval ${networkmanager_cmd}" > /dev/null 2>&1"
+		eval "${networkmanager_cmd} > /dev/null 2>&1"
 		time_loop
-		echo -e ${green_color}" Ok\r${normal_color}"
+		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
 	if [ ${tmpfiles_toclean} -eq 1 ]; then
@@ -7346,7 +7346,7 @@ function exit_script_option() {
 		language_strings "${language}" 164 "multiline"
 		clean_tmpfiles
 		time_loop
-		echo -e ${green_color}" Ok\r${normal_color}"
+		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
 	if [ ${routing_toclean} -eq 1 ]; then
@@ -7357,7 +7357,7 @@ function exit_script_option() {
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
 		time_loop
-		echo -e ${green_color}" Ok\r${normal_color}"
+		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
 	if [ ${action_on_exit_taken} -eq 0 ]; then
@@ -7390,7 +7390,7 @@ function iwconfig_fix() {
 
 	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
 	iwcmdfix=""
-	if [ ${iwversion} -lt 30 ]; then
+	if [ "${iwversion}" -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
 	fi
 }
@@ -7588,15 +7588,15 @@ function check_if_kill_needed() {
 
 			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]+).*?$ ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
 
-			if [ ${nm_main_system_version} -lt ${nm_min_main_version} ]; then
+			if [ "${nm_main_system_version}" -lt ${nm_min_main_version} ]; then
 				check_kill_needed=1
-			elif [ ${nm_main_system_version} -eq ${nm_min_main_version} ]; then
+			elif [ "${nm_main_system_version}" -eq ${nm_min_main_version} ]; then
 
-				if [ ${nm_system_subversion} -lt ${nm_min_subversion} ]; then
+				if [ "${nm_system_subversion}" -lt ${nm_min_subversion} ]; then
 					check_kill_needed=1
-				elif [  ${nm_system_subversion} -eq ${nm_min_subversion} ]; then
+				elif [ "${nm_system_subversion}" -eq ${nm_min_subversion} ]; then
 
-					if [ ${nm_system_subversion2} -lt ${nm_min_subversion2} ]; then
+					if [ "${nm_system_subversion2}" -lt ${nm_min_subversion2} ]; then
 						check_kill_needed=1
 					fi
 				fi
@@ -7619,9 +7619,9 @@ function general_checkings() {
 
 	if [ "${distro}" = "Unknown Linux" ]; then
 		non_linux_os_check
-		echo -e ${yellow_color}"${distro}${normal_color}"
+		echo -e "${yellow_color}${distro}${normal_color}"
 	else
-		echo -e ${yellow_color}"${distro} Linux${normal_color}"
+		echo -e "${yellow_color}${distro} Linux${normal_color}"
 	fi
 
 	check_compatibility
@@ -7648,7 +7648,7 @@ function check_root_permissions() {
 function print_known_distros() {
 
 	for i in "${known_compatible_distros[@]}"; do
-		echo -ne ${pink_color}"\"${i}\" ${normal_color}"
+		echo -ne "${pink_color}\"${i}\" ${normal_color}"
 	done
 	echo
 }
@@ -7666,13 +7666,13 @@ function check_compatibility() {
 	for i in "${essential_tools_names[@]}"; do
 		echo -ne "${i}"
 		time_loop
-		if ! hash ${i} 2> /dev/null; then
-			echo -ne ${red_color}" Error${normal_color}"
+		if ! hash "${i}" 2> /dev/null; then
+			echo -ne "${red_color} Error${normal_color}"
 			essential_toolsok=0
 			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
-			echo -e ${green_color}" Ok\r${normal_color}"
+			echo -e "${green_color} Ok\r${normal_color}"
 		fi
 	done
 
@@ -7683,13 +7683,13 @@ function check_compatibility() {
 	for i in "${!optional_tools[@]}"; do
 		echo -ne "${i}"
 		time_loop
-		if ! hash ${i} 2> /dev/null; then
-			echo -ne ${red_color}" Error${normal_color}"
+		if ! hash "${i}" 2> /dev/null; then
+			echo -ne "${red_color} Error${normal_color}"
 			optional_toolsok=0
 			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
-			echo -e ${green_color}" Ok\r${normal_color}"
+			echo -e "${green_color} Ok\r${normal_color}"
 			optional_tools[${i}]=1
 		fi
 	done
@@ -7703,13 +7703,13 @@ function check_compatibility() {
 		for i in "${update_tools[@]}"; do
 			echo -ne "${i}"
 			time_loop
-			if ! hash ${i} 2> /dev/null; then
-				echo -ne ${red_color}" Error${normal_color}"
+			if ! hash "${i}" 2> /dev/null; then
+				echo -ne "${red_color} Error${normal_color}"
 				update_toolsok=0
 				echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
 				echo -e "\r"
 			else
-				echo -e ${green_color}" Ok\r${normal_color}"
+				echo -e "${green_color} Ok\r${normal_color}"
 			fi
 		done
 	fi
@@ -7738,7 +7738,7 @@ function check_bash_version() {
 
 	echo
 	bashversion="${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}"
-	if compare_floats_greater_or_equal ${bashversion} ${minimum_bash_version_required}; then
+	if compare_floats_greater_or_equal "${bashversion}" ${minimum_bash_version_required}; then
 		language_strings "${language}" 221 "yellow"
 	else
 		language_strings "${language}" 222 "yellow"
@@ -7837,7 +7837,6 @@ function initialize_script_settings() {
 	autochanged_language=0
 	tmpfiles_toclean=0
 	routing_toclean=0
-	screen_correction_needed=0
 	dhcpd_path_changed=0
 	xratio=6.2
 	yratio=13.9
@@ -7894,13 +7893,13 @@ function set_windows_sizes() {
 
 function set_xsizes() {
 
-	xtotal=$(awk -v n1=${resolution_x} "BEGIN{print n1 / $xratio}")
+	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / $xratio}")
 
-	xtotaltmp=$(printf "%.0f" ${xtotal} 2> /dev/null)
+	xtotaltmp=$(printf "%.0f" "${xtotal}" 2> /dev/null)
 	if [ "$?" != "0" ]; then
 		dec_char=","
 		xtotal="${xtotal/./${dec_char}}"
-		xtotal=$(printf "%.0f" ${xtotal} 2> /dev/null)
+		xtotal=$(printf "%.0f" "${xtotal}" 2> /dev/null)
 	else
 		xtotal=${xtotaltmp}
 	fi
@@ -7913,11 +7912,11 @@ function set_xsizes() {
 function set_ysizes() {
 
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / $yratio}")
-	ytotaltmp=$(printf "%.0f" ${ytotal} 2> /dev/null)
+	ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null)
 	if [ "$?" != "0" ]; then
 		dec_char=","
 		ytotal="${ytotal/./${dec_char}}"
-		ytotal=$(printf "%.0f" ${ytotal} 2> /dev/null)
+		ytotal=$(printf "%.0f" "${ytotal}" 2> /dev/null)
 	else
 		ytotal=${ytotaltmp}
 	fi
