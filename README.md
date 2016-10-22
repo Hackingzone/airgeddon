@@ -137,7 +137,7 @@ You can download the master version or the beta testing version from the develop
 See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pen testing crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
+Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 <br/>
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
