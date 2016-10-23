@@ -3649,10 +3649,10 @@ function set_chipset() {
 
 	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
 
-		bus_type=$(cat < /sys/class/net/${1}/device/modalias | cut -d ":" -f 1)
+		bus_type=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 1)
 
 		if [ "${bus_type}" = "usb" ]; then
-			vendor_and_device=$(cat < /sys/class/net/${1}/device/modalias | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
+			vendor_and_device=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
 			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "$sedrulewifi")
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
@@ -3662,7 +3662,7 @@ function set_chipset() {
 				chipset=$(lspci -d "${vendor_and_device}" | cut -f3- -d ":" | sed "${sedrulegeneric}")
 			else
 				if hash ethtool 2> /dev/null; then
-					ethtool_output="$(ethtool -i ${1} 2>&1)"
+					ethtool_output=$(ethtool -i "${1}" 2>&1)
 					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
 					chipset=$(lspci | grep "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulegeneric}")
 				fi
@@ -3901,7 +3901,7 @@ function exec_aireplaydeauth() {
 	language_strings "${language}" 90 "title"
 	language_strings "${language}" 32 "green"
 
-	${airmon} start "${interface}" ${channel} > /dev/null 2>&1
+	${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 
 	echo
 	language_strings "${language}" 33 "blue"
@@ -4335,63 +4335,63 @@ function print_hint() {
 			store_array hints main_hints "${main_hints[@]}"
 			hintlength=${#main_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[main_hints|${randomhint}]}
 		;;
 		"dos_attacks_menu")
 			store_array hints dos_hints "${dos_hints[@]}"
 			hintlength=${#dos_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[dos_hints|${randomhint}]}
 		;;
 		"handshake_tools_menu")
 			store_array hints handshake_hints "${handshake_hints[@]}"
 			hintlength=${#handshake_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[handshake_hints|${randomhint}]}
 		;;
 		"attack_handshake_menu")
 			store_array hints handshake_attack_hints "${handshake_attack_hints[@]}"
 			hintlength=${#handshake_attack_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[handshake_attack_hints|${randomhint}]}
 		;;
 		"decrypt_menu")
 			store_array hints decrypt_hints "${decrypt_hints[@]}"
 			hintlength=${#decrypt_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[decrypt_hints|${randomhint}]}
 		;;
 		"select_interface_menu")
 			store_array hints select_interface_hints "${select_interface_hints[@]}"
 			hintlength=${#select_interface_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[select_interface_hints|${randomhint}]}
 		;;
 		"language_menu")
 			store_array hints language_hints "${language_hints[@]}"
 			hintlength=${#language_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[language_hints|${randomhint}]}
 		;;
 		"evil_twin_attacks_menu")
 			store_array hints evil_twin_hints "${evil_twin_hints[@]}"
 			hintlength=${#evil_twin_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_hints|${randomhint}]}
 		;;
 		"et_dos_menu")
 			store_array hints evil_twin_dos_hints "${evil_twin_dos_hints[@]}"
 			hintlength=${#evil_twin_dos_hints[@]}
 			((hintlength--))
-			randomhint=$(shuf -i 0-${hintlength} -n 1)
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_dos_hints|${randomhint}]}
 		;;
 	esac
@@ -5235,13 +5235,13 @@ function set_show_charset() {
 
 function exec_aircrack_bruteforce_attack() {
 
-	crunch ${minlength} ${maxlength} ${charset} | aircrack-ng -a 2 -b ${bssid} -w - "$enteredpath"
+	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "$enteredpath"
 	language_strings "${language}" 115 "read"
 }
 
 function exec_aircrack_dictionary_attack() {
 
-	aircrack-ng -a 2 -b ${bssid} -w "${DICTIONARY}" "$enteredpath"
+	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "$enteredpath"
 	language_strings "${language}" 115 "read"
 }
 
@@ -5420,7 +5420,7 @@ function set_dhcp_config() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}clts.txt" > /dev/null 2>&1
-	ifconfig ${interface} up
+	ifconfig "${interface}" up
 
 	echo -e "authoritative;" > "${tmpdir}${dhcpd_file}"
 	echo -e "default-lease-time 600;" >> "${tmpdir}${dhcpd_file}"
@@ -6341,7 +6341,7 @@ function capture_handshake_evil_twin() {
 			sleeptimeattack=12
 		;;
 		"Aireplay")
-			${airmon} start ${interface} ${channel} > /dev/null 2>&1
+			${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 			recalculate_windows_sizes
 			xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 			sleeptimeattack=12
@@ -6375,7 +6375,7 @@ function capture_handshake_evil_twin() {
 			read_path "writeethandshake"
 		done
 
-		cp "${tmpdir}$standardhandshake_filename" ${et_handshake}
+		cp "${tmpdir}$standardhandshake_filename" "${et_handshake}"
 		echo
 		language_strings "${language}" 324 "blue"
 		language_strings "${language}" 115 "read"
@@ -6642,7 +6642,7 @@ function attack_handshake_menu() {
 				attack_handshake_menu "new"
 			else
 				capture_handshake_window
-				${airmon} start "${interface}" ${channel} > /dev/null 2>&1
+				${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 				recalculate_windows_sizes
 				xterm +j -bg black -fg red -geometry "${g1_bottomleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1 &
 				sleeptimeattack=12
