@@ -1073,7 +1073,7 @@ function language_strings() {
 
 	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to Kcdtv for beta testing and support received"
 	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a Kcdtv por el beta testing y el apoyo recibido"
-	arr["FRENCH",75]="${pending_of_translation} Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", les gens de forums pour me aider, mes collaborateurs, traducteurs et surtout Kcdtv pour les tests en phase bêta et leur soutien"
+	arr["FRENCH",75]="Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", aux gens des forums qui m'ont aidés, à mes collaborateurs, aux traducteurs et tout spécialement à Kcdtv pour les tests en phase bêta et son soutien"
 	arr["CATALAN",75]="Agraïments al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv per les proves beta i el suport rebut"
 	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv por testes beta e também a todo apoio recebido"
 	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv за бета тестирование и полученную поддержку"
