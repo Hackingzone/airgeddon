@@ -5614,7 +5614,7 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-				echo $(date +%Y-%m-%d) >> \
+				echo $(date +%Y-%m-%d) >>\
 	EOF
 
 	cat >&7 <<-EOF
@@ -5659,7 +5659,7 @@ function set_control_script() {
 
 	cat >&7 <<-'EOF'
 					for badpass in "${BADPASSWORDS[@]}"; do
-						echo $badpass >> \
+						echo ${badpass} >>\
 	EOF
 
 	cat >&7 <<-EOF
@@ -5979,7 +5979,7 @@ function set_captive_portal_page() {
 	EOF
 
 	cat >&4 <<-'EOF'
-			echo "${password}" > \
+			echo "${password}" >\
 	EOF
 
 	cat >&4 <<-EOF
@@ -5999,7 +5999,7 @@ function set_captive_portal_page() {
 	EOF
 
 	cat >&4 <<-'EOF'
-				echo "${password}" >> \
+				echo "${password}" >>\
 	EOF
 
 	cat >&4 <<-EOF
