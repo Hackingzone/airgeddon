@@ -6713,7 +6713,7 @@ function explore_for_targets_option() {
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
 	targetline=$(cat < "${tmpdir}nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
-	targetline=$(expr ${targetline} - 1)
+	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
 	tail -n +${targetline} "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
@@ -6738,16 +6738,16 @@ function explore_for_targets_option() {
 				if [[ ${exp_power} -eq -1 ]]; then
 					exp_power=0
 				else
-					exp_power=$(expr ${exp_power} + 100)
+					exp_power=$((exp_power + 100))
 				fi
 			fi
 
 			exp_power=$(echo "${exp_power}" | awk '{gsub(/ /,""); print}')
-			exp_essid=$(expr substr "$exp_essid" 2 ${exp_idlength})
+			exp_essid=${exp_essid:1:${exp_idlength}}
 			if [[ "${exp_channel}" -gt 14 ]] || [[ "${exp_channel}" -lt 1 ]]; then
 				exp_channel=0
 			else
-				exp_channel=$(echo ${exp_channel} | awk '{gsub(/ /,""); print}')
+				exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
 			fi
 
 			if [[ "$exp_essid" = "" ]] || [[ "$exp_channel" = "-1" ]]; then
@@ -6758,8 +6758,8 @@ function explore_for_targets_option() {
 
 			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid,$exp_enc" >> ${tmpdir}"nws.txt"
 		fi
-	done < ${tmpdir}"nws.csv"
-	sort -t "," -d -k 4 ${tmpdir}"nws.txt" > ${tmpdir}"wnws.txt"
+	done < "${tmpdir}nws.csv"
+	sort -t "," -d -k 4 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
 	select_target
 }
 
