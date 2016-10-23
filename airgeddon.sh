@@ -1076,7 +1076,7 @@ function language_strings() {
 	arr["FRENCH",75]="${pending_of_translation} Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", les gens de forums pour me aider, mes collaborateurs, traducteurs et surtout Kcdtv pour les tests en phase bêta et leur soutien"
 	arr["CATALAN",75]="${pending_of_translation} Gràcies al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv per les proves beta i el recolzament rebut"
 	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv por testes beta e também a todo apoio recebido"
-	arr["RUSSIAN",75]="${pending_of_translation} Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", люди из форумов, чтобы помочь мне, мои сотрудники, переводчики и особенно Kcdtv за бета тестирование и полученную поддержку"
+	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv за бета тестирование и полученную поддержку"
 	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
