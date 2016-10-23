@@ -3208,7 +3208,7 @@ function special_text_missed_optional_tool() {
 	allowed_menu_option=1
 	if [ ${debug_mode} -eq 0 ]; then
 		tools_needed="${optionaltool_needed[${1}]}"
-		for item in ${required_tools[@]}; do
+		for item in "${required_tools[@]}"; do
 			if [ "${optional_tools[${item}]}" -eq 0 ]; then
 				allowed_menu_option=0
 				tools_needed+="${item} "
@@ -4782,7 +4782,7 @@ function check_bssid_in_captured_file() {
 		fi
 	done
 
-	for targetbssid in ${bssids_detected[@]}; do
+	for targetbssid in "${bssids_detected[@]}"; do
 		if [ "${bssid}" = "${targetbssid}" ]; then
 			language_strings "${language}" 322 "yellow"
 			return 0
@@ -4814,7 +4814,7 @@ function select_wpa_bssid_target_from_captured_file() {
 		fi
 	done
 
-	for targetbssid in ${bssids_detected[@]}; do
+	for targetbssid in "${bssids_detected[@]}"; do
 		if [ "${bssid}" = "${targetbssid}" ]; then
 			language_strings "${language}" 192 "blue"
 			ask_yesno 193
@@ -5221,7 +5221,7 @@ function set_show_charset() {
 		"hashcat")
 			case ${charset_tmp} in
 				"?a")
-					for item in ${hashcat_charsets[@]}; do
+					for item in "${hashcat_charsets[@]}"; do
 						showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
 					done
 				;;
@@ -5440,7 +5440,7 @@ function set_dhcp_config() {
 	echo -e "}" >> "${tmpdir}${dhcpd_file}"
 
 	leases_found=0
-	for item in ${!possible_dhcp_leases_files[@]}; do
+	for item in "${!possible_dhcp_leases_files[@]}"; do
 		if [ -f "${possible_dhcp_leases_files[$item]}" ]; then
 			leases_found=1
 			key_leases_found=${item}
@@ -6104,14 +6104,14 @@ function parse_ettercap_log() {
 
 function write_et_processes() {
 
-	for item in ${et_processes[@]}; do
+	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${webdir}${processesfile}"
 	done
 }
 
 function kill_et_windows() {
 
-	for item in ${et_processes[@]}; do
+	for item in "${et_processes[@]}"; do
 		kill "${item}" &> /dev/null
 	done
 	kill ${et_process_control_window} &> /dev/null
