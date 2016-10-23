@@ -3160,7 +3160,7 @@ function language_strings() {
 		;;
 		"read")
 			interrupt_checkpoint "${2}" "${3}"
-			read -p "${arr[${1},${2}]}"
+			read -p "${arr[${1},${2}]}" -r
 		;;
 		"multiline")
 			echo -ne "${arr[${1},${2}]}"
@@ -3365,7 +3365,7 @@ function check_interface_coherence() {
 		for iface_mac in "${ifaces_and_macs[@]}"; do
 			iface_mac_tmp=${iface_mac:0:15}
 			interface_mac_tmp=${interface_mac:0:15}
-			if [ "${iface_mac_tmp}" = "${interface}_mac_tmp" ]; then
+			if [ "${iface_mac_tmp}" = "${interface_mac_tmp}" ]; then
 				interface=${ifaces_and_macs_switched[${iface_mac}]}
 				interface_auto_change=1
 				break
@@ -7371,7 +7371,7 @@ function exit_script_option() {
 function time_loop() {
 
 	echo -ne " "
-	for j in $(seq 1 4); do
+	for (( j=1; j<=4; j++ )); do
 		echo -ne "."
 		sleep 0.035
 	done
