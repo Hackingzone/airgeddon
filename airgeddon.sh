@@ -4997,7 +4997,7 @@ function manage_hashcat_pot() {
 				read_path "hashcatpot"
 			done
 
-			cp ${tmpdir}"hctmp.pot" "$potenteredpath"
+			cp "${tmpdir}hctmp.pot" "$potenteredpath"
 			echo
 			language_strings "${language}" 236 "blue"
 			language_strings "${language}" 115 "read"
@@ -6701,7 +6701,7 @@ function capture_handshake_window() {
 	echo
 	language_strings "${language}" 325 "blue"
 
-	rm -rf ${tmpdir}"handshake"* > /dev/null 2>&1
+	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry "${g1_topright_window}" -T "Capturing Handshake" -e airodump-ng -c "${channel}" -d "${bssid}" -w "${tmpdir}handshake" "${interface}" > /dev/null 2>&1 &
 	processidcapture=$!
@@ -6733,9 +6733,9 @@ function explore_for_targets_option() {
 	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
-	tail -n +${targetline} "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
+	tail -n +"${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}clts.csv"
 
-	csvline=$(wc -l ${tmpdir}"nws.csv" 2> /dev/null | awk '{print $1}')
+	csvline=$(wc -l "${tmpdir}nws.csv" 2> /dev/null | awk '{print $1}')
 	if [ "${csvline}" -le 3 ]; then
 		echo
 		language_strings "${language}" 68 "yellow"
@@ -6746,7 +6746,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}nws.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
 	i=0
-	while IFS=, read -r exp_mac exp_fts exp_lts exp_channel exp_speed exp_enc exp_cypher exp_auth exp_power exp_beacon exp_iv exp_lanip exp_idlength exp_essid exp_key; do
+	while IFS=, read -r exp_mac _ _ exp_channel _ exp_enc _ _ exp_power _ _ _ exp_idlength exp_essid _; do
 
 		chars_mac=${#exp_mac}
 		if [ "${chars_mac}" -ge 17 ]; then
@@ -6767,13 +6767,13 @@ function explore_for_targets_option() {
 				exp_channel=$(echo "${exp_channel}" | awk '{gsub(/ /,""); print}')
 			fi
 
-			if [[ "$exp_essid" = "" ]] || [[ "$exp_channel" = "-1" ]]; then
+			if [[ "${exp_essid}" = "" ]] || [[ "${exp_channel}" = "-1" ]]; then
 				exp_essid="(Hidden Network)"
 			fi
 
 			exp_enc=$(echo "${exp_enc}" | awk '{print $1}')
 
-			echo -e "$exp_mac,$exp_channel,$exp_power,$exp_essid,$exp_enc" >> ${tmpdir}"nws.txt"
+			echo -e "${exp_mac},${exp_channel},${exp_power},${exp_essid},${exp_enc}" >> "${tmpdir}nws.txt"
 		fi
 	done < "${tmpdir}nws.csv"
 	sort -t "," -d -k 4 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
@@ -6784,6 +6784,7 @@ function select_target() {
 
 	clear
 	language_strings "${language}" 104 "title"
+	echo
 	language_strings "${language}" 69 "green"
 	print_large_separator
 	i=0
@@ -6806,7 +6807,7 @@ function select_target() {
 			sp2=""
 		fi
 
-		if [[ "$exp_power" = "" ]]; then
+		if [[ "${exp_power}" = "" ]]; then
 			exp_power=0
 		fi
 
@@ -6817,7 +6818,7 @@ function select_target() {
 		fi
 
 		client=$(cat < "${tmpdir}clts.csv" | grep "${exp_mac}")
-		if [ "$client" != "" ]; then
+		if [ "${client}" != "" ]; then
 			client="*"
 			sp5=""
 		else
@@ -6837,8 +6838,8 @@ function select_target() {
 		channels[$i]=${exp_channel}
 		macs[$i]=${exp_mac}
 		encs[$i]=${exp_enc}
-		echo -e " $sp1$i)$client  $sp5$exp_mac   $sp2$exp_channel    $sp4$exp_power%   $exp_enc$sp6   $exp_essid"
-	done < ${tmpdir}"wnws.txt"
+		echo -e " ${sp1}${i})${client}  ${sp5}${exp_mac}   ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
+	done < "${tmpdir}wnws.txt"
 
 	echo
 	if [ ${i} -eq 1 ]; then
