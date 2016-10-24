@@ -6532,7 +6532,7 @@ function read_path() {
 		;;
 		"dictionary")
 			language_strings "${language}" 180 "green"
-			read_and_clean_path "dictionary"
+			read_and_clean_path "DICTIONARY"
 			check_file_exists "${DICTIONARY}"
 		;;
 		"targetfilefordecrypt")
@@ -6542,7 +6542,7 @@ function read_path() {
 		;;
 		"rules")
 			language_strings "${language}" 242 "green"
-			read_and_clean_path "rules"
+			read_and_clean_path "RULES"
 			check_file_exists "${RULES}"
 		;;
 		"hashcatpot")
