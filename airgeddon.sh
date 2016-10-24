@@ -1655,21 +1655,21 @@ function language_strings() {
 	arr["RUSSIAN",147]="4.  Возврат в меню инструментов для работы с рукопожатием"
 	arr["GREEK",147]="4.  Επιστροφή στο μενού με τα εργαλεία Χειραψίας"
 
-	arr["ENGLISH",148]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$handshakepath]"
-	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$handshakepath]"
-	arr["FRENCH",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut ${normal_color}[$handshakepath]"
-	arr["CATALAN",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$handshakepath]"
-	arr["PORTUGUESE",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão ${normal_color}[$handshakepath]"
-	arr["RUSSIAN",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию ${normal_color}[$handshakepath]"
-	arr["GREEK",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$handshakepath]"
+	arr["ENGLISH",148]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${handshakepath}]"
+	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${handshakepath}]"
+	arr["FRENCH",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut ${normal_color}[${handshakepath}]"
+	arr["CATALAN",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${handshakepath}]"
+	arr["PORTUGUESE",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão ${normal_color}[${handshakepath}]"
+	arr["RUSSIAN",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию ${normal_color}[${handshakepath}]"
+	arr["GREEK",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${handshakepath}]"
 
-	arr["ENGLISH",149]="Handshake file generated successfully at [${normal_color}$enteredpath${blue_color}]"
-	arr["SPANISH",149]="Fichero de Handshake generado con éxito en [${normal_color}$enteredpath${blue_color}]"
-	arr["FRENCH",149]="Fichier Handshake généré avec succès dans [${normal_color}$enteredpath${blue_color}]"
-	arr["CATALAN",149]="Fitxer de Handshake generat amb èxit a [${normal_color}$enteredpath${blue_color}]"
-	arr["PORTUGUESE",149]="Arquivo Handshake gerado com sucesso [${normal_color}$enteredpath${blue_color}]"
-	arr["RUSSIAN",149]="Файл рукопожания успешно сгенерирован в [${normal_color}$enteredpath${blue_color}]"
-	arr["GREEK",149]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}$enteredpath${blue_color}]"
+	arr["ENGLISH",149]="Handshake file generated successfully at [${normal_color}${enteredpath}${blue_color}]"
+	arr["SPANISH",149]="Fichero de Handshake generado con éxito en [${normal_color}${enteredpath}${blue_color}]"
+	arr["FRENCH",149]="Fichier Handshake généré avec succès dans [${normal_color}${enteredpath}${blue_color}]"
+	arr["CATALAN",149]="Fitxer de Handshake generat amb èxit a [${normal_color}${enteredpath}${blue_color}]"
+	arr["PORTUGUESE",149]="Arquivo Handshake gerado com sucesso [${normal_color}${enteredpath}${blue_color}]"
+	arr["RUSSIAN",149]="Файл рукопожания успешно сгенерирован в [${normal_color}${enteredpath}${blue_color}]"
+	arr["GREEK",149]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}${enteredpath}${blue_color}]"
 
 	arr["ENGLISH",150]="No captured Handshake file detected during this session..."
 	arr["SPANISH",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
@@ -1679,13 +1679,13 @@ function language_strings() {
 	arr["RUSSIAN",150]="За эту сессию не обнаружено захваченного рукопожатия..."
 	arr["GREEK",150]="Δεν εντοπίστηκε κάποιο αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
-	arr["ENGLISH",151]="Handshake captured file detected during this session [${normal_color}$enteredpath${blue_color}]"
-	arr["SPANISH",151]="Se ha detectado un fichero de Handshake capturado en esta sesión [${normal_color}$enteredpath${blue_color}]"
-	arr["FRENCH",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans ${normal_color}$enteredpath${blue_color}]"
-	arr["CATALAN",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió [${normal_color}$enteredpath${blue_color}]"
-	arr["PORTUGUESE",151]="Handshake capturado com sucesso [${normal_color}$enteredpath${blue_color}]"
-	arr["RUSSIAN",151]="В этой сессии обнаружен файл с захваченным рукопожатием [${normal_color}$enteredpath${blue_color}]"
-	arr["GREEK",151]="Εντοπίστηκε αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}$enteredpath${blue_color}]"
+	arr["ENGLISH",151]="Handshake captured file detected during this session [${normal_color}${enteredpath}${blue_color}]"
+	arr["SPANISH",151]="Se ha detectado un fichero de Handshake capturado en esta sesión [${normal_color}${enteredpath}${blue_color}]"
+	arr["FRENCH",151]="Un fichier contenant un Handshake a été détecté pour la session effectuée et se trouve dans ${normal_color}${enteredpath}${blue_color}]"
+	arr["CATALAN",151]="S'ha detectat un fitxer de Handshake capturat en aquesta sessió [${normal_color}${enteredpath}${blue_color}]"
+	arr["PORTUGUESE",151]="Handshake capturado com sucesso [${normal_color}${enteredpath}${blue_color}]"
+	arr["RUSSIAN",151]="В этой сессии обнаружен файл с захваченным рукопожатием [${normal_color}${enteredpath}${blue_color}]"
+	arr["GREEK",151]="Εντοπίστηκε αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}${enteredpath}${blue_color}]"
 
 	arr["ENGLISH",152]="Do you want to clean/optimize the Handshake captured file during this session? ${normal_color}[y/n]"
 	arr["SPANISH",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? ${normal_color}[y/n]"
@@ -1711,13 +1711,13 @@ function language_strings() {
 	arr["RUSSIAN",154]="Установить путь до файла :"
 	arr["GREEK",154]="Θέστε μονοπάτι για το αρχείο :"
 
-	arr["ENGLISH",155]="The directory exists but you didn't specify filename. It will be autogenerated [${normal_color}$suggested_filename${yellow_color}]"
-	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [${normal_color}$suggested_filename${yellow_color}]"
-	arr["FRENCH",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé [${normal_color}$suggested_filename${yellow_color}]"
-	arr["CATALAN",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará [${normal_color}$suggested_filename${yellow_color}]"
-	arr["PORTUGUESE",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}$suggested_filename${yellow_color}]"
-	arr["RUSSIAN",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически [${normal_color}$suggested_filename${yellow_color}]"
-	arr["GREEK",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [${normal_color}$suggested_filename${yellow_color}]"
+	arr["ENGLISH",155]="The directory exists but you didn't specify filename. It will be autogenerated [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["FRENCH",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["CATALAN",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["PORTUGUESE",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["RUSSIAN",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["GREEK",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [${normal_color}${suggested_filename}${yellow_color}]"
 
 	arr["ENGLISH",156]="Directory not exists"
 	arr["SPANISH",156]="El directorio no existe"
@@ -1855,13 +1855,13 @@ function language_strings() {
 	arr["RUSSIAN",172]="1.  (aircrack) Атака по словарю в отношении захваченного файла"
 	arr["GREEK",172]="1.  (aircrack) Επίθεση με χρήση λεξικού σε αρχείο καταγραφής"
 
-	arr["ENGLISH",173]="Selected capture file: ${pink_color}$enteredpath${normal_color}"
-	arr["SPANISH",173]="Fichero de captura seleccionado: ${pink_color}$enteredpath${normal_color}"
-	arr["FRENCH",173]="Fichier de capture sélectionné: ${pink_color}$enteredpath${normal_color}"
-	arr["CATALAN",173]="Fitxer de captura seleccionat: ${pink_color}$enteredpath${normal_color}"
-	arr["PORTUGUESE",173]="Seleccionado arquivo de captura: ${pink_color}$enteredpath${normal_color}"
-	arr["RUSSIAN",173]="Выбранный файл захвата: ${pink_color}$enteredpath${normal_color}"
-	arr["GREEK",173]="Επιλεγμένο αρχείο καταγραφής: ${pink_color}$enteredpath${normal_color}"
+	arr["ENGLISH",173]="Selected capture file: ${pink_color}${enteredpath}${normal_color}"
+	arr["SPANISH",173]="Fichero de captura seleccionado: ${pink_color}${enteredpath}${normal_color}"
+	arr["FRENCH",173]="Fichier de capture sélectionné: ${pink_color}${enteredpath}${normal_color}"
+	arr["CATALAN",173]="Fitxer de captura seleccionat: ${pink_color}${enteredpath}${normal_color}"
+	arr["PORTUGUESE",173]="Seleccionado arquivo de captura: ${pink_color}${enteredpath}${normal_color}"
+	arr["RUSSIAN",173]="Выбранный файл захвата: ${pink_color}${enteredpath}${normal_color}"
+	arr["GREEK",173]="Επιλεγμένο αρχείο καταγραφής: ${pink_color}${enteredpath}${normal_color}"
 
 	arr["ENGLISH",174]="6.  Return to main menu"
 	arr["SPANISH",174]="6.  Volver al menú principal"
@@ -1959,13 +1959,13 @@ function language_strings() {
 	arr["RUSSIAN",185]="Выбранная BSSID: ${pink_color}Нет${normal_color}"
 	arr["GREEK",185]="Επιλεγμένο BSSID: ${pink_color}Κανένα${normal_color}"
 
-	arr["ENGLISH",186]="You already have selected a capture file during this session [${normal_color}$enteredpath${blue_color}]"
-	arr["SPANISH",186]="Ya tienes seleccionado un fichero de captura en esta sesión [${normal_color}$enteredpath${blue_color}]"
-	arr["FRENCH",186]="Vous avez déjà sélectionné un fichier de capture pour cette session ${normal_color}$enteredpath${blue_color}]"
-	arr["CATALAN",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió [${normal_color}$enteredpath${blue_color}]"
-	arr["PORTUGUESE",186]="Você selecionou um arquivo de captura nesta sessão [${normal_color}$enteredpath${blue_color}]"
-	arr["RUSSIAN",186]="Вы уже выбрали файл захвата во время этой сессии [${normal_color}$enteredpath${blue_color}]"
-	arr["GREEK",186]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας [${normal_color}$enteredpath${blue_color}]"
+	arr["ENGLISH",186]="You already have selected a capture file during this session [${normal_color}${enteredpath}${blue_color}]"
+	arr["SPANISH",186]="Ya tienes seleccionado un fichero de captura en esta sesión [${normal_color}${enteredpath}${blue_color}]"
+	arr["FRENCH",186]="Vous avez déjà sélectionné un fichier de capture pour cette session ${normal_color}${enteredpath}${blue_color}]"
+	arr["CATALAN",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió [${normal_color}${enteredpath}${blue_color}]"
+	arr["PORTUGUESE",186]="Você selecionou um arquivo de captura nesta sessão [${normal_color}${enteredpath}${blue_color}]"
+	arr["RUSSIAN",186]="Вы уже выбрали файл захвата во время этой сессии [${normal_color}${enteredpath}${blue_color}]"
+	arr["GREEK",186]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας [${normal_color}${enteredpath}${blue_color}]"
 
 	arr["ENGLISH",187]="Do you want to use this already selected capture file? ${normal_color}[y/n]"
 	arr["SPANISH",187]="¿Quieres utilizar este fichero de captura ya seleccionado? ${normal_color}[y/n]"
@@ -2335,13 +2335,13 @@ function language_strings() {
 	arr["RUSSIAN",232]="5.  (hashcat) Атака на основе правила в отношении захваченного файла"
 	arr["GREEK",232]="5.  (hashcat) Επίθεση κανόνων σε αρχείο καταγραφής"
 
-	arr["ENGLISH",233]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$hashcat_potpath]"
-	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$hashcat_potpath]"
-	arr["FRENCH",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$hashcat_potpath]"
-	arr["CATALAN",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$hashcat_potpath]"
-	arr["PORTUGUESE",233]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$hashcat_potpath]"
-	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию ${normal_color}[$hashcat_potpath]"
-	arr["GREEK",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$hashcat_potpath]"
+	arr["ENGLISH",233]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${hashcat_potpath}]"
+	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${hashcat_potpath}]"
+	arr["FRENCH",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${hashcat_potpath}]"
+	arr["CATALAN",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${hashcat_potpath}]"
+	arr["PORTUGUESE",233]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${hashcat_potpath}]"
+	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию ${normal_color}[${hashcat_potpath}]"
+	arr["GREEK",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${hashcat_potpath}]"
 
 	arr["ENGLISH",234]="Contratulations!! It seems the key has been decrypted"
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
@@ -2359,13 +2359,13 @@ function language_strings() {
 	arr["RUSSIAN",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? ${normal_color}[y/n]"
 	arr["GREEK",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; ${normal_color}[y/n]"
 
-	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [${normal_color}$potenteredpath${blue_color}]"
-	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [${normal_color}$potenteredpath${blue_color}]"
-	arr["FRENCH",236]="Le fichier trophée Hashcat a bien été crée dans [${normal_color}$potenteredpath${blue_color}]"
-	arr["CATALAN",236]="Fitxer de trofeu hashcat generat amb èxit a [${normal_color}$potenteredpath${blue_color}]"
-	arr["PORTUGUESE",236]="Arquivo troféu Hashcat gerado com sucesso [${normal_color}$potenteredpath${blue_color}]"
-	arr["RUSSIAN",236]="Трофейный файл Hashcat был успешно сгенерирован в [${normal_color}$potenteredpath${blue_color}]"
-	arr["GREEK",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}$potenteredpath${blue_color}]"
+	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [${normal_color}${potenteredpath}${blue_color}]"
+	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [${normal_color}${potenteredpath}${blue_color}]"
+	arr["FRENCH",236]="Le fichier trophée Hashcat a bien été crée dans [${normal_color}${potenteredpath}${blue_color}]"
+	arr["CATALAN",236]="Fitxer de trofeu hashcat generat amb èxit a [${normal_color}${potenteredpath}${blue_color}]"
+	arr["PORTUGUESE",236]="Arquivo troféu Hashcat gerado com sucesso [${normal_color}${potenteredpath}${blue_color}]"
+	arr["RUSSIAN",236]="Трофейный файл Hashcat был успешно сгенерирован в [${normal_color}${potenteredpath}${blue_color}]"
+	arr["GREEK",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}${potenteredpath}${blue_color}]"
 
 	arr["ENGLISH",237]="5.  Lowercase + uppercase + numeric + symbol chars"
 	arr["SPANISH",237]="5.  Caracteres en minúsculas + mayúsculas + numéricos + símbolos"
@@ -2895,13 +2895,13 @@ function language_strings() {
 	arr["RUSSIAN",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? ${blue_color}Если ваш ответ нет (\"n\") они будут только показаны на экране ${normal_color}[y/n]"
 	arr["GREEK",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; ${blue_color}Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη ${normal_color}[y/n]"
 
-	arr["ENGLISH",303]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$default_ettercap_logpath]"
-	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$default_ettercap_logpath]"
-	arr["FRENCH",303]="Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$default_ettercap_logpath]"
-	arr["CATALAN",303]="Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$default_ettercap_logpath]"
-	arr["PORTUGUESE",303]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$default_ettercap_logpath]"
-	arr["RUSSIAN",303]="Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию ${normal_color}[$default_ettercap_logpath]"
-	arr["GREEK",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$default_ettercap_logpath]"
+	arr["ENGLISH",303]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${default_ettercap_logpath}]"
+	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${default_ettercap_logpath}]"
+	arr["FRENCH",303]="Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${default_ettercap_logpath}]"
+	arr["CATALAN",303]="Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${default_ettercap_logpath}]"
+	arr["PORTUGUESE",303]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${default_ettercap_logpath}]"
+	arr["RUSSIAN",303]="Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию ${normal_color}[${default_ettercap_logpath}]"
+	arr["GREEK",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${default_ettercap_logpath}]"
 
 	arr["ENGLISH",304]="Parsing sniffer log..."
 	arr["SPANISH",304]="Analizando log del sniffer.."
@@ -2919,13 +2919,13 @@ function language_strings() {
 	arr["RUSSIAN",305]="В журнале сниффера паролей не обнаружено. Файл не будет сохранён"
 	arr["GREEK",305]="Δεν εντοπίστηκαν κωδικοί πρόσβασης στο log του sniffer. Το αρχείο δεν θα αποθηκευτεί"
 
-	arr["ENGLISH",306]="Passwords captured by sniffer. File saved at ${normal_color}[$ettercap_logpath]"
-	arr["SPANISH",306]="El sniffer ha capturado contraseñas. Fichero salvado en ${normal_color}[$ettercap_logpath]"
-	arr["FRENCH",306]="Des mots de passe ont été capturé et ont été enregistré dans ${normal_color}[$ettercap_logpath]"
-	arr["CATALAN",306]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[$ettercap_logpath]"
-	arr["PORTUGUESE",306]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[$ettercap_logpath]"
-	arr["RUSSIAN",306]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[$ettercap_logpath]"
-	arr["GREEK",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[$ettercap_logpath]"
+	arr["ENGLISH",306]="Passwords captured by sniffer. File saved at ${normal_color}[${ettercap_logpath}]"
+	arr["SPANISH",306]="El sniffer ha capturado contraseñas. Fichero salvado en ${normal_color}[${ettercap_logpath}]"
+	arr["FRENCH",306]="Des mots de passe ont été capturé et ont été enregistré dans ${normal_color}[${ettercap_logpath}]"
+	arr["CATALAN",306]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${ettercap_logpath}]"
+	arr["PORTUGUESE",306]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${ettercap_logpath}]"
+	arr["RUSSIAN",306]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${ettercap_logpath}]"
+	arr["GREEK",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${ettercap_logpath}]"
 
 	arr["ENGLISH",307]="Language changed to Russian"
 	arr["SPANISH",307]="Idioma cambiado a Ruso"
@@ -2959,13 +2959,13 @@ function language_strings() {
 	arr["RUSSIAN",310]="Выбранный файл рукопожатия: ${pink_color}Отсутствует${normal_color}"
 	arr["GREEK",310]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}Κανένα${normal_color}"
 
-	arr["ENGLISH",311]="Handshake file selected: ${pink_color}$et_handshake${normal_color}"
-	arr["SPANISH",311]="Fichero de Handshake seleccionado: ${pink_color}$et_handshake${normal_color}"
-	arr["FRENCH",311]="Fichier Handshake sélectionnée: ${pink_color}$et_handshake${normal_color}"
-	arr["CATALAN",311]="Fitxer de Handshake seleccionat: ${pink_color}$et_handshake${normal_color}"
-	arr["PORTUGUESE",311]="Arquivo de Handshake selecionado: ${pink_color}$et_handshake${normal_color}"
-	arr["RUSSIAN",311]="Выбранный файл рукопожатия: ${pink_color}$et_handshake${normal_color}"
-	arr["GREEK",311]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}$et_handshake${normal_color}"
+	arr["ENGLISH",311]="Handshake file selected: ${pink_color}${et_handshake}${normal_color}"
+	arr["SPANISH",311]="Fichero de Handshake seleccionado: ${pink_color}${et_handshake}${normal_color}"
+	arr["FRENCH",311]="Fichier Handshake sélectionnée: ${pink_color}${et_handshake}${normal_color}"
+	arr["CATALAN",311]="Fitxer de Handshake seleccionat: ${pink_color}${et_handshake}${normal_color}"
+	arr["PORTUGUESE",311]="Arquivo de Handshake selecionado: ${pink_color}${et_handshake}${normal_color}"
+	arr["RUSSIAN",311]="Выбранный файл рукопожатия: ${pink_color}${et_handshake}${normal_color}"
+	arr["GREEK",311]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}${et_handshake}${normal_color}"
 
 	arr["ENGLISH",312]="No selected Handshake file detected during this session..."
 	arr["SPANISH",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
@@ -2975,21 +2975,21 @@ function language_strings() {
 	arr["RUSSIAN",312]="Во время этой сессии выбранный файл рукопожатия не обнаружен..."
 	arr["GREEK",312]="Δεν εντοπίστηκε κανένα αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
-	arr["ENGLISH",313]="Handshake selected file detected during this session [${normal_color}$et_handshake${blue_color}]"
-	arr["SPANISH",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [${normal_color}$et_handshake${blue_color}]"
-	arr["FRENCH",313]="Le fichier handshake suivant a été détecté comme étant sélectionné pour cette session [${normal_color}$et_handshake${blue_color}]"
-	arr["CATALAN",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió [${normal_color}$et_handshake${blue_color}]"
-	arr["PORTUGUESE",313]="Um arquivo de Handshake foi capturado nesta sessão [${normal_color}$et_handshake${blue_color}]"
-	arr["RUSSIAN",313]="Обнаружен файл рукопожатия, выбранный в этой сессии [${normal_color}$et_handshake${blue_color}]"
-	arr["GREEK",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}$et_handshake${blue_color}]"
+	arr["ENGLISH",313]="Handshake selected file detected during this session [${normal_color}${et_handshake}${blue_color}]"
+	arr["SPANISH",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [${normal_color}${et_handshake}${blue_color}]"
+	arr["FRENCH",313]="Le fichier handshake suivant a été détecté comme étant sélectionné pour cette session [${normal_color}${et_handshake}${blue_color}]"
+	arr["CATALAN",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió [${normal_color}${et_handshake}${blue_color}]"
+	arr["PORTUGUESE",313]="Um arquivo de Handshake foi capturado nesta sessão [${normal_color}${et_handshake}${blue_color}]"
+	arr["RUSSIAN",313]="Обнаружен файл рукопожатия, выбранный в этой сессии [${normal_color}${et_handshake}${blue_color}]"
+	arr["GREEK",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}${et_handshake}${blue_color}]"
 
-	arr["ENGLISH",314]="Handshake file selected: ${pink_color}$enteredpath${normal_color}"
-	arr["SPANISH",314]="Fichero de Handshake seleccionado: ${pink_color}$enteredpath${normal_color}"
-	arr["FRENCH",314]="Fichier Handshake sélectionné: ${pink_color}$enteredpath${normal_color}"
-	arr["CATALAN",314]="Fitxer de Handshake seleccionat: ${pink_color}$enteredpath${normal_color}"
-	arr["PORTUGUESE",314]="Arquivo Handshake selecionado: ${pink_color}$enteredpath${normal_color}"
-	arr["RUSSIAN",314]="Выбранный файл рукопожатия: ${pink_color}$enteredpath${normal_color}"
-	arr["GREEK",314]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}$enteredpath${normal_color}"
+	arr["ENGLISH",314]="Handshake file selected: ${pink_color}${enteredpath}${normal_color}"
+	arr["SPANISH",314]="Fichero de Handshake seleccionado: ${pink_color}${enteredpath}${normal_color}"
+	arr["FRENCH",314]="Fichier Handshake sélectionné: ${pink_color}${enteredpath}${normal_color}"
+	arr["CATALAN",314]="Fitxer de Handshake seleccionat: ${pink_color}${enteredpath}${normal_color}"
+	arr["PORTUGUESE",314]="Arquivo Handshake selecionado: ${pink_color}${enteredpath}${normal_color}"
+	arr["RUSSIAN",314]="Выбранный файл рукопожатия: ${pink_color}${enteredpath}${normal_color}"
+	arr["GREEK",314]="Επιλεγμένο αρχείο Χειραψίας: ${pink_color}${enteredpath}${normal_color}"
 
 	arr["ENGLISH",315]="This attack requires that you have previously a WPA/WPA2 network captured Handshake file"
 	arr["SPANISH",315]="Este ataque requiere que tengas capturado previamente un fichero de Handshake de una red WPA/WPA2"
@@ -3007,13 +3007,13 @@ function language_strings() {
 	arr["RUSSIAN",316]="Выполнение сканирования целей..."
 	arr["GREEK",316]="Πρόκειται να γίνει μία εξερεύνηση για έυρεση στόχων..."
 
-	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press Enter to accept the default proposal ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["FRENCH",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. ${green_color}Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["CATALAN",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. ${green_color}Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["PORTUGUESE",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? ${green_color}Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["RUSSIAN",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. ${green_color}Впишите путь до файла или нажмите Enter для принятия значения по умолчанию ${normal_color}[$default_et_captive_portal_logpath]"
-	arr["GREEK",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[$default_et_captive_portal_logpath]"
+	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["FRENCH",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. ${green_color}Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["CATALAN",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. ${green_color}Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["PORTUGUESE",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? ${green_color}Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["RUSSIAN",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. ${green_color}Впишите путь до файла или нажмите Enter для принятия значения по умолчанию ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["GREEK",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${default_et_captive_portal_logpath}]"
 
 	arr["ENGLISH",318]="Choose the language in which network clients will see the captive portal :"
 	arr["SPANISH",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
@@ -3063,13 +3063,13 @@ function language_strings() {
 	arr["RUSSIAN",323]="В файле захвата отсутствует рукопожатие выбранной сети"
 	arr["GREEK",323]="Δεν υπάρχει Χειραψία του επιλεγμένου δικτύου στο αρχείο καταγραφής"
 
-	arr["ENGLISH",324]="Handshake file generated successfully at [${normal_color}$et_handshake${blue_color}]"
-	arr["SPANISH",324]="Fichero de Handshake generado con éxito en [${normal_color}$et_handshake${blue_color}]"
-	arr["FRENCH",324]="Fichier Handshake généré avec succès dans [${normal_color}$et_handshake${blue_color}]"
-	arr["CATALAN",324]="Fitxer de Handshake generat amb èxit a [${normal_color}$et_handshake${blue_color}]"
-	arr["PORTUGUESE",324]="Arquivo Handshake gerado com sucesso [${normal_color}$et_handshake${blue_color}]"
-	arr["RUSSIAN",324]="Файл рукопожатия успешно создан в [${normal_color}$et_handshake${blue_color}]"
-	arr["GREEK",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}$et_handshake${blue_color}]"
+	arr["ENGLISH",324]="Handshake file generated successfully at [${normal_color}${et_handshake}${blue_color}]"
+	arr["SPANISH",324]="Fichero de Handshake generado con éxito en [${normal_color}${et_handshake}${blue_color}]"
+	arr["FRENCH",324]="Fichier Handshake généré avec succès dans [${normal_color}${et_handshake}${blue_color}]"
+	arr["CATALAN",324]="Fitxer de Handshake generat amb èxit a [${normal_color}${et_handshake}${blue_color}]"
+	arr["PORTUGUESE",324]="Arquivo Handshake gerado com sucesso [${normal_color}${et_handshake}${blue_color}]"
+	arr["RUSSIAN",324]="Файл рукопожатия успешно создан в [${normal_color}${et_handshake}${blue_color}]"
+	arr["GREEK",324]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}${et_handshake}${blue_color}]"
 
 	arr["ENGLISH",325]="Wait. Be patient..."
 	arr["SPANISH",325]="Espera. Ten un poco de paciencia..."
@@ -3135,7 +3135,7 @@ function language_strings() {
 	arr["RUSSIAN",332]="Язык изменён на Греческий"
 	arr["GREEK",332]="Η γλώσσα άλλαξε σε Ελληνικά"
 
-	case "$3" in
+	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
 			echo_yellow "${arr[${1},${2}]}"
@@ -3175,7 +3175,7 @@ function language_strings() {
 			echo_red_slim "${arr[${1},${2}]} (${under_constructionvar})"
 		;;
 		*)
-			if [ -z "$3" ]; then
+			if [ -z "${3}" ]; then
 				last_echo "${arr[${1},${2}]}" "${normal_color}"
 			else
 				special_text_missed_optional_tool "${1}" "${2}" "${3}"
@@ -3327,7 +3327,7 @@ function check_interface_wifi() {
 function execute_iwconfig_fix() {
 
 	iwconfig_fix
-	iwcmd="iwconfig ${interface} $iwcmdfix > /dev/null 2> /dev/null"
+	iwcmd="iwconfig ${interface} ${iwcmdfix} > /dev/null 2> /dev/null"
 	eval "${iwcmd}"
 
 	return $?
@@ -3653,7 +3653,7 @@ function set_chipset() {
 
 		if [ "${bus_type}" = "usb" ]; then
 			vendor_and_device=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
-			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "$sedrulewifi")
+			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
 
@@ -4167,7 +4167,7 @@ function print_et_target_vars() {
 		language_strings "${language}" 274 "blue"
 	fi
 
-	if [ "$current_menu" != "et_dos_menu" ]; then
+	if [ "${current_menu}" != "et_dos_menu" ]; then
 		if [ -n "${et_dos_attack}" ]; then
 			language_strings "${language}" 272 "blue"
 		else
@@ -4176,10 +4176,10 @@ function print_et_target_vars() {
 	fi
 
 	if [ "${et_mode}" = "et_captive_portal" ]; then
-		if [ -n "$et_handshake" ]; then
+		if [ -n "${et_handshake}" ]; then
 			language_strings "${language}" 311 "blue"
 		else
-			if [ -n "$enteredpath" ]; then
+			if [ -n "${enteredpath}" ]; then
 				language_strings "${language}" 314 "blue"
 			else
 				language_strings "${language}" 310 "blue"
@@ -4196,7 +4196,7 @@ function print_decrypt_vars() {
 		language_strings "${language}" 185 "blue"
 	fi
 
-	if [ -n "$enteredpath" ]; then
+	if [ -n "${enteredpath}" ]; then
 		language_strings "${language}" 173 "blue"
 	else
 		language_strings "${language}" 177 "blue"
@@ -4685,7 +4685,7 @@ function ask_capture_file() {
 
 function manage_asking_for_captured_file() {
 
-	if [ -n "$enteredpath" ]; then
+	if [ -n "${enteredpath}" ]; then
 		echo
 		language_strings "${language}" 186 "blue"
 		ask_yesno 187
@@ -4744,7 +4744,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	handshakefilesize=$(wc -c "$filetoclean" 2> /dev/null | awk -F " " '{print$1}')
+	handshakefilesize=$(wc -c "${filetoclean}" 2> /dev/null | awk -F " " '{print$1}')
 	if [ "${handshakefilesize}" -le 1024 ]; then
 		return 1
 	fi
@@ -4841,11 +4841,11 @@ function select_wpa_bssid_target_from_captured_file() {
 					space=""
 				fi
 
-				echo -n "${option_counter}.$space$item"
+				echo -n "${option_counter}.${space}${item}"
 			elif [[ ${item} =~ \)$ ]]; then
-				echo -en "$item\r\n"
+				echo -en "${item}\r\n"
 			else
-				echo -en " $item "
+				echo -en " ${item} "
 			fi
 		done
 		print_hint ${current_menu}
@@ -4875,7 +4875,7 @@ function aircrack_dictionary_attack_option() {
 
 	manage_asking_for_captured_file
 
-	select_wpa_bssid_target_from_captured_file "$enteredpath"
+	select_wpa_bssid_target_from_captured_file "${enteredpath}"
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4892,7 +4892,7 @@ function aircrack_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file
 
-	select_wpa_bssid_target_from_captured_file "$enteredpath"
+	select_wpa_bssid_target_from_captured_file "${enteredpath}"
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4916,7 +4916,7 @@ function hashcat_dictionary_attack_option() {
 
 	manage_asking_for_captured_file
 
-	select_wpa_bssid_target_from_captured_file "$enteredpath"
+	select_wpa_bssid_target_from_captured_file "${enteredpath}"
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4934,7 +4934,7 @@ function hashcat_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file
 
-	select_wpa_bssid_target_from_captured_file "$enteredpath"
+	select_wpa_bssid_target_from_captured_file "${enteredpath}"
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4959,7 +4959,7 @@ function hashcat_rulebased_attack_option() {
 
 	manage_asking_for_captured_file
 
-	select_wpa_bssid_target_from_captured_file "$enteredpath"
+	select_wpa_bssid_target_from_captured_file "${enteredpath}"
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4986,18 +4986,18 @@ function manage_hashcat_pot() {
 
 			hashcat_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhashcat_potpath=${hashcat_potpath: -1}
-			if [ "$lastcharhashcat_potpath" != "/" ]; then
-				hashcat_potpath="$hashcat_potpath/"
+			if [ "${lastcharhashcat_potpath}" != "/" ]; then
+				hashcat_potpath="${hashcat_potpath}/"
 			fi
 			hashcatpot_filename="hashcat-${bssid}.pot"
-			hashcat_potpath="$hashcat_potpath$hashcatpot_filename"
+			hashcat_potpath="${hashcat_potpath}${hashcatpot_filename}"
 
 			validpath=1
 			while [[ "${validpath}" != "0" ]]; do
 				read_path "hashcatpot"
 			done
 
-			cp "${tmpdir}hctmp.pot" "$potenteredpath"
+			cp "${tmpdir}hctmp.pot" "${potenteredpath}"
 			echo
 			language_strings "${language}" 236 "blue"
 			language_strings "${language}" 115 "read"
@@ -5013,13 +5013,13 @@ function manage_ettercap_log() {
 		ettercap_log=1
 		default_ettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharettercaplogpath=${default_ettercap_logpath: -1}
-		if [ "$lastcharettercaplogpath" != "/" ]; then
-			ettercap_logpath="$default_ettercap_logpath/"
+		if [ "${lastcharettercaplogpath}" != "/" ]; then
+			ettercap_logpath="${default_ettercap_logpath}/"
 		fi
 		default_ettercaplogfilename="evil_twin_captured_passwords-${essid}.txt"
 		rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 		tmp_ettercaplog="${tmpdir}${ettercap_file}"
-		default_ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
+		default_ettercap_logpath="${ettercap_logpath}${default_ettercaplogfilename}"
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "ettercaplog"
@@ -5031,11 +5031,11 @@ function manage_captive_portal_log() {
 
 	default_et_captive_portal_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
-	if [ "$lastcharetcaptiveportallogpath" != "/" ]; then
-		et_captive_portal_logpath="$default_et_captive_portal_logpath/"
+	if [ "${lastcharetcaptiveportallogpath}" != "/" ]; then
+		et_captive_portal_logpath="${default_et_captive_portal_logpath}/"
 	fi
 	default_et_captive_portallogfilename="evil_twin_captive_portal_password-${essid}.txt"
-	default_et_captive_portal_logpath="$et_captive_portal_logpath$default_et_captive_portallogfilename"
+	default_et_captive_portal_logpath="${et_captive_portal_logpath}${default_et_captive_portallogfilename}"
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
 		read_path "et_captive_portallog"
@@ -5235,13 +5235,13 @@ function set_show_charset() {
 
 function exec_aircrack_bruteforce_attack() {
 
-	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "$enteredpath"
+	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
 function exec_aircrack_dictionary_attack() {
 
-	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "$enteredpath"
+	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -5375,7 +5375,7 @@ function set_hostapd_config() {
 	echo -e "driver=nl80211"
 	echo -e "ssid=${essid}"
 	echo -e "channel=${channel}"
-	echo -e "bssid=$et_bssid"
+	echo -e "bssid=${et_bssid}"
 	} >> "${tmpdir}${hostapd_file}"
 }
 
@@ -5428,7 +5428,7 @@ function set_dhcp_config() {
 	echo -e "authoritative;"
 	echo -e "default-lease-time 600;"
 	echo -e "max-lease-time 7200;"
-	echo -e "subnet $et_ip_range netmask ${std_c_mask} {"
+	echo -e "subnet ${et_ip_range} netmask ${std_c_mask} {"
 	echo -e "\toption broadcast-address ${et_broadcast_ip};"
 	echo -e "\toption routers ${et_ip_router};"
 	echo -e "\toption subnet-mask ${std_c_mask};"
@@ -5447,7 +5447,7 @@ function set_dhcp_config() {
 
 	leases_found=0
 	for item in "${!possible_dhcp_leases_files[@]}"; do
-		if [ -f "${possible_dhcp_leases_files[$item]}" ]; then
+		if [ -f "${possible_dhcp_leases_files[${item}]}" ]; then
 			leases_found=1
 			key_leases_found=${item}
 			break
@@ -5639,12 +5639,12 @@ function set_control_script() {
 	cat >&7 <<-'EOF'
 				echo "${msg_good_pass} $(cat ${success_pass_path} 2> /dev/null)" >> ${log_path}
 				attempts_number=$(cat ${attempts_path} 2> /dev/null | wc -l)
-				et_password=$(cat $success_pass_path 2> /dev/null)
-				echo -e "\t$et_password"
+				et_password=$(cat ${success_pass_path} 2> /dev/null)
+				echo -e "\t${et_password}"
 				echo
-				echo -e "\t$log_reminder_msg"
+				echo -e "\t${log_reminder_msg}"
 				echo
-				echo -e "\t$done_msg"
+				echo -e "\t${done_msg}"
 				if [ ${attempts_number} -gt 0 ]; then
 	EOF
 
@@ -5706,7 +5706,7 @@ function set_control_script() {
 			hours=$(date -u --date @$(($(date +%s) - ${date_counter})) +%H)
 			mins=$(date -u --date @$(($(date +%s) - ${date_counter})) +%M)
 			secs=$(date -u --date @$(($(date +%s) - ${date_counter})) +%S)
-			echo -e "\t$hours:$mins:$secs"
+			echo -e "\t${hours}:${mins}:${secs}"
 	EOF
 
 	cat >&7 <<-EOF
@@ -5721,7 +5721,7 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-					echo -e "\t$hours:$mins:$secs"
+					echo -e "\t${hours}:${mins}:${secs}"
 					echo
 					finish_evil_twin
 				else
@@ -6138,7 +6138,7 @@ function convert_cap_to_hashcat_format() {
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-	echo "1" | aircrack-ng "$enteredpath" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
+	echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
 	exec 5>&1
 }
 
@@ -6217,14 +6217,14 @@ function clean_handshake_file_option() {
 	echo
 	readpath=0
 
-	if [ -z "$enteredpath" ]; then
+	if [ -z "${enteredpath}" ]; then
 		language_strings "${language}" 150 "blue"
 		readpath=1
 	else
 		language_strings "${language}" 151 "blue"
 		ask_yesno 152
 		if [ ${yesno} = "y" ]; then
-			filetoclean="$enteredpath"
+			filetoclean="${enteredpath}"
 		else
 			readpath=1
 		fi
@@ -6380,11 +6380,11 @@ function capture_handshake_evil_twin() {
 
 		handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharhandshakepath=${handshakepath: -1}
-		if [ "$lastcharhandshakepath" != "/" ]; then
-			handshakepath="$handshakepath/"
+		if [ "${lastcharhandshakepath}" != "/" ]; then
+			handshakepath="${handshakepath}/"
 		fi
 		handshakefilename="handshake-${bssid}.cap"
-		handshakepath="$handshakepath$handshakefilename"
+		handshakepath="${handshakepath}${handshakefilename}"
 
 		language_strings "${language}" 162 "yellow"
 		validpath=1
@@ -6392,7 +6392,7 @@ function capture_handshake_evil_twin() {
 			read_path "writeethandshake"
 		done
 
-		cp "${tmpdir}$standardhandshake_filename" "${et_handshake}"
+		cp "${tmpdir}${standardhandshake_filename}" "${et_handshake}"
 		echo
 		language_strings "${language}" 324 "blue"
 		language_strings "${language}" 115 "read"
@@ -6456,9 +6456,9 @@ function validate_path() {
 	fi
 
 	lastcharmanualpath=${1: -1}
-	if [[ "$lastcharmanualpath" = "/" ]] || [[ -d "${1}" ]]; then
+	if [[ "${lastcharmanualpath}" = "/" ]] || [[ -d "${1}" ]]; then
 
-		if [ "$lastcharmanualpath" != "/" ]; then
+		if [ "${lastcharmanualpath}" != "/" ]; then
 			pathname="${1}/"
 		else
 			pathname="${1}"
@@ -6466,20 +6466,20 @@ function validate_path() {
 
 		case ${2} in
 			"handshake")
-				enteredpath="$pathname$standardhandshake_filename"
-				suggested_filename="$standardhandshake_filename"
+				enteredpath="${pathname}${standardhandshake_filename}"
+				suggested_filename="${standardhandshake_filename}"
 			;;
 			"hashcatpot")
-				suggested_filename="$hashcatpot_filename"
-				potenteredpath+="$hashcatpot_filename"
+				suggested_filename="${hashcatpot_filename}"
+				potenteredpath+="${hashcatpot_filename}"
 			;;
 			"ettercaplog")
-				suggested_filename="$default_ettercaplogfilename"
-				ettercap_logpath="$ettercap_logpath$default_ettercaplogfilename"
+				suggested_filename="${default_ettercaplogfilename}"
+				ettercap_logpath="${ettercap_logpath}${default_ettercaplogfilename}"
 			;;
 			"writeethandshake")
-				et_handshake="$pathname$standardhandshake_filename"
-				suggested_filename="$standardhandshake_filename"
+				et_handshake="${pathname}${standardhandshake_filename}"
+				suggested_filename="${standardhandshake_filename}"
 			;;
 		esac
 
@@ -6507,8 +6507,8 @@ function read_and_clean_path() {
 
 	read -r var
 	local regexp='^[ '"'"']*(.*[^ '"'"'])[ '"'"']*$'
-	[[ ${var} =~ $regexp ]] && var="${BASH_REMATCH[1]}"
-	eval "$1=\$var"
+	[[ ${var} =~ ${regexp} ]] && var="${BASH_REMATCH[1]}"
+	eval "${1}=\$var"
 
 	eval "${settings}"
 }
@@ -6520,15 +6520,15 @@ function read_path() {
 		"handshake")
 			language_strings "${language}" 148 "green"
 			read_and_clean_path "enteredpath"
-			if [ -z "$enteredpath" ]; then
-				enteredpath="$handshakepath"
+			if [ -z "${enteredpath}" ]; then
+				enteredpath="${handshakepath}"
 			fi
-			validate_path "$enteredpath" "${1}"
+			validate_path "${enteredpath}" "${1}"
 		;;
 		"cleanhandshake")
 			language_strings "${language}" 154 "green"
 			read_and_clean_path "filetoclean"
-			check_file_exists "$filetoclean"
+			check_file_exists "${filetoclean}"
 		;;
 		"dictionary")
 			language_strings "${language}" 180 "green"
@@ -6538,7 +6538,7 @@ function read_path() {
 		"targetfilefordecrypt")
 			language_strings "${language}" 188 "green"
 			read_and_clean_path "enteredpath"
-			check_file_exists "$enteredpath"
+			check_file_exists "${enteredpath}"
 		;;
 		"rules")
 			language_strings "${language}" 242 "green"
@@ -6548,39 +6548,39 @@ function read_path() {
 		"hashcatpot")
 			language_strings "${language}" 233 "green"
 			read_and_clean_path "potenteredpath"
-			if [ -z "$potenteredpath" ]; then
-				potenteredpath="$hashcat_potpath"
+			if [ -z "${potenteredpath}" ]; then
+				potenteredpath="${hashcat_potpath}"
 			fi
-			validate_path "$potenteredpath" "${1}"
+			validate_path "${potenteredpath}" "${1}"
 		;;
 		"ettercaplog")
 			language_strings "${language}" 303 "green"
 			read_and_clean_path "ettercap_logpath"
-			if [ -z "$ettercap_logpath" ]; then
-				ettercap_logpath="$default_ettercap_logpath"
+			if [ -z "${ettercap_logpath}" ]; then
+				ettercap_logpath="${default_ettercap_logpath}"
 			fi
-			validate_path "$ettercap_logpath" "${1}"
+			validate_path "${ettercap_logpath}" "${1}"
 		;;
 		"ethandshake")
 			language_strings "${language}" 154 "green"
 			read_and_clean_path "et_handshake"
-			check_file_exists "$et_handshake"
+			check_file_exists "${et_handshake}"
 		;;
 		"writeethandshake")
 			language_strings "${language}" 148 "green"
 			read_and_clean_path "et_handshake"
-			if [ -z "$et_handshake" ]; then
-				et_handshake="$handshakepath"
+			if [ -z "${et_handshake}" ]; then
+				et_handshake="${handshakepath}"
 			fi
-			validate_path "$et_handshake" "${1}"
+			validate_path "${et_handshake}" "${1}"
 		;;
 		"et_captive_portallog")
 			language_strings "${language}" 317 "blue"
 			read_and_clean_path "et_captive_portal_logpath"
-			if [ -z "$et_captive_portal_logpath" ]; then
-				et_captive_portal_logpath="$default_et_captive_portal_logpath"
+			if [ -z "${et_captive_portal_logpath}" ]; then
+				et_captive_portal_logpath="${default_et_captive_portal_logpath}"
 			fi
-			validate_path "$et_captive_portal_logpath" "${1}"
+			validate_path "${et_captive_portal_logpath}" "${1}"
 		;;
 	esac
 
@@ -6598,11 +6598,11 @@ function attack_handshake_menu() {
 
 			handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhandshakepath=${handshakepath: -1}
-			if [ "$lastcharhandshakepath" != "/" ]; then
-				handshakepath="$handshakepath/"
+			if [ "${lastcharhandshakepath}" != "/" ]; then
+				handshakepath="${handshakepath}/"
 			fi
 			handshakefilename="handshake-${bssid}.cap"
-			handshakepath="$handshakepath$handshakefilename"
+			handshakepath="${handshakepath}${handshakefilename}"
 
 			language_strings "${language}" 162 "yellow"
 			validpath=1
@@ -6610,7 +6610,7 @@ function attack_handshake_menu() {
 				read_path "handshake"
 			done
 
-			cp "${tmpdir}$standardhandshake_filename" "${enteredpath}"
+			cp "${tmpdir}${standardhandshake_filename}" "${enteredpath}"
 			echo
 			language_strings "${language}" 149 "blue"
 			language_strings "${language}" 115 "read"
@@ -6938,7 +6938,7 @@ function et_prerequisites() {
 		retrying_handshake_capture=0
 		internet_interface_selected=0
 
-		check_bssid_in_captured_file "$et_handshake"
+		check_bssid_in_captured_file "${et_handshake}"
 		if [ "$?" != "0" ]; then
 			return_to_et_main_menu=1
 			return
@@ -6996,24 +6996,24 @@ function ask_et_handshake_file() {
 	echo
 	readpath=0
 
-	if [[ -z "$enteredpath" ]] && [[ -z "$et_handshake" ]]; then
+	if [[ -z "${enteredpath}" ]] && [[ -z "${et_handshake}" ]]; then
 		language_strings "${language}" 312 "blue"
 		readpath=1
-	elif [[ -z "$enteredpath" ]] && [[ -n "$et_handshake" ]]; then
+	elif [[ -z "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "n" ]; then
 			readpath=1
 		fi
-	elif [[ -n "$enteredpath" ]] && [[ -z "$et_handshake" ]]; then
+	elif [[ -n "${enteredpath}" ]] && [[ -z "${et_handshake}" ]]; then
 		language_strings "${language}" 151 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "y" ]; then
-			et_handshake="$enteredpath"
+			et_handshake="${enteredpath}"
 		else
 			readpath=1
 		fi
-	elif [[ -n "$enteredpath" ]] && [[ -n "$et_handshake" ]]; then
+	elif [[ -n "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
 		ask_yesno 187
 		if [ ${yesno} = "n" ]; then
@@ -7465,7 +7465,7 @@ function detect_distro_phase2() {
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
 				is_raspbian=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
-				if [[ "$is_raspbian" =~ Raspbian ]];then
+				if [[ "${is_raspbian}" =~ Raspbian ]];then
 					distro="Raspbian"
 				fi
 			fi
@@ -7911,7 +7911,7 @@ function set_windows_sizes() {
 
 function set_xsizes() {
 
-	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / $xratio}")
+	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
 
 	xtotaltmp=$(printf "%.0f" "${xtotal}" 2> /dev/null)
 	if [ "$?" != "0" ]; then
@@ -7929,7 +7929,7 @@ function set_xsizes() {
 
 function set_ysizes() {
 
-	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / $yratio}")
+	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
 	ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null)
 	if [ "$?" != "0" ]; then
 		dec_char=","
@@ -8191,7 +8191,7 @@ function check_pending_of_translation() {
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text="${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}"
 		return 1
-	elif [[ "${1}" =~ ^$escaped_hintvar[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?(${escaped_pending_of_translation})[[:space:]](.*) ]]; then
+	elif [[ "${1}" =~ ^${escaped_hintvar}[[:space:]](\\033\[[0-9];[0-9]{1,2}m)?(${escaped_pending_of_translation})[[:space:]](.*) ]]; then
 		text="${cyan_color}${pending_of_translation} ${brown_color}${hintvar} ${pink_color}${BASH_REMATCH[3]}"
 		return 1
 	elif [[ "${1}" =~ ^(\*+)[[:space:]]${escaped_pending_of_translation}[[:space:]]([^\*]+)(\*+)$ ]]; then
