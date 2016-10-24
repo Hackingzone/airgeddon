@@ -3867,7 +3867,9 @@ function read_essid() {
 function ask_essid() {
 
 	if [ -z "${essid}" ]; then
-		read_essid
+		while [[ -z "${essid}" ]]; do
+			read_essid
+		done
 	elif [ "${essid}" = "(Hidden Network)" ]; then
 		echo
 		language_strings "${language}" 30 "yellow"
