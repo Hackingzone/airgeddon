@@ -4749,7 +4749,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	echo "1" | aircrack-ng "$1" 2> /dev/null | egrep "1 handshake" > /dev/null
+	echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "1 handshake" > /dev/null
 	if [ "$?" != "0" ]; then
 		return 1
 	fi
@@ -6433,7 +6433,7 @@ function capture_handshake() {
 
 function check_file_exists() {
 
-	if [[ ! -f "$1" || -z "$1" ]]; then
+	if [[ ! -f "${1}" || -z "${1}" ]]; then
 		language_strings "${language}" 161 "yellow"
 		return 1
 	fi
@@ -6456,12 +6456,12 @@ function validate_path() {
 	fi
 
 	lastcharmanualpath=${1: -1}
-	if [[ "$lastcharmanualpath" = "/" ]] || [[ -d "$1" ]]; then
+	if [[ "$lastcharmanualpath" = "/" ]] || [[ -d "${1}" ]]; then
 
 		if [ "$lastcharmanualpath" != "/" ]; then
-			pathname="$1/"
+			pathname="${1}/"
 		else
-			pathname="$1"
+			pathname="${1}"
 		fi
 
 		case ${2} in
@@ -6494,7 +6494,7 @@ function validate_path() {
 
 function check_write_permissions() {
 
-	if [ -w "$1" ]; then
+	if [ -w "${1}" ]; then
 		return 0
 	fi
 	return 1
@@ -6590,7 +6590,7 @@ function read_path() {
 
 function attack_handshake_menu() {
 
-	if [ "$1" = "handshake" ]; then
+	if [ "${1}" = "handshake" ]; then
 		ask_yesno 145
 		handshake_captured=${yesno}
 		kill "${processidcapture}" &> /dev/null
@@ -8008,6 +8008,7 @@ function welcome() {
 	set_windows_sizes
 	select_interface
 	initialize_menu_options_dependencies
+	remove_warnings
 	main_menu
 }
 
@@ -8159,6 +8160,21 @@ function autodetect_language() {
 	done
 }
 
+function remove_warnings() {
+
+	echo "${g2_stdleft_window}" > /dev/null 2>&1
+	echo "${g2_stdright_window}" > /dev/null 2>&1
+	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
+	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${mdk3_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${hashcat_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_sniffing_sslstrip_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
+}
+
 function print_simple_separator() {
 
 	echo_blue "---------"
@@ -8180,7 +8196,7 @@ function check_pending_of_translation() {
 	elif [[ "${1}" =~ ^(\*+)[[:space:]]${escaped_pending_of_translation}[[:space:]]([^\*]+)(\*+)$ ]]; then
 		text="${2}${BASH_REMATCH[1]}${cyan_color} ${pending_of_translation} ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
-	elif [[ "$1" =~ ^(\-+)[[:space:]]\(${escaped_pending_of_translation}[[:space:]]([^\-]+)(\-+)$ ]]; then
+	elif [[ "${1}" =~ ^(\-+)[[:space:]]\(${escaped_pending_of_translation}[[:space:]]([^\-]+)(\-+)$ ]]; then
 		text="${2}${BASH_REMATCH[1]} (${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}${BASH_REMATCH[3]}"
 		return 1
 	fi
