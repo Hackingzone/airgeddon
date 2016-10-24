@@ -128,7 +128,7 @@ You can take the strings to translate from the code or you can ask me directly b
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
-Use shellcheck to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
+Airgeddon code is 100% clean of warnings. Use <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`

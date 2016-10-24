@@ -6091,7 +6091,7 @@ function parse_ettercap_log() {
 
 	{
 	echo ""
-	echo $(date +%Y-%m-%d)
+	date +%Y-%m-%d
 	echo "${et_misc_texts[${language},8]}"
 	echo ""
 	echo "BSSID: ${bssid}"
