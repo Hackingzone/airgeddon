@@ -3380,7 +3380,7 @@ function prepare_et_monitor() {
 
 	disable_rfkill
 
-	phy_iface=$(readlink "/sys/class/net/${interface}/phy80211" | sed 's/^.*\/\([a-zA-Z0-9_-]*\)$/\1/' 2> /dev/null)
+	[[ $(readlink "/sys/class/net/${interface}/phy80211") =~ .*/(.*)$ ]] && phy_iface="${BASH_REMATCH[1]}"
 	iface_phy_number=${phy_iface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
