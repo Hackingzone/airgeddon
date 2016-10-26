@@ -7045,7 +7045,7 @@ function et_prerequisites() {
 			ask_yesno 321
 		fi
 
-		if [[ ${yesno} = "n" || ${retrying_handshake_capture} -eq 1 ]]; then
+		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
 			capture_handshake_evil_twin
 			case "$?" in
 				"2")
@@ -7084,7 +7084,7 @@ function et_prerequisites() {
 		ask_essid
 	fi
 
-	if [[ "${et_mode}" = "et_sniffing" || "${et_mode}" = "et_sniffing_sslstrip" ]]; then
+	if [[ "${et_mode}" = "et_sniffing" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip" ]]; then
 		manage_ettercap_log
 	fi
 
