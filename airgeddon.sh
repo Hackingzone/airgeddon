@@ -3380,7 +3380,7 @@ function prepare_et_monitor() {
 
 	disable_rfkill
 
-	[[ $(readlink "/sys/class/net/${interface}/phy80211") =~ .*/(.*)$ ]] && phy_iface="${BASH_REMATCH[1]}"
+	phy_iface=$(basename "$(readlink /sys/class/net/wlan0/phy80211)")
 	iface_phy_number=${phy_iface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
