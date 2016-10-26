@@ -202,6 +202,7 @@ yellow_color="\033[1;33m"
 pink_color="\033[1;35m"
 normal_color="\e[1;0m"
 
+#Set different language text strings
 function language_strings() {
 
 	declare -A unknown_chipset
@@ -3184,6 +3185,7 @@ function language_strings() {
 	esac
 }
 
+#Set the message to show again after an interrupt (Ctrl+C or Crtl+Z) without exiting
 function interrupt_checkpoint() {
 
 	if [ -z "${last_buffered_type1}" ]; then
@@ -3201,6 +3203,7 @@ function interrupt_checkpoint() {
 	fi
 }
 
+#Add the text on a menu when you miss an optional tool
 function special_text_missed_optional_tool() {
 
 	declare -a required_tools=("${!3}")
@@ -3225,6 +3228,7 @@ function special_text_missed_optional_tool() {
 	fi
 }
 
+#Generate the chars in front of and behind a text for titles and separators
 function generate_dynamic_line() {
 
 	local type=${2}
@@ -3265,6 +3269,7 @@ function generate_dynamic_line() {
 	fi
 }
 
+#Wrapper to check managed mode on an interface
 function check_to_set_managed() {
 
 	check_interface_mode
@@ -3285,6 +3290,7 @@ function check_to_set_managed() {
 	return 0
 }
 
+#Wrapper to check monitor mode on an interface
 function check_to_set_monitor() {
 
 	check_interface_mode
@@ -3305,6 +3311,7 @@ function check_to_set_monitor() {
 	return 0
 }
 
+#Check for monitor mode on an interface
 function check_monitor_enabled() {
 
 	mode=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
@@ -3318,12 +3325,14 @@ function check_monitor_enabled() {
 	return 0
 }
 
+#Check if an interface is a wifi card or not
 function check_interface_wifi() {
 
 	execute_iwconfig_fix
 	return $?
 }
 
+#Execute the iwconfig fix to know if an interface is a wifi card or not
 function execute_iwconfig_fix() {
 
 	iwconfig_fix
@@ -3333,6 +3342,7 @@ function execute_iwconfig_fix() {
 	return $?
 }
 
+#Create a list of interfaces associated to its macs
 function renew_ifaces_and_macs_list() {
 
 	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
@@ -3347,6 +3357,7 @@ function renew_ifaces_and_macs_list() {
 	done
 }
 
+#Check the interface coherence between interface names and macs
 function check_interface_coherence() {
 
 	renew_ifaces_and_macs_list
@@ -3376,6 +3387,7 @@ function check_interface_coherence() {
 	return ${interface_auto_change}
 }
 
+#Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
 function prepare_et_monitor() {
 
 	disable_rfkill
@@ -3389,6 +3401,7 @@ function prepare_et_monitor() {
 	iwconfig "${iface_monitor_et_deauth}" channel "${channel}" > /dev/null 2>&1
 }
 
+#Assure the mode of the interface before the Evil Twin process
 function prepare_et_interface() {
 
 	et_initial_state=${ifacemode}
@@ -3407,6 +3420,7 @@ function prepare_et_interface() {
 	fi
 }
 
+#Restore the state of the interfaces after Evil Twin process
 function restore_et_interface() {
 
 	echo
@@ -3429,6 +3443,7 @@ function restore_et_interface() {
 	fi
 }
 
+#Unblock if possible the interface if blocked
 function disable_rfkill() {
 
 	if hash rfkill 2> /dev/null; then
@@ -3436,6 +3451,7 @@ function disable_rfkill() {
 	fi
 }
 
+#Put the interface on managed mode and manage the possible name change
 function managed_option() {
 
 	check_to_set_managed
@@ -3466,6 +3482,7 @@ function managed_option() {
 	language_strings "${language}" 115 "read"
 }
 
+#Put the interface on monitor mode and manage the possible name change
 function monitor_option() {
 
 	check_to_set_monitor
@@ -3511,6 +3528,7 @@ function monitor_option() {
 	language_strings "${language}" 115 "read"
 }
 
+#Check the interface mode
 function check_interface_mode() {
 
 	execute_iwconfig_fix
@@ -3539,6 +3557,7 @@ function check_interface_mode() {
 	exit_script_option
 }
 
+#Language change menu
 function language_menu() {
 
 	clear
@@ -3629,6 +3648,7 @@ function language_menu() {
 	esac
 }
 
+#Read the chipset for an interface
 function set_chipset() {
 
 	chipset=""
@@ -3674,6 +3694,7 @@ function set_chipset() {
 	fi
 }
 
+#Internet interface selection menu
 function select_internet_interface() {
 
 	if [ "${return_to_et_main_menu}" -eq 1 ]; then
@@ -3759,6 +3780,7 @@ function select_internet_interface() {
 	fi
 }
 
+#Interface selection menu
 function select_interface() {
 
 	clear
@@ -3803,6 +3825,7 @@ function select_interface() {
 	fi
 }
 
+#Read the user input on yes/no questions
 function read_yesno() {
 
 	echo
@@ -3810,6 +3833,7 @@ function read_yesno() {
 	read -r yesno
 }
 
+#Validate the input on yes/no questions
 function ask_yesno() {
 
 	yesno=""
@@ -3825,6 +3849,7 @@ function ask_yesno() {
 	fi
 }
 
+#Read the user input on channel questions
 function read_channel() {
 
 	echo
@@ -3832,6 +3857,7 @@ function read_channel() {
 	read -r channel
 }
 
+#Validate the input on channel questions
 function ask_channel() {
 
 	while [[ ! ${channel} =~ ^([1-9]|1[0-4])$ ]]; do
@@ -3841,6 +3867,7 @@ function ask_channel() {
 	language_strings "${language}" 26 "blue"
 }
 
+#Read the user input on bssid questions
 function read_bssid() {
 
 	echo
@@ -3848,6 +3875,7 @@ function read_bssid() {
 	read -r bssid
 }
 
+#Validate the input on bssid questions
 function ask_bssid() {
 
 	while [[ ! ${bssid} =~ ^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$ ]]; do
@@ -3857,6 +3885,7 @@ function ask_bssid() {
 	language_strings "${language}" 28 "blue"
 }
 
+#Read the user input on essid questions
 function read_essid() {
 
 	echo
@@ -3864,6 +3893,7 @@ function read_essid() {
 	read -r essid
 }
 
+#Validate the input on essid questions
 function ask_essid() {
 
 	if [ -z "${essid}" ]; then
@@ -3880,6 +3910,7 @@ function ask_essid() {
 	language_strings "${language}" 31 "blue"
 }
 
+#Execute mdk3 deauth DoS attack
 function exec_mdk3deauth() {
 
 	echo
@@ -3897,6 +3928,7 @@ function exec_mdk3deauth() {
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "mdk3 amok attack" -e mdk3 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
 }
 
+#Execute aireplay DoS attack
 function exec_aireplaydeauth() {
 
 	echo
@@ -3912,6 +3944,7 @@ function exec_aireplaydeauth() {
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1
 }
 
+#Execute WDS confusion DoS attack
 function exec_wdsconfusion() {
 
 	echo
@@ -3925,6 +3958,7 @@ function exec_wdsconfusion() {
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk3 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
 }
 
+#Execute Beacon flood DoS attack
 function exec_beaconflood() {
 
 	echo
@@ -3938,6 +3972,7 @@ function exec_beaconflood() {
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "beacon flood attack" -e mdk3 "${interface}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1
 }
 
+#Execute Auth DoS attack
 function exec_authdos() {
 
 	echo
@@ -3951,6 +3986,7 @@ function exec_authdos() {
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk3 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
 }
 
+#Execute Michael Shutdown DoS attack
 function exec_michaelshutdown() {
 
 	echo
@@ -3964,6 +4000,7 @@ function exec_michaelshutdown() {
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk3 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
 }
 
+#Validate Mdk3 parameters
 function mdk3_deauth_option() {
 
 	echo
@@ -3983,6 +4020,7 @@ function mdk3_deauth_option() {
 	exec_mdk3deauth
 }
 
+#Validate Aireplay parameters
 function aireplay_deauth_option() {
 
 	echo
@@ -4002,6 +4040,7 @@ function aireplay_deauth_option() {
 	exec_aireplaydeauth
 }
 
+#Validate WDS confusion parameters
 function wds_confusion_option() {
 
 	echo
@@ -4021,6 +4060,7 @@ function wds_confusion_option() {
 	exec_wdsconfusion
 }
 
+#Validate Beacon flood parameters
 function beacon_flood_option() {
 
 	echo
@@ -4040,6 +4080,7 @@ function beacon_flood_option() {
 	exec_beaconflood
 }
 
+#Validate Auth DoS parameters
 function auth_dos_option() {
 
 	echo
@@ -4058,6 +4099,7 @@ function auth_dos_option() {
 	exec_authdos
 }
 
+#Validate Michael Shutdown parameters
 function michael_shutdown_option() {
 
 	echo
@@ -4076,6 +4118,7 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
+#Print selected interface
 function print_iface_selected() {
 
 	if [ -z "${interface}" ]; then
@@ -4089,6 +4132,7 @@ function print_iface_selected() {
 	fi
 }
 
+#Print selected internet interface
 function print_iface_internet_selected() {
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
@@ -4100,6 +4144,7 @@ function print_iface_internet_selected() {
 	fi
 }
 
+#Print selected target parameters (bssid, channel, essid and type of encryption)
 function print_all_target_vars() {
 
 	if [ -n "${bssid}" ]; then
@@ -4120,6 +4165,7 @@ function print_all_target_vars() {
 	fi
 }
 
+#Print selected target parameters on evil twin menu (bssid, channel and essid)
 function print_all_target_vars_et() {
 
 	if [ -n "${bssid}" ]; then
@@ -4145,6 +4191,7 @@ function print_all_target_vars_et() {
 	fi
 }
 
+#Print selected target parameters on evil twin submenus (bssid, channel, essid, DoS type and Handshake file)
 function print_et_target_vars() {
 
 	if [ -n "${bssid}" ]; then
@@ -4190,6 +4237,7 @@ function print_et_target_vars() {
 	fi
 }
 
+#Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file and rules file)
 function print_decrypt_vars() {
 
 	if [ -n "${bssid}" ]; then
@@ -4213,6 +4261,7 @@ function print_decrypt_vars() {
 	fi
 }
 
+#Create the dependencies arrays
 function initialize_menu_options_dependencies() {
 
 	clean_handshake_dependencies=(${optional_tools_names[0]})
@@ -4226,6 +4275,7 @@ function initialize_menu_options_dependencies() {
 	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
 }
 
+#Set some vars depending of the menu and invoke the printing of target vars
 function initialize_menu_and_print_selections() {
 
 	forbidden_options=()
@@ -4279,6 +4329,7 @@ function initialize_menu_and_print_selections() {
 	esac
 }
 
+#Clean temporary files
 function clean_tmpfiles() {
 
 	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
@@ -4299,6 +4350,7 @@ function clean_tmpfiles() {
 	fi
 }
 
+#Clean firewall rules and restore orginal routing state
 function clean_routing_rules() {
 
 	if [ -n "${original_routing_state}" ]; then
@@ -4311,6 +4363,7 @@ function clean_routing_rules() {
 	iptables -t nat -X
 }
 
+#Create an array from parameters
 function store_array() {
 
 	local var=${1} values=("${@:3}")
@@ -4319,6 +4372,7 @@ function store_array() {
 	done
 }
 
+#Check if something (first parameter) is inside an array (second parameter)
 contains_element() {
 
 	local e
@@ -4328,6 +4382,7 @@ contains_element() {
 	return 1
 }
 
+#Print hints from the different hint pools depending of the menu
 function print_hint() {
 
 	declare -A hints
@@ -4403,6 +4458,7 @@ function print_hint() {
 	print_simple_separator
 }
 
+#Airgeddon main menu
 function main_menu() {
 
 	clear
@@ -4466,6 +4522,7 @@ function main_menu() {
 	main_menu
 }
 
+#Evil Twin attacks menu
 function evil_twin_attacks_menu() {
 
 	clear
@@ -4586,6 +4643,7 @@ function evil_twin_attacks_menu() {
 	evil_twin_attacks_menu
 }
 
+#Offline decryption attacks menu
 function decrypt_menu() {
 
 	clear
@@ -4658,6 +4716,7 @@ function decrypt_menu() {
 	decrypt_menu
 }
 
+#Read the user input on rules file questions
 function ask_rules() {
 
 	validpath=1
@@ -4667,6 +4726,7 @@ function ask_rules() {
 	language_strings "${language}" 241 "yellow"
 }
 
+#Read the user input on dictionary file questions
 function ask_dictionary() {
 
 	validpath=1
@@ -4676,6 +4736,7 @@ function ask_dictionary() {
 	language_strings "${language}" 181 "yellow"
 }
 
+#Read the user input on Handshake file questions
 function ask_capture_file() {
 
 	validpath=1
@@ -4685,6 +4746,7 @@ function ask_capture_file() {
 	language_strings "${language}" 189 "yellow"
 }
 
+#Manage the questions on Handshake file questions
 function manage_asking_for_captured_file() {
 
 	if [ -n "${enteredpath}" ]; then
@@ -4699,6 +4761,7 @@ function manage_asking_for_captured_file() {
 	fi
 }
 
+#Manage the questions on dictionary file questions
 function manage_asking_for_dictionary_file() {
 
 	if [ -n "${DICTIONARY}" ]; then
@@ -4713,6 +4776,7 @@ function manage_asking_for_dictionary_file() {
 	fi
 }
 
+#Manage the questions on rules file questions
 function manage_asking_for_rule_file() {
 
 	if [ -n "${RULES}" ]; then
@@ -4727,6 +4791,7 @@ function manage_asking_for_rule_file() {
 	fi
 }
 
+#Validate the file to be cleaned
 function check_valid_file_to_clean() {
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
@@ -4759,6 +4824,7 @@ function check_valid_file_to_clean() {
 	return 0
 }
 
+#Check if a bssid is present on a capture file to know if there is a Handshake with that bssid
 function check_bssid_in_captured_file() {
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
@@ -4796,6 +4862,7 @@ function check_bssid_in_captured_file() {
 	return 1
 }
 
+#Set the target vars to a bssid selecting them from a capture file which has a Handshake
 function select_wpa_bssid_target_from_captured_file() {
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
@@ -4873,6 +4940,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	return 0
 }
 
+#Validate and ask for the different parameters used in an aircrack dictionary based attack
 function aircrack_dictionary_attack_option() {
 
 	manage_asking_for_captured_file
@@ -4890,6 +4958,7 @@ function aircrack_dictionary_attack_option() {
 	exec_aircrack_dictionary_attack
 }
 
+#Validate and ask for the different parameters used in an aircrack bruteforce based attack
 function aircrack_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file
@@ -4914,6 +4983,7 @@ function aircrack_bruteforce_attack_option() {
 	exec_aircrack_bruteforce_attack
 }
 
+#Validate and ask for the different parameters used in a hashcat dictionary based attack
 function hashcat_dictionary_attack_option() {
 
 	manage_asking_for_captured_file
@@ -4932,6 +5002,7 @@ function hashcat_dictionary_attack_option() {
 	manage_hashcat_pot
 }
 
+#Validate and ask for the different parameters used in a hashcat bruteforce based attack
 function hashcat_bruteforce_attack_option() {
 
 	manage_asking_for_captured_file
@@ -4957,6 +5028,7 @@ function hashcat_bruteforce_attack_option() {
 	manage_hashcat_pot
 }
 
+#Validate and ask for the different parameters used in a hashcat rule based attack
 function hashcat_rulebased_attack_option() {
 
 	manage_asking_for_captured_file
@@ -4977,6 +5049,7 @@ function hashcat_rulebased_attack_option() {
 	manage_hashcat_pot
 }
 
+#Check if the password was decrypted using hashcat and manage to save it on a file
 function manage_hashcat_pot() {
 
 	if [[ ${hashcat_output} =~ "All hashes have been recovered" ]]; then
@@ -5007,6 +5080,7 @@ function manage_hashcat_pot() {
 	fi
 }
 
+#Check if the passwords were captured using ettercap and manage to save them on a file
 function manage_ettercap_log() {
 
 	ettercap_log=0
@@ -5029,6 +5103,7 @@ function manage_ettercap_log() {
 	fi
 }
 
+#Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
 	default_et_captive_portal_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
@@ -5044,6 +5119,7 @@ function manage_captive_portal_log() {
 	done
 }
 
+#Captive portal language menu
 function set_captive_portal_language() {
 
 	clear
@@ -5093,6 +5169,7 @@ function set_captive_portal_language() {
 	esac
 }
 
+#Read and validate the minlength var
 function set_minlength() {
 
 	minlength=0
@@ -5103,6 +5180,7 @@ function set_minlength() {
 	done
 }
 
+#Read and validate the maxlength var
 function set_maxlength() {
 
 	maxlength=0
@@ -5113,6 +5191,7 @@ function set_maxlength() {
 	done
 }
 
+#Manage the minlength and maxlength vars on bruteforce attacks
 function set_minlength_and_maxlength() {
 
 	set_minlength
@@ -5122,6 +5201,7 @@ function set_minlength_and_maxlength() {
 	done
 }
 
+#Charset selection menu
 function set_charset() {
 
 	clear
@@ -5212,6 +5292,7 @@ function set_charset() {
 	set_show_charset "${1}"
 }
 
+#Set a var to show the chosen charset
 function set_show_charset() {
 
 	showcharset=""
@@ -5235,18 +5316,21 @@ function set_show_charset() {
 	esac
 }
 
+#Execute aircrack+crunch bruteforce attack
 function exec_aircrack_bruteforce_attack() {
 
 	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
+#Execute aircrack dictionary attack
 function exec_aircrack_dictionary_attack() {
 
 	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
+#Execute hashcat dictionary attack
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
@@ -5254,6 +5338,7 @@ function exec_hashcat_dictionary_attack() {
 	language_strings "${language}" 115 "read"
 }
 
+#Execute hashcat bruteforce attack
 function exec_hashcat_bruteforce_attack() {
 
 	convert_cap_to_hashcat_format
@@ -5261,6 +5346,7 @@ function exec_hashcat_bruteforce_attack() {
 	language_strings "${language}" 115 "read"
 }
 
+#Execute hashcat rule based attack
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
@@ -5268,6 +5354,7 @@ function exec_hashcat_rulebased_attack() {
 	language_strings "${language}" 115 "read"
 }
 
+#Execute Evil Twin only Access Point attack
 function exec_et_onlyap_attack() {
 
 	set_hostapd_config
@@ -5288,6 +5375,7 @@ function exec_et_onlyap_attack() {
 	clean_tmpfiles
 }
 
+#Execute Evil Twin with sniffing attack
 function exec_et_sniffing_attack() {
 
 	set_hostapd_config
@@ -5312,6 +5400,7 @@ function exec_et_sniffing_attack() {
 	clean_tmpfiles
 }
 
+#Execute Evil Twin with sniffing+sslstrip attack
 function exec_et_sniffing_sslstrip_attack() {
 
 	set_hostapd_config
@@ -5337,6 +5426,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	clean_tmpfiles
 }
 
+#Execute captive portal Evil Twin attack
 function exec_et_captive_portal_attack() {
 
 	set_hostapd_config
@@ -5364,6 +5454,7 @@ function exec_et_captive_portal_attack() {
 	clean_tmpfiles
 }
 
+#Create configuration file for hostapd
 function set_hostapd_config() {
 
 	tmpfiles_toclean=1
@@ -5381,6 +5472,7 @@ function set_hostapd_config() {
 	} >> "${tmpdir}${hostapd_file}"
 }
 
+#Launch hostapd fake Access Point
 function launch_fake_ap() {
 
 	killall hostapd > /dev/null 2>&1
@@ -5404,6 +5496,7 @@ function launch_fake_ap() {
 	sleep 3
 }
 
+#Create configuration file for dhcpd
 function set_dhcp_config() {
 
 	route | grep ${ip_range} > /dev/null
@@ -5484,6 +5577,7 @@ function set_dhcp_config() {
 	fi
 }
 
+#Set routing state and firewall rules for Evil Twin attacks
 function set_std_internet_routing_rules() {
 
 	routing_toclean=1
@@ -5525,6 +5619,7 @@ function set_std_internet_routing_rules() {
 	sleep 2
 }
 
+#Launch dhcpd server
 function launch_dhcp_server() {
 
 	killall dhcpd > /dev/null 2>&1
@@ -5546,6 +5641,7 @@ function launch_dhcp_server() {
 	sleep 2
 }
 
+#Execute DoS for Evil Twin attacks
 function exec_et_deauth() {
 
 	prepare_et_monitor
@@ -5584,6 +5680,7 @@ function exec_et_deauth() {
 	sleep 1
 }
 
+#Create here-doc bash script used for control windows on Evil Twin attacks
 function set_control_script() {
 
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
@@ -5786,6 +5883,7 @@ function set_control_script() {
 	sleep 1
 }
 
+#Launch dnsspoof dns black hole for captive portal Evil Twin attack
 function launch_dns_blackhole() {
 
 	recalculate_windows_sizes
@@ -5793,6 +5891,7 @@ function launch_dns_blackhole() {
 	et_processes+=($!)
 }
 
+#Launch control window for Evil Twin attacks
 function launch_control_window() {
 
 	recalculate_windows_sizes
@@ -5818,6 +5917,7 @@ function launch_control_window() {
 	et_process_control_window=$!
 }
 
+#Create configuration file for lighttpd
 function set_webserver_config() {
 
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
@@ -5840,6 +5940,7 @@ function set_webserver_config() {
 	sleep 2
 }
 
+#Create captive portal files. Cgi bash scripts, css and js file
 function set_captive_portal_page() {
 
 	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
@@ -6043,6 +6144,7 @@ function set_captive_portal_page() {
 	sleep 3
 }
 
+#Launch lighttpd webserver for captive portal Evil Twin attack
 function launch_webserver() {
 
 	killall lighttpd > /dev/null 2>&1
@@ -6056,6 +6158,7 @@ function launch_webserver() {
 	et_processes+=($!)
 }
 
+#Launch lighttpd webserver for captive portal Evil Twin attack
 function launch_sslstrip() {
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
@@ -6064,6 +6167,7 @@ function launch_sslstrip() {
 	et_processes+=($!)
 }
 
+#Launch ettercap sniffer
 function launch_sniffing() {
 
 	recalculate_windows_sizes
@@ -6084,6 +6188,7 @@ function launch_sniffing() {
 	et_processes+=($!)
 }
 
+#Parse ettercap log searching for captured passwords
 function parse_ettercap_log() {
 
 	echo
@@ -6121,6 +6226,7 @@ function parse_ettercap_log() {
 	language_strings "${language}" 115 "read"
 }
 
+#Write on a file the id of the captive portal Evil Twin attack processes
 function write_et_processes() {
 
 	for item in "${et_processes[@]}"; do
@@ -6128,6 +6234,7 @@ function write_et_processes() {
 	done
 }
 
+#Kill the Evil Twin processes
 function kill_et_windows() {
 
 	for item in "${et_processes[@]}"; do
@@ -6136,6 +6243,7 @@ function kill_et_windows() {
 	kill ${et_process_control_window} &> /dev/null
 }
 
+#Convert capture file to hashcat format
 function convert_cap_to_hashcat_format() {
 
 	tmpfiles_toclean=1
@@ -6144,6 +6252,7 @@ function convert_cap_to_hashcat_format() {
 	exec 5>&1
 }
 
+#Handshake tools menu
 function handshake_tools_menu() {
 
 	clear
@@ -6201,6 +6310,7 @@ function handshake_tools_menu() {
 	handshake_tools_menu
 }
 
+#Execute the cleaning of a Handshake file
 function exec_clean_handshake_file() {
 
 	echo
@@ -6214,6 +6324,7 @@ function exec_clean_handshake_file() {
 	language_strings "${language}" 115 "read"
 }
 
+#Validate and ask for the parameters used to clean a Handshake file
 function clean_handshake_file_option() {
 
 	echo
@@ -6242,6 +6353,7 @@ function clean_handshake_file_option() {
 	exec_clean_handshake_file
 }
 
+#DoS attacks menu
 function dos_attacks_menu() {
 
 	clear
@@ -6340,6 +6452,7 @@ function dos_attacks_menu() {
 	dos_attacks_menu
 }
 
+#Capture Handshake on Evil Twin attack
 function capture_handshake_evil_twin() {
 
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
@@ -6407,6 +6520,7 @@ function capture_handshake_evil_twin() {
 	fi
 }
 
+#Capture Handshake on Handshake tools
 function capture_handshake() {
 
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
@@ -6433,6 +6547,7 @@ function capture_handshake() {
 	attack_handshake_menu "new"
 }
 
+#Check if file exists
 function check_file_exists() {
 
 	if [[ ! -f "${1}" || -z "${1}" ]]; then
@@ -6442,6 +6557,7 @@ function check_file_exists() {
 	return 0
 }
 
+#Validate path
 function validate_path() {
 
 	dirname=${1%/*}
@@ -6494,6 +6610,7 @@ function validate_path() {
 	return 0
 }
 
+#Check for write permissions on a given path
 function check_write_permissions() {
 
 	if [ -w "${1}" ]; then
@@ -6502,6 +6619,7 @@ function check_write_permissions() {
 	return 1
 }
 
+#Create a var with the name passed to the function and reading the value from the user input
 function read_and_clean_path() {
 
 	settings="$(shopt -p extglob)"
@@ -6515,6 +6633,7 @@ function read_and_clean_path() {
 	eval "${settings}"
 }
 
+#Read and validate a path
 function read_path() {
 
 	echo
@@ -6590,6 +6709,7 @@ function read_path() {
 	return "${validpath}"
 }
 
+#Launch the DoS selection menu before capture a Handshake and process the captured file
 function attack_handshake_menu() {
 
 	if [ "${1}" = "handshake" ]; then
@@ -6694,6 +6814,7 @@ function attack_handshake_menu() {
 	attack_handshake_menu "handshake"
 }
 
+#Launch the Handshake capture window
 function capture_handshake_window() {
 
 	language_strings "${language}" 143 "blue"
@@ -6709,6 +6830,7 @@ function capture_handshake_window() {
 	processidcapture=$!
 }
 
+#Manage target exploration and parse the output files
 function explore_for_targets_option() {
 
 	echo
@@ -6782,6 +6904,7 @@ function explore_for_targets_option() {
 	select_target
 }
 
+#Create a menu to select target from the parsed data
 function select_target() {
 
 	clear
@@ -6869,6 +6992,7 @@ function select_target() {
 	enc=${encs[${selected_target_network}]}
 }
 
+#Manage and validate the prerequisites for Evil Twin attacks
 function et_prerequisites() {
 
 	if [ ${retry_handshake_capture} -eq 1 ]; then
@@ -6993,6 +7117,7 @@ function et_prerequisites() {
 	esac
 }
 
+#Manage the Handshake file requirement for captive portal Evil Twin attack
 function ask_et_handshake_file() {
 
 	echo
@@ -7031,6 +7156,7 @@ function ask_et_handshake_file() {
 	fi
 }
 
+#DoS Evil Twin attacks menu
 function et_dos_menu() {
 
 	if [ ${return_to_et_main_menu} -eq 1 ]; then
@@ -7205,6 +7331,7 @@ function et_dos_menu() {
 	et_dos_menu
 }
 
+#Selected internet interface detection
 function detect_internet_interface() {
 
 	if [ ${internet_interface_selected} -eq 1 ]; then
@@ -7230,6 +7357,7 @@ function detect_internet_interface() {
 	return $?
 }
 
+#Show about and credits
 function credits_option() {
 
 	clear
@@ -7256,6 +7384,7 @@ function credits_option() {
 	language_strings "${language}" 115 "read"
 }
 
+#Show message for invalid selected language
 function invalid_language_selected() {
 
 	echo
@@ -7266,6 +7395,7 @@ function invalid_language_selected() {
 	language_menu
 }
 
+#Show message for captive portal invalid selected language
 function invalid_captive_portal_language_selected() {
 
 	language_strings "${language}" 82 "yellow"
@@ -7274,6 +7404,7 @@ function invalid_captive_portal_language_selected() {
 	set_captive_portal_language
 }
 
+#Show message for forbidden selected option
 function forbidden_menu_option() {
 
 	echo
@@ -7281,6 +7412,7 @@ function forbidden_menu_option() {
 	language_strings "${language}" 115 "read"
 }
 
+#Show message for invalid selected option
 function invalid_menu_option() {
 
 	echo
@@ -7288,6 +7420,7 @@ function invalid_menu_option() {
 	language_strings "${language}" 115 "read"
 }
 
+#Show message for invalid selected interface
 function invalid_iface_selected() {
 
 	echo
@@ -7298,6 +7431,7 @@ function invalid_iface_selected() {
 	select_interface
 }
 
+#Show message for invalid selected internet interface
 function invalid_internet_iface_selected() {
 
 	echo
@@ -7308,6 +7442,7 @@ function invalid_internet_iface_selected() {
 	select_internet_interface
 }
 
+#Manage behavior of captured traps
 function capture_traps() {
 
 	case ${current_menu} in
@@ -7332,6 +7467,7 @@ function capture_traps() {
 	esac
 }
 
+#Exit the script managing possible pending tasks
 function exit_script_option() {
 
 	action_on_exit_taken=0
@@ -7388,6 +7524,7 @@ function exit_script_option() {
 	exit ${exit_code}
 }
 
+#Generate a small time loop printing some dots
 function time_loop() {
 
 	echo -ne " "
@@ -7397,6 +7534,7 @@ function time_loop() {
 	done
 }
 
+#Determine which version of airmon to use
 function airmon_fix() {
 
 	airmon="airmon-ng"
@@ -7406,6 +7544,7 @@ function airmon_fix() {
 	fi
 }
 
+#Prepare the fix for iwconfig command depending of the wireless tools version
 function iwconfig_fix() {
 
 	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
@@ -7415,6 +7554,7 @@ function iwconfig_fix() {
 	fi
 }
 
+#Check for possible non Linux operating systems
 function non_linux_os_check() {
 
 	case "${OSTYPE}" in
@@ -7430,6 +7570,7 @@ function non_linux_os_check() {
 	esac
 }
 
+#First phase of Linux distro detection based on uname output
 function detect_distro_phase1() {
 
 	for i in "${known_compatible_distros[@]}"; do
@@ -7441,6 +7582,7 @@ function detect_distro_phase1() {
 	done
 }
 
+#Second phase of Linux distro detection based on version file
 function detect_distro_phase2() {
 
 	if [ "${distro}" = "Kali" ]; then
@@ -7467,7 +7609,7 @@ function detect_distro_phase2() {
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
 				is_raspbian=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
-				if [[ "${is_raspbian}" =~ Raspbian ]];then
+				if [[ "${is_raspbian}" =~ Raspbian ]]; then
 					distro="Raspbian"
 				fi
 			fi
@@ -7475,6 +7617,7 @@ function detect_distro_phase2() {
 	fi
 }
 
+#Set some useful vars based on Linux distro
 function special_distro_features() {
 
 	case ${distro} in
@@ -7593,6 +7736,7 @@ function special_distro_features() {
 	esac
 }
 
+#Determine if NetworkManager must be killed on your system. Only needed for previous versions of 1.0.12
 function check_if_kill_needed() {
 
 	nm_min_main_version="1"
@@ -7627,6 +7771,7 @@ function check_if_kill_needed() {
 	fi
 }
 
+#Do some checks for some general configuration
 function general_checkings() {
 
 	compatible=0
@@ -7656,6 +7801,7 @@ function general_checkings() {
 	exit_script_option
 }
 
+#Check if the user is root
 function check_root_permissions() {
 
 	user=$(whoami)
@@ -7665,6 +7811,7 @@ function check_root_permissions() {
 	fi
 }
 
+#Print Linux known distros
 function print_known_distros() {
 
 	for i in "${known_compatible_distros[@]}"; do
@@ -7673,6 +7820,7 @@ function print_known_distros() {
 	echo
 }
 
+#Check if you have installed the tools (essential and optional) that the script uses
 function check_compatibility() {
 
 	echo
@@ -7754,6 +7902,7 @@ function check_compatibility() {
 	language_strings "${language}" 110 "yellow"
 }
 
+#Check for the minimum bash version requirement
 function check_bash_version() {
 
 	echo
@@ -7767,6 +7916,7 @@ function check_bash_version() {
 	fi
 }
 
+#Check if you have installed the tools required to update the script
 function check_update_tools() {
 
 	if [ ${auto_update} -eq 1 ]; then
@@ -7780,6 +7930,7 @@ function check_update_tools() {
 	fi
 }
 
+#Print the script intro
 function print_intro() {
 
 	echo -e "${yellow_color}                  .__                         .___  .___"
@@ -7794,6 +7945,7 @@ function print_intro() {
 	sleep 1
 }
 
+#Generate the frames of the animated ascii art flying saucer
 function flying_saucer() {
 
 	case ${1} in
@@ -7833,6 +7985,7 @@ function flying_saucer() {
 	sleep 0.4
 }
 
+#Print animated ascii art flying saucer
 function print_animated_flying_saucer() {
 
 	echo -e "\033[s"
@@ -7848,6 +8001,7 @@ function print_animated_flying_saucer() {
 	done
 }
 
+#Initialize script settings
 function initialize_script_settings() {
 
 	exit_code=0
@@ -7865,6 +8019,7 @@ function initialize_script_settings() {
 	networkmanager_cmd="service network-manager restart"
 }
 
+#Detect screen resolution if possible
 function detect_screen_resolution() {
 
 	resolution_detected=0
@@ -7883,6 +8038,7 @@ function detect_screen_resolution() {
 	[[ ${resolution} =~ ^([0-9]{3,4})x(([0-9]{3,4}))$ ]] && resolution_x="${BASH_REMATCH[1]}" && resolution_y="${BASH_REMATCH[2]}"
 }
 
+#Set windows sizes and positions
 function set_windows_sizes() {
 
 	set_xsizes
@@ -7911,6 +8067,7 @@ function set_windows_sizes() {
 	g4_bottomright_window="${xwindow}x${ywindowthird}-0-0"
 }
 
+#Set sizes for x axis
 function set_xsizes() {
 
 	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
@@ -7929,6 +8086,7 @@ function set_xsizes() {
 	xwindow=$((xhalf - xcentral_space))
 }
 
+#Set sizes for y axis
 function set_ysizes() {
 
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
@@ -7946,17 +8104,20 @@ function set_ysizes() {
 	ywindowthird=$((ytotal / 3 - ywindow_edge_lines))
 }
 
+#Set positions for y axis
 function set_ypositions() {
 
 	middle_position=$((resolution_y / 3 + ywindow_edge_pixels))
 }
 
+#Recalculate windows sizes and positions
 function recalculate_windows_sizes() {
 
 	detect_screen_resolution
 	set_windows_sizes
 }
 
+#Script starting point
 function welcome() {
 
 	clear
@@ -8015,6 +8176,7 @@ function welcome() {
 	main_menu
 }
 
+#Avoid the problem of using airmon-zc without ethtool or lspci installed
 function airmonzc_security_check() {
 
 	if [ "${airmon}" = "airmon-zc" ]; then
@@ -8036,16 +8198,19 @@ function airmonzc_security_check() {
 	fi
 }
 
+#Compare if first float argument is greater than float second argument
 function compare_floats_greater_than() {
 
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
 
+#Compare if first float argument is greater or equal than float second argument
 function compare_floats_greater_or_equal() {
 
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>=n2) exit 0; exit 1}'
 }
 
+#Update and relaunch the script
 function download_last_version() {
 
 	curl -L ${urlscript_directlink} -s -o "${0}"
@@ -8069,6 +8234,7 @@ function download_last_version() {
 	fi
 }
 
+#Validate if the selected internet interface has internet access
 function validate_et_internet_interface() {
 
 	echo
@@ -8097,18 +8263,21 @@ function validate_et_internet_interface() {
 	return 0
 }
 
+#Check for active internet connection
 function check_internet_access() {
 
 	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
 	return $?
 }
 
+#Check for default route on an interface
 function check_default_route() {
 
 	route | grep "${1}" | grep "default" > /dev/null
 	return $?
 }
 
+#Update the script if your version is lower than the cloud version
 function autoupdate_check() {
 
 	echo
@@ -8142,6 +8311,7 @@ function autoupdate_check() {
 	language_strings "${language}" 115 "read"
 }
 
+#Check if you can launch captive portal Evil Twin attack
 function check_et_without_internet_compatibility() {
 
 	if ! hash "${optional_tools_names[12]}" 2> /dev/null; then
@@ -8150,6 +8320,7 @@ function check_et_without_internet_compatibility() {
 	return 0
 }
 
+#Change script language automatically if OS language is supported by the script and different from current language
 function autodetect_language() {
 
 	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
@@ -8163,6 +8334,7 @@ function autodetect_language() {
 	done
 }
 
+#Clean some known warnings for shellcheck tool
 function remove_warnings() {
 
 	echo "${g2_stdleft_window}" > /dev/null 2>&1
@@ -8178,16 +8350,19 @@ function remove_warnings() {
 	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
 }
 
+#Print a simple separator
 function print_simple_separator() {
 
 	echo_blue "---------"
 }
 
+#Print a large separator
 function print_large_separator() {
 
 	echo_blue "-------------------------------------------------------"
 }
 
+#Add the PoT prefix on printed strings if PoT mark is found
 function check_pending_of_translation() {
 
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
@@ -8207,6 +8382,7 @@ function check_pending_of_translation() {
 	return 0
 }
 
+#Print under construction message used on some menu entries
 function under_construction_message() {
 
 	local var_uc="${under_constructionvar^}"
@@ -8215,6 +8391,7 @@ function under_construction_message() {
 	language_strings "${language}" 115 "read"
 }
 
+#Canalize the echo functions
 function last_echo() {
 
 	check_pending_of_translation "${1}" "${2}"
@@ -8225,41 +8402,49 @@ function last_echo() {
 	fi
 }
 
+#Print green messages
 function echo_green() {
 
 	last_echo "${1}" "${green_color}"
 }
 
+#Print blue messages
 function echo_blue() {
 
 	last_echo "${1}" "${blue_color}"
 }
 
+#Print yellow messages
 function echo_yellow() {
 
 	last_echo "${1}" "${yellow_color}"
 }
 
+#Print red messages
 function echo_red() {
 
 	last_echo "${1}" "${red_color}"
 }
 
+#Print red messages using a slimmer thickness
 function echo_red_slim() {
 
 	last_echo "${1}" "${red_color_slim}"
 }
 
+#Print pink messages
 function echo_pink() {
 
 	last_echo "${1}" "${pink_color}"
 }
 
+#Print cyan messages
 function echo_cyan() {
 
 	last_echo "${1}" "${cyan_color}"
 }
 
+#Print brown messages
 function echo_brown() {
 
 	last_echo "${1}" "${brown_color}"
