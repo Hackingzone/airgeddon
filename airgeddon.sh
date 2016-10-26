@@ -4366,7 +4366,7 @@ function clean_routing_rules() {
 #Create an array from parameters
 function store_array() {
 
-	local var=${1} values=("${@:3}")
+	local values=("${@:3}")
 	for i in "${!values[@]}"; do
 		eval "${1}[\$2|${i}]=\${values[i]}"
 	done
