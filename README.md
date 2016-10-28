@@ -134,7 +134,7 @@ Airgeddon code is 100% clean of warnings. Use <a href="https://github.com/koalam
 You can download the master version or the beta testing version from the development branch called `dev`
 
 #Changelog
-See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
+See [Changelog](changelog.txt) file to review changes.
 
 #Special Thanks to
 Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
