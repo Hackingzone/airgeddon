@@ -3395,7 +3395,7 @@ function prepare_et_monitor() {
 
 	disable_rfkill
 
-	phy_iface=$(basename "$(readlink /sys/class/net/${interface}/phy80211)")
+	phy_iface=$(basename "$(readlink "/sys/class/net/${interface}/phy80211")")
 	iface_phy_number=${phy_iface:3:1}
 	iface_monitor_et_deauth="mon${iface_phy_number}"
 
