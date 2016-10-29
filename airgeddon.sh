@@ -5692,7 +5692,14 @@ function set_control_script() {
 
 	cat >&7 <<-EOF
 		#!/bin/bash
-		if [ "${et_mode}" = "et_captive_portal" ]; then
+		et_heredoc_mode=${et_mode}
+	EOF
+
+	cat >&7 <<-'EOF'
+		if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
+	EOF
+
+	cat >&7 <<-EOF
 			path_to_processes="${tmpdir}${webdir}${processesfile}"
 			attempts_path="${tmpdir}${webdir}${attemptsfile}"
 			attempts_text="${blue_color}${et_misc_texts[${language},20]}:${normal_color}"
@@ -5702,9 +5709,9 @@ function set_control_script() {
 	cat >&7 <<-'EOF'
 			function kill_et_windows() {
 
-				et_processes_to_kill=$(cat "${path_to_processes}" 2> /dev/null)
-				for item in ${et_processes_to_kill[@]}; do
-					kill ${item} &> /dev/null
+				readarray -t ET_PROCESSES_TO_KILL < <(cat < "${path_to_processes}" 2> /dev/null)
+				for item in "${ET_PROCESSES_TO_KILL[@]}"; do
+					kill "${item}" &> /dev/null
 				done
 			}
 	EOF
@@ -5716,19 +5723,21 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-				echo $(date +%Y-%m-%d) >>\
+				date +%Y-%m-%d >>\
 	EOF
 
 	cat >&7 <<-EOF
 				"${et_captive_portal_logpath}"
-				echo ${et_misc_texts[${language},19]} >> "${et_captive_portal_logpath}"
-				echo "" >> "${et_captive_portal_logpath}"
-				echo "BSSID: ${bssid}" >> "${et_captive_portal_logpath}"
-				echo ${et_misc_texts[${language},1]}": ${channel}" >> "${et_captive_portal_logpath}"
-				echo "ESSID: ${essid}" >> "${et_captive_portal_logpath}"
-				echo "" >> "${et_captive_portal_logpath}"
-				echo "---------------" >> "${et_captive_portal_logpath}"
-				echo "" >> "${et_captive_portal_logpath}"
+				{
+				echo "${et_misc_texts[${language},19]}"
+				echo ""
+				echo "BSSID: ${bssid}"
+				echo "${et_misc_texts[${language},1]}: ${channel}"
+				echo "ESSID: ${essid}"
+				echo ""
+				echo "---------------"
+				echo ""
+				} >> "${et_captive_portal_logpath}"
 				success_pass_path="${tmpdir}${webdir}${currentpassfile}"
 				msg_good_pass="${et_misc_texts[${language},11]}:"
 				log_path="${et_captive_portal_logpath}"
@@ -5739,29 +5748,31 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-				echo "${msg_good_pass} $(cat ${success_pass_path} 2> /dev/null)" >> ${log_path}
-				attempts_number=$(cat ${attempts_path} 2> /dev/null | wc -l)
-				et_password=$(cat ${success_pass_path} 2> /dev/null)
+				echo "${msg_good_pass} $( (cat < ${success_pass_path}) 2> /dev/null)" >> ${log_path}
+				attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
+				et_password=$( (cat < ${success_pass_path}) 2> /dev/null)
 				echo -e "\t${et_password}"
 				echo
 				echo -e "\t${log_reminder_msg}"
 				echo
 				echo -e "\t${done_msg}"
-				if [ ${attempts_number} -gt 0 ]; then
+				if [ "${attempts_number}" -gt 0 ]; then
 	EOF
 
 	cat >&7 <<-EOF
-					echo "" >> "${et_captive_portal_logpath}"
-					echo "---------------" >> "${et_captive_portal_logpath}"
-					echo "" >> "${et_captive_portal_logpath}"
-					echo "${et_misc_texts[${language},22]}:" >> "${et_captive_portal_logpath}"
-					echo "" >> "${et_captive_portal_logpath}"
-					readarray -t BADPASSWORDS < <(cat "${tmpdir}${webdir}${attemptsfile}")
+					{
+					echo ""
+					echo "---------------"
+					echo ""
+					echo "${et_misc_texts[${language},22]}:"
+					echo ""
+					} >> "${et_captive_portal_logpath}"
+					readarray -t BADPASSWORDS < <(cat < "${tmpdir}${webdir}${attemptsfile}" 2> /dev/null)
 	EOF
 
 	cat >&7 <<-'EOF'
 					for badpass in "${BADPASSWORDS[@]}"; do
-						echo ${badpass} >>\
+						echo "${badpass}" >>\
 	EOF
 
 	cat >&7 <<-EOF
@@ -5805,15 +5816,21 @@ function set_control_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-			hours=$(date -u --date @$(($(date +%s) - ${date_counter})) +%H)
-			mins=$(date -u --date @$(($(date +%s) - ${date_counter})) +%M)
-			secs=$(date -u --date @$(($(date +%s) - ${date_counter})) +%S)
+			hours=$(date -u --date @$(($(date +%s) - date_counter)) +%H)
+			mins=$(date -u --date @$(($(date +%s) - date_counter)) +%M)
+			secs=$(date -u --date @$(($(date +%s) - date_counter)) +%S)
 			echo -e "\t${hours}:${mins}:${secs}"
 	EOF
 
 	cat >&7 <<-EOF
 			echo -e "\t${pink_color}${control_msg}${normal_color}\n"
-			if [ "${et_mode}" = "et_captive_portal" ]; then
+	EOF
+
+	cat >&7 <<-'EOF'
+			if [ "${et_heredoc_mode}" = "et_captive_portal" ]; then
+	EOF
+
+	cat >&7 <<-EOF
 				if [ -f "${tmpdir}${webdir}${successfile}" ]; then
 					clear
 					echo -e "\t${yellow_color}${et_misc_texts[${language},0]}"
@@ -5827,10 +5844,10 @@ function set_control_script() {
 					echo
 					finish_evil_twin
 				else
-					attempts_number=$(cat ${attempts_path} 2> /dev/null | wc -l)
+					attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
 					last_password=$(grep "." ${attempts_path} 2> /dev/null | tail -1)
 					tput el && echo -ne "\t${attempts_text} ${attempts_number}"
-					if [ ${attempts_number} -gt 0 ]; then
+					if [ "${attempts_number}" -gt 0 ]; then
 	EOF
 
 	cat >&7 <<-EOF
@@ -5849,7 +5866,7 @@ function set_control_script() {
 
 	cat >&7 <<-EOF
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
-			readarray -t DHCPCLIENTS < <(cat "${tmpdir}clts.txt" | grep DHCPACK)
+			readarray -t DHCPCLIENTS < <(cat < "${tmpdir}clts.txt" 2> /dev/null | grep DHCPACK)
 			client_ips=()
 	EOF
 

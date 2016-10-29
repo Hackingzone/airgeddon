@@ -108,8 +108,7 @@ We are not responsible of its use.<br/>
 This script is under GPLv3 (or later) License.
 
 #Use
-Under some distros like Kali Linux must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br/>
-Under Wifislax Linux and others, it can be launched using bash or sh. Example `sh /path/airgeddon.sh`<br/>
+Must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br/>
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
