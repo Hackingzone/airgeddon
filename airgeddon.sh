@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.32"
+airgeddon_version="5.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -952,21 +952,21 @@ function language_strings() {
 	arr["RUSSIAN",59]="11. Вернуться в главное меню"
 	arr["GREEK",59]="11. Επιστροφή στο αρχικό μενού"
 
-	arr["ENGLISH",60]="8.  About & Credits"
-	arr["SPANISH",60]="8.  Acerca de & Créditos"
-	arr["FRENCH",60]="8.  A propos de & Crédits"
-	arr["CATALAN",60]="8.  Sobre & Crédits"
-	arr["PORTUGUESE",60]="8.  Sobre & Créditos"
-	arr["RUSSIAN",60]="8.  О программе и Благодарности"
-	arr["GREEK",60]="8.  Σχετικά με & Εύσημα"
+	arr["ENGLISH",60]="9.  About & Credits"
+	arr["SPANISH",60]="9.  Acerca de & Créditos"
+	arr["FRENCH",60]="9.  A propos de & Crédits"
+	arr["CATALAN",60]="9.  Sobre & Crédits"
+	arr["PORTUGUESE",60]="9.  Sobre & Créditos"
+	arr["RUSSIAN",60]="9.  О программе и Благодарности"
+	arr["GREEK",60]="9.  Σχετικά με & Εύσημα"
 
-	arr["ENGLISH",61]="10. Exit script"
-	arr["SPANISH",61]="10. Salir del script"
-	arr["FRENCH",61]="10. Sortir du script"
-	arr["CATALAN",61]="10. Sortir del script"
-	arr["PORTUGUESE",61]="10. Sair do script"
-	arr["RUSSIAN",61]="10. Выйти из скрипта"
-	arr["GREEK",61]="10. Έξοδος script"
+	arr["ENGLISH",61]="11. Exit script"
+	arr["SPANISH",61]="11. Salir del script"
+	arr["FRENCH",61]="11. Sortir du script"
+	arr["CATALAN",61]="11. Sortir del script"
+	arr["PORTUGUESE",61]="11. Sair do script"
+	arr["RUSSIAN",61]="11. Выйти из скрипта"
+	arr["GREEK",61]="11. Έξοδος script"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -1096,13 +1096,13 @@ function language_strings() {
 	arr["RUSSIAN",77]="Был выбран недействительный интерфейс"
 	arr["GREEK",77]="Επιλέχθηκε άκυρη διεπαφή"
 
-	arr["ENGLISH",78]="9.  Change language"
-	arr["SPANISH",78]="9.  Cambiar idioma"
-	arr["FRENCH",78]="9.  Changer de langue"
-	arr["CATALAN",78]="9.  Canviar l'idioma"
-	arr["PORTUGUESE",78]="9.  Alterar idioma"
-	arr["RUSSIAN",78]="9.  Сменить язык"
-	arr["GREEK",78]="9.  Αλλαγή γλώσσας"
+	arr["ENGLISH",78]="10. Change language"
+	arr["SPANISH",78]="10. Cambiar idioma"
+	arr["FRENCH",78]="10. Changer de langue"
+	arr["CATALAN",78]="10. Canviar l'idioma"
+	arr["PORTUGUESE",78]="10. Alterar idioma"
+	arr["RUSSIAN",78]="10. Сменить язык"
+	arr["GREEK",78]="10. Αλλαγή γλώσσας"
 
 	arr["ENGLISH",79]="1.  English"
 	arr["SPANISH",79]="1.  Inglés"
@@ -3136,6 +3136,14 @@ function language_strings() {
 	arr["RUSSIAN",332]="Язык изменён на Греческий"
 	arr["GREEK",332]="Η γλώσσα άλλαξε σε Ελληνικά"
 
+	arr["ENGLISH",333]="8.  WPS attacks menu"
+	arr["SPANISH",333]="8.  Menú de ataques WPS"
+	arr["FRENCH",333]="${pending_of_translation} 8.  Menu des attaques WPS"
+	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
+	arr["PORTUGUESE",333]="${pending_of_translation} 8.  Menu de ataques WPS"
+	arr["RUSSIAN",333]="${pending_of_translation} 8.  Меню WPS атак"
+	arr["GREEK",333]="${pending_of_translation} 8.  Μενού επιθέσεων WPS"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4479,6 +4487,7 @@ function main_menu() {
 	language_strings "${language}" 119
 	language_strings "${language}" 169
 	language_strings "${language}" 252
+	language_strings "${language}" 333 "under_construction"
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 78
@@ -4509,12 +4518,15 @@ function main_menu() {
 			evil_twin_attacks_menu
 		;;
 		8)
-			credits_option
+			under_construction_message
 		;;
 		9)
-			language_menu
+			credits_option
 		;;
 		10)
+			language_menu
+		;;
+		11)
 			exit_script_option
 		;;
 		*)
