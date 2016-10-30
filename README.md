@@ -18,6 +18,13 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Help hints in every zone/menu for easy use.<br/>
 - Auto-update. Script checks for newer version if possible.
 
+#Coming soon
+- WPS scanning
+- WPS Pixie Dust attack
+- WPS Bruteforce PIN attack
+- WPS Database search for "easy AP" known PINs
+- WPS Custom pin association
+
 #Requirements
 Bash version 4.0 or later needed.<br/>
 <br/>
@@ -87,12 +94,12 @@ Is highly recommended to have the internal tools installed. They improve functio
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
-*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :)<br/>
+*-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :smile:<br/>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br/>
 *-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br/>
 
 Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
-*-Bash* <- They have no bash. It can be installed, this is not the real problem<br/>
+*-Bash* <- They have no bash. It can be installed, this is not the real problem again :sweat_smile:<br/>
 *-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs
 
 #Disclaimer
@@ -102,8 +109,7 @@ We are not responsible of its use.<br/>
 This script is under GPLv3 (or later) License.
 
 #Use
-Under some distros like Kali Linux must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br/>
-Under Wifislax Linux and others, it can be launched using bash or sh. Example `sh /path/airgeddon.sh`<br/>
+Must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br/>
 If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
 
 #Supported Languages
@@ -122,15 +128,16 @@ You can take the strings to translate from the code or you can ask me directly b
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
+Airgeddon code is 100% clean of warnings. Use <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
 <br/>
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
 
 #Changelog
-See <a href="https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/changelog.txt">Changelog</a> file to review changes.
+See [Changelog](changelog.txt) file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pen testing crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a> and <a href="https://www.wifi-libre.com">Wifi-libre.com</a> forum people that helped me.<br/>
+Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 <br/>
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
@@ -138,7 +145,7 @@ Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations.<br/>
+**xtonousou** for Greek translations and the help received fixing code warnings.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
