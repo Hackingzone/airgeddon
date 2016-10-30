@@ -60,6 +60,7 @@ optional_tools_names=(
 						"sslstrip"
 						"lighttpd"
 						"dnsspoof"
+						"wash"
 					)
 
 declare -A optional_tools=(
@@ -76,6 +77,7 @@ declare -A optional_tools=(
 							[${optional_tools_names[10]}]=0
 							[${optional_tools_names[11]}]=0
 							[${optional_tools_names[12]}]=0
+							[${optional_tools_names[13]}]=0
 						)
 
 update_tools=("curl")
@@ -101,6 +103,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[10]}]="sslstrip" #sslstrip
 									[${optional_tools_names[11]}]="lighttpd" #lighttpd
 									[${optional_tools_names[12]}]="dsniff" #dnsspoof
+									[${optional_tools_names[13]}]="reaver" #wash
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -183,6 +186,7 @@ declare select_interface_hints=(246)
 declare language_hints=(250)
 declare evil_twin_hints=(254 258 264 269 309 328)
 declare evil_twin_dos_hints=(267 268)
+declare wps_hints=(342 343 344)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -3144,6 +3148,126 @@ function language_strings() {
 	arr["RUSSIAN",333]="${pending_of_translation} 8.  Меню WPS атак"
 	arr["GREEK",333]="${pending_of_translation} 8.  Μενού επιθέσεων WPS"
 
+	arr["ENGLISH",334]="WPS attacks menu"
+	arr["SPANISH",334]="Menú de ataques WPS"
+	arr["FRENCH",334]="${pending_of_translation} Menu des attaques WPS"
+	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
+	arr["PORTUGUESE",334]="${pending_of_translation} Menu de ataques WPS"
+	arr["RUSSIAN",334]="${pending_of_translation} Меню WPS атак"
+	arr["GREEK",334]="${pending_of_translation} Μενού επιθέσεων WPS"
+
+	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["SPANISH",335]="WPS BSSID seleccionado: ${pink_color}${wps_bssid}${normal_color}"
+	arr["FRENCH",335]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}${wps_bssid}${normal_color}"
+	arr["CATALAN",335]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}${wps_bssid}${normal_color}"
+	arr["PORTUGUESE",335]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}${wps_bssid}${normal_color}"
+	arr["RUSSIAN",335]="${pending_of_translation} Выбранный WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["GREEK",335]="${pending_of_translation} Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+
+	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
+	arr["SPANISH",336]="WPS Canal seleccionado: ${pink_color}${wps_channel}${normal_color}"
+	arr["FRENCH",336]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}${wps_channel}${normal_color}"
+	arr["CATALAN",336]="${pending_of_translation} WPS Canal seleecionat: ${pink_color}${wps_channel}${normal_color}"
+	arr["PORTUGUESE",336]="${pending_of_translation} WPS Canal selecionado: ${pink_color}${wps_channel}${normal_color}"
+	arr["RUSSIAN",336]="${pending_of_translation} Выбранный WPS канал: ${pink_color}${wps_channel}${normal_color}"
+	arr["GREEK",336]="${pending_of_translation} Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
+
+	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
+	arr["SPANISH",337]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
+	arr["FRENCH",337]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
+	arr["CATALAN",337]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
+	arr["PORTUGUESE",337]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
+	arr["RUSSIAN",337]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может быть использован"
+	arr["GREEK",337]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
+
+	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["SPANISH",338]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${normal_color}"
+	arr["FRENCH",338]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${normal_color}"
+	arr["CATALAN",338]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${normal_color}"
+	arr["PORTUGUESE",338]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${normal_color}"
+	arr["RUSSIAN",338]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["GREEK",338]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+
+	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
+	arr["SPANISH",339]="WPS BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",339]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",339]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",339]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",339]="${pending_of_translation} Выбранная WPS BSSID: ${pink_color}Нет${normal_color}"
+	arr["GREEK",339]="${pending_of_translation} Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
+	arr["SPANISH",340]="WPS Canal seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",340]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",340]="${pending_of_translation} WPS Canal seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",340]="${pending_of_translation} WPS Canal selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",340]="${pending_of_translation} Выбранный WPS канал: ${pink_color}Нет${normal_color}"
+	arr["GREEK",340]="${pending_of_translation} Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
+	arr["SPANISH",341]="WPS ESSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",341]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",341]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",341]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",341]="${pending_of_translation} Выбранная WPS ESSID: ${pink_color}Нет${normal_color}"
+	arr["GREEK",341]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
+	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
+	arr["FRENCH",342]="${pending_of_translation} L'attaque Pixie Dust obtient le code PIN et le mot de passe en quelques secondes, mais les points d'accès ne sont pas tous vulnérables à cette attaque"
+	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
+	arr["PORTUGUESE",342]="${pending_of_translation} O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
+	arr["RUSSIAN",342]="${pending_of_translation} Атака Pixie Dust получает PIN-код и пароль в секундах, но не все точки доступа уязвимы для этой атаки"
+	arr["GREEK",342]="${pending_of_translation} Η επίθεση Pixie Dust παίρνει το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά δεν είναι όλα τα σημεία πρόσβασης είναι ευάλωτα σε αυτή την επίθεση"
+
+	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
+	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
+	arr["FRENCH",343]="${pending_of_translation} Pour effectuer toute WPS attaque dont vous avez besoin d'un bon signe du réseau cible. Nous pourrions obtenir autrement faux négatifs"
+	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
+	arr["PORTUGUESE",343]="${pending_of_translation} Para executar qualquer WPS atacar você precisa de um bom sinal da rede alvo. Que poderiam obter falsos negativos"
+	arr["RUSSIAN",343]="${pending_of_translation} Для того, чтобы выполнить какие-либо атаки WPS вам нужен хороший знак целевой сети. мы могли бы в противном случае получить ложные негативы"
+	arr["GREEK",343]="${pending_of_translation} Για να εκτελέσετε οποιαδήποτε WPS επίθεση θα πρέπει να έχετε ένα καλό σημάδι του δικτύου στόχου. θα μπορούσε να πάρει αλλιώς ψευδώς αρνητικών"
+
+	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
+	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
+	arr["FRENCH",344]="${pending_of_translation} Certains points d'accès sont bloqués après avoir raté un certain nombre de tentatives de connexion par code PIN. Elle peut varier en fonction du point d'accès"
+	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
+	arr["PORTUGUESE",344]="${pending_of_translation} Alguns pontos de acesso estão bloqueadas depois de perder uma série de tentativas de conexão por PIN. Ela pode variar dependendo do ponto de acesso"
+	arr["RUSSIAN",344]="${pending_of_translation} Некоторые точки доступа блокируются после пропуска количество попыток подключения с помощью PIN-кода. Она может варьироваться в зависимости от точки доступа"
+	arr["GREEK",344]="${pending_of_translation} Μερικά σημεία πρόσβασης μπλοκαριστεί αφού λείπει μια σειρά από απόπειρες σύνδεσης με το PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
+
+	arr["ENGLISH",345]="5.  Custom PIN association"
+	arr["SPANISH",345]="5.  Asociación con PIN personalizado"
+	arr["FRENCH",345]="${pending_of_translation} 5.  Association avec le code PIN personnalisé"
+	arr["CATALAN",345]="${pending_of_translation} 5.  Associació amb PIN personalitzat"
+	arr["PORTUGUESE",345]="${pending_of_translation} 5.  Associação com o PIN personalizado"
+	arr["RUSSIAN",345]="${pending_of_translation} 5.  Ассоциация с персонализированным PIN"
+	arr["GREEK",345]="${pending_of_translation} 5.  Σύνδεσης με εξατομικευμένες PIN"
+
+	arr["ENGLISH",346]="6.  Pixie Dust attack"
+	arr["SPANISH",346]="6.  Ataque Pixie Dust"
+	arr["FRENCH",346]="${pending_of_translation} 6.  Attaque Pixie Dust"
+	arr["CATALAN",346]="${pending_of_translation} 6.  Atac Pixie Dust"
+	arr["PORTUGUESE",346]="${pending_of_translation} 6.  Ataque Pixie Dust"
+	arr["RUSSIAN",346]="${pending_of_translation} 6.  Атака Pixie Dust"
+	arr["GREEK",346]="${pending_of_translation} 6.  Επίθεση Pixie Dust"
+
+	arr["ENGLISH",347]="7.  Bruteforce PIN attack"
+	arr["SPANISH",347]="7.  Ataque de fuerza bruta por PIN"
+	arr["FRENCH",347]="${pending_of_translation} 7.  Attaque de force brute PIN"
+	arr["CATALAN",347]="${pending_of_translation} 7.  Atac de força bruta per PIN"
+	arr["PORTUGUESE",347]="${pending_of_translation} 7.  Ataque força bruta PIN"
+	arr["RUSSIAN",347]="${pending_of_translation} 7.  Атака методом грубой PIN"
+	arr["GREEK",347]="${pending_of_translation} 7.  επίθεση ωμής βίας PIN"
+
+	arr["ENGLISH",348]="8.  Known PINs database based attack"
+	arr["SPANISH",348]="8.  Ataque basado en base de datos de PINs conocidos"
+	arr["FRENCH",348]="${pending_of_translation} 8.  Sur la base base de données d'attaque PINs connus"
+	arr["CATALAN",348]="${pending_of_translation} 8.  Atac basat en base de dades de PINs coneguts"
+	arr["PORTUGUESE",348]="${pending_of_translation} 8.  Banco de dados de ataque com base de PINs conhecidos"
+	arr["RUSSIAN",348]="${pending_of_translation} 8.  Атака на основе базы данных Известные PINs"
+	arr["GREEK",348]="${pending_of_translation} 8.  Γνωστή βάση δεδομένων κωδικών PINs επίθεση με βάση"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4248,6 +4372,32 @@ function print_et_target_vars() {
 	fi
 }
 
+#Print selected target parameters on wps attacks menu (bssid, channel and essid)
+function print_all_target_vars_wps() {
+
+	if [ -n "${wps_bssid}" ]; then
+		language_strings "${language}" 335 "blue"
+	else
+		language_strings "${language}" 339 "blue"
+	fi
+
+	if [ -n "${wps_channel}" ]; then
+		language_strings "${language}" 336 "blue"
+	else
+		language_strings "${language}" 340 "blue"
+	fi
+
+	if [ -n "${wps_essid}" ]; then
+		if [ "${wps_essid}" = "(Hidden Network)" ]; then
+			language_strings "${language}" 337 "blue"
+		else
+			language_strings "${language}" 338 "blue"
+		fi
+	else
+		language_strings "${language}" 341 "blue"
+	fi
+}
+
 #Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file and rules file)
 function print_decrypt_vars() {
 
@@ -4284,6 +4434,7 @@ function initialize_menu_options_dependencies() {
 	et_sniffing_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]})
 	et_sniffing_sslstrip_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]} ${optional_tools_names[10]})
 	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
+	wash_scan_dependencies=(${optional_tools_names[13]})
 }
 
 #Set some vars depending of the menu and invoke the printing of target vars
@@ -4332,6 +4483,10 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_et_target_vars
 			print_iface_internet_selected
+		;;
+		"wps_attacks_menu")
+			print_iface_selected
+			print_all_target_vars_wps
 		;;
 		*)
 			print_iface_selected
@@ -4462,6 +4617,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_dos_hints|${randomhint}]}
 		;;
+		"wps_attacks_menu")
+			store_array hints wps_hints "${wps_hints[@]}"
+			hintlength=${#wps_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wps_hints|${randomhint}]}
+		;;
 	esac
 
 	print_simple_separator
@@ -4487,7 +4649,7 @@ function main_menu() {
 	language_strings "${language}" 119
 	language_strings "${language}" 169
 	language_strings "${language}" 252
-	language_strings "${language}" 333 "under_construction"
+	language_strings "${language}" 333
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 78
@@ -4518,7 +4680,7 @@ function main_menu() {
 			evil_twin_attacks_menu
 		;;
 		8)
-			under_construction_message
+			wps_attacks_menu
 		;;
 		9)
 			credits_option
@@ -4656,6 +4818,71 @@ function evil_twin_attacks_menu() {
 	esac
 
 	evil_twin_attacks_menu
+}
+
+#WPS attacks menu
+function wps_attacks_menu() {
+
+	clear
+	language_strings "${language}" 334 "title"
+	current_menu="wps_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49 wash_scan_dependencies[@]
+	print_simple_separator
+	language_strings "${language}" 345 "under_construction"
+	language_strings "${language}" 346 "under_construction"
+	language_strings "${language}" 347 "under_construction"
+	language_strings "${language}" 348 "under_construction"
+	print_simple_separator
+	language_strings "${language}" 260
+	print_hint ${current_menu}
+
+	read -r wps_option
+	case ${wps_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				explore_for_wps_targets_option
+			fi
+		;;
+		5)
+			under_construction_message
+		;;
+		6)
+			under_construction_message
+		;;
+		7)
+			under_construction_message
+		;;
+		8)
+			under_construction_message
+		;;
+		9)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wps_attacks_menu
 }
 
 #Offline decryption attacks menu
@@ -6862,6 +7089,14 @@ function capture_handshake_window() {
 	processidcapture=$!
 }
 
+#Manage target exploration only for Access Points with WPS activated, and parse the output files
+function explore_for_wps_targets_option() {
+
+	echo
+	#TODO pending of doing this function
+	read -p "TODO: Here comes the wash stuff" -r
+}
+
 #Manage target exploration and parse the output files
 function explore_for_targets_option() {
 
@@ -8380,6 +8615,7 @@ function remove_warnings() {
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
+	echo "${wash_scan_dependencies[@]}" > /dev/null 2>&1
 }
 
 #Print a simple separator
