@@ -22,7 +22,8 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - WPS scanning
 - WPS Pixie Dust attack
 - WPS Bruteforce PIN attack
-- WPS database search for "easy AP" known PINs
+- WPS Database search for "easy AP" known PINs
+- WPS Custom pin association
 
 #Requirements
 Bash version 4.0 or later needed.<br/>
