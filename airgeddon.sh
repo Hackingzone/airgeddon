@@ -3300,6 +3300,30 @@ function language_strings() {
 	arr["RUSSIAN",352]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}Нет${normal_color}"
 	arr["GREEK",352]="${pending_of_translation} WPS δίκτυο μπλοκαριστεί: ${pink_color}Κανένα${normal_color}"
 
+	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
+	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
+	arr["FRENCH",353]="${pending_of_translation} Faire un petit test pour résoudre le problème possible de \"bad FCS\" si. Paramétrage..."
+	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
+	arr["PORTUGUESE",353]="${pending_of_translation} Fazendo um pouco de teste para resolver o possível problema de \"bad FCS\" se houver. Parametrizando..."
+	arr["RUSSIAN",353]="${pending_of_translation} Делая небольшой тест, чтобы решить возможную проблему \"bad FCS\", если есть. Параметрирование..."
+	arr["GREEK",353]="${pending_of_translation} Κάνοντας μια μικρή δοκιμή για να επιλύσετε το πιθανό πρόβλημα της \"bad FCS\" αν υπάρχει. παραμετροποίησης..."
+
+	arr["ENGLISH",354]="Done! parameter set"
+	arr["SPANISH",354]="Hecho! parámetro fijado"
+	arr["FRENCH",354]="${pending_of_translation} Fait! paramètre fixe"
+	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
+	arr["PORTUGUESE",354]="${pending_of_translation} Feito! parâmetro fixo"
+	arr["RUSSIAN",354]="${pending_of_translation} Готово! набор параметров"
+	arr["GREEK",354]="${pending_of_translation} Έγινε! σύνολο παραμέτρων"
+
+	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
+	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
+	arr["FRENCH",355]="${pending_of_translation} Fait! paramètre fixe"
+	arr["CATALAN",355]="${pending_of_translation} Fet! paràmetre fixat"
+	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
+	arr["RUSSIAN",355]="${pending_of_translation} Готово! набор параметров"
+	arr["GREEK",355]="${pending_of_translation} Έγινε! σύνολο παραμέτρων"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -7217,14 +7241,21 @@ function explore_for_wps_targets_option() {
 	echo
 	language_strings "${language}" 66 "yellow"
 	echo
+	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
+		language_strings "${language}" 353 "blue"
+		set_wash_parametrization
+		language_strings "${language}" 354 "yellow"
+	else
+		language_strings "${language}" 355 "blue"
+	fi
+	echo
 	language_strings "${language}" 67 "yellow"
 	language_strings "${language}" 115 "read"
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 	recalculate_windows_sizes
-	#TODO pass -C argument depending on distro, chipset or a previous test
-	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" -C | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
+	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le 8 ]; then
@@ -7263,7 +7294,7 @@ function explore_for_wps_targets_option() {
 			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
 			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
 			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
-			expwps_essid=$(echo "${expwps_line}" | awk '{$1=$2=$3=$4=$5=""; print $0}' | sed -e 's/^[[:space:]\t]*//')
+			expwps_essid=$(echo "${expwps_line}" | awk '{$1=$2=$3=$4=$5=""; print $0}' | sed -e 's/^[ \t]*//')
 
 			if [[ ${expwps_channel} -le 9 ]]; then
 				wpssp2=" "
@@ -7432,6 +7463,23 @@ function select_target() {
 	channel=${channels[${selected_target_network}]}
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
+}
+
+#Perform a test to determine if fcs parameter is needed on wash scanning
+function set_wash_parametrization() {
+
+	fcs=""
+	declare -gA wash_ifaces_already_set
+	readarray -t WASH_OUTPUT < <(timeout 1 wash -i "${interface}")
+
+	for item in "${WASH_OUTPUT[@]}"; do
+		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
+			fcs="-C"
+			break
+		fi
+	done
+
+	wash_ifaces_already_set[${interface}]=${fcs}
 }
 
 #Manage and validate the prerequisites for Evil Twin attacks

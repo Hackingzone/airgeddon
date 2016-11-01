@@ -1,6 +1,6 @@
 5.0
 WPS attacks menu added
-WPS scanning based on wash tool
+WPS scanning based on wash tool. Self-parametrization to avoid "Bad FCS" problem
 
 4.32
 Some code improvements and refactors. Warnings removed based on shellcheck tool
