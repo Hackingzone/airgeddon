@@ -3268,6 +3268,38 @@ function language_strings() {
 	arr["RUSSIAN",348]="${pending_of_translation} 8.  Атака на основе базы данных Известные PINs"
 	arr["GREEK",348]="${pending_of_translation} 8.  Γνωστή βάση δεδομένων κωδικών PINs επίθεση με βάση"
 
+	arr["ENGLISH",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+	arr["SPANISH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["FRENCH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["CATALAN",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["PORTUGUESE",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["RUSSIAN",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+	arr["GREEK",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+
+	arr["ENGLISH",350]="${blue_color}You have selected a Locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
+	arr["SPANISH",350]="${blue_color}Has seleccionado una red WPS bloqueada ${green_color}¿Deseas continuar? ${normal_color}[y/n]"
+	arr["FRENCH",350]="${pending_of_translation} ${blue_color}Vous avez sélectionné un réseau WPS bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
+	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
+	arr["PORTUGUESE",350]="${pending_of_translation} ${blue_color}Você selecionou uma rede WPS bloqueada ${green_color}Você deseja continuar? ${normal_color}[y/n]"
+	arr["RUSSIAN",350]="${pending_of_translation} ${blue_color}Вы выбрали WPS сеть заблокированы ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
+	arr["GREEK",350]="${pending_of_translation} ${blue_color}Έχετε επιλέξει ένα δίκτυο WPS αποκλεισμένη ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
+
+	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
+	arr["SPANISH",351]="WPS red bloqueada: ${pink_color}${wps_locked}${normal_color}"
+	arr["FRENCH",351]="${pending_of_translation} WPS réseau bloqué: ${pink_color}${wps_locked}${normal_color}"
+	arr["CATALAN",351]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}${wps_locked}${normal_color}"
+	arr["PORTUGUESE",351]="${pending_of_translation} WPS rede bloqueada: ${pink_color}${wps_locked}${normal_color}"
+	arr["RUSSIAN",351]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}${wps_locked}${normal_color}"
+	arr["GREEK",351]="${pending_of_translation} WPS δίκτυο μπλοκαριστεί: ${pink_color}${wps_locked}${normal_color}"
+
+	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
+	arr["SPANISH",352]="WPS red bloqueada: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",352]="${pending_of_translation} WPS réseau bloqué: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",352]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",352]="${pending_of_translation} WPS rede bloqueada: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",352]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}Нет${normal_color}"
+	arr["GREEK",352]="${pending_of_translation} WPS δίκτυο μπλοκαριστεί: ${pink_color}Κανένα${normal_color}"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4396,6 +4428,12 @@ function print_all_target_vars_wps() {
 	else
 		language_strings "${language}" 341 "blue"
 	fi
+
+	if [ -n "${wps_locked}" ]; then
+		language_strings "${language}" 351 "blue"
+	else
+		language_strings "${language}" 352 "blue"
+	fi
 }
 
 #Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file and rules file)
@@ -4514,6 +4552,7 @@ function clean_tmpfiles() {
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
+	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 }
 
 #Clean firewall rules and restore orginal routing state
@@ -4834,7 +4873,7 @@ function wps_attacks_menu() {
 	language_strings "${language}" 55
 	language_strings "${language}" 56
 	language_strings "${language}" 49 wash_scan_dependencies[@]
-	print_simple_separator
+	language_strings "${language}" 50 "separator"
 	language_strings "${language}" 345 "under_construction"
 	language_strings "${language}" 346 "under_construction"
 	language_strings "${language}" 347 "under_construction"
@@ -7089,14 +7128,6 @@ function capture_handshake_window() {
 	processidcapture=$!
 }
 
-#Manage target exploration only for Access Points with WPS activated, and parse the output files
-function explore_for_wps_targets_option() {
-
-	echo
-	#TODO pending of doing this function
-	read -p "TODO: Here comes the wash stuff" -r
-}
-
 #Manage target exploration and parse the output files
 function explore_for_targets_option() {
 
@@ -7169,6 +7200,150 @@ function explore_for_targets_option() {
 	done < "${tmpdir}nws.csv"
 	sort -t "," -d -k 4 "${tmpdir}nws.txt" > "${tmpdir}wnws.txt"
 	select_target
+}
+
+#Manage target exploration only for Access Points with WPS activated. Parse output files and print menu with results
+function explore_for_wps_targets_option() {
+
+	echo
+	language_strings "${language}" 103 "title"
+	language_strings "${language}" 65 "green"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	echo
+	language_strings "${language}" 66 "yellow"
+	echo
+	language_strings "${language}" 67 "yellow"
+	language_strings "${language}" 115 "read"
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	#TODO pass -C argument depending on distro, chipset or a previous test
+	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" -C | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
+
+	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
+	if [ "${washlines}" -le 8 ]; then
+		echo
+		language_strings "${language}" 68 "yellow"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	clear
+	language_strings "${language}" 104 "title"
+	echo
+	language_strings "${language}" 349 "green"
+	print_large_separator
+
+	i=0
+	wash_counter=0
+	declare -A wps_lockeds
+	wps_lockeds[${wash_counter}]="No"
+	while IFS=, read -r expwps_line; do
+
+		i=$((i+1))
+
+		if [ ${i} -le 7 ]; then
+			continue
+		else
+			wash_counter=$((wash_counter+1))
+
+			if [ ${wash_counter} -le 9 ]; then
+				wpssp1=" "
+			else
+				wpssp1=""
+			fi
+
+			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
+			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
+			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
+			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
+			expwps_essid=$(echo "${expwps_line}" | awk '{$1=$2=$3=$4=$5=""; print $0}' | sed -e 's/^[[:space:]\t]*//')
+
+			if [[ ${expwps_channel} -le 9 ]]; then
+				wpssp2=" "
+				if [[ ${expwps_channel} -eq 0 ]]; then
+					expwps_channel="-"
+				fi
+			else
+				wpssp2=""
+			fi
+
+			if [[ "${expwps_power}" = "" ]]; then
+				expwps_power=0
+			fi
+
+			if [[ ${expwps_power} -lt 0 ]]; then
+				if [[ ${expwps_power} -eq -1 ]]; then
+					exp_power=0
+				else
+					expwps_power=$((expwps_power + 100))
+				fi
+			fi
+
+			if [[ ${expwps_power} -le 9 ]]; then
+				wpssp4=" "
+			else
+				wpssp4=""
+			fi
+
+			if [ "${expwps_locked}" = "Yes" ]; then
+				wpssp3=""
+			else
+				wpssp3=" "
+			fi
+
+			wps_network_names[$wash_counter]=${expwps_essid}
+			wps_channels[$wash_counter]=${expwps_channel}
+			wps_macs[$wash_counter]=${expwps_bssid}
+			wps_lockeds[$wash_counter]=${expwps_locked}
+			echo -e " ${wpssp1}${wash_counter})   ${expwps_bssid}   ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%     ${expwps_locked}${wpssp3}   ${expwps_essid}"
+		fi
+	done < "${tmpdir}wps.txt"
+
+	echo
+	if [ ${wash_counter} -eq 1 ]; then
+		language_strings "${language}" 70 "yellow"
+		selected_wps_target_network=1
+		language_strings "${language}" 115 "read"
+	else
+		print_large_separator
+		language_strings "${language}" 3 "green"
+		read -r selected_wps_target_network
+	fi
+
+	while [[ ${selected_wps_target_network} -lt 1 ]] || [[ ${selected_wps_target_network} -gt ${wash_counter} ]] || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
+
+		if [[ ${selected_wps_target_network} -ge 1 ]] && [[ ${selected_wps_target_network} -le ${wash_counter} ]]; then
+			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
+				ask_yesno 350
+				if [ ${yesno} = "y" ]; then
+					break
+				else
+					echo
+					language_strings "${language}" 3 "green"
+					read -r selected_wps_target_network
+					continue
+				fi
+			fi
+		fi
+
+		echo
+		language_strings "${language}" 72 "yellow"
+		echo
+		language_strings "${language}" 3 "green"
+		read -r selected_wps_target_network
+	done
+
+	wps_essid=${wps_network_names[${selected_wps_target_network}]}
+	wps_channel=${wps_channels[${selected_wps_target_network}]}
+	wps_bssid=${wps_macs[${selected_wps_target_network}]}
+	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
 }
 
 #Create a menu to select target from the parsed data
