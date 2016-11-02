@@ -3010,7 +3010,7 @@ function language_strings() {
 	arr["CATALAN",316]="Es realitzarà una exploració a la recerca d'objectius..."
 	arr["PORTUGUESE",316]="Uma busca por redes wifi será realizada..."
 	arr["RUSSIAN",316]="Выполнение сканирования целей..."
-	arr["GREEK",316]="Πρόκειται να γίνει μία εξερεύνηση για έυρεση στόχων..."
+	arr["GREEK",316]="Πρόκειται να γίνει μία αναζήτηση για έυρεση στόχων..."
 
 	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${default_et_captive_portal_logpath}]"
 	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${default_et_captive_portal_logpath}]"
@@ -3146,7 +3146,7 @@ function language_strings() {
 	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
 	arr["PORTUGUESE",333]="${pending_of_translation} 8.  Menu de ataques WPS"
 	arr["RUSSIAN",333]="${pending_of_translation} 8.  Меню WPS атак"
-	arr["GREEK",333]="${pending_of_translation} 8.  Μενού επιθέσεων WPS"
+	arr["GREEK",333]="8.  Μενού επιθέσεων WPS"
 
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
@@ -3154,7 +3154,7 @@ function language_strings() {
 	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
 	arr["PORTUGUESE",334]="${pending_of_translation} Menu de ataques WPS"
 	arr["RUSSIAN",334]="${pending_of_translation} Меню WPS атак"
-	arr["GREEK",334]="${pending_of_translation} Μενού επιθέσεων WPS"
+	arr["GREEK",334]="Μενού επιθέσεων WPS"
 
 	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 	arr["SPANISH",335]="WPS BSSID seleccionado: ${pink_color}${wps_bssid}${normal_color}"
@@ -3162,7 +3162,7 @@ function language_strings() {
 	arr["CATALAN",335]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}${wps_bssid}${normal_color}"
 	arr["PORTUGUESE",335]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}${wps_bssid}${normal_color}"
 	arr["RUSSIAN",335]="${pending_of_translation} Выбранный WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
-	arr["GREEK",335]="${pending_of_translation} Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["GREEK",335]="Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 
 	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
 	arr["SPANISH",336]="WPS Canal seleccionado: ${pink_color}${wps_channel}${normal_color}"
@@ -3170,7 +3170,7 @@ function language_strings() {
 	arr["CATALAN",336]="${pending_of_translation} WPS Canal seleecionat: ${pink_color}${wps_channel}${normal_color}"
 	arr["PORTUGUESE",336]="${pending_of_translation} WPS Canal selecionado: ${pink_color}${wps_channel}${normal_color}"
 	arr["RUSSIAN",336]="${pending_of_translation} Выбранный WPS канал: ${pink_color}${wps_channel}${normal_color}"
-	arr["GREEK",336]="${pending_of_translation} Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
+	arr["GREEK",336]="Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
 
 	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
 	arr["SPANISH",337]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
@@ -3178,7 +3178,7 @@ function language_strings() {
 	arr["CATALAN",337]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
 	arr["PORTUGUESE",337]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
 	arr["RUSSIAN",337]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может быть использован"
-	arr["GREEK",337]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
+	arr["GREEK",337]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 
 	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 	arr["SPANISH",338]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${normal_color}"
@@ -3186,7 +3186,7 @@ function language_strings() {
 	arr["CATALAN",338]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${normal_color}"
 	arr["PORTUGUESE",338]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${normal_color}"
 	arr["RUSSIAN",338]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
-	arr["GREEK",338]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["GREEK",338]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 
 	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",339]="WPS BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
@@ -3194,7 +3194,7 @@ function language_strings() {
 	arr["CATALAN",339]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",339]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",339]="${pending_of_translation} Выбранная WPS BSSID: ${pink_color}Нет${normal_color}"
-	arr["GREEK",339]="${pending_of_translation} Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
+	arr["GREEK",339]="Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
 	arr["SPANISH",340]="WPS Canal seleccionado: ${pink_color}Ninguno${normal_color}"
@@ -3202,7 +3202,7 @@ function language_strings() {
 	arr["CATALAN",340]="${pending_of_translation} WPS Canal seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",340]="${pending_of_translation} WPS Canal selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",340]="${pending_of_translation} Выбранный WPS канал: ${pink_color}Нет${normal_color}"
-	arr["GREEK",340]="${pending_of_translation} Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
+	arr["GREEK",340]="Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",341]="WPS ESSID seleccionado: ${pink_color}Ninguno${normal_color}"
@@ -3210,7 +3210,7 @@ function language_strings() {
 	arr["CATALAN",341]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",341]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",341]="${pending_of_translation} Выбранная WPS ESSID: ${pink_color}Нет${normal_color}"
-	arr["GREEK",341]="${pending_of_translation} Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
+	arr["GREEK",341]="Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
 	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
@@ -3218,7 +3218,7 @@ function language_strings() {
 	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
 	arr["PORTUGUESE",342]="${pending_of_translation} O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
 	arr["RUSSIAN",342]="${pending_of_translation} Атака Pixie Dust получает PIN-код и пароль в секундах, но не все точки доступа уязвимы для этой атаки"
-	arr["GREEK",342]="${pending_of_translation} Η επίθεση Pixie Dust παίρνει το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά δεν είναι όλα τα σημεία πρόσβασης είναι ευάλωτα σε αυτή την επίθεση"
+	arr["GREEK",342]="Η επίθεση Pixie Dust αποκτά το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά μερικά σημεία πρόσβασης δεν επηρεάζονται"
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
@@ -3226,7 +3226,7 @@ function language_strings() {
 	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
 	arr["PORTUGUESE",343]="${pending_of_translation} Para executar qualquer WPS atacar você precisa de um bom sinal da rede alvo. Que poderiam obter falsos negativos"
 	arr["RUSSIAN",343]="${pending_of_translation} Для того, чтобы выполнить какие-либо атаки WPS вам нужен хороший знак целевой сети. мы могли бы в противном случае получить ложные негативы"
-	arr["GREEK",343]="${pending_of_translation} Για να εκτελέσετε οποιαδήποτε WPS επίθεση θα πρέπει να έχετε ένα καλό σημάδι του δικτύου στόχου. θα μπορούσε να πάρει αλλιώς ψευδώς αρνητικών"
+	arr["GREEK",343]="Για να εκτελεστεί επιτυχώς οποιαδήποτε επίθεση WPS, θα πρέπει να υπάρχει ισχυρό σήμα του δικτύου στόχου. Αλλιώς μπορεί να υπάρξουν ψευδώς αρνητικά αποτελέσματα"
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
@@ -3234,7 +3234,7 @@ function language_strings() {
 	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
 	arr["PORTUGUESE",344]="${pending_of_translation} Alguns pontos de acesso estão bloqueadas depois de perder uma série de tentativas de conexão por PIN. Ela pode variar dependendo do ponto de acesso"
 	arr["RUSSIAN",344]="${pending_of_translation} Некоторые точки доступа блокируются после пропуска количество попыток подключения с помощью PIN-кода. Она может варьироваться в зависимости от точки доступа"
-	arr["GREEK",344]="${pending_of_translation} Μερικά σημεία πρόσβασης μπλοκαριστεί αφού λείπει μια σειρά από απόπειρες σύνδεσης με το PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
+	arr["GREEK",344]="Μερικά σημεία πρόσβασης μπορεί να μπλοκαριστούν μετά από μερικές αποτυχημένες προσπάθειες σύνδεσης PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
 
 	arr["ENGLISH",345]="5.  Custom PIN association"
 	arr["SPANISH",345]="5.  Asociación con PIN personalizado"
@@ -3242,7 +3242,7 @@ function language_strings() {
 	arr["CATALAN",345]="${pending_of_translation} 5.  Associació amb PIN personalitzat"
 	arr["PORTUGUESE",345]="${pending_of_translation} 5.  Associação com o PIN personalizado"
 	arr["RUSSIAN",345]="${pending_of_translation} 5.  Ассоциация с персонализированным PIN"
-	arr["GREEK",345]="${pending_of_translation} 5.  Σύνδεσης με εξατομικευμένες PIN"
+	arr["GREEK",345]="5.  Σύνδεση με εξατομικευμένο PIN"
 
 	arr["ENGLISH",346]="6.  Pixie Dust attack"
 	arr["SPANISH",346]="6.  Ataque Pixie Dust"
@@ -3250,7 +3250,7 @@ function language_strings() {
 	arr["CATALAN",346]="${pending_of_translation} 6.  Atac Pixie Dust"
 	arr["PORTUGUESE",346]="${pending_of_translation} 6.  Ataque Pixie Dust"
 	arr["RUSSIAN",346]="${pending_of_translation} 6.  Атака Pixie Dust"
-	arr["GREEK",346]="${pending_of_translation} 6.  Επίθεση Pixie Dust"
+	arr["GREEK",346]="6.  Επίθεση Pixie Dust"
 
 	arr["ENGLISH",347]="7.  Bruteforce PIN attack"
 	arr["SPANISH",347]="7.  Ataque de fuerza bruta por PIN"
@@ -3258,7 +3258,7 @@ function language_strings() {
 	arr["CATALAN",347]="${pending_of_translation} 7.  Atac de força bruta per PIN"
 	arr["PORTUGUESE",347]="${pending_of_translation} 7.  Ataque força bruta PIN"
 	arr["RUSSIAN",347]="${pending_of_translation} 7.  Атака методом грубой PIN"
-	arr["GREEK",347]="${pending_of_translation} 7.  επίθεση ωμής βίας PIN"
+	arr["GREEK",347]="7.  Επίθεση PIN με χρήση ωμής βίας"
 
 	arr["ENGLISH",348]="8.  Known PINs database based attack"
 	arr["SPANISH",348]="8.  Ataque basado en base de datos de PINs conocidos"
@@ -3266,7 +3266,7 @@ function language_strings() {
 	arr["CATALAN",348]="${pending_of_translation} 8.  Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="${pending_of_translation} 8.  Banco de dados de ataque com base de PINs conhecidos"
 	arr["RUSSIAN",348]="${pending_of_translation} 8.  Атака на основе базы данных Известные PINs"
-	arr["GREEK",348]="${pending_of_translation} 8.  Γνωστή βάση δεδομένων κωδικών PINs επίθεση με βάση"
+	arr["GREEK",348]="8.  Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
 
 	arr["ENGLISH",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
 	arr["SPANISH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
@@ -3276,13 +3276,13 @@ function language_strings() {
 	arr["RUSSIAN",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
 	arr["GREEK",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
 
-	arr["ENGLISH",350]="${blue_color}You have selected a Locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
+	arr["ENGLISH",350]="${blue_color}You have selected a locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
 	arr["SPANISH",350]="${blue_color}Has seleccionado una red WPS bloqueada ${green_color}¿Deseas continuar? ${normal_color}[y/n]"
 	arr["FRENCH",350]="${pending_of_translation} ${blue_color}Vous avez sélectionné un réseau WPS bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
 	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",350]="${pending_of_translation} ${blue_color}Você selecionou uma rede WPS bloqueada ${green_color}Você deseja continuar? ${normal_color}[y/n]"
 	arr["RUSSIAN",350]="${pending_of_translation} ${blue_color}Вы выбрали WPS сеть заблокированы ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
-	arr["GREEK",350]="${pending_of_translation} ${blue_color}Έχετε επιλέξει ένα δίκτυο WPS αποκλεισμένη ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
+	arr["GREEK",350]="${blue_color}Έχετε επιλέξει ένα κλειδωμένο WPS δίκτυο ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
 
 	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
 	arr["SPANISH",351]="WPS red bloqueada: ${pink_color}${wps_locked}${normal_color}"
@@ -3290,7 +3290,7 @@ function language_strings() {
 	arr["CATALAN",351]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}${wps_locked}${normal_color}"
 	arr["PORTUGUESE",351]="${pending_of_translation} WPS rede bloqueada: ${pink_color}${wps_locked}${normal_color}"
 	arr["RUSSIAN",351]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}${wps_locked}${normal_color}"
-	arr["GREEK",351]="${pending_of_translation} WPS δίκτυο μπλοκαριστεί: ${pink_color}${wps_locked}${normal_color}"
+	arr["GREEK",351]="Κλειδωμένο WPS δίκτυο: ${pink_color}${wps_locked}${normal_color}"
 
 	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
 	arr["SPANISH",352]="WPS red bloqueada: ${pink_color}Ninguno${normal_color}"
@@ -3298,7 +3298,7 @@ function language_strings() {
 	arr["CATALAN",352]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",352]="${pending_of_translation} WPS rede bloqueada: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",352]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}Нет${normal_color}"
-	arr["GREEK",352]="${pending_of_translation} WPS δίκτυο μπλοκαριστεί: ${pink_color}Κανένα${normal_color}"
+	arr["GREEK",352]="Κλειδωμένο WPS δίκτυο: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
 	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
@@ -3306,7 +3306,7 @@ function language_strings() {
 	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
 	arr["PORTUGUESE",353]="${pending_of_translation} Fazendo um pouco de teste para resolver o possível problema de \"bad FCS\" se houver. Parametrizando..."
 	arr["RUSSIAN",353]="${pending_of_translation} Делая небольшой тест, чтобы решить возможную проблему \"bad FCS\", если есть. Параметрирование..."
-	arr["GREEK",353]="${pending_of_translation} Κάνοντας μια μικρή δοκιμή για να επιλύσετε το πιθανό πρόβλημα της \"bad FCS\" αν υπάρχει. παραμετροποίησης..."
+	arr["GREEK",353]="Γίνεται έλεγχος επίλυσης πιθανού σφάλματος \"bad FCS\" αν υπάρχει. Γίνεται παραμετροποίηση..."
 
 	arr["ENGLISH",354]="Done! parameter set"
 	arr["SPANISH",354]="Hecho! parámetro fijado"
@@ -3314,7 +3314,7 @@ function language_strings() {
 	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",354]="${pending_of_translation} Feito! parâmetro fixo"
 	arr["RUSSIAN",354]="${pending_of_translation} Готово! набор параметров"
-	arr["GREEK",354]="${pending_of_translation} Έγινε! σύνολο παραμέτρων"
+	arr["GREEK",354]="Έγινε! η παράμετρος τέθηκε"
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
@@ -3322,7 +3322,7 @@ function language_strings() {
 	arr["CATALAN",355]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
 	arr["RUSSIAN",355]="${pending_of_translation} Готово! набор параметров"
-	arr["GREEK",355]="${pending_of_translation} Έγινε! σύνολο παραμέτρων"
+	arr["GREEK",355]="Φαίνεται πως αυτή η διεπαφή παραμετροποιήθηκε προηγουμένως. Δεν είναι απαραίτητο να γίνει έλεγχος ξανά"
 
 	case "${3}" in
 		"yellow")
