@@ -7258,7 +7258,7 @@ function explore_for_wps_targets_option() {
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
-	if [ "${washlines}" -le 8 ]; then
+	if [ "${washlines}" -le 7 ]; then
 		echo
 		language_strings "${language}" 68 "yellow"
 		language_strings "${language}" 115 "read"
