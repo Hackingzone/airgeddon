@@ -9,7 +9,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
 - 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
-- WPS features: scanning (wash).<br/>
+- WPS features: scanning (wash). WPS Custom pin association.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -20,7 +20,6 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Coming soon
-- WPS Custom pin association
 - WPS Pixie Dust attack
 - WPS Bruteforce PIN attack
 - WPS Database search for "easy AP" known PINs
@@ -79,6 +78,8 @@ sslstrip -> sslstrip
 lighttpd -> lighttpd
 dnsspoof -> dsniff
 wash -> reaver
+reaver -> reaver
+bully -> bully
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
