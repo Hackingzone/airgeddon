@@ -65,24 +65,12 @@ optional_tools_names=(
 						"bully"
 					)
 
-declare -A optional_tools=(
-							[${optional_tools_names[0]}]=0
-							[${optional_tools_names[1]}]=0
-							[${optional_tools_names[2]}]=0
-							[${optional_tools_names[3]}]=0
-							[${optional_tools_names[4]}]=0
-							[${optional_tools_names[5]}]=0
-							[${optional_tools_names[6]}]=0
-							[${optional_tools_names[7]}]=0
-							[${optional_tools_names[8]}]=0
-							[${optional_tools_names[9]}]=0
-							[${optional_tools_names[10]}]=0
-							[${optional_tools_names[11]}]=0
-							[${optional_tools_names[12]}]=0
-							[${optional_tools_names[13]}]=0
-							[${optional_tools_names[14]}]=0
-							[${optional_tools_names[15]}]=0
-						)
+declare -A optional_tools=()
+
+#Initialize optional_tools values
+for item in "${optional_tools_names[@]}"; do
+	optional_tools[${item}]=0
+done
 
 update_tools=("curl")
 
