@@ -9,7 +9,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
 - 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
-- WPS features: scanning (wash). WPS Custom pin association.<br/>
+- WPS features: WPS scanning (wash). WPS Custom pin association.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -147,7 +147,7 @@ Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations and the help received fixing code warnings.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
