@@ -3143,7 +3143,7 @@ function language_strings() {
 	arr["FRENCH",333]="${pending_of_translation} 8.  Menu des attaques WPS"
 	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
 	arr["PORTUGUESE",333]="${pending_of_translation} 8.  Menu de ataques WPS"
-	arr["RUSSIAN",333]="${pending_of_translation} 8.  Меню WPS атак"
+	arr["RUSSIAN",333]="8.  Меню атак на WPS"
 	arr["GREEK",333]="8.  Μενού επιθέσεων WPS"
 
 	arr["ENGLISH",334]="WPS attacks menu"
@@ -3151,7 +3151,7 @@ function language_strings() {
 	arr["FRENCH",334]="${pending_of_translation} Menu des attaques WPS"
 	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
 	arr["PORTUGUESE",334]="${pending_of_translation} Menu de ataques WPS"
-	arr["RUSSIAN",334]="${pending_of_translation} Меню WPS атак"
+	arr["RUSSIAN",334]="Меню атак на WPS"
 	arr["GREEK",334]="Μενού επιθέσεων WPS"
 
 	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
@@ -3159,7 +3159,7 @@ function language_strings() {
 	arr["FRENCH",335]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}${wps_bssid}${normal_color}"
 	arr["CATALAN",335]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}${wps_bssid}${normal_color}"
 	arr["PORTUGUESE",335]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}${wps_bssid}${normal_color}"
-	arr["RUSSIAN",335]="${pending_of_translation} Выбранный WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["RUSSIAN",335]="Выбран WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 	arr["GREEK",335]="Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 
 	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
@@ -3167,7 +3167,7 @@ function language_strings() {
 	arr["FRENCH",336]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}${wps_channel}${normal_color}"
 	arr["CATALAN",336]="${pending_of_translation} WPS Canal seleecionat: ${pink_color}${wps_channel}${normal_color}"
 	arr["PORTUGUESE",336]="${pending_of_translation} WPS Canal selecionado: ${pink_color}${wps_channel}${normal_color}"
-	arr["RUSSIAN",336]="${pending_of_translation} Выбранный WPS канал: ${pink_color}${wps_channel}${normal_color}"
+	arr["RUSSIAN",336]="Выбран WPS канал: ${pink_color}${wps_channel}${normal_color}"
 	arr["GREEK",336]="Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
 
 	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
@@ -3175,7 +3175,7 @@ function language_strings() {
 	arr["FRENCH",337]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
 	arr["CATALAN",337]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
 	arr["PORTUGUESE",337]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
-	arr["RUSSIAN",337]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может быть использован"
+	arr["RUSSIAN",337]="Выбран WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может использоваться"
 	arr["GREEK",337]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 
 	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
@@ -3183,7 +3183,7 @@ function language_strings() {
 	arr["FRENCH",338]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${normal_color}"
 	arr["CATALAN",338]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${normal_color}"
 	arr["PORTUGUESE",338]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${normal_color}"
-	arr["RUSSIAN",338]="${pending_of_translation} Выбранный WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["RUSSIAN",338]="Выбран WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 	arr["GREEK",338]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 
 	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
@@ -3191,7 +3191,7 @@ function language_strings() {
 	arr["FRENCH",339]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",339]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",339]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}Nenhum${normal_color}"
-	arr["RUSSIAN",339]="${pending_of_translation} Выбранная WPS BSSID: ${pink_color}Нет${normal_color}"
+	arr["RUSSIAN",339]="Выбран WPS BSSID: ${pink_color}Нет${normal_color}"
 	arr["GREEK",339]="Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
@@ -3199,7 +3199,7 @@ function language_strings() {
 	arr["FRENCH",340]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",340]="${pending_of_translation} WPS Canal seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",340]="${pending_of_translation} WPS Canal selecionado: ${pink_color}Nenhum${normal_color}"
-	arr["RUSSIAN",340]="${pending_of_translation} Выбранный WPS канал: ${pink_color}Нет${normal_color}"
+	arr["RUSSIAN",340]="Выбран WPS канал: ${pink_color}Нет${normal_color}"
 	arr["GREEK",340]="Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
@@ -3207,7 +3207,7 @@ function language_strings() {
 	arr["FRENCH",341]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",341]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",341]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}Nenhum${normal_color}"
-	arr["RUSSIAN",341]="${pending_of_translation} Выбранная WPS ESSID: ${pink_color}Нет${normal_color}"
+	arr["RUSSIAN",341]="Выбран WPS ESSID: ${pink_color}Нет${normal_color}"
 	arr["GREEK",341]="Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
@@ -3215,7 +3215,7 @@ function language_strings() {
 	arr["FRENCH",342]="${pending_of_translation} L'attaque Pixie Dust obtient le code PIN et le mot de passe en quelques secondes, mais les points d'accès ne sont pas tous vulnérables à cette attaque"
 	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
 	arr["PORTUGUESE",342]="${pending_of_translation} O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
-	arr["RUSSIAN",342]="${pending_of_translation} Атака Pixie Dust получает PIN-код и пароль в секундах, но не все точки доступа уязвимы для этой атаки"
+	arr["RUSSIAN",342]="Pixie Dust получает PIN и пароль за секунды, но не все точки доступа подвержены этой атаке"
 	arr["GREEK",342]="Η επίθεση Pixie Dust αποκτά το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά μερικά σημεία πρόσβασης δεν επηρεάζονται"
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
@@ -3223,7 +3223,7 @@ function language_strings() {
 	arr["FRENCH",343]="${pending_of_translation} Pour effectuer toute WPS attaque dont vous avez besoin d'un bon signe du réseau cible. Nous pourrions obtenir autrement faux négatifs"
 	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
 	arr["PORTUGUESE",343]="${pending_of_translation} Para executar qualquer WPS atacar você precisa de um bom sinal da rede alvo. Que poderiam obter falsos negativos"
-	arr["RUSSIAN",343]="${pending_of_translation} Для того, чтобы выполнить какие-либо атаки WPS вам нужен хороший знак целевой сети. мы могли бы в противном случае получить ложные негативы"
+	arr["RUSSIAN",343]="Чтобы добиться успеха при любой WPS атаке, вам нужен хорошей сигнал целевой сети. В противном случае мы можем получить ложные срабатывания"
 	arr["GREEK",343]="Για να εκτελεστεί επιτυχώς οποιαδήποτε επίθεση WPS, θα πρέπει να υπάρχει ισχυρό σήμα του δικτύου στόχου. Αλλιώς μπορεί να υπάρξουν ψευδώς αρνητικά αποτελέσματα"
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
@@ -3231,7 +3231,7 @@ function language_strings() {
 	arr["FRENCH",344]="${pending_of_translation} Certains points d'accès sont bloqués après avoir raté un certain nombre de tentatives de connexion par code PIN. Elle peut varier en fonction du point d'accès"
 	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
 	arr["PORTUGUESE",344]="${pending_of_translation} Alguns pontos de acesso estão bloqueadas depois de perder uma série de tentativas de conexão por PIN. Ela pode variar dependendo do ponto de acesso"
-	arr["RUSSIAN",344]="${pending_of_translation} Некоторые точки доступа блокируются после пропуска количество попыток подключения с помощью PIN-кода. Она может варьироваться в зависимости от точки доступа"
+	arr["RUSSIAN",344]="Некоторые точки доступа блокируются после нескольких неудачных попыток подключения с PIN. Это зависит от конкретной точки доступа."
 	arr["GREEK",344]="Μερικά σημεία πρόσβασης μπορεί να μπλοκαριστούν μετά από μερικές αποτυχημένες προσπάθειες σύνδεσης PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
 
 	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
@@ -3239,7 +3239,7 @@ function language_strings() {
 	arr["FRENCH",345]="${pending_of_translation} 5.  (bully) Association avec le code PIN personnalisé"
 	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",345]="${pending_of_translation} 5.  (bully) Associação com o PIN personalizado"
-	arr["RUSSIAN",345]="${pending_of_translation} 5.  (bully) Ассоциация с персонализированным PIN"
+	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
 	arr["GREEK",345]="5.  (bully) Σύνδεση με εξατομικευμένο PIN"
 
 	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
@@ -3247,7 +3247,7 @@ function language_strings() {
 	arr["FRENCH",346]="${pending_of_translation} 7.  (bully) Attaque Pixie Dust"
 	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
 	arr["PORTUGUESE",346]="${pending_of_translation} 7.  (bully) Ataque Pixie Dust"
-	arr["RUSSIAN",346]="${pending_of_translation} 7.  (bully) Атака Pixie Dust"
+	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
 	arr["GREEK",346]="7.  (bully) Επίθεση Pixie Dust"
 
 	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
@@ -3255,7 +3255,7 @@ function language_strings() {
 	arr["FRENCH",347]="${pending_of_translation} 9.  (bully) Attaque de force brute PIN"
 	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
 	arr["PORTUGUESE",347]="${pending_of_translation} 9.  (bully) Ataque força bruta PIN"
-	arr["RUSSIAN",347]="${pending_of_translation} 9.  (bully) Атака методом грубой PIN"
+	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
 	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
@@ -3263,7 +3263,7 @@ function language_strings() {
 	arr["FRENCH",348]="${pending_of_translation} 11. (bully) Sur la base base de données d'attaque PINs connus"
 	arr["CATALAN",348]="${pending_of_translation} 11. (bully) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="${pending_of_translation} 11. (bully) Banco de dados de ataque com base de PINs conhecidos"
-	arr["RUSSIAN",348]="${pending_of_translation} 11. (bully) Атака на основе базы данных Известные PINs"
+	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
 	arr["GREEK",348]="11. (bully) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
 
 	arr["ENGLISH",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
@@ -3279,7 +3279,7 @@ function language_strings() {
 	arr["FRENCH",350]="${pending_of_translation} ${blue_color}Vous avez sélectionné un réseau WPS bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
 	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",350]="${pending_of_translation} ${blue_color}Você selecionou uma rede WPS bloqueada ${green_color}Você deseja continuar? ${normal_color}[y/n]"
-	arr["RUSSIAN",350]="${pending_of_translation} ${blue_color}Вы выбрали WPS сеть заблокированы ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
+	arr["RUSSIAN",350]="${blue_color}Вы выбрали заблокированную WPS сеть ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
 	arr["GREEK",350]="${blue_color}Έχετε επιλέξει ένα κλειδωμένο WPS δίκτυο ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
 
 	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
@@ -3287,7 +3287,7 @@ function language_strings() {
 	arr["FRENCH",351]="${pending_of_translation} WPS réseau bloqué: ${pink_color}${wps_locked}${normal_color}"
 	arr["CATALAN",351]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}${wps_locked}${normal_color}"
 	arr["PORTUGUESE",351]="${pending_of_translation} WPS rede bloqueada: ${pink_color}${wps_locked}${normal_color}"
-	arr["RUSSIAN",351]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}${wps_locked}${normal_color}"
+	arr["RUSSIAN",351]="Сеть с заблокированным WPS: ${pink_color}${wps_locked}${normal_color}"
 	arr["GREEK",351]="Κλειδωμένο WPS δίκτυο: ${pink_color}${wps_locked}${normal_color}"
 
 	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
@@ -3295,7 +3295,7 @@ function language_strings() {
 	arr["FRENCH",352]="${pending_of_translation} WPS réseau bloqué: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",352]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",352]="${pending_of_translation} WPS rede bloqueada: ${pink_color}Nenhum${normal_color}"
-	arr["RUSSIAN",352]="${pending_of_translation} WPS сеть заблокирована: ${pink_color}Нет${normal_color}"
+	arr["RUSSIAN",352]="Сеть с заблокированным WPS: ${pink_color}Нет${normal_color}"
 	arr["GREEK",352]="Κλειδωμένο WPS δίκτυο: ${pink_color}Κανένα${normal_color}"
 
 	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
@@ -3303,7 +3303,7 @@ function language_strings() {
 	arr["FRENCH",353]="${pending_of_translation} Faire un petit test pour résoudre le problème possible de \"bad FCS\" si. Paramétrage..."
 	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
 	arr["PORTUGUESE",353]="${pending_of_translation} Fazendo um pouco de teste para resolver o possível problema de \"bad FCS\" se houver. Parametrizando..."
-	arr["RUSSIAN",353]="${pending_of_translation} Делая небольшой тест, чтобы решить возможную проблему \"bad FCS\", если есть. Параметрирование..."
+	arr["RUSSIAN",353]="Проверка возможного решения проблемы \"плохого FCS (контроля последовательности кадров)\" если она существует. Параметризация..."
 	arr["GREEK",353]="Γίνεται έλεγχος επίλυσης πιθανού σφάλματος \"bad FCS\" αν υπάρχει. Γίνεται παραμετροποίηση..."
 
 	arr["ENGLISH",354]="Done! parameter set"
@@ -3311,7 +3311,7 @@ function language_strings() {
 	arr["FRENCH",354]="${pending_of_translation} Fait! paramètre fixe"
 	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",354]="${pending_of_translation} Feito! parâmetro fixo"
-	arr["RUSSIAN",354]="${pending_of_translation} Готово! набор параметров"
+	arr["RUSSIAN",354]="Сделано! параметры заданы"
 	arr["GREEK",354]="Έγινε! η παράμετρος τέθηκε"
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
@@ -3319,7 +3319,7 @@ function language_strings() {
 	arr["FRENCH",355]="${pending_of_translation} Fait! paramètre fixe"
 	arr["CATALAN",355]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
-	arr["RUSSIAN",355]="${pending_of_translation} Готово! набор параметров"
+	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
 	arr["GREEK",355]="Φαίνεται πως αυτή η διεπαφή παραμετροποιήθηκε προηγουμένως. Δεν είναι απαραίτητο να γίνει έλεγχος ξανά"
 
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
@@ -3327,7 +3327,7 @@ function language_strings() {
 	arr["FRENCH",356]="${pending_of_translation} Certaines combinaisons ne fonctionnent pas bien. Tels que reaver et cartes avec Ralink chipset. Si votre carte a ce chipset est préférable d'utiliser bully"
 	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="${pending_of_translation} Algumas combinações não funcionam bem. Tais como reaver e cartões com Ralink chipset. Se o seu cartão tem este chipset é melhor usar bully"
-	arr["RUSSIAN",356]="${pending_of_translation} Некоторые комбинации не работают хорошо. Такие, как reaver и карты с набором микросхем Ralink. Если ваша карта имеет этот чипсет лучше использовать bully"
+	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
 	arr["GREEK",356]="${pending_of_translation} Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως reaver και τις κάρτες με Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι καλύτερο να χρησιμοποιήσετε bully"
 
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
@@ -3335,7 +3335,7 @@ function language_strings() {
 	arr["FRENCH",357]="${pending_of_translation} 6.  (reaver) Association avec le code PIN personnalisé"
 	arr["CATALAN",357]="${pending_of_translation} 6.  (reaver) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",357]="${pending_of_translation} 6.  (reaver) Associação com o PIN personalizado"
-	arr["RUSSIAN",357]="${pending_of_translation} 6.  (reaver) Ассоциация с персонализированным PIN"
+	arr["RUSSIAN",357]="6.  (reaver) Пользовательские PIN ассоциации"
 	arr["GREEK",357]="6.  (reaver) Σύνδεση με εξατομικευμένο PIN"
 
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
@@ -3343,7 +3343,7 @@ function language_strings() {
 	arr["FRENCH",358]="${pending_of_translation} 8.  (reaver) Attaque Pixie Dust"
 	arr["CATALAN",358]="${pending_of_translation} 8.  (reaver) Atac Pixie Dust"
 	arr["PORTUGUESE",358]="${pending_of_translation} 8.  (reaver) Ataque Pixie Dust"
-	arr["RUSSIAN",358]="${pending_of_translation} 8.  (reaver) Атака Pixie Dust"
+	arr["RUSSIAN",358]="8.  (reaver) Атака Pixie Dust"
 	arr["GREEK",358]="8.  (reaver) Επίθεση Pixie Dust"
 
 	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
@@ -3351,7 +3351,7 @@ function language_strings() {
 	arr["FRENCH",359]="${pending_of_translation} 10. (reaver) Attaque de force brute PIN"
 	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
 	arr["PORTUGUESE",359]="${pending_of_translation} 10. (reaver) Ataque força bruta PIN"
-	arr["RUSSIAN",359]="${pending_of_translation} 10. (reaver) Атака методом грубой PIN"
+	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
 	arr["GREEK",359]="10. (reaver) Επίθεση PIN με χρήση ωμής βίας"
 
 	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
@@ -3359,7 +3359,7 @@ function language_strings() {
 	arr["FRENCH",360]="${pending_of_translation} 12. (reaver) Sur la base base de données d'attaque PINs connus"
 	arr["CATALAN",360]="${pending_of_translation} 12. (reaver) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",360]="${pending_of_translation} 12. (reaver) Banco de dados de ataque com base de PINs conhecidos"
-	arr["RUSSIAN",360]="${pending_of_translation} 12. (reaver) Атака на основе базы данных Известные PINs"
+	arr["RUSSIAN",360]="12. (reaver) Атака на основе базы данных известных PIN"
 	arr["GREEK",360]="12. (reaver) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
 
 	arr["ENGLISH",361]="13.  Return to main menu"
@@ -3375,7 +3375,7 @@ function language_strings() {
 	arr["FRENCH",362]="${pending_of_translation} PIN personnalisé choisi ${normal_color}${custom_pin}"
 	arr["CATALAN",362]="${pending_of_translation} PIN personalitzat triat ${normal_color}${custom_pin}"
 	arr["PORTUGUESE",362]="${pending_of_translation} PIN personalizado escolhido ${normal_color}${custom_pin}"
-	arr["RUSSIAN",362]="${pending_of_translation} персонализированные PIN выбран ${normal_color}${custom_pin}"
+	arr["RUSSIAN",362]="Пользовательский PIN установлен на ${normal_color}${custom_pin}"
 	arr["GREEK",362]="${pending_of_translation} εξατομικευμένες PIN επιλεγεί ${normal_color}${custom_pin}"
 
 	arr["ENGLISH",363]="Type custom PIN :"
@@ -3383,7 +3383,7 @@ function language_strings() {
 	arr["FRENCH",363]="${pending_of_translation} Écrivez l'ESSID du réseau cible :"
 	arr["CATALAN",363]="${pending_of_translation} Escriu el ESSID objectiu :"
 	arr["PORTUGUESE",363]="${pending_of_translation} Escreva o ESSID do alvo :"
-	arr["RUSSIAN",363]="${pending_of_translation} Тип целевой ESSID :"
+	arr["RUSSIAN",363]="Напишите пользовательский PIN :"
 	arr["GREEK",363]="${pending_of_translation} Πληκτρολογήστε ESSID στόχου :"
 
 	arr["ENGLISH",364]="BSSID set to ${normal_color}${wps_bssid}"
@@ -3407,7 +3407,7 @@ function language_strings() {
 	arr["FRENCH",366]="${pending_of_translation} Après l'arrêt de l'attaque (en utilisant Ctrl+C), la fenêtre ne se ferme pas automatiquement attaque. Donc, avoir le temps d'écrire le mot de passe en cas de succès. Vous devez fermer manuellement"
 	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant Ctrl+C), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
 	arr["PORTUGUESE",366]="${pending_of_translation} Depois de parar o ataque (usando Ctrl+C), a janela não será fechada automaticamente ataque. Então temos tempo para anotar a senha em caso de êxito. Você vai ter que fechá-lo manualmente"
-	arr["RUSSIAN",366]="${pending_of_translation} После остановки атаки (с помощью Ctrl+C), то окно не закроется автоматически атаку. Так что есть время, чтобы записать пароль, если успешно. Вам придется закрыть его вручную"
+	arr["RUSSIAN",366]="После остановки атаки (используя Ctrl+C), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
 	arr["GREEK",366]="${pending_of_translation} Μετά τη διακοπή της επίθεσης (με Ctrl+C), το παράθυρο δεν θα κλείσει αυτόματα επίθεση. Έτσι, έχετε χρόνο να γράψετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Θα πρέπει να το κλείσει χειροκίνητα"
 
 	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
@@ -3415,7 +3415,7 @@ function language_strings() {
 	arr["FRENCH",367]="${pending_of_translation} Vous bully installé (v${bully_version}), mais pas la version requise. Pour rendre l'attaque bully intégrée Pixie Dust doit avoir au moins la version v${minimum_bully_pixiewps_version}"
 	arr["CATALAN",367]="${pending_of_translation} Tens bully instal·lat (v${bully_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
 	arr["PORTUGUESE",367]="${pending_of_translation} Você bully instalado (v${bully_version}), mas não a versão necessária. Para fazer o ataque bully integrado Pixie Dust tem que ter pelo menos a versão v${minimum_bully_pixiewps_version}"
-	arr["RUSSIAN",367]="${pending_of_translation} Вы bully установлена (v${bully_version}), но не нужную версию. Для того, чтобы сделать Pixie Dust интегрированный bully атаки должен иметь по крайней мере версии v${minimum_bully_pixiewps_version}"
+	arr["RUSSIAN",367]="У вас установлен bully (v${bully_version}), но не та версия, которая требуется. Для выполнения интегрированной в bully атаки Pixie Dust у вас должна быть по крайне мере версия v${minimum_bully_pixiewps_version}"
 	arr["GREEK",367]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση bully πρέπει να έχει τουλάχιστον την έκδοση v${minimum_bully_pixiewps_version}"
 
 	arr["ENGLISH",368]="You have bully installed (v${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v${minimum_bully_pixiewps_version}). Script can continue..."
@@ -3423,7 +3423,7 @@ function language_strings() {
 	arr["FRENCH",368]="${pending_of_translation} Vous bully installé (v${bully_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque bully (version minimale v${minimum_bully_pixiewps_version}). Le script peut continuer..."
 	arr["CATALAN",368]="${pending_of_translation} Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",368]="${pending_of_translation} Você bully instalado (v${bully_version}). Você cumprir a exigência versão para o Pixie Dust ataque bully integrado (versão mínima v${minimum_bully_pixiewps_version}). O script pode continuar..."
-	arr["RUSSIAN",368]="${pending_of_translation} Вы bully установлена (v${bully_version}). Вы встречаете требование версии для Pixie Dust интегрированный bully атаки (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжать..."
+	arr["RUSSIAN",368]="У вас установлен bully (v${bully_version}). Версия удовлетворяет требованиям для проведения интегрированной в bully атаки Pixie Dust (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжить работу..."
 	arr["GREEK",368]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση bully (ελάχιστη έκδοση v${minimum_bully_pixiewps_version}). Το script μπορεί να συνεχίσει..."
 
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least ${minimum_reaver_pixiewps_version} version for reaver and ${minimum_bully_pixiewps_version} for bully"
@@ -3431,7 +3431,7 @@ function language_strings() {
 	arr["FRENCH",369]="${pending_of_translation} Pour rendre le Pixie Dust intégré attaque reaver ou bully, vous devez avoir installé au moins le ${minimum_reaver_pixiewps_version} por reaver et ${minimum_bully_pixiewps_version} pour bully"
 	arr["CATALAN",369]="${pending_of_translation} Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
 	arr["PORTUGUESE",369]="${pending_of_translation} Para executar o ataque reaver integrada Pixie Dust ou bully, é necessário ter instalado pelo menos a versão ${minimum_reaver_pixiewps_version} para reaver e ${minimum_bully_pixiewps_version} para bully"
-	arr["RUSSIAN",369]="${pending_of_translation} Для того, чтобы сделать Pixie Dust интегрированный reaver атаки или bully, вы должны установить по крайней мере версии ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
+	arr["RUSSIAN",369]="Для выполнения интегрированной атаки Pixie Dust с reaver или bully, у вас должна быть установлена, по крайней мере, версия ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
 	arr["GREEK",369]="${pending_of_translation} Για να κάνετε την Pixie Dust επίθεση ολοκληρωμένη reaver ή bully, θα πρέπει να έχετε εγκαταστήσει τουλάχιστον την έκδοση ${minimum_reaver_pixiewps_version} για reaver και ${minimum_bully_pixiewps_version} για bully"
 
 	arr["ENGLISH",370]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v${minimum_reaver_pixiewps_version}). Script can continue..."
@@ -3439,7 +3439,7 @@ function language_strings() {
 	arr["FRENCH",370]="${pending_of_translation} Vous reaver installé (v${reaver_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque reaver (version minimale v${minimum_reaver_pixiewps_version}). Le script peut continuer..."
 	arr["CATALAN",370]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",370]="${pending_of_translation} Você reaver instalado (v${reaver_version}). Você cumprir a exigência versão para o Pixie Dust ataque reaver integrado (versão mínima v${minimum_reaver_pixiewps_version}). O script pode continuar..."
-	arr["RUSSIAN",370]="${pending_of_translation} Вы reaver установлена (v${reaver_version}). Вы встречаете требование версии для Pixie Dust интегрированный reaver атаки (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжать..."
+	arr["RUSSIAN",370]="У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки Pixie Dust (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжить работу..."
 	arr["GREEK",370]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση reaver (ελάχιστη έκδοση v${minimum_reaver_pixiewps_version}). Το script μπορεί να συνεχίσει..."
 
 	arr["ENGLISH",371]="You have reaver installed (v${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v${minimum_reaver_pixiewps_version}"
@@ -3447,7 +3447,7 @@ function language_strings() {
 	arr["FRENCH",371]="${pending_of_translation} Vous reaver installé (v${reaver_version}), mais pas la version requise. Pour rendre l'attaque reaver intégrée Pixie Dust doit avoir au moins la version v${minimum_reaver_pixiewps_version}"
 	arr["CATALAN",371]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
 	arr["PORTUGUESE",371]="${pending_of_translation} Você reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque reaver integrado Pixie Dust tem que ter pelo menos a versão v${minimum_reaver_pixiewps_version}"
-	arr["RUSSIAN",371]="${pending_of_translation} Вы reaver установлена (v${reaver_version}), но не нужную версию. Для того, чтобы сделать Pixie Dust интегрированный reaver атаки должен иметь по крайней мере версии v${minimum_reaver_pixiewps_version}"
+	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
 	arr["GREEK",371]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση reaver πρέπει να έχει τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
 
 	case "${3}" in
