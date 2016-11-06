@@ -3328,7 +3328,7 @@ function language_strings() {
 	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="${pending_of_translation} Algumas combinações não funcionam bem. Tais como reaver e cartões com Ralink chipset. Se o seu cartão tem este chipset é melhor usar bully"
 	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
-	arr["GREEK",356]="${pending_of_translation} Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως reaver και τις κάρτες με Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι καλύτερο να χρησιμοποιήσετε bully"
+	arr["GREEK",356]="Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως για παράδειγμα το reaver με κάρτες που έχουν Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι προτιμότερο να χρησιμοποιήσετε το bully"
 
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
 	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
@@ -3376,7 +3376,7 @@ function language_strings() {
 	arr["CATALAN",362]="${pending_of_translation} PIN personalitzat triat ${normal_color}${custom_pin}"
 	arr["PORTUGUESE",362]="${pending_of_translation} PIN personalizado escolhido ${normal_color}${custom_pin}"
 	arr["RUSSIAN",362]="Пользовательский PIN установлен на ${normal_color}${custom_pin}"
-	arr["GREEK",362]="${pending_of_translation} εξατομικευμένες PIN επιλεγεί ${normal_color}${custom_pin}"
+	arr["GREEK",362]="Το εξατομικευμένο PIN τέθηκε σε ${normal_color}${custom_pin}"
 
 	arr["ENGLISH",363]="Type custom PIN :"
 	arr["SPANISH",363]="Escribe el PIN personalizado :"
@@ -3384,7 +3384,7 @@ function language_strings() {
 	arr["CATALAN",363]="${pending_of_translation} Escriu el ESSID objectiu :"
 	arr["PORTUGUESE",363]="${pending_of_translation} Escreva o ESSID do alvo :"
 	arr["RUSSIAN",363]="Напишите пользовательский PIN :"
-	arr["GREEK",363]="${pending_of_translation} Πληκτρολογήστε ESSID στόχου :"
+	arr["GREEK",363]="Πληκτρολογήστε εξατομικευμένο PIN :"
 
 	arr["ENGLISH",364]="BSSID set to ${normal_color}${wps_bssid}"
 	arr["SPANISH",364]="BSSID elegido ${normal_color}${wps_bssid}"
@@ -3408,7 +3408,7 @@ function language_strings() {
 	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant Ctrl+C), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
 	arr["PORTUGUESE",366]="${pending_of_translation} Depois de parar o ataque (usando Ctrl+C), a janela não será fechada automaticamente ataque. Então temos tempo para anotar a senha em caso de êxito. Você vai ter que fechá-lo manualmente"
 	arr["RUSSIAN",366]="После остановки атаки (используя Ctrl+C), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
-	arr["GREEK",366]="${pending_of_translation} Μετά τη διακοπή της επίθεσης (με Ctrl+C), το παράθυρο δεν θα κλείσει αυτόματα επίθεση. Έτσι, έχετε χρόνο να γράψετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Θα πρέπει να το κλείσει χειροκίνητα"
+	arr["GREEK",366]="Μετά τη διακοπή της επίθεσης (με Ctrl+C), το παράθυρο δεν θα κλείσει αυτόματα. Έτσι θα έχετε χρόνο να κρατήσετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Το παράθυρο θα πρέπει να το κλείσετε χειροκίνητα"
 
 	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v${minimum_bully_pixiewps_version}"
@@ -3416,7 +3416,7 @@ function language_strings() {
 	arr["CATALAN",367]="${pending_of_translation} Tens bully instal·lat (v${bully_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
 	arr["PORTUGUESE",367]="${pending_of_translation} Você bully instalado (v${bully_version}), mas não a versão necessária. Para fazer o ataque bully integrado Pixie Dust tem que ter pelo menos a versão v${minimum_bully_pixiewps_version}"
 	arr["RUSSIAN",367]="У вас установлен bully (v${bully_version}), но не та версия, которая требуется. Для выполнения интегрированной в bully атаки Pixie Dust у вас должна быть по крайне мере версия v${minimum_bully_pixiewps_version}"
-	arr["GREEK",367]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση bully πρέπει να έχει τουλάχιστον την έκδοση v${minimum_bully_pixiewps_version}"
+	arr["GREEK",367]="Έχετε εγκατεστημένο το bully (v${bully_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο bully θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_bully_pixiewps_version}"
 
 	arr["ENGLISH",368]="You have bully installed (v${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v${minimum_bully_pixiewps_version}). Script can continue..."
 	arr["SPANISH",368]="Tienes bully instalado (v${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión minima v${minimum_bully_pixiewps_version}). El script puede continuar..."
@@ -3424,7 +3424,7 @@ function language_strings() {
 	arr["CATALAN",368]="${pending_of_translation} Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",368]="${pending_of_translation} Você bully instalado (v${bully_version}). Você cumprir a exigência versão para o Pixie Dust ataque bully integrado (versão mínima v${minimum_bully_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",368]="У вас установлен bully (v${bully_version}). Версия удовлетворяет требованиям для проведения интегрированной в bully атаки Pixie Dust (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжить работу..."
-	arr["GREEK",368]="${pending_of_translation} Μπορείτε bully εγκατασταθεί (v${bully_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση bully (ελάχιστη έκδοση v${minimum_bully_pixiewps_version}). Το script μπορεί να συνεχίσει..."
+	arr["GREEK",368]="Έχετε εγκατεστημένο το bully (v${bully_version}). Έχετε την απαραίτητη έκδοση bully (ελάχιστη έκδοση v${minimum_bully_pixiewps_version}), για την επίθεση Pixie Dust με ενσωματωμένο bully. Το script μπορεί να συνεχίσει..."
 
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least ${minimum_reaver_pixiewps_version} version for reaver and ${minimum_bully_pixiewps_version} for bully"
 	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión ${minimum_reaver_pixiewps_version} para reaver y ${minimum_bully_pixiewps_version} para bully"
@@ -3432,7 +3432,7 @@ function language_strings() {
 	arr["CATALAN",369]="${pending_of_translation} Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
 	arr["PORTUGUESE",369]="${pending_of_translation} Para executar o ataque reaver integrada Pixie Dust ou bully, é necessário ter instalado pelo menos a versão ${minimum_reaver_pixiewps_version} para reaver e ${minimum_bully_pixiewps_version} para bully"
 	arr["RUSSIAN",369]="Для выполнения интегрированной атаки Pixie Dust с reaver или bully, у вас должна быть установлена, по крайней мере, версия ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
-	arr["GREEK",369]="${pending_of_translation} Για να κάνετε την Pixie Dust επίθεση ολοκληρωμένη reaver ή bully, θα πρέπει να έχετε εγκαταστήσει τουλάχιστον την έκδοση ${minimum_reaver_pixiewps_version} για reaver και ${minimum_bully_pixiewps_version} για bully"
+	arr["GREEK",369]="Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο reaver ή bully, θα πρέπει να έχετε εγκαταστημένη τουλάχιστον την έκδοση ${minimum_reaver_pixiewps_version} για reaver και ${minimum_bully_pixiewps_version} για bully"
 
 	arr["ENGLISH",370]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v${minimum_reaver_pixiewps_version}). El script puede continuar..."
@@ -3440,7 +3440,7 @@ function language_strings() {
 	arr["CATALAN",370]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",370]="${pending_of_translation} Você reaver instalado (v${reaver_version}). Você cumprir a exigência versão para o Pixie Dust ataque reaver integrado (versão mínima v${minimum_reaver_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",370]="У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки Pixie Dust (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжить работу..."
-	arr["GREEK",370]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}). Μπορείτε να πληρούν την απαίτηση έκδοσης για την Pixie Dust ολοκληρωμένη επίθεση reaver (ελάχιστη έκδοση v${minimum_reaver_pixiewps_version}). Το script μπορεί να συνεχίσει..."
+	arr["GREEK",370]="Έχετε εγκατεστημένο το reaver (v${reaver_version}). Έχετε την απαραίτητη έκδοση reaver (ελάχιστη έκδοση v${minimum_reaver_pixiewps_version}), για την επίθεση Pixie Dust με ενσωματωμένο reaver. Το script μπορεί να συνεχίσει..."
 
 	arr["ENGLISH",371]="You have reaver installed (v${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v${minimum_reaver_pixiewps_version}"
 	arr["SPANISH",371]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v${minimum_reaver_pixiewps_version}"
@@ -3448,7 +3448,7 @@ function language_strings() {
 	arr["CATALAN",371]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
 	arr["PORTUGUESE",371]="${pending_of_translation} Você reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque reaver integrado Pixie Dust tem que ter pelo menos a versão v${minimum_reaver_pixiewps_version}"
 	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
-	arr["GREEK",371]="${pending_of_translation} Μπορείτε reaver εγκατασταθεί (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την Pixie Dust ολοκληρωμένη επίθεση reaver πρέπει να έχει τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
+	arr["GREEK",371]="Έχετε εγκατεστημένο το reaver (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο reaver θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
 
 	case "${3}" in
 		"yellow")
