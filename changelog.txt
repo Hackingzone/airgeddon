@@ -2,6 +2,7 @@
 WPS attacks menu added
 WPS scanning based on wash tool. Self-parametrization to avoid "Bad FCS" problem
 WPS Custom pin association
+WPS Pixie Dust attacks integrated with reaver and bully
 Some code improvements
 
 4.32
