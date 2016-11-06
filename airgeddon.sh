@@ -738,13 +738,13 @@ function language_strings() {
 	arr["RUSSIAN",32]="Все параметры установлены"
 	arr["GREEK",32]="Έχουν τεθεί όλοι οι παράμετροι"
 
-	arr["ENGLISH",33]="Starting attack. When started, press Ctrl+C to stop..."
-	arr["SPANISH",33]="Comenzando ataque. Una vez empezado, pulse Ctrl+C para pararlo..."
-	arr["FRENCH",33]="L'attaque est lancé. Pressez Ctrl+C pour l'arrêter..."
-	arr["CATALAN",33]="Començant l'atac. Un cop començat, premeu Ctrl+C per aturar-lo..."
-	arr["PORTUGUESE",33]="Começando ataque. Uma vez iniciado, pressione Ctrl+C para parar..."
-	arr["RUSSIAN",33]="Начало атаки. Когда начнётся, нажмите Ctrl+C для остановки..."
-	arr["GREEK",33]="Έναρξη επίθεσης. Όταν ξεκινήσει, πατήστε Ctrl+C για να σταματήσει..."
+	arr["ENGLISH",33]="Starting attack. When started, press [Ctrl+C] to stop..."
+	arr["SPANISH",33]="Comenzando ataque. Una vez empezado, pulse [Ctrl+C] para pararlo..."
+	arr["FRENCH",33]="L'attaque est lancé. Pressez [Ctrl+C] pour l'arrêter..."
+	arr["CATALAN",33]="Començant l'atac. Un cop començat, premeu [Ctrl+C] per aturar-lo..."
+	arr["PORTUGUESE",33]="Começando ataque. Uma vez iniciado, pressione [Ctrl+C] para parar..."
+	arr["RUSSIAN",33]="Начало атаки. Когда начнётся, нажмите [Ctrl+C] для остановки..."
+	arr["GREEK",33]="Έναρξη επίθεσης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
 	arr["ENGLISH",34]="Selected interface ${interface} is in monitor mode. Attack can be performed"
 	arr["SPANISH",34]="La interfaz seleccionado ${interface} está en modo monitor. El ataque se puede realizar"
@@ -1010,13 +1010,13 @@ function language_strings() {
 	arr["RUSSIAN",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнена"
 	arr["GREEK",66]="Η επιλεγμένη διεπαφή ${interface} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
 
-	arr["ENGLISH",67]="When started, press Ctrl+C to stop..."
-	arr["SPANISH",67]="Una vez empezado, pulse Ctrl+C para pararlo..."
-	arr["FRENCH",67]="Une foi l'opération lancée, veuillez presser Ctrl+C pour l'arrêter..."
-	arr["CATALAN",67]="Una vegada iniciat, polsi Ctrl+C per detenir-ho..."
-	arr["PORTUGUESE",67]="Uma vez iniciado, pressione Ctrl+C para pará-lo..."
-	arr["RUSSIAN",67]="После запуска, нажмите Ctrl+C для остановки..."
-	arr["GREEK",67]="Όταν αρχίσει, πατήστε Ctrl+C για να σταματήσει..."
+	arr["ENGLISH",67]="When started, press [Ctrl+C] to stop..."
+	arr["SPANISH",67]="Una vez empezado, pulse [Ctrl+C] para pararlo..."
+	arr["FRENCH",67]="Une foi l'opération lancée, veuillez presser [Ctrl+C] pour l'arrêter..."
+	arr["CATALAN",67]="Una vegada iniciat, polsi [Ctrl+C] per detenir-ho..."
+	arr["PORTUGUESE",67]="Uma vez iniciado, pressione [Ctrl+C] para pará-lo..."
+	arr["RUSSIAN",67]="После запуска, нажмите [Ctrl+C] для остановки..."
+	arr["GREEK",67]="Όταν αρχίσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
 	arr["ENGLISH",68]="No networks found"
 	arr["SPANISH",68]="No se encontraron redes"
@@ -1994,13 +1994,13 @@ function language_strings() {
 	arr["RUSSIAN",189]="Путь до файла захвата верен. Скрипт может продолжать..."
 	arr["GREEK",189]="Το μονοπάτι για το αρχείο καταγραφής είναι έγκυρο. Το script μπορεί να συνεχίσει..."
 
-	arr["ENGLISH",190]="Starting decrypt. When started, press Ctrl+C to stop..."
-	arr["SPANISH",190]="Comenzando desencriptado. Una vez empezado, pulse Ctrl+C para pararlo..."
-	arr["FRENCH",190]="Lancement du crack. Pressez Ctrl+C pour l'arrêter..."
-	arr["CATALAN",190]="Començant el desencriptat. Un cop començat, premeu Ctrl+C per aturar-lo..."
-	arr["PORTUGUESE",190]="Começando a descriptografar. Uma vez iniciado, pressione Ctrl+C para parar..."
-	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите Ctrl+C для остановки..."
-	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε Ctrl+C για να σταματήσει..."
+	arr["ENGLISH",190]="Starting decrypt. When started, press [Ctrl+C] to stop..."
+	arr["SPANISH",190]="Comenzando desencriptado. Una vez empezado, pulse [Ctrl+C] para pararlo..."
+	arr["FRENCH",190]="Lancement du crack. Pressez [Ctrl+C] pour l'arrêter..."
+	arr["CATALAN",190]="Començant el desencriptat. Un cop començat, premeu [Ctrl+C] per aturar-lo..."
+	arr["PORTUGUESE",190]="Começando a descriptografar. Uma vez iniciado, pressione [Ctrl+C] para parar..."
+	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите [Ctrl+C] для остановки..."
+	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
 	arr["ENGLISH",191]="Capture file you selected is an unsupported file format (not a pcap or IVs file)"
 	arr["SPANISH",191]="El fichero de captura que has seleccionado tiene un formato no soportado (no es un fichero pcap o de IVs)"
@@ -3402,13 +3402,13 @@ function language_strings() {
 	arr["RUSSIAN",365]="Канал установлен на ${normal_color}${wps_channel}"
 	arr["GREEK",365]="Το κανάλι ${normal_color}${wps_channel}${blue_color} έχει επιλεχθεί"
 
-	arr["ENGLISH",366]="After stopping the attack (using Ctrl+C), the window will not be closed automatically. So you'll have time to write down the password if successful. You'll have to close it manually"
-	arr["SPANISH",366]="Tras parar el ataque (usando Ctrl+C), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
-	arr["FRENCH",366]="${pending_of_translation} Après l'arrêt de l'attaque (en utilisant Ctrl+C), la fenêtre ne se ferme pas automatiquement attaque. Donc, avoir le temps d'écrire le mot de passe en cas de succès. Vous devez fermer manuellement"
-	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant Ctrl+C), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
-	arr["PORTUGUESE",366]="${pending_of_translation} Depois de parar o ataque (usando Ctrl+C), a janela não será fechada automaticamente ataque. Então temos tempo para anotar a senha em caso de êxito. Você vai ter que fechá-lo manualmente"
-	arr["RUSSIAN",366]="После остановки атаки (используя Ctrl+C), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
-	arr["GREEK",366]="Μετά τη διακοπή της επίθεσης (με Ctrl+C), το παράθυρο δεν θα κλείσει αυτόματα. Έτσι θα έχετε χρόνο να κρατήσετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Το παράθυρο θα πρέπει να το κλείσετε χειροκίνητα"
+	arr["ENGLISH",366]="After stopping the attack (using [Ctrl+C]), the window will not be closed automatically. So you'll have time to write down the password if successful. You'll have to close it manually"
+	arr["SPANISH",366]="Tras parar el ataque (usando [Ctrl+C]), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
+	arr["FRENCH",366]="${pending_of_translation} Après l'arrêt de l'attaque (en utilisant [Ctrl+C]), la fenêtre ne se ferme pas automatiquement attaque. Donc, avoir le temps d'écrire le mot de passe en cas de succès. Vous devez fermer manuellement"
+	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant [Ctrl+C]), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
+	arr["PORTUGUESE",366]="${pending_of_translation} Depois de parar o ataque (usando [Ctrl+C]), a janela não será fechada automaticamente ataque. Então temos tempo para anotar a senha em caso de êxito. Você vai ter que fechá-lo manualmente"
+	arr["RUSSIAN",366]="После остановки атаки (используя [Ctrl+C]), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
+	arr["GREEK",366]="Μετά τη διακοπή της επίθεσης (με [Ctrl+C]), το παράθυρο δεν θα κλείσει αυτόματα. Έτσι θα έχετε χρόνο να κρατήσετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Το παράθυρο θα πρέπει να το κλείσετε χειροκίνητα"
 
 	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v${minimum_bully_pixiewps_version}"
@@ -3499,7 +3499,7 @@ function language_strings() {
 	esac
 }
 
-#Set the message to show again after an interrupt (Ctrl+C or Crtl+Z) without exiting
+#Set the message to show again after an interrupt ([Ctrl+C] or [Crtl+Z]) without exiting
 function interrupt_checkpoint() {
 
 	if [ -z "${last_buffered_type1}" ]; then
