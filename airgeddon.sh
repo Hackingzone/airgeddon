@@ -3142,7 +3142,7 @@ function language_strings() {
 
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
-	arr["FRENCH",333]="${pending_of_translation} 8.  Menu des attaques WPS"
+	arr["FRENCH",333]="8.  Menu d'attaques WPS"
 	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
 	arr["PORTUGUESE",333]="${pending_of_translation} 8.  Menu de ataques WPS"
 	arr["RUSSIAN",333]="8.  Меню атак на WPS"
@@ -3150,7 +3150,7 @@ function language_strings() {
 
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
-	arr["FRENCH",334]="${pending_of_translation} Menu des attaques WPS"
+	arr["FRENCH",334]="Menu d'attaques WPS"
 	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
 	arr["PORTUGUESE",334]="${pending_of_translation} Menu de ataques WPS"
 	arr["RUSSIAN",334]="Меню атак на WPS"
@@ -3158,7 +3158,7 @@ function language_strings() {
 
 	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 	arr["SPANISH",335]="WPS BSSID seleccionado: ${pink_color}${wps_bssid}${normal_color}"
-	arr["FRENCH",335]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}${wps_bssid}${normal_color}"
+	arr["FRENCH",335]="BSSID WPS sélectionné: ${pink_color}${wps_bssid}${normal_color}"
 	arr["CATALAN",335]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}${wps_bssid}${normal_color}"
 	arr["PORTUGUESE",335]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}${wps_bssid}${normal_color}"
 	arr["RUSSIAN",335]="Выбран WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
@@ -3166,7 +3166,7 @@ function language_strings() {
 
 	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
 	arr["SPANISH",336]="WPS Canal seleccionado: ${pink_color}${wps_channel}${normal_color}"
-	arr["FRENCH",336]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}${wps_channel}${normal_color}"
+	arr["FRENCH",336]="Canal WPS sélectionné: ${pink_color}${wps_channel}${normal_color}"
 	arr["CATALAN",336]="${pending_of_translation} WPS Canal seleecionat: ${pink_color}${wps_channel}${normal_color}"
 	arr["PORTUGUESE",336]="${pending_of_translation} WPS Canal selecionado: ${pink_color}${wps_channel}${normal_color}"
 	arr["RUSSIAN",336]="Выбран WPS канал: ${pink_color}${wps_channel}${normal_color}"
@@ -3174,7 +3174,7 @@ function language_strings() {
 
 	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
 	arr["SPANISH",337]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
-	arr["FRENCH",337]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
+	arr["FRENCH",337]="ESSID WPS sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
 	arr["CATALAN",337]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
 	arr["PORTUGUESE",337]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
 	arr["RUSSIAN",337]="Выбран WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может использоваться"
@@ -3182,7 +3182,7 @@ function language_strings() {
 
 	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 	arr["SPANISH",338]="WPS ESSID seleccionado: ${pink_color}${wps_essid}${normal_color}"
-	arr["FRENCH",338]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}${wps_essid}${normal_color}"
+	arr["FRENCH",338]="ESSID WPS sélectionné: ${pink_color}${wps_essid}${normal_color}"
 	arr["CATALAN",338]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}${wps_essid}${normal_color}"
 	arr["PORTUGUESE",338]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}${wps_essid}${normal_color}"
 	arr["RUSSIAN",338]="Выбран WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
@@ -3190,7 +3190,7 @@ function language_strings() {
 
 	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",339]="WPS BSSID seleccionado: ${pink_color}Ninguno${normal_color}"
-	arr["FRENCH",339]="${pending_of_translation} WPS BSSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["FRENCH",339]="BSSID WPS sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",339]="${pending_of_translation} WPS BSSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",339]="${pending_of_translation} WPS BSSID selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",339]="Выбран WPS BSSID: ${pink_color}Нет${normal_color}"
@@ -3198,7 +3198,7 @@ function language_strings() {
 
 	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
 	arr["SPANISH",340]="WPS Canal seleccionado: ${pink_color}Ninguno${normal_color}"
-	arr["FRENCH",340]="${pending_of_translation} WPS Canal sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["FRENCH",340]="Canal WPS sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",340]="${pending_of_translation} WPS Canal seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",340]="${pending_of_translation} WPS Canal selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",340]="Выбран WPS канал: ${pink_color}Нет${normal_color}"
@@ -3206,7 +3206,7 @@ function language_strings() {
 
 	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",341]="WPS ESSID seleccionado: ${pink_color}Ninguno${normal_color}"
-	arr["FRENCH",341]="${pending_of_translation} WPS ESSID sélectionné: ${pink_color}Aucun${normal_color}"
+	arr["FRENCH",341]="ESSID WPS sélectionné: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",341]="${pending_of_translation} WPS ESSID seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",341]="${pending_of_translation} WPS ESSID selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",341]="Выбран WPS ESSID: ${pink_color}Нет${normal_color}"
@@ -3238,7 +3238,7 @@ function language_strings() {
 
 	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
-	arr["FRENCH",345]="${pending_of_translation} 5.  (bully) Association avec le code PIN personnalisé"
+	arr["FRENCH",345]="5.  (bully) Association avec PIN personnalisé"
 	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",345]="${pending_of_translation} 5.  (bully) Associação com o PIN personalizado"
 	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
@@ -3246,7 +3246,7 @@ function language_strings() {
 
 	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
-	arr["FRENCH",346]="${pending_of_translation} 7.  (bully) Attaque Pixie Dust"
+	arr["FRENCH",346]="7.  (bully) Attaque Pixie Dust"
 	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
 	arr["PORTUGUESE",346]="${pending_of_translation} 7.  (bully) Ataque Pixie Dust"
 	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
@@ -3254,7 +3254,7 @@ function language_strings() {
 
 	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
-	arr["FRENCH",347]="${pending_of_translation} 9.  (bully) Attaque de force brute PIN"
+	arr["FRENCH",347]="9.  (bully) Attaque brute force PIN"
 	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
 	arr["PORTUGUESE",347]="${pending_of_translation} 9.  (bully) Ataque força bruta PIN"
 	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
@@ -3262,7 +3262,7 @@ function language_strings() {
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
-	arr["FRENCH",348]="${pending_of_translation} 11. (bully) Sur la base base de données d'attaque PINs connus"
+	arr["FRENCH",348]=" 11. (bully) Attaque en utilisant un PIN de la base de données"
 	arr["CATALAN",348]="${pending_of_translation} 11. (bully) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="${pending_of_translation} 11. (bully) Banco de dados de ataque com base de PINs conhecidos"
 	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
@@ -3278,7 +3278,7 @@ function language_strings() {
 
 	arr["ENGLISH",350]="${blue_color}You have selected a locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
 	arr["SPANISH",350]="${blue_color}Has seleccionado una red WPS bloqueada ${green_color}¿Deseas continuar? ${normal_color}[y/n]"
-	arr["FRENCH",350]="${pending_of_translation} ${blue_color}Vous avez sélectionné un réseau WPS bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
+	arr["FRENCH",350]="${blue_color}Vous avez sélectionné un réseau dont le WPS est bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
 	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",350]="${pending_of_translation} ${blue_color}Você selecionou uma rede WPS bloqueada ${green_color}Você deseja continuar? ${normal_color}[y/n]"
 	arr["RUSSIAN",350]="${blue_color}Вы выбрали заблокированную WPS сеть ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
@@ -3286,7 +3286,7 @@ function language_strings() {
 
 	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
 	arr["SPANISH",351]="WPS red bloqueada: ${pink_color}${wps_locked}${normal_color}"
-	arr["FRENCH",351]="${pending_of_translation} WPS réseau bloqué: ${pink_color}${wps_locked}${normal_color}"
+	arr["FRENCH",351]="Blocage du WPS: ${pink_color}${wps_locked}${normal_color}"
 	arr["CATALAN",351]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}${wps_locked}${normal_color}"
 	arr["PORTUGUESE",351]="${pending_of_translation} WPS rede bloqueada: ${pink_color}${wps_locked}${normal_color}"
 	arr["RUSSIAN",351]="Сеть с заблокированным WPS: ${pink_color}${wps_locked}${normal_color}"
@@ -3294,7 +3294,7 @@ function language_strings() {
 
 	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
 	arr["SPANISH",352]="WPS red bloqueada: ${pink_color}Ninguno${normal_color}"
-	arr["FRENCH",352]="${pending_of_translation} WPS réseau bloqué: ${pink_color}Aucun${normal_color}"
+	arr["FRENCH",352]="Blocage du WPS: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",352]="${pending_of_translation} WPS xarxa bloquejada: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",352]="${pending_of_translation} WPS rede bloqueada: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",352]="Сеть с заблокированным WPS: ${pink_color}Нет${normal_color}"
@@ -3310,7 +3310,7 @@ function language_strings() {
 
 	arr["ENGLISH",354]="Done! parameter set"
 	arr["SPANISH",354]="Hecho! parámetro fijado"
-	arr["FRENCH",354]="${pending_of_translation} Fait! paramètre fixe"
+	arr["FRENCH",354]="Paramètres définis!"
 	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",354]="${pending_of_translation} Feito! parâmetro fixo"
 	arr["RUSSIAN",354]="Сделано! параметры заданы"
@@ -3318,7 +3318,7 @@ function language_strings() {
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
-	arr["FRENCH",355]="${pending_of_translation} Fait! paramètre fixe"
+	arr["FRENCH",355]="Paramètres définis!"
 	arr["CATALAN",355]="${pending_of_translation} Fet! paràmetre fixat"
 	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
 	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
