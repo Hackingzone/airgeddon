@@ -110,6 +110,7 @@ osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
 minimum_reaver_pixiewps_version="1.5.2"
 minimum_bully_pixiewps_version="1.1"
+minimum_bully_verbosity4_version="1.1"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
@@ -4287,7 +4288,7 @@ function exec_wps_custom_pin_bully_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v 4 && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute wps custom pin reaver attack
@@ -4315,7 +4316,7 @@ function exec_bully_pixiewps_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v 4 && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute reaver pixie dust attack
@@ -5200,6 +5201,8 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_bully_version
+				set_bully_verbosity
 				wps_custom_pin_parameters
 				exec_wps_custom_pin_bully_attack
 			fi
@@ -5219,6 +5222,7 @@ function wps_attacks_menu() {
 				forbidden_menu_option
 			else
 				get_bully_version
+				set_bully_verbosity
 				validate_bully_pixiewps_version
 				if [ "$?" = "0" ]; then
 					echo
@@ -8408,6 +8412,16 @@ function get_reaver_version() {
 
 	reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	reaver_version=${reaver_version:1:${#reaver_version}}
+}
+
+#Set verbosity for bully based on version
+function set_bully_verbosity() {
+
+	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_verbosity4_version}"; then
+		bully_verbosity="4"
+	else
+		bully_verbosity="3"
+	fi
 }
 
 #Validate if bully version is able to perform integrated pixiewps attack
