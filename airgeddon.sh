@@ -8418,7 +8418,10 @@ function get_bully_version() {
 #Determine reaver version
 function get_reaver_version() {
 
-	reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	reaver_version=$(reaver -h 2>&1 > /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	if [ -z "${reaver_version}" ]; then
+		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	fi
 	reaver_version=${reaver_version:1:${#reaver_version}}
 }
 
