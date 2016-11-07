@@ -4547,7 +4547,7 @@ function wps_custom_pin_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
-		return
+		return 1
 	fi
 
 	echo
@@ -4556,6 +4556,7 @@ function wps_custom_pin_parameters() {
 	ask_bssid "wps"
 	ask_channel "wps"
 	ask_custom_pin
+	return 0
 }
 
 #Validate pixie dust parameters
@@ -4563,7 +4564,7 @@ function wps_pixie_dust_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
-		return
+		return 1
 	fi
 
 	echo
@@ -4571,6 +4572,7 @@ function wps_pixie_dust_parameters() {
 
 	ask_bssid "wps"
 	ask_channel "wps"
+	return 0
 }
 
 #Print selected interface
@@ -5206,7 +5208,9 @@ function wps_attacks_menu() {
 				get_bully_version
 				set_bully_verbosity
 				wps_custom_pin_parameters
-				exec_wps_custom_pin_bully_attack
+				if [ "$?" = "0" ]; then
+					exec_wps_custom_pin_bully_attack
+				fi
 			fi
 		;;
 		6)
@@ -5215,7 +5219,9 @@ function wps_attacks_menu() {
 				forbidden_menu_option
 			else
 				wps_custom_pin_parameters
-				exec_wps_custom_pin_reaver_attack
+				if [ "$?" = "0" ]; then
+					exec_wps_custom_pin_reaver_attack
+				fi
 			fi
 		;;
 		7)
@@ -5231,7 +5237,9 @@ function wps_attacks_menu() {
 					language_strings "${language}" 368 "yellow"
 					language_strings "${language}" 115 "read"
 					wps_pixie_dust_parameters
-					exec_bully_pixiewps_attack
+					if [ "$?" = "0" ]; then
+						exec_bully_pixiewps_attack
+					fi
 				else
 					echo
 					language_strings "${language}" 367 "yellow"
@@ -5251,7 +5259,9 @@ function wps_attacks_menu() {
 					language_strings "${language}" 370 "yellow"
 					language_strings "${language}" 115 "read"
 					wps_pixie_dust_parameters
-					exec_reaver_pixiewps_attack
+					if [ "$?" = "0" ]; then
+						exec_reaver_pixiewps_attack
+					fi
 				else
 					echo
 					language_strings "${language}" 371 "yellow"
