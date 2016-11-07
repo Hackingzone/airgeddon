@@ -3320,7 +3320,7 @@ function language_strings() {
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
 	arr["FRENCH",355]="${pending_of_translation} Cette interface a déjà été configuré précédemment. Il est nécessaire de vérifier à nouveau"
 	arr["CATALAN",355]="${pending_of_translation} Aquesta interfície ja va ser parametritzada anteriorment. No cal fer de nou la revisió"
-	arr["PORTUGUESE",355]="${pending_of_translation} Feito! parâmetro fixo"
+	arr["PORTUGUESE",355]="${pending_of_translation} Esta interface já foi configurado anteriormente. Não é necessário verificar novamente"
 	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
 	arr["GREEK",355]="Φαίνεται πως αυτή η διεπαφή παραμετροποιήθηκε προηγουμένως. Δεν είναι απαραίτητο να γίνει έλεγχος ξανά"
 
