@@ -109,6 +109,7 @@ tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
 minimum_reaver_pixiewps_version="1.5.2"
+minimum_reaver_wash_large_version="1.5.2"
 minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
 resume_message=224
@@ -5193,6 +5194,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_reaver_version
 				explore_for_wps_targets_option
 			fi
 		;;
@@ -7609,8 +7611,14 @@ function explore_for_wps_targets_option() {
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
+	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_wash_large_version}"; then
+		wash_start_data_line=7
+	else
+		wash_start_data_line=2
+	fi
+
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
-	if [ "${washlines}" -le 7 ]; then
+	if [ "${washlines}" -le ${wash_start_data_line} ]; then
 		echo
 		language_strings "${language}" 68 "yellow"
 		language_strings "${language}" 115 "read"
@@ -7631,7 +7639,7 @@ function explore_for_wps_targets_option() {
 
 		i=$((i+1))
 
-		if [ ${i} -le 7 ]; then
+		if [ ${i} -le ${wash_start_data_line} ]; then
 			continue
 		else
 			wash_counter=$((wash_counter+1))
@@ -7826,7 +7834,7 @@ function set_wash_parametrization() {
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
-	readarray -t WASH_OUTPUT < <(timeout 1 wash -i "${interface}")
+	readarray -t WASH_OUTPUT < <(timeout 1 wash -i "${interface}" 2> /dev/null)
 
 	for item in "${WASH_OUTPUT[@]}"; do
 		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
