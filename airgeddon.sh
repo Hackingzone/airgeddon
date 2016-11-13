@@ -9251,7 +9251,7 @@ function autodetect_language() {
 	done
 }
 
-#Clean some known warnings for shellcheck tool
+#Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
@@ -9268,6 +9268,7 @@ function remove_warnings() {
 	echo "${reaver_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${reaver_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${is_arm}" > /dev/null 2>&1
 }
 
 #Print a simple separator

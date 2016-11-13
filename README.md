@@ -20,7 +20,6 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Coming soon
-- WPS Bruteforce PIN attack
 - WPS Database search for "easy AP" known PINs
 
 #Requirements
@@ -30,7 +29,7 @@ Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
-*-Parrot 2.2.1 and 3.1.1*<br/>
+*-Parrot 2.2.1, 3.1.1 and arm versions (Raspberry Pi)*<br/>
 *-Blackarch 2016.01.10 and 2016.04.28*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
