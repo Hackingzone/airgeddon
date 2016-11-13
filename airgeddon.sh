@@ -8491,15 +8491,8 @@ function detect_distro_phase1() {
 	done
 }
 
-#Second phase of Linux distro detection based on version file
+#Second phase of Linux distro detection based on architecture and version file
 function detect_distro_phase2() {
-
-	if [ "${distro}" = "Kali" ]; then
-		uname -m | grep "arm" > /dev/null
-		if [ "$?" = "0" ]; then
-			distro="Kali arm"
-		fi
-	fi
 
 	if [ "${distro}" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
@@ -8520,9 +8513,23 @@ function detect_distro_phase2() {
 				is_raspbian=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
 				if [[ "${is_raspbian}" =~ Raspbian ]]; then
 					distro="Raspbian"
+					is_arm=1
 				fi
 			fi
 		fi
+	fi
+
+	detect_arm_architecture
+}
+
+#Detect if arm architecture is present on system
+function detect_arm_architecture() {
+
+	uname -m | grep -i "arm" > /dev/null
+
+	if [[ "$?" = "0" ]] && [[ "${distro}" != "Unknown Linux" ]] && [[ "${distro}" != "Raspbian" ]]; then
+		distro="${distro} arm"
+		is_arm=1
 	fi
 }
 
@@ -8579,7 +8586,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Parrot")
+		"Parrot"|"Parrot arm")
 			networkmanager_cmd="service network-manager restart"
 			xratio=6.2
 			yratio=13.9
@@ -8926,6 +8933,7 @@ function initialize_script_settings() {
 	ywindow_edge_lines=2
 	ywindow_edge_pixels=18
 	networkmanager_cmd="service network-manager restart"
+	is_arm=0
 }
 
 #Detect screen resolution if possible

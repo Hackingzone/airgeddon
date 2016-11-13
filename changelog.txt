@@ -1,3 +1,7 @@
+5.01
+New system for arm architecture detection
+Compatibility extended to Parrot arm version on Raspberry Pi
+
 5.0
 WPS attacks menu added
 WPS scanning based on wash tool. Self-parametrization to avoid "Bad FCS" problem
