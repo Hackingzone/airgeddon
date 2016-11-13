@@ -9,6 +9,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
 - 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
+- WPS features: WPS scanning (wash). WPS Custom pin association. WPS Pixie Dust attacks integrated with reaver and bully.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -19,11 +20,8 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Coming soon
-- WPS scanning
-- WPS Pixie Dust attack
 - WPS Bruteforce PIN attack
 - WPS Database search for "easy AP" known PINs
-- WPS Custom pin association
 
 #Requirements
 Bash version 4.0 or later needed.<br/>
@@ -42,7 +40,7 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
-*-Arch 4.6.2-1*<br/>
+*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1 and 4.8.6-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
@@ -78,6 +76,9 @@ etterlog -> ettercap / ettercap-text-only / ettercap-graphical
 sslstrip -> sslstrip
 lighttpd -> lighttpd
 dnsspoof -> dsniff
+wash -> reaver
+reaver -> reaver
+bully -> bully
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
@@ -145,7 +146,7 @@ Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations and the help received fixing code warnings.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
