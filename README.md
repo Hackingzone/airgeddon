@@ -158,10 +158,8 @@ If you enjoyed the script, feel free to give a donation. Invite me to a coffee t
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 <br/>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" title="Show me the money!">![Show me the money!][2]</a>
 [![paypal][2]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
 &nbsp;
-<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" title="Show me the money!">![Show me the money!][3]</a>
 [![bitcoin][3]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
 [1]: /imgs/airgeddon_banner.png "We'll conquer the earth!!"
