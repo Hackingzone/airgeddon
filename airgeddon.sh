@@ -8492,7 +8492,7 @@ function get_hashcat_version() {
 function get_bully_version() {
 
 	bully_version=$(bully -V 2> /dev/null)
-	bully_version=${bully_version:1:${#bully_version}}
+	bully_version=${bully_version#"v"}
 }
 
 #Determine reaver version
@@ -8502,7 +8502,7 @@ function get_reaver_version() {
 	if [ -z "${reaver_version}" ]; then
 		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	fi
-	reaver_version=${reaver_version:1:${#reaver_version}}
+	reaver_version=${reaver_version#"v"}
 }
 
 #Set verbosity for bully based on version
