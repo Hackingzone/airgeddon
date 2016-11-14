@@ -112,6 +112,7 @@ minimum_reaver_pixiewps_version="1.5.2"
 minimum_reaver_wash_large_version="1.5.2"
 minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
+hashcat3_version="3.0"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
@@ -5392,6 +5393,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_dictionary_attack_option
 			fi
 		;;
@@ -5400,6 +5403,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_bruteforce_attack_option
 			fi
 		;;
@@ -5408,6 +5413,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_rulebased_attack_option
 			fi
 		;;
@@ -5758,7 +5765,12 @@ function hashcat_rulebased_attack_option() {
 #Check if the password was decrypted using hashcat and manage to save it on a file
 function manage_hashcat_pot() {
 
-	if [[ ${hashcat_output} =~ "All hashes have been recovered" ]]; then
+	local regexp="All hashes have been recovered"
+	if [ -n "${hashcat_fix}" ]; then
+		local regexp="Status\.{1,9}:[[:space:]]Cracked"
+	fi
+
+	if [[ ${hashcat_output} =~ ${regexp} ]]; then
 
 		echo
 		language_strings "${language}" 234 "yellow"
@@ -6040,7 +6052,9 @@ function exec_aircrack_dictionary_attack() {
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6048,7 +6062,9 @@ function exec_hashcat_dictionary_attack() {
 function exec_hashcat_bruteforce_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 3 "${tmpdir}hctmp.hccap" "${charset}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}hctmp.hccap\" \"${charset}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6056,7 +6072,9 @@ function exec_hashcat_bruteforce_attack() {
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" -r "${RULES}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6972,7 +6990,6 @@ function convert_cap_to_hashcat_format() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
-	exec 5>&1
 }
 
 #Handshake tools menu
@@ -8453,6 +8470,22 @@ function iwconfig_fix() {
 	if [ "${iwversion}" -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
 	fi
+}
+
+#Set hashcat parameters based on version
+function set_hashcat_parameters() {
+
+	hashcat_fix=""
+	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
+		hashcat_fix=" -D 1 --force"
+	fi
+}
+
+#Determine hashcat version
+function get_hashcat_version() {
+
+	hashcat_version=$(hashcat -V 2> /dev/null)
+	hashcat_version=${hashcat_version#"v"}
 }
 
 #Determine bully version
