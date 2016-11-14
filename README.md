@@ -1,6 +1,6 @@
 #airgeddon
 This is a multi-use bash script for Linux systems to audit wireless networks.<br/>
-<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/airgeddon_banner.png" title="We'll conquer the earth!!"/>
+![We'll conquer the earth!!][1]
 
 #Features
 - Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing.<br/>
@@ -158,6 +158,9 @@ If you enjoyed the script, feel free to give a donation. Invite me to a coffee t
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 <br/>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" title="Show me the money!">![Show me the money!][1]</a>&nbsp;<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" title="Show me the money!">![Show me the money!][2]</a>
-[1]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/paypal_donate.png
-[2]: https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/bitcoin_donate.png
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG" title="Show me the money!">![Show me the money!][2]</a>
+&nbsp;
+<a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH" title="Show me the money!">![Show me the money!][3]</a>
+[1]: /imgs/airgeddon_banner.png
+[2]: /imgs/paypal_donate.png
+[3]: /imgs/bitcoin_donate.png
