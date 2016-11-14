@@ -3,13 +3,13 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 <img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/airgeddon_banner.png" title="We'll conquer the earth!!"/>
 
 #Features
-- Interface mode switcher (Monitor-Managed) keeping selection even with interface name changing.<br/>
-- DoS over wireless networks with different methods.<br/>
-- Assisted Handshake file capture.<br/>
+- Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing.<br/>
+- DoS over wireless networks using different methods.<br/>
+- Assisted Handshake file capturing.<br/>
 - Cleaning and optimizing Handshake captured files.<br/>
-- Offline password decrypt on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
-- 4 Evil Twin attacks: Evil Twin with integrated sniffing, with sslstrip, "only AP" version to sniff with external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
-- WPS features: WPS scanning (wash). WPS Custom pin association. WPS Pixie Dust attacks integrated with reaver and bully.<br/>
+- Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
+- 4 Evil Twin attacks: Evil Twin with integrated sniffing, sslstrip mode, "only AP" version to sniff using external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
+- WPS features: WPS scanning (wash). WPS Custom pin association. WPS Pixie Dust attacks integrated using reaver and bully. WPS bruteforce PIN attacks.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -20,7 +20,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Coming soon
-- WPS Database search for "easy AP" known PINs
+- WPS PIN Database search for "easy AP" known PINs and integration of most common PIN generation algorithms
 
 #Requirements
 Bash version 4.0 or later needed.<br/>

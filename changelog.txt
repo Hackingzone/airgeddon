@@ -1,6 +1,8 @@
 5.01
+WPS bruteforce PIN attacks (reaver and bully)
 New system for arm architecture detection
 Compatibility extended to Parrot arm version on Raspberry Pi
+Some WPS attacks improvements
 
 5.0
 WPS attacks menu added
