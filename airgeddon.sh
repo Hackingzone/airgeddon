@@ -3257,7 +3257,7 @@ function language_strings() {
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",347]="9.  (bully) Attaque brute force PIN"
 	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
-	arr["PORTUGUESE",347]="${pending_of_translation} 9.  (bully) Ataque de força bruta PIN"
+	arr["PORTUGUESE",347]="9.  (bully) Ataque de força bruta por PIN"
 	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
 	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
 
@@ -3353,7 +3353,7 @@ function language_strings() {
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",359]="${pending_of_translation} 10. (reaver) Attaque de force brute PIN"
 	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
-	arr["PORTUGUESE",359]="${pending_of_translation} 10. (reaver) Ataque de força bruta PIN"
+	arr["PORTUGUESE",359]="10. (reaver) Ataque de força bruta por PIN"
 	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
 	arr["GREEK",359]="10. (reaver) Επίθεση PIN με χρήση ωμής βίας"
 
