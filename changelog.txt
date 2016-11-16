@@ -1,3 +1,10 @@
+5.01
+WPS bruteforce PIN attacks (reaver and bully)
+New system for arm architecture detection
+Compatibility extended to Parrot arm version on Raspberry Pi
+Some WPS attacks improvements
+Compatibility extended for hashcat v3.0 or higher
+
 5.0
 WPS attacks menu added
 WPS scanning based on wash tool. Self-parametrization to avoid "Bad FCS" problem
