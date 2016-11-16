@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.0"
+airgeddon_version="5.01"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -112,6 +112,7 @@ minimum_reaver_pixiewps_version="1.5.2"
 minimum_reaver_wash_large_version="1.5.2"
 minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
+hashcat3_version="3.0"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
@@ -161,6 +162,7 @@ known_compatible_distros=(
 							"Kali"
 							"Kali arm"
 							"Parrot"
+							"Parrot arm"
 							"Backbox"
 							"Blackarch"
 							"Cyborg"
@@ -2264,7 +2266,7 @@ function language_strings() {
 	arr["SPANISH",223]="Es posible que el chequeo de las herramientas esenciales haya fallado porque no eres usuario root o no tienes privilegios suficientes. Lanza el script como usuario root o usando \"sudo\""
 	arr["FRENCH",223]="Il est possible que la vérification des outils essentiels ait échouée parce que vous n'êtes pas logué comme root ou ne disposez pas des privilèges nécessaires. Lancez le script en tant que root ou en utilisant \"sudo\""
 	arr["CATALAN",223]="És possible que la revisió de les eines essencials hagi fallat perquè no ets usuari root o no tens privilegis suficients. Llança l'script com a usuari root o utilitzeu \"sudo\""
-	arr["PORTUGUESE",223]="Talvez a checagem das ferramentas essenciais falhou porque você não é root ou não tem privilégios suficientes. Execute o script como root ou usando \"sudo\""
+	arr["PORTUGUESE",223]="Talvez a checagem das ferramentas essenciais tenha falhado porque você não é root ou não tem privilégios suficientes. Execute o script como root ou usando \"sudo\""
 	arr["RUSSIAN",223]="Может быть, проверка на базовые инструменты потерпела неудачу из-за того, что вы не пользователь root или не имеете достаточных привилегий. Запустите скрипт как root пользователь или используйте \"sudo\""
 	arr["GREEK",223]="Ίσως ο έλεγχος απαραίτητων εργαλείων απέτυχε γιατί δεν είστε root χρήστης ή δεν έχετε αρκετά δικαιώματα. Ανοίξτε το script ως root χρήστης ή χρησιμοποιήστε \"sudo\""
 
@@ -2366,10 +2368,10 @@ function language_strings() {
 
 	arr["ENGLISH",236]="Hashcat trophy file generated successfully at [${normal_color}${potenteredpath}${blue_color}]"
 	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [${normal_color}${potenteredpath}${blue_color}]"
-	arr["FRENCH",236]="Le fichier trophée Hashcat a bien été crée dans [${normal_color}${potenteredpath}${blue_color}]"
+	arr["FRENCH",236]="Le fichier trophée hashcat a bien été crée dans [${normal_color}${potenteredpath}${blue_color}]"
 	arr["CATALAN",236]="Fitxer de trofeu hashcat generat amb èxit a [${normal_color}${potenteredpath}${blue_color}]"
-	arr["PORTUGUESE",236]="Arquivo troféu Hashcat gerado com sucesso [${normal_color}${potenteredpath}${blue_color}]"
-	arr["RUSSIAN",236]="Трофейный файл Hashcat был успешно сгенерирован в [${normal_color}${potenteredpath}${blue_color}]"
+	arr["PORTUGUESE",236]="Arquivo troféu hashcat gerado com sucesso [${normal_color}${potenteredpath}${blue_color}]"
+	arr["RUSSIAN",236]="Трофейный файл hashcat был успешно сгенерирован в [${normal_color}${potenteredpath}${blue_color}]"
 	arr["GREEK",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}${potenteredpath}${blue_color}]"
 
 	arr["ENGLISH",237]="5.  Lowercase + uppercase + numeric + symbol chars"
@@ -3240,7 +3242,7 @@ function language_strings() {
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
 	arr["FRENCH",345]="5.  (bully) Association avec PIN personnalisé"
 	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
-	arr["PORTUGUESE",345]="5.  (bully)  Associação com o PIN personalizado"
+	arr["PORTUGUESE",345]="5.  (bully) Associação com o PIN personalizado"
 	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
 	arr["GREEK",345]="5.  (bully) Σύνδεση με εξατομικευμένο PIN"
 
@@ -3248,7 +3250,7 @@ function language_strings() {
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
 	arr["FRENCH",346]="7.  (bully) Attaque Pixie Dust"
 	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
-	arr["PORTUGUESE",346]="7.  (bully)  Ataque Pixie Dust"
+	arr["PORTUGUESE",346]="7.  (bully) Ataque Pixie Dust"
 	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
 	arr["GREEK",346]="7.  (bully) Επίθεση Pixie Dust"
 
@@ -3256,7 +3258,7 @@ function language_strings() {
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",347]="9.  (bully) Attaque brute force PIN"
 	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
-	arr["PORTUGUESE",347]="${pending_of_translation} 9.  (bully) Ataque de força bruta PIN"
+	arr["PORTUGUESE",347]="9.  (bully) Ataque de força bruta por PIN"
 	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
 	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
 
@@ -3352,7 +3354,7 @@ function language_strings() {
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",359]="${pending_of_translation} 10. (reaver) Attaque de force brute PIN"
 	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
-	arr["PORTUGUESE",359]="${pending_of_translation} 10. (reaver) Ataque de força bruta PIN"
+	arr["PORTUGUESE",359]="10. (reaver) Ataque de força bruta por PIN"
 	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
 	arr["GREEK",359]="10. (reaver) Επίθεση PIN με χρήση ωμής βίας"
 
@@ -4289,7 +4291,7 @@ function exec_wps_custom_pin_bully_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L --force -B -p ${custom_pin} -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L -F -B -p ${custom_pin} -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute wps custom pin reaver attack
@@ -4303,7 +4305,7 @@ function exec_wps_custom_pin_reaver_attack() {
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -vvv && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -a -g 1 -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute bully pixie dust attack
@@ -4332,6 +4334,34 @@ function exec_reaver_pixiewps_attack() {
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
 	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -K 1 -vvv && echo \"Close this window\"" > /dev/null 2>&1
+}
+
+#Execute wps bruteforce pin bully attack
+function exec_wps_bruteforce_pin_bully_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L -F -B -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
+}
+
+#Execute wps bruteforce pin reaver attack
+function exec_wps_bruteforce_pin_reaver_attack() {
+
+	echo
+	language_strings "${language}" 32 "green"
+
+	echo
+	language_strings "${language}" 33 "yellow"
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -a -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
 #Execute mdk3 deauth DoS attack
@@ -4559,8 +4589,8 @@ function wps_custom_pin_parameters() {
 	return 0
 }
 
-#Validate pixie dust parameters
-function wps_pixie_dust_parameters() {
+#Validate wps pixie dust and bruteforce parameters
+function wps_pixie_dust_and_bruteforce_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -5172,8 +5202,8 @@ function wps_attacks_menu() {
 	language_strings "${language}" 357 reaver_attacks_dependencies[@]
 	language_strings "${language}" 346 bully_pixie_dust_attack_dependencies[@]
 	language_strings "${language}" 358 reaver_pixie_dust_attack_dependencies[@]
-	language_strings "${language}" 347 "under_construction" #bully_attacks_dependencies[@]
-	language_strings "${language}" 359 "under_construction" #reaver_attacks_dependencies[@]
+	language_strings "${language}" 347 bully_attacks_dependencies[@]
+	language_strings "${language}" 359 reaver_attacks_dependencies[@]
 	language_strings "${language}" 348 "under_construction" #bully_attacks_dependencies[@]
 	language_strings "${language}" 360 "under_construction" #reaver_attacks_dependencies[@]
 	print_simple_separator
@@ -5236,7 +5266,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 368 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_pixie_dust_parameters
+					wps_pixie_dust_and_bruteforce_parameters
 					if [ "$?" = "0" ]; then
 						exec_bully_pixiewps_attack
 					fi
@@ -5258,7 +5288,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 370 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_pixie_dust_parameters
+					wps_pixie_dust_and_bruteforce_parameters
 					if [ "$?" = "0" ]; then
 						exec_reaver_pixiewps_attack
 					fi
@@ -5274,7 +5304,12 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				under_construction_message
+				get_bully_version
+				set_bully_verbosity
+				wps_pixie_dust_and_bruteforce_parameters
+				if [ "$?" = "0" ]; then
+					exec_wps_bruteforce_pin_bully_attack
+				fi
 			fi
 		;;
 		10)
@@ -5282,7 +5317,11 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				under_construction_message
+				get_reaver_version
+				wps_pixie_dust_and_bruteforce_parameters
+				if [ "$?" = "0" ]; then
+					exec_wps_bruteforce_pin_reaver_attack
+				fi
 			fi
 		;;
 		11)
@@ -5355,6 +5394,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_dictionary_attack_option
 			fi
 		;;
@@ -5363,6 +5404,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_bruteforce_attack_option
 			fi
 		;;
@@ -5371,6 +5414,8 @@ function decrypt_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				get_hashcat_version
+				set_hashcat_parameters
 				hashcat_rulebased_attack_option
 			fi
 		;;
@@ -5721,7 +5766,12 @@ function hashcat_rulebased_attack_option() {
 #Check if the password was decrypted using hashcat and manage to save it on a file
 function manage_hashcat_pot() {
 
-	if [[ ${hashcat_output} =~ "All hashes have been recovered" ]]; then
+	local regexp="All hashes have been recovered"
+	if [ -n "${hashcat_fix}" ]; then
+		local regexp="Status\.{1,9}:[[:space:]]Cracked"
+	fi
+
+	if [[ ${hashcat_output} =~ ${regexp} ]]; then
 
 		echo
 		language_strings "${language}" 234 "yellow"
@@ -6003,7 +6053,9 @@ function exec_aircrack_dictionary_attack() {
 function exec_hashcat_dictionary_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6011,7 +6063,9 @@ function exec_hashcat_dictionary_attack() {
 function exec_hashcat_bruteforce_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 3 "${tmpdir}hctmp.hccap" "${charset}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}hctmp.hccap\" \"${charset}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6019,7 +6073,9 @@ function exec_hashcat_bruteforce_attack() {
 function exec_hashcat_rulebased_attack() {
 
 	convert_cap_to_hashcat_format
-	hashcat_output=$(hashcat -m 2500 -a 0 "${tmpdir}hctmp.hccap" "${DICTIONARY}" -r "${RULES}" --potfile-disable -o "${tmpdir}hctmp.pot" | tee /dev/fd/5)
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	exec 5>&1
+	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
 }
 
@@ -6935,7 +6991,6 @@ function convert_cap_to_hashcat_format() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
-	exec 5>&1
 }
 
 #Handshake tools menu
@@ -8418,11 +8473,27 @@ function iwconfig_fix() {
 	fi
 }
 
+#Set hashcat parameters based on version
+function set_hashcat_parameters() {
+
+	hashcat_fix=""
+	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
+		hashcat_fix=" -D 1 --force"
+	fi
+}
+
+#Determine hashcat version
+function get_hashcat_version() {
+
+	hashcat_version=$(hashcat -V 2> /dev/null)
+	hashcat_version=${hashcat_version#"v"}
+}
+
 #Determine bully version
 function get_bully_version() {
 
 	bully_version=$(bully -V 2> /dev/null)
-	bully_version=${bully_version:1:${#bully_version}}
+	bully_version=${bully_version#"v"}
 }
 
 #Determine reaver version
@@ -8432,7 +8503,7 @@ function get_reaver_version() {
 	if [ -z "${reaver_version}" ]; then
 		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	fi
-	reaver_version=${reaver_version:1:${#reaver_version}}
+	reaver_version=${reaver_version#"v"}
 }
 
 #Set verbosity for bully based on version
@@ -8491,15 +8562,8 @@ function detect_distro_phase1() {
 	done
 }
 
-#Second phase of Linux distro detection based on version file
+#Second phase of Linux distro detection based on architecture and version file
 function detect_distro_phase2() {
-
-	if [ "${distro}" = "Kali" ]; then
-		uname -m | grep "arm" > /dev/null
-		if [ "$?" = "0" ]; then
-			distro="Kali arm"
-		fi
-	fi
 
 	if [ "${distro}" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
@@ -8520,9 +8584,23 @@ function detect_distro_phase2() {
 				is_raspbian=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
 				if [[ "${is_raspbian}" =~ Raspbian ]]; then
 					distro="Raspbian"
+					is_arm=1
 				fi
 			fi
 		fi
+	fi
+
+	detect_arm_architecture
+}
+
+#Detect if arm architecture is present on system
+function detect_arm_architecture() {
+
+	uname -m | grep -i "arm" > /dev/null
+
+	if [[ "$?" = "0" ]] && [[ "${distro}" != "Unknown Linux" ]] && [[ "${distro}" != "Raspbian" ]]; then
+		distro="${distro} arm"
+		is_arm=1
 	fi
 }
 
@@ -8579,7 +8657,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Parrot")
+		"Parrot"|"Parrot arm")
 			networkmanager_cmd="service network-manager restart"
 			xratio=6.2
 			yratio=13.9
@@ -8926,6 +9004,7 @@ function initialize_script_settings() {
 	ywindow_edge_lines=2
 	ywindow_edge_pixels=18
 	networkmanager_cmd="service network-manager restart"
+	is_arm=0
 }
 
 #Detect screen resolution if possible
@@ -9243,7 +9322,7 @@ function autodetect_language() {
 	done
 }
 
-#Clean some known warnings for shellcheck tool
+#Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
 
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
@@ -9260,6 +9339,7 @@ function remove_warnings() {
 	echo "${reaver_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${reaver_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${is_arm}" > /dev/null 2>&1
 }
 
 #Print a simple separator
