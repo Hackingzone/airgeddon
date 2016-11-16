@@ -3242,7 +3242,7 @@ function language_strings() {
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
 	arr["FRENCH",345]="5.  (bully) Association avec PIN personnalisé"
 	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
-	arr["PORTUGUESE",345]="5.  (bully)  Associação com o PIN personalizado"
+	arr["PORTUGUESE",345]="5.  (bully) Associação com o PIN personalizado"
 	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
 	arr["GREEK",345]="5.  (bully) Σύνδεση με εξατομικευμένο PIN"
 
@@ -3250,7 +3250,7 @@ function language_strings() {
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
 	arr["FRENCH",346]="7.  (bully) Attaque Pixie Dust"
 	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
-	arr["PORTUGUESE",346]="7.  (bully)  Ataque Pixie Dust"
+	arr["PORTUGUESE",346]="7.  (bully) Ataque Pixie Dust"
 	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
 	arr["GREEK",346]="7.  (bully) Επίθεση Pixie Dust"
 
