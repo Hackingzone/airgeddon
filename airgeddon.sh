@@ -2265,7 +2265,7 @@ function language_strings() {
 	arr["SPANISH",223]="Es posible que el chequeo de las herramientas esenciales haya fallado porque no eres usuario root o no tienes privilegios suficientes. Lanza el script como usuario root o usando \"sudo\""
 	arr["FRENCH",223]="Il est possible que la vérification des outils essentiels ait échouée parce que vous n'êtes pas logué comme root ou ne disposez pas des privilèges nécessaires. Lancez le script en tant que root ou en utilisant \"sudo\""
 	arr["CATALAN",223]="És possible que la revisió de les eines essencials hagi fallat perquè no ets usuari root o no tens privilegis suficients. Llança l'script com a usuari root o utilitzeu \"sudo\""
-	arr["PORTUGUESE",223]="Talvez a checagem das ferramentas essenciais falhou porque você não é root ou não tem privilégios suficientes. Execute o script como root ou usando \"sudo\""
+	arr["PORTUGUESE",223]="Talvez a checagem das ferramentas essenciais tenha falhado porque você não é root ou não tem privilégios suficientes. Execute o script como root ou usando \"sudo\""
 	arr["RUSSIAN",223]="Может быть, проверка на базовые инструменты потерпела неудачу из-за того, что вы не пользователь root или не имеете достаточных привилегий. Запустите скрипт как root пользователь или используйте \"sudo\""
 	arr["GREEK",223]="Ίσως ο έλεγχος απαραίτητων εργαλείων απέτυχε γιατί δεν είστε root χρήστης ή δεν έχετε αρκετά δικαιώματα. Ανοίξτε το script ως root χρήστης ή χρησιμοποιήστε \"sudo\""
 
@@ -3257,7 +3257,7 @@ function language_strings() {
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",347]="9.  (bully) Attaque brute force PIN"
 	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
-	arr["PORTUGUESE",347]="9.  (bully) Ataque de força bruta por PIN"
+	arr["PORTUGUESE",347]="9.  (bully)  Ataque de força bruta por PIN"
 	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
 	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
 
@@ -3265,7 +3265,7 @@ function language_strings() {
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
 	arr["FRENCH",348]=" 11. (bully) Attaque en utilisant un PIN de la base de données"
 	arr["CATALAN",348]="${pending_of_translation} 11. (bully) Atac basat en base de dades de PINs coneguts"
-	arr["PORTUGUESE",348]="11. (bully) Ataque com base em banco de dados de PINs conhecidos"
+	arr["PORTUGUESE",348]="11. (bully)  Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
 	arr["GREEK",348]="11. (bully) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
 
