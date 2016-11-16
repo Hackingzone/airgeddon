@@ -162,6 +162,7 @@ known_compatible_distros=(
 							"Kali"
 							"Kali arm"
 							"Parrot"
+							"Parrot arm"
 							"Backbox"
 							"Blackarch"
 							"Cyborg"
