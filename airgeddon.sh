@@ -3216,7 +3216,7 @@ function language_strings() {
 
 	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
 	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
-	arr["FRENCH",342]="${pending_of_translation} L'attaque Pixie Dust obtient le code PIN et le mot de passe en quelques secondes, mais les points d'accès ne sont pas tous vulnérables à cette attaque"
+	arr["FRENCH",342]="L'attaque Pixie Dust permet l'obtention du PIN et du mot de passe en quelques secondes mais les points d'accès ne sont pas tous vulnérables"
 	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
 	arr["PORTUGUESE",342]="O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
 	arr["RUSSIAN",342]="Pixie Dust получает PIN и пароль за секунды, но не все точки доступа подвержены этой атаке"
@@ -3224,7 +3224,7 @@ function language_strings() {
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
-	arr["FRENCH",343]="${pending_of_translation} Pour effectuer toute WPS attaque dont vous avez besoin d'un bon signe du réseau cible. Nous pourrions obtenir autrement faux négatifs"
+	arr["FRENCH",343]="Il faut être en de bonnes conditions d'émission et de réception pour pouvoir mener à bien une attaque WPS. Sinon l'attaque pourrait se solder par un faux-positif"
 	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
 	arr["PORTUGUESE",343]="Para executar qualquer ataque WPS você precisa ter um bom sinal da rede alvo. Caso contrario você pode obter falsos negativos"
 	arr["RUSSIAN",343]="Чтобы добиться успеха при любой WPS атаке, вам нужен хорошей сигнал целевой сети. В противном случае мы можем получить ложные срабатывания"
@@ -3232,7 +3232,7 @@ function language_strings() {
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
-	arr["FRENCH",344]="${pending_of_translation} Certains points d'accès sont bloqués après avoir raté un certain nombre de tentatives de connexion par code PIN. Elle peut varier en fonction du point d'accès"
+	arr["FRENCH",344]="Certains routers bloquent le WPS après un certain nombre de PIN erronés. Ce nombre varie selon les modèle"
 	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
 	arr["PORTUGUESE",344]="Alguns pontos de acesso podem estar bloqueados depois de receber uma série de tentativas incorretas de conexão por PIN. Isso pode variar dependendo do ponto de acesso"
 	arr["RUSSIAN",344]="Некоторые точки доступа блокируются после нескольких неудачных попыток подключения с PIN. Это зависит от конкретной точки доступа."
@@ -3304,7 +3304,7 @@ function language_strings() {
 
 	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
 	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
-	arr["FRENCH",353]="${pending_of_translation} Faire un petit test pour résoudre le problème possible de \"bad FCS\" si. Paramétrage..."
+	arr["FRENCH",353]="Vérification de routine pour prévenir une éventuelle erreur de type \"bad FCS\""
 	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
 	arr["PORTUGUESE",353]="Fazendo alguns teste para resolver o possível problema \"bad FCS\". Definindo parâmetro..."
 	arr["RUSSIAN",353]="Проверка возможного решения проблемы \"плохого FCS (контроля последовательности кадров)\" если она существует. Параметризация..."
@@ -3320,7 +3320,7 @@ function language_strings() {
 
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
-	arr["FRENCH",355]="${pending_of_translation} Cette interface a déjà été configuré précédemment. Il est nécessaire de vérifier à nouveau"
+	arr["FRENCH",355]="Cette interface a déjà été configurée: Pas besoin de vérifier de nouevau son état"
 	arr["CATALAN",355]="${pending_of_translation} Aquesta interfície ja va ser parametritzada anteriorment. No cal fer de nou la revisió"
 	arr["PORTUGUESE",355]="Esta interface já foi configurada anteriormente. Não é necessário verificar novamente"
 	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
@@ -3328,7 +3328,7 @@ function language_strings() {
 
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
 	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
-	arr["FRENCH",356]="${pending_of_translation} Certaines combinaisons ne fonctionnent pas bien. Tels que reaver et cartes avec Ralink chipset. Si votre carte a ce chipset est préférable d'utiliser bully"
+	arr["FRENCH",356]="Il existe certains problèmes spécifiques de compatibilité. L’exemple le plus marquant est sans aucun doute  celui des chipsets Ralink qui ne fonctionnent pas bien avec reaver. Il est donc conseillé d'utiliser bully avec ces chipsets"
 	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="Algumas combinações não funcionam bem. Tais como reaver e placas de rede com chipset Ralink. Se o sua placa de rede tem este chipset é melhor usar bully"
 	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
@@ -3336,7 +3336,7 @@ function language_strings() {
 
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
 	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
-	arr["FRENCH",357]="${pending_of_translation} 6.  (reaver) Association avec le code PIN personnalisé"
+	arr["FRENCH",357]="6.  (reaver) Association avec le code PIN personnalisé"
 	arr["CATALAN",357]="${pending_of_translation} 6.  (reaver) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",357]="6.  (reaver) Associação com o PIN personalizado"
 	arr["RUSSIAN",357]="6.  (reaver) Пользовательские PIN ассоциации"
@@ -3344,7 +3344,7 @@ function language_strings() {
 
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
 	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
-	arr["FRENCH",358]="${pending_of_translation} 8.  (reaver) Attaque Pixie Dust"
+	arr["FRENCH",358]="8.  (reaver) Attaque Pixie Dust"
 	arr["CATALAN",358]="${pending_of_translation} 8.  (reaver) Atac Pixie Dust"
 	arr["PORTUGUESE",358]="8.  (reaver) Ataque Pixie Dust"
 	arr["RUSSIAN",358]="8.  (reaver) Атака Pixie Dust"
@@ -3352,7 +3352,7 @@ function language_strings() {
 
 	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
-	arr["FRENCH",359]="${pending_of_translation} 10. (reaver) Attaque de force brute PIN"
+	arr["FRENCH",359]="10. (reaver) Attaque de force brute PIN"
 	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
 	arr["PORTUGUESE",359]="10. (reaver) Ataque de força bruta por PIN"
 	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
@@ -3360,7 +3360,7 @@ function language_strings() {
 
 	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
 	arr["SPANISH",360]="12. (reaver) Ataque basado en base de datos de PINs conocidos"
-	arr["FRENCH",360]="${pending_of_translation} 12. (reaver) Sur la base base de données d'attaque PINs connus"
+	arr["FRENCH",360]="12. (reaver) Attaque en utilisant la base de données de PIN connus"
 	arr["CATALAN",360]="${pending_of_translation} 12. (reaver) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",360]="12. (reaver) Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",360]="12. (reaver) Атака на основе базы данных известных PIN"
@@ -3376,7 +3376,7 @@ function language_strings() {
 
 	arr["ENGLISH",362]="Custom PIN set to ${normal_color}${custom_pin}"
 	arr["SPANISH",362]="PIN personalizado elegido ${normal_color}${custom_pin}"
-	arr["FRENCH",362]="${pending_of_translation} PIN personnalisé choisi ${normal_color}${custom_pin}"
+	arr["FRENCH",362]="PIN personnalisé définit ${normal_color}${custom_pin}"
 	arr["CATALAN",362]="${pending_of_translation} PIN personalitzat triat ${normal_color}${custom_pin}"
 	arr["PORTUGUESE",362]="PIN personalizado escolhido ${normal_color}${custom_pin}"
 	arr["RUSSIAN",362]="Пользовательский PIN установлен на ${normal_color}${custom_pin}"
@@ -3384,7 +3384,7 @@ function language_strings() {
 
 	arr["ENGLISH",363]="Type custom PIN :"
 	arr["SPANISH",363]="Escribe el PIN personalizado :"
-	arr["FRENCH",363]="${pending_of_translation} Écrivez PIN personnalisé :"
+	arr["FRENCH",363]="Rentrez PIN personnalisé :"
 	arr["CATALAN",363]="${pending_of_translation} Escriu el PIN personalitzat :"
 	arr["PORTUGUESE",363]="Escreva o ESSID do alvo :"
 	arr["RUSSIAN",363]="Напишите пользовательский PIN :"
@@ -3408,7 +3408,7 @@ function language_strings() {
 
 	arr["ENGLISH",366]="After stopping the attack (using [Ctrl+C]), the window will not be closed automatically. So you'll have time to write down the password if successful. You'll have to close it manually"
 	arr["SPANISH",366]="Tras parar el ataque (usando [Ctrl+C]), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
-	arr["FRENCH",366]="${pending_of_translation} Après l'arrêt de l'attaque (en utilisant [Ctrl+C]), la fenêtre ne se ferme pas automatiquement attaque. Donc, avoir le temps d'écrire le mot de passe en cas de succès. Vous devez fermer manuellement"
+	arr["FRENCH",366]="Après l'arrêt de l'attaque (en utilisant [Ctrl+C]), la fenêtre ne se ferme pas automatiquement. Afin de vous laisser le temps d'écrire le mot de passe en cas de succès. Vous devrez la fermer manuellement"
 	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant [Ctrl+C]), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
 	arr["PORTUGUESE",366]="Depois de parar o ataque (usando [Ctrl+C]), a janela não será fechada automaticamente. Então temos tempo para anotar a senha em caso ela tenha sido obtida. Em seguida você vai ter que fechar a janela manualmente"
 	arr["RUSSIAN",366]="После остановки атаки (используя [Ctrl+C]), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
@@ -3416,7 +3416,7 @@ function language_strings() {
 
 	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v${minimum_bully_pixiewps_version}"
-	arr["FRENCH",367]="${pending_of_translation} Vous bully installé (v${bully_version}), mais pas la version requise. Pour rendre l'attaque bully intégrée Pixie Dust doit avoir au moins la version v${minimum_bully_pixiewps_version}"
+	arr["FRENCH",367]="Bully est installé (v${bully_version}) mais ce n'est pas la bonne version. Vous devez avoir au moins la version v${minimum_bully_pixiewps_version} pour la compatibilité pixie dust"
 	arr["CATALAN",367]="${pending_of_translation} Tens bully instal·lat (v${bully_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
 	arr["PORTUGUESE",367]="Você tem o bully instalado (v${bully_version}), mas não a versão necessária. Para fazer o ataque Pixie Dust com bully você precisa ter pelo menos a versão v${minimum_bully_pixiewps_version}"
 	arr["RUSSIAN",367]="У вас установлен bully (v${bully_version}), но не та версия, которая требуется. Для выполнения интегрированной в bully атаки Pixie Dust у вас должна быть по крайне мере версия v${minimum_bully_pixiewps_version}"
@@ -3424,7 +3424,7 @@ function language_strings() {
 
 	arr["ENGLISH",368]="You have bully installed (v${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v${minimum_bully_pixiewps_version}). Script can continue..."
 	arr["SPANISH",368]="Tienes bully instalado (v${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión mínima v${minimum_bully_pixiewps_version}). El script puede continuar..."
-	arr["FRENCH",368]="${pending_of_translation} Vous bully installé (v${bully_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque bully (version minimale v${minimum_bully_pixiewps_version}). Le script peut continuer..."
+	arr["FRENCH",368]="Bully est installé (v${bully_version}). Cette version est compatible avec l'attaque pixie dust (version minimale v${minimum_bully_pixiewps_version}). Le script peut continuer..."
 	arr["CATALAN",368]="${pending_of_translation} Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",368]="Você tem o bully instalado (v${bully_version}). Você cumpre a exigência de versão para o ataque Pixie Dust com bully (versão mínima v${minimum_bully_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",368]="У вас установлен bully (v${bully_version}). Версия удовлетворяет требованиям для проведения интегрированной в bully атаки Pixie Dust (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжить работу..."
@@ -3432,7 +3432,7 @@ function language_strings() {
 
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least ${minimum_reaver_pixiewps_version} version for reaver and ${minimum_bully_pixiewps_version} for bully"
 	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión ${minimum_reaver_pixiewps_version} para reaver y ${minimum_bully_pixiewps_version} para bully"
-	arr["FRENCH",369]="${pending_of_translation} Pour rendre le Pixie Dust intégré attaque reaver ou bully, vous devez avoir installé au moins le ${minimum_reaver_pixiewps_version} por reaver et ${minimum_bully_pixiewps_version} pour bully"
+	arr["FRENCH",369]="Les versions minimales requises de reaver et bully pour l'attaque pixie wps sont reaver ${minimum_reaver_pixiewps_version} et bully ${minimum_bully_pixiewps_version}"
 	arr["CATALAN",369]="${pending_of_translation} Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
 	arr["PORTUGUESE",369]="Para executar o ataque Pixie Dust com reaver ou bully, é necessário ter instalado pelo menos a versão ${minimum_reaver_pixiewps_version} para o reaver e ${minimum_bully_pixiewps_version} para o bully"
 	arr["RUSSIAN",369]="Для выполнения интегрированной атаки Pixie Dust с reaver или bully, у вас должна быть установлена, по крайней мере, версия ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
@@ -3440,7 +3440,7 @@ function language_strings() {
 
 	arr["ENGLISH",370]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v${minimum_reaver_pixiewps_version}). El script puede continuar..."
-	arr["FRENCH",370]="${pending_of_translation} Vous reaver installé (v${reaver_version}). Vous répondez aux exigences de version pour le Pixie Dust intégré attaque reaver (version minimale v${minimum_reaver_pixiewps_version}). Le script peut continuer..."
+	arr["FRENCH",370]="Reaver est installé (v${reaver_version}). Cette version est compatible avec l'attaque pixie dust (version minimale: ${minimum_reaver_pixiewps_version}). Le script peut continuer..."
 	arr["CATALAN",370]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",370]="Você tem o reaver instalado (v${reaver_version}). Você cumpre a exigência de versão para o ataque Pixie Dust com reaver (versão mínima v${minimum_reaver_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",370]="У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки Pixie Dust (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжить работу..."
@@ -3448,7 +3448,7 @@ function language_strings() {
 
 	arr["ENGLISH",371]="You have reaver installed (v${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v${minimum_reaver_pixiewps_version}"
 	arr["SPANISH",371]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v${minimum_reaver_pixiewps_version}"
-	arr["FRENCH",371]="${pending_of_translation} Vous reaver installé (v${reaver_version}), mais pas la version requise. Pour rendre l'attaque reaver intégrée Pixie Dust doit avoir au moins la version v${minimum_reaver_pixiewps_version}"
+	arr["FRENCH",371]="Reaver est installé (v${reaver_version}) mais cette version n'est pas compatible avec l'attaque pixie dust. Version minimale requise: v${minimum_reaver_pixiewps_version}"
 	arr["CATALAN",371]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
 	arr["PORTUGUESE",371]="Você tem o reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque reaver integrado Pixie Dust tem que ter pelo menos a versão v${minimum_reaver_pixiewps_version}"
 	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
