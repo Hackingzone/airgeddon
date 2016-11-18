@@ -3224,7 +3224,7 @@ function language_strings() {
 
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
-	arr["FRENCH",343]="Il faut être en de bonnes conditions d'émission et de réception pour pouvoir mener à bien une attaque WPS. Sinon l'attaque pourrait se solder par un faux-positif"
+	arr["FRENCH",343]="Il faut être dans de bonnes conditions d'émission et de réception pour pouvoir mener à bien une attaque WPS. Sinon l'attaque pourrait se solder par un faux négatif"
 	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
 	arr["PORTUGUESE",343]="Para executar qualquer ataque WPS você precisa ter um bom sinal da rede alvo. Caso contrario você pode obter falsos negativos"
 	arr["RUSSIAN",343]="Чтобы добиться успеха при любой WPS атаке, вам нужен хорошей сигнал целевой сети. В противном случае мы можем получить ложные срабатывания"
@@ -3232,7 +3232,7 @@ function language_strings() {
 
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
-	arr["FRENCH",344]="Certains routers bloquent le WPS après un certain nombre de PIN erronés. Ce nombre varie selon les modèle"
+	arr["FRENCH",344]="Certains routeurs bloquent le WPS après un certain nombre de PIN erronés. Ce nombre varie selon les modèle"
 	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
 	arr["PORTUGUESE",344]="Alguns pontos de acesso podem estar bloqueados depois de receber uma série de tentativas incorretas de conexão por PIN. Isso pode variar dependendo do ponto de acesso"
 	arr["RUSSIAN",344]="Некоторые точки доступа блокируются после нескольких неудачных попыток подключения с PIN. Это зависит от конкретной точки доступа."
@@ -3328,7 +3328,7 @@ function language_strings() {
 
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
 	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
-	arr["FRENCH",356]="Il existe certains problèmes spécifiques de compatibilité. L’exemple le plus marquant est sans aucun doute  celui des chipsets Ralink qui ne fonctionnent pas bien avec reaver. Il est donc conseillé d'utiliser bully avec ces chipsets"
+	arr["FRENCH",356]="Il existe certains problèmes spécifiques de compatibilité. L’exemple le plus marquant est sans aucun doute celui des chipsets Ralink qui ne fonctionnent pas bien avec reaver. Il est donc conseillé d'utiliser bully avec ces chipsets"
 	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="Algumas combinações não funcionam bem. Tais como reaver e placas de rede com chipset Ralink. Se o sua placa de rede tem este chipset é melhor usar bully"
 	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
