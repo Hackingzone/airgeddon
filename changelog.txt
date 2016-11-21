@@ -1,3 +1,7 @@
+5.1
+Integrated online PIN database for "known WPS PINs attack" (reaver)
+Some language strings changed
+
 5.01
 WPS bruteforce PIN attacks (reaver and bully)
 New system for arm architecture detection
@@ -8,7 +12,7 @@ Compatibility extended for hashcat v3.0 or higher
 5.0
 WPS attacks menu added
 WPS scanning based on wash tool. Self-parametrization to avoid "Bad FCS" problem
-WPS Custom pin association
+WPS Custom PIN association
 WPS Pixie Dust attacks integrated with reaver and bully
 Some code improvements
 

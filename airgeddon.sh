@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.01"
+airgeddon_version="5.1"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -23,17 +23,6 @@ declare -A lang_association=(
 								["ru"]="RUSSIAN"
 								["gr"]="GREEK"
 							)
-
-#Repository and contact vars
-github_user="v1s1t0r1sh3r3"
-github_repository="airgeddon"
-branch="master"
-script_filename="airgeddon.sh"
-urlgithub="https://github.com/${github_user}/${github_repository}"
-urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
-host_to_check_internet="github.com"
-mail="v1s1t0r.1s.h3r3@gmail.com"
-author="v1s1t0r"
 
 #Tools vars
 essential_tools_names=(
@@ -108,16 +97,34 @@ standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.0"
-minimum_reaver_pixiewps_version="1.5.2"
-minimum_reaver_wash_large_version="1.5.2"
-minimum_bully_pixiewps_version="1.1"
-minimum_bully_verbosity4_version="1.1"
 hashcat3_version="3.0"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
 escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
+curl_404_error="404: Not Found"
+
+#WPS vars
+minimum_reaver_pixiewps_version="1.5.2"
+minimum_reaver_wash_large_version="1.5.2"
+minimum_bully_pixiewps_version="1.1"
+minimum_bully_verbosity4_version="1.1"
+known_pins_dbfile="known_pins.db"
+pins_dbfile_checksum="pindb_checksum.txt"
+
+#Repository and contact vars
+github_user="v1s1t0r1sh3r3"
+github_repository="airgeddon"
+branch="master"
+script_filename="airgeddon.sh"
+urlgithub="https://github.com/${github_user}/${github_repository}"
+urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
+urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
+urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
+host_to_check_internet="github.com"
+mail="v1s1t0r.1s.h3r3@gmail.com"
+author="v1s1t0r"
 
 #Dhcpd, Hostapd and misc Evil Twin vars
 ip_range="192.168.1.0"
@@ -3454,6 +3461,102 @@ function language_strings() {
 	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
 	arr["GREEK",371]="Έχετε εγκατεστημένο το reaver (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο reaver θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
 
+	arr["ENGLISH",372]="This attack can't be performed without known PINs database file"
+	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar este ataque"
+	arr["FRENCH",372]="${pending_of_translation} Aucune base de données de fichiers PINs connus ne peuvent pas effectuer cette attaque"
+	arr["CATALAN",372]="${pending_of_translation} Sense fitxer de base de dades de PINs coneguts no es pot realitzar aquest atac"
+	arr["PORTUGUESE",372]="${pending_of_translation} Nenhum banco de dados arquivo de PINs conhecidos não pode executar este ataque"
+	arr["RUSSIAN",372]="${pending_of_translation} Эта атака не может быть выполнена без файла базы данных известных PINs"
+	arr["GREEK",372]="${pending_of_translation} Η επίθεση αυτή δεν μπορεί να πραγματοποιηθεί χωρίς να είναι γνωστό τα PINs αρχείου βάσης δεδομένων"
+
+	arr["ENGLISH",373]="The known PINs database file exists. Script can continue..."
+	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
+	arr["FRENCH",373]="${pending_of_translation} Il y a une base de données de fichier PINs connu. Le script peut continuer..."
+	arr["CATALAN",373]="${pending_of_translation} Hi ha el fitxer de base de dades de PINs coneguts. El script pot continuar..."
+	arr["PORTUGUESE",373]="${pending_of_translation} Há um banco de dados de arquivo de PINs conhecido. O script pode continuar..."
+	arr["RUSSIAN",373]="${pending_of_translation} Известный файл базы данных PINs существует. Скрипт может продолжать..."
+	arr["GREEK",373]="${pending_of_translation} υπάρχει το γνωστό αρχείο κωδικών PINs της βάσης δεδομένων. Το script μπορεί να συνεχίσει..."
+
+	arr["ENGLISH",374]="Local PINs database file (${known_pins_dbfile}) can't be found in the script folder. It will be attempted to download"
+	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
+	arr["FRENCH",374]="${pending_of_translation} Impossible de trouver la base de données de fichiers locaux de codes PIN (${known_pins_dbfile}) dans le dossier de script. Il va tenter de télécharger"
+	arr["CATALAN",374]="${pending_of_translation} No s'ha pogut trobar el fitxer local de la base de dades de PINs (${known_pins_dbfile}) a la carpeta del script. S'intentarà descarregar"
+	arr["PORTUGUESE",374]="${pending_of_translation} Não foi possível localizar o banco de dados local de PINs (${known_pins_dbfile}) na pasta de script de arquivo. Ele tentará baixar"
+	arr["RUSSIAN",374]="${pending_of_translation} Локальный файл базы данных PINs (${known_pins_dbfile}) не может быть найден в папке скрипта. Будет предпринята попытка загрузить"
+	arr["GREEK",374]="${pending_of_translation} Τοπικό αρχείο κωδικών PIN της βάσης δεδομένων (${known_pins_dbfile}) δεν μπορεί να βρεθεί στο φάκελο σενάριο. Θα προσπαθήσει να κατεβάσετε"
+
+	arr["ENGLISH",375]="It seems you have no internet access"
+	arr["SPANISH",375]="Parece que no tienes conexión a internet"
+	arr["FRENCH",375]="Il semble que vous ne pouvez pas vous connecter à internet"
+	arr["CATALAN",375]="Sembla que no tens connexió a internet"
+	arr["PORTUGUESE",375]="Parece que você não tem acesso à internet"
+	arr["RUSSIAN",375]="Судя по всему, у вас нет Интернет доступа"
+	arr["GREEK",375]="Φαίνεται πως δεν έχετε πρόσβαση στο διαδίκτυο"
+
+	arr["ENGLISH",376]="Local PINs database file (${known_pins_dbfile}) was found. Anyway a check for a newer will be performed"
+	arr["SPANISH",376]="Se ha encontrado un fichero local de base de datos de PINs (${known_pins_dbfile}). No obstante se va a comprobar si existe uno más actualizado"
+	arr["FRENCH",376]="${pending_of_translation} Il a trouvé une base de données de fichiers locaux de codes PINs (${known_pins_dbfile}). Cependant, il va vérifier si l'un est plus mis à jour"
+	arr["CATALAN",376]="${pending_of_translation} S'ha trobat un fitxer local de base de dades de PINs (${known_pins_dbfile}). No obstant això es va a comprovar si hi ha un més actualitza"
+	arr["PORTUGUESE",376]="${pending_of_translation} Constatou-se um banco de dados local de arquivo de PINs (${known_pins_dbfile}). No entanto, ele verificará se existe uma mais actualizada"
+	arr["RUSSIAN",376]="${pending_of_translation} Локальный файл базы данных PINs (${known_pins_dbfile}) был найден. В любом случае будет выполнена проверка на более новый"
+	arr["GREEK",376]="${pending_of_translation} Τοπικό αρχείο κωδικών PIN της βάσης δεδομένων (${known_pins_dbfile}) βρέθηκε. Τέλος πάντων μια επιταγή για ένα νεότερο θα πραγματοποιηθεί"
+
+	arr["ENGLISH",377]="A more up-to-date PINs database file has been successfully downloaded"
+	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs más actualizado"
+	arr["FRENCH",377]="${pending_of_translation} Il a été téléchargé avec succès une base de données de fichiers de mises à jour plus PINs"
+	arr["CATALAN",377]="${pending_of_translation} S'ha descarregat amb èxit un fitxer de base de dades de PINs més actualitzat"
+	arr["PORTUGUESE",377]="${pending_of_translation} Ele foi baixado com sucesso um banco de dados de PINs mais atualizados arquivo"
+	arr["RUSSIAN",377]="${pending_of_translation} Файл базы данных более последнюю дату PINs была успешно загружена"
+	arr["GREEK",377]="${pending_of_translation} Ένα αρχείο πιο up-to-ημερομηνία των PINs της βάσης δεδομένων έχει κατεβάσει με επιτυχία"
+
+	arr["ENGLISH",378]="An error occurred while trying to download the PINs database file"
+	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
+	arr["FRENCH",378]="${pending_of_translation} Une erreur est survenue en essayant de télécharger les codes PINs de base de données de fichiers"
+	arr["CATALAN",378]="${pending_of_translation} S'ha produït un error en intentar descarregar el fitxer de base de dades de PINs"
+	arr["PORTUGUESE",378]="${pending_of_translation} Ocorreu um erro ao tentar baixar os PINs de banco de dados de arquivo"
+	arr["RUSSIAN",378]="${pending_of_translation} Произошла ошибка при попытке загрузить файл базы данных PINs"
+	arr["GREEK",378]="${pending_of_translation} Παρουσιάστηκε σφάλμα κατά την προσπάθεια να κατεβάσετε το αρχείο κωδικών PINs της βάσης δεδομένων"
+
+	arr["ENGLISH",379]="Check of the PINs database file has already been done. It will not be done again..."
+	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
+	arr["FRENCH",379]="${pending_of_translation} Vérification des codes PIN de base de données de fichiers déjà fait. Il ne fera pas encore..."
+	arr["CATALAN",379]="${pending_of_translation} La revisió del fitxer de base de dades de PINs ja es va fer. No es realitzarà de nou..."
+	arr["PORTUGUESE",379]="${pending_of_translation} Verificando os PINs de banco de dados arquivo já feito. Ele não vai fazer de novo..."
+	arr["RUSSIAN",379]="${pending_of_translation} Проверка файла базы данных PINs уже сделано. Это не будет сделано еще раз..."
+	arr["GREEK",379]="${pending_of_translation} Έλεγχος του αρχείου κωδικών PINs της βάσης δεδομένων έχει ήδη γίνει. Δεν θα πρέπει να γίνει και πάλι..."
+
+	arr["ENGLISH",380]="Do you want to try again next time you launch this attack for this session? ${normal_color}[y/n]"
+	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
+	arr["FRENCH",380]="${pending_of_translation} Vous voulez que la prochaine fois que vous lancez cette attaque dans cette session retry? ${normal_color}[y/n]"
+	arr["CATALAN",380]="${pending_of_translation} ¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
+	arr["PORTUGUESE",380]="${pending_of_translation} Você quer que a próxima vez que você lançar este ataque nesta nova tentativa sessão? ${normal_color}[y/n]"
+	arr["RUSSIAN",380]="${pending_of_translation} Вы хотите, чтобы попробовать снова в следующий раз, когда вы запустите эту атаку для этого сеанса? ${normal_color}[y/n]"
+	arr["GREEK",380]="${pending_of_translation} Θέλετε να δοκιμάσετε ξανά την επόμενη φορά που θα ξεκινήσει αυτή την επίθεση για τη σύνοδο αυτή; ${normal_color}[y/n]"
+
+	arr["ENGLISH",381]="An error occurred while trying to access to the checksum file of remote PINs database"
+	arr["SPANISH",381]="Ocurrió un error al intentar acceder al fichero de checksum de la base de datos de PINs remota"
+	arr["FRENCH",381]="${pending_of_translation} Une erreur est survenue en essayant d'accéder à la base de données fichier de contrôle de codes PIN à distance"
+	arr["CATALAN",381]="${pending_of_translation} S'ha produït un error en intentar accedir al fitxer de checksum de la base de dades de PINs remota"
+	arr["PORTUGUESE",381]="${pending_of_translation} Ocorreu um erro ao tentar acessar o banco de dados arquivo de checksum de PINs remotos"
+	arr["RUSSIAN",381]="${pending_of_translation} Произошла ошибка при попытке получить доступ к контрольной суммы файла удаленной базы данных PINs"
+	arr["GREEK",381]="${pending_of_translation} Παρουσιάστηκε σφάλμα κατά την προσπάθεια πρόσβασης στο αρχείο checksum του απομακρυσμένη βάση δεδομένων κωδικών PINs"
+
+	arr["ENGLISH",382]="Checksums of the local and remote files match. Your PINs database file is up-to-date"
+	arr["SPANISH",382]="Los checksum de los ficheros local y remoto coinciden. Tu fichero de base de datos de PINs está actualizado"
+	arr["FRENCH",382]="${pending_of_translation} Les checksums des fichiers locaux et distants correspondent. Votre base de données de fichier est mis à jour PINs"
+	arr["CATALAN",382]="${pending_of_translation} Els checksum dels fitxers local i remot coincideixen. El teu fitxer de base de dades de PINs està actualitzat"
+	arr["PORTUGUESE",382]="${pending_of_translation} As somas de verificação dos arquivos locais e remotos corresponder. Seu banco de dados arquivo é atualizado PINs"
+	arr["RUSSIAN",382]="${pending_of_translation} Контрольные суммы локальных и удаленных файлов совпадают. Ваш файл базы данных обновляется PINs"
+	arr["GREEK",382]="${pending_of_translation} Αθροίσματα ελέγχου των τοπικών και απομακρυσμένων αρχείων ταιριάζουν. Το αρχείο κωδικών PINs της βάσης δεδομένων είναι up-to-ημερομηνία"
+
+	arr["ENGLISH",383]="It seems there is a more up-to-date PINs database file. It will be downloaded..."
+	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
+	arr["FRENCH",383]="${pending_of_translation} Il semble qu'il y ait une base de données de fichiers les plus frais PINs. Lancement du téléchargement..."
+	arr["CATALAN",383]="${pending_of_translation} Sembla que hi ha un fitxer de base de dades de PINs més actualitzat. Serà descarregat..."
+	arr["PORTUGUESE",383]="${pending_of_translation} Parece que há um banco de dados de arquivo PINs mais frescos. Ele será baixado..."
+	arr["RUSSIAN",383]="${pending_of_translation} Кажется, есть файл базы данных PINs более последнюю дату. Он будет загружен..."
+	arr["GREEK",383]="${pending_of_translation} Φαίνεται ότι υπάρχει ένα αρχείο κωδικών PINs της βάσης δεδομένων πιο up-to-ημερομηνία. Θα κατέβει..."
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -3853,7 +3956,7 @@ function monitor_option() {
 function check_interface_mode() {
 
 	execute_iwconfig_fix
-	if [[ "$?" != "0" ]]; then
+	if [ "$?" != "0" ]; then
 		ifacemode="(Non wifi card)"
 		return 0
 	fi
@@ -5205,7 +5308,7 @@ function wps_attacks_menu() {
 	language_strings "${language}" 347 bully_attacks_dependencies[@]
 	language_strings "${language}" 359 reaver_attacks_dependencies[@]
 	language_strings "${language}" 348 "under_construction" #bully_attacks_dependencies[@]
-	language_strings "${language}" 360 "under_construction" #reaver_attacks_dependencies[@]
+	language_strings "${language}" 360 reaver_attacks_dependencies[@]
 	print_simple_separator
 	language_strings "${language}" 361
 	print_hint ${current_menu}
@@ -5337,7 +5440,26 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				under_construction_message
+				get_reaver_version
+				if [ -z "${scriptfolder}" ]; then
+					set_script_folder
+				fi
+
+				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
+					check_pins_database_file
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 373 "blue"
+					else
+						echo
+						language_strings "${language}" 372 "yellow"
+					fi
+				else
+					echo
+					language_strings "${language}" 379 "blue"
+				fi
+				language_strings "${language}" 115 "read"
+				#TODO start validations and attack
 			fi
 		;;
 		13)
@@ -8534,6 +8656,123 @@ function validate_reaver_pixiewps_version() {
 	return 1
 }
 
+#Set the script folder var
+function set_script_folder() {
+
+	scriptfolder=${0}
+
+	if ! [[ ${0} =~ ^/.*$ ]]; then
+		if ! [[ ${0} =~ ^.*/.*$ ]]; then
+			scriptfolder="./"
+		fi
+	fi
+	scriptfolder="${scriptfolder%/*}/"
+}
+
+#Check if pins database file exist and try to download the new one if proceed
+function check_pins_database_file() {
+
+	if [ -f "${scriptfolder}${known_pins_dbfile}" ]; then
+		language_strings "${language}" 376 "yellow"
+		echo
+		language_strings "${language}" 287 "blue"
+		check_internet_access "${host_to_check_internet}"
+		if [ "$?" = "0" ]; then
+			get_local_pin_dbfile_checksum "${scriptfolder}${known_pins_dbfile}"
+			get_remote_pin_dbfile_checksum
+			if [ "$?" != "0" ]; then
+				echo
+				language_strings "${language}" 381 "yellow"
+			else
+				echo
+				if [ "${local_pin_dbfile_checksum}" != "${remote_pin_dbfile_checksum}" ]; then
+					language_strings "${language}" 383 "yellow"
+					echo
+					download_pins_database_file
+					if [ "$?" = "0" ]; then
+						language_strings "${language}" 377 "yellow"
+						pin_dbfile_checked=1
+					else
+						language_strings "${language}" 378 "yellow"
+					fi
+				else
+					language_strings "${language}" 382 "yellow"
+					pin_dbfile_checked=1
+				fi
+			fi
+		else
+			echo
+			language_strings "${language}" 375 "yellow"
+			ask_for_pin_dbfile_download_retry
+		fi
+		return 0
+	else
+		language_strings "${language}" 374 "yellow"
+		echo
+		language_strings "${language}" 287 "blue"
+		check_internet_access "${host_to_check_internet}"
+		if [ "$?" != "0" ]; then
+			echo
+			language_strings "${language}" 375 "yellow"
+			return 1
+		else
+			echo
+			download_pins_database_file
+			if [ "$?" = "0" ]; then
+				language_strings "${language}" 377 "yellow"
+				pin_dbfile_checked=1
+				return 0
+			else
+				language_strings "${language}" 378 "yellow"
+				return 1
+			fi
+		fi
+	fi
+}
+
+#Download the pins database file
+function download_pins_database_file() {
+
+	#TODO put final url after testing
+	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L https://raw.githubusercontent.com/v1s1t0r1sh3r3/test/master/known_pins.db 2> /dev/null)
+	#remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null)
+
+	if [ "${remote_pindb_file}" != "${curl_404_error}" ]; then
+		echo "${remote_pindb_file}" > "${scriptfolder}${known_pins_dbfile}"
+		return 0
+	else
+		return 1
+	fi
+}
+
+#Ask for try to download pin db file again and set the var to skip it
+function ask_for_pin_dbfile_download_retry() {
+
+	ask_yesno 380
+	if [ ${yesno} = "n" ]; then
+		pin_dbfile_checked=1
+	fi
+}
+
+#Get the checksum for local pin database file
+function get_local_pin_dbfile_checksum() {
+
+	local_pin_dbfile_checksum=$(md5sum "${1}" | awk '{print $1}')
+}
+
+#Get the checksum for remote pin database file
+function get_remote_pin_dbfile_checksum() {
+
+	#TODO put final url after testing
+	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L https://raw.githubusercontent.com/v1s1t0r1sh3r3/test/master/pindb_checksum.txt 2> /dev/null)
+	#remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null)
+
+	if [ "${remote_pin_dbfile_checksum}" != "${curl_404_error}" ]; then
+		return 0
+	fi
+	return 1
+}
+
 #Check for possible non Linux operating systems
 function non_linux_os_check() {
 
@@ -9005,6 +9244,7 @@ function initialize_script_settings() {
 	ywindow_edge_pixels=18
 	networkmanager_cmd="service network-manager restart"
 	is_arm=0
+	pin_dbfile_checked=0
 }
 
 #Detect screen resolution if possible
