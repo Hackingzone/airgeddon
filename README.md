@@ -39,7 +39,7 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
-*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1 and 4.8.8-2*<br/>
+*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1, 4.8.8-2 and 4.8.10-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
@@ -145,7 +145,7 @@ Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
