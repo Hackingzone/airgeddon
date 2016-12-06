@@ -1,5 +1,5 @@
 5.1
-Integrated online PIN database for "known WPS PINs attack" (reaver)
+Integrated online PIN database for "known WPS PINs attack" (reaver and bully)
 Zhao Chunsheng algorithm integrated (computepin)
 Stefan Viehböck algorithm integrated (easybox)
 Some language strings changed
