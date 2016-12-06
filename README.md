@@ -36,7 +36,7 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
-*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1 and 4.8.8-2*<br/>
+*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1, 4.8.8-2 and 4.8.10-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
@@ -139,7 +139,7 @@ See [Changelog](changelog.txt) file to review changes.
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>
 <br/>
 Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms.<br/>
