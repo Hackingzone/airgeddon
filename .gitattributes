@@ -5,6 +5,7 @@
 *.txt text
 *.sh text
 *.md text
+*.db text
 
 # Binary image formats
 *.png binary
