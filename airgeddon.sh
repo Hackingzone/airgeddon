@@ -9569,7 +9569,9 @@ function check_root_permissions() {
 function print_known_distros() {
 
 	all_known_compatible_distros=("${known_compatible_distros[@]}" "${known_arm_compatible_distros[@]}")
-	readarray -td '' all_known_compatible_distros < <(printf '%s\0' "${all_known_compatible_distros[@]}" | sort -z)
+	IFS=$'\n'
+	all_known_compatible_distros=($(printf "%s\n" "${all_known_compatible_distros[@]}" | sort))
+	unset IFS
 
 	for i in "${all_known_compatible_distros[@]}"; do
 		echo -ne "${pink_color}\"${i}\" ${normal_color}"
