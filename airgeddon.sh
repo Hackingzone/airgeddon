@@ -171,14 +171,11 @@ possible_dhcp_leases_files=(
 known_compatible_distros=(
 							"Wifislax"
 							"Kali"
-							"Kali arm"
 							"Parrot"
-							"Parrot arm"
 							"Backbox"
 							"Blackarch"
 							"Cyborg"
 							"Ubuntu"
-							"Raspbian"
 							"Debian"
 							"SuSE"
 							"CentOS"
@@ -187,6 +184,12 @@ known_compatible_distros=(
 							"Red Hat"
 							"Arch"
 							"OpenMandriva"
+						)
+
+known_arm_compatible_distros=(
+							"Raspbian"
+							"Parrot arm"
+							"Kali arm"
 						)
 
 #Hint vars
@@ -3610,12 +3613,12 @@ function language_strings() {
 	arr["RUSSIAN",389]="${pending_of_translation} PINs, рассчитанные с помощью алгоритмов, которые были добавлены. Атака будет запущен в общей сложности ${counter_pins_found} PINs"
 	arr["GREEK",389]="Προστέθηκαν τα PINs που υπολογίστηκαν από τους αλγορίθμους. Η επίθεση θα ξεκινήσει με ${counter_pins_found} PINs συνολικά"
 
-	arr["ENGLISH",390]="Some access points have PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
-	arr["SPANISH",390]="Algunos puntos de acceso tienen activado PBC (Push Button Connect) y no podras conectar por WPS si no se pulsa el boton físico del mismo"
-	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ont permis PBC (Push Button Connect) et vous ne pouvez pas vous connecter via WPS si le même bouton physique est pressé"
-	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
-	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso têm permitido PBC (Push Button Connect) e você não pode se conectar via WPS se o mesmo botão físico é pressionado"
-	arr["RUSSIAN",390]="${pending_of_translation} Некоторые точки доступа имеют PBC (Push Button Connect) включен, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку на устройстве"
+	arr["ENGLISH",390]="Some access points have only PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
+	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
+	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ne sont activés que PBC (Push Button Connect) et vous ne pouvez pas vous connecter en WPS si le même bouton physique est pressé"
+	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
+	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso são ativados somente PBC (Push Button Connect) e você não pode se conectar por WPS se o mesmo botão físico é pressionado"
+	arr["RUSSIAN",390]="${pending_of_translation} Некоторые точки доступа имеют только PBC (Push Button Connect) включен, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку на устройстве"
 	arr["GREEK",390]="Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το κουμπί αυτό στη συσκευή"
 
 	case "${3}" in
@@ -9332,9 +9335,12 @@ function detect_distro_phase2() {
 		elif [ -f ${osversionfile_dir}"debian_version" ]; then
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
-				is_raspbian=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
-				if [[ "${is_raspbian}" =~ Raspbian ]]; then
+				extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+				if [[ "${extra_os_info}" =~ Raspbian ]]; then
 					distro="Raspbian"
+					is_arm=1
+				elif [[ "${extra_os_info}" =~ Parrot ]]; then
+					distro="Parrot arm"
 					is_arm=1
 				fi
 			fi
@@ -9347,11 +9353,21 @@ function detect_distro_phase2() {
 #Detect if arm architecture is present on system
 function detect_arm_architecture() {
 
+	distro_already_known=0
 	uname -m | grep -i "arm" > /dev/null
 
-	if [[ "$?" = "0" ]] && [[ "${distro}" != "Unknown Linux" ]] && [[ "${distro}" != "Raspbian" ]]; then
-		distro="${distro} arm"
-		is_arm=1
+	if [[ "$?" = "0" ]] && [[ "${distro}" != "Unknown Linux" ]]; then
+
+		for item in "${known_arm_compatible_distros[@]}"; do
+			if [ "${distro}" = "${item}" ]; then
+				distro_already_known=1
+			fi
+		done
+
+		if [ ${distro_already_known} -eq 0 ]; then
+			distro="${distro} arm"
+			is_arm=1
+		fi
 	fi
 }
 
@@ -9552,7 +9568,10 @@ function check_root_permissions() {
 #Print Linux known distros
 function print_known_distros() {
 
-	for i in "${known_compatible_distros[@]}"; do
+	all_known_compatible_distros=("${known_compatible_distros[@]}" "${known_arm_compatible_distros[@]}")
+	readarray -td '' all_known_compatible_distros < <(printf '%s\0' "${all_known_compatible_distros[@]}" | sort -z)
+
+	for i in "${all_known_compatible_distros[@]}"; do
 		echo -ne "${pink_color}\"${i}\" ${normal_color}"
 	done
 	echo
