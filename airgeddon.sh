@@ -3513,7 +3513,7 @@ function language_strings() {
 	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs más actualizado"
 	arr["FRENCH",377]="La base de données a été actualisée"
 	arr["CATALAN",377]="${pending_of_translation} S'ha descarregat amb èxit un fitxer de base de dades de PINs més actualitzat"
-	arr["PORTUGUESE",377]="Um arquivo com banco de dados com PINs mais atualizado foi baixado com sucesso"
+	arr["PORTUGUESE",377]="O banco de dados foi atualizado com sucesso"
 	arr["RUSSIAN",377]="Новая версия файла базы данных PIN была успешно загружена"
 	arr["GREEK",377]="Ένα ενημερωμένο αρχείο με την βάση δεδομένων PIN έχει κατέβει με επιτυχία"
 
@@ -3521,7 +3521,7 @@ function language_strings() {
 	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
 	arr["FRENCH",378]="Erreur lors du téléchargement de l'actualisation de la base de données"
 	arr["CATALAN",378]="${pending_of_translation} S'ha produït un error en intentar descarregar el fitxer de base de dades de PINs"
-	arr["PORTUGUESE",378]="Ocorreu um erro ao tentar baixar o arquivo com banco de dados de PINs"
+	arr["PORTUGUESE",378]="Ocorreu um erro ao tentar atualizar o banco de dados"
 	arr["RUSSIAN",378]="При попытке загрузить файл базы данных PIN произошла ошибка"
 	arr["GREEK",378]="Παρουσιάστηκε σφάλμα στην προσπάθεια να κατέβει το αρχείο με την βάση δεδομένων PIN"
 
@@ -3529,7 +3529,7 @@ function language_strings() {
 	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
 	arr["FRENCH",379]="La vérification de la base de données a été faite et ne sera plus relancée"
 	arr["CATALAN",379]="${pending_of_translation} La revisió del fitxer de base de dades de PINs ja es va fer. No es realitzarà de nou..."
-	arr["PORTUGUESE",379]="Verificando os PINs no arquivo com banco de dados. Isso não vai ser feito novamente..."
+	arr["PORTUGUESE",379]="Verificando os PINs do banco de dados. Isso não vai ser feito novamente..."
 	arr["RUSSIAN",379]="Уже выполнена проверка файла базы данных PIN. Она не будет делаться ещё раз..."
 	arr["GREEK",379]="Έχει γίνει ήδη έλεγχος του αρχείου με την βάση δεδομένων PIN. Δεν θα ξαναελεγχθεί..."
 
@@ -3537,7 +3537,7 @@ function language_strings() {
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
 	arr["FRENCH",380]="${pending_of_translation} Vous voulez que la prochaine fois que vous lancez cette attaque dans cette session retry? ${normal_color}[y/n]"
 	arr["CATALAN",380]="${pending_of_translation} ¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
-	arr["PORTUGUESE",380]="Você quer tentar novamente na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
+	arr["PORTUGUESE",380]="Você quer buscar por atualizações na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",380]="Вы хотите снова продолжить эту сессию при запуске этой атаки в следующий раз? ${normal_color}[y/n]"
 	arr["GREEK",380]="Θέλετε να δοκιμάσετε ξανά την επόμενη φορά που θα ξεκινήσει αυτή η επίθεση για αυτή την συνεδρία; ${normal_color}[y/n]"
 
@@ -3545,7 +3545,7 @@ function language_strings() {
 	arr["SPANISH",381]="Ocurrió un error al intentar acceder al fichero de checksum de la base de datos de PINs remota"
 	arr["FRENCH",381]="Erreur de checksum avec la base de données PIN en ligne"
 	arr["CATALAN",381]="${pending_of_translation} S'ha produït un error en intentar accedir al fitxer de checksum de la base de dades de PINs remota"
-	arr["PORTUGUESE",381]="Ocorreu um erro ao tentar acessar o arquivo checksum do banco de dados de PINs remoto"
+	arr["PORTUGUESE",381]="Ocorreu um erro ao tentar acessar o arquivo checksum do banco de dados remoto"
 	arr["RUSSIAN",381]="Произошла ошибка при попытке получить доступ к контрольной сумме файла удаленной базы данных PIN"
 	arr["GREEK",381]="Παρουσιάστηκε σφάλμα στην προσπάθεια πρόσβασης στο αρχείο checksum της απομακρυσμένης βάσης δεδομένων PIN"
 
@@ -3561,7 +3561,7 @@ function language_strings() {
 	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
 	arr["FRENCH",383]="Une base de données PIN plus actuelle a été détectée et va être installée"
 	arr["CATALAN",383]="${pending_of_translation} Sembla que hi ha un fitxer de base de dades de PINs més actualitzat. Serà descarregat..."
-	arr["PORTUGUESE",383]="Parece que há um arquivo com banco de dados de PINs mais recente. Ele será baixado..."
+	arr["PORTUGUESE",383]="Parece que há um banco de dados de PINs mais recente. Ele será baixado..."
 	arr["RUSSIAN",383]="Кажется, есть более новый файл базы данных PIN. Он будет загружен..."
 	arr["GREEK",383]="Φαίνεται πως υπάρχει ένα νεότερο αρχείο με την βάση δεδομένων PIN. Θα κατέβει..."
 
@@ -3577,7 +3577,7 @@ function language_strings() {
 	arr["SPANISH",385]="Se ha encontrado sólo una coincidencia en la base de datos de PINs"
 	arr["FRENCH",385]="Un PIN a été trouvé avec la base de données"
 	arr["CATALAN",385]="${pending_of_translation} S'ha trobat només una coincidència a la base de dades de PINs"
-	arr["PORTUGUESE",385]="Somente uma correspondência encontrada no banco de dados de PIN"
+	arr["PORTUGUESE",385]="Somente um PIN correspondente no banco de dados"
 	arr["RUSSIAN",385]="В базе данных PIN найдено только одно совпадение"
 	arr["GREEK",385]="Μόνο ένα αντίστοιχο PIN βρέθηκε στην βάση δεδομένων"
 
@@ -3585,7 +3585,7 @@ function language_strings() {
 	arr["SPANISH",386]="Se han encontrado ${counter_pins_found} PINs coincidentes en la base de datos de PINs"
 	arr["FRENCH",386]="${counter_pins_found} PIN possibles selon la base de données"
 	arr["CATALAN",386]="${pending_of_translation} S'han trobat ${counter_pins_found} PINs coincidents a la base de dades de PINs"
-	arr["PORTUGUESE",386]="Encontrados ${counter_pins_found} PINs correspondentes no banco de dados de PINs"
+	arr["PORTUGUESE",386]="Encontrados ${counter_pins_found} PINs correspondentes no banco de dados"
 	arr["RUSSIAN",386]="${counter_pins_found} соответствующих ПИНа были найдены в базе данных PIN"
 	arr["GREEK",386]="${counter_pins_found} αντίστοιχα PINs βρέθηκαν στην βάση δεδομένων"
 
@@ -3593,7 +3593,7 @@ function language_strings() {
 	arr["SPANISH",387]="No se ha encontrado ninguna coincidencia en la base de datos de PINs"
 	arr["FRENCH",387]="Aucun PIN n'a été trouvé dans la base données"
 	arr["CATALAN",387]="${pending_of_translation} No s'ha trobat cap coincidència a la base de dades de PINs"
-	arr["PORTUGUESE",387]="Nenhuma correspondência encontrada no banco de dados de PINs"
+	arr["PORTUGUESE",387]="Nenhuma correspondência encontrada no banco de dados"
 	arr["RUSSIAN",387]="В базе данных PIN не найдено совпадений"
 	arr["GREEK",387]="Δε βρέθηκε αντίστοιχο PIN στην βάση δεδομένων"
 
@@ -3617,7 +3617,7 @@ function language_strings() {
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
 	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ne sont activés que PBC (Push Button Connect) et vous ne pouvez pas vous connecter en WPS si le même bouton physique est pressé"
 	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
-	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso têm permitido PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
+	arr["PORTUGUESE",390]="Alguns pontos de acesso têm ativo somente o PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
 	arr["RUSSIAN",390]="На некоторых точках доступа включено только PBC (Push Button Connect), т.е. подключение по нажатой кнопке, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку устройства"
 	arr["GREEK",390]="Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το κουμπί αυτό στη συσκευή"
 
