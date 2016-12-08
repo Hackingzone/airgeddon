@@ -3473,7 +3473,7 @@ function language_strings() {
 	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar este ataque"
 	arr["FRENCH",372]="${pending_of_translation} Aucune base de données de fichiers PINs connus ne peuvent pas effectuer cette attaque"
 	arr["CATALAN",372]="${pending_of_translation} Sense fitxer de base de dades de PINs coneguts no es pot realitzar aquest atac"
-	arr["PORTUGUESE",372]="${pending_of_translation} Nenhum banco de dados arquivo de PINs conhecidos não pode executar este ataque"
+	arr["PORTUGUESE",372]="Esse ataque não pode ser executado sem o arquivo com banco de dados de PINs conhecido "
 	arr["RUSSIAN",372]="${pending_of_translation} Эта атака не может быть выполнена без файла базы данных известных PINs"
 	arr["GREEK",372]="Η επίθεση αυτή δεν μπορεί να πραγματοποιηθεί χωρίς το αρχείο με την βάση δεδομένων γνωστών PIN"
 
@@ -3481,7 +3481,7 @@ function language_strings() {
 	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
 	arr["FRENCH",373]="${pending_of_translation} Il y a une base de données de fichier PINs connu. Le script peut continuer..."
 	arr["CATALAN",373]="${pending_of_translation} Hi ha el fitxer de base de dades de PINs coneguts. El script pot continuar..."
-	arr["PORTUGUESE",373]="${pending_of_translation} Há um banco de dados de arquivo de PINs conhecido. O script pode continuar..."
+	arr["PORTUGUESE",373]="Há um arquivo com banco de dados de PINs conhecidos. O script pode continuar..."
 	arr["RUSSIAN",373]="${pending_of_translation} Известный файл базы данных PINs существует. Скрипт может продолжать..."
 	arr["GREEK",373]="Το αρχείο με την βάση δεδομένων γνωστών PIN υπάρχει. Το script μπορεί να συνεχίσει..."
 
@@ -3489,7 +3489,7 @@ function language_strings() {
 	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
 	arr["FRENCH",374]="${pending_of_translation} Impossible de trouver la base de données de fichiers locaux de codes PIN (${known_pins_dbfile}) dans le dossier de script. Il va tenter de télécharger"
 	arr["CATALAN",374]="${pending_of_translation} No s'ha pogut trobar el fitxer local de la base de dades de PINs (${known_pins_dbfile}) a la carpeta del script. S'intentarà descarregar"
-	arr["PORTUGUESE",374]="${pending_of_translation} Não foi possível localizar o banco de dados local de PINs (${known_pins_dbfile}) na pasta de script de arquivo. Ele tentará baixar"
+	arr["PORTUGUESE",374]="Não foi possível localizar o arquivo (${known_pins_dbfile}) com banco de dados local na pasta do script. O script vai tentar realizar o download"
 	arr["RUSSIAN",374]="${pending_of_translation} Локальный файл базы данных PINs (${known_pins_dbfile}) не может быть найден в папке скрипта. Будет предпринята попытка загрузить"
 	arr["GREEK",374]="Το αρχείο με την βάση δεδομένων PIN (${known_pins_dbfile}) δεν βρέθηκε στο φάκελο με το script. Θα προσπαθήσει να κατέβει"
 
@@ -3505,7 +3505,7 @@ function language_strings() {
 	arr["SPANISH",376]="Se ha encontrado un fichero local de base de datos de PINs (${known_pins_dbfile}). No obstante se va a comprobar si existe uno más actualizado"
 	arr["FRENCH",376]="Base de données PIN (${known_pins_dbfile}) présente. Recherche d’éventuelles actualisations"
 	arr["CATALAN",376]="${pending_of_translation} S'ha trobat un fitxer local de base de dades de PINs (${known_pins_dbfile}). No obstant això es va a comprovar si hi ha un més actualitza"
-	arr["PORTUGUESE",376]="${pending_of_translation} Constatou-se um banco de dados local de arquivo de PINs (${known_pins_dbfile}). No entanto, ele verificará se existe uma mais actualizada"
+	arr["PORTUGUESE",376]="Um banco de dados local de PINs foi encontrado (${known_pins_dbfile}). No entanto, será verificado se existe um mais atualizado"
 	arr["RUSSIAN",376]="${pending_of_translation} Локальный файл базы данных PINs (${known_pins_dbfile}) был найден. В любом случае будет выполнена проверка на более новый"
 	arr["GREEK",376]="Το αρχείο με την βάση δεδομένων PIN (${known_pins_dbfile}) βρέθηκε. Παρ'όλα αυτά θα πραγματοποιηθεί έλεγχος για νεότερη έκδοση"
 
@@ -3513,7 +3513,7 @@ function language_strings() {
 	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs más actualizado"
 	arr["FRENCH",377]="La base de données a été actualisée"
 	arr["CATALAN",377]="${pending_of_translation} S'ha descarregat amb èxit un fitxer de base de dades de PINs més actualitzat"
-	arr["PORTUGUESE",377]="${pending_of_translation} Ele foi baixado com sucesso um banco de dados de PINs mais atualizados arquivo"
+	arr["PORTUGUESE",377]="Um arquivo com banco de dados com PINs mais atualizado foi baixado com sucesso"
 	arr["RUSSIAN",377]="${pending_of_translation} Файл базы данных более последнюю дату PINs была успешно загружена"
 	arr["GREEK",377]="Ένα ενημερωμένο αρχείο με την βάση δεδομένων PIN έχει κατέβει με επιτυχία"
 
@@ -3521,7 +3521,7 @@ function language_strings() {
 	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
 	arr["FRENCH",378]="Erreur lors du téléchargement de l'actualisation de la base de données"
 	arr["CATALAN",378]="${pending_of_translation} S'ha produït un error en intentar descarregar el fitxer de base de dades de PINs"
-	arr["PORTUGUESE",378]="${pending_of_translation} Ocorreu um erro ao tentar baixar os PINs de banco de dados de arquivo"
+	arr["PORTUGUESE",378]="Ocorreu um erro ao tentar baixar o arquivo com banco de dados de PINs"
 	arr["RUSSIAN",378]="${pending_of_translation} Произошла ошибка при попытке загрузить файл базы данных PINs"
 	arr["GREEK",378]="Παρουσιάστηκε σφάλμα στην προσπάθεια να κατέβει το αρχείο με την βάση δεδομένων PIN"
 
@@ -3529,7 +3529,7 @@ function language_strings() {
 	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
 	arr["FRENCH",379]="La vérification de la base de données a été faite et ne sera plus relancée"
 	arr["CATALAN",379]="${pending_of_translation} La revisió del fitxer de base de dades de PINs ja es va fer. No es realitzarà de nou..."
-	arr["PORTUGUESE",379]="${pending_of_translation} Verificando os PINs de banco de dados arquivo já feito. Ele não vai fazer de novo..."
+	arr["PORTUGUESE",379]="Verificando os PINs no arquivo com banco de dados. Isso não vai ser feito novamente..."
 	arr["RUSSIAN",379]="${pending_of_translation} Проверка файла базы данных PINs уже сделано. Это не будет сделано еще раз..."
 	arr["GREEK",379]="Έχει γίνει ήδη έλεγχος του αρχείου με την βάση δεδομένων PIN. Δεν θα ξαναελεγχθεί..."
 
@@ -3537,7 +3537,7 @@ function language_strings() {
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
 	arr["FRENCH",380]="${pending_of_translation} Vous voulez que la prochaine fois que vous lancez cette attaque dans cette session retry? ${normal_color}[y/n]"
 	arr["CATALAN",380]="${pending_of_translation} ¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
-	arr["PORTUGUESE",380]="${pending_of_translation} Você quer que a próxima vez que você lançar este ataque nesta nova tentativa sessão? ${normal_color}[y/n]"
+	arr["PORTUGUESE",380]="Você quer tentar novamente na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",380]="${pending_of_translation} Вы хотите, чтобы попробовать снова в следующий раз, когда вы запустите эту атаку для этого сеанса? ${normal_color}[y/n]"
 	arr["GREEK",380]="Θέλετε να δοκιμάσετε ξανά την επόμενη φορά που θα ξεκινήσει αυτή η επίθεση για αυτή την συνεδρία; ${normal_color}[y/n]"
 
@@ -3545,7 +3545,7 @@ function language_strings() {
 	arr["SPANISH",381]="Ocurrió un error al intentar acceder al fichero de checksum de la base de datos de PINs remota"
 	arr["FRENCH",381]="Erreur de checksum avec la base de données PIN en ligne"
 	arr["CATALAN",381]="${pending_of_translation} S'ha produït un error en intentar accedir al fitxer de checksum de la base de dades de PINs remota"
-	arr["PORTUGUESE",381]="${pending_of_translation} Ocorreu um erro ao tentar acessar o banco de dados arquivo de checksum de PINs remotos"
+	arr["PORTUGUESE",381]="Ocorreu um erro ao tentar acessar o arquivo checksum do banco de dados de PINs remoto"
 	arr["RUSSIAN",381]="${pending_of_translation} Произошла ошибка при попытке получить доступ к контрольной суммы файла удаленной базы данных PINs"
 	arr["GREEK",381]="Παρουσιάστηκε σφάλμα στην προσπάθεια πρόσβασης στο αρχείο checksum της απομακρυσμένης βάσης δεδομένων PIN"
 
@@ -3553,7 +3553,7 @@ function language_strings() {
 	arr["SPANISH",382]="Los checksum de los ficheros local y remoto coinciden. Tu fichero de base de datos de PINs está actualizado"
 	arr["FRENCH",382]="Les checksums de la base de données installée et de la base de données en ligne diffèrent. Actualisation de la base de données"
 	arr["CATALAN",382]="${pending_of_translation} Els checksum dels fitxers local i remot coincideixen. El teu fitxer de base de dades de PINs està actualitzat"
-	arr["PORTUGUESE",382]="${pending_of_translation} As somas de verificação dos arquivos locais e remotos corresponder. Seu banco de dados arquivo é atualizado PINs"
+	arr["PORTUGUESE",382]="A checksum dos arquivos locais e remotos correspondem. Seu banco de dados local está atualizado"
 	arr["RUSSIAN",382]="${pending_of_translation} Контрольные суммы локальных и удаленных файлов совпадают. Ваш файл базы данных обновляется PINs"
 	arr["GREEK",382]="Τα checksums των τοπικών και των απομακρυσμένων αρχείων ταιριάζουν. Το αρχείο με την βάση δεδομένων PIN είναι ενημερωμένο"
 
@@ -3561,7 +3561,7 @@ function language_strings() {
 	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
 	arr["FRENCH",383]="Une base de données PIN plus actuelle a été détectée et va être installée"
 	arr["CATALAN",383]="${pending_of_translation} Sembla que hi ha un fitxer de base de dades de PINs més actualitzat. Serà descarregat..."
-	arr["PORTUGUESE",383]="${pending_of_translation} Parece que há um banco de dados de arquivo PINs mais frescos. Ele será baixado..."
+	arr["PORTUGUESE",383]="Parece que há um arquivo com banco de dados de PINs mais recente. Ele será baixado..."
 	arr["RUSSIAN",383]="${pending_of_translation} Кажется, есть файл базы данных PINs более последнюю дату. Он будет загружен..."
 	arr["GREEK",383]="Φαίνεται πως υπάρχει ένα νεότερο αρχείο με την βάση δεδομένων PIN. Θα κατέβει..."
 
@@ -3569,7 +3569,7 @@ function language_strings() {
 	arr["SPANISH",384]="Buscando en la base de datos de PINs. Por favor ten paciencia..."
 	arr["FRENCH",384]="Recherche dans la base de données PIN. Ayez un peu de patience s'il vous plaît"
 	arr["CATALAN",384]="${pending_of_translation} Buscant a la base de dades de PINs. Si us plau té paciència..."
-	arr["PORTUGUESE",384]="${pending_of_translation} Pesquisando os PINs de banco de dados. Por favor, seja paciente..."
+	arr["PORTUGUESE",384]="Pesquisando os PINs no banco de dados. Por favor, seja paciente..."
 	arr["RUSSIAN",384]="${pending_of_translation} Поиск в базе данных PINs. Додождите немного..."
 	arr["GREEK",384]="Γίνεται αναζήτηση στην βάση δεδομένων PIN. Παρακαλώ έχετε λίγη υπομονή..."
 
@@ -3577,7 +3577,7 @@ function language_strings() {
 	arr["SPANISH",385]="Se ha encontrado sólo una coincidencia en la base de datos de PINs"
 	arr["FRENCH",385]="Un PIN a été trouvé avec la base de données"
 	arr["CATALAN",385]="${pending_of_translation} S'ha trobat només una coincidència a la base de dades de PINs"
-	arr["PORTUGUESE",385]="${pending_of_translation} Só encontrei um jogo nas PINs de banco de dados"
+	arr["PORTUGUESE",385]="Somente uma correspondência encontrada no banco de dados de PIN"
 	arr["RUSSIAN",385]="${pending_of_translation} Только один матч найден в базе данных PINs"
 	arr["GREEK",385]="Μόνο ένα αντίστοιχο PIN βρέθηκε στην βάση δεδομένων"
 
@@ -3585,7 +3585,7 @@ function language_strings() {
 	arr["SPANISH",386]="Se han encontrado ${counter_pins_found} PINs coincidentes en la base de datos de PINs"
 	arr["FRENCH",386]="${counter_pins_found} PIN possibles selon la base de données"
 	arr["CATALAN",386]="${pending_of_translation} S'han trobat ${counter_pins_found} PINs coincidents a la base de dades de PINs"
-	arr["PORTUGUESE",386]="${pending_of_translation} Encontrados ${counter_pins_found} PINs correspondentes nas PINs de banco de dados"
+	arr["PORTUGUESE",386]="Encontrados ${counter_pins_found} PINs correspondentes no banco de dados de PINs"
 	arr["RUSSIAN",386]="${pending_of_translation} ${counter_pins_found} соответствие ПИНы были найдены в базе данных PINs"
 	arr["GREEK",386]="${counter_pins_found} αντίστοιχα PINs βρέθηκαν στην βάση δεδομένων"
 
@@ -3593,7 +3593,7 @@ function language_strings() {
 	arr["SPANISH",387]="No se ha encontrado ninguna coincidencia en la base de datos de PINs"
 	arr["FRENCH",387]="Aucun PIN n'a été trouvé dans la base données"
 	arr["CATALAN",387]="${pending_of_translation} No s'ha trobat cap coincidència a la base de dades de PINs"
-	arr["PORTUGUESE",387]="${pending_of_translation} Nada encontrado nenhum fósforo nas PINs de banco de dados"
+	arr["PORTUGUESE",387]="Nenhuma correspondência encontrada no banco de dados de PINs"
 	arr["RUSSIAN",387]="${pending_of_translation} Нет совпадений найдено в базе данных PINs"
 	arr["GREEK",387]="Δε βρέθηκε αντίστοιχο PIN στην βάση δεδομένων"
 
@@ -3601,7 +3601,7 @@ function language_strings() {
 	arr["SPANISH",388]="Calculando y añadiendo posibles PINs usando algoritmos conocidos comunes..."
 	arr["FRENCH",388]="Générations des PIN en appliquant les algorithmes les plus communs"
 	arr["CATALAN",388]="${pending_of_translation} Calculant i afegint possibles PINs usant algoritmes coneguts comuns..."
-	arr["PORTUGUESE",388]="${pending_of_translation} Cálculo e adicionando possíveis PINs usando algoritmos conhecidos comuns..."
+	arr["PORTUGUESE",388]="Cálculando e adicionando possíveis PINs usando algoritmos comuns conhecidos..."
 	arr["RUSSIAN",388]="${pending_of_translation} Вычисление и добавление возможных PINs с использованием обычных известных алгоритмов..."
 	arr["GREEK",388]="Γίνεται υπολογισμός πιθανών PINs και πρόσθεση αυτών κάνοντας χρήση κοινών γνωστών αλγορίθμων..."
 
@@ -3609,7 +3609,7 @@ function language_strings() {
 	arr["SPANISH",389]="Se han añadido PINs calculados por los algoritmos. El ataque se lanzará con un total de ${counter_pins_found} PINs"
 	arr["FRENCH",389]="Ajout des PIN calculées au moyen des algorithmes. L'attaque se fera avec ${counter_pins_found} PIN"
 	arr["CATALAN",389]="${pending_of_translation} S'han afegit PINs calculats pels algoritmes. L'atac es llançarà amb un total de ${counter_pins_found} PINs"
-	arr["PORTUGUESE",389]="${pending_of_translation} Eles foram adicionados PINs calculados por algoritmos. O ataque será lançado com um total de ${counter_pins_found} PINs"
+	arr["PORTUGUESE",389]="Os PINs calculados com algoritmos foram adicionados. O ataque será iniciado com um total de ${counter_pins_found} PINs"
 	arr["RUSSIAN",389]="${pending_of_translation} PINs, рассчитанные с помощью алгоритмов, которые были добавлены. Атака будет запущен в общей сложности ${counter_pins_found} PINs"
 	arr["GREEK",389]="Προστέθηκαν τα PINs που υπολογίστηκαν από τους αλγορίθμους. Η επίθεση θα ξεκινήσει με ${counter_pins_found} PINs συνολικά"
 
@@ -3617,7 +3617,7 @@ function language_strings() {
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
 	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ne sont activés que PBC (Push Button Connect) et vous ne pouvez pas vous connecter en WPS si le même bouton physique est pressé"
 	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
-	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso são ativados somente PBC (Push Button Connect) e você não pode se conectar por WPS se o mesmo botão físico é pressionado"
+	arr["PORTUGUESE",390]="${pending_of_translation} Alguns pontos de acesso têm permitido PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
 	arr["RUSSIAN",390]="${pending_of_translation} Некоторые точки доступа имеют только PBC (Push Button Connect) включен, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку на устройстве"
 	arr["GREEK",390]="Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το κουμπί αυτό στη συσκευή"
 
