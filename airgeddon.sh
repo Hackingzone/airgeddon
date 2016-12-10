@@ -9247,9 +9247,7 @@ function check_pins_database_file() {
 #Download the pins database file
 function download_pins_database_file() {
 
-	#TODO change url before pull requests
-	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/WPS/known_pins.db 2> /dev/null | head -n 1)
-	#remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null | head -n 1)
+	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null | head -n 1)
 
 	if [ "${remote_pindb_file}" != "${curl_404_error}" ]; then
 		echo "${remote_pindb_file}" > "${scriptfolder}${known_pins_dbfile}"
@@ -9277,9 +9275,7 @@ function get_local_pin_dbfile_checksum() {
 #Get the checksum for remote pin database file
 function get_remote_pin_dbfile_checksum() {
 
-	#TODO change url before pull requests
-	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/WPS/pindb_checksum.txt 2> /dev/null | head -n 1)
-	#remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
+	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
 
 	if [ "${remote_pin_dbfile_checksum}" != "${curl_404_error}" ]; then
 		return 0
