@@ -3471,7 +3471,7 @@ function language_strings() {
 
 	arr["ENGLISH",372]="This attack can't be performed without known PINs database file"
 	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar este ataque"
-	arr["FRENCH",372]="${pending_of_translation} Aucune base de données de fichiers PINs connus ne peuvent pas effectuer cette attaque"
+	arr["FRENCH",372]="Sans la base donées PIN cette attaque ne peut pas être exécutée"
 	arr["CATALAN",372]="${pending_of_translation} Sense fitxer de base de dades de PINs coneguts no es pot realitzar aquest atac"
 	arr["PORTUGUESE",372]="Esse ataque não pode ser executado sem o arquivo com banco de dados de PINs conhecido "
 	arr["RUSSIAN",372]="Эта атака не может быть выполнена без файла базы данных известных PIN"
@@ -3479,7 +3479,7 @@ function language_strings() {
 
 	arr["ENGLISH",373]="The known PINs database file exists. Script can continue..."
 	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
-	arr["FRENCH",373]="${pending_of_translation} Il y a une base de données de fichier PINs connu. Le script peut continuer..."
+	arr["FRENCH",373]="La base de données PIN est bien présente. Le script peut continuer..."
 	arr["CATALAN",373]="${pending_of_translation} Hi ha el fitxer de base de dades de PINs coneguts. El script pot continuar..."
 	arr["PORTUGUESE",373]="Há um arquivo com banco de dados de PINs conhecidos. O script pode continuar..."
 	arr["RUSSIAN",373]="Файл с базой данных известных PIN существует. Скрипт может продолжать..."
@@ -3487,7 +3487,7 @@ function language_strings() {
 
 	arr["ENGLISH",374]="Local PINs database file (${known_pins_dbfile}) can't be found in the script folder. It will be attempted to download"
 	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
-	arr["FRENCH",374]="${pending_of_translation} Impossible de trouver la base de données de fichiers locaux de codes PIN (${known_pins_dbfile}) dans le dossier de script. Il va tenter de télécharger"
+	arr["FRENCH",374]="Base de donnée PIN (${known_pins_dbfile}) absente du dossier contenant le script. Tentative de téléchargement"
 	arr["CATALAN",374]="${pending_of_translation} No s'ha pogut trobar el fitxer local de la base de dades de PINs (${known_pins_dbfile}) a la carpeta del script. S'intentarà descarregar"
 	arr["PORTUGUESE",374]="Não foi possível localizar o arquivo (${known_pins_dbfile}) com banco de dados local na pasta do script. O script vai tentar realizar o download"
 	arr["RUSSIAN",374]="Локальный файл базы данных PIN (${known_pins_dbfile}) не найден в папке скрипта. Будет предпринята попытка загрузить его"
@@ -3535,7 +3535,7 @@ function language_strings() {
 
 	arr["ENGLISH",380]="Do you want to try again next time you launch this attack for this session? ${normal_color}[y/n]"
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
-	arr["FRENCH",380]="${pending_of_translation} Vous voulez que la prochaine fois que vous lancez cette attaque dans cette session retry? ${normal_color}[y/n]"
+	arr["FRENCH",380]="La prochaine fois que vous relancez cette attaque pendant cette session, voulez-vous oui ou non [y/n] que l'actualisation soit lancée? ${normal_color}[y/n]"
 	arr["CATALAN",380]="${pending_of_translation} ¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",380]="Você quer buscar por atualizações na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",380]="Вы хотите снова продолжить эту сессию при запуске этой атаки в следующий раз? ${normal_color}[y/n]"
@@ -3615,7 +3615,7 @@ function language_strings() {
 
 	arr["ENGLISH",390]="Some access points have only PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
-	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès ne sont activés que PBC (Push Button Connect) et vous ne pouvez pas vous connecter en WPS si le même bouton physique est pressé"
+	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès n'ont que le WPS PBC (Push Button Connect) activé et vous ne pourrez pas vous connecter par WPS sans presser le bouton du routeur"
 	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
 	arr["PORTUGUESE",390]="Alguns pontos de acesso têm ativo somente o PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
 	arr["RUSSIAN",390]="На некоторых точках доступа включено только PBC (Push Button Connect), т.е. подключение по нажатой кнопке, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку устройства"
