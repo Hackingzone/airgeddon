@@ -3615,7 +3615,7 @@ function language_strings() {
 
 	arr["ENGLISH",390]="Some access points have only PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
-	arr["FRENCH",390]="${pending_of_translation} Certains points d'accès n'ont que le WPS PBC (Push Button Connect) activé et vous ne pourrez pas vous connecter par WPS sans presser le bouton du routeur"
+	arr["FRENCH",390]="Certains points d'accès n'ont que le WPS PBC (Push Button Connect) activé et vous ne pourrez pas vous connecter par WPS sans presser le bouton du routeur"
 	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
 	arr["PORTUGUESE",390]="Alguns pontos de acesso têm ativo somente o PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
 	arr["RUSSIAN",390]="На некоторых точках доступа включено только PBC (Push Button Connect), т.е. подключение по нажатой кнопке, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку устройства"
