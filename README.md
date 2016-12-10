@@ -9,7 +9,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Cleaning and optimizing Handshake captured files.<br/>
 - Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
 - 4 Evil Twin attacks: Evil Twin with integrated sniffing, sslstrip mode, "only AP" version to sniff using external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
-- WPS features: WPS scanning (wash). WPS Custom pin association. WPS Pixie Dust attacks integrated using reaver and bully. WPS bruteforce PIN attacks.<br/>
+- WPS features: WPS scanning (wash). Reaver and Bully attacks: WPS Custom PIN association, Pixie Dust attacks, bruteforce PIN attacks. WPS online PIN database search for "known WPS PINs attack" and integration of the most common PIN generation algorithms.<br/>
 - Compatibility with many Linux distros (see requirements section).<br/>
 - Easy targeting and selection in every section.<br/>
 - Drag and drop files on console window for entering file paths.<br/>
@@ -18,9 +18,6 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Multilanguage support and autodetect OS language feature (see supported languages section).<br/>
 - Help hints in every zone/menu for easy use.<br/>
 - Auto-update. Script checks for newer version if possible.
-
-#Coming soon
-- WPS PIN Database search for "easy AP" known PINs and integration of most common PIN generation algorithms
 
 #Requirements
 Bash version 4.0 or later needed.<br/>
@@ -39,7 +36,7 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
-*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1 and 4.8.6-1*<br/>
+*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1, 4.8.8-2, 4.8.10-1 and 4.8.11-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
@@ -137,21 +134,24 @@ You can download the master version or the beta testing version from the develop
 See [Changelog](changelog.txt) file to review changes.
 
 #Special Thanks to
-Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
-Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins.<br/>
-<br/>
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations, beta testing, suggestions and the help received fixing code warnings and other stuff.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>
+<br/>
+Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
+Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms.<br/>
+I want to thank you too, to all developers who made and designed the third-party tools airgeddon uses.<br/>
 <br/>
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
 *MI1 -> Airstorm*<br/>
 *MatToufoutu -> Ap-fucker*<br/>
 *Coeman76 -> Handshaker*
+*Goyfilms -> Goyscript*
+*Kcdtv -> WPSPin*
 
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me to a coffee through Paypal or send me a fraction of a bitcoin:<br/>
