@@ -9247,7 +9247,7 @@ function check_pins_database_file() {
 #Download the pins database file
 function download_pins_database_file() {
 
-	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null | head -n 1)
+	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null)
 
 	if [ "${remote_pindb_file}" != "${curl_404_error}" ]; then
 		echo "${remote_pindb_file}" > "${scriptfolder}${known_pins_dbfile}"
