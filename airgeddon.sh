@@ -6404,11 +6404,19 @@ function set_show_charset() {
 			case ${charset_tmp} in
 				"?a")
 					for item in "${hashcat_charsets[@]}"; do
-						showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
+						if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
+							showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
+						else
+							showcharset+=$(hashcat --help | egrep "^  ${item#'?'} \|" | awk '{print $3}')
+						fi
 					done
 				;;
 				*)
-					showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
+					if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
+						showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
+					else
+						showcharset=$(hashcat --help | egrep "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
+					fi
 				;;
 			esac
 		;;
@@ -9103,8 +9111,10 @@ function iwconfig_fix() {
 function set_hashcat_parameters() {
 
 	hashcat_fix=""
+	hashcat_charset_fix_needed=0
 	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
 		hashcat_fix=" -D 1 --force"
+		hashcat_charset_fix_needed=1
 	fi
 }
 
