@@ -1,5 +1,6 @@
 5.11
 Custom PIN, bruteforce and Pixie Dust WPS attacks integrated in new parser system
+Fixed bug for wash scanning on custom reaver 1.5.4 for Wifislax
 
 5.1
 Integrated online PIN database for "known WPS PINs attack" (reaver and bully)

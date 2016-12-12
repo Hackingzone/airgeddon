@@ -107,7 +107,6 @@ curl_404_error="404: Not Found"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
-minimum_reaver_wash_large_version="1.5.2"
 minimum_bully_pixiewps_version="1.1"
 minimum_bully_verbosity4_version="1.1"
 known_pins_dbfile="known_pins.db"
@@ -8436,11 +8435,17 @@ function explore_for_wps_targets_option() {
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
-	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_wash_large_version}"; then
-		wash_start_data_line=7
-	else
-		wash_start_data_line=2
-	fi
+	case ${reaver_version} in
+		"1.5.4")
+			wash_start_data_line=8
+		;;
+		"1.5.2")
+			wash_start_data_line=7
+		;;
+		*)
+			wash_start_data_line=2
+		;;
+	esac
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le ${wash_start_data_line} ]; then
