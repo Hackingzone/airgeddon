@@ -5679,7 +5679,7 @@ function wps_attacks_menu() {
 				get_bully_version
 				set_bully_verbosity
 				if [ -z "${scriptfolder}" ]; then
-					set_script_folder
+					set_script_folder_and_name
 				fi
 
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
@@ -5709,7 +5709,7 @@ function wps_attacks_menu() {
 			else
 				get_reaver_version
 				if [ -z "${scriptfolder}" ]; then
-					set_script_folder
+					set_script_folder_and_name
 				fi
 
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
@@ -6863,16 +6863,16 @@ function set_wps_attack_script() {
 	cat >&7 <<-EOF
 			"pindb")
 				script_pins_found=(${pins_found[@]})
-				script_attack_cmd1="${unbuffer}timeout ${timeout_secs_per_pin} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing PIN "
 			;;
 			"custompin")
 				current_pin=${custom_pin}
-				script_attack_cmd1="${unbuffer}timeout ${timeout_secs_per_pin} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing PIN "
 			;;
 			"pixiedust")
-				script_attack_cmd1="${unbuffer}timeout ${timeout_secs_per_pixiedust} ${attack_cmd1}"
+				script_attack_cmd1="${unbuffer}timeout -s SIGTERM ${timeout_secs_per_pixiedust} ${attack_cmd1}"
 				pin_header1="${white_color}Testing Pixie Dust attack${normal_color}"
 			;;
 			"bruteforce")
@@ -8664,7 +8664,7 @@ function set_wash_parametrization() {
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
-	readarray -t WASH_OUTPUT < <(timeout 1 wash -i "${interface}" 2> /dev/null)
+	readarray -t WASH_OUTPUT < <(timeout -s SIGTERM 1 wash -i "${interface}" 2> /dev/null)
 
 	for item in "${WASH_OUTPUT[@]}"; do
 		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
@@ -9327,7 +9327,7 @@ function validate_reaver_pixiewps_version() {
 }
 
 #Set the script folder var
-function set_script_folder() {
+function set_script_folder_and_name() {
 
 	scriptfolder=${0}
 
@@ -9337,6 +9337,7 @@ function set_script_folder() {
 		fi
 	fi
 	scriptfolder="${scriptfolder%/*}/"
+	scriptname="${0##*/}"
 }
 
 #Check if pins database file exist and try to download the new one if proceed
@@ -10125,22 +10126,16 @@ function compare_floats_greater_or_equal() {
 #Update and relaunch the script
 function download_last_version() {
 
-	curl -L ${urlscript_directlink} -s -o "${0}"
+	timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
 		echo
 		language_strings "${language}" 214 "yellow"
 
-		scriptpath=${0}
-		if ! [[ ${0} =~ ^/.*$ ]]; then
-			if ! [[ ${0} =~ ^.*/.*$ ]]; then
-				scriptpath="./${0}"
-			fi
-		fi
-
-		chmod +x "${scriptpath}" > /dev/null 2>&1
+		set_script_folder_and_name
+		chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		language_strings "${language}" 115 "read"
-		exec "${scriptpath}"
+		exec "${scriptfolder}${scriptname}"
 	else
 		language_strings "${language}" 5 "yellow"
 	fi
