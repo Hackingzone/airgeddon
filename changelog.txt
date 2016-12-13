@@ -1,3 +1,6 @@
+5.12
+Fixed bug for wash scanning on reaver 1.5.3. Now new method works for all versions because the version doesn't care anymore
+
 5.11
 Custom PIN, bruteforce and Pixie Dust WPS attacks integrated in new parser system
 Fixed bug for wash scanning on custom reaver 1.5.4 for Wifislax

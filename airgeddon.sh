@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.11"
+airgeddon_version="5.12"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -5573,7 +5573,6 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				get_reaver_version
 				explore_for_wps_targets_option
 			fi
 		;;
@@ -8435,17 +8434,17 @@ function explore_for_wps_targets_option() {
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for WPS targets" -e "wash -i \"${interface}\" ${wash_ifaces_already_set[${interface}]} | tee \"${tmpdir}wps.txt\"" > /dev/null 2>&1
 
-	case ${reaver_version} in
-		"1.5.4")
-			wash_start_data_line=8
-		;;
-		"1.5.2")
-			wash_start_data_line=7
-		;;
-		*)
-			wash_start_data_line=2
-		;;
-	esac
+	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
+
+	wash_line_counter=1
+	for item in "${WASH_PREVIEW[@]}"; do
+		if [[ ${item} =~ -{20} ]]; then
+			wash_start_data_line="${wash_line_counter}"
+			break
+		else
+			wash_line_counter=$((wash_line_counter+1))
+		fi
+	done
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le ${wash_start_data_line} ]; then
