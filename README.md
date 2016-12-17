@@ -36,7 +36,7 @@ Tested on these compatible Linux distros:<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
 *-Red Hat 7 (Maipo)*<br/>
-*-Arch 4.6.2-1, 4.7.5-1, 4.8.4-1, 4.8.6-1, 4.8.8-2, 4.8.10-1 and 4.8.11-1*<br/>
+*-Arch 4.6.2-1 to 4.8.13-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 <br/>
