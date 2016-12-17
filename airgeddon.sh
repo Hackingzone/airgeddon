@@ -3627,7 +3627,7 @@ function language_strings() {
 	arr["CATALAN",391]="${pending_of_translation} Timeout triat ${normal_color}${timeout_secs_per_pin}"
 	arr["PORTUGUESE",391]="${pending_of_translation} Timeout escolhido ${normal_color}${timeout_secs_per_pin}"
 	arr["RUSSIAN",391]="${pending_of_translation} Тайм-аут установлен ${normal_color}${timeout_secs_per_pin}"
-	arr["GREEK",391]="${pending_of_translation} Χρονικό όριο ρυθμιστεί σε ${normal_color}${timeout_secs_per_pin}"
+	arr["GREEK",391]="Το timeout τέθηκε στα ${normal_color}${timeout_secs_per_pin}"
 
 	arr["ENGLISH",392]="Pixie Dust timeout set to ${normal_color}${timeout_secs_per_pixiedust}"
 	arr["SPANISH",392]="Timeout elegido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
@@ -3635,7 +3635,7 @@ function language_strings() {
 	arr["CATALAN",392]="${pending_of_translation} Timeout triat per Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
 	arr["PORTUGUESE",392]="${pending_of_translation} Timeout escolhido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
 	arr["RUSSIAN",392]="${pending_of_translation} Pixie Dust Тайм-аут установлен в ${normal_color}${timeout_secs_per_pixiedust}"
-	arr["GREEK",392]="${pending_of_translation} Pixie Dust Timeout οριστεί σε ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["GREEK",392]="Το timeout του Pixie Dust τέθηκε στα ${normal_color}${timeout_secs_per_pixiedust}"
 
 	arr["ENGLISH",393]="Type value in seconds (10-100) for timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["SPANISH",393]="Escribe un valor en segundos (10-100) para el timeout o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
@@ -3643,7 +3643,7 @@ function language_strings() {
 	arr["CATALAN",393]="${pending_of_translation} Escriu un valor en segons (10-100) per al timeout o prem [Enter] per acceptar el valor per [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["PORTUGUESE",393]="${pending_of_translation} Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor proposto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["RUSSIAN",393]="${pending_of_translation} Значение Тип в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы принять предложение [${normal_color}${timeout_secs_per_pin}${green_color}] :"
-	arr["GREEK",393]="${pending_of_translation} τιμή τύπου σε δευτερόλεπτα (10-100) για το χρονικό όριο ή πατήστε [Enter] για να δεχθεί την πρόταση [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή  [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 
 	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
@@ -3651,7 +3651,7 @@ function language_strings() {
 	arr["CATALAN",394]="${pending_of_translation} Escriu un valor en segons (25-2400) per al timeout de Pixie Dust o prem [Enter] per acceptar el valor per [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["PORTUGUESE",394]="${pending_of_translation} Insira um valor em segundos (25-2400) para o timeout Pixie Dust ou pressione [Enter] para aceitar o valor proposto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["RUSSIAN",394]="${pending_of_translation} Тип значение в секундах (25-2400) для Pixie Dust тайм-аут или нажмите [Enter], чтобы принять предложение [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
-	arr["GREEK",394]="${pending_of_translation} τιμή τύπου σε δευτερόλεπτα (25-2400) για την Pixie Dust χρονικού ορίου ή πατήστε [Enter] για να δεχθεί την πρόταση [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["GREEK",394]="Εισάγετε μια τιμή σε δευτερόλεπτα (25-2400) για το timeout του Pixie Dust ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 
 	case "${3}" in
 		"yellow")
