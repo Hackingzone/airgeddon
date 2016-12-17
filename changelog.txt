@@ -1,5 +1,6 @@
 5.13
-WPS timeouts changed
+WPS default timeouts changed
+WPS parameterizable timeouts, users can decide how many seconds for each WPS attack
 More traps handled. Auto restore managed mode on interface after SIGINT/SIGHUP
 
 5.12

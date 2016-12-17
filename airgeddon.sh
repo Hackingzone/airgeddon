@@ -114,7 +114,7 @@ pins_dbfile_checksum="pindb_checksum.txt"
 wps_default_generic_pin="12345670"
 wps_attack_script_file="ag.wpsattack.sh"
 wps_out_file="ag.wpsout.txt"
-timeout_secs_per_pin="15"
+timeout_secs_per_pin="30"
 timeout_secs_per_pixiedust="30"
 
 #Repository and contact vars
@@ -3621,6 +3621,38 @@ function language_strings() {
 	arr["RUSSIAN",390]="На некоторых точках доступа включено только PBC (Push Button Connect), т.е. подключение по нажатой кнопке, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку устройства"
 	arr["GREEK",390]="Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το κουμπί αυτό στη συσκευή"
 
+	arr["ENGLISH",391]="Timeout set to ${normal_color}${timeout_secs_per_pin}"
+	arr["SPANISH",391]="Timeout elegido ${normal_color}${timeout_secs_per_pin}"
+	arr["FRENCH",391]="${pending_of_translation} Timeout définit ${normal_color}${timeout_secs_per_pin}"
+	arr["CATALAN",391]="${pending_of_translation} Timeout triat ${normal_color}${timeout_secs_per_pin}"
+	arr["PORTUGUESE",391]="${pending_of_translation} Timeout escolhido ${normal_color}${timeout_secs_per_pin}"
+	arr["RUSSIAN",391]="${pending_of_translation} Тайм-аут установлен ${normal_color}${timeout_secs_per_pin}"
+	arr["GREEK",391]="${pending_of_translation} Χρονικό όριο ρυθμιστεί σε ${normal_color}${timeout_secs_per_pin}"
+
+	arr["ENGLISH",392]="Pixie Dust timeout set to ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["SPANISH",392]="Timeout elegido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["FRENCH",392]="${pending_of_translation} Timeout définit pour Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["CATALAN",392]="${pending_of_translation} Timeout triat per Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["PORTUGUESE",392]="${pending_of_translation} Timeout escolhido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["RUSSIAN",392]="${pending_of_translation} Pixie Dust Тайм-аут установлен в ${normal_color}${timeout_secs_per_pixiedust}"
+	arr["GREEK",392]="${pending_of_translation} Pixie Dust Timeout οριστεί σε ${normal_color}${timeout_secs_per_pixiedust}"
+
+	arr["ENGLISH",393]="Type value in seconds (10-100) for timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["SPANISH",393]="Escribe un valor en segundos (10-100) para el timeout o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["FRENCH",393]="${pending_of_translation} Entrez une valeur en secondes (10-100) pour le timeout ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["CATALAN",393]="${pending_of_translation} Escriu un valor en segons (10-100) per al timeout o prem [Enter] per acceptar el valor per [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["PORTUGUESE",393]="${pending_of_translation} Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor proposto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["RUSSIAN",393]="${pending_of_translation} Значение Тип в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы принять предложение [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["GREEK",393]="${pending_of_translation} τιμή τύπου σε δευτερόλεπτα (10-100) για το χρονικό όριο ή πατήστε [Enter] για να δεχθεί την πρόταση [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+
+	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["FRENCH",394]="${pending_of_translation} Entrez une valeur en secondes (25-2400) pour le timeout Pixie Dust ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["CATALAN",394]="${pending_of_translation} Escriu un valor en segons (25-2400) per al timeout de Pixie Dust o prem [Enter] per acceptar el valor per [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["PORTUGUESE",394]="${pending_of_translation} Insira um valor em segundos (25-2400) para o timeout Pixie Dust ou pressione [Enter] para aceitar o valor proposto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["RUSSIAN",394]="${pending_of_translation} Тип значение в секундах (25-2400) для Pixie Dust тайм-аут или нажмите [Enter], чтобы принять предложение [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["GREEK",394]="${pending_of_translation} τιμή τύπου σε δευτερόλεπτα (25-2400) για την Pixie Dust χρονικού ορίου ή πατήστε [Enter] για να δεχθεί την πρόταση [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4596,6 +4628,62 @@ function ask_custom_pin() {
 	language_strings "${language}" 362 "blue"
 }
 
+#Read the user input on timeout questions
+function read_timeout() {
+
+	echo
+	case ${1} in
+		"standard")
+			language_strings "${language}" 393 "green"
+		;;
+		"pixiedust")
+			language_strings "${language}" 394 "green"
+		;;
+	esac
+	read -r timeout
+}
+
+#Validate the user input for timeouts
+function ask_wps_timeout() {
+
+	case ${1} in
+		"standard")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
+		"pixiedust")
+			local regexp="^2[5-9]$|^[3-9][0-9]$|^[1-9][0-9]{2}$|^1[0-9]{3}$|^2[0-3][0-9]{2}$|^2400$|^$"
+		;;
+	esac
+
+	timeout=0
+	while [[ ! ${timeout} =~ ${regexp} ]]; do
+		read_timeout "${1}"
+	done
+
+	if [ "${timeout}" = "" ]; then
+		case ${1} in
+			"standard")
+				timeout=${timeout_secs_per_pin}
+			;;
+			"pixiedust")
+				timeout=${timeout_secs_per_pixiedust}
+			;;
+		esac
+	fi
+
+	echo
+	case ${1} in
+		"standard")
+			timeout_secs_per_pin=${timeout}
+			language_strings "${language}" 391 "blue"
+		;;
+		"pixiedust")
+			timeout_secs_per_pixiedust=${timeout}
+			language_strings "${language}" 392 "blue"
+		;;
+	esac
+}
+
 #Execute wps custom pin bully attack
 function exec_wps_custom_pin_bully_attack() {
 
@@ -4922,8 +5010,8 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
-#Validate wps custom pin parameters
-function wps_custom_pin_parameters() {
+#Validate wps parameters for custom pin, pixie dust, bruteforce and pin database attacks
+function wps_attacks_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4935,23 +5023,20 @@ function wps_custom_pin_parameters() {
 
 	ask_bssid "wps"
 	ask_channel "wps"
-	ask_custom_pin
-	return 0
-}
 
-#Validate wps parameters for pixie dust, bruteforce and pin database attacks
-function wps_standard_attacks_parameters() {
+	case ${wps_attack} in
+		"custompin_bully"|"custompin_reaver")
+			ask_custom_pin
+			ask_wps_timeout "standard"
+		;;
+		"pixiedust_bully"|"pixiedust_reaver")
+			ask_wps_timeout "pixiedust"
+		;;
+		"pindb_bully"|"pindb_reaver")
+			ask_wps_timeout "standard"
+		;;
+	esac
 
-	check_monitor_enabled
-	if [ "$?" != "0" ]; then
-		return 1
-	fi
-
-	echo
-	language_strings "${language}" 34 "yellow"
-
-	ask_bssid "wps"
-	ask_channel "wps"
 	return 0
 }
 
@@ -5586,9 +5671,10 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="custompin_bully"
 				get_bully_version
 				set_bully_verbosity
-				wps_custom_pin_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_custom_pin_bully_attack
 				fi
@@ -5599,7 +5685,8 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				wps_custom_pin_parameters
+				wps_attack="custompin_reaver"
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_custom_pin_reaver_attack
 				fi
@@ -5610,6 +5697,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pixiedust_bully"
 				get_bully_version
 				set_bully_verbosity
 				validate_bully_pixiewps_version
@@ -5617,7 +5705,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 368 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_standard_attacks_parameters
+					wps_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_bully_pixiewps_attack
 					fi
@@ -5633,13 +5721,14 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pixiedust_reaver"
 				get_reaver_version
 				validate_reaver_pixiewps_version
 				if [ "$?" = "0" ]; then
 					echo
 					language_strings "${language}" 370 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_standard_attacks_parameters
+					wps_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_reaver_pixiewps_attack
 					fi
@@ -5655,9 +5744,10 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="bruteforce_bully"
 				get_bully_version
 				set_bully_verbosity
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_bully_attack
 				fi
@@ -5668,8 +5758,9 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="bruteforce_reaver"
 				get_reaver_version
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_reaver_attack
 				fi
@@ -5680,6 +5771,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pindb_bully"
 				get_bully_version
 				set_bully_verbosity
 				if [ -z "${scriptfolder}" ]; then
@@ -5700,7 +5792,7 @@ function wps_attacks_menu() {
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_pin_database_bully_attack
 				fi
@@ -5711,6 +5803,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pindb_reaver"
 				get_reaver_version
 				if [ -z "${scriptfolder}" ]; then
 					set_script_folder_and_name
@@ -5730,7 +5823,7 @@ function wps_attacks_menu() {
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_pin_database_reaver_attack
 				fi
