@@ -1,3 +1,7 @@
+5.13
+WPS timeouts changed
+More traps handled. Auto restore managed mode on interface after SIGINT/SIGHUP
+
 5.12
 Fixed bug for wash scanning on reaver 1.5.3. Now new method works for all versions because the version doesn't care anymore
 

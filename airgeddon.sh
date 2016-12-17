@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.12"
+airgeddon_version="5.13"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -114,8 +114,8 @@ pins_dbfile_checksum="pindb_checksum.txt"
 wps_default_generic_pin="12345670"
 wps_attack_script_file="ag.wpsattack.sh"
 wps_out_file="ag.wpsout.txt"
-timeout_secs_per_pin="12"
-timeout_secs_per_pixiedust="25"
+timeout_secs_per_pin="15"
+timeout_secs_per_pixiedust="30"
 
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
@@ -4040,6 +4040,7 @@ function prepare_et_interface() {
 
 	if [ "${ifacemode}" != "Managed" ]; then
 		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+		ifacemode="Managed"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			check_interface_coherence
@@ -4066,8 +4067,10 @@ function restore_et_interface() {
 		ifconfig "${interface}" down > /dev/null 2>&1
 		iwconfig "${interface}" mode managed > /dev/null 2>&1
 		ifconfig "${interface}" up > /dev/null 2>&1
+		ifacemode="Managed"
 	else
 		new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+		ifacemode="Monitor"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			interface=${new_interface}
@@ -4098,6 +4101,7 @@ function managed_option() {
 	ifconfig "${interface}" up
 
 	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+	ifacemode="Managed"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -4144,6 +4148,7 @@ function monitor_option() {
 	fi
 
 	new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+	ifacemode="Monitor"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -9153,24 +9158,31 @@ function invalid_internet_iface_selected() {
 #Manage behavior of captured traps
 function capture_traps() {
 
-	case ${current_menu} in
-		"pre_main_menu"|"select_interface_menu")
-			exit_code=1
-			exit_script_option
+	case "${1}" in
+		INT|SIGTSTP)
+			case ${current_menu} in
+				"pre_main_menu"|"select_interface_menu")
+					exit_code=1
+					exit_script_option
+				;;
+				*)
+					ask_yesno 12
+					if [ ${yesno} = "y" ]; then
+						exit_code=1
+						exit_script_option
+					else
+						language_strings "${language}" 224 "blue"
+						if [ "${last_buffered_type1}" = "read" ]; then
+							language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
+						else
+							language_strings "${language}" "${last_buffered_message1}" "${last_buffered_type1}"
+						fi
+					fi
+				;;
+			esac
 		;;
-		*)
-			ask_yesno 12
-			if [ ${yesno} = "y" ]; then
-				exit_code=1
-				exit_script_option
-			else
-				language_strings "${language}" 224 "blue"
-				if [ "${last_buffered_type1}" = "read" ]; then
-					language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
-				else
-					language_strings "${language}" "${last_buffered_message1}" "${last_buffered_type1}"
-				fi
-			fi
+		SIGINT|SIGHUP)
+			hardcore_exit
 		;;
 	esac
 }
@@ -9229,6 +9241,32 @@ function exit_script_option() {
 	fi
 
 	echo
+	exit ${exit_code}
+}
+
+#Exit the script managing possible pending tasks but not showing anything
+function hardcore_exit() {
+
+	exit_code=2
+	if [ "${ifacemode}" = "Monitor" ]; then
+		${airmon} stop "${interface}" > /dev/null 2>&1
+	fi
+
+	if [ ${nm_processes_killed} -eq 1 ]; then
+		eval "${networkmanager_cmd} > /dev/null 2>&1"
+	fi
+
+	if [ ${tmpfiles_toclean} -eq 1 ]; then
+		clean_tmpfiles
+	fi
+
+	if [ ${routing_toclean} -eq 1 ]; then
+		clean_routing_rules
+		killall dhcpd > /dev/null 2>&1
+		killall hostapd > /dev/null 2>&1
+		killall lighttpd > /dev/null 2>&1
+	fi
+
 	exit ${exit_code}
 }
 
@@ -10366,6 +10404,8 @@ function echo_white() {
 	last_echo "${1}" "${white_color}"
 }
 
-trap capture_traps INT
-trap capture_traps SIGTSTP
+for f in SIGINT SIGHUP INT SIGTSTP; do
+	trap_cmd="trap \"capture_traps ${f}\" \"${f}\""
+	eval "${trap_cmd}"
+done
 welcome
