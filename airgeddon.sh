@@ -53,6 +53,7 @@ optional_tools_names=(
 						"reaver"
 						"bully"
 						"pixiewps"
+						"unbuffer"
 					)
 
 declare -A optional_tools=()
@@ -89,6 +90,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[14]}]="reaver" #reaver
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
+									[${optional_tools_names[17]}]="expect" #unbuffer
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -5229,8 +5231,8 @@ function initialize_menu_options_dependencies() {
 	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
 	wash_scan_dependencies=(${optional_tools_names[13]})
 	reaver_attacks_dependencies=(${optional_tools_names[14]})
-	bully_attacks_dependencies=(${optional_tools_names[15]})
-	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]})
+	bully_attacks_dependencies=(${optional_tools_names[15]} ${optional_tools_names[17]})
+	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
 	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
 }
 
