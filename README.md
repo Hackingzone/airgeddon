@@ -75,6 +75,8 @@ dnsspoof -> dsniff
 wash -> reaver
 reaver -> reaver
 bully -> bully
+pixiewps -> pixiewps
+unbuffer -> expect
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
