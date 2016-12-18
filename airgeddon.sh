@@ -3633,7 +3633,7 @@ function language_strings() {
 	arr["SPANISH",392]="Timeout elegido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
 	arr["FRENCH",392]="${pending_of_translation} Timeout définit pour Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} secondes"
 	arr["CATALAN",392]="${pending_of_translation} Timeout triat per Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segons"
-	arr["PORTUGUESE",392]="Timeout definido para ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
+	arr["PORTUGUESE",392]="Timeout do ataque Pixie Dust definido para ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
 	arr["RUSSIAN",392]="${pending_of_translation} Pixie Dust Тайм-аут установлен в ${normal_color}${timeout_secs_per_pixiedust}${blue_color} секунд"
 	arr["GREEK",392]="Το timeout του Pixie Dust τέθηκε στα ${normal_color}${timeout_secs_per_pixiedust}${blue_color} δευτερόλεπτα"
 
