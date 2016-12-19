@@ -49,6 +49,7 @@ We will enumerate the categories and tools. The format will be: "command -> poss
 <br/>
 Essential tools: <- *the script doesn't work if you don't have installed all of them*
 ```
+ifconfig -> net-tools
 iwconfig -> wireless-tools
 iw -> iw
 awk -> awk / gawk
@@ -138,7 +139,7 @@ See [Changelog](changelog.txt) file to review changes.
 #Special Thanks to
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
-**El padrino** for Catalan translations.<br/>
+**El padrino** and **cLn** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
 **xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>

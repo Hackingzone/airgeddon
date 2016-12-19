@@ -26,6 +26,7 @@ declare -A lang_association=(
 
 #Tools vars
 essential_tools_names=(
+						"ifconfig"
 						"iwconfig"
 						"iw"
 						"awk"
@@ -66,13 +67,14 @@ done
 update_tools=("curl")
 
 declare -A possible_package_names=(
-									[${essential_tools_names[0]}]="wireless-tools" #iwconfig
-									[${essential_tools_names[1]}]="iw" #iw
-									[${essential_tools_names[2]}]="awk" #awk
-									[${essential_tools_names[3]}]="aircrack-ng" #airmon-ng
-									[${essential_tools_names[4]}]="aircrack-ng" #airodump-ng
-									[${essential_tools_names[5]}]="aircrack-ng" #aircrack-ng
-									[${essential_tools_names[6]}]="xterm" #xterm
+									[${essential_tools_names[0]}]="net-tools" #ifconfig
+									[${essential_tools_names[1]}]="wireless-tools" #iwconfig
+									[${essential_tools_names[2]}]="iw" #iw
+									[${essential_tools_names[3]}]="awk" #awk
+									[${essential_tools_names[4]}]="aircrack-ng" #airmon-ng
+									[${essential_tools_names[5]}]="aircrack-ng" #airodump-ng
+									[${essential_tools_names[6]}]="aircrack-ng" #aircrack-ng
+									[${essential_tools_names[7]}]="xterm" #xterm
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
@@ -90,7 +92,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[14]}]="reaver" #reaver
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
-									[${optional_tools_names[17]}]="expect" #unbuffer
+									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
 									[${update_tools[0]}]="curl" #curl
 								)
 
