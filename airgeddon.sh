@@ -3283,7 +3283,7 @@ function language_strings() {
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
-	arr["FRENCH",348]=" 11. (bully) Attaque en utilisant un PIN de la base de données"
+	arr["FRENCH",348]="11. (bully) Attaque en utilisant un PIN de la base de données"
 	arr["CATALAN",348]="11. (bully) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="11. (bully) Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
@@ -3627,7 +3627,7 @@ function language_strings() {
 
 	arr["ENGLISH",391]="Timeout set to ${normal_color}${timeout_secs_per_pin}${blue_color} seconds"
 	arr["SPANISH",391]="Timeout elegido ${normal_color}${timeout_secs_per_pin}${blue_color} segundos"
-	arr["FRENCH",391]="${pending_of_translation} Timeout définit ${normal_color}${timeout_secs_per_pin}${blue_color} secondes"
+	arr["FRENCH",391]="Paramétrage du timeout ${normal_color}${timeout_secs_per_pin}${blue_color} secondes"
 	arr["CATALAN",391]="Temps d'espera triat ${normal_color}${timeout_secs_per_pin}${blue_color} segons"
 	arr["PORTUGUESE",391]="Timeout definido para ${normal_color}${timeout_secs_per_pin}${blue_color} segundos"
 	arr["RUSSIAN",391]="Тайм-аут установлен на ${normal_color}${timeout_secs_per_pin}${blue_color} секунд"
@@ -3635,7 +3635,7 @@ function language_strings() {
 
 	arr["ENGLISH",392]="Pixie Dust timeout set to ${normal_color}${timeout_secs_per_pixiedust}${blue_color} seconds"
 	arr["SPANISH",392]="Timeout elegido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
-	arr["FRENCH",392]="${pending_of_translation} Timeout définit pour Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} secondes"
+	arr["FRENCH",392]="Paramétrage du timeout Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} secondes"
 	arr["CATALAN",392]="Temps d'espera triat per Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segons"
 	arr["PORTUGUESE",392]="Timeout do ataque Pixie Dust definido para ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
 	arr["RUSSIAN",392]="Pixie Dust тайм-аут установлен на ${normal_color}${timeout_secs_per_pixiedust}${blue_color} секунд"
@@ -3643,7 +3643,7 @@ function language_strings() {
 
 	arr["ENGLISH",393]="Type value in seconds (10-100) for timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["SPANISH",393]="Escribe un valor en segundos (10-100) para el timeout o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
-	arr["FRENCH",393]="${pending_of_translation} Entrez une valeur en secondes (10-100) pour le timeout ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["FRENCH",393]="Entrez un intervalle de temps en secondes (10-100) pour le timeout ou appuyez sur [Entrée] pour valider la valeur proposée [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["CATALAN",393]="Escriu un valor en segons (10-100) per al temps d'espera o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["PORTUGUESE",393]="Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["RUSSIAN",393]="Введите значение в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pin}${green_color}] :"
@@ -3651,7 +3651,7 @@ function language_strings() {
 
 	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
-	arr["FRENCH",394]="${pending_of_translation} Entrez une valeur en secondes (25-2400) pour le timeout Pixie Dust ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["FRENCH",394]="Entrez un intervalle de temps en secondes (25-2400) pour le timeout Pixie Dust ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["CATALAN",394]="Escriu un valor en segons (25-2400) per al temps d'espera de Pixie Dust o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["PORTUGUESE",394]="Insira um valor em segundos (25-2400) para o timeout do ataque Pixie Dust ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["RUSSIAN",394]="Введите значение в секундах (25-2400) для тайм-аута Pixie Dust или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
