@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.12"
+airgeddon_version="5.13"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -26,6 +26,7 @@ declare -A lang_association=(
 
 #Tools vars
 essential_tools_names=(
+						"ifconfig"
 						"iwconfig"
 						"iw"
 						"awk"
@@ -53,6 +54,7 @@ optional_tools_names=(
 						"reaver"
 						"bully"
 						"pixiewps"
+						"unbuffer"
 					)
 
 declare -A optional_tools=()
@@ -65,13 +67,14 @@ done
 update_tools=("curl")
 
 declare -A possible_package_names=(
-									[${essential_tools_names[0]}]="wireless-tools" #iwconfig
-									[${essential_tools_names[1]}]="iw" #iw
-									[${essential_tools_names[2]}]="awk" #awk
-									[${essential_tools_names[3]}]="aircrack-ng" #airmon-ng
-									[${essential_tools_names[4]}]="aircrack-ng" #airodump-ng
-									[${essential_tools_names[5]}]="aircrack-ng" #aircrack-ng
-									[${essential_tools_names[6]}]="xterm" #xterm
+									[${essential_tools_names[0]}]="net-tools" #ifconfig
+									[${essential_tools_names[1]}]="wireless-tools" #iwconfig
+									[${essential_tools_names[2]}]="iw" #iw
+									[${essential_tools_names[3]}]="awk" #awk
+									[${essential_tools_names[4]}]="aircrack-ng" #airmon-ng
+									[${essential_tools_names[5]}]="aircrack-ng" #airodump-ng
+									[${essential_tools_names[6]}]="aircrack-ng" #aircrack-ng
+									[${essential_tools_names[7]}]="xterm" #xterm
 									[${optional_tools_names[0]}]="aircrack-ng" #wpaclean
 									[${optional_tools_names[1]}]="crunch" #crunch
 									[${optional_tools_names[2]}]="aircrack-ng" #aireplay-ng
@@ -89,6 +92,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[14]}]="reaver" #reaver
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
+									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -114,8 +118,8 @@ pins_dbfile_checksum="pindb_checksum.txt"
 wps_default_generic_pin="12345670"
 wps_attack_script_file="ag.wpsattack.sh"
 wps_out_file="ag.wpsout.txt"
-timeout_secs_per_pin="12"
-timeout_secs_per_pixiedust="25"
+timeout_secs_per_pin="30"
+timeout_secs_per_pixiedust="30"
 
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
@@ -3279,7 +3283,7 @@ function language_strings() {
 
 	arr["ENGLISH",348]="11. (bully) Known PINs database based attack"
 	arr["SPANISH",348]="11. (bully) Ataque basado en base de datos de PINs conocidos"
-	arr["FRENCH",348]=" 11. (bully) Attaque en utilisant un PIN de la base de données"
+	arr["FRENCH",348]="11. (bully) Attaque en utilisant un PIN de la base de données"
 	arr["CATALAN",348]="11. (bully) Atac basat en base de dades de PINs coneguts"
 	arr["PORTUGUESE",348]="11. (bully) Ataque com base em banco de dados de PINs conhecidos"
 	arr["RUSSIAN",348]="11. (bully) Атака на основе базы данных известных PIN"
@@ -3472,7 +3476,7 @@ function language_strings() {
 	arr["ENGLISH",372]="This attack can't be performed without known PINs database file"
 	arr["SPANISH",372]="Sin fichero de base de datos de PINs conocidos no se puede realizar este ataque"
 	arr["FRENCH",372]="Sans la base donées PIN cette attaque ne peut pas être exécutée"
-	arr["CATALAN",372]="${pending_of_translation} Sense fitxer de base de dades de PINs coneguts no es pot realitzar aquest atac"
+	arr["CATALAN",372]="Sense fitxer de base de dades de PINs coneguts no es pot realitzar aquest atac"
 	arr["PORTUGUESE",372]="Esse ataque não pode ser executado sem o arquivo com banco de dados de PINs conhecido "
 	arr["RUSSIAN",372]="Эта атака не может быть выполнена без файла базы данных известных PIN"
 	arr["GREEK",372]="Η επίθεση αυτή δεν μπορεί να πραγματοποιηθεί χωρίς το αρχείο με την βάση δεδομένων γνωστών PIN"
@@ -3480,7 +3484,7 @@ function language_strings() {
 	arr["ENGLISH",373]="The known PINs database file exists. Script can continue..."
 	arr["SPANISH",373]="Existe el fichero de base de datos de PINs conocidos. El script puede continuar..."
 	arr["FRENCH",373]="La base de données PIN est bien présente. Le script peut continuer..."
-	arr["CATALAN",373]="${pending_of_translation} Hi ha el fitxer de base de dades de PINs coneguts. El script pot continuar..."
+	arr["CATALAN",373]="S'ha trobat el fitxer de base de dades de PINs coneguts. El script pot continuar..."
 	arr["PORTUGUESE",373]="Há um arquivo com banco de dados de PINs conhecidos. O script pode continuar..."
 	arr["RUSSIAN",373]="Файл с базой данных известных PIN существует. Скрипт может продолжать..."
 	arr["GREEK",373]="Το αρχείο με την βάση δεδομένων γνωστών PIN υπάρχει. Το script μπορεί να συνεχίσει..."
@@ -3488,7 +3492,7 @@ function language_strings() {
 	arr["ENGLISH",374]="Local PINs database file (${known_pins_dbfile}) can't be found in the script folder. It will be attempted to download"
 	arr["SPANISH",374]="No se ha podido encontrar el fichero local de la base de datos de PINs (${known_pins_dbfile}) en la carpeta del script. Se intentará descargar"
 	arr["FRENCH",374]="Base de donnée PIN (${known_pins_dbfile}) absente du dossier contenant le script. Tentative de téléchargement"
-	arr["CATALAN",374]="${pending_of_translation} No s'ha pogut trobar el fitxer local de la base de dades de PINs (${known_pins_dbfile}) a la carpeta del script. S'intentarà descarregar"
+	arr["CATALAN",374]="No s'ha pogut trobar el fitxer local de la base de dades de PINs (${known_pins_dbfile}) a la carpeta del script. S'intentarà descarregar"
 	arr["PORTUGUESE",374]="Não foi possível localizar o arquivo (${known_pins_dbfile}) com banco de dados local na pasta do script. O script vai tentar realizar o download"
 	arr["RUSSIAN",374]="Локальный файл базы данных PIN (${known_pins_dbfile}) не найден в папке скрипта. Будет предпринята попытка загрузить его"
 	arr["GREEK",374]="Το αρχείο με την βάση δεδομένων PIN (${known_pins_dbfile}) δεν βρέθηκε στο φάκελο με το script. Θα προσπαθήσει να κατέβει"
@@ -3504,7 +3508,7 @@ function language_strings() {
 	arr["ENGLISH",376]="Local PINs database file (${known_pins_dbfile}) was found. Anyway a check for a newer will be performed"
 	arr["SPANISH",376]="Se ha encontrado un fichero local de base de datos de PINs (${known_pins_dbfile}). No obstante se va a comprobar si existe uno más actualizado"
 	arr["FRENCH",376]="Base de données PIN (${known_pins_dbfile}) présente. Recherche d’éventuelles actualisations"
-	arr["CATALAN",376]="${pending_of_translation} S'ha trobat un fitxer local de base de dades de PINs (${known_pins_dbfile}). No obstant això es va a comprovar si hi ha un més actualitza"
+	arr["CATALAN",376]="S'ha trobat un fitxer local de base de dades de PINs (${known_pins_dbfile}). No obstant, es comprovarà si existeix algun més actualitzat"
 	arr["PORTUGUESE",376]="Um banco de dados local de PINs foi encontrado (${known_pins_dbfile}). No entanto, será verificado se existe um mais atualizado"
 	arr["RUSSIAN",376]="Локальный файл базы данных PIN (${known_pins_dbfile}) был найден. В любом случае будет выполнена проверка на наличие новой версии"
 	arr["GREEK",376]="Το αρχείο με την βάση δεδομένων PIN (${known_pins_dbfile}) βρέθηκε. Παρ'όλα αυτά θα πραγματοποιηθεί έλεγχος για νεότερη έκδοση"
@@ -3512,7 +3516,7 @@ function language_strings() {
 	arr["ENGLISH",377]="A more up-to-date PINs database file has been successfully downloaded"
 	arr["SPANISH",377]="Se ha descargado con éxito un fichero de base de datos de PINs más actualizado"
 	arr["FRENCH",377]="La base de données a été actualisée"
-	arr["CATALAN",377]="${pending_of_translation} S'ha descarregat amb èxit un fitxer de base de dades de PINs més actualitzat"
+	arr["CATALAN",377]="S'ha descarregat amb èxit un fitxer de base de dades de PINs més actualitzat"
 	arr["PORTUGUESE",377]="O banco de dados foi atualizado com sucesso"
 	arr["RUSSIAN",377]="Новая версия файла базы данных PIN была успешно загружена"
 	arr["GREEK",377]="Ένα ενημερωμένο αρχείο με την βάση δεδομένων PIN έχει κατέβει με επιτυχία"
@@ -3520,7 +3524,7 @@ function language_strings() {
 	arr["ENGLISH",378]="An error occurred while trying to download the PINs database file"
 	arr["SPANISH",378]="Ocurrió un error al intentar descargar el fichero de base de datos de PINs"
 	arr["FRENCH",378]="Erreur lors du téléchargement de l'actualisation de la base de données"
-	arr["CATALAN",378]="${pending_of_translation} S'ha produït un error en intentar descarregar el fitxer de base de dades de PINs"
+	arr["CATALAN",378]="S'ha produït un error en intentar descarregar el fitxer de base de dades de PINs"
 	arr["PORTUGUESE",378]="Ocorreu um erro ao tentar atualizar o banco de dados"
 	arr["RUSSIAN",378]="При попытке загрузить файл базы данных PIN произошла ошибка"
 	arr["GREEK",378]="Παρουσιάστηκε σφάλμα στην προσπάθεια να κατέβει το αρχείο με την βάση δεδομένων PIN"
@@ -3528,7 +3532,7 @@ function language_strings() {
 	arr["ENGLISH",379]="Check of the PINs database file has already been done. It will not be done again..."
 	arr["SPANISH",379]="El chequeo del fichero de base de datos de PINs ya se hizo. No se realizará de nuevo..."
 	arr["FRENCH",379]="La vérification de la base de données a été faite et ne sera plus relancée"
-	arr["CATALAN",379]="${pending_of_translation} La revisió del fitxer de base de dades de PINs ja es va fer. No es realitzarà de nou..."
+	arr["CATALAN",379]="La revisió del fitxer de base de dades de PINs ja es va fer. No es realitzarà de nou..."
 	arr["PORTUGUESE",379]="Verificando os PINs do banco de dados. Isso não vai ser feito novamente..."
 	arr["RUSSIAN",379]="Уже выполнена проверка файла базы данных PIN. Она не будет делаться ещё раз..."
 	arr["GREEK",379]="Έχει γίνει ήδη έλεγχος του αρχείου με την βάση δεδομένων PIN. Δεν θα ξαναελεγχθεί..."
@@ -3536,7 +3540,7 @@ function language_strings() {
 	arr["ENGLISH",380]="Do you want to try again next time you launch this attack for this session? ${normal_color}[y/n]"
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
 	arr["FRENCH",380]="La prochaine fois que vous relancez cette attaque pendant cette session, voulez-vous oui ou non [y/n] que l'actualisation soit lancée? ${normal_color}[y/n]"
-	arr["CATALAN",380]="${pending_of_translation} ¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
+	arr["CATALAN",380]="¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
 	arr["PORTUGUESE",380]="Você quer buscar por atualizações na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",380]="Вы хотите снова продолжить эту сессию при запуске этой атаки в следующий раз? ${normal_color}[y/n]"
 	arr["GREEK",380]="Θέλετε να δοκιμάσετε ξανά την επόμενη φορά που θα ξεκινήσει αυτή η επίθεση για αυτή την συνεδρία; ${normal_color}[y/n]"
@@ -3544,7 +3548,7 @@ function language_strings() {
 	arr["ENGLISH",381]="An error occurred while trying to access to the checksum file of remote PINs database"
 	arr["SPANISH",381]="Ocurrió un error al intentar acceder al fichero de checksum de la base de datos de PINs remota"
 	arr["FRENCH",381]="Erreur de checksum avec la base de données PIN en ligne"
-	arr["CATALAN",381]="${pending_of_translation} S'ha produït un error en intentar accedir al fitxer de checksum de la base de dades de PINs remota"
+	arr["CATALAN",381]="S'ha produït un error en intentar accedir al fitxer de checksum de la base de dades de PINs remota"
 	arr["PORTUGUESE",381]="Ocorreu um erro ao tentar acessar o arquivo checksum do banco de dados remoto"
 	arr["RUSSIAN",381]="Произошла ошибка при попытке получить доступ к контрольной сумме файла удаленной базы данных PIN"
 	arr["GREEK",381]="Παρουσιάστηκε σφάλμα στην προσπάθεια πρόσβασης στο αρχείο checksum της απομακρυσμένης βάσης δεδομένων PIN"
@@ -3552,7 +3556,7 @@ function language_strings() {
 	arr["ENGLISH",382]="Checksums of the local and remote files match. Your PINs database file is up-to-date"
 	arr["SPANISH",382]="Los checksum de los ficheros local y remoto coinciden. Tu fichero de base de datos de PINs está actualizado"
 	arr["FRENCH",382]="Les checksums de la base de données installée et de la base de données en ligne diffèrent. Actualisation de la base de données"
-	arr["CATALAN",382]="${pending_of_translation} Els checksum dels fitxers local i remot coincideixen. El teu fitxer de base de dades de PINs està actualitzat"
+	arr["CATALAN",382]="Els checksum dels fitxers local i remot coincideixen. El teu fitxer de base de dades de PINs està actualitzat"
 	arr["PORTUGUESE",382]="A checksum dos arquivos locais e remotos correspondem. Seu banco de dados local está atualizado"
 	arr["RUSSIAN",382]="Контрольные суммы локального и удаленного файлов совпадают. Ваш файл базы данных PIN обновляется"
 	arr["GREEK",382]="Τα checksums των τοπικών και των απομακρυσμένων αρχείων ταιριάζουν. Το αρχείο με την βάση δεδομένων PIN είναι ενημερωμένο"
@@ -3560,7 +3564,7 @@ function language_strings() {
 	arr["ENGLISH",383]="It seems there is a more up-to-date PINs database file. It will be downloaded..."
 	arr["SPANISH",383]="Parece que hay un fichero de base de datos de PINs más actualizado. Será descargado..."
 	arr["FRENCH",383]="Une base de données PIN plus actuelle a été détectée et va être installée"
-	arr["CATALAN",383]="${pending_of_translation} Sembla que hi ha un fitxer de base de dades de PINs més actualitzat. Serà descarregat..."
+	arr["CATALAN",383]="Sembla que hi ha un fitxer de base de dades de PINs més actualitzat. Serà descarregat..."
 	arr["PORTUGUESE",383]="Parece que há um banco de dados de PINs mais recente. Ele será baixado..."
 	arr["RUSSIAN",383]="Кажется, есть более новый файл базы данных PIN. Он будет загружен..."
 	arr["GREEK",383]="Φαίνεται πως υπάρχει ένα νεότερο αρχείο με την βάση δεδομένων PIN. Θα κατέβει..."
@@ -3568,7 +3572,7 @@ function language_strings() {
 	arr["ENGLISH",384]="Searching in PINs database. Please be patient..."
 	arr["SPANISH",384]="Buscando en la base de datos de PINs. Por favor ten paciencia..."
 	arr["FRENCH",384]="Recherche dans la base de données PIN. Ayez un peu de patience s'il vous plaît"
-	arr["CATALAN",384]="${pending_of_translation} Buscant a la base de dades de PINs. Si us plau té paciència..."
+	arr["CATALAN",384]="Buscant a la base de dades de PINs. Si us plau tingues paciència..."
 	arr["PORTUGUESE",384]="Pesquisando os PINs no banco de dados. Por favor, seja paciente..."
 	arr["RUSSIAN",384]="Поиск в базе данных PIN. Подождите немного..."
 	arr["GREEK",384]="Γίνεται αναζήτηση στην βάση δεδομένων PIN. Παρακαλώ έχετε λίγη υπομονή..."
@@ -3576,7 +3580,7 @@ function language_strings() {
 	arr["ENGLISH",385]="Only one match found in the PINs database"
 	arr["SPANISH",385]="Se ha encontrado sólo una coincidencia en la base de datos de PINs"
 	arr["FRENCH",385]="Un PIN a été trouvé avec la base de données"
-	arr["CATALAN",385]="${pending_of_translation} S'ha trobat només una coincidència a la base de dades de PINs"
+	arr["CATALAN",385]="S'ha trobat només una coincidència a la base de dades de PINs"
 	arr["PORTUGUESE",385]="Somente um PIN correspondente no banco de dados"
 	arr["RUSSIAN",385]="В базе данных PIN найдено только одно совпадение"
 	arr["GREEK",385]="Μόνο ένα αντίστοιχο PIN βρέθηκε στην βάση δεδομένων"
@@ -3584,7 +3588,7 @@ function language_strings() {
 	arr["ENGLISH",386]="${counter_pins_found} matching PINs have been found in the PINs database"
 	arr["SPANISH",386]="Se han encontrado ${counter_pins_found} PINs coincidentes en la base de datos de PINs"
 	arr["FRENCH",386]="${counter_pins_found} PIN possibles selon la base de données"
-	arr["CATALAN",386]="${pending_of_translation} S'han trobat ${counter_pins_found} PINs coincidents a la base de dades de PINs"
+	arr["CATALAN",386]="S'han trobat ${counter_pins_found} PINs coincidents a la base de dades de PINs"
 	arr["PORTUGUESE",386]="Encontrados ${counter_pins_found} PINs correspondentes no banco de dados"
 	arr["RUSSIAN",386]="${counter_pins_found} соответствующих ПИНа были найдены в базе данных PIN"
 	arr["GREEK",386]="${counter_pins_found} αντίστοιχα PINs βρέθηκαν στην βάση δεδομένων"
@@ -3592,7 +3596,7 @@ function language_strings() {
 	arr["ENGLISH",387]="No matches found in the PINs database"
 	arr["SPANISH",387]="No se ha encontrado ninguna coincidencia en la base de datos de PINs"
 	arr["FRENCH",387]="Aucun PIN n'a été trouvé dans la base données"
-	arr["CATALAN",387]="${pending_of_translation} No s'ha trobat cap coincidència a la base de dades de PINs"
+	arr["CATALAN",387]="No s'ha trobat cap coincidència a la base de dades de PINs"
 	arr["PORTUGUESE",387]="Nenhuma correspondência encontrada no banco de dados"
 	arr["RUSSIAN",387]="В базе данных PIN не найдено совпадений"
 	arr["GREEK",387]="Δε βρέθηκε αντίστοιχο PIN στην βάση δεδομένων"
@@ -3600,7 +3604,7 @@ function language_strings() {
 	arr["ENGLISH",388]="Calculating and adding possible PINs using common known algorithms..."
 	arr["SPANISH",388]="Calculando y añadiendo posibles PINs usando algoritmos conocidos comunes..."
 	arr["FRENCH",388]="Générations des PIN en appliquant les algorithmes les plus communs"
-	arr["CATALAN",388]="${pending_of_translation} Calculant i afegint possibles PINs usant algoritmes coneguts comuns..."
+	arr["CATALAN",388]="Calculant i afegint possibles PINs usant algoritmes coneguts comuns..."
 	arr["PORTUGUESE",388]="Cálculando e adicionando possíveis PINs usando algoritmos comuns conhecidos..."
 	arr["RUSSIAN",388]="Вычисление и добавление возможных PIN с использованием общеизвестных алгоритмов..."
 	arr["GREEK",388]="Γίνεται υπολογισμός πιθανών PINs και πρόσθεση αυτών κάνοντας χρήση κοινών γνωστών αλγορίθμων..."
@@ -3608,7 +3612,7 @@ function language_strings() {
 	arr["ENGLISH",389]="PINs calculated by algorithms have been added. The attack will be launched with a total of ${counter_pins_found} PINs"
 	arr["SPANISH",389]="Se han añadido PINs calculados por los algoritmos. El ataque se lanzará con un total de ${counter_pins_found} PINs"
 	arr["FRENCH",389]="Ajout des PIN calculées au moyen des algorithmes. L'attaque se fera avec ${counter_pins_found} PIN"
-	arr["CATALAN",389]="${pending_of_translation} S'han afegit PINs calculats pels algoritmes. L'atac es llançarà amb un total de ${counter_pins_found} PINs"
+	arr["CATALAN",389]="S'han afegit PINs calculats pels algoritmes. L'atac es llançarà amb un total de ${counter_pins_found} PINs"
 	arr["PORTUGUESE",389]="Os PINs calculados com algoritmos foram adicionados. O ataque será iniciado com um total de ${counter_pins_found} PINs"
 	arr["RUSSIAN",389]="Добавлены PIN, рассчитанные с помощью алгоритмов. Атака будет произведена в общей сложности по ${counter_pins_found} PIN"
 	arr["GREEK",389]="Προστέθηκαν τα PINs που υπολογίστηκαν από τους αλγορίθμους. Η επίθεση θα ξεκινήσει με ${counter_pins_found} PINs συνολικά"
@@ -3616,10 +3620,42 @@ function language_strings() {
 	arr["ENGLISH",390]="Some access points have only PBC (Push Button Connect) enabled and you can't connect via WPS if you don't press the physical button on the device"
 	arr["SPANISH",390]="Algunos puntos de acceso tienen activado solamente PBC (Push Button Connect) y no podrás conectar por WPS si no se pulsa el boton físico del mismo"
 	arr["FRENCH",390]="Certains points d'accès n'ont que le WPS PBC (Push Button Connect) activé et vous ne pourrez pas vous connecter par WPS sans presser le bouton du routeur"
-	arr["CATALAN",390]="${pending_of_translation} Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic de la mateixa"
+	arr["CATALAN",390]="Alguns punts d'accés tenen activat només PBC (Push Button Connect) i no podràs connectar per WPS si no es prem el botó físic d'aquest"
 	arr["PORTUGUESE",390]="Alguns pontos de acesso têm ativo somente o PBC (Push Button Connect) em que você não pode se conectar via WPS se o botão físico não for pressionado"
 	arr["RUSSIAN",390]="На некоторых точках доступа включено только PBC (Push Button Connect), т.е. подключение по нажатой кнопке, и вы не можете подключиться через WPS, если вы не нажмете на физическую кнопку устройства"
 	arr["GREEK",390]="Μερικά σημεία πρόσβασης έχουν PBC (Push Button Connect) και δεν μπορείτε να συνδεθείτε μέσω WPS αν δεν πατήσετε το κουμπί αυτό στη συσκευή"
+
+	arr["ENGLISH",391]="Timeout set to ${normal_color}${timeout_secs_per_pin}${blue_color} seconds"
+	arr["SPANISH",391]="Timeout elegido ${normal_color}${timeout_secs_per_pin}${blue_color} segundos"
+	arr["FRENCH",391]="Paramétrage du timeout ${normal_color}${timeout_secs_per_pin}${blue_color} secondes"
+	arr["CATALAN",391]="Temps d'espera triat ${normal_color}${timeout_secs_per_pin}${blue_color} segons"
+	arr["PORTUGUESE",391]="Timeout definido para ${normal_color}${timeout_secs_per_pin}${blue_color} segundos"
+	arr["RUSSIAN",391]="Тайм-аут установлен на ${normal_color}${timeout_secs_per_pin}${blue_color} секунд"
+	arr["GREEK",391]="Το timeout τέθηκε στα ${normal_color}${timeout_secs_per_pin}${blue_color} δευτερόλεπτα"
+
+	arr["ENGLISH",392]="Pixie Dust timeout set to ${normal_color}${timeout_secs_per_pixiedust}${blue_color} seconds"
+	arr["SPANISH",392]="Timeout elegido para Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
+	arr["FRENCH",392]="Paramétrage du timeout Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} secondes"
+	arr["CATALAN",392]="Temps d'espera triat per Pixie Dust ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segons"
+	arr["PORTUGUESE",392]="Timeout do ataque Pixie Dust definido para ${normal_color}${timeout_secs_per_pixiedust}${blue_color} segundos"
+	arr["RUSSIAN",392]="Pixie Dust тайм-аут установлен на ${normal_color}${timeout_secs_per_pixiedust}${blue_color} секунд"
+	arr["GREEK",392]="Το timeout του Pixie Dust τέθηκε στα ${normal_color}${timeout_secs_per_pixiedust}${blue_color} δευτερόλεπτα"
+
+	arr["ENGLISH",393]="Type value in seconds (10-100) for timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["SPANISH",393]="Escribe un valor en segundos (10-100) para el timeout o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["FRENCH",393]="Entrez un intervalle de temps en secondes (10-100) pour le timeout ou appuyez sur [Entrée] pour valider la valeur proposée [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["CATALAN",393]="Escriu un valor en segons (10-100) per al temps d'espera o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["PORTUGUESE",393]="Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["RUSSIAN",393]="Введите значение в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή  [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+
+	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["FRENCH",394]="Entrez un intervalle de temps en secondes (25-2400) pour le timeout Pixie Dust ou appuyez sur [Entrée] pour accepter la valeur proposée [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["CATALAN",394]="Escriu un valor en segons (25-2400) per al temps d'espera de Pixie Dust o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["PORTUGUESE",394]="Insira um valor em segundos (25-2400) para o timeout do ataque Pixie Dust ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["RUSSIAN",394]="Введите значение в секундах (25-2400) для тайм-аута Pixie Dust или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
+	arr["GREEK",394]="Εισάγετε μια τιμή σε δευτερόλεπτα (25-2400) για το timeout του Pixie Dust ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 
 	case "${3}" in
 		"yellow")
@@ -4040,6 +4076,7 @@ function prepare_et_interface() {
 
 	if [ "${ifacemode}" != "Managed" ]; then
 		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+		ifacemode="Managed"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			check_interface_coherence
@@ -4066,8 +4103,10 @@ function restore_et_interface() {
 		ifconfig "${interface}" down > /dev/null 2>&1
 		iwconfig "${interface}" mode managed > /dev/null 2>&1
 		ifconfig "${interface}" up > /dev/null 2>&1
+		ifacemode="Managed"
 	else
 		new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+		ifacemode="Monitor"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
 			interface=${new_interface}
@@ -4098,6 +4137,7 @@ function managed_option() {
 	ifconfig "${interface}" up
 
 	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+	ifacemode="Managed"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -4144,6 +4184,7 @@ function monitor_option() {
 	fi
 
 	new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+	ifacemode="Monitor"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
 	if [ "${interface}" != "${new_interface}" ]; then
@@ -4591,6 +4632,62 @@ function ask_custom_pin() {
 	language_strings "${language}" 362 "blue"
 }
 
+#Read the user input on timeout questions
+function read_timeout() {
+
+	echo
+	case ${1} in
+		"standard")
+			language_strings "${language}" 393 "green"
+		;;
+		"pixiedust")
+			language_strings "${language}" 394 "green"
+		;;
+	esac
+	read -r timeout
+}
+
+#Validate the user input for timeouts
+function ask_wps_timeout() {
+
+	case ${1} in
+		"standard")
+			local regexp="^[1-9][0-9]$|^100$|^$"
+		;;
+		"pixiedust")
+			local regexp="^2[5-9]$|^[3-9][0-9]$|^[1-9][0-9]{2}$|^1[0-9]{3}$|^2[0-3][0-9]{2}$|^2400$|^$"
+		;;
+	esac
+
+	timeout=0
+	while [[ ! ${timeout} =~ ${regexp} ]]; do
+		read_timeout "${1}"
+	done
+
+	if [ "${timeout}" = "" ]; then
+		case ${1} in
+			"standard")
+				timeout=${timeout_secs_per_pin}
+			;;
+			"pixiedust")
+				timeout=${timeout_secs_per_pixiedust}
+			;;
+		esac
+	fi
+
+	echo
+	case ${1} in
+		"standard")
+			timeout_secs_per_pin=${timeout}
+			language_strings "${language}" 391 "blue"
+		;;
+		"pixiedust")
+			timeout_secs_per_pixiedust=${timeout}
+			language_strings "${language}" 392 "blue"
+		;;
+	esac
+}
+
 #Execute wps custom pin bully attack
 function exec_wps_custom_pin_bully_attack() {
 
@@ -4917,8 +5014,8 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
-#Validate wps custom pin parameters
-function wps_custom_pin_parameters() {
+#Validate wps parameters for custom pin, pixie dust, bruteforce and pin database attacks
+function wps_attacks_parameters() {
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -4930,23 +5027,20 @@ function wps_custom_pin_parameters() {
 
 	ask_bssid "wps"
 	ask_channel "wps"
-	ask_custom_pin
-	return 0
-}
 
-#Validate wps parameters for pixie dust, bruteforce and pin database attacks
-function wps_standard_attacks_parameters() {
+	case ${wps_attack} in
+		"custompin_bully"|"custompin_reaver")
+			ask_custom_pin
+			ask_wps_timeout "standard"
+		;;
+		"pixiedust_bully"|"pixiedust_reaver")
+			ask_wps_timeout "pixiedust"
+		;;
+		"pindb_bully"|"pindb_reaver")
+			ask_wps_timeout "standard"
+		;;
+	esac
 
-	check_monitor_enabled
-	if [ "$?" != "0" ]; then
-		return 1
-	fi
-
-	echo
-	language_strings "${language}" 34 "yellow"
-
-	ask_bssid "wps"
-	ask_channel "wps"
 	return 0
 }
 
@@ -5139,8 +5233,8 @@ function initialize_menu_options_dependencies() {
 	et_captive_portal_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[11]})
 	wash_scan_dependencies=(${optional_tools_names[13]})
 	reaver_attacks_dependencies=(${optional_tools_names[14]})
-	bully_attacks_dependencies=(${optional_tools_names[15]})
-	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]})
+	bully_attacks_dependencies=(${optional_tools_names[15]} ${optional_tools_names[17]})
+	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
 	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
 }
 
@@ -5581,9 +5675,10 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="custompin_bully"
 				get_bully_version
 				set_bully_verbosity
-				wps_custom_pin_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_custom_pin_bully_attack
 				fi
@@ -5594,7 +5689,8 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
-				wps_custom_pin_parameters
+				wps_attack="custompin_reaver"
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_custom_pin_reaver_attack
 				fi
@@ -5605,6 +5701,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pixiedust_bully"
 				get_bully_version
 				set_bully_verbosity
 				validate_bully_pixiewps_version
@@ -5612,7 +5709,7 @@ function wps_attacks_menu() {
 					echo
 					language_strings "${language}" 368 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_standard_attacks_parameters
+					wps_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_bully_pixiewps_attack
 					fi
@@ -5628,13 +5725,14 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pixiedust_reaver"
 				get_reaver_version
 				validate_reaver_pixiewps_version
 				if [ "$?" = "0" ]; then
 					echo
 					language_strings "${language}" 370 "yellow"
 					language_strings "${language}" 115 "read"
-					wps_standard_attacks_parameters
+					wps_attacks_parameters
 					if [ "$?" = "0" ]; then
 						exec_reaver_pixiewps_attack
 					fi
@@ -5650,9 +5748,10 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="bruteforce_bully"
 				get_bully_version
 				set_bully_verbosity
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_bully_attack
 				fi
@@ -5663,8 +5762,9 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="bruteforce_reaver"
 				get_reaver_version
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_bruteforce_pin_reaver_attack
 				fi
@@ -5675,6 +5775,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pindb_bully"
 				get_bully_version
 				set_bully_verbosity
 				if [ -z "${scriptfolder}" ]; then
@@ -5695,7 +5796,7 @@ function wps_attacks_menu() {
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_pin_database_bully_attack
 				fi
@@ -5706,6 +5807,7 @@ function wps_attacks_menu() {
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
 			else
+				wps_attack="pindb_reaver"
 				get_reaver_version
 				if [ -z "${scriptfolder}" ]; then
 					set_script_folder_and_name
@@ -5725,7 +5827,7 @@ function wps_attacks_menu() {
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_standard_attacks_parameters
+				wps_attacks_parameters
 				if [ "$?" = "0" ]; then
 					exec_wps_pin_database_reaver_attack
 				fi
@@ -9153,24 +9255,31 @@ function invalid_internet_iface_selected() {
 #Manage behavior of captured traps
 function capture_traps() {
 
-	case ${current_menu} in
-		"pre_main_menu"|"select_interface_menu")
-			exit_code=1
-			exit_script_option
+	case "${1}" in
+		INT|SIGTSTP)
+			case ${current_menu} in
+				"pre_main_menu"|"select_interface_menu")
+					exit_code=1
+					exit_script_option
+				;;
+				*)
+					ask_yesno 12
+					if [ ${yesno} = "y" ]; then
+						exit_code=1
+						exit_script_option
+					else
+						language_strings "${language}" 224 "blue"
+						if [ "${last_buffered_type1}" = "read" ]; then
+							language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
+						else
+							language_strings "${language}" "${last_buffered_message1}" "${last_buffered_type1}"
+						fi
+					fi
+				;;
+			esac
 		;;
-		*)
-			ask_yesno 12
-			if [ ${yesno} = "y" ]; then
-				exit_code=1
-				exit_script_option
-			else
-				language_strings "${language}" 224 "blue"
-				if [ "${last_buffered_type1}" = "read" ]; then
-					language_strings "${language}" "${last_buffered_message2}" "${last_buffered_type2}"
-				else
-					language_strings "${language}" "${last_buffered_message1}" "${last_buffered_type1}"
-				fi
-			fi
+		SIGINT|SIGHUP)
+			hardcore_exit
 		;;
 	esac
 }
@@ -9229,6 +9338,32 @@ function exit_script_option() {
 	fi
 
 	echo
+	exit ${exit_code}
+}
+
+#Exit the script managing possible pending tasks but not showing anything
+function hardcore_exit() {
+
+	exit_code=2
+	if [ "${ifacemode}" = "Monitor" ]; then
+		${airmon} stop "${interface}" > /dev/null 2>&1
+	fi
+
+	if [ ${nm_processes_killed} -eq 1 ]; then
+		eval "${networkmanager_cmd} > /dev/null 2>&1"
+	fi
+
+	if [ ${tmpfiles_toclean} -eq 1 ]; then
+		clean_tmpfiles
+	fi
+
+	if [ ${routing_toclean} -eq 1 ]; then
+		clean_routing_rules
+		killall dhcpd > /dev/null 2>&1
+		killall hostapd > /dev/null 2>&1
+		killall lighttpd > /dev/null 2>&1
+	fi
+
 	exit ${exit_code}
 }
 
@@ -10366,6 +10501,8 @@ function echo_white() {
 	last_echo "${1}" "${white_color}"
 }
 
-trap capture_traps INT
-trap capture_traps SIGTSTP
+for f in SIGINT SIGHUP INT SIGTSTP; do
+	trap_cmd="trap \"capture_traps ${f}\" \"${f}\""
+	eval "${trap_cmd}"
+done
 welcome
