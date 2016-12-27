@@ -77,7 +77,7 @@ wash -> reaver
 reaver -> reaver
 bully -> bully
 pixiewps -> pixiewps
-unbuffer -> expect
+unbuffer -> expect / expect-dev
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```

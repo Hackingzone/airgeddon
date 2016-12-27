@@ -437,7 +437,7 @@ function language_strings() {
 	et_misc_texts["FRENCH",19]="Airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
 	et_misc_texts["CATALAN",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
 	et_misc_texts["PORTUGUESE",19]="Airgeddon. Senha capturada no ataque Evil Twin portal cativo"
-	et_misc_texts["RUSSIAN",19]="Airgeddon. Пароль, захваченный атакой Злой Двойник и Перехватывающим порталом"
+	et_misc_texts["RUSSIAN",19]="Airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
 	et_misc_texts["GREEK",19]="Airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
@@ -1022,7 +1022,7 @@ function language_strings() {
 	arr["FRENCH",65]="L'option de recherche des objectifs a été choisie (modo moniteur nécessaire)"
 	arr["CATALAN",65]="Seleccionada opció d'exploració per buscar objectius (requerit mode monitor)"
 	arr["PORTUGUESE",65]="Selecione uma opção de busca para encontar objetivos (modo monitor obrigatório)"
-	arr["RUSSIAN",65]="Выбранные опции для сканирования целей (необходим режим монитора)"
+	arr["RUSSIAN",65]="Выбрано сканирование целей (необходим режим монитора)"
 	arr["GREEK",65]="Η επιλογή για εξερεύνηση στόχων έχει επιλεχθεί (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["ENGLISH",66]="Selected interface ${interface} is in monitor mode. Exploration can be performed"
@@ -1030,7 +1030,7 @@ function language_strings() {
 	arr["FRENCH",66]="L'interface choisie ${interface} est en mode moniteur. L'exploration des réseaux environnants peut s'effectuer"
 	arr["CATALAN",66]="La interfície seleccionada ${interface} està en mode monitor. L'exploració es pot realitzar"
 	arr["PORTUGUESE",66]="A interface selecionada ${interface} está no modo monitor. A verificação pode ser realizada"
-	arr["RUSSIAN",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнена"
+	arr["RUSSIAN",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнено"
 	arr["GREEK",66]="Η επιλεγμένη διεπαφή ${interface} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
 
 	arr["ENGLISH",67]="When started, press [Ctrl+C] to stop..."
@@ -1302,7 +1302,7 @@ function language_strings() {
 	arr["FRENCH",100]="Paramètres Michael Shutdown"
 	arr["CATALAN",100]="Paràmetres Michael Shutdown"
 	arr["PORTUGUESE",100]="Parâmetros Michael Shutdown"
-	arr["RUSSIAN",100]="Параметры отключения Michael"
+	arr["RUSSIAN",100]="Параметры Michael Shutdown"
 	arr["GREEK",100]="Παράμετροι Michael Shutdown"
 
 	arr["ENGLISH",101]="Airgeddon main menu"
@@ -1838,7 +1838,7 @@ function language_strings() {
 	arr["FRENCH",167]="L'interface est en train de passer en mode managed"
 	arr["CATALAN",167]="Configurant la interfície en mode managed"
 	arr["PORTUGUESE",167]="Colocando interface de modo managed"
-	arr["RUSSIAN",167]="Перевод вашего монитора в управляемый режим"
+	arr["RUSSIAN",167]="Перевод вашего интерфейса в управляемый режим"
 	arr["GREEK",167]="Η διεπαφή μπαίνει σε ετερόκλητη κατάσταση"
 
 	arr["ENGLISH",168]="Launching previously killed processes"
