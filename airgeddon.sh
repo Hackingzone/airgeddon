@@ -3657,6 +3657,14 @@ function language_strings() {
 	arr["RUSSIAN",394]="Введите значение в секундах (25-2400) для тайм-аута Pixie Dust или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["GREEK",394]="Εισάγετε μια τιμή σε δευτερόλεπτα (25-2400) για το timeout του Pixie Dust ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 
+	arr["ENGLISH",395]="Skipping intro, more window size needed"
+	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
+	arr["FRENCH",395]="${pending_of_translation} Il est nécessaire de sauter présentation taille de la fenêtre"
+	arr["CATALAN",395]="${pending_of_translation} Saltant presentació, es necessita més grandària de finestra"
+	arr["PORTUGUESE",395]="${pending_of_translation} Ele saltando apresentação é necessária tamanho da janela"
+	arr["RUSSIAN",395]="${pending_of_translation} Пропустив интро, размер окна больше, требуется"
+	arr["GREEK",395]="${pending_of_translation} Παράκαμψη intro, το μέγεθος περισσότερα παράθυρο που απαιτούνται"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -9974,6 +9982,27 @@ function check_update_tools() {
 	fi
 }
 
+#Check if window size is enough for intro
+function check_window_size_for_intro() {
+
+	window_width=$(tput cols)
+	window_height=$(tput lines)
+
+	if [ "${window_width}" -lt 69 ]; then
+		return 1
+	elif [[ ${window_width} -ge 69 ]] && [[ ${window_width} -le 80 ]]; then
+		if [ "${window_height}" -lt 20 ]; then
+			return 1
+		fi
+	else
+		if [ "${window_height}" -lt 19 ]; then
+			return 1
+		fi
+	fi
+
+	return 0
+}
+
 #Print the script intro
 function print_intro() {
 
@@ -10180,7 +10209,15 @@ function welcome() {
 		language_strings "${language}" 86 "title"
 		language_strings "${language}" 6 "blue"
 		echo
-		print_intro
+		check_window_size_for_intro
+		if [ "$?" = "0" ]; then
+			print_intro
+		else
+			language_strings "${language}" 228 "green"
+			echo
+			language_strings "${language}" 395 "yellow"
+		sleep 3
+		fi
 
 		clear
 		language_strings "${language}" 86 "title"
