@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.13"
+airgeddon_version="5.14"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -152,7 +152,7 @@ internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 sslstrip_port="10000"
 sslstrip_file="ag.sslstrip.log"
-ettercap_file="ag.ettercaplog"
+ettercap_file="ag.ettercap.log"
 hostapd_file="ag.hostapd.conf"
 control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
@@ -5308,6 +5308,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
 	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
@@ -7391,8 +7392,7 @@ function set_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			echo -e "\t${yellow_color}${et_misc_texts[${language},0]}"
-			echo -e "\t${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 	EOF
@@ -7415,8 +7415,7 @@ function set_control_script() {
 	cat >&7 <<-EOF
 				if [ -f "${tmpdir}${webdir}${successfile}" ]; then
 					clear
-					echo -e "\t${yellow_color}${et_misc_texts[${language},0]}"
-					echo -e "\t${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 	EOF
@@ -7760,7 +7759,7 @@ function launch_webserver() {
 	et_processes+=($!)
 }
 
-#Launch lighttpd webserver for captive portal Evil Twin attack
+#Launch sslstrip for sslstrip sniffing Evil Twin attack
 function launch_sslstrip() {
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
@@ -8765,7 +8764,7 @@ function set_wash_parametrization() {
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
-	readarray -t WASH_OUTPUT < <(timeout -s SIGTERM 1 wash -i "${interface}" 2> /dev/null)
+	readarray -t WASH_OUTPUT < <(timeout -s SIGTERM 2 wash -i "${interface}" 2> /dev/null)
 
 	for item in "${WASH_OUTPUT[@]}"; do
 		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
