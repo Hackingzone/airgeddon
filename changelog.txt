@@ -1,6 +1,7 @@
 5.14
 Timeout changed while searching for "bad FCS" to avoid problems in old systems
 WPS Reaver attacks modified to use --no-nacks (-N) argument
+Github issue template updated
 
 5.13
 WPS default timeouts changed
