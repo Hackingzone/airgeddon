@@ -3662,7 +3662,7 @@ function language_strings() {
 	arr["FRENCH",395]="Pas de présentation pour manque d'espace en fenêtre"
 	arr["CATALAN",395]="${pending_of_translation} Saltant presentació, es necessita més grandària de finestra"
 	arr["PORTUGUESE",395]="Saltando intro, uma janela maior é necessária"
-	arr["RUSSIAN",395]="${pending_of_translation} Пропустив интро, размер окна больше, требуется"
+	arr["RUSSIAN",395]="Пропуск заставки, требуется окно большего размера"
 	arr["GREEK",395]="${pending_of_translation} Παράκαμψη intro, το μέγεθος περισσότερα παράθυρο που απαιτούνται"
 
 	case "${3}" in
