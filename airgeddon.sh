@@ -177,7 +177,7 @@ known_compatible_distros=(
 							"Kali"
 							"Parrot"
 							"Backbox"
-							"Blackarch"
+							"BlackArch"
 							"Cyborg"
 							"Ubuntu"
 							"Debian"
@@ -9638,6 +9638,13 @@ function detect_distro_phase2() {
 				fi
 			fi
 		fi
+	elif [ "${distro}" = "Arch" ]; then
+		if [ -f ${osversionfile_dir}"os-release" ]; then
+			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+			if [[ "${extra_os_info}" =~ BlackArch ]]; then
+				distro="BlackArch"
+			fi
+		fi
 	fi
 
 	detect_arm_architecture
@@ -9759,7 +9766,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Blackarch")
+		"BlackArch")
 			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=7.3
 			yratio=14

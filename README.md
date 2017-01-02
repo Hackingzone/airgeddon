@@ -38,7 +38,7 @@ Tested on these compatible Linux distros:<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1, 3.1.1 and arm versions (Raspberry Pi)*<br/>
-*-Blackarch 2016.01.10 and 2016.04.28*<br/>
+*-BlackArch 2016.01.10 to 2016.12.29*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
 *-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
