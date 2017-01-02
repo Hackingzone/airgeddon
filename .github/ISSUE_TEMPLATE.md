@@ -10,6 +10,6 @@
 
 *Insert answer here if apply*
 
-#### Describe the issue and the steps to reproduce
+#### Describe the issue and the steps to reproduce it
 
 *Insert description here*

@@ -3,20 +3,31 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 ![We'll conquer the earth!!][1]
 
 #Features
-- Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing.<br/>
-- DoS over wireless networks using different methods.<br/>
-- Assisted Handshake file capturing.<br/>
-- Cleaning and optimizing Handshake captured files.<br/>
-- Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based).<br/>
-- 4 Evil Twin attacks: Evil Twin with integrated sniffing, sslstrip mode, "only AP" version to sniff using external sniffer and "black hole" captive portal to capture wifi passwords.<br/>
-- WPS features: WPS scanning (wash). Reaver and Bully attacks: WPS Custom PIN association, Pixie Dust attacks, bruteforce PIN attacks. Parameterizable timeouts. WPS online PIN database search for "known WPS PINs attack" and integration of the most common PIN generation algorithms.<br/>
-- Compatibility with many Linux distros (see requirements section).<br/>
-- Easy targeting and selection in every section.<br/>
-- Drag and drop files on console window for entering file paths.<br/>
-- Dynamic screen resolution detection and windows auto-sizing for optimal viewing.<br/>
-- Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.<br/>
-- Multilanguage support and autodetect OS language feature (see supported languages section).<br/>
-- Help hints in every zone/menu for easy use.<br/>
+- Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing.
+- DoS over wireless networks using different methods.
+- Assisted Handshake file capturing.
+- Cleaning and optimizing Handshake captured files.
+- Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based).
+- Evil Twin attacks (Rogue AP):
+  - Only Rogue/Fake AP version to sniff using external sniffer (Hostapd + DHCP + DoS).
+  - Simple integrated sniffing (Hostapd + DHCP + DoS + ettercap).
+  - Integrated sniffing, sslstrip (Hostapd + DHCP + DoS + Ettercap + Sslstrip).
+  - Captive portal with "DNS blackhole" to capture wifi passwords (Hostapd + DHCP + DoS + Dnsspoff + Lighttpd).
+- WPS features:
+  - WPS scanning (wash). Self parameterization to avoid "bad fcs" problem.
+  - Custom PIN association (bully and reaver).
+  - Pixie Dust attacks (bully and reaver).
+  - Bruteforce PIN attacks (bully and reaver).
+  - Parameterizable timeouts.
+  - Known WPS PINs attack (bully and reaver), based on online PIN database with auto-update.
+  - Integration of the most common PIN generation algorithms.
+- Compatibility with many Linux distros (see requirements section).
+- Easy targeting and selection in every section.
+- Drag and drop files on console window for entering file paths.
+- Dynamic screen resolution detection and windows auto-sizing for optimal viewing.
+- Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired.
+- Multilanguage support and autodetect OS language feature (see supported languages section).
+- Help hints in every zone/menu for easy use.
 - Auto-update. Script checks for newer version if possible.
 
 #Requirements
@@ -27,7 +38,7 @@ Tested on these compatible Linux distros:<br/>
 *-Wifislax 4.11.1 and 4.12*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1, 3.1.1 and arm versions (Raspberry Pi)*<br/>
-*-Blackarch 2016.01.10 and 2016.04.28*<br/>
+*-BlackArch 2016.01.10 to 2016.12.29*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
 *-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
@@ -109,8 +120,8 @@ We are not responsible of its use.<br/>
 This script is under GPLv3 (or later) License.
 
 #Use
-Must be launched only using bash (not sh). Example `bash /path/airgeddon.sh`<br/>
-If you launch the script using sh and a *"Syntax error"* appears, launch it with bash instead of sh.<br/>
+Must be launched only using bash (not sh). Example `bash /path/to/airgeddon.sh`<br/>
+If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash instead of sh**.<br/>
 
 #Supported Languages
 English, Spanish, French, Catalan, Portuguese, Russian and Greek.

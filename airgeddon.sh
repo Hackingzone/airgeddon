@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.13"
+airgeddon_version="5.14"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -152,7 +152,7 @@ internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 sslstrip_port="10000"
 sslstrip_file="ag.sslstrip.log"
-ettercap_file="ag.ettercaplog"
+ettercap_file="ag.ettercap.log"
 hostapd_file="ag.hostapd.conf"
 control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
@@ -177,7 +177,7 @@ known_compatible_distros=(
 							"Kali"
 							"Parrot"
 							"Backbox"
-							"Blackarch"
+							"BlackArch"
 							"Cyborg"
 							"Ubuntu"
 							"Debian"
@@ -437,7 +437,7 @@ function language_strings() {
 	et_misc_texts["FRENCH",19]="Airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
 	et_misc_texts["CATALAN",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
 	et_misc_texts["PORTUGUESE",19]="Airgeddon. Senha capturada no ataque Evil Twin portal cativo"
-	et_misc_texts["RUSSIAN",19]="Airgeddon. Пароль, захваченный атакой Злой Двойник и Перехватывающим порталом"
+	et_misc_texts["RUSSIAN",19]="Airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
 	et_misc_texts["GREEK",19]="Airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
@@ -1022,7 +1022,7 @@ function language_strings() {
 	arr["FRENCH",65]="L'option de recherche des objectifs a été choisie (modo moniteur nécessaire)"
 	arr["CATALAN",65]="Seleccionada opció d'exploració per buscar objectius (requerit mode monitor)"
 	arr["PORTUGUESE",65]="Selecione uma opção de busca para encontar objetivos (modo monitor obrigatório)"
-	arr["RUSSIAN",65]="Выбранные опции для сканирования целей (необходим режим монитора)"
+	arr["RUSSIAN",65]="Выбрано сканирование целей (необходим режим монитора)"
 	arr["GREEK",65]="Η επιλογή για εξερεύνηση στόχων έχει επιλεχθεί (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["ENGLISH",66]="Selected interface ${interface} is in monitor mode. Exploration can be performed"
@@ -1030,7 +1030,7 @@ function language_strings() {
 	arr["FRENCH",66]="L'interface choisie ${interface} est en mode moniteur. L'exploration des réseaux environnants peut s'effectuer"
 	arr["CATALAN",66]="La interfície seleccionada ${interface} està en mode monitor. L'exploració es pot realitzar"
 	arr["PORTUGUESE",66]="A interface selecionada ${interface} está no modo monitor. A verificação pode ser realizada"
-	arr["RUSSIAN",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнена"
+	arr["RUSSIAN",66]="Выбранный интерфейс ${interface} в режиме монитора. Сканирование может быть выполнено"
 	arr["GREEK",66]="Η επιλεγμένη διεπαφή ${interface} είναι σε κατάσταση παρακολούθησης. Μπορεί να γίνει εξερεύνηση"
 
 	arr["ENGLISH",67]="When started, press [Ctrl+C] to stop..."
@@ -1302,7 +1302,7 @@ function language_strings() {
 	arr["FRENCH",100]="Paramètres Michael Shutdown"
 	arr["CATALAN",100]="Paràmetres Michael Shutdown"
 	arr["PORTUGUESE",100]="Parâmetros Michael Shutdown"
-	arr["RUSSIAN",100]="Параметры отключения Michael"
+	arr["RUSSIAN",100]="Параметры Michael Shutdown"
 	arr["GREEK",100]="Παράμετροι Michael Shutdown"
 
 	arr["ENGLISH",101]="Airgeddon main menu"
@@ -1838,7 +1838,7 @@ function language_strings() {
 	arr["FRENCH",167]="L'interface est en train de passer en mode managed"
 	arr["CATALAN",167]="Configurant la interfície en mode managed"
 	arr["PORTUGUESE",167]="Colocando interface de modo managed"
-	arr["RUSSIAN",167]="Перевод вашего монитора в управляемый режим"
+	arr["RUSSIAN",167]="Перевод вашего интерфейса в управляемый режим"
 	arr["GREEK",167]="Η διεπαφή μπαίνει σε ετερόκλητη κατάσταση"
 
 	arr["ENGLISH",168]="Launching previously killed processes"
@@ -3657,6 +3657,14 @@ function language_strings() {
 	arr["RUSSIAN",394]="Введите значение в секундах (25-2400) для тайм-аута Pixie Dust или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["GREEK",394]="Εισάγετε μια τιμή σε δευτερόλεπτα (25-2400) για το timeout του Pixie Dust ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 
+	arr["ENGLISH",395]="Skipping intro, more window size needed"
+	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
+	arr["FRENCH",395]="Pas de présentation pour manque d'espace en fenêtre"
+	arr["CATALAN",395]="Saltant presentació, es necessita més grandària de finestra"
+	arr["PORTUGUESE",395]="Saltando intro, uma janela maior é necessária"
+	arr["RUSSIAN",395]="Пропуск заставки, требуется окно большего размера"
+	arr["GREEK",395]="Το intro παρακάμπτεται, χρειάζεται μεγαλύτερο μέγεθος παραθύρου"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -5308,6 +5316,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
 	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
@@ -6921,13 +6930,13 @@ function set_wps_attack_script() {
 		unbuffer=""
 		case ${wps_attack_mode} in
 			"pindb"|"custompin")
-				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -g 1 -d 2 -vvv -p "
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -a -g 1 -d 2 -vvv -p "
 			;;
 			"pixiedust")
-				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -K 1 -vvv"
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -K 1 -N -vvv"
 			;;
 			"bruteforce")
-				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -n -a -d 2 -vvv"
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -a -d 2 -vvv"
 			;;
 		esac
 	else
@@ -7391,8 +7400,7 @@ function set_control_script() {
 	esac
 
 	cat >&7 <<-EOF
-			echo -e "\t${yellow_color}${et_misc_texts[${language},0]}"
-			echo -e "\t${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+			echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 			echo
 			echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 	EOF
@@ -7415,8 +7423,7 @@ function set_control_script() {
 	cat >&7 <<-EOF
 				if [ -f "${tmpdir}${webdir}${successfile}" ]; then
 					clear
-					echo -e "\t${yellow_color}${et_misc_texts[${language},0]}"
-					echo -e "\t${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
+					echo -e "\t${yellow_color}${et_misc_texts[${language},0]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${et_misc_texts[${language},1]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}"
 					echo
 					echo -e "\t${green_color}${et_misc_texts[${language},2]}${normal_color}"
 	EOF
@@ -7760,7 +7767,7 @@ function launch_webserver() {
 	et_processes+=($!)
 }
 
-#Launch lighttpd webserver for captive portal Evil Twin attack
+#Launch sslstrip for sslstrip sniffing Evil Twin attack
 function launch_sslstrip() {
 
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
@@ -8765,7 +8772,7 @@ function set_wash_parametrization() {
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
-	readarray -t WASH_OUTPUT < <(timeout -s SIGTERM 1 wash -i "${interface}" 2> /dev/null)
+	readarray -t WASH_OUTPUT < <(timeout -s SIGTERM 2 wash -i "${interface}" 2> /dev/null)
 
 	for item in "${WASH_OUTPUT[@]}"; do
 		if [[ ${item} =~ ^\[\!\].*bad[[:space:]]FCS ]]; then
@@ -9631,6 +9638,13 @@ function detect_distro_phase2() {
 				fi
 			fi
 		fi
+	elif [ "${distro}" = "Arch" ]; then
+		if [ -f ${osversionfile_dir}"os-release" ]; then
+			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+			if [[ "${extra_os_info}" =~ BlackArch ]]; then
+				distro="BlackArch"
+			fi
+		fi
 	fi
 
 	detect_arm_architecture
@@ -9752,7 +9766,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Blackarch")
+		"BlackArch")
 			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=7.3
 			yratio=14
@@ -9975,6 +9989,27 @@ function check_update_tools() {
 	fi
 }
 
+#Check if window size is enough for intro
+function check_window_size_for_intro() {
+
+	window_width=$(tput cols)
+	window_height=$(tput lines)
+
+	if [ "${window_width}" -lt 69 ]; then
+		return 1
+	elif [[ ${window_width} -ge 69 ]] && [[ ${window_width} -le 80 ]]; then
+		if [ "${window_height}" -lt 20 ]; then
+			return 1
+		fi
+	else
+		if [ "${window_height}" -lt 19 ]; then
+			return 1
+		fi
+	fi
+
+	return 0
+}
+
 #Print the script intro
 function print_intro() {
 
@@ -10181,7 +10216,15 @@ function welcome() {
 		language_strings "${language}" 86 "title"
 		language_strings "${language}" 6 "blue"
 		echo
-		print_intro
+		check_window_size_for_intro
+		if [ "$?" = "0" ]; then
+			print_intro
+		else
+			language_strings "${language}" 228 "green"
+			echo
+			language_strings "${language}" 395 "yellow"
+		sleep 3
+		fi
 
 		clear
 		language_strings "${language}" 86 "title"

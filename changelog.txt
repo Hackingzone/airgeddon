@@ -1,3 +1,10 @@
+5.14
+Timeout changed while searching for "bad FCS" to avoid problems in old systems
+WPS Reaver attacks modified to use --no-nacks (-N) argument
+Github issue template updated
+Check added to skip intro if not enough window size
+Tested compatibility with BlackArch 2016.12.29
+
 5.13
 WPS default timeouts changed
 WPS parameterizable timeouts, users can decide how many seconds for each WPS attack
