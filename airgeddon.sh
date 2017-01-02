@@ -3660,7 +3660,7 @@ function language_strings() {
 	arr["ENGLISH",395]="Skipping intro, more window size needed"
 	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
 	arr["FRENCH",395]="Pas de présentation pour manque d'espace en fenêtre"
-	arr["CATALAN",395]="${pending_of_translation} Saltant presentació, es necessita més grandària de finestra"
+	arr["CATALAN",395]="Saltant presentació, es necessita més grandària de finestra"
 	arr["PORTUGUESE",395]="Saltando intro, uma janela maior é necessária"
 	arr["RUSSIAN",395]="Пропуск заставки, требуется окно большего размера"
 	arr["GREEK",395]="Το intro παρακάμπτεται, χρειάζεται μεγαλύτερο μέγεθος παραθύρου"
