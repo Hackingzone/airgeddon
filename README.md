@@ -1,4 +1,4 @@
-#airgeddon
+#airgeddon [![License](https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg?style=flat-square)](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/LICENSE)
 This is a multi-use bash script for Linux systems to audit wireless networks.<br/>
 ![We'll conquer the earth!!][1]
 
