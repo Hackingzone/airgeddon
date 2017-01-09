@@ -12,6 +12,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
   - Only Rogue/Fake AP version to sniff using external sniffer (Hostapd + DHCP + DoS).
   - Simple integrated sniffing (Hostapd + DHCP + DoS + ettercap).
   - Integrated sniffing, sslstrip (Hostapd + DHCP + DoS + Ettercap + Sslstrip).
+  - Integrated sniffing, sslstrip2 and BeEF browser exploitation framework (Hostapd + DHCP + DoS + Bettercap + BeEF).
   - Captive portal with "DNS blackhole" to capture wifi passwords (Hostapd + DHCP + DoS + Dnsspoff + Lighttpd).
 - WPS features:
   - WPS scanning (wash). Self parameterization to avoid "bad fcs" problem.
@@ -32,10 +33,10 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 
 #Requirements
 Bash version 4.0 or later needed.<br/>
-<br/>
+
 Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
-*-Wifislax 4.11.1 and 4.12*<br/>
+*-Wifislax 4.11.1, 4.12 and 64-1.0*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1, 3.1.1 and arm versions (Raspberry Pi)*<br/>
 *-Blackarch 2016.01.10 and 2016.04.28*<br/>
@@ -50,14 +51,16 @@ Tested on these compatible Linux distros:<br/>
 *-Arch 4.6.2-1 to 4.8.13-1*<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
-<br/>
-It's already available in <a href="https://archstrike.org/wiki">ArchStrike</a> repositories used by some distros based on Arch Linux.<br/>
-Repositories versions will have auto-update feature disabled in order to avoid breaking dependencies. There is a var at the beginning of the file, *"auto_update"* can be set to 0 to turn off the auto-update feature.<br/>
-<br/>
+
+Airgeddon is already included in some Linux distros and repositories:
+ - <a href="http://www.wifislax.com">Wifislax</a> 4.12, 64-1.0 or higher.
+ - <a href="https://blackarch.org">BlackArch</a> first 2017 release or later.
+ - <a href="https://archstrike.org/wiki">ArchStrike</a> repository.
+
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
-<br/>
+
 We will enumerate the categories and tools. The format will be: "command -> possible package name". The command can be included in different packages depending of the distro.<br/>
-<br/>
+
 Essential tools: <- *the script doesn't work if you don't have installed all of them*
 ```
 ifconfig -> net-tools
@@ -89,6 +92,8 @@ reaver -> reaver
 bully -> bully
 pixiewps -> pixiewps
 unbuffer -> expect
+bettercap -> bettercap
+beef -> beef / beef-xss
 ```
 Update tools: <- *not necessary to work, only used for auto-update*<br/>
 ```
@@ -114,14 +119,14 @@ Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some 
 *-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs
 
 #Disclaimer
-This script must be used only for educational purposes and Pen testing.<br/>
+This script must be used only for educational purposes and pentesting.<br/>
 Use it only on your own networks.<br/>
 We are not responsible of its use.<br/>
 This script is under GPLv3 (or later) License.
 
 #Use
 Must be launched only using bash (not sh). Example `bash /path/to/airgeddon.sh`<br/>
-If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash instead of sh**.<br/>
+If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash instead of sh**. Even with no initial error, maybe you'll have it later. Use bash always!
 
 #Supported Languages
 English, Spanish, French, Catalan, Portuguese, Russian and Greek.
@@ -132,15 +137,15 @@ You can join the project:<br/>
 -More distros support compatibility.<br/>
 -New features.<br/>
 -Testing and feedback is needed too.<br/>
-<br/>
+
 *For collaborating translators:*<br/>
 You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed or to add you as a collaborator on github.<br/>
-<br/>
+
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 Airgeddon code is 100% clean of warnings. Use <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
-<br/>
+
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`
 
@@ -154,8 +159,8 @@ See [Changelog](changelog.txt) file to review changes.
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
 **xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>
-<br/>
-Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
+
+Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="https://blackarch.org">BlackArch</a> community, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms.<br/>
 I want to thank you too, to all developers who made and designed the third-party tools airgeddon uses.<br/>
 <br/>
@@ -163,8 +168,8 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
 *MI1 -> Airstorm*<br/>
 *MatToufoutu -> Ap-fucker*<br/>
-*Coeman76 -> Handshaker*
-*Goyfilms -> Goyscript*
+*Coeman76 -> Handshaker*<br/>
+*Goyfilms -> Goyscript*<br/>
 *Kcdtv -> WPSPin*
 
 #Donate

