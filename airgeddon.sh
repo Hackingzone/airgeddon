@@ -193,7 +193,7 @@ known_compatible_distros=(
 							"Kali"
 							"Parrot"
 							"Backbox"
-							"Blackarch"
+							"BlackArch"
 							"Cyborg"
 							"Ubuntu"
 							"Debian"
@@ -3683,11 +3683,11 @@ function language_strings() {
 
 	arr["ENGLISH",395]="Skipping intro, more window size needed"
 	arr["SPANISH",395]="Saltando presentación, se necesita más tamaño de ventana"
-	arr["FRENCH",395]="${pending_of_translation} Il est nécessaire de sauter présentation taille de la fenêtre"
-	arr["CATALAN",395]="${pending_of_translation} Saltant presentació, es necessita més grandària de finestra"
-	arr["PORTUGUESE",395]="${pending_of_translation} Ele saltando apresentação é necessária tamanho da janela"
-	arr["RUSSIAN",395]="${pending_of_translation} Пропустив интро, размер окна больше, требуется"
-	arr["GREEK",395]="${pending_of_translation} Παράκαμψη intro, το μέγεθος περισσότερα παράθυρο που απαιτούνται"
+	arr["FRENCH",395]="Pas de présentation pour manque d'espace en fenêtre"
+	arr["CATALAN",395]="Saltant presentació, es necessita més grandària de finestra"
+	arr["PORTUGUESE",395]="Saltando intro, uma janela maior é necessária"
+	arr["RUSSIAN",395]="Пропуск заставки, требуется окно большего размера"
+	arr["GREEK",395]="Το intro παρακάμπτεται, χρειάζεται μεγαλύτερο μέγεθος παραθύρου"
 
 	arr["ENGLISH",396]="8.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",396]="8.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
@@ -10050,6 +10050,13 @@ function detect_distro_phase2() {
 				fi
 			fi
 		fi
+	elif [ "${distro}" = "Arch" ]; then
+		if [ -f ${osversionfile_dir}"os-release" ]; then
+			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+			if [[ "${extra_os_info}" =~ BlackArch ]]; then
+				distro="BlackArch"
+			fi
+		fi
 	fi
 
 	detect_arm_architecture
@@ -10171,7 +10178,7 @@ function special_distro_features() {
 			ywindow_edge_lines=2
 			ywindow_edge_pixels=10
 		;;
-		"Blackarch")
+		"BlackArch")
 			networkmanager_cmd="systemctl restart NetworkManager.service"
 			xratio=7.3
 			yratio=14
