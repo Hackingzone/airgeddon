@@ -182,11 +182,11 @@ possible_dhcp_leases_files=(
 							"/var/lib/dhcpd/dhcpd.leases"
 						)
 possible_beef_known_locations=(
-                "/usr/bin/beef"
-                "/usr/local/bin/beef"
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
+								"/usr/bin/beef/"
+								"/usr/local/bin/beef/"
 							)
 
 #Distros vars
