@@ -182,6 +182,8 @@ possible_dhcp_leases_files=(
 							"/var/lib/dhcpd/dhcpd.leases"
 						)
 possible_beef_known_locations=(
+                "/usr/bin/beef"
+                "/usr/local/bin/beef"
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
@@ -518,7 +520,7 @@ function language_strings() {
 	et_misc_texts["CATALAN",27]="${pending_of_translation} Aquest atac té dues parts. Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya. També pots obrir el panell de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , fer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) i intentar controlar el navegador dels clients"
 	et_misc_texts["PORTUGUESE",27]="${pending_of_translation} Este ataque tem duas partes. Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha. Você também pode abrir BeEF painel de controle no ${white_color}${beef_control_panel_url}${pink_color} , para login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e tentar controlar o navegador do clientes"
 	et_misc_texts["RUSSIAN",27]="${pending_of_translation} Эта атака состоит из двух частей. С этой атакой смотрите на окно сниффера, чтобы следить за появлением пароля. Также можно открывать панель управления BeEF в ${white_color}${beef_control_panel_url}${pink_color} , войдите в систему (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) и попытаться управлять браузером клиентов"
-	et_misc_texts["GREEK",27]="${pending_of_translation} Αυτή η επίθεση έχει δύο μέρη. Με αυτή την επίθεση, παρακολουθήστε την οθόνη του sniffer για να δείτε αν εχει εμφανιστεί κάποιος κωδικός πρόσβασης. Μπορείτε επίσης να ανοίξετε τον πίνακα ελέγχου του BeEF σε ${white_color}${beef_control_panel_url}${pink_color} , συνδεθείτε (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) και προσπαθούν να ελέγξουν το πρόγραμμα περιήγησης πελατών"
+	et_misc_texts["GREEK",27]="Αυτή η επίθεση έχει δύο μέρη. Παρακολουθήστε την οθόνη του sniffer για να δείτε εαν εμφανιστεί κάποιος κωδικός. Μπορείτε επίσης να ανοίξετε τον πίνακα ελέγχου του BeEF στο ${white_color}${beef_control_panel_url}${pink_color} , συνδεθείτε (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) και προσπαθείστε να ελέγξετε τον browser του χρήστη-πελάτη"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -2975,7 +2977,7 @@ function language_strings() {
 	arr["CATALAN",306]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${ettercap_logpath}]"
 	arr["PORTUGUESE",306]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${ettercap_logpath}]"
 	arr["RUSSIAN",306]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${ettercap_logpath}]"
-	arr["GREEK",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${ettercap_logpath}]"
+	arr["GREEK",306]="Καταγράφηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${ettercap_logpath}]"
 
 	arr["ENGLISH",307]="Language changed to Russian"
 	arr["SPANISH",307]="Idioma cambiado a Ruso"
@@ -3719,7 +3721,7 @@ function language_strings() {
 	arr["CATALAN",399]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${bettercap_logpath}]"
 	arr["PORTUGUESE",399]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${bettercap_logpath}]"
 	arr["RUSSIAN",399]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${bettercap_logpath}]"
-	arr["GREEK",399]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${bettercap_logpath}]"
+	arr["GREEK",399]="Καταγράφηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${bettercap_logpath}]"
 
 	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
 	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
@@ -3727,7 +3729,7 @@ function language_strings() {
 	arr["CATALAN",400]="${pending_of_translation} En l'atac Evil Twin amb Beef integrat, a més d'obtenir claus amb sniffing, podràs intentar controlar el navegador dels clients llançant nombrosos vectors d'atac. L'èxit d'aquests dependrà de molts factors com el tipus de navegador i la versió que utilitzi el client"
 	arr["PORTUGUESE",400]="${pending_of_translation} No ataque Evil Twin com carne integrado, além de obter chaves com sniffing, você pode tentar controlar o navegador do cliente lançando inúmeros vetores de ataque. O sucesso destes dependerá de muitos fatores, tais como tipo de navegador e versão utilizada pelo cliente"
 	arr["RUSSIAN",400]="${pending_of_translation} На Evil Twin нападения с BeEF интегрированным, в дополнение к получению ключей с помощью нюхают методы, вы можете попытаться контролировать браузер клиента запускать многочисленные направления атак. Успех этих будет зависеть от многих факторов, таких как вид браузера клиента и его версии"
-	arr["GREEK",400]="${pending_of_translation} Σε Evil Twin επίθεση με το BeEF ολοκληρωμένο, εκτός από την απόκτηση κλειδιά με τη χρήση sniffing τεχνικές, μπορείτε να προσπαθήσουν να ελέγξουν το πρόγραμμα περιήγησης του πελάτη δρομολόγηση πολλών φορέων επίθεση. Η επιτυχία αυτών των θα εξαρτηθεί από πολλούς παράγοντες, όπως το είδος του browser του πελάτη και την έκδοσή του"
+	arr["GREEK",400]="Στην επίθεση Evil Twin με ενσωματωμένο BeEF, εκτός από την απόκτηση κλειδιών με τη χρήση τεχνικών sniffing, μπορείτε να προσπαθήσετε να ελέγξετε τον browser του χρήστη-πελάτη κάνοντας χρήση κάποιων attack vectors. Η επιτυχία αυτών θα εξαρτηθεί από πολλούς παράγοντες όπως το είδος του browser του χρήστη-πελάτη και την έκδοσή του"
 
 	case "${3}" in
 		"yellow")
