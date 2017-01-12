@@ -8069,10 +8069,10 @@ function kill_beef() {
 
 	killall "${optional_tools_names[19]}" > /dev/null 2>&1
 	if [ "$?" != "0" ]; then
-		beef_pid=$(ps uax | pgrep -fi "${optional_tools_names[19]}")
+		beef_pid=$(ps uax | pgrep -f "${optional_tools_names[19]}")
 		kill "${beef_pid}" &> /dev/null
 		if [ "$?" != "0" ]; then
-			beef_pid=$(ps uax | pgrep -fi "beef")
+			beef_pid=$(ps uax | pgrep -f "beef")
 			kill "${beef_pid}" &> /dev/null
 		fi
 	fi
