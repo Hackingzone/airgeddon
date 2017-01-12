@@ -186,8 +186,7 @@ possible_beef_known_locations=(
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
-								"/usr/bin/beef/"
-								"/usr/local/bin/beef/"
+								"/usr/local/bin/"
 							)
 
 #Distros vars
