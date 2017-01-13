@@ -165,6 +165,7 @@ jshookfile="hook.js"
 beef_file="ag.beef.conf"
 beef_pass="airgeddon"
 beef_db="beef.db"
+beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
@@ -3731,6 +3732,14 @@ function language_strings() {
 	arr["RUSSIAN",400]="С атакой Злой Двойник в дополнении к получению паролей, применяя техники сниффинга, вы можете попробовать контролировать клиентский браузер, запуская атаки по ряду векторов. Их успех зависит от многих факторов, в том числе от типа и версии клиентского браузера"
 	arr["GREEK",400]="Στην επίθεση Evil Twin με ενσωματωμένο BeEF, εκτός από την απόκτηση κλειδιών με τη χρήση τεχνικών sniffing, μπορείτε να προσπαθήσετε να ελέγξετε τον browser του χρήστη-πελάτη κάνοντας χρήση κάποιων attack vectors. Η επιτυχία αυτών θα εξαρτηθεί από πολλούς παράγοντες όπως το είδος του browser του χρήστη-πελάτη και την έκδοσή του"
 
+	arr["ENGLISH",401]="The beef package you have installed is not BeEF (Browser Exploitation Framework). You have Beef (Flexible Brainfuck interpreter) installed. Both executables have the same name and can lead to confusion. Uninstall it and install what airgeddon needs if you want to use that feature. Installation guide: ${beef_installation_url}"
+	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: ${beef_installation_url}"
+	arr["FRENCH",401]="${pending_of_translation} Le paquet de beef que vous avez installé est pas BeEF (Browser Exploitation Framework). Vous avez installé Beef (Flexible Brainfuck interpreter). Les deux même nom exécutable et peut conduire à la confusion. Désinstallez et installez airgeddon besoin si vous souhaitez utiliser cette fonctionnalité. Guide d'installation: ${beef_installation_url}"
+	arr["CATALAN",401]="${pending_of_translation} El paquet beef que tens instal·lat no és BeEF (Browser Exploitation Framework). Tens instal·lat Beef (Flexible Brainfuck interpreter). Tots dos executables es diuen igual i pot donar lloc a confusió. Desinstalalo i instal·la el que airgeddon necessita si vols utilitzar aquesta característica. Guia d'instal·lació: ${beef_installation_url}"
+	arr["PORTUGUESE",401]="${pending_of_translation} O beef de ter instalado não é BeEF (Browser Exploitation Framework). Você instalou Beef (Flexible Brainfuck interpreter). Ambos mesmo nome executável e pode levar a confusão. Desinstalá-lo e instalá-lo airgeddon precisa se você quiser usar esse recurso. Guia de Instalação: ${beef_installation_url}"
+	arr["RUSSIAN",401]="${pending_of_translation} Пакет beef вы установили не BeEF (Browser Exploitation Framework). У вас есть Beef (Flexible Brainfuck interpreter) установлен. Оба исполняемые файлы имеют одинаковое имя и может привести к путанице. Удалите его и установить, что airgeddon потребности, если вы хотите использовать эту функцию. Инструкция по установке: ${beef_installation_url}"
+	arr["GREEK",401]="${pending_of_translation} Το πακέτο beef που έχετε εγκαταστήσει δεν είναι το BeEF (Browser Exploitation Framework). Έχετε Beef (Flexible Brainfuck interpreter) εγκατεστημένο. Και οι δύο εκτελέσιμα έχουν το ίδιο όνομα και μπορεί να οδηγήσει σε σύγχυση. Απεγκαταστήσετε και να εγκαταστήσετε αυτό airgeddon ανάγκες, αν θέλετε να χρησιμοποιήσετε αυτό το χαρακτηριστικό. Οδηγός εγκατάστασης: ${beef_installation_url}"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -5320,7 +5329,7 @@ function initialize_menu_options_dependencies() {
 function set_possible_aliases() {
 
 	for item in "${!possible_alias_names[@]}"; do
-		if ! hash "${item}" 2> /dev/null; then
+		if ! hash "${item}" 2> /dev/null || [[ "${item}" = "beef" ]]; then
 			arraliases=(${possible_alias_names[${item//[[:space:]]/ }]})
 			for item2 in "${arraliases[@]}"; do
 				if hash "${item2}" 2> /dev/null; then
@@ -8078,6 +8087,19 @@ function kill_beef() {
 	fi
 }
 
+#Detects if your beef is Flexible Brainfuck interpreter instead of BeEF
+function detect_fake_beef() {
+
+	readarray -t BEEF_OUTPUT < <(timeout -s SIGTERM 0.5 beef -h 2> /dev/null)
+
+	for item in "${BEEF_OUTPUT[@]}"; do
+		if [[ ${item} =~ Brainfuck ]]; then
+			fake_beef_found=1
+			break
+		fi
+	done
+}
+
 #Prepare system to work with beef
 function prepare_beef_start() {
 
@@ -10341,8 +10363,21 @@ function check_compatibility() {
 			echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
-			echo -e "${green_color} Ok\r${normal_color}"
-			optional_tools[${i}]=1
+			if [ "${i}" = "beef" ]; then
+				detect_fake_beef
+				if [ ${fake_beef_found} -eq 1 ]; then
+					echo -ne "${red_color} Error${normal_color}"
+					optional_toolsok=0
+					echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
+					echo -e "\r"
+				else
+					echo -e "${green_color} Ok\r${normal_color}"
+					optional_tools[${i}]=1
+				fi
+			else
+				echo -e "${green_color} Ok\r${normal_color}"
+				optional_tools[${i}]=1
+			fi
 		fi
 	done
 
@@ -10379,6 +10414,10 @@ function check_compatibility() {
 		echo
 		language_strings "${language}" 219 "yellow"
 		echo
+		if [ ${fake_beef_found} -eq 1 ]; then
+			language_strings "${language}" 401 "red"
+			echo
+		fi
 		return
 	fi
 
@@ -10525,6 +10564,7 @@ function initialize_script_settings() {
 	is_arm=0
 	pin_dbfile_checked=0
 	beef_found=0
+	fake_beef_found=0
 }
 
 #Detect screen resolution if possible
