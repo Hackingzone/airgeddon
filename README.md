@@ -129,7 +129,13 @@ Must be launched only using bash (not sh). Example `bash /path/to/airgeddon.sh`<
 If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash instead of sh**. Even with no initial error, maybe you'll have it later. Use bash always!
 
 #Supported Languages
-English, Spanish, French, Catalan, Portuguese, Russian and Greek.
+![English][english] English<br/>
+![Spanish][spanish]Spanish<br/>
+![French][french]French<br/>
+![Catalan][catalan]Catalan<br/>
+![Portuguese][portuguese]Portuguese<br/>
+![Russian][russian]Russian<br/>
+![Greek][greek]Greek<br/>
 
 #Project Collaboration
 You can join the project:<br/>
@@ -184,3 +190,10 @@ Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 [1]: /imgs/airgeddon_banner.png "We'll conquer the earth!!"
 [2]: /imgs/paypal_donate.png "Show me the money!"
 [3]: /imgs/bitcoin_donate.png "Show me the money!"
+[english]: /imgs/us.png "English"
+[spanish]: /imgs/es.png "Spanish"
+[french]: /imgs/fr.png "French"
+[catalan]: /imgs/cat.png "Catalan"
+[portuguese]: /imgs/pt.png "Portuguese"
+[russian]: /imgs/ru.png "Russian"
+[greek]: /imgs/gr.png "Greek"
