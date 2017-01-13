@@ -2,6 +2,7 @@
 New system for possible tool aliases checking the requirements
 Evil Twin attack added: Bettercap-Sslstrip2 and BeEF browser exploitation framework
 README.md beautified
+Colors changed. Now blocking errors in red
 
 5.14
 Timeout changed while searching for "bad FCS" to avoid problems in old systems
