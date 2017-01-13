@@ -130,12 +130,12 @@ If you launch the script using sh and a *"Syntax error"* appears, launch it with
 
 #Supported Languages
 ![English][english] English<br/>
-![Spanish][spanish]Spanish<br/>
-![French][french]French<br/>
-![Catalan][catalan]Catalan<br/>
-![Portuguese][portuguese]Portuguese<br/>
-![Russian][russian]Russian<br/>
-![Greek][greek]Greek<br/>
+![Spanish][spanish] Spanish<br/>
+![French][french] French<br/>
+![Catalan][catalan] Catalan<br/>
+![Portuguese][portuguese] Portuguese<br/>
+![Russian][russian] Russian<br/>
+![Greek][greek] Greek<br/>
 
 #Project Collaboration
 You can join the project:<br/>
