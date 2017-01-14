@@ -34,6 +34,8 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 #Requirements
 Bash version 4.2 or later needed.
 
+Compatibility with any Linux which have installed the tools what script needs. The script checks for them at the beginning.
+
 Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1, 4.12 and 64-1.0*<br/>
@@ -56,8 +58,6 @@ Airgeddon is already included in some Linux distros and repositories:
  - <a href="http://www.wifislax.com">Wifislax</a> 4.12, 64-1.0 or higher.
  - <a href="https://blackarch.org">BlackArch</a> first 2017 release or later.
  - <a href="https://archstrike.org/wiki">ArchStrike</a> repository.
-
-Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.
 
 We will enumerate the categories and tools. The command can be included in different packages depending of the distro.
 
@@ -102,6 +102,8 @@ We will enumerate the categories and tools. The command can be included in diffe
 | rfkill | rfkill |
 Is highly recommended to have the internal tools installed. They improve functionality and performance. For example, xdpyinfo allow the script to detect the desktop resolution in order to print windows in a better way (size and position).
 
+Of course, the script also uses many standard basic commands that are understood to come with any Linux distro, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sleep, etc...).  
+
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :smile:<br/>
@@ -132,11 +134,13 @@ If you launch the script using sh and a *"Syntax error"* appears, launch it with
 ![Greek][greek] Greek
 
 #Project Collaboration
-You can join the project:<br/>
--Translations to other languages are welcome.<br/>
--More distros support compatibility.<br/>
--New features.<br/>
--Testing and feedback is needed too.<br/>
+You can join the project:
+
+ - Translations to other languages are welcome.
+ - More distros support compatibility.
+ - New features.
+ - More WPS pins for the database.
+ - Testing and feedback is needed too.
 
 *For collaborating translators:*<br/>
 You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.
@@ -157,6 +161,8 @@ The pins must be strictly ordered by key in the array. Keys are the first 6 bssi
 See [Changelog](CHANGELOG.md) file to review changes.
 
 #Credits & Special Thanks
+Thank you to:
+
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** and **cLn** for Catalan translations.<br/>
