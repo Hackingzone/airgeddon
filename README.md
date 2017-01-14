@@ -151,7 +151,7 @@ Airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/ko
 You can download the master version or the beta testing version from the development branch called `dev`. Sometimes there are other temporary branches for specific features that can be tested too. 
 
 #Changelog
-See [Changelog](changelog.txt) file to review changes.
+See [Changelog](CHANGELOG.md) file to review changes.
 
 #Special Thanks to
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
