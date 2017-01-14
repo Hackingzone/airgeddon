@@ -83,7 +83,7 @@ We will enumerate the categories and tools. The command can be included in diffe
 | lighttpd | lighttpd | // | reaver |  reaver |
 | iptables |  iptables | // | bully |  bully |
 | bettercap |  bettercap | // | pixiewps |  pixiewps |
-| beef |  beef / beef-xss | // | unbuffer |  expect |
+| beef |  beef / beef-xss | // | unbuffer |  expect / expect-dev |
 **Important tip about BeEF** -> The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, Don't confuse with beef (Flexible Brainfuck interpreter). This package has the same name, same executable file name and can lead to confusion. Here is a link to the "good" one installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
 
 **Update tools**: <- *not necessary to work, only used for auto-update*
