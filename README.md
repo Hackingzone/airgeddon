@@ -32,7 +32,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Requirements
-Bash version 4.2 or later needed.<br/>
+Bash version 4.2 or later needed.
 
 Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
@@ -57,9 +57,9 @@ Airgeddon is already included in some Linux distros and repositories:
  - <a href="https://blackarch.org">BlackArch</a> first 2017 release or later.
  - <a href="https://archstrike.org/wiki">ArchStrike</a> repository.
 
-Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
+Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.
 
-We will enumerate the categories and tools. The command can be included in different packages depending of the distro.<br/>
+We will enumerate the categories and tools. The command can be included in different packages depending of the distro.
 
 **Essential tools**: <- *the script doesn't work if you don't have installed all of them*
 
@@ -106,7 +106,7 @@ Is highly recommended to have the internal tools installed. They improve functio
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
 *-Bash version* <- it can be avoided upgrading to 4 or later, this is not the real problem :smile:<br/>
 *-Aircrack suite* <- this suite for OSX doesn't support airodump and aireplay<br/>
-*-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs<br/>
+*-Wireless tools* <- iwconfig doesn't exists for OSX, and airport command can't be used. It generates very different outputs
 
 Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:<br/>
 *-Bash* <- They have no bash. It can be installed, this is not the real problem again :sweat_smile:<br/>
@@ -129,7 +129,7 @@ If you launch the script using sh and a *"Syntax error"* appears, launch it with
 ![Catalan][catalan] Catalan<br/>
 ![Portuguese][portuguese] Portuguese<br/>
 ![Russian][russian] Russian<br/>
-![Greek][greek] Greek<br/>
+![Greek][greek] Greek
 
 #Project Collaboration
 You can join the project:<br/>
@@ -139,32 +139,35 @@ You can join the project:<br/>
 -Testing and feedback is needed too.<br/>
 
 *For collaborating translators:*<br/>
-You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.<br/>
+You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.
 
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 Direct push on master is not allowed, and pull requests require revision and approvement.<br/>
-Airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
+Airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:
 
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`. Sometimes there are other temporary branches for specific features that can be tested too. 
 
+*For WPS PIN database collaborators:*<br/>
+The pins must be strictly ordered by key in the array. Keys are the first 6 bssid digits. After updating the "known_pins.db" file, you must update too "pindb_checksum.txt" with the calculated checksum of the database file. This checksum is done using md5sum tool.
+
 #Changelog
 See [Changelog](CHANGELOG.md) file to review changes.
 
-#Special Thanks to
+#Credits & Special Thanks
 **Kcdtv** for French translations, beta testing, suggestions about new features and support received since the beginning.<br/>
 **USUARIONUEVO** for helping me to improve the script, suggestions about new features and for the support received.<br/>
 **El padrino** and **cLn** for Catalan translations.<br/>
 **Luan** for Portuguese translations.<br/>
 **MiAl** for Russian translations.<br/>
-**xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.<br/>
+**xtonousou** for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.
 
 Thanks to the "Spanish pentesting crew", the <a href="http://www.wifislax.com/">Wifislax</a> staff, the <a href="https://blackarch.org">BlackArch</a> community, the <a href="http://foro.seguridadwireless.net">Seguridadwireless.net</a>, <a href="https://www.wifi-libre.com">Wifi-libre.com</a> and <a href="http://lampiweb.com/foro/">Lampiweb.com</a> forum people that helped me.<br/>
 Thanks to the <a href="https://hackware.ru">Hackware.ru</a> admins. Thanks to all the people who helped me building the online PIN database for WPS. Thank you to Dominique Bongard for bringing to us Pixie Dust attacks. Thanks to Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms.<br/>
-I want to thank you too, to all developers who made and designed the third-party tools airgeddon uses.<br/>
-<br/>
+I want to thank you too, to all developers who made and designed the third-party tools airgeddon uses.
+
 Thank you too to other authors who inspired me with their scripts:<br/>
 *vk496 -> Linset*<br/>
 *MI1 -> Airstorm*<br/>
@@ -176,8 +179,8 @@ Thank you too to other authors who inspired me with their scripts:<br/>
 #Donate
 If you enjoyed the script, feel free to give a donation. Invite me to a coffee through Paypal or send me a fraction of a bitcoin:<br/>
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
-Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
-<br/>
+Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*
+
 [![paypal][paypal]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
 &nbsp;
 [![bitcoin][bitcoin]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
