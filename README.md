@@ -59,54 +59,48 @@ Airgeddon is already included in some Linux distros and repositories:
 
 Anyway, can be used with any Linux distro if you have installed the tools what script needs. The script checks for them at the beginning.<br/>
 
-We will enumerate the categories and tools. The format will be: "command -> possible package name". The command can be included in different packages depending of the distro.<br/>
+We will enumerate the categories and tools. The command can be included in different packages depending of the distro.<br/>
 
-Essential tools: <- *the script doesn't work if you don't have installed all of them*
-```
-ifconfig -> net-tools
-iwconfig -> wireless-tools
-iw -> iw
-awk -> awk / gawk
-airmon-ng -> aircrack-ng
-airodump-ng -> aircrack-ng
-aircrack-ng -> aircrack-ng
-xterm -> xterm
-```
-Optional tools: <- *not necessary to work, only needed for some features*
-```
-wpaclean -> aircrack-ng
-crunch -> crunch
-aireplay-ng -> aircrack-ng
-mdk3 -> mdk3
-hashcat -> hashcat
-hostapd -> hostapd
-dhcpd -> isc-dhcp-server / dhcp-server / dhcp
-iptables -> iptables
-ettercap -> ettercap / ettercap-text-only / ettercap-graphical
-etterlog -> ettercap / ettercap-text-only / ettercap-graphical
-sslstrip -> sslstrip
-lighttpd -> lighttpd
-dnsspoof -> dsniff
-wash -> reaver
-reaver -> reaver
-bully -> bully
-pixiewps -> pixiewps
-unbuffer -> expect
-bettercap -> bettercap
-beef -> beef / beef-xss
-```
-Update tools: <- *not necessary to work, only used for auto-update*<br/>
-```
-curl -> curl
-```
-Internal tools: <- *these are internally checked. Not necessary to work, good to have*<br/>
-```
-xdpyinfo -> x11-utils / xdpyinfo / xorg-xdpyinfo
-ethtool -> ethtool
-lspci -> pciutils
-rfkill -> rfkill
-```
-Is highly recommended to have the internal tools installed. They improve functionality and performance. For example, xdpyinfo allow the script to detect the desktop resolution in order to print windows in a better way.
+**Essential tools**: <- *the script doesn't work if you don't have installed all of them*
+
+| Command | Possible package name | // | Command | Possible package name |
+| --- | --- | --- | --- | --- |
+| ifconfig | net-tools | // | iwconfig | wireless-tools |
+| iw | iw | // | awk | awk / gawk |
+| airmon-ng | aircrack-ng | // | airodump-ng | aircrack-ng |
+| aircrack-ng | aircrack-ng | // | xterm | xterm |
+
+**Optional tools**: <- *not necessary to work, only needed for some features*
+
+| Command | Possible package name | // | Command | Possible package name |
+| --- | --- | --- | --- | --- |
+| wpaclean |  aircrack-ng | // | ettercap |  ettercap / ettercap-text-only / ettercap-graphical |
+| crunch |  crunch | // | etterlog |  ettercap / ettercap-text-only / ettercap-graphical |
+| aireplay-ng |  aircrack-ng | // | sslstrip |  sslstrip |
+| mdk3 |  mdk3 | // | dhcpd |  isc-dhcp-server / dhcp-server / dhcp |
+| hashcat |  hashcat | // | dnsspoof |  dsniff |
+| hostapd |  hostapd | // | wash |  reaver |
+| lighttpd | lighttpd | // | reaver |  reaver |
+| iptables |  iptables | // | bully |  bully |
+| bettercap |  bettercap | // | pixiewps |  pixiewps |
+| beef |  beef / beef-xss | // | unbuffer |  expect |
+**Important tip about BeEF** -> The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, Don't confuse with beef (Flexible Brainfuck interpreter). This package has the same name, same executable file name and can lead to confusion. Here is a link to the "good" one installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
+
+**Update tools**: <- *not necessary to work, only used for auto-update*
+
+| Command | Possible package name |
+| --- | --- |
+| curl | curl |
+
+**Internal tools**: <- *these are internally checked. Not necessary to work, good to have*
+
+| Command | Possible package name |
+| --- | --- |
+| xdpyinfo | x11-utils / xdpyinfo / xorg-xdpyinfo |
+| ethtool | ethtool |
+| lspci | pciutils |
+| rfkill | rfkill |
+Is highly recommended to have the internal tools installed. They improve functionality and performance. For example, xdpyinfo allow the script to detect the desktop resolution in order to print windows in a better way (size and position).
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
