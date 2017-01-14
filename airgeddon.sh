@@ -236,9 +236,9 @@ hashcat_charsets=("?l" "?u" "?d" "?s")
 
 #Colors vars
 green_color="\033[1;32m"
+green_color_title="\033[0;32m"
 red_color="\033[1;31m"
 red_color_slim="\033[0;031m"
-green_color_title="\033[0;32m"
 blue_color="\033[1;34m"
 cyan_color="\033[1;36m"
 brown_color="\033[0;33m"
