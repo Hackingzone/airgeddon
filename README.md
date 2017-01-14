@@ -1,4 +1,4 @@
-#airgeddon [![License](https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg?style=flat-square)](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/LICENSE)
+#airgeddon [![License](https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg?style=flat-square)](LICENSE.md)
 This is a multi-use bash script for Linux systems to audit wireless networks.<br/>
 ![We'll conquer the earth!!][1]
 
@@ -112,11 +112,11 @@ Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some 
 *-Bash* <- They have no bash. It can be installed, this is not the real problem again :sweat_smile:<br/>
 *-Wireless tools* <- iwconfig doesn't exists for these systems, they use ifconfig instead and it generates very different outputs
 
-#Disclaimer
+#Disclaimer & License
 This script must be used only for educational purposes and pentesting.<br/>
 Use it only on your own networks.<br/>
 We are not responsible of its use.<br/>
-This script is under GPLv3 (or later) License.
+This script is under GPLv3 (or later) [License](LICENSE.md).
 
 #Use
 Must be launched only using bash (not sh). Example `bash /path/to/airgeddon.sh`<br/>
