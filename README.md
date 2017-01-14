@@ -1,6 +1,6 @@
 #airgeddon [![License](https://img.shields.io/badge/License-GPL%20v3%2B-blue.svg?style=flat-square)](LICENSE.md)
 This is a multi-use bash script for Linux systems to audit wireless networks.<br/>
-![We'll conquer the earth!!][1]
+![We'll conquer the earth!!][banner]
 
 #Features
 - Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing.
@@ -139,15 +139,16 @@ You can join the project:<br/>
 -Testing and feedback is needed too.<br/>
 
 *For collaborating translators:*<br/>
-You can take the strings to translate from the code or you can ask me directly by mail. I'll inform you how to proceed or to add you as a collaborator on github.<br/>
+You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.<br/>
 
 *For collaborating developers:*<br/>
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
-Airgeddon code is 100% clean of warnings. Use <a href="https://github.com/koalaman/shellcheck">shellcheck</a> to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
+Direct push on master is not allowed, and pull requests require revision and approvement.<br/>
+Airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:<br/>
 
 *For beta testers:*<br/>
-You can download the master version or the beta testing version from the development branch called `dev`
+You can download the master version or the beta testing version from the development branch called `dev`. Sometimes there are other temporary branches for specific features that can be tested too. 
 
 #Changelog
 See [Changelog](changelog.txt) file to review changes.
@@ -177,13 +178,13 @@ If you enjoyed the script, feel free to give a donation. Invite me to a coffee t
 Paypal: *v1s1t0r.1s.h3r3&#64;gmail.com*<br/>
 Bitcoin: *1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH*<br/>
 <br/>
-[![paypal][2]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
+[![paypal][paypal]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
 &nbsp;
-[![bitcoin][3]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
+[![bitcoin][bitcoin]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
-[1]: /imgs/airgeddon_banner.png "We'll conquer the earth!!"
-[2]: /imgs/paypal_donate.png "Show me the money!"
-[3]: /imgs/bitcoin_donate.png "Show me the money!"
+[banner]: /imgs/airgeddon_banner.png "We'll conquer the earth!!"
+[paypal]: /imgs/paypal_donate.png "Show me the money!"
+[bitcoin]: /imgs/bitcoin_donate.png "Show me the money!"
 [english]: /imgs/us.png "English"
 [spanish]: /imgs/es.png "Spanish"
 [french]: /imgs/fr.png "French"
