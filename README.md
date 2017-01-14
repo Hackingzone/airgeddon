@@ -32,7 +32,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Auto-update. Script checks for newer version if possible.
 
 #Requirements
-Bash version 4.0 or later needed.<br/>
+Bash version 4.2 or later needed.<br/>
 
 Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
