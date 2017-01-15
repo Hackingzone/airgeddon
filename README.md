@@ -45,7 +45,7 @@ Tested on these compatible Linux distros:<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
 *-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
-*-OpenSUSE Leap 42.1*<br/>
+*-OpenSUSE Leap 42.1 and 42.2*<br/>
 *-CentOS 6 and 7*<br/>
 *-Gentoo 20160514 and 20160704*<br/>
 *-Fedora 24*<br/>
