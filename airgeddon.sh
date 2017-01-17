@@ -187,7 +187,6 @@ possible_beef_known_locations=(
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
-								"/usr/local/bin/"
 							)
 
 #Distros vars
@@ -225,6 +224,7 @@ declare select_interface_hints=(246)
 declare language_hints=(250)
 declare evil_twin_hints=(254 258 264 269 309 328 400)
 declare evil_twin_dos_hints=(267 268)
+declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390)
 
 #Charset vars
@@ -2053,14 +2053,13 @@ function language_strings() {
 	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите [Ctrl+C] для остановки..."
 	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
-	#TODO re-use this unused 191
-	arr["ENGLISH",191]="Capture file you selected is an unsupported file format (not a pcap or IVs file)"
-	arr["SPANISH",191]="El fichero de captura que has seleccionado tiene un formato no soportado (no es un fichero pcap o de IVs)"
-	arr["FRENCH",191]="Le fichier de capture que vous avez sélectionné est dans un format non supporté (ce n'est pas un fichier pcap ou IVs)"
-	arr["CATALAN",191]="El fitxer de captura que has seleccionat té un format no suportat (no és un fitxer pcap o de IVs)"
-	arr["PORTUGUESE",191]="O arquivo de captura selecionado tem um invalido (não é um arquivo pcap ou IVs)"
-	arr["RUSSIAN",191]="Файл захвата, который вы выбрали, в неподдерживаемом формате (это не файл pcap или IVs)"
-	arr["GREEK",191]="Η επέκταση του αρχείου καταγραφής που έχετε επιλέξει δεν υποστηρίζεται (δεν είναι pcap ούτε IVs αρχείο)"
+	arr["ENGLISH",191]="Airgeddon can't find the directory path where you have BeEF installed. Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",191]="Airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${pending_of_translation} Airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",191]="${pending_of_translation} Airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",191]="${pending_of_translation} Airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",191]="${pending_of_translation} Airgeddon не может найти путь к каталогу, где вы установили BeEF. Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
+	arr["GREEK",191]="${pending_of_translation} Airgeddon δεν μπορεί να βρει το δρόμο κατάλογο όπου έχετε εγκαταστήσει το BeEF σας. Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
@@ -3742,6 +3741,102 @@ function language_strings() {
 	arr["RUSSIAN",401]="${pending_of_translation} Пакет beef вы установили не BeEF (Browser Exploitation Framework). У вас есть Beef (Flexible Brainfuck interpreter) установлен. Оба исполняемые файлы имеют одинаковое имя и может привести к путанице. Удалите его и установить, что airgeddon потребности, если вы хотите использовать эту функцию. Инструкция по установке: ${beef_installation_url}"
 	arr["GREEK",401]="Το πακέτο beef που έχετε εγκαταστημένο δεν είναι το BeEF (Browser Exploitation Framework). Έχετε εγκατεστημένο το Beef (Flexible Brainfuck interpreter). Και τα δύο εκτελέσιμα αρχεία έχουν το ίδιο όνομα και μπορεί να γίνει κάποιο μπέρδεμα. Απεγκαταστήστε το και εγκαταστήστε αυτό που χρειάζεται το airgeddon, αν θέλετε να χρησιμοποιήσετε αυτή την επιλογή. Οδηγός εγκατάστασης: ${beef_installation_url}"
 
+	arr["ENGLISH",402]="Enter the absolute path of the directory where BeEF is installed :"
+	arr["SPANISH",402]="Introduce la ruta absoluta del directorio donde está instalado BeEF :"
+	arr["FRENCH",402]="${pending_of_translation} Entrez le chemin absolu du répertoire où BeEF est installé :"
+	arr["CATALAN",402]="${pending_of_translation} Introdueix la ruta absoluta del directori on està instal·lat BeEF :"
+	arr["PORTUGUESE",402]="${pending_of_translation} Digite o caminho absoluto do diretório onde BeEF está instalado :"
+	arr["RUSSIAN",402]="${pending_of_translation} Введите абсолютный путь к каталогу, в котором установлен BeEF :"
+	arr["GREEK",402]="${pending_of_translation} Πληκτρολογήστε την απόλυτη διαδρομή του καταλόγου όπου έχει εγκατασταθεί το BeEF :"
+
+	arr["ENGLISH",403]="The directory you entered doesn't exist"
+	arr["SPANISH",403]="El directorio introducido no existe"
+	arr["FRENCH",403]="${pending_of_translation} N'existe pas le répertoire entré"
+	arr["CATALAN",403]="${pending_of_translation} El directori introduït no existeix"
+	arr["PORTUGUESE",403]="${pending_of_translation} O diretório digitado não existe"
+	arr["RUSSIAN",403]="${pending_of_translation} Каталог, который вы ввели, не существует"
+	arr["GREEK",403]="${pending_of_translation} Ο κατάλογος που δώσατε δεν υπάρχει"
+
+	arr["ENGLISH",404]="The entered path isn't absolute. An absolute path must always begin with \"/\""
+	arr["SPANISH",404]="La ruta introducida no es absoluta. Una ruta absoluta siempre debe comenzar por \"/\""
+	arr["FRENCH",404]="${pending_of_translation} Le chemin d'accès entré est pas absolue. Un chemin absolu doit toujours commencer par \"/\""
+	arr["CATALAN",404]="${pending_of_translation} La ruta introduïda no és absoluta. Una ruta absoluta sempre ha de començar per \"/\""
+	arr["PORTUGUESE",404]="${pending_of_translation} O caminho digitado não é absoluta. Um caminho absoluto deve sempre começar com \"/\""
+	arr["RUSSIAN",404]="${pending_of_translation} Введенный путь не является абсолютным. Абсолютный путь всегда должен начинаться с \"/\""
+	arr["GREEK",404]="${pending_of_translation} Η τέθηκε διαδρομή δεν είναι απόλυτη. Μια απόλυτη διαδρομή πρέπει πάντα να αρχίζει με \"/\""
+
+	arr["ENGLISH",405]="Checking BeEF..."
+	arr["SPANISH",405]="Comprobando BeEF..."
+	arr["FRENCH",405]="${pending_of_translation} Vérification BeEF..."
+	arr["CATALAN",405]="${pending_of_translation} Comprovant BeEF..."
+	arr["PORTUGUESE",405]="${pending_of_translation} Verificando BeEF..."
+	arr["RUSSIAN",405]="${pending_of_translation} проверка BeEF..."
+	arr["GREEK",405]="${pending_of_translation} Ελεγχος BeEF..."
+
+	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
+	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
+	arr["FRENCH",406]="${pending_of_translation} Il n'a pas détecté un BeEF exécutable dans le répertoire spécifié"
+	arr["CATALAN",406]="${pending_of_translation} No s'ha detectat un executable de BeEF al directori indicat"
+	arr["PORTUGUESE",406]="${pending_of_translation} Não detectou um BeEF executável no diretório especificado"
+	arr["RUSSIAN",406]="${pending_of_translation} Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
+	arr["GREEK",406]="${pending_of_translation} Δεν BeEF εκτελέσιμο ανιχνεύθηκε σε συγκεκριμένο κατάλογο"
+
+	arr["ENGLISH",407]="BeEF preparation"
+	arr["SPANISH",407]="Preparación BeEF"
+	arr["FRENCH",407]="${pending_of_translation} Préparation BeEF"
+	arr["CATALAN",407]="${pending_of_translation} Preparació BeEF"
+	arr["PORTUGUESE",407]="${pending_of_translation} Preparação BeEF"
+	arr["RUSSIAN",407]="${pending_of_translation} подготовка BeEF"
+	arr["GREEK",407]="${pending_of_translation} προετοιμασία BeEF"
+
+	arr["ENGLISH",408]="If you installed BeEF manually, Airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
+	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que Airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
+	arr["FRENCH",408]="${pending_of_translation} Si BeEF installé manuellement, vous pouvez Airgeddon ne pas être en mesure de trouver et de l'option d'attaque apparaîtra restreinte. Vous pouvez essayer de le réparer en utilisant l'option de menu spécial pour cela. Cela ne fonctionnera que si BeEF est déjà installé avec succès et le seul problème que vous avez est que le script ne détecte pas"
+	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que Airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
+	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não Airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
+	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, Airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
+	arr["GREEK",408]="${pending_of_translation} Εάν έχετε εγκαταστήσει το BeEF με το χέρι, Airgeddon μπορεί να μην είναι σε θέση να το βρείτε και την επιλογή επίθεση μπορεί να εμφανιστεί ως περιορισμένη. Μπορείτε να προσπαθήσετε να το λύσετε χρησιμοποιώντας την ειδική επιλογή μενού για να διορθώσετε αυτό. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μοναδικό πρόβλημά σας είναι το σενάριο δεν είναι αυτό που ανιχνεύει"
+
+	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",409]="1.  Attaque Evil Twin avec capture des données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",409]="1.  Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",409]="1.  Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",409]="1.  Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",409]="1.  Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
+	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
+	arr["FRENCH",410]="${pending_of_translation} 2.  Essayez de résoudre BeEF problème de dépendance installé manuellement"
+	arr["CATALAN",410]="${pending_of_translation} 2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
+	arr["PORTUGUESE",410]="${pending_of_translation} 2.  Tente resolver BeEF problema de dependência instalado manualmente"
+	arr["RUSSIAN",410]="${pending_of_translation} 2.  Попробуйте устранить проблему вручную установлена зависимость BeEF"
+	arr["GREEK",410]="${pending_of_translation} 2.  Προσπαθήστε να αντιμετωπίσετε εγκατασταθεί χειροκίνητα το πρόβλημα της εξάρτησης από το BeEF"
+
+	arr["ENGLISH",411]="3.  Return to Evil Twin attacks menu"
+	arr["SPANISH",411]="3.  Volver al menú de ataques Evil Twin"
+	arr["FRENCH",411]="3.  Retour au menu d'attaques Evil Twin"
+	arr["CATALAN",411]="3.  Tornar al menú d'atacs Evil Twin"
+	arr["PORTUGUESE",411]="3.  Voltar ao menu de ataques Evil Twin"
+	arr["RUSSIAN",411]="3.  Вернуться в меню атак Злой Двойник"
+	arr["GREEK",411]="3.  Επιστροφή στο μενού επιθέσεων Evil Twin"
+
+	arr["ENGLISH",412]="You don't need to perform this action. Your BeEF is operational"
+	arr["SPANISH",412]="No necesitas realizar esta acción. Tu BeEF está operativo"
+	arr["FRENCH",412]="${pending_of_translation} Vous n'êtes pas obligé de le faire. Votre BeEF est opérationnel"
+	arr["CATALAN",412]="${pending_of_translation} No necessites realitzar aquesta acció. El teu BeEF està operatiu"
+	arr["PORTUGUESE",412]="${pending_of_translation} Você não precisa fazer isso. Suo BeEF está operacional"
+	arr["RUSSIAN",412]="${pending_of_translation} Вам не нужно, чтобы выполнить это действие. Ваш BeEF находится в рабочем состоянии"
+	arr["GREEK",412]="${pending_of_translation} Δεν χρειάζεται να εκτελέσετε αυτήν την ενέργεια. BeEF σας είναι λειτουργική"
+
+	arr["ENGLISH",413]="Airgeddon fixed the problem. Your BeEF is operational"
+	arr["SPANISH",413]="Airgeddon ha solucionado el problema. Tu BeEF está operativo"
+	arr["FRENCH",413]="${pending_of_translation} Airgeddon a résolu le problème. Votre BeEF est opérationnel"
+	arr["CATALAN",413]="${pending_of_translation} Airgeddon ha solucionat el problema. El teu BeEF està operatiu"
+	arr["PORTUGUESE",413]="${pending_of_translation} Airgeddon corrigiu o problema. Suo BeEF está operacional"
+	arr["RUSSIAN",413]="${pending_of_translation} Airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
+	arr["GREEK",413]="${pending_of_translation} Airgeddon σταθερό το πρόβλημα. BeEF σας είναι λειτουργική"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -4506,6 +4601,7 @@ function select_internet_interface() {
 
 	if [ ${option_counter} -eq 0 ]; then
 		return_to_et_main_menu=1
+		return_to_et_main_menu_from_beef=1
 		echo
 		language_strings "${language}" 280 "red"
 		language_strings "${language}" 115 "read"
@@ -4527,6 +4623,7 @@ function select_internet_interface() {
 		invalid_internet_iface_selected
 	elif [ "${inet_iface}" -eq ${option_counter_back} ]; then
 		return_to_et_main_menu=1
+		return_to_et_main_menu_from_beef=1
 		return 1
 	else
 		option_counter2=0
@@ -5383,6 +5480,7 @@ function initialize_menu_and_print_selections() {
 		"evil_twin_attacks_menu")
 			return_to_et_main_menu=0
 			retry_handshake_capture=0
+			return_to_et_main_menu_from_beef=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
 			captive_portal_mode="internet"
@@ -5403,6 +5501,10 @@ function initialize_menu_and_print_selections() {
 		"wps_attacks_menu")
 			print_iface_selected
 			print_all_target_vars_wps
+		;;
+		"beef_pre_menu")
+			print_iface_selected
+			print_all_target_vars_et
 		;;
 		*)
 			print_iface_selected
@@ -5555,6 +5657,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[wps_hints|${randomhint}]}
 		;;
+		"beef_pre_menu")
+			store_array hints beef_hints "${beef_hints[@]}"
+			hintlength=${#beef_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[beef_hints|${randomhint}]}
+		;;
 	esac
 
 	print_simple_separator
@@ -5649,7 +5758,7 @@ function evil_twin_attacks_menu() {
 	language_strings "${language}" 257 "separator"
 	language_strings "${language}" 259 et_sniffing_dependencies[@]
 	language_strings "${language}" 261 et_sniffing_sslstrip_dependencies[@]
-	language_strings "${language}" 396 et_sniffing_sslstrip2_dependencies[@]
+	language_strings "${language}" 396
 	language_strings "${language}" 262 "separator"
 	language_strings "${language}" 263 et_captive_portal_dependencies[@]
 	print_simple_separator
@@ -5719,21 +5828,7 @@ function evil_twin_attacks_menu() {
 			fi
 		;;
 		8)
-			contains_element "${et_option}" "${forbidden_options[@]}"
-			if [ "$?" = "0" ]; then
-				forbidden_menu_option
-			else
-				check_interface_wifi
-				if [ "$?" = "0" ]; then
-					et_mode="et_sniffing_sslstrip2"
-					get_bettercap_version
-					et_dos_menu
-				else
-					echo
-					language_strings "${language}" 281 "red"
-					language_strings "${language}" 115 "read"
-				fi
-			fi
+			beef_pre_menu
 		;;
 		9)
 			contains_element "${et_option}" "${forbidden_options[@]}"
@@ -5767,6 +5862,67 @@ function evil_twin_attacks_menu() {
 	esac
 
 	evil_twin_attacks_menu
+}
+
+#BeEF pre attack menu
+function beef_pre_menu() {
+
+	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
+		return
+	fi
+
+	search_for_beef
+
+	clear
+	language_strings "${language}" 407 "title"
+	current_menu="beef_pre_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+	language_strings "${language}" 410
+	print_simple_separator
+	language_strings "${language}" 411
+	print_hint ${current_menu}
+
+	read -r beef_option
+	case ${beef_option} in
+		1)
+			contains_element "${beef_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				check_interface_wifi
+				if [ "$?" = "0" ]; then
+					et_mode="et_sniffing_sslstrip2"
+					get_bettercap_version
+					et_dos_menu
+				else
+					echo
+					language_strings "${language}" 281 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		2)
+			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+				echo
+				language_strings "${language}" 412 "red"
+				language_strings "${language}" 115 "read"
+			else
+				prepare_beef_start "check"
+			fi
+		;;
+		3)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	beef_pre_menu
 }
 
 #WPS attacks menu
@@ -6829,7 +6985,6 @@ function exec_et_sniffing_sslstrip2_attack() {
 	set_std_internet_routing_rules
 	launch_dhcp_server
 	exec_et_deauth
-	prepare_beef_start
 	if [ "${beef_found}" -eq 1 ]; then
 		set_beef_config
 	else
@@ -8105,16 +8260,96 @@ function detect_fake_beef() {
 	done
 }
 
-#Prepare system to work with beef
+#Search for BeEF path
+function search_for_beef() {
+
+	if [ "${beef_found}" -eq 0 ]; then
+		for item in "${possible_beef_known_locations[@]}"; do
+			if [ -f "${item}beef" ]; then
+				beef_path="${item}"
+				beef_found=1
+				break
+			fi
+		done
+	fi
+}
+
+#Prepare system to work with BeEF
 function prepare_beef_start() {
 
-	for item in "${possible_beef_known_locations[@]}"; do
-		if [ -f "${item}beef" ]; then
-			beef_path="${item}"
-			beef_found=1
-			break
+	valid_possible_beef_path=0
+	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+		language_strings "${language}" 405 "blue"
+		ask_yesno 191
+		if [ ${yesno} = "y" ]; then
+
+			while [[ "${valid_possible_beef_path}" != "1" ]]; do
+				echo
+				language_strings "${language}" 402 "green"
+				read -r manually_entered_beef_path
+				if [ -n "${manually_entered_beef_path}" ]; then
+					lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
+					if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
+						manually_entered_beef_path="${manually_entered_beef_path}/"
+					fi
+
+					firstcharmanually_entered_beef_path=${manually_entered_beef_path:0:1}
+					if [ "${firstcharmanually_entered_beef_path}" != "/" ]; then
+						language_strings "${language}" 404 "red"
+					else
+						if [ -d "${manually_entered_beef_path}" ]; then
+							if [ -f "${manually_entered_beef_path}beef" ]; then
+								head "${manually_entered_beef_path}beef" -n 1 2> /dev/null| grep ruby > /dev/null
+								if [ "$?" = "0" ]; then
+									possible_beef_known_locations+=(${manually_entered_beef_path})
+									valid_possible_beef_path=1
+								else
+									language_strings "${language}" 406 "red"
+								fi
+							else
+								language_strings "${language}" 406 "red"
+							fi
+						else
+							language_strings "${language}" 403 "red"
+						fi
+					fi
+				fi
+			done
+			search_for_beef
 		fi
-	done
+
+		if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+			fix_beef_executable "${manually_entered_beef_path}"
+		fi
+
+		if [ ${beef_found} -eq 1 ]; then
+			echo
+			language_strings "${language}" 413 "yellow"
+			language_strings "${language}" 115 "read"
+		fi
+	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+		fix_beef_executable "${beef_path}"
+		echo
+		language_strings "${language}" 413 "yellow"
+		language_strings "${language}" 115 "read"
+	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]] && [[ "${1}" = "check" ]]; then
+		echo
+		language_strings "${language}" 412 "red"
+		language_strings "${language}" 115 "read"
+	fi
+}
+
+#Fix for not found beef executable
+function fix_beef_executable() {
+
+	rm -rf "/usr/bin/beef" > /dev/null 2>&1
+	{
+	echo -e "#!/bin/bash\n"
+	echo -e "cd ${1}"
+	echo -e "./beef"
+	} >> "/usr/bin/beef"
+	chmod +x "/usr/bin/beef" > /dev/null 2>&1
+	optional_tools[${optional_tools_names[19]}]=1
 }
 
 #Start beef process as a service
@@ -9289,6 +9524,7 @@ function et_prerequisites() {
 		ask_yesno 277
 		if [ ${yesno} = "n" ]; then
 			return_to_et_main_menu=1
+			return_to_et_main_menu_from_beef=1
 			return
 		fi
 	fi
@@ -9354,6 +9590,7 @@ function et_prerequisites() {
 	fi
 
 	return_to_et_main_menu=1
+	return_to_et_main_menu_from_beef=1
 	echo
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
@@ -9370,6 +9607,7 @@ function et_prerequisites() {
 			exec_et_sniffing_sslstrip_attack
 		;;
 		"et_sniffing_sslstrip2")
+			prepare_beef_start "not_check"
 			exec_et_sniffing_sslstrip2_attack
 		;;
 		"et_captive_portal")
@@ -9582,6 +9820,7 @@ function et_dos_menu() {
 			fi
 		;;
 		4)
+			return_to_et_main_menu_from_beef=1
 			return
 		;;
 		*)
