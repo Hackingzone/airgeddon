@@ -3747,7 +3747,7 @@ function language_strings() {
 	arr["CATALAN",402]="${pending_of_translation} Introdueix la ruta absoluta del directori on està instal·lat BeEF :"
 	arr["PORTUGUESE",402]="${pending_of_translation} Digite o caminho absoluto do diretório onde BeEF está instalado :"
 	arr["RUSSIAN",402]="${pending_of_translation} Введите абсолютный путь к каталогу, в котором установлен BeEF :"
-	arr["GREEK",402]="${pending_of_translation} Πληκτρολογήστε την απόλυτη διαδρομή του καταλόγου όπου έχει εγκατασταθεί το BeEF :"
+	arr["GREEK",402]="Εισάγετε το απόλυτο μονοπάτι για τον κατάλογο στον όποιο βρίσκεται εγκατεστημένο το BeEF :"
 
 	arr["ENGLISH",403]="The directory you entered doesn't exist"
 	arr["SPANISH",403]="El directorio introducido no existe"
@@ -3755,7 +3755,7 @@ function language_strings() {
 	arr["CATALAN",403]="${pending_of_translation} El directori introduït no existeix"
 	arr["PORTUGUESE",403]="${pending_of_translation} O diretório digitado não existe"
 	arr["RUSSIAN",403]="${pending_of_translation} Каталог, который вы ввели, не существует"
-	arr["GREEK",403]="${pending_of_translation} Ο κατάλογος που δώσατε δεν υπάρχει"
+	arr["GREEK",403]="Ο κατάλογος που έχετε εισάγει δεν υπάρχει"
 
 	arr["ENGLISH",404]="The entered path isn't absolute. An absolute path must always begin with \"/\""
 	arr["SPANISH",404]="La ruta introducida no es absoluta. Una ruta absoluta siempre debe comenzar por \"/\""
@@ -3763,7 +3763,7 @@ function language_strings() {
 	arr["CATALAN",404]="${pending_of_translation} La ruta introduïda no és absoluta. Una ruta absoluta sempre ha de començar per \"/\""
 	arr["PORTUGUESE",404]="${pending_of_translation} O caminho digitado não é absoluta. Um caminho absoluto deve sempre começar com \"/\""
 	arr["RUSSIAN",404]="${pending_of_translation} Введенный путь не является абсолютным. Абсолютный путь всегда должен начинаться с \"/\""
-	arr["GREEK",404]="${pending_of_translation} Η τέθηκε διαδρομή δεν είναι απόλυτη. Μια απόλυτη διαδρομή πρέπει πάντα να αρχίζει με \"/\""
+	arr["GREEK",404]="Το μονοπάτι που έχετε εισάγει δεν είναι απόλυτο. Ένα απόλυτο μονοπάτι πρέπει πάντα να ξεκινάει με \"/\""
 
 	arr["ENGLISH",405]="Checking BeEF..."
 	arr["SPANISH",405]="Comprobando BeEF..."
@@ -3771,7 +3771,7 @@ function language_strings() {
 	arr["CATALAN",405]="${pending_of_translation} Comprovant BeEF..."
 	arr["PORTUGUESE",405]="${pending_of_translation} Verificando BeEF..."
 	arr["RUSSIAN",405]="${pending_of_translation} проверка BeEF..."
-	arr["GREEK",405]="${pending_of_translation} Ελεγχος BeEF..."
+	arr["GREEK",405]="Γίνεται έλεγχος του BeEF..."
 
 	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
 	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
@@ -3779,7 +3779,7 @@ function language_strings() {
 	arr["CATALAN",406]="${pending_of_translation} No s'ha detectat un executable de BeEF al directori indicat"
 	arr["PORTUGUESE",406]="${pending_of_translation} Não detectou um BeEF executável no diretório especificado"
 	arr["RUSSIAN",406]="${pending_of_translation} Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
-	arr["GREEK",406]="${pending_of_translation} Δεν BeEF εκτελέσιμο ανιχνεύθηκε σε συγκεκριμένο κατάλογο"
+	arr["GREEK",406]="Δεν εντοπίστηκε κάποιο εκτελέσιμο αρχείο BeEF στον κατάλογο που έχετε εισάγει"
 
 	arr["ENGLISH",407]="BeEF preparation"
 	arr["SPANISH",407]="Preparación BeEF"
@@ -3787,7 +3787,7 @@ function language_strings() {
 	arr["CATALAN",407]="${pending_of_translation} Preparació BeEF"
 	arr["PORTUGUESE",407]="${pending_of_translation} Preparação BeEF"
 	arr["RUSSIAN",407]="${pending_of_translation} подготовка BeEF"
-	arr["GREEK",407]="${pending_of_translation} προετοιμασία BeEF"
+	arr["GREEK",407]="Προετοιμασία του BeEF"
 
 	arr["ENGLISH",408]="If you installed BeEF manually, Airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
 	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que Airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
@@ -3795,7 +3795,7 @@ function language_strings() {
 	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que Airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
 	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não Airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
 	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, Airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
-	arr["GREEK",408]="${pending_of_translation} Εάν έχετε εγκαταστήσει το BeEF με το χέρι, Airgeddon μπορεί να μην είναι σε θέση να το βρείτε και την επιλογή επίθεση μπορεί να εμφανιστεί ως περιορισμένη. Μπορείτε να προσπαθήσετε να το λύσετε χρησιμοποιώντας την ειδική επιλογή μενού για να διορθώσετε αυτό. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μοναδικό πρόβλημά σας είναι το σενάριο δεν είναι αυτό που ανιχνεύει"
+	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το Airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φαίνεται περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημά είναι ότι το script δεν το εντοπίζει"
 
 	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
@@ -3811,7 +3811,7 @@ function language_strings() {
 	arr["CATALAN",410]="${pending_of_translation} 2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
 	arr["PORTUGUESE",410]="${pending_of_translation} 2.  Tente resolver BeEF problema de dependência instalado manualmente"
 	arr["RUSSIAN",410]="${pending_of_translation} 2.  Попробуйте устранить проблему вручную установлена зависимость BeEF"
-	arr["GREEK",410]="${pending_of_translation} 2.  Προσπαθήστε να αντιμετωπίσετε εγκατασταθεί χειροκίνητα το πρόβλημα της εξάρτησης από το BeEF"
+	arr["GREEK",410]="2.  Προσπαθήστε να αντιμετωπίσετε το πρόβλημα με τα dependencies του χειροκίνητα εγκατεστημένου BeEF"
 
 	arr["ENGLISH",411]="3.  Return to Evil Twin attacks menu"
 	arr["SPANISH",411]="3.  Volver al menú de ataques Evil Twin"
@@ -3827,7 +3827,7 @@ function language_strings() {
 	arr["CATALAN",412]="${pending_of_translation} No necessites realitzar aquesta acció. El teu BeEF està operatiu"
 	arr["PORTUGUESE",412]="${pending_of_translation} Você não precisa fazer isso. Suo BeEF está operacional"
 	arr["RUSSIAN",412]="${pending_of_translation} Вам не нужно, чтобы выполнить это действие. Ваш BeEF находится в рабочем состоянии"
-	arr["GREEK",412]="${pending_of_translation} Δεν χρειάζεται να εκτελέσετε αυτήν την ενέργεια. BeEF σας είναι λειτουργική"
+	arr["GREEK",412]="Δεν χρειάζεται να εκτελέσετε αυτήν την ενέργεια. Το BeEF λειτουργεί κανονικά"
 
 	arr["ENGLISH",413]="Airgeddon fixed the problem. Your BeEF is operational"
 	arr["SPANISH",413]="Airgeddon ha solucionado el problema. Tu BeEF está operativo"
@@ -3835,7 +3835,7 @@ function language_strings() {
 	arr["CATALAN",413]="${pending_of_translation} Airgeddon ha solucionat el problema. El teu BeEF està operatiu"
 	arr["PORTUGUESE",413]="${pending_of_translation} Airgeddon corrigiu o problema. Suo BeEF está operacional"
 	arr["RUSSIAN",413]="${pending_of_translation} Airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
-	arr["GREEK",413]="${pending_of_translation} Airgeddon σταθερό το πρόβλημα. BeEF σας είναι λειτουργική"
+	arr["GREEK",413]="Το airgeddon διόρθωσε το πρόβλημα. Το BeEF λειτουργεί κανονικά"
 
 	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
 	arr["SPANISH",414]="No tienes curl instalado. No se puede descargar el fichero de la base de datos de PINs"
@@ -3843,7 +3843,7 @@ function language_strings() {
 	arr["CATALAN",414]="${pending_of_translation} No tens curl instal·lat. No es pot descarregar el fitxer de la base de dades de PINs"
 	arr["PORTUGUESE",414]="${pending_of_translation} Você não tem curl instalado. Você não pode baixar o arquivo de os PINs de banco de dados"
 	arr["RUSSIAN",414]="${pending_of_translation} У вас не установлен curl. Не возможно загрузить файл базы данных PINs"
-	arr["GREEK",414]="${pending_of_translation} Δεν έχετε εγκατεστημένο curl. Δεν είναι δυνατόν να κατεβάσετε τα PIN αρχείου βάσης δεδομένων"
+	arr["GREEK",414]="Το curl δεν είναι εγκατεστημένο. Είναι αδύνατον να κατέβει το αρχείο με την βάση δεδομένων PIN"
 
 	case "${3}" in
 		"yellow")
