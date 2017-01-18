@@ -3837,6 +3837,14 @@ function language_strings() {
 	arr["RUSSIAN",413]="${pending_of_translation} Airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
 	arr["GREEK",413]="${pending_of_translation} Airgeddon σταθερό το πρόβλημα. BeEF σας είναι λειτουργική"
 
+	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
+	arr["SPANISH",414]="No tienes curl instalado. No se puede descargar el fichero de la base de datos de PINs"
+	arr["FRENCH",414]="${pending_of_translation} Vous ne disposez pas de curl installé. Vous ne pouvez pas télécharger le fichier à partir des PINs de base de données"
+	arr["CATALAN",414]="${pending_of_translation} No tens curl instal·lat. No es pot descarregar el fitxer de la base de dades de PINs"
+	arr["PORTUGUESE",414]="${pending_of_translation} Você não tem curl instalado. Você não pode baixar o arquivo de os PINs de banco de dados"
+	arr["RUSSIAN",414]="${pending_of_translation} У вас не установлен curl. Не возможно загрузить файл базы данных PINs"
+	arr["GREEK",414]="${pending_of_translation} Δεν έχετε εγκατεστημένο curl. Δεν είναι δυνατόν να κατεβάσετε τα PIN αρχείου βάσης δεδομένων"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -6083,6 +6091,7 @@ function wps_attacks_menu() {
 					set_script_folder_and_name
 				fi
 
+				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					check_pins_database_file
 					if [ "$?" = "0" ]; then
@@ -6091,15 +6100,19 @@ function wps_attacks_menu() {
 					else
 						echo
 						language_strings "${language}" 372 "red"
+						db_error=1
 					fi
 				else
 					echo
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_attacks_parameters
-				if [ "$?" = "0" ]; then
-					exec_wps_pin_database_bully_attack
+
+				if [ "${db_error}" -eq 0 ]; then
+					wps_attacks_parameters
+					if [ "$?" = "0" ]; then
+						exec_wps_pin_database_bully_attack
+					fi
 				fi
 			fi
 		;;
@@ -6114,6 +6127,7 @@ function wps_attacks_menu() {
 					set_script_folder_and_name
 				fi
 
+				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					check_pins_database_file
 					if [ "$?" = "0" ]; then
@@ -6122,15 +6136,18 @@ function wps_attacks_menu() {
 					else
 						echo
 						language_strings "${language}" 372 "red"
+						db_error=1
 					fi
 				else
 					echo
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_attacks_parameters
-				if [ "$?" = "0" ]; then
-					exec_wps_pin_database_reaver_attack
+				if [ "${db_error}" -eq 0 ]; then
+					wps_attacks_parameters
+					if [ "$?" = "0" ]; then
+						exec_wps_pin_database_reaver_attack
+					fi
 				fi
 			fi
 		;;
@@ -10211,23 +10228,28 @@ function check_pins_database_file() {
 	else
 		language_strings "${language}" 374 "yellow"
 		echo
-		language_strings "${language}" 287 "blue"
-		check_internet_access "${host_to_check_internet}"
-		if [ "$?" != "0" ]; then
-			echo
-			language_strings "${language}" 375 "yellow"
-			return 1
-		else
-			echo
-			download_pins_database_file
-			if [ "$?" = "0" ]; then
-				language_strings "${language}" 377 "yellow"
-				pin_dbfile_checked=1
-				return 0
-			else
-				language_strings "${language}" 378 "yellow"
+		if hash curl 2> /dev/null; then
+			language_strings "${language}" 287 "blue"
+			check_internet_access "${host_to_check_internet}"
+			if [ "$?" != "0" ]; then
+				echo
+				language_strings "${language}" 375 "yellow"
 				return 1
+			else
+				echo
+				download_pins_database_file
+				if [ "$?" = "0" ]; then
+					language_strings "${language}" 377 "yellow"
+					pin_dbfile_checked=1
+					return 0
+				else
+					language_strings "${language}" 378 "yellow"
+					return 1
+				fi
 			fi
+		else
+			language_strings "${language}" 414 "yellow"
+			return 1
 		fi
 	fi
 }
