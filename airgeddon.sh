@@ -5911,7 +5911,7 @@ function beef_pre_menu() {
 				language_strings "${language}" 412 "red"
 				language_strings "${language}" 115 "read"
 			else
-				prepare_beef_start "check"
+				prepare_beef_start
 			fi
 		;;
 		3)
@@ -8332,7 +8332,7 @@ function prepare_beef_start() {
 		echo
 		language_strings "${language}" 413 "yellow"
 		language_strings "${language}" 115 "read"
-	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]] && [[ "${1}" = "check" ]]; then
+	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
 		echo
 		language_strings "${language}" 412 "red"
 		language_strings "${language}" 115 "read"
@@ -9607,7 +9607,6 @@ function et_prerequisites() {
 			exec_et_sniffing_sslstrip_attack
 		;;
 		"et_sniffing_sslstrip2")
-			prepare_beef_start "not_check"
 			exec_et_sniffing_sslstrip2_attack
 		;;
 		"et_captive_portal")
