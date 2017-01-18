@@ -1339,7 +1339,7 @@ function language_strings() {
 	arr["CATALAN",101]="Menú principal airgeddon"
 	arr["PORTUGUESE",101]="Menu principal airgeddon"
 	arr["RUSSIAN",101]="Главное меню Airgeddon"
-	arr["GREEK",101]="Αρχικό μενού Airgeddon"
+	arr["GREEK",101]="Αρχικό μενού airgeddon"
 
 	arr["ENGLISH",102]="DoS attacks menu"
 	arr["SPANISH",102]="Menú ataques DoS"
@@ -2059,7 +2059,7 @@ function language_strings() {
 	arr["CATALAN",191]="${pending_of_translation} Airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",191]="${pending_of_translation} Airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",191]="${pending_of_translation} Airgeddon не может найти путь к каталогу, где вы установили BeEF. Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
-	arr["GREEK",191]="${pending_of_translation} Airgeddon δεν μπορεί να βρει το δρόμο κατάλογο όπου έχετε εγκαταστήσει το BeEF σας. Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
+	arr["GREEK",191]="Το airgeddon δεν μπορεί να βρει το μονοπάτι για τον κατάλογο όπου έχετε εγκαταστημένο το BeEF. Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
@@ -3795,7 +3795,7 @@ function language_strings() {
 	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que Airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
 	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não Airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
 	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, Airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
-	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το Airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φαίνεται περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημά είναι ότι το script δεν το εντοπίζει"
+	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φαίνεται περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημά είναι ότι το script δεν το εντοπίζει"
 
 	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
