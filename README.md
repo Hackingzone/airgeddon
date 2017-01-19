@@ -54,7 +54,7 @@ Tested on these compatible Linux distros:<br/>
 *-Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*<br/>
 *-OpenMandriva LX3*<br/>
 
-Airgeddon is already included in some Linux distros and repositories:
+airgeddon is already included in some Linux distros and repositories:
  - <a href="http://www.wifislax.com">Wifislax</a> 4.12, 64-1.0 or higher.
  - <a href="https://blackarch.org">BlackArch</a> first 2017 release or later.
  - <a href="https://archstrike.org/wiki">ArchStrike</a> repository.
@@ -149,7 +149,7 @@ You can take the strings to translate from the code. All the stuff to translate 
 Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 Direct push on master is not allowed, and pull requests require revision and approvement.<br/>
-Airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:
+airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:
 
 *For beta testers:*<br/>
 You can download the master version or the beta testing version from the development branch called `dev`. Sometimes there are other temporary branches for specific features that can be tested too. 

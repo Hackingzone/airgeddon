@@ -364,13 +364,13 @@ function language_strings() {
 	et_misc_texts["RUSSIAN",7]="Клиенты ещё не подключены"
 	et_misc_texts["GREEK",7]="Ακόμα, κανένας συνδεδεμένος χρήστης"
 
-	et_misc_texts["ENGLISH",8]="Airgeddon. Evil Twin attack captured passwords"
-	et_misc_texts["SPANISH",8]="Airgeddon. Contraseñas capturadas en ataque Evil Twin"
-	et_misc_texts["FRENCH",8]="Airgeddon. Mots de passe capturés par attaque Evil Twin"
-	et_misc_texts["CATALAN",8]="Airgeddon. Contrasenyes capturades amb atac Evil Twin"
-	et_misc_texts["PORTUGUESE",8]="Airgeddon. Senhas capturado no ataque ataque Evil Twin"
-	et_misc_texts["RUSSIAN",8]="Airgeddon. Атака Злой Двойник захватила пароли"
-	et_misc_texts["GREEK",8]="Airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
+	et_misc_texts["ENGLISH",8]="airgeddon. Evil Twin attack captured passwords"
+	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
+	et_misc_texts["FRENCH",8]="airgeddon. Mots de passe capturés par attaque Evil Twin"
+	et_misc_texts["CATALAN",8]="airgeddon. Contrasenyes capturades amb atac Evil Twin"
+	et_misc_texts["PORTUGUESE",8]="airgeddon. Senhas capturado no ataque ataque Evil Twin"
+	et_misc_texts["RUSSIAN",8]="airgeddon. Атака Злой Двойник захватила пароли"
+	et_misc_texts["GREEK",8]="airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
 
 	et_misc_texts["ENGLISH",9]="Wireless network, ESSID:"
 	et_misc_texts["SPANISH",9]="Red inalámbrica, ESSID:"
@@ -452,13 +452,13 @@ function language_strings() {
 	et_misc_texts["RUSSIAN",18]="Пароль верен, подключение устанавливается"
 	et_misc_texts["GREEK",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα αποκατασταθεί σε λίγα λεπτά"
 
-	et_misc_texts["ENGLISH",19]="Airgeddon. Captive portal Evil Twin attack captured password"
-	et_misc_texts["SPANISH",19]="Airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
-	et_misc_texts["FRENCH",19]="Airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
-	et_misc_texts["CATALAN",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
-	et_misc_texts["PORTUGUESE",19]="Airgeddon. Senha capturada no ataque Evil Twin portal cativo"
-	et_misc_texts["RUSSIAN",19]="Airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
-	et_misc_texts["GREEK",19]="Airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
+	et_misc_texts["ENGLISH",19]="airgeddon. Captive portal Evil Twin attack captured password"
+	et_misc_texts["SPANISH",19]="airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
+	et_misc_texts["FRENCH",19]="airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
+	et_misc_texts["CATALAN",19]="airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
+	et_misc_texts["PORTUGUESE",19]="airgeddon. Senha capturada no ataque Evil Twin portal cativo"
+	et_misc_texts["RUSSIAN",19]="airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
+	et_misc_texts["GREEK",19]="airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
 	et_misc_texts["SPANISH",20]="Intentos"
@@ -1333,12 +1333,12 @@ function language_strings() {
 	arr["RUSSIAN",100]="Параметры Michael Shutdown"
 	arr["GREEK",100]="Παράμετροι Michael Shutdown"
 
-	arr["ENGLISH",101]="Airgeddon main menu"
+	arr["ENGLISH",101]="airgeddon main menu"
 	arr["SPANISH",101]="Menú principal airgeddon"
 	arr["FRENCH",101]="Menu principal d'airgeddon"
 	arr["CATALAN",101]="Menú principal airgeddon"
 	arr["PORTUGUESE",101]="Menu principal airgeddon"
-	arr["RUSSIAN",101]="Главное меню Airgeddon"
+	arr["RUSSIAN",101]="Главное меню airgeddon"
 	arr["GREEK",101]="Αρχικό μενού airgeddon"
 
 	arr["ENGLISH",102]="DoS attacks menu"
@@ -2053,12 +2053,12 @@ function language_strings() {
 	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите [Ctrl+C] для остановки..."
 	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
-	arr["ENGLISH",191]="Airgeddon can't find the directory path where you have BeEF installed. Do you want to enter it manually? ${normal_color}[y/n]"
-	arr["SPANISH",191]="Airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",191]="${pending_of_translation} Airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. Voulez-vous entrer manuellement? ${normal_color}[y/n]"
-	arr["CATALAN",191]="${pending_of_translation} Airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ¿Vols introduir-la manualment? ${normal_color}[y/n]"
-	arr["PORTUGUESE",191]="${pending_of_translation} Airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. Você quer inseri-lo manualmente? ${normal_color}[y/n]"
-	arr["RUSSIAN",191]="${pending_of_translation} Airgeddon не может найти путь к каталогу, где вы установили BeEF. Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
+	arr["ENGLISH",191]="airgeddon can't find the directory path where you have BeEF installed. Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",191]="airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${pending_of_translation} airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",191]="${pending_of_translation} airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",191]="${pending_of_translation} airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",191]="${pending_of_translation} airgeddon не может найти путь к каталогу, где вы установили BeEF. Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
 	arr["GREEK",191]="Το airgeddon δεν μπορεί να βρει το μονοπάτι για τον κατάλογο όπου έχετε εγκαταστημένο το BeEF. Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
@@ -3789,12 +3789,12 @@ function language_strings() {
 	arr["RUSSIAN",407]="${pending_of_translation} подготовка BeEF"
 	arr["GREEK",407]="Προετοιμασία του BeEF"
 
-	arr["ENGLISH",408]="If you installed BeEF manually, Airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
-	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que Airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
-	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'Airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si Beef est correctement instalé et c'est le script qui n'est pas capable de le détecter"
-	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que Airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
-	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não Airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
-	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, Airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
+	arr["ENGLISH",408]="If you installed BeEF manually, airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
+	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
+	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si BeEf est correctement instalé et c'est le script qui n'est pas capable de le détecter"
+	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
+	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
+	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
 	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φαίνεται περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημά είναι ότι το script δεν το εντοπίζει"
 
 	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
@@ -3829,12 +3829,12 @@ function language_strings() {
 	arr["RUSSIAN",412]="${pending_of_translation} Вам не нужно, чтобы выполнить это действие. Ваш BeEF находится в рабочем состоянии"
 	arr["GREEK",412]="Δεν χρειάζεται να εκτελέσετε αυτήν την ενέργεια. Το BeEF λειτουργεί κανονικά"
 
-	arr["ENGLISH",413]="Airgeddon fixed the problem. Your BeEF is operational"
-	arr["SPANISH",413]="Airgeddon ha solucionado el problema. Tu BeEF está operativo"
-	arr["FRENCH",413]="Airgeddon a résolu le problème. BeEF est opérationnel"
-	arr["CATALAN",413]="${pending_of_translation} Airgeddon ha solucionat el problema. El teu BeEF està operatiu"
-	arr["PORTUGUESE",413]="${pending_of_translation} Airgeddon corrigiu o problema. Suo BeEF está operacional"
-	arr["RUSSIAN",413]="${pending_of_translation} Airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
+	arr["ENGLISH",413]="airgeddon fixed the problem. Your BeEF is operational"
+	arr["SPANISH",413]="airgeddon ha solucionado el problema. Tu BeEF está operativo"
+	arr["FRENCH",413]="airgeddon a résolu le problème. BeEF est opérationnel"
+	arr["CATALAN",413]="${pending_of_translation} airgeddon ha solucionat el problema. El teu BeEF està operatiu"
+	arr["PORTUGUESE",413]="${pending_of_translation} airgeddon corrigiu o problema. Suo BeEF está operacional"
+	arr["RUSSIAN",413]="${pending_of_translation} airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
 	arr["GREEK",413]="Το airgeddon διόρθωσε το πρόβλημα. Το BeEF λειτουργεί κανονικά"
 
 	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
@@ -5679,7 +5679,7 @@ function print_hint() {
 	print_simple_separator
 }
 
-#Airgeddon main menu
+#airgeddon main menu
 function main_menu() {
 
 	clear
@@ -5872,7 +5872,7 @@ function evil_twin_attacks_menu() {
 	evil_twin_attacks_menu
 }
 
-#BeEF pre attack menu
+#beef pre attack menu
 function beef_pre_menu() {
 
 	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
@@ -8185,7 +8185,7 @@ function set_beef_config() {
 
 	{
 	echo -e "beef:"
-	echo -e "    version: 'Airgeddon integrated'"
+	echo -e "    version: 'airgeddon integrated'"
 	echo -e "    debug: false"
 	echo -e "    client_debug: false"
 	echo -e "    crypto_default_value_length: 80"
@@ -8277,7 +8277,7 @@ function detect_fake_beef() {
 	done
 }
 
-#Search for BeEF path
+#Search for beef path
 function search_for_beef() {
 
 	if [ "${beef_found}" -eq 0 ]; then
@@ -8291,7 +8291,7 @@ function search_for_beef() {
 	fi
 }
 
-#Prepare system to work with BeEF
+#Prepare system to work with beef
 function prepare_beef_start() {
 
 	valid_possible_beef_path=0
