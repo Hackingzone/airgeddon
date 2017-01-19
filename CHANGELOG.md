@@ -6,6 +6,7 @@
  - License and changelog files updated to markdown format
  - Updated minimum bash version check (v4.2)
  - Tested compatibility with OpenSUSE 42.2 and Parrot 3.4.1
+ - Fixed error trying to download PIN db file on WPS attacks when curl isn't installed
 
 ###5.14
  - Timeout changed while searching for "bad FCS" to avoid problems in old systems
