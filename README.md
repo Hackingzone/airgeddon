@@ -40,7 +40,7 @@ Tested on these compatible Linux distros:<br/>
 *-Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*<br/>
 *-Wifislax 4.11.1, 4.12 and 64-1.0*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
-*-Parrot 2.2.1, 3.1.1 and arm versions (Raspberry Pi)*<br/>
+*-Parrot 2.2.1 to 3.4.1 and arm versions (Raspberry Pi)*<br/>
 *-BlackArch 2016.01.10 to 2016.12.29*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
