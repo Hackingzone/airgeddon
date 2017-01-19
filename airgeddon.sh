@@ -518,7 +518,7 @@ function language_strings() {
 
 	et_misc_texts["ENGLISH",27]="This attack has two parts. Watch the sniffer's screen to see if a password appears. You can also open BeEF control panel at ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) and try to control the clients browser"
 	et_misc_texts["SPANISH",27]="Este ataque tiene dos partes. Estate atento a la pantalla del sniffer para ver si aparece alguna contraseña. También puedes abrir el panel de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , hacer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e intentar controlar el navegador de los clientes"
-	et_misc_texts["FRENCH",27]="${pending_of_translation} Cette attaque comporte deux parties. Vérifiez pendant l'attaque dans la console du sniffeur si un mot de passe a été capturé. Vous pouvez également ouvrir le BeEF du panneau de commande dans ${white_color}${beef_control_panel_url}${pink_color} , pour vous connecter (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) et essayer de contrôler le navigateur client"
+	et_misc_texts["FRENCH",27]="Cette attaque comporte deux parties. Vérifiez pendant l'attaque dans la console du sniffeur si un mot de passe a été capturé. Vous pouvez également ouvrir le BeEF du panneau de commande dans ${white_color}${beef_control_panel_url}${pink_color} , pour vous connecter (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) et essayer de contrôler le navigateur client"
 	et_misc_texts["CATALAN",27]="Aquest atac té dues parts. Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya. També pots obrir el panell de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , fer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) i intentar controlar el navegador dels clients"
 	et_misc_texts["PORTUGUESE",27]="${pending_of_translation} Este ataque tem duas partes. Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha. Você também pode abrir BeEF painel de controle no ${white_color}${beef_control_panel_url}${pink_color} , para login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e tentar controlar o navegador do clientes"
 	et_misc_texts["RUSSIAN",27]="Эта атака идёт по двум направлениям. Вы можете наблюдать за окном сниффера, чтобы отследить появление пароля. Также можете перейти в панель управления BeEF ${white_color}${beef_control_panel_url}${pink_color} , учётные данные для входа (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) и попытаться управлять браузером клиентов"
@@ -3727,7 +3727,7 @@ function language_strings() {
 
 	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
 	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
-	arr["FRENCH",400]="${pending_of_translation} Dans l'attaque Evil Twin avec BeEF intégré, plus obtenir les clés avec reniflant, vous pouvez essayer de contrôler le navigateur du client lançant de nombreux vecteurs d'attaque. Le succès de ces dépendent de nombreux facteurs tels que le type et version du navigateur utilisé par le client"
+	arr["FRENCH",400]="Avec l'attaque Evil Twin plus BeEF il est possible obtenir les clés en sniffant, mais pas seulement. Vous pouvez essayer de prendre le contrôle du navigateur web de la vicitme. Le succès des attaques proposées dépendra, entre autre, de la version du navigateur installé"
 	arr["CATALAN",400]="En l'atac Evil Twin amb Beef integrat, a més d'obtenir claus amb sniffing, podràs intentar controlar el navegador dels clients llançant nombrosos vectors d'atac. L'èxit d'aquests dependrà de molts factors com el tipus de navegador i la versió que utilitzi el client"
 	arr["PORTUGUESE",400]="${pending_of_translation} No ataque Evil Twin com carne integrado, além de obter chaves com sniffing, você pode tentar controlar o navegador do cliente lançando inúmeros vetores de ataque. O sucesso destes dependerá de muitos fatores, tais como tipo de navegador e versão utilizada pelo cliente"
 	arr["RUSSIAN",400]="С атакой Злой Двойник в дополнении к получению паролей, применяя техники сниффинга, вы можете попробовать контролировать клиентский браузер, запуская атаки по ряду векторов. Их успех зависит от многих факторов, в том числе от типа и версии клиентского браузера"
@@ -3735,7 +3735,7 @@ function language_strings() {
 
 	arr["ENGLISH",401]="The beef package you have installed is not BeEF (Browser Exploitation Framework). You have Beef (Flexible Brainfuck interpreter) installed. Both executables have the same name and can lead to confusion. Uninstall it and install what airgeddon needs if you want to use that feature. Installation guide: ${beef_installation_url}"
 	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: ${beef_installation_url}"
-	arr["FRENCH",401]="${pending_of_translation} Le paquet de beef que vous avez installé est pas BeEF (Browser Exploitation Framework). Vous avez installé Beef (Flexible Brainfuck interpreter). Les deux même nom exécutable et peut conduire à la confusion. Désinstallez et installez airgeddon besoin si vous souhaitez utiliser cette fonctionnalité. Guide d'installation: ${beef_installation_url}"
+	arr["FRENCH",401]="Le paquet beef installé n'est pas le bon: Vous avez installé Beef (Flexible Brainfuck interpreter) et vous devez installer BeEF (Browser Exploitation Framework). Les deux ont le même nom et peut induire en erreur. Désinstallez et installez la version dont airgeddon a besoin si vous souhaitez utiliser cette fonctionnalité. Guide d'installation: ${beef_installation_url}"
 	arr["CATALAN",401]="El paquet beef que tens instal·lat no és BeEF (Browser Exploitation Framework). Tens instal·lat Beef (Flexible Brainfuck interpreter). Tots dos executables es diuen igual i pot donar lloc a confusió. Desinstalalo i instal·la el que airgeddon necessita si vols utilitzar aquesta característica. Guia d'instal·lació: ${beef_installation_url}"
 	arr["PORTUGUESE",401]="${pending_of_translation} O beef de ter instalado não é BeEF (Browser Exploitation Framework). Você instalou Beef (Flexible Brainfuck interpreter). Ambos mesmo nome executável e pode levar a confusão. Desinstalá-lo e instalá-lo airgeddon precisa se você quiser usar esse recurso. Guia de Instalação: ${beef_installation_url}"
 	arr["RUSSIAN",401]="${pending_of_translation} Пакет beef вы установили не BeEF (Browser Exploitation Framework). У вас есть Beef (Flexible Brainfuck interpreter) установлен. Оба исполняемые файлы имеют одинаковое имя и может привести к путанице. Удалите его и установить, что airgeddon потребности, если вы хотите использовать эту функцию. Инструкция по установке: ${beef_installation_url}"
@@ -3743,7 +3743,7 @@ function language_strings() {
 
 	arr["ENGLISH",402]="Enter the absolute path of the directory where BeEF is installed :"
 	arr["SPANISH",402]="Introduce la ruta absoluta del directorio donde está instalado BeEF :"
-	arr["FRENCH",402]="${pending_of_translation} Entrez le chemin absolu du répertoire où BeEF est installé :"
+	arr["FRENCH",402]="Entrez la route absolue vers le dossier où BeEF est installé :"
 	arr["CATALAN",402]="${pending_of_translation} Introdueix la ruta absoluta del directori on està instal·lat BeEF :"
 	arr["PORTUGUESE",402]="${pending_of_translation} Digite o caminho absoluto do diretório onde BeEF está instalado :"
 	arr["RUSSIAN",402]="${pending_of_translation} Введите абсолютный путь к каталогу, в котором установлен BeEF :"
@@ -3751,7 +3751,7 @@ function language_strings() {
 
 	arr["ENGLISH",403]="The directory you entered doesn't exist"
 	arr["SPANISH",403]="El directorio introducido no existe"
-	arr["FRENCH",403]="${pending_of_translation} N'existe pas le répertoire entré"
+	arr["FRENCH",403]="Le dossier indiqué n'existe pas"
 	arr["CATALAN",403]="${pending_of_translation} El directori introduït no existeix"
 	arr["PORTUGUESE",403]="${pending_of_translation} O diretório digitado não existe"
 	arr["RUSSIAN",403]="${pending_of_translation} Каталог, который вы ввели, не существует"
@@ -3759,7 +3759,7 @@ function language_strings() {
 
 	arr["ENGLISH",404]="The entered path isn't absolute. An absolute path must always begin with \"/\""
 	arr["SPANISH",404]="La ruta introducida no es absoluta. Una ruta absoluta siempre debe comenzar por \"/\""
-	arr["FRENCH",404]="${pending_of_translation} Le chemin d'accès entré est pas absolue. Un chemin absolu doit toujours commencer par \"/\""
+	arr["FRENCH",404]="La route saisie n'est pas absolue. Une route absolue doit toujours commencer par \"/\""
 	arr["CATALAN",404]="${pending_of_translation} La ruta introduïda no és absoluta. Una ruta absoluta sempre ha de començar per \"/\""
 	arr["PORTUGUESE",404]="${pending_of_translation} O caminho digitado não é absoluta. Um caminho absoluto deve sempre começar com \"/\""
 	arr["RUSSIAN",404]="${pending_of_translation} Введенный путь не является абсолютным. Абсолютный путь всегда должен начинаться с \"/\""
@@ -3767,7 +3767,7 @@ function language_strings() {
 
 	arr["ENGLISH",405]="Checking BeEF..."
 	arr["SPANISH",405]="Comprobando BeEF..."
-	arr["FRENCH",405]="${pending_of_translation} Vérification BeEF..."
+	arr["FRENCH",405]="Vérification de BeEF..."
 	arr["CATALAN",405]="${pending_of_translation} Comprovant BeEF..."
 	arr["PORTUGUESE",405]="${pending_of_translation} Verificando BeEF..."
 	arr["RUSSIAN",405]="${pending_of_translation} проверка BeEF..."
@@ -3775,7 +3775,7 @@ function language_strings() {
 
 	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
 	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
-	arr["FRENCH",406]="${pending_of_translation} Il n'a pas détecté un BeEF exécutable dans le répertoire spécifié"
+	arr["FRENCH",406]="BeEF n'est pas présent dans le dossierque vous avez indiqué"
 	arr["CATALAN",406]="${pending_of_translation} No s'ha detectat un executable de BeEF al directori indicat"
 	arr["PORTUGUESE",406]="${pending_of_translation} Não detectou um BeEF executável no diretório especificado"
 	arr["RUSSIAN",406]="${pending_of_translation} Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
@@ -3791,7 +3791,7 @@ function language_strings() {
 
 	arr["ENGLISH",408]="If you installed BeEF manually, Airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
 	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que Airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
-	arr["FRENCH",408]="${pending_of_translation} Si BeEF installé manuellement, vous pouvez Airgeddon ne pas être en mesure de trouver et de l'option d'attaque apparaîtra restreinte. Vous pouvez essayer de le réparer en utilisant l'option de menu spécial pour cela. Cela ne fonctionnera que si BeEF est déjà installé avec succès et le seul problème que vous avez est que le script ne détecte pas"
+	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'Airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si Beef est correctement instalé et c'est le script qui n'est pas capable de le détecter"
 	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que Airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
 	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não Airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
 	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, Airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
@@ -3807,7 +3807,7 @@ function language_strings() {
 
 	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
 	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
-	arr["FRENCH",410]="${pending_of_translation} 2.  Essayez de résoudre BeEF problème de dépendance installé manuellement"
+	arr["FRENCH",410]="2.  Essayez de résoudre le problème BeEF installé manuellement"
 	arr["CATALAN",410]="${pending_of_translation} 2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
 	arr["PORTUGUESE",410]="${pending_of_translation} 2.  Tente resolver BeEF problema de dependência instalado manualmente"
 	arr["RUSSIAN",410]="${pending_of_translation} 2.  Попробуйте устранить проблему вручную установлена зависимость BeEF"
@@ -3823,7 +3823,7 @@ function language_strings() {
 
 	arr["ENGLISH",412]="You don't need to perform this action. Your BeEF is operational"
 	arr["SPANISH",412]="No necesitas realizar esta acción. Tu BeEF está operativo"
-	arr["FRENCH",412]="${pending_of_translation} Vous n'êtes pas obligé de le faire. Votre BeEF est opérationnel"
+	arr["FRENCH",412]="Vous n'êtes pas obligé de le faire. BeEF est opérationnel"
 	arr["CATALAN",412]="${pending_of_translation} No necessites realitzar aquesta acció. El teu BeEF està operatiu"
 	arr["PORTUGUESE",412]="${pending_of_translation} Você não precisa fazer isso. Suo BeEF está operacional"
 	arr["RUSSIAN",412]="${pending_of_translation} Вам не нужно, чтобы выполнить это действие. Ваш BeEF находится в рабочем состоянии"
@@ -3831,7 +3831,7 @@ function language_strings() {
 
 	arr["ENGLISH",413]="Airgeddon fixed the problem. Your BeEF is operational"
 	arr["SPANISH",413]="Airgeddon ha solucionado el problema. Tu BeEF está operativo"
-	arr["FRENCH",413]="${pending_of_translation} Airgeddon a résolu le problème. Votre BeEF est opérationnel"
+	arr["FRENCH",413]="Airgeddon a résolu le problème. BeEF est opérationnel"
 	arr["CATALAN",413]="${pending_of_translation} Airgeddon ha solucionat el problema. El teu BeEF està operatiu"
 	arr["PORTUGUESE",413]="${pending_of_translation} Airgeddon corrigiu o problema. Suo BeEF está operacional"
 	arr["RUSSIAN",413]="${pending_of_translation} Airgeddon устранило проблему. Ваш BeEF находится в рабочем состоянии"
@@ -3839,7 +3839,7 @@ function language_strings() {
 
 	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
 	arr["SPANISH",414]="No tienes curl instalado. No se puede descargar el fichero de la base de datos de PINs"
-	arr["FRENCH",414]="${pending_of_translation} Vous ne disposez pas de curl installé. Vous ne pouvez pas télécharger le fichier à partir des PINs de base de données"
+	arr["FRENCH",414]="Curl n'est pas installé. Vous ne pouvez pas télécharger le fichier de la base de donées PIN"
 	arr["CATALAN",414]="${pending_of_translation} No tens curl instal·lat. No es pot descarregar el fitxer de la base de dades de PINs"
 	arr["PORTUGUESE",414]="${pending_of_translation} Você não tem curl instalado. Você não pode baixar o arquivo de os PINs de banco de dados"
 	arr["RUSSIAN",414]="${pending_of_translation} У вас не установлен curl. Не возможно загрузить файл базы данных PINs"
