@@ -8330,7 +8330,8 @@ function prepare_beef_start() {
 		if [ ${yesno} = "y" ]; then
 			manual_beef_set
 			search_for_beef
-			if [ ${beef_found} -eq 1 ]; then
+			if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+				rewrite_script_with_custom_beef "set" "${manually_entered_beef_path}"
 				echo
 				language_strings "${language}" 413 "yellow"
 				language_strings "${language}" 115 "read"
