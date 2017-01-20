@@ -187,6 +187,7 @@ possible_beef_known_locations=(
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
+								#Custom BeEF location (set=0)
 							)
 
 #Distros vars
@@ -2053,13 +2054,13 @@ function language_strings() {
 	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите [Ctrl+C] для остановки..."
 	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
-	arr["ENGLISH",191]="airgeddon can't find the directory path where you have BeEF installed. Do you want to enter it manually? ${normal_color}[y/n]"
-	arr["SPANISH",191]="airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",191]="${pending_of_translation} airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. Voulez-vous entrer manuellement? ${normal_color}[y/n]"
-	arr["CATALAN",191]="${pending_of_translation} airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ¿Vols introduir-la manualment? ${normal_color}[y/n]"
-	arr["PORTUGUESE",191]="${pending_of_translation} airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. Você quer inseri-lo manualmente? ${normal_color}[y/n]"
-	arr["RUSSIAN",191]="${pending_of_translation} airgeddon не может найти путь к каталогу, где вы установили BeEF. Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
-	arr["GREEK",191]="Το airgeddon δεν μπορεί να βρει το μονοπάτι για τον κατάλογο όπου έχετε εγκαταστημένο το BeEF. Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
+	arr["ENGLISH",191]="${blue_color}airgeddon can't find the directory path where you have BeEF installed. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",191]="${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${pending_of_translation} ${blue_color}airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",191]="${pending_of_translation} ${blue_color}airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",191]="${pending_of_translation} ${blue_color}airgeddon não conseguiu encontrar o caminho para o diretório onde você instalou BeEF. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",191]="${pending_of_translation} ${blue_color}airgeddon не может найти путь к каталогу, где вы установили BeEF. ${green_color}Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
+	arr["GREEK",191]="${blue_color}Το airgeddon δεν μπορεί να βρει το μονοπάτι για τον κατάλογο όπου έχετε εγκαταστημένο το BeEF. ${green_color}Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
@@ -3844,6 +3845,14 @@ function language_strings() {
 	arr["PORTUGUESE",414]="${pending_of_translation} Você não tem curl instalado. Você não pode baixar o arquivo de os PINs de banco de dados"
 	arr["RUSSIAN",414]="${pending_of_translation} У вас не установлен curl. Не возможно загрузить файл базы данных PINs"
 	arr["GREEK",414]="Το curl δεν είναι εγκατεστημένο. Είναι αδύνατον να κατέβει το αρχείο με την βάση δεδομένων PIN"
+
+	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it wasn't unable to locate the right directory path where you have BeEF installed. To know it has some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",415]="${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",415]="${pending_of_translation} ${blue_color}airgeddon sait que vous avez installé BeEF et les raisins secs validation, mais n'a pas pu indiquer le chemin exact du répertoire où vous avez installé BeEF. Connaître l'emplacement exact a certains avantages lors de l'exécution depuis la configuration sera personnalisée plutôt qu'une configuration générique. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",415]="${pending_of_translation} ${blue_color}airgeddon sap que tens BeEF instal·lat i passes la validació, però no ha pogut concretar la ruta del directori exacte on has instal·lat BeEF. Conèixer la localització exacta té alguns avantatges a l'hora d'executar ja que la configuració serà personalitzada en lloc de ser una configuració genèrica. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",415]="${pending_of_translation} ${blue_color}airgeddon sabe que você instalou validação BeEF, mas não pôde especificar o caminho exato para o diretório onde você instalou BeEF. Sabendo a localização exacta tem algumas vantagens quando executá-lo desde a configuração será personalizada em vez de uma configuração genérica. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",415]="${pending_of_translation} ${blue_color}airgeddon знает вас установлен BeEF и вы проходите проверку, но это было не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Для того, чтобы знать, что имеет некоторые преимущества для выполнения, так как его конфигурационный файл может быть изменен, а не общий характер. ${green_color}Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
+	arr["GREEK",415]="${pending_of_translation} ${blue_color}airgeddon ξέρει έχετε εγκατεστημένο το BeEF και να περάσει την επικύρωση, αλλά δεν ήταν σε θέση να εντοπίσει το σωστό δρόμο κατάλογο όπου έχετε εγκαταστήσει το BeEF σας. Να ξέρετε ότι έχει κάποια πλεονεκτήματα για την εκτέλεση επειδή αρχείο ρυθμίσεων του μπορεί να προσαρμοστεί αντί των γενόσημων. ${green_color}Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
 
 	case "${3}" in
 		"yellow")
@@ -6087,9 +6096,7 @@ function wps_attacks_menu() {
 				wps_attack="pindb_bully"
 				get_bully_version
 				set_bully_verbosity
-				if [ -z "${scriptfolder}" ]; then
-					set_script_folder_and_name
-				fi
+				set_script_folder_and_name
 
 				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
@@ -6123,9 +6130,7 @@ function wps_attacks_menu() {
 			else
 				wps_attack="pindb_reaver"
 				get_reaver_version
-				if [ -z "${scriptfolder}" ]; then
-					set_script_folder_and_name
-				fi
+				set_script_folder_and_name
 
 				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
@@ -8299,39 +8304,7 @@ function prepare_beef_start() {
 		language_strings "${language}" 405 "blue"
 		ask_yesno 191
 		if [ ${yesno} = "y" ]; then
-
-			while [[ "${valid_possible_beef_path}" != "1" ]]; do
-				echo
-				language_strings "${language}" 402 "green"
-				read -r manually_entered_beef_path
-				if [ -n "${manually_entered_beef_path}" ]; then
-					lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
-					if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
-						manually_entered_beef_path="${manually_entered_beef_path}/"
-					fi
-
-					firstcharmanually_entered_beef_path=${manually_entered_beef_path:0:1}
-					if [ "${firstcharmanually_entered_beef_path}" != "/" ]; then
-						language_strings "${language}" 404 "red"
-					else
-						if [ -d "${manually_entered_beef_path}" ]; then
-							if [ -f "${manually_entered_beef_path}beef" ]; then
-								head "${manually_entered_beef_path}beef" -n 1 2> /dev/null| grep ruby > /dev/null
-								if [ "$?" = "0" ]; then
-									possible_beef_known_locations+=(${manually_entered_beef_path})
-									valid_possible_beef_path=1
-								else
-									language_strings "${language}" 406 "red"
-								fi
-							else
-								language_strings "${language}" 406 "red"
-							fi
-						else
-							language_strings "${language}" 403 "red"
-						fi
-					fi
-				fi
-			done
+			manual_beef_set
 			search_for_beef
 		fi
 
@@ -8350,10 +8323,55 @@ function prepare_beef_start() {
 		language_strings "${language}" 413 "yellow"
 		language_strings "${language}" 115 "read"
 	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
-		echo
-		language_strings "${language}" 412 "red"
-		language_strings "${language}" 115 "read"
+		language_strings "${language}" 405 "blue"
+		ask_yesno 415
+		if [ ${yesno} = "y" ]; then
+			manual_beef_set
+			search_for_beef
+			if [ ${beef_found} -eq 1 ]; then
+				echo
+				language_strings "${language}" 413 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		fi
 	fi
+}
+
+#Set beef path manually
+function manual_beef_set() {
+
+	while [[ "${valid_possible_beef_path}" != "1" ]]; do
+		echo
+		language_strings "${language}" 402 "green"
+		read -r manually_entered_beef_path
+		if [ -n "${manually_entered_beef_path}" ]; then
+			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
+			if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
+				manually_entered_beef_path="${manually_entered_beef_path}/"
+			fi
+
+			firstcharmanually_entered_beef_path=${manually_entered_beef_path:0:1}
+			if [ "${firstcharmanually_entered_beef_path}" != "/" ]; then
+				language_strings "${language}" 404 "red"
+			else
+				if [ -d "${manually_entered_beef_path}" ]; then
+					if [ -f "${manually_entered_beef_path}beef" ]; then
+						head "${manually_entered_beef_path}beef" -n 1 2> /dev/null| grep ruby > /dev/null
+						if [ "$?" = "0" ]; then
+							possible_beef_known_locations+=(${manually_entered_beef_path})
+							valid_possible_beef_path=1
+						else
+							language_strings "${language}" 406 "red"
+						fi
+					else
+						language_strings "${language}" 406 "red"
+					fi
+				else
+					language_strings "${language}" 403 "red"
+				fi
+			fi
+		fi
+	done
 }
 
 #Fix for not found beef executable
@@ -8367,6 +8385,28 @@ function fix_beef_executable() {
 	} >> "/usr/bin/beef"
 	chmod +x "/usr/bin/beef" > /dev/null 2>&1
 	optional_tools[${optional_tools_names[19]}]=1
+
+	rewrite_script_with_custom_beef "set" "${1}"
+}
+
+#Rewrite airgeddon script in a polymorphic way adding custom beef location to array to get persistence
+function rewrite_script_with_custom_beef() {
+
+	set_script_folder_and_name
+
+	case ${1} in
+		"set")
+			local sed_path=${2//\//\\/}
+			sed -i "s/#[C]ustom BeEF location (set=0)/\"${sed_path}\" #Custom BeEF location (set=1)/" "${scriptfolder}${scriptname}" 2> /dev/null
+			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
+		;;
+		"search")
+			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#Custom BeEF location (set=1)" | grep -v "/dev/null" 2> /dev/null)
+			if [ -n "${beef_custom_path_line}" ]; then
+				[[ ${beef_custom_path_line} =~ \"(.*)\" ]] && beef_custom_path="${BASH_REMATCH[1]}"
+			fi
+		;;
+	esac
 }
 
 #Start beef process as a service
@@ -10174,18 +10214,20 @@ function validate_reaver_pixiewps_version() {
 	return 1
 }
 
-#Set the script folder var
+#Set the script folder var if necessary
 function set_script_folder_and_name() {
 
-	scriptfolder=${0}
+	if [ -z "${scriptfolder}" ]; then
+		scriptfolder=${0}
 
-	if ! [[ ${0} =~ ^/.*$ ]]; then
-		if ! [[ ${0} =~ ^.*/.*$ ]]; then
-			scriptfolder="./"
+		if ! [[ ${0} =~ ^/.*$ ]]; then
+			if ! [[ ${0} =~ ^.*/.*$ ]]; then
+				scriptfolder="./"
+			fi
 		fi
+		scriptfolder="${scriptfolder%/*}/"
+		scriptname="${0##*/}"
 	fi
-	scriptfolder="${scriptfolder%/*}/"
-	scriptname="${0##*/}"
 }
 
 #Check if pins database file exist and try to download the new one if proceed
@@ -11036,14 +11078,16 @@ function compare_floats_greater_or_equal() {
 #Update and relaunch the script
 function download_last_version() {
 
+	rewrite_script_with_custom_beef "search"
 	timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
 		echo
 		language_strings "${language}" 214 "yellow"
 
-		set_script_folder_and_name
-		chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
+		if [ -n "${beef_custom_path}" ]; then
+			rewrite_script_with_custom_beef "set" "${beef_custom_path}"
+		fi
 		language_strings "${language}" 115 "read"
 		exec "${scriptfolder}${scriptname}"
 	else

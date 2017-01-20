@@ -1,6 +1,7 @@
 ###6.0
  - New system for possible tool aliases checking the requirements
  - Evil Twin attack added: Bettercap-Sslstrip2 and BeEF browser exploitation framework
+ - Option to manage custom BeEF location if manually installed and not found. Script polymorphism rewriting itself to make it persistent even after updates
  - README.md beautified
  - Colors changed. Now blocking errors in red
  - License and changelog files updated to markdown format
