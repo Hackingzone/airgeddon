@@ -126,7 +126,7 @@ timeout_secs_per_pixiedust="30"
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
-#TODO change the branch before pull request. This is to test polymorphism
+#TODO change the branch before pull request. This is to test polymorphism updating against v6 branch
 branch="v6"
 #branch="master"
 script_filename="airgeddon.sh"
@@ -3856,6 +3856,14 @@ function language_strings() {
 	arr["RUSSIAN",415]="${pending_of_translation} ${blue_color}airgeddon знает вас установлен BeEF и вы проходите проверку, но это было не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Для того, чтобы знать, что имеет некоторые преимущества для выполнения, так как его конфигурационный файл может быть изменен, а не общий характер. ${green_color}Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
 	arr["GREEK",415]="${pending_of_translation} ${blue_color}airgeddon ξέρει έχετε εγκατεστημένο το BeEF και να περάσει την επικύρωση, αλλά δεν ήταν σε θέση να εντοπίσει το σωστό δρόμο κατάλογο όπου έχετε εγκαταστήσει το BeEF σας. Να ξέρετε ότι έχει κάποια πλεονεκτήματα για την εκτέλεση επειδή αρχείο ρυθμίσεων του μπορεί να προσαρμοστεί αντί των γενόσημων. ${green_color}Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
 
+	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
+	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
+	arr["FRENCH",416]="${pending_of_translation}     Vous pouvez exécuter BeEF, mais il est recommandé d'exécuter la deuxième option de menu avant"
+	arr["CATALAN",416]="${pending_of_translation}     Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
+	arr["PORTUGUESE",416]="${pending_of_translation}     Você pode executar BeEF, mas é recomendado para executar a segunda opção de menu antes"
+	arr["RUSSIAN",416]="${pending_of_translation}     Вы можете запустить BeEF, но это лучше, если вы запустите второй вариант перед"
+	arr["GREEK",416]="${pending_of_translation}     Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα αν εκτελέσετε τη δεύτερη επιλογή πριν"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -3894,6 +3902,9 @@ function language_strings() {
 		;;
 		"separator")
 			generate_dynamic_line "${arr[${1},${2}]}" "separator"
+		;;
+		"warning")
+			echo_yellow "${arr[${1},${2}]}"
 		;;
 		"under_construction")
 			echo_red_slim "${arr[${1},${2}]} (${under_constructionvar})"
@@ -5899,7 +5910,19 @@ function beef_pre_menu() {
 	echo
 	language_strings "${language}" 47 "green"
 	print_simple_separator
-	language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+
+	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+			language_strings "${language}" 409 "warning"
+			language_strings "${language}" 416 "pink"
+		else
+			language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+		fi
+	else
+		language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+	fi
+
+	print_simple_separator
 	language_strings "${language}" 410
 	print_simple_separator
 	language_strings "${language}" 411
