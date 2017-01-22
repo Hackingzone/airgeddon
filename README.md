@@ -86,7 +86,7 @@ We will enumerate the categories and tools. The command can be included in diffe
 | beef |  beef / beef-xss | // | unbuffer |  expect / expect-dev |
 
 **Important tips about BeEF**
- - The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, don't confuse with beef (Flexible Brainfuck interpreter). This package has the same name, same executable file name and can lead to confusion. Anyway, airgeddon is able to detect this and show you a warning if needed. Here is a link to the right BeEF installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
+ - The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, don't confuse with beef (Flexible Brainfuck interpreter). This package has on some distros the same name, same executable file name and can lead into confusion. Anyway, airgeddon is able to detect this and show you a warning if needed. Here is a link to the right BeEF installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
  - If you use a distro which already comes with BeEF installed like Kali, BlackArch or Wifislax, you will have no problems. If you install BeEF manually, airgeddon is able to manage the integration asking you for the path where it's installed, even changing its own code in order to make updates-proof persistent changes.
 
 **Update tools**: <- *not necessary to work, only used for auto-update*
