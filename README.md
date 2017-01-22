@@ -84,7 +84,10 @@ We will enumerate the categories and tools. The command can be included in diffe
 | iptables |  iptables | // | bully |  bully |
 | bettercap |  bettercap | // | pixiewps |  pixiewps |
 | beef |  beef / beef-xss | // | unbuffer |  expect / expect-dev |
-**Important tip about BeEF** -> The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, Don't confuse with beef (Flexible Brainfuck interpreter). This package has the same name, same executable file name and can lead to confusion. Here is a link to the "good" one installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
+
+**Important tips about BeEF**
+ - The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, don't confuse with beef (Flexible Brainfuck interpreter). This package has the same name, same executable file name and can lead to confusion. Anyway, airgeddon is able to detect this and show you a warning if needed. Here is a link to the right BeEF installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
+ - If you use a distro which already comes with BeEF installed like Kali, BlackArch or Wifislax, you will have no problems. If you install BeEF manually, airgeddon is able to manage the integration asking you for the path where it's installed, even changing its own code in order to make updates-proof persistent changes.
 
 **Update tools**: <- *not necessary to work, only used for auto-update*
 
@@ -102,7 +105,7 @@ We will enumerate the categories and tools. The command can be included in diffe
 | rfkill | rfkill |
 Is highly recommended to have the internal tools installed. They improve functionality and performance. For example, xdpyinfo allow the script to detect the desktop resolution in order to print windows in a better way (size and position).
 
-Of course, the script also uses many standard basic commands that are understood to come with any Linux distro, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sleep, etc...).  
+Of course, the script also uses many standard basic commands that are understood to come with any Linux distro, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
 
 #Known incompatibilities
 Impossible compatibility for Mac OSX at the moment. Some reasons:<br/>
@@ -155,7 +158,7 @@ airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/ko
 You can download the master version or the beta testing version from the development branch called `dev`. Sometimes there are other temporary branches for specific features that can be tested too. 
 
 *For WPS PIN database collaborators:*<br/>
-The pins must be strictly ordered by key in the array. Keys are the first 6 bssid digits. After updating the "known_pins.db" file, you must update too "pindb_checksum.txt" with the calculated checksum of the database file. This checksum is done using md5sum tool.
+The pins must be strictly ordered by key in the array. Keys are the first 6 bssid digits. After updating the "known_pins.db" file, you must update too "pindb_checksum.txt" with the calculated checksum of the database file. This checksum is calculated using md5sum tool.
 
 #Changelog
 See [Changelog](CHANGELOG.md) file to review changes.
