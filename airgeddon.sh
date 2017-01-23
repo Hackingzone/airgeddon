@@ -365,7 +365,7 @@ function language_strings() {
 	et_misc_texts["CATALAN",7]="Encara no hi han clients connectats"
 	et_misc_texts["PORTUGUESE",7]="Ainda não há clientes conectados"
 	et_misc_texts["RUSSIAN",7]="Клиенты ещё не подключены"
-	et_misc_texts["GREEK",7]="Ακόμα, κανένας συνδεδεμένος χρήστης"
+	et_misc_texts["GREEK",7]="Ακόμα κανένας συνδεδεμένος χρήστης"
 
 	et_misc_texts["ENGLISH",8]="airgeddon. Evil Twin attack captured passwords"
 	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
@@ -1118,7 +1118,7 @@ function language_strings() {
 	arr["CATALAN",73]="airgeddon script v${airgeddon_version} desenvolupat per :"
 	arr["PORTUGUESE",73]="Script airgeddon v${airgeddon_version} desenvolvido por :"
 	arr["RUSSIAN",73]="скрипт airgeddon v${airgeddon_version} создал :"
-	arr["GREEK",73]="airgeddon script v${airgeddon_version} προγραμματίστηκε από :"
+	arr["GREEK",73]="Το airgeddon script v${airgeddon_version} προγραμματίστηκε από :"
 
 	arr["ENGLISH",74]="This script is under GPLv3 (or later) License"
 	arr["SPANISH",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -3798,7 +3798,7 @@ function language_strings() {
 	arr["CATALAN",408]="${pending_of_translation} Si vas instal·lar BeEF manualment, pot ser que airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar-usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
 	arr["PORTUGUESE",408]="${pending_of_translation} Se BeEF instalado manualmente, você pode não airgeddon ser capaz de encontrar e opção de ataque aparecerá restrito. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não detecta"
 	arr["RUSSIAN",408]="${pending_of_translation} Если вы установили вручную BeEF, airgeddon может быть не в состоянии найти это и вариант атаки может появиться как ограничено. Вы можете попытаться решить эту проблему с помощью специального пункта меню, чтобы исправить это. Она будет работать только если BeEF уже установлен правильно, и ваша единственная проблема, это скрипт не обнаруживает его"
-	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φαίνεται περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημά είναι ότι το script δεν το εντοπίζει"
+	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φανεί σαν περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημα είναι ότι το script δεν το εντοπίζει"
 
 	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
 	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
@@ -3848,13 +3848,13 @@ function language_strings() {
 	arr["RUSSIAN",414]="${pending_of_translation} У вас не установлен curl. Не возможно загрузить файл базы данных PINs"
 	arr["GREEK",414]="Το curl δεν είναι εγκατεστημένο. Είναι αδύνατον να κατέβει το αρχείο με την βάση δεδομένων PIN"
 
-	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it wasn't unable to locate the right directory path where you have BeEF installed. To know it has some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it was unable to locate the right directory path where you have BeEF installed. To know it has some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
 	arr["SPANISH",415]="${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
 	arr["FRENCH",415]="${pending_of_translation} ${blue_color}airgeddon sait que vous avez installé BeEF et les raisins secs validation, mais n'a pas pu indiquer le chemin exact du répertoire où vous avez installé BeEF. Connaître l'emplacement exact a certains avantages lors de l'exécution depuis la configuration sera personnalisée plutôt qu'une configuration générique. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
 	arr["CATALAN",415]="${pending_of_translation} ${blue_color}airgeddon sap que tens BeEF instal·lat i passes la validació, però no ha pogut concretar la ruta del directori exacte on has instal·lat BeEF. Conèixer la localització exacta té alguns avantatges a l'hora d'executar ja que la configuració serà personalitzada en lloc de ser una configuració genèrica. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",415]="${pending_of_translation} ${blue_color}airgeddon sabe que você instalou validação BeEF, mas não pôde especificar o caminho exato para o diretório onde você instalou BeEF. Sabendo a localização exacta tem algumas vantagens quando executá-lo desde a configuração será personalizada em vez de uma configuração genérica. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",415]="${pending_of_translation} ${blue_color}airgeddon знает вас установлен BeEF и вы проходите проверку, но это было не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Для того, чтобы знать, что имеет некоторые преимущества для выполнения, так как его конфигурационный файл может быть изменен, а не общий характер. ${green_color}Вы хотите, чтобы ввести его вручную? ${normal_color}[y/n]"
-	arr["GREEK",415]="${pending_of_translation} ${blue_color}airgeddon ξέρει έχετε εγκατεστημένο το BeEF και να περάσει την επικύρωση, αλλά δεν ήταν σε θέση να εντοπίσει το σωστό δρόμο κατάλογο όπου έχετε εγκαταστήσει το BeEF σας. Να ξέρετε ότι έχει κάποια πλεονεκτήματα για την εκτέλεση επειδή αρχείο ρυθμίσεων του μπορεί να προσαρμοστεί αντί των γενόσημων. ${green_color}Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
+	arr["GREEK",415]="${blue_color}Το airgeddon ξέρει ότι έχετε εγκατεστημένο το BeEF και έχετε περάσει τους απαραίτητους ελέγχους, αλλά δεν μπόρεσε να εντοπίσει το σωστό μονοπάτι για τον κατάλογο όπου έχετε εγκαταστήσει το BeEF σας.${pending_of_translation} Να ξέρετε ότι έχει κάποια πλεονεκτήματα για την εκτέλεση επειδή αρχείο ρυθμίσεων του μπορεί να προσαρμοστεί αντί των γενόσημων. ${green_color}Θέλετε να το εισάγετε με το χέρι; ${normal_color}[y/n]"
 
 	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
 	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
@@ -3862,7 +3862,7 @@ function language_strings() {
 	arr["CATALAN",416]="${pending_of_translation}     Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
 	arr["PORTUGUESE",416]="${pending_of_translation}     Você pode executar BeEF, mas é recomendado para executar a segunda opção de menu antes"
 	arr["RUSSIAN",416]="${pending_of_translation}     Вы можете запустить BeEF, но это лучше, если вы запустите второй вариант перед"
-	arr["GREEK",416]="${pending_of_translation}     Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα αν εκτελέσετε τη δεύτερη επιλογή πριν"
+	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πριν"
 
 	case "${3}" in
 		"yellow")
