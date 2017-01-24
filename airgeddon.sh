@@ -3860,8 +3860,8 @@ function language_strings() {
 	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
 	arr["FRENCH",416]="${pending_of_translation}     Vous pouvez exécuter BeEF, mais il est recommandé d'exécuter la deuxième option de menu avant"
 	arr["CATALAN",416]="    Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
-	arr["PORTUGUESE",416]="     Você pode executar BeEF, mas é recomendado executar a segunda opção de menu antes"
-	arr["RUSSIAN",416]="     Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
+	arr["PORTUGUESE",416]="    Você pode executar BeEF, mas é recomendado executar a segunda opção de menu antes"
+	arr["RUSSIAN",416]="    Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
 	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πριν"
 
 	case "${3}" in
