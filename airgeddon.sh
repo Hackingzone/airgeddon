@@ -8422,12 +8422,11 @@ function rewrite_script_with_custom_beef() {
 
 	case ${1} in
 		"set")
-			local sed_path=${2//\//\\/}
-			sed -i "s/#[C]ustom BeEF location (set=0)/\"${sed_path}\" #Custom BeEF location (set=1)/" "${scriptfolder}${scriptname}" 2> /dev/null
+			sed -ri "s:(\s+|\t+)([\"0-9a-zA-Z/\-_ ]+)?\s?(#Custom BeEF location \(set=)([01])(\)):\1\"${2}\" \31\5:" "${scriptfolder}${scriptname}" 2> /dev/null
 			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		;;
 		"search")
-			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#Custom BeEF location (set=1)" | grep -v "/dev/null" 2> /dev/null)
+			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#[C]ustom BeEF location (set=1)" 2> /dev/null)
 			if [ -n "${beef_custom_path_line}" ]; then
 				[[ ${beef_custom_path_line} =~ \"(.*)\" ]] && beef_custom_path="${BASH_REMATCH[1]}"
 			fi
