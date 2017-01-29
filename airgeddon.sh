@@ -89,13 +89,13 @@ declare -A possible_package_names=(
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
 									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
 									[${optional_tools_names[18]}]="bettercap" #bettercap
-									[${optional_tools_names[19]}]="beef / beef-xss" #beef
+									[${optional_tools_names[19]}]="beef-xss / beef-project" #beef
 									[${update_tools[0]}]="curl" #curl
 								)
 
 #More than one alias can be defined separated by spaces at value
 declare -A possible_alias_names=(
-									["beef"]="beef-xss"
+									["beef"]="beef-xss beef-server"
 								)
 
 #General vars
@@ -189,6 +189,7 @@ possible_beef_known_locations=(
 								"/usr/share/beef/"
 								"/usr/share/beef-xss/"
 								"/opt/beef/"
+								"/opt/beef-project/"
 								#Custom BeEF location (set=0)
 							)
 
