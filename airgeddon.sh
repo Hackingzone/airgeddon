@@ -126,9 +126,7 @@ timeout_secs_per_pixiedust="30"
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
-#TODO change the branch before pull request. This is to test polymorphism updating against v6 branch
-branch="v6"
-#branch="master"
+branch="master"
 script_filename="airgeddon.sh"
 urlgithub="https://github.com/${github_user}/${github_repository}"
 urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
