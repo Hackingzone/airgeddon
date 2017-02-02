@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+#Title........: airgeddon.sh
+#Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
+#Author.......: v1s1t0r
+#Date.........: 20160203
+#Version......: 6.0
+#Usage........: bash airgeddon.sh
+#Bash Version.: 4.2 or later
 
 #Enabled with extra-verbose mode 2 / Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
