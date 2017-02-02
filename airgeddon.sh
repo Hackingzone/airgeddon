@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
 
-#Uncomment the command below to print traces of each command plus its arguments
-#set -o xtrace
-
-airgeddon_version="6.0"
-
-#Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
+#Enabled with extra-verbose mode 2 / Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
+if [ ${debug_mode} -eq 2 ]; then set -o xtrace; fi
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -102,6 +98,7 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
+airgeddon_version="6.0"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
