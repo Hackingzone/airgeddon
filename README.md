@@ -41,7 +41,7 @@ Tested on these compatible Linux distros:<br/>
 *-Wifislax 4.11.1, 4.12 and 64-1.0*<br/>
 *-Backbox 4.5.1 and 4.6*<br/>
 *-Parrot 2.2.1 to 3.4.1 and arm versions (Raspberry Pi)*<br/>
-*-BlackArch 2016.01.10 to 2016.12.29*<br/>
+*-BlackArch 2016.01.10 to 2017.01.28*<br/>
 *-Cyborg Hawk 1.1*<br/>
 *-Debian 7 (Wheezy) and 8 (Jessie)*<br/>
 *-Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*<br/>
@@ -56,7 +56,7 @@ Tested on these compatible Linux distros:<br/>
 
 airgeddon is already included in some Linux distros and repositories:
  - <a href="http://www.wifislax.com">Wifislax</a> 4.12, 64-1.0 or higher.
- - <a href="https://blackarch.org">BlackArch</a> first 2017 release or later.
+ - <a href="https://blackarch.org">BlackArch</a> 2017.01.28 or later.
  - <a href="https://archstrike.org/wiki">ArchStrike</a> repository.
 
 We will enumerate the categories and tools. The command can be included in different packages depending of the distro.
@@ -83,7 +83,7 @@ We will enumerate the categories and tools. The command can be included in diffe
 | lighttpd | lighttpd | // | reaver |  reaver |
 | iptables |  iptables | // | bully |  bully |
 | bettercap |  bettercap | // | pixiewps |  pixiewps |
-| beef |  beef / beef-xss | // | unbuffer |  expect / expect-dev |
+| beef | beef-xss / beef-project | // | unbuffer | expect / expect-dev |
 
 **Important tips about BeEF**
  - The beef software you must install is BeEF (Browser Exploitation Framework). Be careful, don't confuse with beef (Flexible Brainfuck interpreter). This package has on some distros the same name, same executable file name and can lead into confusion. Anyway, airgeddon is able to detect this and show you a warning if needed. Here is a link to the right BeEF installation's page: [BeEF Installation](https://github.com/beefproject/beef/wiki/Installation).
@@ -149,7 +149,7 @@ You can join the project:
 You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.
 
 *For collaborating developers:*<br/>
-Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1<br/>
+Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1 or to 2 for extra-verbosity<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 Direct push on master is not allowed, and pull requests require revision and approvement.<br/>
 airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:

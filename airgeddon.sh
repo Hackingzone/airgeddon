@@ -3,13 +3,15 @@
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
 #Date.........: 20160203
-#Version......: 6.0
+#Version......: 6.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
 #Enabled with extra-verbose mode 2 / Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
-if [ ${debug_mode} -eq 2 ]; then set -o xtrace; fi
+if [ ${debug_mode} -eq 2 ]; then
+	set -o xtrace
+fi
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
 auto_update=1
@@ -105,7 +107,7 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.0"
+airgeddon_version="6.01"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"

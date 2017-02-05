@@ -1,3 +1,8 @@
+###6.01
+ - Shebang changed to more portable #!/usr/bin/env bash
+ - New extra-verbose debug mode added
+ - README.md small modifications
+
 ###6.0
  - New system for possible tool aliases checking the requirements
  - Evil Twin attack added: Bettercap-Sslstrip2 and BeEF browser exploitation framework
