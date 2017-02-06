@@ -2066,7 +2066,7 @@ function language_strings() {
 
 	arr["ENGLISH",191]="${blue_color}airgeddon can't find the directory path where you have BeEF installed. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
 	arr["SPANISH",191]="${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",191]="${pending_of_translation} ${blue_color}airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${blue_color}airgeddon n'a pas trouvé le dossier qui contient BeEF. ${green_color}Voulez-vous l'indiquer manuellement? ${normal_color}[y/n]"
 	arr["CATALAN",191]="${blue_color}airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",191]="${blue_color}O airgeddon não conseguiu encontrar o diretório onde você instalou o BeEF. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",191]="${blue_color}airgeddon не может найти путь к каталогу, где вы установили BeEF. ${green_color}Вы хотите ввести его вручную? ${normal_color}[y/n]"
@@ -2538,7 +2538,7 @@ function language_strings() {
 
 	arr["ENGLISH",250]="If you see any bad translation or just want ${cyan_color}${pending_of_translation}${pink_color} marks to dissapear, write me to ${mail} to collaborate with translations"
 	arr["SPANISH",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas ${cyan_color}${pending_of_translation}${pink_color}, escríbeme a ${mail} para colaborar con las traducciones"
-	arr["FRENCH",250]="Si vous voyez des erreurs contresens ou voulez voir les marques ${cyan_color}${pending_of_translation}${pink_color} disparaitre, écrivez à ${mail} pour collaborer avec les traductions"
+	arr["FRENCH",250]="Si vous voyez des erreurs et contresens ou si vous voulez voir les marques ${cyan_color}${pending_of_translation}${pink_color} disparaitre, écrivez à ${mail} pour collaborer avec les traductions"
 	arr["CATALAN",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques ${cyan_color}${pending_of_translation}${pink_color}, escriu-me a ${mail} per col·laborar amb les traduccions"
 	arr["PORTUGUESE",250]="Se você ver qualquer erro de tradução ou quer que as marcas ${cyan_color}${pending_of_translation}${pink_color} sejam retiradas, escreva para ${mail} para colaborar com as traduções"
 	arr["RUSSIAN",250]="Если вы видите плохой перевод или просто хотите снять пометку ${cyan_color}${pending_of_translation}${pink_color} напишите мне на ${mail} для сотрудничества с переводчиками"
@@ -3786,7 +3786,7 @@ function language_strings() {
 
 	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
 	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
-	arr["FRENCH",406]="BeEF n'est pas présent dans le dossierque vous avez indiqué"
+	arr["FRENCH",406]="BeEF n'est pas présent dans le dossier que vous avez indiqué"
 	arr["CATALAN",406]="No s'ha detectat un executable de BeEF al directori indicat"
 	arr["PORTUGUESE",406]="O executável do BeEF não foi detectado no diretório especificado"
 	arr["RUSSIAN",406]="Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
@@ -3794,7 +3794,7 @@ function language_strings() {
 
 	arr["ENGLISH",407]="BeEF preparation"
 	arr["SPANISH",407]="Preparación BeEF"
-	arr["FRENCH",407]="${pending_of_translation} Préparation BeEF"
+	arr["FRENCH",407]="Mise en place de BeEF"
 	arr["CATALAN",407]="Preparació BeEF"
 	arr["PORTUGUESE",407]="Preparando BeEF"
 	arr["RUSSIAN",407]="Подготовка BeEF"
@@ -3818,7 +3818,7 @@ function language_strings() {
 
 	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
 	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
-	arr["FRENCH",410]="2.  Essayez de résoudre le problème BeEF installé manuellement"
+	arr["FRENCH",410]="2.  Essayer de résoudre les problèmes de dépendances avec BeEF installé manuellement"
 	arr["CATALAN",410]="2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
 	arr["PORTUGUESE",410]="2.  Tente resolver o problema de dependência do BeEF instalado manualmente"
 	arr["RUSSIAN",410]="2.  Попробуйте устранить проблему вручную установив зависимости BeEF"
@@ -3858,7 +3858,7 @@ function language_strings() {
 
 	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it was unable to locate the right directory path where you have BeEF installed. Knowing the location gives some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
 	arr["SPANISH",415]="${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",415]="${pending_of_translation} ${blue_color}airgeddon sait que vous avez installé BeEF et les raisins secs validation, mais n'a pas pu indiquer le chemin exact du répertoire où vous avez installé BeEF. Connaître l'emplacement exact a certains avantages lors de l'exécution depuis la configuration sera personnalisée plutôt qu'une configuration générique. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["FRENCH",415]="${blue_color}Airgeddon a bien détecté que Beff est installé mais il n'est malheuruesement pas possible de trouver le dossier le contenant. En l'état actuel des choses il ne sera pas possible de personaliser les parmétres d'éxécution de BeEF. ${green_color}Voulez-vous saisir l'emplacement du dossier? ${normal_color}[y/n]"
 	arr["CATALAN",415]="${blue_color}airgeddon sap que tens BeEF instal·lat i passes la validació, però no ha pogut concretar la ruta del directori exacte on has instal·lat BeEF. Conèixer la localització exacta té alguns avantatges a l'hora d'executar ja que la configuració serà personalitzada en lloc de ser una configuració genèrica. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",415]="${blue_color}O airgeddon sabe que você instalou o BeEF e validou a instalacão, mas não pôde encontrar o caminho exato do diretório onde você instalou BeEF. Sabendo a localização exata tem algumas vantagens quando executá-lo a configuração será personalizada em vez de uma configuração genérica. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",415]="${blue_color}airgeddon знает, что у вас установлен BeEF и вы успешно прошли проверку, но скрипт оказался не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Знание расположения даёт некоторые преимущества при выполнении, поскольку появляется возможность настроить его конфигурационный файл, а не использовать настройки по умолчанию. ${green_color}Вы хотите ввести расположение вручную? ${normal_color}[y/n]"
@@ -3866,7 +3866,7 @@ function language_strings() {
 
 	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
 	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
-	arr["FRENCH",416]="${pending_of_translation}     Vous pouvez exécuter BeEF, mais il est recommandé d'exécuter la deuxième option de menu avant"
+	arr["FRENCH",416]="     Vous pouvez exécuter BeEF mais il est recommandé d'exécuter préalablement la deuxième option"
 	arr["CATALAN",416]="    Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
 	arr["PORTUGUESE",416]="    Você pode executar BeEF, mas é recomendado executar a segunda opção de menu antes"
 	arr["RUSSIAN",416]="    Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
