@@ -262,7 +262,7 @@
 
 ###2.21
  - Wifislax 64bits compatibility bug fixed
- - Removed version from Readme file
+ - Removed version from README.md file
 
 ###2.2
  - Changes to manage Wifislax airmon command in a better way

@@ -10,7 +10,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.<br
 - Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based).
 - Evil Twin attacks (Rogue AP):
   - Only Rogue/Fake AP version to sniff using external sniffer (Hostapd + DHCP + DoS).
-  - Simple integrated sniffing (Hostapd + DHCP + DoS + ettercap).
+  - Simple integrated sniffing (Hostapd + DHCP + DoS + Ettercap).
   - Integrated sniffing, sslstrip (Hostapd + DHCP + DoS + Ettercap + Sslstrip).
   - Integrated sniffing, sslstrip2 and BeEF browser exploitation framework (Hostapd + DHCP + DoS + Bettercap + BeEF).
   - Captive portal with "DNS blackhole" to capture wifi passwords (Hostapd + DHCP + DoS + Dnsspoff + Lighttpd).
@@ -149,7 +149,7 @@ You can join the project:
 You can take the strings to translate from the code. All the stuff to translate is in "language_strings" function. Ask by mail if you have any doubt. You'll be informed about you how to proceed, you can be added as a collaborator on the project.
 
 *For collaborating developers:*<br/>
-Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1 or to 2 for extra-verbosity<br/>
+Debug mode was implemented for faster development skipping intro and initial checks. Use it setting var *"debug_mode"* to 1 or to 2 for extra-verbosity.<br/>
 Please, respect the tab indentation, code style and the UTF-8 files format only using at the end of the lines LF (not CRLF).<br/>
 Direct push on master is not allowed, and pull requests require revision and approvement.<br/>
 airgeddon code is 100% clean of warnings. Use [Shellcheck](https://github.com/koalaman/shellcheck) to search for errors and warnings on code. <- Thanks xtonousou for the tip :wink:
