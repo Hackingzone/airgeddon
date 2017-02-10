@@ -228,10 +228,6 @@ Use it only on your own networks or with the network's owner permission.  <br/>
 [portuguese]: /imgs/pt.png "Portuguese"
 [russian]: /imgs/ru.png "Russian"
 [greek]: /imgs/gr.png "Greek"
-<!-- Shields -->
-[version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square
-[license-shield]: https://img.shields.io/badge/License-GPLv3%2B-blue.svg?style=flat-square
-[bash-shield]: https://img.shields.io/badge/bash-4.2%20or%20later-blue.svg?style=flat-square
 <!--- Links -->
 [requirements]: #requirements-
 [languages]: #supported-languages
