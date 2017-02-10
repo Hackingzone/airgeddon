@@ -64,7 +64,7 @@ Tested on these compatible Linux distributions:
 - *Gentoo 20160514 and 20160704*
 - *Fedora 24*
 - *Red Hat 7 (Maipo)*
-- *Arch 4.6.2-1 to 4.9.6-1*
+- *Arch 4.6.2-1 to 4.9.8-1*
 - *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
 - *OpenMandriva LX3*
 
