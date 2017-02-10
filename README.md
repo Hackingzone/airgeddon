@@ -229,7 +229,7 @@ Use it only on your own networks or with the network's owner permission.  <br/>
 [russian]: /imgs/ru.png "Russian"
 [greek]: /imgs/gr.png "Greek"
 <!--- Links -->
-[requirements]: #requirements-
+[requirements]: #requirements
 [languages]: #supported-languages
 [License]: LICENSE.md
 [Contributing]: CONTRIBUTING.md
