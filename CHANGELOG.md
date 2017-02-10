@@ -1,3 +1,8 @@
+###6.01
+ - Shebang changed to more portable #!/usr/bin/env bash
+ - New extra-verbose debug mode added
+ - README.md small modifications
+
 ###6.0
  - New system for possible tool aliases checking the requirements
  - Evil Twin attack added: Bettercap-Sslstrip2 and BeEF browser exploitation framework
@@ -257,7 +262,7 @@
 
 ###2.21
  - Wifislax 64bits compatibility bug fixed
- - Removed version from Readme file
+ - Removed version from README.md file
 
 ###2.2
  - Changes to manage Wifislax airmon command in a better way
