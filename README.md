@@ -31,12 +31,12 @@ This is a multi-use bash script for Linux systems to audit wireless networks.
  - Parameterizable timeouts
  - Known WPS PINs attack (bully and reaver), based on online PIN database with auto-update
  - Integration of the most common PIN generation algorithms
-- Compatibility with many Linux distributions (see [requirements] section)
+- Compatibility with many Linux distributions (see [Requirements] section)
 - Easy targeting and selection in every section
 - Drag and drop files on console window for entering file paths
 - Dynamic screen resolution detection and windows auto-sizing for optimal viewing
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired
-- Multilanguage support and autodetect OS language feature (see supported [languages] section)
+- Multilanguage support and autodetect OS language feature (see supported [Languages] section)
 - Help hints in every zone/menu for easy use
 - Auto-update. Script checks for newer version if possible
 
@@ -77,47 +77,47 @@ Tested on these compatible Linux distributions:
 
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
 
- Command     | Possible package name | &#149;  | Command    | Possible package name 
-:------------|:----------------------|:-------:|:-----------|:----------------------
- ifconfig    | net-tools             | &#9474; | iwconfig   | wireless-tools        
- iw          | iw                    | &#9474; | awk        | awk \| gawk            
- airmon-ng   | aircrack-ng           | &#9474; | airodump-ng| aircrack-ng           
- aircrack-ng | aircrack-ng           | &#9474; | xterm      | xterm                 
+ Command     | Possible package name | &#149;  | Command     | Possible package name 
+:------------|:----------------------|:-------:|:------------|:----------------------
+ ifconfig    | net-tools             | &#9474; | iwconfig    | wireless-tools        
+ iw          | iw                    | &#9474; | awk         | awk \| gawk           
+ airmon-ng   | aircrack-ng           | &#9474; | airodump-ng | aircrack-ng           
+ aircrack-ng | aircrack-ng           | &#9474; | xterm       | xterm                 
 
 #### Optional tools &#8592; Not necessary to work, only needed for some features
 
- Command     | Possible package name    | &#149;  | Command  | Possible package name                              
+ Command     | Possible package name    | &#149;  | Command  | Possible package name                                
 :------------|:-------------------------|:-------:|:---------|:-----------------------------------------------------
  wpaclean    | aircrack-ng              | &#9474; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical 
  crunch      | crunch                   | &#9474; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical 
- aireplay-ng | aircrack-ng              | &#9474; | sslstrip | sslstrip                                           
+ aireplay-ng | aircrack-ng              | &#9474; | sslstrip | sslstrip                                             
  mdk3        | mdk3                     | &#9474; | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
- hashcat     | hashcat                  | &#9474; | dnsspoof | dsniff                                             
- hostapd     | hostapd                  | &#9474; | wash     | reaver                                             
- lighttpd    | lighttpd                 | &#9474; | reaver   | reaver                                             
- iptables    | iptables                 | &#9474; | bully    | bully                                              
- bettercap   | bettercap                | &#9474; | pixiewps | pixiewps                                           
- beef        | beef-xss \| beef-project | &#9474; | unbuffer | expect \| expect-dev                                
+ hashcat     | hashcat                  | &#9474; | dnsspoof | dsniff                                               
+ hostapd     | hostapd                  | &#9474; | wash     | reaver                                               
+ lighttpd    | lighttpd                 | &#9474; | reaver   | reaver                                               
+ iptables    | iptables                 | &#9474; | bully    | bully                                                
+ bettercap   | bettercap                | &#9474; | pixiewps | pixiewps                                             
+ beef        | beef-xss \| beef-project | &#9474; | unbuffer | expect \| expect-dev                                 
 
 ##### Important tips about BeEF
 
- - The right software you must install is BeEF (Browser Exploitation Framework). Be careful, do not mistake it with beef (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right BeEF installation's page: [BeEF Installation].
+ - The right software you must install is BeEF (Browser Exploitation Framework). Be careful, do not mistake it with beef (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
  - If you use a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
 
 #### Update tools &#8592; Not necessary to work, only used for auto-update
 
- Command | Possible package name
+ Command | Possible package name 
 :--------|:----------------------
- curl    | curl
+ curl    | curl                  
 
 #### Internal tools &#8592; These are internally checked. Not necessary to work, good to have
 
- Command  | Possible package name                    
+ Command  | Possible package name                  
 :---------|:---------------------------------------
  xdpyinfo | x11-utils \| xdpyinfo \| xorg-xdpyinfo 
- ethtool  | ethtool                                 
- lspci    | pciutils                                
- rfkill   | rfkill                                  
+ ethtool  | ethtool                                
+ lspci    | pciutils                               
+ rfkill   | rfkill                                 
 
 It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print  on windows in a better way (size and position).
 
@@ -129,7 +129,7 @@ A command could be included in different packages, depending on the distribution
 
 ### Usage
 
-`airgeddon`should be launched with bash `bash /path/to/airgeddon.sh`. <br/>
+`airgeddon` should be launched with bash `bash /path/to/airgeddon.sh`. <br/>
 If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash** instead of **sh**. <br/>
 Even with no initial error, it will maybe show itself later. Always use bash!
 
@@ -182,7 +182,7 @@ Read [Changelog] file to review changes.
 <a href="LICENSE.md"><img src="http://gplv3.fsf.org/gplv3-127x51.png" align="left" hspace="10" vspace="6"></a>
 
 This script must be used for educational purposes and penetration test only. <br/>
-Use it only on your own networks or with the network's owner permission.  <br/>
+Use it only on your own networks or with the network's owner permission.<br/>
 `airgeddon` staff is not responsible of its use in any case.
 
 ---
@@ -229,8 +229,8 @@ Use it only on your own networks or with the network's owner permission.  <br/>
 [russian]: /imgs/ru.png "Russian"
 [greek]: /imgs/gr.png "Greek"
 <!--- Links -->
-[requirements]: #requirements
-[languages]: #supported-languages
+[Requirements]: #requirements
+[Languages]: #supported-languages
 [License]: LICENSE.md
 [Contributing]: CONTRIBUTING.md
 [Changelog]: CHANGELOG.md
@@ -238,7 +238,7 @@ Use it only on your own networks or with the network's owner permission.  <br/>
 [Wifislax]: http://www.wifislax.com
 [BlackArch]: https://blackarch.org
 [ArchStrike]: https://archstrike.org/wiki
-[BeEF Installation]: https://github.com/beefproject/beef/wiki/Installation
+[BeEF installation's page]: https://github.com/beefproject/beef/wiki/Installation
 [Seguridadwireless.net]: http://foro.seguridadwireless.net
 [Wifi-libre.com]: https://www.wifi-libre.com
 [Lampiweb.com]: http://lampiweb.com/foro
