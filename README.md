@@ -220,7 +220,7 @@ Use it only on your own networks or with the network's owner permission.  <br/>
 - [Kcdtv] &#8594; WPSPin
 
 <!--- Images -->
-[banner]: /imgs/airgeddon_banner_animated_earth_ufos.gif "We will conquer the earth!!"
+[banner]: /imgs/airgeddon_banner.png "We will conquer the earth!!"
 [english]: /imgs/us.png "English"
 [spanish]: /imgs/es.png "Spanish"
 [french]: /imgs/fr.png "French"
