@@ -3872,6 +3872,14 @@ function language_strings() {
 	arr["RUSSIAN",416]="    Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
 	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πρίν"
 
+	arr["ENGLISH",417]="An unexpected error occurred, redirecting to the menu"
+	arr["SPANISH",417]="Ocurrió un error inesperado. Volviendo al menú"
+	arr["FRENCH",417]="${pending_of_translation} Une erreur inattendue s'est produite, retour au menu"
+	arr["CATALAN",417]="${pending_of_translation} Hi ha hagut un error inesperat, redirigint al menú"
+	arr["PORTUGUESE",417]="${pending_of_translation} Ocorreu um erro inesperado, redirecionando ao menu"
+	arr["RUSSIAN",417]="${pending_of_translation} Непредвиденная ошибка, перенаправляя в меню"
+	arr["GREEK",417]="${pending_of_translation} Παρουσιάστηκε μη αναμενόμενο σφάλμα, ανακατεύθυνση στο μενού"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
@@ -9308,15 +9316,24 @@ function explore_for_wps_targets_option() {
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
+	wash_header_found=0
 	wash_line_counter=1
 	for item in "${WASH_PREVIEW[@]}"; do
 		if [[ ${item} =~ -{20} ]]; then
 			wash_start_data_line="${wash_line_counter}"
+			wash_header_found=1
 			break
 		else
 			wash_line_counter=$((wash_line_counter+1))
 		fi
 	done
+
+	if [ "${wash_header_found}" -eq 0 ]; then
+		echo
+		language_strings "${language}" 417 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le ${wash_start_data_line} ]; then

@@ -3,6 +3,7 @@
  - New extra-verbose debug mode added
  - README.md major modifications
  - Added CONTRIBUTING.md
+ - Unexpected errors on wash scanning are controlled now
 
 ###6.0
  - New system for possible tool aliases checking the requirements
