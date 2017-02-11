@@ -2,7 +2,7 @@
 <!-- Visit https://shields.io/ for more info -->
 <!-- Shields' color scheme based on banner: colorA=273133 colorB=0093ee -->
 
-# <img src="/imgs/antenna.png" width="23"/> airgeddon <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/Version-%206.01%20%20-blue.svg?style=flat-square&colorA=273133&colorB=0093ee&maxAge=3600" width=10%/></a> <a href="http://tldp.org/LDP/abs/html/bashver4.html#AEN21220"><img src="https://img.shields.io/badge/Bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00&maxAge=3600" width=8%/></a> <a href="LICENSE.md"><img src="https://img.shields.io/badge/License-GPLv3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000&maxAge=3600" width=11%/></a> <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde&maxAge=3600" width=10%/></a> <a href="https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH"><img src="https://img.shields.io/badge/Donate-Bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a&maxAge=3600" width=10%/></a>
+# :satellite: airgeddon [![version-shield]](CHANGELOG.md) [![bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![license-shield]](LICENSE.md) [![paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
 This is a multi-use bash script for Linux systems to audit wireless networks.
 
@@ -219,7 +219,7 @@ Use it only on your own networks or with the network's owner permission.<br/>
 - Goyfilms &#8594; Goyscript
 - [Kcdtv] &#8594; WPSPin
 
-<!--- Images -->
+<!-- Images -->
 [banner]: /imgs/airgeddon_banner.png "We will conquer the earth!!"
 [english]: /imgs/us.png "English"
 [spanish]: /imgs/es.png "Spanish"
@@ -228,12 +228,18 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [portuguese]: /imgs/pt.png "Portuguese"
 [russian]: /imgs/ru.png "Russian"
 [greek]: /imgs/gr.png "Greek"
-<!--- Links -->
+<!-- Links -->
 [Requirements]: #requirements
 [Languages]: #supported-languages
 [License]: LICENSE.md
 [Contributing]: CONTRIBUTING.md
 [Changelog]: CHANGELOG.md
+<!-- Shields -->
+[version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
+[license-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
+[paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
+[bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
 <!-- URLs -->
 [Wifislax]: http://www.wifislax.com
 [BlackArch]: https://blackarch.org
