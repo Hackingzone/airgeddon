@@ -4,6 +4,7 @@
  - README.md major modifications
  - Added CONTRIBUTING.md
  - Unexpected errors on wash scanning are controlled now
+ - Improved distro detection for some arm Linux
 
 ###6.0
  - New system for possible tool aliases checking the requirements

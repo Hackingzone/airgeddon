@@ -10447,6 +10447,10 @@ function detect_distro_phase2() {
 			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
 			if [[ "${extra_os_info}" =~ BlackArch ]]; then
 				distro="BlackArch"
+			elif [[ "${extra_os_info}" =~ Kali ]]; then
+				#Kali is intentionally here too to avoid some Kali arm distro bad detection
+				distro="Kali"
+				is_arm=1
 			fi
 		fi
 	fi
@@ -10472,6 +10476,8 @@ function detect_arm_architecture() {
 			distro="${distro} arm"
 			is_arm=1
 		fi
+	elif [[ "${distro}" != "Unknown Linux" ]] && [[ "${is_arm}" -eq 1 ]]; then
+		distro="${distro} arm"
 	fi
 }
 
