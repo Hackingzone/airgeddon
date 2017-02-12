@@ -2,11 +2,11 @@
 <!-- Visit https://shields.io/ for more info -->
 <!-- Shields' color scheme based on banner: colorA=273133 colorB=0093ee -->
 
-# :satellite: airgeddon [![version-shield]](CHANGELOG.md) [![bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![license-shield]](LICENSE.md) [![paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
+# :satellite: airgeddon [![Version-shield]](CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](LICENSE.md) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
 This is a multi-use bash script for Linux systems to audit wireless networks.
 
-![banner]
+![Banner]
 
 ---
 
@@ -137,13 +137,13 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 
 ### Supported Languages
 
-![English][english] English <br/>
-![Spanish][spanish] Spanish <br/>
-![French][french] French <br/>
-![Catalan][catalan] Catalan <br/>
-![Portuguese][portuguese] Portuguese <br/>
-![Russian][russian] Russian <br/>
-![Greek][greek] Greek <br/>
+![English][English] English <br/>
+![Spanish][Spanish] Spanish <br/>
+![French][French] French <br/>
+![Catalan][Catalan] Catalan <br/>
+![Portuguese][Portuguese] Portuguese <br/>
+![Russian][Russian] Russian <br/>
+![Greek][Greek] Greek <br/>
 
 ---
 
@@ -220,14 +220,14 @@ Use it only on your own networks or with the network's owner permission.<br/>
 - [Kcdtv] &#8594; WPSPin
 
 <!-- Images -->
-[banner]: /imgs/airgeddon_banner.png "We will conquer the earth!!"
-[english]: /imgs/us.png "English"
-[spanish]: /imgs/es.png "Spanish"
-[french]: /imgs/fr.png "French"
-[catalan]: /imgs/cat.png "Catalan"
-[portuguese]: /imgs/pt.png "Portuguese"
-[russian]: /imgs/ru.png "Russian"
-[greek]: /imgs/gr.png "Greek"
+[Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
+[English]: /imgs/flags/us.png "English"
+[Spanish]: /imgs/flags/es.png "Spanish"
+[French]: /imgs/flags/fr.png "French"
+[Catalan]: /imgs/flags/cat.png "Catalan"
+[Portuguese]: /imgs/flags/pt.png "Portuguese"
+[Russian]: /imgs/flags/ru.png "Russian"
+[Greek]: /imgs/flags/gr.png "Greek"
 <!-- Links -->
 [Requirements]: #requirements
 [Languages]: #supported-languages
@@ -235,11 +235,11 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [Contributing]: CONTRIBUTING.md
 [Changelog]: CHANGELOG.md
 <!-- Shields -->
-[version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
-[bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
-[license-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
-[paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
-[bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
+[Version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
+[License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
+[Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
+[Bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
 <!-- URLs -->
 [Wifislax]: http://www.wifislax.com
 [BlackArch]: https://blackarch.org

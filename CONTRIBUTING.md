@@ -21,12 +21,12 @@ Please note we have a code of conduct, please follow it in all your interactions
 2. Respect the **tab indentation**, code style and the **UTF-8** format.
 3. Use **LF** (Unix) line break type (not CR or CRLF).
 4. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:)
-5. Increase the version numbers in `airgeddon.sh` and in [README] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
+5. Increase the version numbers in `airgeddon.sh` and in [Readme] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
   - *X* is a major release with a new menu (e.g. WPS menu)
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
   - *Z* is a minor release with new bug fixes, small modifications or code improvements
 6. Update the date on `airgeddon.sh` under shebang, if appropriate.
-7. Direct push to [master] is not allowed. Pull Requests require revision and approvement.
+7. Direct push to [Master] is not allowed. Pull Requests require revision and approvement.
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
 
@@ -40,8 +40,8 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Beta Testers
 
-1. Download the master version or the beta testing version from the development branch called [dev]. Temporary branches may be existing for specific features that can be tested too.
-2. Report any issues or bugs by mail [v1s1t0r.1s.h3r3@gmail.com] or submit issues requests [here].
+1. Download the master version or the beta testing version from the development branch called [Dev]. Temporary branches may be existing for specific features that can be tested too.
+2. Report any issues or bugs by mail [v1s1t0r.1s.h3r3@gmail.com] or submit issues requests [Here].
 
 ---
 
@@ -114,8 +114,8 @@ members of the project's leadership.
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage], version 1.4,
-available at [http://contributor-covenant.org/version/1/4][version]
+This Code of Conduct is adapted from the [Contributor Covenant][Homepage], version 1.4,
+available at [http://contributor-covenant.org/version/1/4][Version]
 
 ---
 
@@ -132,18 +132,18 @@ If you enjoyed the script, feel free to donate. Invite me to a coffee through Pa
   </tr>
 </table>
 
-[![paypal][paypal]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
+[![Paypal][Paypal]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG)
 &nbsp;
-[![bitcoin][bitcoin]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
+[![Bitcoin][Bitcoin]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
 <!-- URLs -->
-[homepage]: http://contributor-covenant.org
-[version]: http://contributor-covenant.org/version/1/4/
+[Homepage]: http://contributor-covenant.org
+[Version]: http://contributor-covenant.org/version/1/4/
 [Shellcheck]: https://github.com/koalaman/shellcheck "shellcheck.hs"
-[here]: https://github.com/v1s1t0r1sh3r3/airgeddon/issues/new
-[master]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/master
-[dev]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/dev
+[Here]: https://github.com/v1s1t0r1sh3r3/airgeddon/issues/new
+[Master]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/master
+[Dev]: https://github.com/v1s1t0r1sh3r3/airgeddon/tree/dev
 [xtonousou]: https://github.com/xtonousou "xT"
-[README]: README.md
-[paypal]: /imgs/paypal_donate.png "Show me the money!"
-[bitcoin]: /imgs/bitcoin_donate.png "Show me the money!"
+[Readme]: README.md
+[Paypal]: /imgs/banners/paypal_donate.png "Show me the money!"
+[Bitcoin]: /imgs/banners/bitcoin_donate.png "Show me the money!"
