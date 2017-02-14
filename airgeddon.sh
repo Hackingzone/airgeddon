@@ -347,7 +347,7 @@ function language_strings() {
 	et_misc_texts["SPANISH",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
 	et_misc_texts["FRENCH",4]="Avec cette attaque, vous devez utiliser un sniffeur pour tenter d'obtenir les mots de passe des clients connectés au réseau"
 	et_misc_texts["CATALAN",4]="Amb aquest atac has d'utilitzar un sniffer extern per intentar obtenir contrasenyes dels clients connectats a la xarxa"
-	et_misc_texts["PORTUGUESE",4]="Com este ataque você tem que usar um sniffer externa para tentar obter as senhas dos clientes conectados à rede"
+	et_misc_texts["PORTUGUESE",4]="Com este ataque você tem que usar um sniffer externo para tentar obter as senhas dos clientes conectados à rede"	et_misc_texts["RUSSIAN",4]="С этой атакой вам нужно использовать внешний сниффер для попытки получить пароли клиентов, подключённых к сети"
 	et_misc_texts["RUSSIAN",4]="С этой атакой вам нужно использовать внешний сниффер для попытки получить пароли клиентов, подключённых к сети"
 	et_misc_texts["GREEK",4]="Με αυτή την επίθεση θα πρέπει να χρησιμοποιήσετε έναν εξωτερικό sniffer για να μπορέσετε να υποκλέψετε κωδικούς πρόσβασης από τους χρήστες που είναι συνδεδεμένοι στο δίκτυο"
 
@@ -435,7 +435,7 @@ function language_strings() {
 	et_misc_texts["SPANISH",15]="Portal de Internet"
 	et_misc_texts["FRENCH",15]="Portail Internet"
 	et_misc_texts["CATALAN",15]="Portal d&#39;Internet"
-	et_misc_texts["PORTUGUESE",15]="Portal Internet"
+	et_misc_texts["PORTUGUESE",15]="Portal de Internet"
 	et_misc_texts["RUSSIAN",15]="Интернет-портал"
 	et_misc_texts["GREEK",15]="Internet Portal"
 
@@ -660,7 +660,7 @@ function language_strings() {
 	arr["SPANISH",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
 	arr["FRENCH",15]="Le nom de l'interface a changé lors du passage en mode managed. Elle a été sélectionnée automatiquement"
 	arr["CATALAN",15]="Aquesta interfície ha canviat de nom al posar-la en mode managed. S'ha triat automàticament"
-	arr["PORTUGUESE",15]="Esta interface mudou de nome, colocando em modo managed e selecionando automaticamente"
+	arr["PORTUGUESE",15]="Esta interface mudou de nome ao ser colocanda em modo managed. Ela foi selecionanda automaticamente"
 	arr["RUSSIAN",15]="Интерфейс изменил имя во время перевода в управляемый режим. Выбран автоматически"
 	arr["GREEK",15]="Η διεπάφη άλλαξε όνομα καθώς ήταν σε ετερόκλητη κατάσταση. Επιλέχθηκε αυτόματα"
 
@@ -708,7 +708,7 @@ function language_strings() {
 	arr["SPANISH",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
 	arr["FRENCH",21]="Le nom de l'interface à changé lors de l'activation du mode moniteur. Elle a été automatiquement sélectionnée"
 	arr["CATALAN",21]="Aquesta interfície ha canviat de nom al posar-la en mode monitor. S'ha seleccionat automàticament"
-	arr["PORTUGUESE",21]="Esta interface mudou de nome, colocando em modo monitor e selecionando automaticamente"
+	arr["PORTUGUESE",21]="Esta interface mudou de nome ao ser colocanda em modo monitor. Ela foi selecionanda automaticamente"
 	arr["RUSSIAN",21]="Этот интерфейс изменил своё имя во время перевода в режим монитора. Выбран автоматически"
 	arr["GREEK",21]="Η διεπαφή άλλαξε όνομα καθώς ήταν σε κατάσταση παρακολούθησης"
 
@@ -732,7 +732,7 @@ function language_strings() {
 	arr["SPANISH",24]="Selecciona una interfaz para trabajar con ella :"
 	arr["FRENCH",24]="Sélectionnez l'interface pour travailler :"
 	arr["CATALAN",24]="Seleccionar una interfície per treballar-hi :"
-	arr["PORTUGUESE",24]="Seleccionar uma interface para trabalhar :"
+	arr["PORTUGUESE",24]="Selecione uma interface para trabalhar :"
 	arr["RUSSIAN",24]="Выберите интерфейс для работы :"
 	arr["GREEK",24]="Επιλέξτε διεπαφή :"
 
@@ -1100,7 +1100,7 @@ function language_strings() {
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
 	arr["FRENCH",70]="Un seul réseau a été détecté. Il a été automatiquement sélectionné"
 	arr["CATALAN",70]="Només un objectiu detectat. Seleccionat automàticament"
-	arr["PORTUGUESE",70]="Apenas uma rede encontrada. A rede foi selecionada automaticamente"
+	arr["PORTUGUESE",70]="Apenas uma rede encontrada. Ela foi selecionada automaticamente"
 	arr["RUSSIAN",70]="Обнаружена только одна цель. Выбрана автоматически"
 	arr["GREEK",70]="Εντοπίστηκε μόνο ένας στόχος. Επιλέχθηκε αυτόματα"
 
@@ -1148,7 +1148,7 @@ function language_strings() {
 	arr["SPANISH",76]="Opción del menú no válida"
 	arr["FRENCH",76]="Option erronée"
 	arr["CATALAN",76]="Opció del menú no vàlida"
-	arr["PORTUGUESE",76]="Opção do menu inválida"
+	arr["PORTUGUESE",76]="Opção inválida"
 	arr["RUSSIAN",76]="Выбрана недействительная опция"
 	arr["GREEK",76]="Επιλέχθηκε άκυρη επιλογή μενού"
 
@@ -1220,7 +1220,7 @@ function language_strings() {
 	arr["SPANISH",85]="Enviadme errores o sugerencias a ${mail}"
 	arr["FRENCH",85]="Envoyer des erreurs ou des suggestions à ${mail}"
 	arr["CATALAN",85]="Envieu-me errorrs o suggeriments a ${mail}"
-	arr["PORTUGUESE",85]="Enviar erros ou sugestões para ${mail}"
+	arr["PORTUGUESE",85]="Envie erros ou sugestões para ${mail}"
 	arr["RUSSIAN",85]="Отправляйте ошибки и предложения мне на почту ${mail}"
 	arr["GREEK",85]="Στείλτε μου αναφορές για bugs ή συστάσεις στο ${mail}"
 
@@ -1508,7 +1508,7 @@ function language_strings() {
 	arr["SPANISH",121]="5.  Capturar Handshake"
 	arr["FRENCH",121]="5.  Capture du Handshake"
 	arr["CATALAN",121]="5.  Captura Handshake"
-	arr["PORTUGUESE",121]="5.  Captura de Handshake"
+	arr["PORTUGUESE",121]="5.  Capturar Handshake"
 	arr["RUSSIAN",121]="5.  Захват рукопожатия"
 	arr["GREEK",121]="5.  Καταγράψτε την Χειραψία"
 
@@ -1532,7 +1532,7 @@ function language_strings() {
 	arr["SPANISH",124]="modo monitor requerido en captura"
 	arr["FRENCH",124]="modo moniteur nécessaire pour la capture"
 	arr["CATALAN",124]="mode monitor requerit en captura"
-	arr["PORTUGUESE",124]="Modo de monitor necessário para captura"
+	arr["PORTUGUESE",124]="Modo monitor necessário para captura"
 	arr["RUSSIAN",124]="для захвата необходим режим монитора"
 	arr["GREEK",124]="χρειάζεται η κατάσταση παρακολούθησης για την καταγραφή"
 
@@ -1540,7 +1540,7 @@ function language_strings() {
 	arr["SPANISH",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
 	arr["FRENCH",125]="Le choix du réseau cible est incorrect. Vous allez être redirigé vers le menu de sélection pour effectuer un nouveau choix"
 	arr["CATALAN",125]="No hi ha una xarxa objectiu vàlida seleccionada. Seràs redirigit per seleccionar una"
-	arr["PORTUGUESE",125]="Nenhuma rede válida selecionada. Você será redirecionado para selecionar um"
+	arr["PORTUGUESE",125]="Nenhuma rede válida selecionada. Você será redirecionado para selecionar uma"
 	arr["RUSSIAN",125]="Не выбрана подходящая целевая сеть. Вы будете перенаправлены на выбор сети"
 	arr["GREEK",125]="Δεν έχει επιλεχθεί κάποιο έγκυρο δίκτυο-στόχος. Θα καθοδηγηθείτε ώστε να επιλέξετε ένα"
 
@@ -1564,7 +1564,7 @@ function language_strings() {
 	arr["SPANISH",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
 	arr["FRENCH",128]="Veuillez sélectionner une carte wifi au lieu d'une carte ethernet afin d'être en mesure de réaliser plus d'actions"
 	arr["CATALAN",128]="Seleccioneu una targeta wifi per treballar amb la finalitat de ser capaç de fer més accions que amb una interfície ethernet"
-	arr["PORTUGUESE",128]="Selecione uma interface wifi para realizar mais ações do que com interface ethernet"
+	arr["PORTUGUESE",128]="Selecione uma interface wifi para realizar mais ações do que com uma interface ethernet"
 	arr["RUSSIAN",128]="Выберите wifi карту для работы, чтобы вы могли выполнить больше действий, чем с ethernet интерфейсом"
 	arr["GREEK",128]="Επιλέξτε κάρτα wifi ώστε να μπορείτε να έχετε περισσοτερες επιλογές από μία διεπαφή ethernet"
 
@@ -1596,7 +1596,7 @@ function language_strings() {
 	arr["SPANISH",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
 	arr["FRENCH",132]="Épurer le fichier contenant le Handshake est seulement recommandable si le fichier est volumineux. Si vous décidez d'épurer le fichier il est conseillé de faire une copie de sauvegarde du fichier originel, l'opération de nettoyage comporte des risques et peut le rendre illisible"
 	arr["CATALAN",132]="Netejar un fitxer de Handshake es recomana només per a fitxers grans. És millor fer una còpia de seguretat abans, de vegades el fitxer es pot corrompre al netejar-lo"
-	arr["PORTUGUESE",132]="Limpar um Handshake é recomendado apenas para arquivos grandes. Melhor fazer um backup antes de otimizar o arquivo; as vezes pode corromper o arquivo ao limpar"
+	arr["PORTUGUESE",132]="Limpar um Handshake é recomendado apenas para arquivos grandes. Melhor fazer um backup antes de otimizar o arquivo; as vezes o arquivo pode corromper ao limpar"
 	arr["RUSSIAN",132]="Очистка файла рукопожатия рекомендована только для файлов больших размеров. Лучше иметь резервную копию, иногда во время очистки файл может быть повреждён"
 	arr["GREEK",132]="Ο καθαρισμός ενός αρχείου Χειραψίας συνιστάται μόνο για μεγάλου μεγέθους αρχεία. Καλύτερα κρατήστε ένα backup, μερικές φορές το αρχείο μπορεί να καταστραφεί κατά τη διάρκεια του καθαρισμού"
 
@@ -1612,7 +1612,7 @@ function language_strings() {
 	arr["SPANISH",134]="Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
 	arr["FRENCH",134]="Si votre système d'exploitation Linux est lancé dans une machine virtuelle, il est probable que les cartes wifi internes soient détectées comme des cartes ethernet. Il vaut mieux dans ce cas utiliser un dispositif wifi usb"
 	arr["CATALAN",134]="Si el teu Linux és a una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
-	arr["PORTUGUESE",134]="Se seu Linux é uma máquina virtual, suas placas wireless integradas são detectadas como ethernet. Use uma placa usb externa"
+	arr["PORTUGUESE",134]="Se seu Linux for uma máquina virtual, suas placas wireless integradas são detectadas como ethernet. Use uma placa usb externa"
 	arr["RUSSIAN",134]="Если ваш Linux в виртуально машине, то интегрированная wifi карта может определиться как Ethernet. Используйте внешнюю usb wifi карту"
 	arr["GREEK",134]="Αν το Linux σας είναι εικονική μηχανή, είναι πιθανόν οι ενσωματωμένες κάρτες wifi να εντοπιστούν σαν ethernet. Χρησιμοποιήστε μία εξωτερική usb κάρτα wifi"
 
@@ -1628,7 +1628,7 @@ function language_strings() {
 	arr["SPANISH",136]="La obtención de un Handshake es solo para redes con encriptación WPA o WPA2"
 	arr["FRENCH",136]="L'obtention d'un Handshake est seulement possible sur des réseaux protégés par chiffrement WPA ou WPA2"
 	arr["CATALAN",136]="L'obtenció d'un Handshake és només per a xarxes amb encriptació WPA o WPA2"
-	arr["PORTUGUESE",136]="A obtenção de um Handshake é somente para redes com criptografia WPA ou WPA2"
+	arr["PORTUGUESE",136]="A obtenção de um Handshake só é possível em redes com criptografia WPA ou WPA2"
 	arr["RUSSIAN",136]="Получение рукопожатия только для сетей с шифрованием WPA или WPA2"
 	arr["GREEK",136]="Η απόκτηση μιας Χειραψίας ισχύει μόνο σε δίκτυα με κρυπτογράφηση WPA ή WPA2"
 
@@ -1692,7 +1692,7 @@ function language_strings() {
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos 20 segundos como máximo sabrás si conseguiste el Handshake"
 	arr["FRENCH",144]="Ne pas fermer une des fenêtres manuellement:  Le script va le faire automatiquement si besoin est. Vos saurez dans tout a plus 20 secondes si avez obtenu le Handshake"
 	arr["CATALAN",144]="No tanquis manualment cap finestra, el script ho farà quan escaigui. En uns 20 segons com a màxim sabràs si vas aconseguir el Handshake"
-	arr["PORTUGUESE",144]="Não feche nenhuma janela manualmente, o script fechara quando necessário. Em cerca de 20 segundos no máximo você vai saber se você tem o Handshake"
+	arr["PORTUGUESE",144]="Não feche nenhuma janela manualmente, o script fechara quando necessário. Em cerca de 20 segundos no máximo você vai saber se tem o Handshake"
 	arr["RUSSIAN",144]="Не закрывайте вручную какое-либо окно, скрипт сделает это когда нужно. Примерно в максимум 20 секунд вы узнаете, получили ли вы рукопожатие"
 	arr["GREEK",144]="Μην επιχειρήσετε το κλείσιμο κάποιου παραθύρου χειροκίνητα, εάν χρειαστεί το script θα το κάνει μόνο του. Σε περίπου 20 δευτερόλεπτα το μέγιστο θα μάθετε αν αποκτήσατε την Χειραψία"
 
@@ -1772,7 +1772,7 @@ function language_strings() {
 	arr["SPANISH",154]="Introduce la ruta al fichero :"
 	arr["FRENCH",154]="Entrez le chemin vers le fichier :"
 	arr["CATALAN",154]="Introdueix la ruta al fitxer :"
-	arr["PORTUGUESE",154]="Digite o caminho para o arquivo :"
+	arr["PORTUGUESE",154]="Digite o caminho do arquivo :"
 	arr["RUSSIAN",154]="Установить путь до файла :"
 	arr["GREEK",154]="Θέστε μονοπάτι για το αρχείο :"
 
@@ -1812,7 +1812,7 @@ function language_strings() {
 	arr["SPANISH",159]="El fichero no necesita ser limpiado/optimizado"
 	arr["FRENCH",159]="Le fichier n'a pas besoin d'être nettoyé/optimisé"
 	arr["CATALAN",159]="El fitxer no necessita ser netejat/optimitzat"
-	arr["PORTUGUESE",159]="O arquivo não precisa ser limpos/otimizado"
+	arr["PORTUGUESE",159]="O arquivo não precisa ser limpo/otimizado"
 	arr["RUSSIAN",159]="Файлу не требуется очистка/оптимизация"
 	arr["GREEK",159]="Το αρχείο δεν χρειάζεται να καθαριστεί/βελτιστοποιηθεί"
 
@@ -1964,7 +1964,7 @@ function language_strings() {
 	arr["SPANISH",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
 	arr["FRENCH",178]="Pour cracker la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir un Handshake"
 	arr["CATALAN",178]="Per desencriptar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
-	arr["PORTUGUESE",178]="Para decifrar a senha de rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
+	arr["PORTUGUESE",178]="Para decifrar a senha de uma rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
 	arr["RUSSIAN",178]="Для расшифровки ключа сетей WPA/WPA2, файл захвата должен содержать четырёхэтапное рукопожатие"
 	arr["GREEK",178]="Για να αποκρυπτογραφήσετε το κλειδί ενός WPA/WPA2 δικτύου, το αρχείο καταγραφής πρέπει να περιέχει μία Χειραψία"
 
@@ -2212,7 +2212,7 @@ function language_strings() {
 	arr["SPANISH",209]="El juego de caracteres elegido es : [${normal_color}${showcharset}${blue_color}]"
 	arr["FRENCH",209]="Le jeu de caractères définit est : [${normal_color}${showcharset}${blue_color}]"
 	arr["CATALAN",209]="El joc de caràcters escollit és : [${normal_color}${showcharset}${blue_color}]"
-	arr["PORTUGUESE",209]="O conjunto de caracteres é:: [${normal_color}${showcharset}${blue_color}]"
+	arr["PORTUGUESE",209]="Conjunto de caracteres escolhido : [${normal_color}${showcharset}${blue_color}]"
 	arr["RUSSIAN",209]="Символы для использования : [${normal_color}${showcharset}${blue_color}]"
 	arr["GREEK",209]="Η συμβολοσειρά που θα χρησιμοποιηθεί είναι : [${normal_color}${showcharset}${blue_color}]"
 
@@ -2244,7 +2244,7 @@ function language_strings() {
 	arr["SPANISH",213]="Existe una nueva versión del script (v${airgeddon_last_version}). Será descargada"
 	arr["FRENCH",213]="Une nouvelle version du script est disponible (v${airgeddon_last_version}). Lancement du téléchargement"
 	arr["CATALAN",213]="Hi ha una nova versió dels script (v${airgeddon_last_version}). Serà descarregada"
-	arr["PORTUGUESE",213]="Uma nova versão do script (v${airgeddon_last_version}). Download será iniciado"
+	arr["PORTUGUESE",213]="Existe uma nova versão do script (v${airgeddon_last_version}). Download será iniciado"
 	arr["RUSSIAN",213]="Существует новая версия скрипта (v${airgeddon_last_version}). Она будет загружена"
 	arr["GREEK",213]="Υπάρχει νεότερη έκδοση του script (v${airgeddon_last_version}). Θα κατέβει"
 
@@ -2260,7 +2260,7 @@ function language_strings() {
 	arr["SPANISH",215]="Una contraseña WPA/WPA2 siempre tiene como mínimo una longitud de 8"
 	arr["FRENCH",215]="Un mot de passe WPA/WPA2 a une longueur minimale de 8 caractères"
 	arr["CATALAN",215]="Una contrasenya WPA/WPA2 sempre té com a mínim una longitud de 8"
-	arr["PORTUGUESE",215]="Uma senha WPA/WPA2 sempre tem no mínimo 8 caracteres"
+	arr["PORTUGUESE",215]="Uma senha WPA/WPA2 deve ter no mínimo 8 caracteres"
 	arr["RUSSIAN",215]="WPA/WPA2 пароли всегда имеют длину минимум в 8 символов"
 	arr["GREEK",215]="οι κωδικοί πρόσβασης WPA/WPA2 έχουν πάντα ελάχιστο μήκος 8"
 
@@ -2268,7 +2268,7 @@ function language_strings() {
 	arr["SPANISH",216]="No se encontraron redes con Handshake capturado en el fichero seleccionado"
 	arr["FRENCH",216]="Aucun réseau avec son Handshake n'a été trouvé dans le fichier sélectionné"
 	arr["CATALAN",216]="No s'han trobat xarxes amb Handshake capturat en el fitxer seleccionat"
-	arr["PORTUGUESE",216]="Nenhuma rede encontrada no arquivo Handshake capturado no arquivo selecionado"
+	arr["PORTUGUESE",216]="Nenhuma rede encontrada no arquivo Handshake selecionado "
 	arr["RUSSIAN",216]="В выбранном файле сети с захваченным рукопожатием не найдены"
 	arr["GREEK",216]="Δεν βρέθηκαν δίκτυα με Χειραψία στο επιλεγμένο αρχείο"
 
@@ -2412,7 +2412,7 @@ function language_strings() {
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
 	arr["FRENCH",234]="Félicitations!! Il semble que la clef a été décryptée"
 	arr["CATALAN",234]="Enhorabona!! Sembla que la clau ha estat desencriptada"
-	arr["PORTUGUESE",234]="Parabéns!! Parece que a senha foi  descriptografada"
+	arr["PORTUGUESE",234]="Parabéns!! Parece que a senha foi descriptografada"
 	arr["RUSSIAN",234]="Поздравления!! Похоже на то, что ключ был расшифрован"
 	arr["GREEK",234]="Συγχαρητήρια!! Φαίνεται πως το κλειδί αποκρυπτογραφήθηκε"
 
@@ -2420,7 +2420,7 @@ function language_strings() {
 	arr["SPANISH",235]="¿Quieres guardar el fichero de trofeo con la clave desencriptada? ${normal_color}[y/n]"
 	arr["FRENCH",235]="Voulez-vous enregistrer le fichier trophée avec le mot de passe déchiffré? ${normal_color}[y/n]"
 	arr["CATALAN",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? ${normal_color}[y/n]"
-	arr["PORTUGUESE",235]="Você quer salvar arquivo com a senha descriptografado? ${normal_color}[y/n]"
+	arr["PORTUGUESE",235]="Você quer salvar arquivo com a senha descriptografada? ${normal_color}[y/n]"
 	arr["RUSSIAN",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? ${normal_color}[y/n]"
 	arr["GREEK",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; ${normal_color}[y/n]"
 
@@ -2484,7 +2484,7 @@ function language_strings() {
 	arr["SPANISH",243]="Fichero de reglas seleccionado: ${pink_color}${RULES}${normal_color}"
 	arr["FRENCH",243]="Fichier règles sélectionné: ${pink_color}${RULES}${normal_color}"
 	arr["CATALAN",243]="Fitxer de regles seleccionat: ${pink_color}${RULES}${normal_color}"
-	arr["PORTUGUESE",243]="Arquivo regras selecionadas: ${pink_color}${RULES}${normal_color}"
+	arr["PORTUGUESE",243]="Arquivo de regras selecionado: ${pink_color}${RULES}${normal_color}"
 	arr["RUSSIAN",243]="Выбранный файл правил: ${pink_color}${RULES}${normal_color}"
 	arr["GREEK",243]="Επιλεγμένο αρχείο κανόνων: ${pink_color}${RULES}${normal_color}"
 
@@ -2492,7 +2492,7 @@ function language_strings() {
 	arr["SPANISH",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["FRENCH",244]="Les attaques basées sur des règles modifient les mots du dictionnaire selon les règles établies dans le fichier règles. Ils sont très utiles. Certaines distros comportent des fichiers de règles prédéfinies (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["CATALAN",244]="Els atacs basats en regles modifiquen les paraules de la llista del diccionari segons les regles escrites en el propi fitxer de regles. Són molt útils. Algunes distros ja porten fitxers de regles predefinits (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
-	arr["PORTUGUESE",244]="Ataques baseados em regras mudaram as palavras de um dicionário de acordo com as regras escritas. Eles são muito úteis. Algumas distros já possuem regras predefinidas em (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
+	arr["PORTUGUESE",244]="Ataques baseados em regras mudam as palavras de um dicionário de acordo com as regras escritas. Eles são muito úteis. Algumas distros já possuem regras predefinidas em (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["RUSSIAN",244]="Атака, основанная на правилах, изменяет слова из словаря в соответствии с правилами, написанными в самом файле правил. Они очень полезны. Некоторые дистрибутивы имеют предустановленные правила (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["GREEK",244]="Οι επιθέσεις κανόνων αλλάζουν τις λέξεις του λεξικού ανάλογα με τους κανόνες που έχουν γραφτεί στο αρχείο κανόνων. Είναι πολύ χρήσιμοι. Κάποιες διανομές έχουν προκαθορισμένα αρχεία κανόνων (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 
@@ -2508,7 +2508,7 @@ function language_strings() {
 	arr["SPANISH",246]="Cada vez que veas un texto con el prefijo ${cyan_color}${pending_of_translation}${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
 	arr["FRENCH",246]="Chaque fois que vous voyez un texte précédé par ${cyan_color}${pending_of_translation}${pink_color} acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
 	arr["CATALAN",246]="Cada vegada que vegis un text amb el prefix ${cyan_color}${pending_of_translation}${pink_color} acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
-	arr["PORTUGUESE",246]="Cada vez que você vê um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
+	arr["PORTUGUESE",246]="Cada vez que você ver um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
 	arr["RUSSIAN",246]="Каждый раз, когда вы видите текст с префиксом ${cyan_color}${pending_of_translation}${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
 	arr["GREEK",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα ${cyan_color}${pending_of_translation}${pink_color} ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
 
@@ -3876,7 +3876,7 @@ function language_strings() {
 	arr["SPANISH",417]="Ocurrió un error inesperado. Volviendo al menú"
 	arr["FRENCH",417]="${pending_of_translation} Une erreur inattendue s'est produite, retour au menu"
 	arr["CATALAN",417]="${pending_of_translation} Hi ha hagut un error inesperat, redirigint al menú"
-	arr["PORTUGUESE",417]="${pending_of_translation} Ocorreu um erro inesperado, redirecionando ao menu"
+	arr["PORTUGUESE",417]="Ocorreu um erro inesperado, retornando ao menu"
 	arr["RUSSIAN",417]="${pending_of_translation} Непредвиденная ошибка, перенаправляя в меню"
 	arr["GREEK",417]="${pending_of_translation} Παρουσιάστηκε μη αναμενόμενο σφάλμα, ανακατεύθυνση στο μενού"
 
