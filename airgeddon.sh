@@ -4568,10 +4568,10 @@ function set_chipset() {
 
 	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
 
-		bus_type=$(cut -d ":" -f 1 "/sys/class/net/${1}/device/modalias")
+		bus_type=$(cut -d ":" -f 1 < "/sys/class/net/${1}/device/modalias")
 
 		if [ "${bus_type}" = "usb" ]; then
-			vendor_and_device=$(cut -b 6-14 "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
+			vendor_and_device=$(cut -b 6-14 < "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
 			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
