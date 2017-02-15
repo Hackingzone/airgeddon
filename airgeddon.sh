@@ -4568,10 +4568,10 @@ function set_chipset() {
 
 	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
 
-		bus_type=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 1)
+		bus_type=$(cut -d ":" -f 1 "/sys/class/net/${1}/device/modalias")
 
 		if [ "${bus_type}" = "usb" ]; then
-			vendor_and_device=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
+			vendor_and_device=$(cut -b 6-14 "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
 			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
@@ -7756,7 +7756,7 @@ function set_control_script() {
 
 	cat >&7 <<-'EOF'
 				echo "${msg_good_pass} $( (cat < ${success_pass_path}) 2> /dev/null)" >> ${log_path}
-				attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
+				attempts_number=$( (wc -l < "${attempts_path}") 2> /dev/null)
 				et_password=$( (cat < ${success_pass_path}) 2> /dev/null)
 				echo -e "\t${et_password}"
 				echo
@@ -7852,7 +7852,7 @@ function set_control_script() {
 					echo
 					finish_evil_twin
 				else
-					attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
+					attempts_number=$( (wc -l < "${attempts_path}") 2> /dev/null)
 					last_password=$(grep "." ${attempts_path} 2> /dev/null | tail -1)
 					tput el && echo -ne "\t${attempts_text} ${attempts_number}"
 					if [ "${attempts_number}" -gt 0 ]; then
@@ -7874,7 +7874,7 @@ function set_control_script() {
 
 	cat >&7 <<-EOF
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
-			readarray -t DHCPCLIENTS < <(cat < "${tmpdir}clts.txt" 2> /dev/null | grep DHCPACK)
+			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
 			client_ips=()
 	EOF
 
@@ -8442,7 +8442,7 @@ function rewrite_script_with_custom_beef() {
 			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		;;
 		"search")
-			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#[C]ustom BeEF location (set=1)" 2> /dev/null)
+			beef_custom_path_line=$(grep "#[C]ustom BeEF location (set=1)" < "${scriptfolder}${scriptname}" 2> /dev/null)
 			if [ -n "${beef_custom_path_line}" ]; then
 				[[ ${beef_custom_path_line} =~ \"(.*)\" ]] && beef_custom_path="${BASH_REMATCH[1]}"
 			fi
@@ -9232,7 +9232,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
-	targetline=$(cat < "${tmpdir}nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
+	targetline=$(awk '/(Station|Client[es])/{print NR}' < "${tmpdir}nws-01.csv")
 	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -9497,7 +9497,7 @@ function select_target() {
 			sp4=""
 		fi
 
-		client=$(cat < "${tmpdir}clts.csv" | grep "${exp_mac}")
+		client=$(grep "${exp_mac}" < "${tmpdir}clts.csv")
 		if [ "${client}" != "" ]; then
 			client="*"
 			sp5=""
@@ -10432,7 +10432,7 @@ function detect_distro_phase2() {
 		elif [ -f ${osversionfile_dir}"debian_version" ]; then
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
-				extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+				extra_os_info=$(grep "PRETTY_NAME" < ${osversionfile_dir}"os-release")
 				if [[ "${extra_os_info}" =~ Raspbian ]]; then
 					distro="Raspbian"
 					is_arm=1
@@ -10444,7 +10444,7 @@ function detect_distro_phase2() {
 		fi
 	elif [ "${distro}" = "Arch" ]; then
 		if [ -f ${osversionfile_dir}"os-release" ]; then
-			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+			extra_os_info=$(grep "PRETTY_NAME" < ${osversionfile_dir}"os-release")
 			if [[ "${extra_os_info}" =~ BlackArch ]]; then
 				distro="BlackArch"
 			elif [[ "${extra_os_info}" =~ Kali ]]; then
