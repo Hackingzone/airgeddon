@@ -4064,7 +4064,7 @@ function check_to_set_monitor() {
 #Check for monitor mode on an interface
 function check_monitor_enabled() {
 
-	mode=$(iwconfig "${interface}" 2> /dev/null | awk '/Mode:/{print $4}' | cut -d ':' -f 2)
+	mode=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${mode} != "Monitor" ]]; then
 		echo
@@ -4095,7 +4095,7 @@ function execute_iwconfig_fix() {
 #Create a list of interfaces associated to its macs
 function renew_ifaces_and_macs_list() {
 
-	readarray -t IFACES_AND_MACS < <(ip link | awk '/^[0-9]+/&&!/lo/&&!/${interface}/{print $2}' | cut -d ':' -f 1)
+	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
 		mac_item=$(cat < "/sys/class/net/${iface_name}/address" 2> /dev/null)
@@ -4436,14 +4436,14 @@ function check_interface_mode() {
 		return 0
 	fi
 
-	modemanaged=$(iwconfig ${interface} 2> /dev/null | awk '/Mode:/{print $1}' | cut -d ':' -f 2)
+	modemanaged=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | cut -d ':' -f 2 | cut -d ' ' -f 1)
 
 	if [[ ${modemanaged} = "Managed" ]]; then
 		ifacemode="Managed"
 		return 0
 	fi
 
-	modemonitor=$(iwconfig "${interface}" 2> /dev/null | awk '/Mode:/{print $4}' | cut -d ':' -f 2)
+	modemonitor=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${modemonitor} = "Monitor" ]]; then
 		ifacemode="Monitor"
@@ -4620,7 +4620,7 @@ function select_internet_interface() {
 		;;
 	esac
 
-	inet_ifaces=$(ip link | awk '/^[0-9]+/&&!/lo/&&!/${interface}/{print $2}' | cut -d ':' -f 1)
+	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 
 	option_counter=0
 	for item in ${inet_ifaces}; do
@@ -4692,7 +4692,7 @@ function select_interface() {
 	current_menu="select_interface_menu"
 	language_strings "${language}" 24 "green"
 	print_simple_separator
-	ifaces=$(ip link | awk '/^[0-9]+/&&!/lo/{print $2}' | cut -d ':' -f 1)
+	ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v)
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$((option_counter + 1))
@@ -6365,7 +6365,7 @@ function manage_asking_for_rule_file() {
 #Validate the file to be cleaned
 function check_valid_file_to_clean() {
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | awk '/WPA|WEP/{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${nets_from_file}" = "" ]; then
 		return 1
@@ -6398,7 +6398,7 @@ function check_valid_file_to_clean() {
 #Check if a bssid is present on a capture file to know if there is a Handshake with that bssid
 function check_bssid_in_captured_file() {
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | awk '/WPA \([1-9][0-9]? handshake/{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -6436,7 +6436,7 @@ function check_bssid_in_captured_file() {
 #Set the target vars to a bssid selecting them from a capture file which has a Handshake
 function select_wpa_bssid_target_from_captured_file() {
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | awk '/WPA \([1-9][0-9]? handshake/{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -6635,7 +6635,7 @@ function manage_hashcat_pot() {
 		ask_yesno 235
 		if [ ${yesno} = "y" ]; then
 
-			hashcat_potpath=$(env | awk -F = '/^HOME/{print $2}')
+			hashcat_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhashcat_potpath=${hashcat_potpath: -1}
 			if [ "${lastcharhashcat_potpath}" != "/" ]; then
 				hashcat_potpath="${hashcat_potpath}/"
@@ -6663,7 +6663,7 @@ function manage_ettercap_log() {
 	ask_yesno 302
 	if [ ${yesno} = "y" ]; then
 		ettercap_log=1
-		default_ettercap_logpath=$(env | awk -F = '/^HOME/{print $2}')
+		default_ettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharettercaplogpath=${default_ettercap_logpath: -1}
 		if [ "${lastcharettercaplogpath}" != "/" ]; then
 			ettercap_logpath="${default_ettercap_logpath}/"
@@ -6686,7 +6686,7 @@ function manage_bettercap_log() {
 	ask_yesno 302
 	if [ ${yesno} = "y" ]; then
 		bettercap_log=1
-		default_bettercap_logpath=$(env | awk -F = '/^HOME/{print $2}')
+		default_bettercap_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
 		if [ "${lastcharbettercaplogpath}" != "/" ]; then
 			bettercap_logpath="${default_bettercap_logpath}/"
@@ -6705,7 +6705,7 @@ function manage_bettercap_log() {
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
-	default_et_captive_portal_logpath=$(env | awk -F = '/^HOME/{print $2}')
+	default_et_captive_portal_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
 	if [ "${lastcharetcaptiveportallogpath}" != "/" ]; then
 		et_captive_portal_logpath="${default_et_captive_portal_logpath}/"
@@ -8860,7 +8860,7 @@ function capture_handshake_evil_twin() {
 	kill "${processidcapture}" &> /dev/null
 	if [ "${handshake_captured}" = "y" ]; then
 
-		handshakepath=$(env | awk -F = '/^HOME/{print $2}')
+		handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
 		lastcharhandshakepath=${handshakepath: -1}
 		if [ "${lastcharhandshakepath}" != "/" ]; then
 			handshakepath="${handshakepath}/"
@@ -9097,7 +9097,7 @@ function attack_handshake_menu() {
 		kill "${processidcapture}" &> /dev/null
 		if [ "${handshake_captured}" = "y" ]; then
 
-			handshakepath=$(env | awk -F = '/^HOME/{print $2}')
+			handshakepath=$(env | grep ^HOME | awk -F = '{print $2}')
 			lastcharhandshakepath=${handshakepath: -1}
 			if [ "${lastcharhandshakepath}" != "/" ]; then
 				handshakepath="${handshakepath}/"
@@ -9232,7 +9232,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
-	targetline=$(cat < "${tmpdir}nws-01.csv" | awk '/Station|Cliente/{print NR}')
+	targetline=$(cat < "${tmpdir}nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
 	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -10188,7 +10188,7 @@ function airmon_fix() {
 #Prepare the fix for iwconfig command depending of the wireless tools version
 function iwconfig_fix() {
 
-	iwversion=$(iwconfig --version | awk '/version/{print $4}')
+	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
 	iwcmdfix=""
 	if [ "${iwversion}" -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
@@ -10216,7 +10216,7 @@ function get_hashcat_version() {
 #Determine bettercap version
 function get_bettercap_version() {
 
-	bettercap_version=$(bettercap -v 2> /dev/null | awk '/^bettercap [0-9]/{print $2}')
+	bettercap_version=$(bettercap -v 2> /dev/null | egrep "^bettercap [0-9]" | awk '{print $2}')
 }
 
 #Determine bully version
@@ -10229,9 +10229,9 @@ function get_bully_version() {
 #Determine reaver version
 function get_reaver_version() {
 
-	reaver_version=$(reaver -h 2>&1 > /dev/null | awk '/^Reaver v[0-9]/{print $2}')
+	reaver_version=$(reaver -h 2>&1 > /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	if [ -z "${reaver_version}" ]; then
-		reaver_version=$(reaver -h 2> /dev/null | awk '/^Reaver v[0-9]/{print $2}')
+		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	fi
 	reaver_version=${reaver_version#"v"}
 }
@@ -10935,7 +10935,7 @@ function detect_screen_resolution() {
 
 	resolution_detected=0
 	if hash xdpyinfo 2> /dev/null; then
-		resolution=$(xdpyinfo 2> /dev/null | awk '{if ($0 ~ /screen #0/) pat1=$1; if ($0 ~ /dimensions/) pat2=$2}{if (pat1 && pat2) print pat2; pat=pat2=""}')
+		resolution=$(xdpyinfo 2> /dev/null | grep -A 3 "screen #0" | grep "dimensions" | tr -s " " | cut -d " " -f 3 | grep "x")
 
 		if [ "$?" = "0" ]; then
 			resolution_detected=1
@@ -11190,7 +11190,7 @@ function check_internet_access() {
 #Check for default route on an interface
 function check_default_route() {
 
-	route | awk "/${1}/&&/default/{print}" > /dev/null
+	route | grep "${1}" | grep "default" > /dev/null
 	return $?
 }
 
