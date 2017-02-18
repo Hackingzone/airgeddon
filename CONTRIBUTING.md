@@ -26,9 +26,14 @@ Please note we have a code of conduct, please follow it in all your interactions
   - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
   - *Z* is a minor release with new bug fixes, small modifications or code improvements
 6. Update the date on `airgeddon.sh` under shebang, if appropriate.
-7. Direct push to [Master] is not allowed. Pull Requests require revision and approvement.
+7. Direct push to [Master] is not allowed.
+8. Pull Requests to [Master] are not allowed. Should be done over `dev` or any other branch. They require revision and approvement.
+9. All the development and coding must be in English.
 
 *Be sure to merge the latest from "upstream" before making a pull request!*
+
+We also have a private Telegram group for *trusted collaborators* for more agile discussion about developments, improvements, etc. 
+To be added on it you must prove first you are a *trusted collaborator* with your contributions.
 
 ## WPS PIN Database Collaborators
 
