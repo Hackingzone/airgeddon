@@ -8053,7 +8053,7 @@ function set_control_script() {
 
 	cat >&7 <<-'EOF'
 				echo "${msg_good_pass} $( (cat < ${success_pass_path}) 2> /dev/null)" >> ${log_path}
-				attempts_number=$( (wc -l < "${attempts_path}") 2> /dev/null)
+				attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
 				et_password=$( (cat < ${success_pass_path}) 2> /dev/null)
 				echo -e "\t${et_password}"
 				echo
@@ -8149,7 +8149,7 @@ function set_control_script() {
 					echo
 					finish_evil_twin
 				else
-					attempts_number=$( (wc -l < "${attempts_path}") 2> /dev/null)
+					attempts_number=$( (cat < "${attempts_path}" | wc -l) 2> /dev/null)
 					last_password=$(grep "." ${attempts_path} 2> /dev/null | tail -1)
 					tput el && echo -ne "\t${attempts_text} ${attempts_number}"
 					if [ "${attempts_number}" -gt 0 ]; then
