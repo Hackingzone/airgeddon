@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20160218
+#Date.........: 20170218
 #Version......: 6.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -625,7 +625,7 @@ function language_strings() {
 	arr["SPANISH",11]="Saliendo de airgeddon script v${airgeddon_version} - Nos vemos pronto! :)"
 	arr["FRENCH",11]="Fermeture du script airgeddon v${airgeddon_version} - A bientôt! :)"
 	arr["CATALAN",11]="Sortint de airgeddon script v${airgeddon_version} - Ens veiem aviat! :)"
-	arr["PORTUGUESE",11]="Saindo do script airgeddon  v${airgeddon_version} - Até breve! :)"
+	arr["PORTUGUESE",11]="Saindo do script airgeddon v${airgeddon_version} - Até breve! :)"
 	arr["RUSSIAN",11]="Выход из скрипта airgeddon v${airgeddon_version} - До встречи! :)"
 	arr["GREEK",11]="Κλείσιμο του airgeddon v${airgeddon_version} - Αντίο :)"
 
@@ -1133,13 +1133,13 @@ function language_strings() {
 	arr["RUSSIAN",74]="Этот скрипт под лицензией GPLv3 (или более поздней)"
 	arr["GREEK",74]="Αυτό το script είναι υπό την άδεια GPLv3 (ή νεότερη)"
 
-	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to Kcdtv for beta testing and support received"
-	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a Kcdtv por el beta testing y el apoyo recibido"
-	arr["FRENCH",75]="Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", aux gens des forums qui m'ont aidés, à mes collaborateurs, aux traducteurs et tout spécialement à Kcdtv pour les tests en phase bêta et son soutien"
-	arr["CATALAN",75]="Agraïments al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv per les proves beta i el suport rebut"
-	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv por testes beta e também a todo apoio recebido"
-	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv за бета тестирование и полученную поддержку"
-	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
+	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to Kcdtv and xtonousou for beta testing and support received"
+	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a Kcdtv y xtonousou por el beta testing y el apoyo recibido"
+	arr["FRENCH",75]="Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", aux gens des forums qui m'ont aidés, à mes collaborateurs, aux traducteurs et tout spécialement à Kcdtv et xtonousou pour les tests en phase bêta et son soutien"
+	arr["CATALAN",75]="Agraïments al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv i xtonousou per les proves beta i el suport rebut"
+	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv e xtonousou por testes beta e também a todo apoio recebido"
+	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv и xtonousou за бета тестирование и полученную поддержку"
+	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv και xtonousou για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
 	arr["SPANISH",76]="Opción del menú no válida"
@@ -1777,7 +1777,7 @@ function language_strings() {
 	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["FRENCH",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["CATALAN",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
-	arr["PORTUGUESE",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["PORTUGUESE",155]="O diretório existe, mas o nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["RUSSIAN",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["GREEK",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [${normal_color}${suggested_filename}${yellow_color}]"
 
@@ -2649,7 +2649,7 @@ function language_strings() {
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
 	arr["FRENCH",264]="Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
 	arr["CATALAN",264]="L'atac de portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
-	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha  da rede sem fio digitando-o em nosso site"
+	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha da rede sem fio digitando-o em nosso site"
 	arr["RUSSIAN",264]="Атака с перехватывающим порталом заключается в том, что мы ждём когда кто-то из пользователей введёт верный пароль от Wi-Fi на веб-странице, которую мы ему показываем"
 	arr["GREEK",264]="Η επίθεση captive portal κάνει έναν από τους χρήστες του δικτύου να μας παρέχει τον κωδικό πρόσβασης του δικτύου wifi βάζοντάς τον στο portal μας"
 
@@ -2690,7 +2690,7 @@ function language_strings() {
 	arr["FRENCH",269]="Pour mener à bien une attaque Evil Twin il vous faut être dans de bonnes conditions d'émission et de réception tantôt avec le point d'accès qu'avec le(s) client(s)"
 	arr["CATALAN",269]="Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
 	arr["PORTUGUESE",269]="Para fazer um ataque Evil Twin você precisa estar perto do alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o AP legítimo"
-	arr["RUSSIAN",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную wifi антенну.  Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
+	arr["RUSSIAN",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную wifi антенну. Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
 	arr["GREEK",269]="Για να πραγματοποιηθεί μία επίθεση Evil Twin θα πρέπει να είστε αρκετά κοντά στο AP-στόχο ή να έχετε μία πολύ ισχυρή κεραία. Το σήμα πρέπει να φτάνει στους χρήστες το ίδιο ή περισσότερο από το αρχικό AP"
 
 	arr["ENGLISH",270]="Evil Twin attack just AP"
@@ -3683,7 +3683,7 @@ function language_strings() {
 	arr["CATALAN",393]="Escriu un valor en segons (10-100) per al temps d'espera o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["PORTUGUESE",393]="Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["RUSSIAN",393]="Введите значение в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pin}${green_color}] :"
-	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή  [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 
 	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
@@ -3801,7 +3801,7 @@ function language_strings() {
 	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
 	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si BeEf est correctement instalé et c'est le script qui n'est pas capable de le détecter"
 	arr["CATALAN",408]="Si vas instal·lar BeEF manualment, pot ser que airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
-	arr["PORTUGUESE",408]="Se BeEF foi instalado manualmente, o airgeddon não  pode encontrá-lo automaticamente e a opção de ataque aparecerá bloqueada. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não o detecta"
+	arr["PORTUGUESE",408]="Se BeEF foi instalado manualmente, o airgeddon não pode encontrá-lo automaticamente e a opção de ataque aparecerá bloqueada. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não o detecta"
 	arr["RUSSIAN",408]="Если вы установили BeEF вручную, airgeddon может быть не в состоянии найти его, и опция атаки в меню может быть ограничена. Для исправления этого, вы можете попытаться решить эту проблему с помощью специального пункта меню. Это сработает только если BeEF уже правильно установлен, и ваша единственная проблема в том, что скрипт не обнаруживает его"
 	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φανεί σαν περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημα είναι ότι το script δεν το εντοπίζει"
 
@@ -11822,7 +11822,7 @@ function echo_red() {
 
 #Print red messages using a slimmer thickness
 function echo_red_slim() {
-  
+
 	last_echo "${1}" "${red_color_slim}"
 }
 
