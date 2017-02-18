@@ -3935,10 +3935,10 @@ function language_strings() {
 #Print the current function's name with the parameters that have been passed
 #Call this function like this: debug_print_function_and_parameters "${@}"
 function debug_print_function_and_parameters() {
-
-  if [ ${debug_mode} -eq 2 ]; then
-    echo "${FUNCNAME[1]}" "${@}"
-  fi
+	
+	if [ ${debug_mode} -eq 2 ]; then
+		echo "${FUNCNAME[1]}" "${@}"
+	fi
 }
 
 #Set the message to show again after an interrupt ([Ctrl+C] or [Ctrl+Z]) without exiting
@@ -3962,7 +3962,7 @@ function interrupt_checkpoint() {
 #Add the text on a menu when you miss an optional tool
 function special_text_missed_optional_tool() {
 
-  debug_print_function_and_parameters "${@}"
+	debug_print_function_and_parameters "${@}"
 
 	declare -a required_tools=("${!3}")
 
