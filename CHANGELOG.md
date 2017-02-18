@@ -1,5 +1,5 @@
 ###6.01
- - Shebang changed to more portable #!/usr/bin/env bash
+ - Shebang changed to a more portable one `#!/usr/bin/env bash`
  - New extra-verbose debug mode added
  - README.md major modifications
  - Added CONTRIBUTING.md
