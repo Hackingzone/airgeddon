@@ -185,17 +185,17 @@ currentpassfile="ag.et_currentpass.txt"
 successfile="ag.et_success.txt"
 processesfile="ag.et_processes.txt"
 possible_dhcp_leases_files=(
-							"/var/lib/dhcp/dhcpd.leases"
-							"/var/state/dhcp/dhcpd.leases"
-							"/var/lib/dhcpd/dhcpd.leases"
-						)
-possible_beef_known_locations=(
-								"/usr/share/beef/"
-								"/usr/share/beef-xss/"
-								"/opt/beef/"
-								"/opt/beef-project/"
-								#Custom BeEF location (set=0)
+								"/var/lib/dhcp/dhcpd.leases"
+								"/var/state/dhcp/dhcpd.leases"
+								"/var/lib/dhcpd/dhcpd.leases"
 							)
+possible_beef_known_locations=(
+									"/usr/share/beef/"
+									"/usr/share/beef-xss/"
+									"/opt/beef/"
+									"/opt/beef-project/"
+									#Custom BeEF location (set=0)
+								)
 
 #Distros vars
 known_compatible_distros=(
@@ -217,10 +217,10 @@ known_compatible_distros=(
 						)
 
 known_arm_compatible_distros=(
-							"Raspbian"
-							"Parrot arm"
-							"Kali arm"
-						)
+								"Raspbian"
+								"Parrot arm"
+								"Kali arm"
+							)
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -257,6 +257,8 @@ normal_color="\e[1;0m"
 
 #Set different language text strings
 function language_strings() {
+
+	debug_print_function_and_parameters "${@}"
 
 	declare -A unknown_chipset
 	unknown_chipset["ENGLISH"]="Unknown"
@@ -3932,17 +3934,54 @@ function language_strings() {
 	esac
 }
 
-#Print the current function's name with the parameters that have been passed
-#Call this function like this: debug_print_function_and_parameters "${@}"
+#Print the current function's name with the parameters that have been passed for some (on which are useful) functions
 function debug_print_function_and_parameters() {
-	
+
 	if [ ${debug_mode} -eq 2 ]; then
+
+		excluded_functions=(
+								"ask_yesno"
+								"check_pending_of_translation"
+								"contains_element"
+								"echo_blue"
+								"echo_brown"
+								"echo_cyan"
+								"echo_green"
+								"echo_green_title"
+								"echo_pink"
+								"echo_red"
+								"echo_red_slim"
+								"echo_white"
+								"echo_yellow"
+								"generate_dynamic_line"
+								"interrupt_checkpoint"
+								"language_strings"
+								"last_echo"
+								"print_hint"
+								"print_large_separator"
+								"print_simple_separator"
+								"read_yesno"
+								"remove_warnings"
+								"special_text_missed_optional_tool"
+								"store_array"
+								"under_construction_message"
+							)
+
+		for item in "${excluded_functions[@]}"; do
+			if [ "${item}" = "${FUNCNAME[1]}" ]; then
+				return 1
+			fi
+		done
+
 		echo "${FUNCNAME[1]}" "${@}"
+		return 0
 	fi
 }
 
 #Set the message to show again after an interrupt ([Ctrl+C] or [Ctrl+Z]) without exiting
 function interrupt_checkpoint() {
+
+	debug_print_function_and_parameters "${@}"
 
 	if [ -z "${last_buffered_type1}" ]; then
 		last_buffered_message1=${1}
@@ -11747,17 +11786,23 @@ function remove_warnings() {
 #Print a simple separator
 function print_simple_separator() {
 
+	debug_print_function_and_parameters "${@}"
+
 	echo_blue "---------"
 }
 
 #Print a large separator
 function print_large_separator() {
 
+	debug_print_function_and_parameters "${@}"
+
 	echo_blue "-------------------------------------------------------"
 }
 
 #Add the PoT prefix on printed strings if PoT mark is found
 function check_pending_of_translation() {
+
+	debug_print_function_and_parameters "${@}"
 
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text="${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}"
@@ -11779,6 +11824,8 @@ function check_pending_of_translation() {
 #Print under construction message used on some menu entries
 function under_construction_message() {
 
+	debug_print_function_and_parameters "${@}"
+
 	local var_uc="${under_constructionvar^}"
 	echo
 	echo_yellow "${var_uc}..."
@@ -11787,6 +11834,8 @@ function under_construction_message() {
 
 #Canalize the echo functions
 function last_echo() {
+
+	debug_print_function_and_parameters "${@}"
 
 	check_pending_of_translation "${1}" "${2}"
 	if [ "$?" != "0" ]; then
@@ -11799,11 +11848,15 @@ function last_echo() {
 #Print green messages
 function echo_green() {
 
+	debug_print_function_and_parameters "${@}"
+
 	last_echo "${1}" "${green_color}"
 }
 
 #Print blue messages
 function echo_blue() {
+
+	debug_print_function_and_parameters "${@}"
 
 	last_echo "${1}" "${blue_color}"
 }
@@ -11811,11 +11864,15 @@ function echo_blue() {
 #Print yellow messages
 function echo_yellow() {
 
+	debug_print_function_and_parameters "${@}"
+
 	last_echo "${1}" "${yellow_color}"
 }
 
 #Print red messages
 function echo_red() {
+
+	debug_print_function_and_parameters "${@}"
 
 	last_echo "${1}" "${red_color}"
 }
@@ -11823,11 +11880,15 @@ function echo_red() {
 #Print red messages using a slimmer thickness
 function echo_red_slim() {
 
+	debug_print_function_and_parameters "${@}"
+
 	last_echo "${1}" "${red_color_slim}"
 }
 
 #Print black messages with background for titles
 function echo_green_title() {
+
+	debug_print_function_and_parameters "${@}"
 
 	last_echo "${1}" "${green_color_title}"
 }
@@ -11835,11 +11896,15 @@ function echo_green_title() {
 #Print pink messages
 function echo_pink() {
 
+	debug_print_function_and_parameters "${@}"
+
 	last_echo "${1}" "${pink_color}"
 }
 
 #Print cyan messages
 function echo_cyan() {
+
+	debug_print_function_and_parameters "${@}"
 
 	last_echo "${1}" "${cyan_color}"
 }
@@ -11847,11 +11912,15 @@ function echo_cyan() {
 #Print brown messages
 function echo_brown() {
 
+	debug_print_function_and_parameters "${@}"
+
 	last_echo "${1}" "${brown_color}"
 }
 
 #Print white messages
 function echo_white() {
+
+	debug_print_function_and_parameters "${@}"
 
 	last_echo "${1}" "${white_color}"
 }
