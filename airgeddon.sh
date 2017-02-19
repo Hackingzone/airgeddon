@@ -3967,11 +3967,9 @@ function debug_print_function_and_parameters() {
 								"under_construction_message"
 							)
 
-		for item in "${excluded_functions[@]}"; do
-			if [ "${item}" = "${FUNCNAME[1]}" ]; then
-				return 1
-			fi
-		done
+		if (IFS=$'\n'; echo "${excluded_functions[*]}") | grep -qFx "${FUNCNAME[1]}"; then
+			return 1
+		fi
 
 		echo "${FUNCNAME[1]}" "${@}"
 		return 0
