@@ -64,7 +64,7 @@ Tested on these compatible Linux distributions:
 - *Gentoo 20160514 and 20160704*
 - *Fedora 24*
 - *Red Hat 7 (Maipo)*
-- *Arch 4.6.2-1 to 4.9.8-1*
+- *Arch 4.6.2-1 to 4.9.9-1*
 - *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
 - *OpenMandriva LX3*
 
@@ -195,7 +195,8 @@ Use it only on your own networks or with the network's owner permission.<br/>
 **El padrino** and [cLn] for Catalan translations, <br/>
 [Luan] for Portuguese translations, <br/>
 [MiAl] for Russian translations, <br/>
-[xtonousou] for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff.
+[xtonousou] for Greek translations, beta testing, suggestions, the help received fixing code warnings and other stuff, <br/>
+[OscarAkaElvis] for allowing me to own his body when I visit the earth.
 
 #### Hat tip to
 
@@ -257,3 +258,4 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [Luan]: https://github.com/Luan7805
 [MiAl]: https://github.com/Mi-Al
 [xtonousou]: https://github.com/xtonousou "xT"
+[OscarAkaElvis]: https://github.com/OscarAkaElvis
