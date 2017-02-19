@@ -9671,7 +9671,7 @@ function explore_for_wps_targets_option() {
 	echo
 	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
 		language_strings "${language}" 353 "blue"
-		set_wash_parameterization
+		set_wash_parametrization
 		language_strings "${language}" 354 "yellow"
 	else
 		language_strings "${language}" 355 "blue"
@@ -9921,7 +9921,7 @@ function select_target() {
 }
 
 #Perform a test to determine if fcs parameter is needed on wash scanning
-function set_wash_parameterization() {
+function set_wash_parametrization() {
 
 	debug_print_function_and_parameters
 
