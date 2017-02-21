@@ -1,8 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#Title........: airgeddon.sh
+#Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
+#Author.......: v1s1t0r
+#Date.........: 20170220
+#Version......: 6.01
+#Usage........: bash airgeddon.sh
+#Bash Version.: 4.2 or later
 
-airgeddon_version="6.0"
-
-#Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
+#Enabled with extra-verbose mode 2 / Enabled 1 / Disabled 0 - Debug mode for faster development skipping intro and initial checks - Default value 0
 debug_mode=0
 
 #Enabled 1 / Disabled 0 - Auto update feature (it has no effect on debug mode) - Default value 1
@@ -99,6 +104,7 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
+airgeddon_version="6.01"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -179,17 +185,17 @@ currentpassfile="ag.et_currentpass.txt"
 successfile="ag.et_success.txt"
 processesfile="ag.et_processes.txt"
 possible_dhcp_leases_files=(
-							"/var/lib/dhcp/dhcpd.leases"
-							"/var/state/dhcp/dhcpd.leases"
-							"/var/lib/dhcpd/dhcpd.leases"
-						)
-possible_beef_known_locations=(
-								"/usr/share/beef/"
-								"/usr/share/beef-xss/"
-								"/opt/beef/"
-								"/opt/beef-project/"
-								#Custom BeEF location (set=0)
+								"/var/lib/dhcp/dhcpd.leases"
+								"/var/state/dhcp/dhcpd.leases"
+								"/var/lib/dhcpd/dhcpd.leases"
 							)
+possible_beef_known_locations=(
+									"/usr/share/beef/"
+									"/usr/share/beef-xss/"
+									"/opt/beef/"
+									"/opt/beef-project/"
+									#Custom BeEF location (set=0)
+								)
 
 #Distros vars
 known_compatible_distros=(
@@ -211,10 +217,10 @@ known_compatible_distros=(
 						)
 
 known_arm_compatible_distros=(
-							"Raspbian"
-							"Parrot arm"
-							"Kali arm"
-						)
+								"Raspbian"
+								"Parrot arm"
+								"Kali arm"
+							)
 
 #Hint vars
 declare main_hints=(128 134 163)
@@ -251,6 +257,8 @@ normal_color="\e[1;0m"
 
 #Set different language text strings
 function language_strings() {
+
+	debug_print
 
 	declare -A unknown_chipset
 	unknown_chipset["ENGLISH"]="Unknown"
@@ -338,7 +346,7 @@ function language_strings() {
 	et_misc_texts["SPANISH",4]="Con este ataque has de usar un sniffer externo para intentar obtener contraseñas de los clientes conectados a la red"
 	et_misc_texts["FRENCH",4]="Avec cette attaque, vous devez utiliser un sniffeur pour tenter d'obtenir les mots de passe des clients connectés au réseau"
 	et_misc_texts["CATALAN",4]="Amb aquest atac has d'utilitzar un sniffer extern per intentar obtenir contrasenyes dels clients connectats a la xarxa"
-	et_misc_texts["PORTUGUESE",4]="Com este ataque você tem que usar um sniffer externa para tentar obter as senhas dos clientes conectados à rede"
+	et_misc_texts["PORTUGUESE",4]="Com este ataque você tem que usar um sniffer externo para tentar obter as senhas dos clientes conectados à rede"	et_misc_texts["RUSSIAN",4]="С этой атакой вам нужно использовать внешний сниффер для попытки получить пароли клиентов, подключённых к сети"
 	et_misc_texts["RUSSIAN",4]="С этой атакой вам нужно использовать внешний сниффер для попытки получить пароли клиентов, подключённых к сети"
 	et_misc_texts["GREEK",4]="Με αυτή την επίθεση θα πρέπει να χρησιμοποιήσετε έναν εξωτερικό sniffer για να μπορέσετε να υποκλέψετε κωδικούς πρόσβασης από τους χρήστες που είναι συνδεδεμένοι στο δίκτυο"
 
@@ -426,7 +434,7 @@ function language_strings() {
 	et_misc_texts["SPANISH",15]="Portal de Internet"
 	et_misc_texts["FRENCH",15]="Portail Internet"
 	et_misc_texts["CATALAN",15]="Portal d&#39;Internet"
-	et_misc_texts["PORTUGUESE",15]="Portal Internet"
+	et_misc_texts["PORTUGUESE",15]="Portal de Internet"
 	et_misc_texts["RUSSIAN",15]="Интернет-портал"
 	et_misc_texts["GREEK",15]="Internet Portal"
 
@@ -619,7 +627,7 @@ function language_strings() {
 	arr["SPANISH",11]="Saliendo de airgeddon script v${airgeddon_version} - Nos vemos pronto! :)"
 	arr["FRENCH",11]="Fermeture du script airgeddon v${airgeddon_version} - A bientôt! :)"
 	arr["CATALAN",11]="Sortint de airgeddon script v${airgeddon_version} - Ens veiem aviat! :)"
-	arr["PORTUGUESE",11]="Saindo do script airgeddon  v${airgeddon_version} - Até breve! :)"
+	arr["PORTUGUESE",11]="Saindo do script airgeddon v${airgeddon_version} - Até breve! :)"
 	arr["RUSSIAN",11]="Выход из скрипта airgeddon v${airgeddon_version} - До встречи! :)"
 	arr["GREEK",11]="Κλείσιμο του airgeddon v${airgeddon_version} - Αντίο :)"
 
@@ -651,7 +659,7 @@ function language_strings() {
 	arr["SPANISH",15]="Esta interfaz ha cambiado su nombre al ponerse en modo managed. Se ha seleccionado automáticamente"
 	arr["FRENCH",15]="Le nom de l'interface a changé lors du passage en mode managed. Elle a été sélectionnée automatiquement"
 	arr["CATALAN",15]="Aquesta interfície ha canviat de nom al posar-la en mode managed. S'ha triat automàticament"
-	arr["PORTUGUESE",15]="Esta interface mudou de nome, colocando em modo managed e selecionando automaticamente"
+	arr["PORTUGUESE",15]="Esta interface mudou de nome ao ser colocanda em modo managed. Ela foi selecionanda automaticamente"
 	arr["RUSSIAN",15]="Интерфейс изменил имя во время перевода в управляемый режим. Выбран автоматически"
 	arr["GREEK",15]="Η διεπάφη άλλαξε όνομα καθώς ήταν σε ετερόκλητη κατάσταση. Επιλέχθηκε αυτόματα"
 
@@ -699,7 +707,7 @@ function language_strings() {
 	arr["SPANISH",21]="Esta interfaz ha cambiado su nombre al ponerla en modo monitor. Se ha seleccionado automáticamente"
 	arr["FRENCH",21]="Le nom de l'interface à changé lors de l'activation du mode moniteur. Elle a été automatiquement sélectionnée"
 	arr["CATALAN",21]="Aquesta interfície ha canviat de nom al posar-la en mode monitor. S'ha seleccionat automàticament"
-	arr["PORTUGUESE",21]="Esta interface mudou de nome, colocando em modo monitor e selecionando automaticamente"
+	arr["PORTUGUESE",21]="Esta interface mudou de nome ao ser colocanda em modo monitor. Ela foi selecionanda automaticamente"
 	arr["RUSSIAN",21]="Этот интерфейс изменил своё имя во время перевода в режим монитора. Выбран автоматически"
 	arr["GREEK",21]="Η διεπαφή άλλαξε όνομα καθώς ήταν σε κατάσταση παρακολούθησης"
 
@@ -723,7 +731,7 @@ function language_strings() {
 	arr["SPANISH",24]="Selecciona una interfaz para trabajar con ella :"
 	arr["FRENCH",24]="Sélectionnez l'interface pour travailler :"
 	arr["CATALAN",24]="Seleccionar una interfície per treballar-hi :"
-	arr["PORTUGUESE",24]="Seleccionar uma interface para trabalhar :"
+	arr["PORTUGUESE",24]="Selecione uma interface para trabalhar :"
 	arr["RUSSIAN",24]="Выберите интерфейс для работы :"
 	arr["GREEK",24]="Επιλέξτε διεπαφή :"
 
@@ -1091,7 +1099,7 @@ function language_strings() {
 	arr["SPANISH",70]="Sólo un objetivo detectado. Se ha seleccionado automáticamente"
 	arr["FRENCH",70]="Un seul réseau a été détecté. Il a été automatiquement sélectionné"
 	arr["CATALAN",70]="Només un objectiu detectat. Seleccionat automàticament"
-	arr["PORTUGUESE",70]="Apenas uma rede encontrada. A rede foi selecionada automaticamente"
+	arr["PORTUGUESE",70]="Apenas uma rede encontrada. Ela foi selecionada automaticamente"
 	arr["RUSSIAN",70]="Обнаружена только одна цель. Выбрана автоматически"
 	arr["GREEK",70]="Εντοπίστηκε μόνο ένας στόχος. Επιλέχθηκε αυτόματα"
 
@@ -1127,19 +1135,19 @@ function language_strings() {
 	arr["RUSSIAN",74]="Этот скрипт под лицензией GPLv3 (или более поздней)"
 	arr["GREEK",74]="Αυτό το script είναι υπό την άδεια GPLv3 (ή νεότερη)"
 
-	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to Kcdtv for beta testing and support received"
-	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a Kcdtv por el beta testing y el apoyo recibido"
-	arr["FRENCH",75]="Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", aux gens des forums qui m'ont aidés, à mes collaborateurs, aux traducteurs et tout spécialement à Kcdtv pour les tests en phase bêta et son soutien"
-	arr["CATALAN",75]="Agraïments al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv per les proves beta i el suport rebut"
-	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv por testes beta e também a todo apoio recebido"
-	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv за бета тестирование и полученную поддержку"
-	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
+	arr["ENGLISH",75]="Thanks to the \"Spanish pentesting crew\", to the \"Wifislax Staff\", to the forums people who help me, my collaborators, translators and specially to Kcdtv and xtonousou for beta testing and support received"
+	arr["SPANISH",75]="Gracias al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gente de los foros que me ayuda, a mis colaboradores, traductores y en especial a Kcdtv y xtonousou por el beta testing y el apoyo recibido"
+	arr["FRENCH",75]="Merci au \"Spanish pentesting crew\" , au \"Wifislax Staff\", aux gens des forums qui m'ont aidés, à mes collaborateurs, aux traducteurs et tout spécialement à Kcdtv et xtonousou pour les tests en phase bêta et son soutien"
+	arr["CATALAN",75]="Agraïments al \"Spanish pentesting crew\", al \"Wifislax Staff\", a la gent dels fòrums que m'ajuda, als meus col·laboradors, traductors i especialment al Kcdtv i xtonousou per les proves beta i el suport rebut"
+	arr["PORTUGUESE",75]="Agradecimentos a \"Spanish pentesting crew\", \"Wifislax Staff\", as pessoas dos fóruns por me ajudar, os colaboradores, tradutores e especialmente para Kcdtv e xtonousou por testes beta e também a todo apoio recebido"
+	arr["RUSSIAN",75]="Спасибо \"Spanish pentesting crew\", за \"Wifislax Staff\", людям с форумов, которые мне помогают, тем, кто принимает участие в проекте, переводчикам и особенно Kcdtv и xtonousou за бета тестирование и полученную поддержку"
+	arr["GREEK",75]="Τις ευχαριστίες μου στην \"Ισπανική ομάδα pentesting\", στο \"Wifislax Staff\", στα άτομα από το forum που με βοηθάνε, στους συνεργάτες μου, στους μεταφραστές και ειδικά στον Kcdtv και xtonousou για το beta testing και την υποστήριξη που λάβαμε από αυτόν"
 
 	arr["ENGLISH",76]="Invalid menu option was chosen"
 	arr["SPANISH",76]="Opción del menú no válida"
 	arr["FRENCH",76]="Option erronée"
 	arr["CATALAN",76]="Opció del menú no vàlida"
-	arr["PORTUGUESE",76]="Opção do menu inválida"
+	arr["PORTUGUESE",76]="Opção inválida"
 	arr["RUSSIAN",76]="Выбрана недействительная опция"
 	arr["GREEK",76]="Επιλέχθηκε άκυρη επιλογή μενού"
 
@@ -1211,7 +1219,7 @@ function language_strings() {
 	arr["SPANISH",85]="Enviadme errores o sugerencias a ${mail}"
 	arr["FRENCH",85]="Envoyer des erreurs ou des suggestions à ${mail}"
 	arr["CATALAN",85]="Envieu-me errorrs o suggeriments a ${mail}"
-	arr["PORTUGUESE",85]="Enviar erros ou sugestões para ${mail}"
+	arr["PORTUGUESE",85]="Envie erros ou sugestões para ${mail}"
 	arr["RUSSIAN",85]="Отправляйте ошибки и предложения мне на почту ${mail}"
 	arr["GREEK",85]="Στείλτε μου αναφορές για bugs ή συστάσεις στο ${mail}"
 
@@ -1499,7 +1507,7 @@ function language_strings() {
 	arr["SPANISH",121]="5.  Capturar Handshake"
 	arr["FRENCH",121]="5.  Capture du Handshake"
 	arr["CATALAN",121]="5.  Captura Handshake"
-	arr["PORTUGUESE",121]="5.  Captura de Handshake"
+	arr["PORTUGUESE",121]="5.  Capturar Handshake"
 	arr["RUSSIAN",121]="5.  Захват рукопожатия"
 	arr["GREEK",121]="5.  Καταγράψτε την Χειραψία"
 
@@ -1523,7 +1531,7 @@ function language_strings() {
 	arr["SPANISH",124]="modo monitor requerido en captura"
 	arr["FRENCH",124]="modo moniteur nécessaire pour la capture"
 	arr["CATALAN",124]="mode monitor requerit en captura"
-	arr["PORTUGUESE",124]="Modo de monitor necessário para captura"
+	arr["PORTUGUESE",124]="Modo monitor necessário para captura"
 	arr["RUSSIAN",124]="для захвата необходим режим монитора"
 	arr["GREEK",124]="χρειάζεται η κατάσταση παρακολούθησης για την καταγραφή"
 
@@ -1531,7 +1539,7 @@ function language_strings() {
 	arr["SPANISH",125]="No hay una red objetivo válida seleccionada. Serás redirigido para seleccionar una"
 	arr["FRENCH",125]="Le choix du réseau cible est incorrect. Vous allez être redirigé vers le menu de sélection pour effectuer un nouveau choix"
 	arr["CATALAN",125]="No hi ha una xarxa objectiu vàlida seleccionada. Seràs redirigit per seleccionar una"
-	arr["PORTUGUESE",125]="Nenhuma rede válida selecionada. Você será redirecionado para selecionar um"
+	arr["PORTUGUESE",125]="Nenhuma rede válida selecionada. Você será redirecionado para selecionar uma"
 	arr["RUSSIAN",125]="Не выбрана подходящая целевая сеть. Вы будете перенаправлены на выбор сети"
 	arr["GREEK",125]="Δεν έχει επιλεχθεί κάποιο έγκυρο δίκτυο-στόχος. Θα καθοδηγηθείτε ώστε να επιλέξετε ένα"
 
@@ -1555,7 +1563,7 @@ function language_strings() {
 	arr["SPANISH",128]="Selecciona una interfaz wifi para poder realizar más acciones que con una interfaz ethernet"
 	arr["FRENCH",128]="Veuillez sélectionner une carte wifi au lieu d'une carte ethernet afin d'être en mesure de réaliser plus d'actions"
 	arr["CATALAN",128]="Seleccioneu una targeta wifi per treballar amb la finalitat de ser capaç de fer més accions que amb una interfície ethernet"
-	arr["PORTUGUESE",128]="Selecione uma interface wifi para realizar mais ações do que com interface ethernet"
+	arr["PORTUGUESE",128]="Selecione uma interface wifi para realizar mais ações do que com uma interface ethernet"
 	arr["RUSSIAN",128]="Выберите wifi карту для работы, чтобы вы могли выполнить больше действий, чем с ethernet интерфейсом"
 	arr["GREEK",128]="Επιλέξτε κάρτα wifi ώστε να μπορείτε να έχετε περισσοτερες επιλογές από μία διεπαφή ethernet"
 
@@ -1587,7 +1595,7 @@ function language_strings() {
 	arr["SPANISH",132]="Limpiar un fichero de Handshake se recomienda solo para ficheros grandes. Es mejor hacer una copia de seguridad antes, a veces el fichero se puede corromper al limpiarlo"
 	arr["FRENCH",132]="Épurer le fichier contenant le Handshake est seulement recommandable si le fichier est volumineux. Si vous décidez d'épurer le fichier il est conseillé de faire une copie de sauvegarde du fichier originel, l'opération de nettoyage comporte des risques et peut le rendre illisible"
 	arr["CATALAN",132]="Netejar un fitxer de Handshake es recomana només per a fitxers grans. És millor fer una còpia de seguretat abans, de vegades el fitxer es pot corrompre al netejar-lo"
-	arr["PORTUGUESE",132]="Limpar um Handshake é recomendado apenas para arquivos grandes. Melhor fazer um backup antes de otimizar o arquivo; as vezes pode corromper o arquivo ao limpar"
+	arr["PORTUGUESE",132]="Limpar um Handshake é recomendado apenas para arquivos grandes. Melhor fazer um backup antes de otimizar o arquivo; as vezes o arquivo pode corromper ao limpar"
 	arr["RUSSIAN",132]="Очистка файла рукопожатия рекомендована только для файлов больших размеров. Лучше иметь резервную копию, иногда во время очистки файл может быть повреждён"
 	arr["GREEK",132]="Ο καθαρισμός ενός αρχείου Χειραψίας συνιστάται μόνο για μεγάλου μεγέθους αρχεία. Καλύτερα κρατήστε ένα backup, μερικές φορές το αρχείο μπορεί να καταστραφεί κατά τη διάρκεια του καθαρισμού"
 
@@ -1603,7 +1611,7 @@ function language_strings() {
 	arr["SPANISH",134]="Si tu Linux es una máquina virtual, es posible que las tarjetas wifi integradas sean detectadas como ethernet. Utiliza una tarjeta wifi externa usb"
 	arr["FRENCH",134]="Si votre système d'exploitation Linux est lancé dans une machine virtuelle, il est probable que les cartes wifi internes soient détectées comme des cartes ethernet. Il vaut mieux dans ce cas utiliser un dispositif wifi usb"
 	arr["CATALAN",134]="Si el teu Linux és a una màquina virtual, és possible que les targetes wifi integrades siguin detectades com ethernet. Utilitza una targeta wifi externa usb"
-	arr["PORTUGUESE",134]="Se seu Linux é uma máquina virtual, suas placas wireless integradas são detectadas como ethernet. Use uma placa usb externa"
+	arr["PORTUGUESE",134]="Se seu Linux for uma máquina virtual, suas placas wireless integradas são detectadas como ethernet. Use uma placa usb externa"
 	arr["RUSSIAN",134]="Если ваш Linux в виртуально машине, то интегрированная wifi карта может определиться как Ethernet. Используйте внешнюю usb wifi карту"
 	arr["GREEK",134]="Αν το Linux σας είναι εικονική μηχανή, είναι πιθανόν οι ενσωματωμένες κάρτες wifi να εντοπιστούν σαν ethernet. Χρησιμοποιήστε μία εξωτερική usb κάρτα wifi"
 
@@ -1619,7 +1627,7 @@ function language_strings() {
 	arr["SPANISH",136]="La obtención de un Handshake es solo para redes con encriptación WPA o WPA2"
 	arr["FRENCH",136]="L'obtention d'un Handshake est seulement possible sur des réseaux protégés par chiffrement WPA ou WPA2"
 	arr["CATALAN",136]="L'obtenció d'un Handshake és només per a xarxes amb encriptació WPA o WPA2"
-	arr["PORTUGUESE",136]="A obtenção de um Handshake é somente para redes com criptografia WPA ou WPA2"
+	arr["PORTUGUESE",136]="A obtenção de um Handshake só é possível em redes com criptografia WPA ou WPA2"
 	arr["RUSSIAN",136]="Получение рукопожатия только для сетей с шифрованием WPA или WPA2"
 	arr["GREEK",136]="Η απόκτηση μιας Χειραψίας ισχύει μόνο σε δίκτυα με κρυπτογράφηση WPA ή WPA2"
 
@@ -1683,7 +1691,7 @@ function language_strings() {
 	arr["SPANISH",144]="No cierres manualmente ninguna ventana, el script lo hará cuando proceda. En unos 20 segundos como máximo sabrás si conseguiste el Handshake"
 	arr["FRENCH",144]="Ne pas fermer une des fenêtres manuellement:  Le script va le faire automatiquement si besoin est. Vos saurez dans tout a plus 20 secondes si avez obtenu le Handshake"
 	arr["CATALAN",144]="No tanquis manualment cap finestra, el script ho farà quan escaigui. En uns 20 segons com a màxim sabràs si vas aconseguir el Handshake"
-	arr["PORTUGUESE",144]="Não feche nenhuma janela manualmente, o script fechara quando necessário. Em cerca de 20 segundos no máximo você vai saber se você tem o Handshake"
+	arr["PORTUGUESE",144]="Não feche nenhuma janela manualmente, o script fechara quando necessário. Em cerca de 20 segundos no máximo você vai saber se tem o Handshake"
 	arr["RUSSIAN",144]="Не закрывайте вручную какое-либо окно, скрипт сделает это когда нужно. Примерно в максимум 20 секунд вы узнаете, получили ли вы рукопожатие"
 	arr["GREEK",144]="Μην επιχειρήσετε το κλείσιμο κάποιου παραθύρου χειροκίνητα, εάν χρειαστεί το script θα το κάνει μόνο του. Σε περίπου 20 δευτερόλεπτα το μέγιστο θα μάθετε αν αποκτήσατε την Χειραψία"
 
@@ -1763,7 +1771,7 @@ function language_strings() {
 	arr["SPANISH",154]="Introduce la ruta al fichero :"
 	arr["FRENCH",154]="Entrez le chemin vers le fichier :"
 	arr["CATALAN",154]="Introdueix la ruta al fitxer :"
-	arr["PORTUGUESE",154]="Digite o caminho para o arquivo :"
+	arr["PORTUGUESE",154]="Digite o caminho do arquivo :"
 	arr["RUSSIAN",154]="Установить путь до файла :"
 	arr["GREEK",154]="Θέστε μονοπάτι για το αρχείο :"
 
@@ -1771,7 +1779,7 @@ function language_strings() {
 	arr["SPANISH",155]="El directorio existe pero no se especificó nombre de fichero. Se autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["FRENCH",155]="Le dossier existe mais sans qu'aucun nom pour le fichier soit précisé. Il sera donc appelé [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["CATALAN",155]="El directori existeix però no s'ha especificat nom de fitxer. Es autogenerará [${normal_color}${suggested_filename}${yellow_color}]"
-	arr["PORTUGUESE",155]="O diretório existe, mas o  nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}${suggested_filename}${yellow_color}]"
+	arr["PORTUGUESE",155]="O diretório existe, mas o nome do arquivo não foi especificado. Será gerado automaticamente [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["RUSSIAN",155]="Директория существует, но вы не указали имя файла. Оно будет сгенерировано автоматически [${normal_color}${suggested_filename}${yellow_color}]"
 	arr["GREEK",155]="Ο κατάλογος υπάρχει αλλά δεν έχετε προσδιορίσει το όνομα του αρχείου [${normal_color}${suggested_filename}${yellow_color}]"
 
@@ -1803,7 +1811,7 @@ function language_strings() {
 	arr["SPANISH",159]="El fichero no necesita ser limpiado/optimizado"
 	arr["FRENCH",159]="Le fichier n'a pas besoin d'être nettoyé/optimisé"
 	arr["CATALAN",159]="El fitxer no necessita ser netejat/optimitzat"
-	arr["PORTUGUESE",159]="O arquivo não precisa ser limpos/otimizado"
+	arr["PORTUGUESE",159]="O arquivo não precisa ser limpo/otimizado"
 	arr["RUSSIAN",159]="Файлу не требуется очистка/оптимизация"
 	arr["GREEK",159]="Το αρχείο δεν χρειάζεται να καθαριστεί/βελτιστοποιηθεί"
 
@@ -1955,7 +1963,7 @@ function language_strings() {
 	arr["SPANISH",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
 	arr["FRENCH",178]="Pour cracker la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir un Handshake"
 	arr["CATALAN",178]="Per desencriptar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
-	arr["PORTUGUESE",178]="Para decifrar a senha de rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
+	arr["PORTUGUESE",178]="Para decifrar a senha de uma rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
 	arr["RUSSIAN",178]="Для расшифровки ключа сетей WPA/WPA2, файл захвата должен содержать четырёхэтапное рукопожатие"
 	arr["GREEK",178]="Για να αποκρυπτογραφήσετε το κλειδί ενός WPA/WPA2 δικτύου, το αρχείο καταγραφής πρέπει να περιέχει μία Χειραψία"
 
@@ -2057,7 +2065,7 @@ function language_strings() {
 
 	arr["ENGLISH",191]="${blue_color}airgeddon can't find the directory path where you have BeEF installed. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
 	arr["SPANISH",191]="${blue_color}airgeddon no ha podido encontrar la ruta del directorio donde tienes instalado BeEF. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",191]="${pending_of_translation} ${blue_color}airgeddon n'a pas pu trouver le chemin vers le répertoire où vous avez installé BeEF. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["FRENCH",191]="${blue_color}airgeddon n'a pas trouvé le dossier qui contient BeEF. ${green_color}Voulez-vous l'indiquer manuellement? ${normal_color}[y/n]"
 	arr["CATALAN",191]="${blue_color}airgeddon no ha pogut trobar la ruta del directori on tens instal·lat BeEF. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",191]="${blue_color}O airgeddon não conseguiu encontrar o diretório onde você instalou o BeEF. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",191]="${blue_color}airgeddon не может найти путь к каталогу, где вы установили BeEF. ${green_color}Вы хотите ввести его вручную? ${normal_color}[y/n]"
@@ -2203,7 +2211,7 @@ function language_strings() {
 	arr["SPANISH",209]="El juego de caracteres elegido es : [${normal_color}${showcharset}${blue_color}]"
 	arr["FRENCH",209]="Le jeu de caractères définit est : [${normal_color}${showcharset}${blue_color}]"
 	arr["CATALAN",209]="El joc de caràcters escollit és : [${normal_color}${showcharset}${blue_color}]"
-	arr["PORTUGUESE",209]="O conjunto de caracteres é:: [${normal_color}${showcharset}${blue_color}]"
+	arr["PORTUGUESE",209]="Conjunto de caracteres escolhido : [${normal_color}${showcharset}${blue_color}]"
 	arr["RUSSIAN",209]="Символы для использования : [${normal_color}${showcharset}${blue_color}]"
 	arr["GREEK",209]="Η συμβολοσειρά που θα χρησιμοποιηθεί είναι : [${normal_color}${showcharset}${blue_color}]"
 
@@ -2235,7 +2243,7 @@ function language_strings() {
 	arr["SPANISH",213]="Existe una nueva versión del script (v${airgeddon_last_version}). Será descargada"
 	arr["FRENCH",213]="Une nouvelle version du script est disponible (v${airgeddon_last_version}). Lancement du téléchargement"
 	arr["CATALAN",213]="Hi ha una nova versió dels script (v${airgeddon_last_version}). Serà descarregada"
-	arr["PORTUGUESE",213]="Uma nova versão do script (v${airgeddon_last_version}). Download será iniciado"
+	arr["PORTUGUESE",213]="Existe uma nova versão do script (v${airgeddon_last_version}). Download será iniciado"
 	arr["RUSSIAN",213]="Существует новая версия скрипта (v${airgeddon_last_version}). Она будет загружена"
 	arr["GREEK",213]="Υπάρχει νεότερη έκδοση του script (v${airgeddon_last_version}). Θα κατέβει"
 
@@ -2251,7 +2259,7 @@ function language_strings() {
 	arr["SPANISH",215]="Una contraseña WPA/WPA2 siempre tiene como mínimo una longitud de 8"
 	arr["FRENCH",215]="Un mot de passe WPA/WPA2 a une longueur minimale de 8 caractères"
 	arr["CATALAN",215]="Una contrasenya WPA/WPA2 sempre té com a mínim una longitud de 8"
-	arr["PORTUGUESE",215]="Uma senha WPA/WPA2 sempre tem no mínimo 8 caracteres"
+	arr["PORTUGUESE",215]="Uma senha WPA/WPA2 deve ter no mínimo 8 caracteres"
 	arr["RUSSIAN",215]="WPA/WPA2 пароли всегда имеют длину минимум в 8 символов"
 	arr["GREEK",215]="οι κωδικοί πρόσβασης WPA/WPA2 έχουν πάντα ελάχιστο μήκος 8"
 
@@ -2259,7 +2267,7 @@ function language_strings() {
 	arr["SPANISH",216]="No se encontraron redes con Handshake capturado en el fichero seleccionado"
 	arr["FRENCH",216]="Aucun réseau avec son Handshake n'a été trouvé dans le fichier sélectionné"
 	arr["CATALAN",216]="No s'han trobat xarxes amb Handshake capturat en el fitxer seleccionat"
-	arr["PORTUGUESE",216]="Nenhuma rede encontrada no arquivo Handshake capturado no arquivo selecionado"
+	arr["PORTUGUESE",216]="Nenhuma rede encontrada no arquivo Handshake selecionado "
 	arr["RUSSIAN",216]="В выбранном файле сети с захваченным рукопожатием не найдены"
 	arr["GREEK",216]="Δεν βρέθηκαν δίκτυα με Χειραψία στο επιλεγμένο αρχείο"
 
@@ -2403,7 +2411,7 @@ function language_strings() {
 	arr["SPANISH",234]="Enhorabuena!! Parece que la clave ha sido desencriptada"
 	arr["FRENCH",234]="Félicitations!! Il semble que la clef a été décryptée"
 	arr["CATALAN",234]="Enhorabona!! Sembla que la clau ha estat desencriptada"
-	arr["PORTUGUESE",234]="Parabéns!! Parece que a senha foi  descriptografada"
+	arr["PORTUGUESE",234]="Parabéns!! Parece que a senha foi descriptografada"
 	arr["RUSSIAN",234]="Поздравления!! Похоже на то, что ключ был расшифрован"
 	arr["GREEK",234]="Συγχαρητήρια!! Φαίνεται πως το κλειδί αποκρυπτογραφήθηκε"
 
@@ -2411,7 +2419,7 @@ function language_strings() {
 	arr["SPANISH",235]="¿Quieres guardar el fichero de trofeo con la clave desencriptada? ${normal_color}[y/n]"
 	arr["FRENCH",235]="Voulez-vous enregistrer le fichier trophée avec le mot de passe déchiffré? ${normal_color}[y/n]"
 	arr["CATALAN",235]="¿Vols desar el fitxer de trofeu amb la clau desencriptada? ${normal_color}[y/n]"
-	arr["PORTUGUESE",235]="Você quer salvar arquivo com a senha descriptografado? ${normal_color}[y/n]"
+	arr["PORTUGUESE",235]="Você quer salvar arquivo com a senha descriptografada? ${normal_color}[y/n]"
 	arr["RUSSIAN",235]="Вы хотите сохранить трофейный файл с расшифрованным паролем? ${normal_color}[y/n]"
 	arr["GREEK",235]="Θέλετε να αποθηκεύσετε το αρχείο τρόπαιο με τον αποκρυπτογραφημένο κωδικό πρόσβασης; ${normal_color}[y/n]"
 
@@ -2475,7 +2483,7 @@ function language_strings() {
 	arr["SPANISH",243]="Fichero de reglas seleccionado: ${pink_color}${RULES}${normal_color}"
 	arr["FRENCH",243]="Fichier règles sélectionné: ${pink_color}${RULES}${normal_color}"
 	arr["CATALAN",243]="Fitxer de regles seleccionat: ${pink_color}${RULES}${normal_color}"
-	arr["PORTUGUESE",243]="Arquivo regras selecionadas: ${pink_color}${RULES}${normal_color}"
+	arr["PORTUGUESE",243]="Arquivo de regras selecionado: ${pink_color}${RULES}${normal_color}"
 	arr["RUSSIAN",243]="Выбранный файл правил: ${pink_color}${RULES}${normal_color}"
 	arr["GREEK",243]="Επιλεγμένο αρχείο κανόνων: ${pink_color}${RULES}${normal_color}"
 
@@ -2483,7 +2491,7 @@ function language_strings() {
 	arr["SPANISH",244]="Los ataques basados en reglas modifican las palabras de la lista del diccionario según las reglas escritas en el propio fichero de reglas. Son muy útiles. Algunas distros ya traen ficheros predefinidos de reglas (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["FRENCH",244]="Les attaques basées sur des règles modifient les mots du dictionnaire selon les règles établies dans le fichier règles. Ils sont très utiles. Certaines distros comportent des fichiers de règles prédéfinies (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["CATALAN",244]="Els atacs basats en regles modifiquen les paraules de la llista del diccionari segons les regles escrites en el propi fitxer de regles. Són molt útils. Algunes distros ja porten fitxers de regles predefinits (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
-	arr["PORTUGUESE",244]="Ataques baseados em regras mudaram as palavras de um dicionário de acordo com as regras escritas. Eles são muito úteis. Algumas distros já possuem regras predefinidas em (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
+	arr["PORTUGUESE",244]="Ataques baseados em regras mudam as palavras de um dicionário de acordo com as regras escritas. Eles são muito úteis. Algumas distros já possuem regras predefinidas em (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["RUSSIAN",244]="Атака, основанная на правилах, изменяет слова из словаря в соответствии с правилами, написанными в самом файле правил. Они очень полезны. Некоторые дистрибутивы имеют предустановленные правила (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 	arr["GREEK",244]="Οι επιθέσεις κανόνων αλλάζουν τις λέξεις του λεξικού ανάλογα με τους κανόνες που έχουν γραφτεί στο αρχείο κανόνων. Είναι πολύ χρήσιμοι. Κάποιες διανομές έχουν προκαθορισμένα αρχεία κανόνων (Kali: /usr/share/hashcat/rules // Wifislax: /opt/hashcat/rules)"
 
@@ -2499,7 +2507,7 @@ function language_strings() {
 	arr["SPANISH",246]="Cada vez que veas un texto con el prefijo ${cyan_color}${pending_of_translation}${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
 	arr["FRENCH",246]="Chaque fois que vous voyez un texte précédé par ${cyan_color}${pending_of_translation}${pink_color} acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
 	arr["CATALAN",246]="Cada vegada que vegis un text amb el prefix ${cyan_color}${pending_of_translation}${pink_color} acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
-	arr["PORTUGUESE",246]="Cada vez que você vê um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
+	arr["PORTUGUESE",246]="Cada vez que você ver um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
 	arr["RUSSIAN",246]="Каждый раз, когда вы видите текст с префиксом ${cyan_color}${pending_of_translation}${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
 	arr["GREEK",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα ${cyan_color}${pending_of_translation}${pink_color} ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
 
@@ -2529,7 +2537,7 @@ function language_strings() {
 
 	arr["ENGLISH",250]="If you see any bad translation or just want ${cyan_color}${pending_of_translation}${pink_color} marks to dissapear, write me to ${mail} to collaborate with translations"
 	arr["SPANISH",250]="Si ves alguna traducción incorrecta o quieres que desparezcan las marcas ${cyan_color}${pending_of_translation}${pink_color}, escríbeme a ${mail} para colaborar con las traducciones"
-	arr["FRENCH",250]="Si vous voyez des erreurs contresens ou voulez voir les marques ${cyan_color}${pending_of_translation}${pink_color} disparaitre, écrivez à ${mail} pour collaborer avec les traductions"
+	arr["FRENCH",250]="Si vous voyez des erreurs et contresens ou si vous voulez voir les marques ${cyan_color}${pending_of_translation}${pink_color} disparaitre, écrivez à ${mail} pour collaborer avec les traductions"
 	arr["CATALAN",250]="Si veus alguna traducció incorrecta o vols que desapareguin les marques ${cyan_color}${pending_of_translation}${pink_color}, escriu-me a ${mail} per col·laborar amb les traduccions"
 	arr["PORTUGUESE",250]="Se você ver qualquer erro de tradução ou quer que as marcas ${cyan_color}${pending_of_translation}${pink_color} sejam retiradas, escreva para ${mail} para colaborar com as traduções"
 	arr["RUSSIAN",250]="Если вы видите плохой перевод или просто хотите снять пометку ${cyan_color}${pending_of_translation}${pink_color} напишите мне на ${mail} для сотрудничества с переводчиками"
@@ -2643,7 +2651,7 @@ function language_strings() {
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
 	arr["FRENCH",264]="Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
 	arr["CATALAN",264]="L'atac de portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
-	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha  da rede sem fio digitando-o em nosso site"
+	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha da rede sem fio digitando-o em nosso site"
 	arr["RUSSIAN",264]="Атака с перехватывающим порталом заключается в том, что мы ждём когда кто-то из пользователей введёт верный пароль от Wi-Fi на веб-странице, которую мы ему показываем"
 	arr["GREEK",264]="Η επίθεση captive portal κάνει έναν από τους χρήστες του δικτύου να μας παρέχει τον κωδικό πρόσβασης του δικτύου wifi βάζοντάς τον στο portal μας"
 
@@ -2684,7 +2692,7 @@ function language_strings() {
 	arr["FRENCH",269]="Pour mener à bien une attaque Evil Twin il vous faut être dans de bonnes conditions d'émission et de réception tantôt avec le point d'accès qu'avec le(s) client(s)"
 	arr["CATALAN",269]="Per realitzar un atac Evil Twin et caldrà estar molt a prop de l'AP objectiu o tenir una antena wifi molt potent. El teu senyal ha d'arribar als clients igual de fort o més que la de l'AP legítim"
 	arr["PORTUGUESE",269]="Para fazer um ataque Evil Twin você precisa estar perto do alvo ou ter uma antena wifi muito poderosa. Seu sinal deve atingir os clientes igualmente forte ou mais do que o AP legítimo"
-	arr["RUSSIAN",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную wifi антенну.  Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
+	arr["RUSSIAN",269]="Для выполнения атаки злой двойник, вы должны быть очень близко к целевой ТД или иметь очень мощную wifi антенну. Ваш сигнал должен достигать клиентов с такой же силой, или даже сильнее, чем легитимная ТД"
 	arr["GREEK",269]="Για να πραγματοποιηθεί μία επίθεση Evil Twin θα πρέπει να είστε αρκετά κοντά στο AP-στόχο ή να έχετε μία πολύ ισχυρή κεραία. Το σήμα πρέπει να φτάνει στους χρήστες το ίδιο ή περισσότερο από το αρχικό AP"
 
 	arr["ENGLISH",270]="Evil Twin attack just AP"
@@ -3677,7 +3685,7 @@ function language_strings() {
 	arr["CATALAN",393]="Escriu un valor en segons (10-100) per al temps d'espera o prem [Enter] per acceptar el valor proposat [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["PORTUGUESE",393]="Insira um valor em segundos (10-100) para o timeout ou pressione [Enter] para aceitar o valor padrão [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 	arr["RUSSIAN",393]="Введите значение в секундах (10-100) для тайм-аута или нажмите [Enter], чтобы оставить по умолчанию [${normal_color}${timeout_secs_per_pin}${green_color}] :"
-	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή  [${normal_color}${timeout_secs_per_pin}${green_color}] :"
+	arr["GREEK",393]="Εισάγετε μια τιμή σε δευτερόλεπτα (10-100) για το timeout ή πατήστε [Enter] για να τεθεί η προεπιλεγμένη τιμή [${normal_color}${timeout_secs_per_pin}${green_color}] :"
 
 	arr["ENGLISH",394]="Type value in seconds (25-2400) for Pixie Dust timeout or press [Enter] to accept the proposal [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
 	arr["SPANISH",394]="Escribe un valor en segundos (25-2400) para el timeout de Pixie Dust o pulsa [Enter] para aceptar el valor propuesto [${normal_color}${timeout_secs_per_pixiedust}${green_color}] :"
@@ -3777,7 +3785,7 @@ function language_strings() {
 
 	arr["ENGLISH",406]="No BeEF executable was detected in given directory"
 	arr["SPANISH",406]="No se ha detectado un ejecutable de BeEF en el directorio indicado"
-	arr["FRENCH",406]="BeEF n'est pas présent dans le dossierque vous avez indiqué"
+	arr["FRENCH",406]="BeEF n'est pas présent dans le dossier que vous avez indiqué"
 	arr["CATALAN",406]="No s'ha detectat un executable de BeEF al directori indicat"
 	arr["PORTUGUESE",406]="O executável do BeEF não foi detectado no diretório especificado"
 	arr["RUSSIAN",406]="Ни один исполняемый файл BeEF не был обнаружен в заданной директории"
@@ -3785,7 +3793,7 @@ function language_strings() {
 
 	arr["ENGLISH",407]="BeEF preparation"
 	arr["SPANISH",407]="Preparación BeEF"
-	arr["FRENCH",407]="${pending_of_translation} Préparation BeEF"
+	arr["FRENCH",407]="Mise en place de BeEF"
 	arr["CATALAN",407]="Preparació BeEF"
 	arr["PORTUGUESE",407]="Preparando BeEF"
 	arr["RUSSIAN",407]="Подготовка BeEF"
@@ -3795,7 +3803,7 @@ function language_strings() {
 	arr["SPANISH",408]="Si instalaste BeEF manualmente, puede que airgeddon no sea capaz de encontrarlo y la opción del ataque te aparezca restringida. Puedes intentar solucionarlo usando la opción del menú especial para ello. Esto sólo funcionará si BeEF ya está instalado correctamente y el único problema que tienes es que el script no lo detecta"
 	arr["FRENCH",408]="Si BeEF a été installé manuellement, il se peut qu'airgeddon ne soit pas en mesure de le trouver. L'option dédiée ne sera pas accessible. Vous pouvez essayer de la réparer en utilisant l'option consacrée à cette tâche depuis le menu spécial. Ça ne marchera que si BeEf est correctement instalé et c'est le script qui n'est pas capable de le détecter"
 	arr["CATALAN",408]="Si vas instal·lar BeEF manualment, pot ser que airgeddon no sigui capaç de trobar-lo i l'opció de l'atac t'aparegui restringida. Pots intentar solucionar usant l'opció del menú especial per a això. Això només funcionarà si BeEF ja està instal·lat correctament i l'únic problema que tens és que el script no el detecta"
-	arr["PORTUGUESE",408]="Se BeEF foi instalado manualmente, o airgeddon não  pode encontrá-lo automaticamente e a opção de ataque aparecerá bloqueada. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não o detecta"
+	arr["PORTUGUESE",408]="Se BeEF foi instalado manualmente, o airgeddon não pode encontrá-lo automaticamente e a opção de ataque aparecerá bloqueada. Você pode tentar corrigi-lo usando a opção de menu especial para isso. Isso só vai funcionar se BeEF já está instalado com êxito e o único problema que você tem é que o script não o detecta"
 	arr["RUSSIAN",408]="Если вы установили BeEF вручную, airgeddon может быть не в состоянии найти его, и опция атаки в меню может быть ограничена. Для исправления этого, вы можете попытаться решить эту проблему с помощью специального пункта меню. Это сработает только если BeEF уже правильно установлен, и ваша единственная проблема в том, что скрипт не обнаруживает его"
 	arr["GREEK",408]="Εάν έχετε εγκαταστήσει χειροκίνητα το BeEF, το airgeddon μπορεί να μην μπορέσει να το βρεί και η επιλογή της επίθεσης μπορεί να φανεί σαν περιορισμένη. Μπορείτε να προσπαθήσετε να διορθώσετε το πρόβλημα κάνοντας χρήση της ειδικής επιλογής στο μενού. Θα λειτουργήσει μόνο αν το BeEF έχει ήδη εγκατασταθεί σωστά και το μόνο πρόβλημα είναι ότι το script δεν το εντοπίζει"
 
@@ -3809,7 +3817,7 @@ function language_strings() {
 
 	arr["ENGLISH",410]="2.  Try to troubleshoot manually installed BeEF dependency problem"
 	arr["SPANISH",410]="2.  Intentar solucionar problema de dependencia BeEF instalado manualmente"
-	arr["FRENCH",410]="2.  Essayez de résoudre le problème BeEF installé manuellement"
+	arr["FRENCH",410]="2.  Essayer de résoudre les problèmes de dépendances avec BeEF installé manuellement"
 	arr["CATALAN",410]="2.  Intentar solucionar problema de dependència BeEF instal·lat manualment"
 	arr["PORTUGUESE",410]="2.  Tente resolver o problema de dependência do BeEF instalado manualmente"
 	arr["RUSSIAN",410]="2.  Попробуйте устранить проблему вручную установив зависимости BeEF"
@@ -3849,7 +3857,7 @@ function language_strings() {
 
 	arr["ENGLISH",415]="${blue_color}airgeddon knows you have BeEF installed and you pass the validation, but it was unable to locate the right directory path where you have BeEF installed. Knowing the location gives some advantages for the execution because its configuration file can be customized instead of generic. ${green_color}Do you want to enter it manually? ${normal_color}[y/n]"
 	arr["SPANISH",415]="${blue_color}airgeddon sabe que tienes BeEF instalado y pasas la validación, pero no ha podido concretar la ruta del directorio exacto donde tienes instalado BeEF. Conocer la localización exacta tiene algunas ventajas a la hora de ejecutarlo ya que la configuración será personalizada en lugar de ser una configuración genérica. ${green_color}¿Quieres introducirla manualmente? ${normal_color}[y/n]"
-	arr["FRENCH",415]="${pending_of_translation} ${blue_color}airgeddon sait que vous avez installé BeEF et les raisins secs validation, mais n'a pas pu indiquer le chemin exact du répertoire où vous avez installé BeEF. Connaître l'emplacement exact a certains avantages lors de l'exécution depuis la configuration sera personnalisée plutôt qu'une configuration générique. ${green_color}Voulez-vous entrer manuellement? ${normal_color}[y/n]"
+	arr["FRENCH",415]="${blue_color}airgeddon a bien détecté que BeEF est installé mais il n'est malheuruesement pas possible de trouver le dossier le contenant. En l'état actuel des choses il ne sera pas possible de personaliser les parmétres d'éxécution de BeEF. ${green_color}Voulez-vous saisir l'emplacement du dossier? ${normal_color}[y/n]"
 	arr["CATALAN",415]="${blue_color}airgeddon sap que tens BeEF instal·lat i passes la validació, però no ha pogut concretar la ruta del directori exacte on has instal·lat BeEF. Conèixer la localització exacta té alguns avantatges a l'hora d'executar ja que la configuració serà personalitzada en lloc de ser una configuració genèrica. ${green_color}¿Vols introduir-la manualment? ${normal_color}[y/n]"
 	arr["PORTUGUESE",415]="${blue_color}O airgeddon sabe que você instalou o BeEF e validou a instalacão, mas não pôde encontrar o caminho exato do diretório onde você instalou BeEF. Sabendo a localização exata tem algumas vantagens quando executá-lo a configuração será personalizada em vez de uma configuração genérica. ${green_color}Você quer inseri-lo manualmente? ${normal_color}[y/n]"
 	arr["RUSSIAN",415]="${blue_color}airgeddon знает, что у вас установлен BeEF и вы успешно прошли проверку, но скрипт оказался не в состоянии найти правильный путь к каталогу, где вы установили BeEF. Знание расположения даёт некоторые преимущества при выполнении, поскольку появляется возможность настроить его конфигурационный файл, а не использовать настройки по умолчанию. ${green_color}Вы хотите ввести расположение вручную? ${normal_color}[y/n]"
@@ -3857,11 +3865,19 @@ function language_strings() {
 
 	arr["ENGLISH",416]="    You can run BeEF, but it is better if you run the second option before"
 	arr["SPANISH",416]="    Puedes ejecutar BeEF, pero es recomendable ejecutar la segunda opción antes"
-	arr["FRENCH",416]="${pending_of_translation}     Vous pouvez exécuter BeEF, mais il est recommandé d'exécuter la deuxième option de menu avant"
+	arr["FRENCH",416]="    Vous pouvez exécuter BeEF mais il est recommandé d'exécuter préalablement la deuxième option"
 	arr["CATALAN",416]="    Pots executar BeEF, però és recomanable executar la segona opció del menú abans"
 	arr["PORTUGUESE",416]="    Você pode executar BeEF, mas é recomendado executar a segunda opção de menu antes"
 	arr["RUSSIAN",416]="    Вы можете запустить BeEF, но лучше, если вы сначала запустите вторую опцию"
-	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πριν"
+	arr["GREEK",416]="    Μπορείτε να εκτελέσετε το BeEF, αλλά είναι καλύτερα να διαλέξετε τη δεύτερη επιλογή από πρίν"
+
+	arr["ENGLISH",417]="An unexpected error occurred, redirecting to the menu"
+	arr["SPANISH",417]="Ocurrió un error inesperado. Volviendo al menú"
+	arr["FRENCH",417]="${pending_of_translation} Une erreur inattendue s'est produite, retour au menu"
+	arr["CATALAN",417]="${pending_of_translation} Hi ha hagut un error inesperat, redirigint al menú"
+	arr["PORTUGUESE",417]="Ocorreu um erro inesperado, retornando ao menu"
+	arr["RUSSIAN",417]="${pending_of_translation} Непредвиденная ошибка, перенаправляя в меню"
+	arr["GREEK",417]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, γίνεται ανακατεύθυνση στο μενού"
 
 	case "${3}" in
 		"yellow")
@@ -3918,8 +3934,52 @@ function language_strings() {
 	esac
 }
 
+#Print the current line of where this was called and the function's name. Applies to some (which are useful) functions
+function debug_print() {
+
+	if [ ${debug_mode} -eq 2 ]; then
+
+		declare excluded_functions=(
+								"ask_yesno"
+								"check_pending_of_translation"
+								"contains_element"
+								"echo_blue"
+								"echo_brown"
+								"echo_cyan"
+								"echo_green"
+								"echo_green_title"
+								"echo_pink"
+								"echo_red"
+								"echo_red_slim"
+								"echo_white"
+								"echo_yellow"
+								"generate_dynamic_line"
+								"interrupt_checkpoint"
+								"language_strings"
+								"last_echo"
+								"print_hint"
+								"print_large_separator"
+								"print_simple_separator"
+								"read_yesno"
+								"remove_warnings"
+								"special_text_missed_optional_tool"
+								"store_array"
+								"under_construction_message"
+							)
+
+		if (IFS=$'\n'; echo "${excluded_functions[*]}") | grep -qFx "${FUNCNAME[1]}"; then
+			return 1
+		fi
+
+		echo "Line:${BASH_LINENO[1]}" "${FUNCNAME[1]}" #TODO "${@}" to print parameters
+		return 0
+	fi
+}
+
 #Set the message to show again after an interrupt ([Ctrl+C] or [Ctrl+Z]) without exiting
 function interrupt_checkpoint() {
+
+	debug_print
 
 	if [ -z "${last_buffered_type1}" ]; then
 		last_buffered_message1=${1}
@@ -3938,6 +3998,8 @@ function interrupt_checkpoint() {
 
 #Add the text on a menu when you miss an optional tool
 function special_text_missed_optional_tool() {
+
+	debug_print
 
 	declare -a required_tools=("${!3}")
 
@@ -3963,6 +4025,8 @@ function special_text_missed_optional_tool() {
 
 #Generate the chars in front of and behind a text for titles and separators
 function generate_dynamic_line() {
+
+	debug_print
 
 	local type=${2}
 	if [ "${type}" = "title" ]; then
@@ -4005,6 +4069,8 @@ function generate_dynamic_line() {
 #Wrapper to check managed mode on an interface
 function check_to_set_managed() {
 
+	debug_print
+
 	check_interface_mode
 	case "${ifacemode}" in
 		"Managed")
@@ -4025,6 +4091,8 @@ function check_to_set_managed() {
 
 #Wrapper to check monitor mode on an interface
 function check_to_set_monitor() {
+
+	debug_print
 
 	check_interface_mode
 	case "${ifacemode}" in
@@ -4047,6 +4115,8 @@ function check_to_set_monitor() {
 #Check for monitor mode on an interface
 function check_monitor_enabled() {
 
+	debug_print
+
 	mode=$(iwconfig "${interface}" 2> /dev/null | grep Mode: | awk '{print $4}' | cut -d ':' -f 2)
 
 	if [[ ${mode} != "Monitor" ]]; then
@@ -4061,12 +4131,16 @@ function check_monitor_enabled() {
 #Check if an interface is a wifi card or not
 function check_interface_wifi() {
 
+	debug_print
+
 	execute_iwconfig_fix
 	return $?
 }
 
 #Execute the iwconfig fix to know if an interface is a wifi card or not
 function execute_iwconfig_fix() {
+
+	debug_print
 
 	iwconfig_fix
 	iwcmd="iwconfig ${interface} ${iwcmdfix} > /dev/null 2> /dev/null"
@@ -4077,6 +4151,8 @@ function execute_iwconfig_fix() {
 
 #Create a list of interfaces associated to its macs
 function renew_ifaces_and_macs_list() {
+
+	debug_print
 
 	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
@@ -4095,6 +4171,8 @@ function renew_ifaces_and_macs_list() {
 
 #Check the interface coherence between interface names and macs
 function check_interface_coherence() {
+
+	debug_print
 
 	renew_ifaces_and_macs_list
 	interface_auto_change=0
@@ -4126,6 +4204,8 @@ function check_interface_coherence() {
 #Prepare the vars to be used on wps pin database attacks
 function set_wps_mac_parameters() {
 
+	debug_print
+
 	six_wpsbssid_first_digits=${wps_bssid:0:8}
 	six_wpsbssid_first_digits_clean=${six_wpsbssid_first_digits//:}
 	six_wpsbssid_last_digits=${wps_bssid: -8}
@@ -4137,6 +4217,8 @@ function set_wps_mac_parameters() {
 #Calculate pin based on Zhao Chunsheng algorithm (computepin), step 1
 function calculate_computepin_algorithm_step1() {
 
+	debug_print
+
 	hex_to_dec=$(printf '%d\n' 0x"${six_wpsbssid_last_digits_clean}") 2> /dev/null
 	computepin_pin=$((hex_to_dec % 10000000))
 }
@@ -4144,11 +4226,15 @@ function calculate_computepin_algorithm_step1() {
 #Calculate pin based on Zhao Chunsheng algorithm (computepin), step 2
 function calculate_computepin_algorithm_step2() {
 
+	debug_print
+
 	computepin_pin=$(printf '%08d\n' $((10#${computepin_pin} * 10 + checksum_digit)))
 }
 
 #Calculate pin based on Stefan Viehböck algorithm (easybox)
 function calculate_easybox_algorithm() {
+
+	debug_print
 
 	hex_to_dec=($(printf "%04d" "0x${four_wpsbssid_last_digits_clean}" | sed 's/.*\(....\)/\1/;s/./& /g'))
 	[[ ${four_wpsbssid_last_digits_clean} =~ ${four_wpsbssid_last_digits_clean//?/(.)} ]] && hexi=($(printf '%s\n' "${BASH_REMATCH[*]:1}"))
@@ -4172,6 +4258,8 @@ function calculate_easybox_algorithm() {
 #Calculate the last digit on pin following the checksum rule
 function pin_checksum_rule() {
 
+	debug_print
+
 	current_calculated_pin=$((10#${1} * 10))
 
 	accum=0
@@ -4190,6 +4278,8 @@ function pin_checksum_rule() {
 
 #Manage the calls to check common wps pin algorithms
 function check_and_set_common_algorithms() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 388 "blue"
@@ -4214,6 +4304,8 @@ function check_and_set_common_algorithms() {
 
 #Integrate calculated pins from algorithms into pins array
 function integrate_algorithms_pins() {
+
+	debug_print
 
 	some_calculated_pin_included=0
 	for pin in "${calculated_pins[@]}"; do
@@ -4241,12 +4333,16 @@ function integrate_algorithms_pins() {
 #Include the code of the pin database file
 function include_pin_dbfile() {
 
+	debug_print
+
 	dbfile_to_include="source \"${scriptfolder}${known_pins_dbfile}\""
 	eval "${dbfile_to_include}"
 }
 
 #Search for target wps bssid mac in pin database and set the vars to be used
 function search_in_pin_database() {
+
+	debug_print
 
 	bssid_found_in_db=0
 	counter_pins_found=0
@@ -4267,6 +4363,8 @@ function search_in_pin_database() {
 #Prepare monitor mode avoiding the use of airmon-ng or airmon-zc generating two interfaces from one
 function prepare_et_monitor() {
 
+	debug_print
+
 	disable_rfkill
 
 	phy_iface=$(basename "$(readlink "/sys/class/net/${interface}/phy80211")")
@@ -4280,6 +4378,8 @@ function prepare_et_monitor() {
 
 #Assure the mode of the interface before the Evil Twin process
 function prepare_et_interface() {
+
+	debug_print
 
 	et_initial_state=${ifacemode}
 
@@ -4300,6 +4400,8 @@ function prepare_et_interface() {
 
 #Restore the state of the interfaces after Evil Twin process
 function restore_et_interface() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 299 "blue"
@@ -4326,6 +4428,8 @@ function restore_et_interface() {
 #Unblock if possible the interface if blocked
 function disable_rfkill() {
 
+	debug_print
+
 	if hash rfkill 2> /dev/null; then
 		rfkill unblock all > /dev/null 2>&1
 	fi
@@ -4333,6 +4437,8 @@ function disable_rfkill() {
 
 #Put the interface on managed mode and manage the possible name change
 function managed_option() {
+
+	debug_print
 
 	check_to_set_managed
 
@@ -4365,6 +4471,8 @@ function managed_option() {
 
 #Put the interface on monitor mode and manage the possible name change
 function monitor_option() {
+
+	debug_print
 
 	check_to_set_monitor
 
@@ -4413,6 +4521,8 @@ function monitor_option() {
 #Check the interface mode
 function check_interface_mode() {
 
+	debug_print
+
 	execute_iwconfig_fix
 	if [ "$?" != "0" ]; then
 		ifacemode="(Non wifi card)"
@@ -4441,6 +4551,8 @@ function check_interface_mode() {
 
 #Language change menu
 function language_menu() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 87 "title"
@@ -4533,6 +4645,8 @@ function language_menu() {
 #Read the chipset for an interface
 function set_chipset() {
 
+	debug_print
+
 	chipset=""
 	sedrule1="s/^....//"
 	sedrule2="s/ Network Connection//g"
@@ -4551,10 +4665,10 @@ function set_chipset() {
 
 	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
 
-		bus_type=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 1)
+		bus_type=$(cut -d ":" -f 1 < "/sys/class/net/${1}/device/modalias")
 
 		if [ "${bus_type}" = "usb" ]; then
-			vendor_and_device=$(cat < "/sys/class/net/${1}/device/modalias" | cut -d ":" -f 2 | cut -b 1-10 | sed 's/^.//;s/p/:/')
+			vendor_and_device=$(cut -b 6-14 < "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
 			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
@@ -4578,6 +4692,8 @@ function set_chipset() {
 
 #Internet interface selection menu
 function select_internet_interface() {
+
+	debug_print
 
 	if [ "${return_to_et_main_menu}" -eq 1 ]; then
 		return 1
@@ -4670,6 +4786,8 @@ function select_internet_interface() {
 #Interface selection menu
 function select_interface() {
 
+	debug_print
+
 	clear
 	language_strings "${language}" 88 "title"
 	current_menu="select_interface_menu"
@@ -4715,6 +4833,8 @@ function select_interface() {
 #Read the user input on yes/no questions
 function read_yesno() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" "${1}" "green"
 	read -r yesno
@@ -4722,6 +4842,8 @@ function read_yesno() {
 
 #Validate the input on yes/no questions
 function ask_yesno() {
+
+	debug_print
 
 	yesno=""
 	while [[ ! ${yesno} =~ ^[YyNn]$ ]]; do
@@ -4739,6 +4861,8 @@ function ask_yesno() {
 #Read the user input on channel questions
 function read_channel() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 25 "green"
 	if [ "${1}" = "wps" ]; then
@@ -4750,6 +4874,8 @@ function read_channel() {
 
 #Validate the input on channel questions
 function ask_channel() {
+
+	debug_print
 
 	local regexp="^([1-9]|1[0-4])$"
 
@@ -4771,6 +4897,8 @@ function ask_channel() {
 #Read the user input on bssid questions
 function read_bssid() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 27 "green"
 	if [ "${1}" = "wps" ]; then
@@ -4782,6 +4910,8 @@ function read_bssid() {
 
 #Validate the input on bssid questions
 function ask_bssid() {
+
+	debug_print
 
 	local regexp="^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$"
 
@@ -4803,6 +4933,8 @@ function ask_bssid() {
 #Read the user input on essid questions
 function read_essid() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 29 "green"
 	read -r essid
@@ -4810,6 +4942,8 @@ function read_essid() {
 
 #Validate the input on essid questions
 function ask_essid() {
+
+	debug_print
 
 	if [ -z "${essid}" ]; then
 		while [[ -z "${essid}" ]]; do
@@ -4828,6 +4962,8 @@ function ask_essid() {
 #Read the user input on custom pin questions
 function read_custom_pin() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 363 "green"
 	read -r custom_pin
@@ -4835,6 +4971,8 @@ function read_custom_pin() {
 
 #Validate the input on custom pin questions
 function ask_custom_pin() {
+
+	debug_print
 
 	local regexp="^[0-9]{8}$"
 	custom_pin=""
@@ -4848,6 +4986,8 @@ function ask_custom_pin() {
 
 #Read the user input on timeout questions
 function read_timeout() {
+
+	debug_print
 
 	echo
 	case ${1} in
@@ -4863,6 +5003,8 @@ function read_timeout() {
 
 #Validate the user input for timeouts
 function ask_wps_timeout() {
+
+	debug_print
 
 	case ${1} in
 		"standard")
@@ -4905,6 +5047,8 @@ function ask_wps_timeout() {
 #Execute wps custom pin bully attack
 function exec_wps_custom_pin_bully_attack() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 32 "green"
 
@@ -4920,6 +5064,8 @@ function exec_wps_custom_pin_bully_attack() {
 
 #Execute wps custom pin reaver attack
 function exec_wps_custom_pin_reaver_attack() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -4937,6 +5083,8 @@ function exec_wps_custom_pin_reaver_attack() {
 #Execute bully pixie dust attack
 function exec_bully_pixiewps_attack() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 32 "green"
 
@@ -4952,6 +5100,8 @@ function exec_bully_pixiewps_attack() {
 
 #Execute reaver pixie dust attack
 function exec_reaver_pixiewps_attack() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -4969,6 +5119,8 @@ function exec_reaver_pixiewps_attack() {
 #Execute wps bruteforce pin bully attack
 function exec_wps_bruteforce_pin_bully_attack() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 32 "green"
 
@@ -4984,6 +5136,8 @@ function exec_wps_bruteforce_pin_bully_attack() {
 
 #Execute wps bruteforce pin reaver attack
 function exec_wps_bruteforce_pin_reaver_attack() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 32 "green"
@@ -5001,6 +5155,8 @@ function exec_wps_bruteforce_pin_reaver_attack() {
 #Execute wps pin database bully attack
 function exec_wps_pin_database_bully_attack() {
 
+	debug_print
+
 	wps_pin_database_prerequisites
 
 	set_wps_attack_script "bully" "pindb"
@@ -5012,6 +5168,8 @@ function exec_wps_pin_database_bully_attack() {
 #Execute wps pin database reaver attack
 function exec_wps_pin_database_reaver_attack() {
 
+	debug_print
+
 	wps_pin_database_prerequisites
 
 	set_wps_attack_script "reaver" "pindb"
@@ -5022,6 +5180,8 @@ function exec_wps_pin_database_reaver_attack() {
 
 #Execute mdk3 deauth DoS attack
 function exec_mdk3deauth() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 89 "title"
@@ -5041,6 +5201,8 @@ function exec_mdk3deauth() {
 #Execute aireplay DoS attack
 function exec_aireplaydeauth() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 90 "title"
 	language_strings "${language}" 32 "green"
@@ -5057,6 +5219,8 @@ function exec_aireplaydeauth() {
 #Execute WDS confusion DoS attack
 function exec_wdsconfusion() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 91 "title"
 	language_strings "${language}" 32 "green"
@@ -5070,6 +5234,8 @@ function exec_wdsconfusion() {
 
 #Execute Beacon flood DoS attack
 function exec_beaconflood() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 92 "title"
@@ -5085,6 +5251,8 @@ function exec_beaconflood() {
 #Execute Auth DoS attack
 function exec_authdos() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 93 "title"
 	language_strings "${language}" 32 "green"
@@ -5099,6 +5267,8 @@ function exec_authdos() {
 #Execute Michael Shutdown DoS attack
 function exec_michaelshutdown() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 94 "title"
 	language_strings "${language}" 32 "green"
@@ -5112,6 +5282,8 @@ function exec_michaelshutdown() {
 
 #Validate Mdk3 parameters
 function mdk3_deauth_option() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 95 "title"
@@ -5133,6 +5305,8 @@ function mdk3_deauth_option() {
 #Validate Aireplay parameters
 function aireplay_deauth_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 96 "title"
 	language_strings "${language}" 36 "green"
@@ -5152,6 +5326,8 @@ function aireplay_deauth_option() {
 
 #Validate WDS confusion parameters
 function wds_confusion_option() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 97 "title"
@@ -5173,6 +5349,8 @@ function wds_confusion_option() {
 #Validate Beacon flood parameters
 function beacon_flood_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 98 "title"
 	language_strings "${language}" 38 "green"
@@ -5193,6 +5371,8 @@ function beacon_flood_option() {
 #Validate Auth DoS parameters
 function auth_dos_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 99 "title"
 	language_strings "${language}" 39 "green"
@@ -5212,6 +5392,8 @@ function auth_dos_option() {
 #Validate Michael Shutdown parameters
 function michael_shutdown_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 100 "title"
 	language_strings "${language}" 40 "green"
@@ -5230,6 +5412,8 @@ function michael_shutdown_option() {
 
 #Validate wps parameters for custom pin, pixie dust, bruteforce and pin database attacks
 function wps_attacks_parameters() {
+
+	debug_print
 
 	check_monitor_enabled
 	if [ "$?" != "0" ]; then
@@ -5261,6 +5445,8 @@ function wps_attacks_parameters() {
 #Print selected interface
 function print_iface_selected() {
 
+	debug_print
+
 	if [ -z "${interface}" ]; then
 		language_strings "${language}" 41 "red"
 		echo
@@ -5275,6 +5461,8 @@ function print_iface_selected() {
 #Print selected internet interface
 function print_iface_internet_selected() {
 
+	debug_print
+
 	if [[ "${et_mode}" != "et_captive_portal" ]] || [[ ${captive_portal_mode} = "internet" ]]; then
 		if [ -z "${internet_interface}" ]; then
 			language_strings "${language}" 283 "blue"
@@ -5286,6 +5474,8 @@ function print_iface_internet_selected() {
 
 #Print selected target parameters (bssid, channel, essid and type of encryption)
 function print_all_target_vars() {
+
+	debug_print
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -5307,6 +5497,8 @@ function print_all_target_vars() {
 
 #Print selected target parameters on evil twin menu (bssid, channel and essid)
 function print_all_target_vars_et() {
+
+	debug_print
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -5333,6 +5525,8 @@ function print_all_target_vars_et() {
 
 #Print selected target parameters on evil twin submenus (bssid, channel, essid, DoS type and Handshake file)
 function print_et_target_vars() {
+
+	debug_print
 
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
@@ -5380,6 +5574,8 @@ function print_et_target_vars() {
 #Print selected target parameters on wps attacks menu (bssid, channel and essid)
 function print_all_target_vars_wps() {
 
+	debug_print
+
 	if [ -n "${wps_bssid}" ]; then
 		language_strings "${language}" 335 "blue"
 	else
@@ -5412,6 +5608,8 @@ function print_all_target_vars_wps() {
 #Print selected target parameters on decrypt menu (bssid, Handshake file, dictionary file and rules file)
 function print_decrypt_vars() {
 
+	debug_print
+
 	if [ -n "${bssid}" ]; then
 		language_strings "${language}" 43 "blue"
 	else
@@ -5436,6 +5634,8 @@ function print_decrypt_vars() {
 #Create the dependencies arrays
 function initialize_menu_options_dependencies() {
 
+	debug_print
+
 	clean_handshake_dependencies=(${optional_tools_names[0]})
 	aircrack_attacks_dependencies=(${optional_tools_names[1]})
 	aireplay_attack_dependencies=(${optional_tools_names[2]})
@@ -5456,6 +5656,8 @@ function initialize_menu_options_dependencies() {
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
 function set_possible_aliases() {
 
+	debug_print
+
 	for item in "${!possible_alias_names[@]}"; do
 		if ! hash "${item}" 2> /dev/null || [[ "${item}" = "beef" ]]; then
 			arraliases=(${possible_alias_names[${item//[[:space:]]/ }]})
@@ -5472,6 +5674,8 @@ function set_possible_aliases() {
 #Initialize optional_tools values
 function initialize_optional_tools_values() {
 
+	debug_print
+
 	declare -gA optional_tools=()
 
 	for item in "${optional_tools_names[@]}"; do
@@ -5481,6 +5685,8 @@ function initialize_optional_tools_values() {
 
 #Set some vars depending of the menu and invoke the printing of target vars
 function initialize_menu_and_print_selections() {
+
+	debug_print
 
 	forbidden_options=()
 
@@ -5545,6 +5751,8 @@ function initialize_menu_and_print_selections() {
 #Clean temporary files
 function clean_tmpfiles() {
 
+	debug_print
+
 	rm -rf "${tmpdir}bl.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}handshake"* > /dev/null 2>&1
 	rm -rf "${tmpdir}nws"* > /dev/null 2>&1
@@ -5575,6 +5783,8 @@ function clean_tmpfiles() {
 #Manage cleaning firewall rules and restore orginal routing state
 function clean_routing_rules() {
 
+	debug_print
+
 	if [ -n "${original_routing_state}" ]; then
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
@@ -5585,6 +5795,8 @@ function clean_routing_rules() {
 #Clean iptables rules
 function clean_iptables() {
 
+	debug_print
+
 	iptables -F
 	iptables -t nat -F
 	iptables -X
@@ -5593,6 +5805,8 @@ function clean_iptables() {
 
 #Create an array from parameters
 function store_array() {
+
+	debug_print
 
 	local values=("${@:3}")
 	for i in "${!values[@]}"; do
@@ -5603,6 +5817,8 @@ function store_array() {
 #Check if something (first parameter) is inside an array (second parameter)
 contains_element() {
 
+	debug_print
+
 	local e
 	for e in "${@:2}"; do
 		[[ "${e}" = "${1}" ]] && return 0
@@ -5612,6 +5828,8 @@ contains_element() {
 
 #Print hints from the different hint pools depending of the menu
 function print_hint() {
+
+	debug_print
 
 	declare -A hints
 
@@ -5703,6 +5921,8 @@ function print_hint() {
 #airgeddon main menu
 function main_menu() {
 
+	debug_print
+
 	clear
 	language_strings "${language}" 101 "title"
 	current_menu="main_menu"
@@ -5770,6 +5990,8 @@ function main_menu() {
 
 #Evil Twin attacks menu
 function evil_twin_attacks_menu() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 253 "title"
@@ -5896,6 +6118,8 @@ function evil_twin_attacks_menu() {
 #beef pre attack menu
 function beef_pre_menu() {
 
+	debug_print
+
 	if [ ${return_to_et_main_menu_from_beef} -eq 1 ]; then
 		return
 	fi
@@ -5968,6 +6192,8 @@ function beef_pre_menu() {
 
 #WPS attacks menu
 function wps_attacks_menu() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 334 "title"
@@ -6194,6 +6420,8 @@ function wps_attacks_menu() {
 #Offline decryption attacks menu
 function decrypt_menu() {
 
+	debug_print
+
 	clear
 	language_strings "${language}" 170 "title"
 	current_menu="decrypt_menu"
@@ -6273,6 +6501,8 @@ function decrypt_menu() {
 #Read the user input on rules file questions
 function ask_rules() {
 
+	debug_print
+
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
 		read_path "rules"
@@ -6282,6 +6512,8 @@ function ask_rules() {
 
 #Read the user input on dictionary file questions
 function ask_dictionary() {
+
+	debug_print
 
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
@@ -6293,6 +6525,8 @@ function ask_dictionary() {
 #Read the user input on Handshake file questions
 function ask_capture_file() {
 
+	debug_print
+
 	validpath=1
 	while [[ "${validpath}" != "0" ]]; do
 		read_path "targetfilefordecrypt"
@@ -6302,6 +6536,8 @@ function ask_capture_file() {
 
 #Manage the questions on Handshake file questions
 function manage_asking_for_captured_file() {
+
+	debug_print
 
 	if [ -n "${enteredpath}" ]; then
 		echo
@@ -6318,6 +6554,8 @@ function manage_asking_for_captured_file() {
 #Manage the questions on dictionary file questions
 function manage_asking_for_dictionary_file() {
 
+	debug_print
+
 	if [ -n "${DICTIONARY}" ]; then
 		echo
 		language_strings "${language}" 183 "blue"
@@ -6333,6 +6571,8 @@ function manage_asking_for_dictionary_file() {
 #Manage the questions on rules file questions
 function manage_asking_for_rule_file() {
 
+	debug_print
+
 	if [ -n "${RULES}" ]; then
 		echo
 		language_strings "${language}" 239 "blue"
@@ -6347,6 +6587,8 @@ function manage_asking_for_rule_file() {
 
 #Validate the file to be cleaned
 function check_valid_file_to_clean() {
+
+	debug_print
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6380,6 +6622,8 @@ function check_valid_file_to_clean() {
 
 #Check if a bssid is present on a capture file to know if there is a Handshake with that bssid
 function check_bssid_in_captured_file() {
+
+	debug_print
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6418,6 +6662,8 @@ function check_bssid_in_captured_file() {
 
 #Set the target vars to a bssid selecting them from a capture file which has a Handshake
 function select_wpa_bssid_target_from_captured_file() {
+
+	debug_print
 
 	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
@@ -6497,6 +6743,8 @@ function select_wpa_bssid_target_from_captured_file() {
 #Validate and ask for the different parameters used in an aircrack dictionary based attack
 function aircrack_dictionary_attack_option() {
 
+	debug_print
+
 	manage_asking_for_captured_file
 
 	select_wpa_bssid_target_from_captured_file "${enteredpath}"
@@ -6514,6 +6762,8 @@ function aircrack_dictionary_attack_option() {
 
 #Validate and ask for the different parameters used in an aircrack bruteforce based attack
 function aircrack_bruteforce_attack_option() {
+
+	debug_print
 
 	manage_asking_for_captured_file
 
@@ -6540,6 +6790,8 @@ function aircrack_bruteforce_attack_option() {
 #Validate and ask for the different parameters used in a hashcat dictionary based attack
 function hashcat_dictionary_attack_option() {
 
+	debug_print
+
 	manage_asking_for_captured_file
 
 	select_wpa_bssid_target_from_captured_file "${enteredpath}"
@@ -6558,6 +6810,8 @@ function hashcat_dictionary_attack_option() {
 
 #Validate and ask for the different parameters used in a hashcat bruteforce based attack
 function hashcat_bruteforce_attack_option() {
+
+	debug_print
 
 	manage_asking_for_captured_file
 
@@ -6585,6 +6839,8 @@ function hashcat_bruteforce_attack_option() {
 #Validate and ask for the different parameters used in a hashcat rule based attack
 function hashcat_rulebased_attack_option() {
 
+	debug_print
+
 	manage_asking_for_captured_file
 
 	select_wpa_bssid_target_from_captured_file "${enteredpath}"
@@ -6605,6 +6861,8 @@ function hashcat_rulebased_attack_option() {
 
 #Check if the password was decrypted using hashcat and manage to save it on a file
 function manage_hashcat_pot() {
+
+	debug_print
 
 	local regexp="All hashes have been recovered"
 	if [ -n "${hashcat_fix}" ]; then
@@ -6642,6 +6900,8 @@ function manage_hashcat_pot() {
 #Check if the passwords were captured using ettercap and manage to save them on a file
 function manage_ettercap_log() {
 
+	debug_print
+
 	ettercap_log=0
 	ask_yesno 302
 	if [ ${yesno} = "y" ]; then
@@ -6664,6 +6924,8 @@ function manage_ettercap_log() {
 
 #Check if the passwords were captured using bettercap and manage to save them on a file
 function manage_bettercap_log() {
+
+	debug_print
 
 	bettercap_log=0
 	ask_yesno 302
@@ -6688,6 +6950,8 @@ function manage_bettercap_log() {
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
 function manage_captive_portal_log() {
 
+	debug_print
+
 	default_et_captive_portal_logpath=$(env | grep ^HOME | awk -F = '{print $2}')
 	lastcharetcaptiveportallogpath=${default_et_captive_portal_logpath: -1}
 	if [ "${lastcharetcaptiveportallogpath}" != "/" ]; then
@@ -6703,6 +6967,8 @@ function manage_captive_portal_log() {
 
 #Captive portal language menu
 function set_captive_portal_language() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 293 "title"
@@ -6754,6 +7020,8 @@ function set_captive_portal_language() {
 #Read and validate the minlength var
 function set_minlength() {
 
+	debug_print
+
 	minlength=0
 	while [[ ! ${minlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
 		echo
@@ -6764,6 +7032,8 @@ function set_minlength() {
 
 #Read and validate the maxlength var
 function set_maxlength() {
+
+	debug_print
 
 	maxlength=0
 	while [[ ! ${maxlength} =~ ^[8-9]$|^[1-5][0-9]$|^6[0-3]$ ]]; do
@@ -6776,6 +7046,8 @@ function set_maxlength() {
 #Manage the minlength and maxlength vars on bruteforce attacks
 function set_minlength_and_maxlength() {
 
+	debug_print
+
 	set_minlength
 	maxlength=0
 	while [[ ${maxlength} -lt ${minlength} ]]; do
@@ -6785,6 +7057,8 @@ function set_minlength_and_maxlength() {
 
 #Charset selection menu
 function set_charset() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 238 "title"
@@ -6877,6 +7151,8 @@ function set_charset() {
 #Set a var to show the chosen charset
 function set_show_charset() {
 
+	debug_print
+
 	showcharset=""
 
 	case ${1} in
@@ -6909,6 +7185,8 @@ function set_show_charset() {
 #Execute aircrack+crunch bruteforce attack
 function exec_aircrack_bruteforce_attack() {
 
+	debug_print
+
 	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
@@ -6916,12 +7194,16 @@ function exec_aircrack_bruteforce_attack() {
 #Execute aircrack dictionary attack
 function exec_aircrack_dictionary_attack() {
 
+	debug_print
+
 	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
 #Execute hashcat dictionary attack
 function exec_hashcat_dictionary_attack() {
+
+	debug_print
 
 	convert_cap_to_hashcat_format
 	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
@@ -6933,6 +7215,8 @@ function exec_hashcat_dictionary_attack() {
 #Execute hashcat bruteforce attack
 function exec_hashcat_bruteforce_attack() {
 
+	debug_print
+
 	convert_cap_to_hashcat_format
 	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}hctmp.hccap\" \"${charset}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
@@ -6943,6 +7227,8 @@ function exec_hashcat_bruteforce_attack() {
 #Execute hashcat rule based attack
 function exec_hashcat_rulebased_attack() {
 
+	debug_print
+
 	convert_cap_to_hashcat_format
 	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
@@ -6952,6 +7238,8 @@ function exec_hashcat_rulebased_attack() {
 
 #Execute Evil Twin only Access Point attack
 function exec_et_onlyap_attack() {
+
+	debug_print
 
 	set_hostapd_config
 	launch_fake_ap
@@ -6973,6 +7261,8 @@ function exec_et_onlyap_attack() {
 
 #Execute Evil Twin with sniffing attack
 function exec_et_sniffing_attack() {
+
+	debug_print
 
 	set_hostapd_config
 	launch_fake_ap
@@ -6999,6 +7289,8 @@ function exec_et_sniffing_attack() {
 #Execute Evil Twin with sniffing+sslstrip attack
 function exec_et_sniffing_sslstrip_attack() {
 
+	debug_print
+
 	set_hostapd_config
 	launch_fake_ap
 	set_dhcp_config
@@ -7024,6 +7316,8 @@ function exec_et_sniffing_sslstrip_attack() {
 
 #Execute Evil Twin with sniffing+bettercap-sslstrip2/beef attack
 function exec_et_sniffing_sslstrip2_attack() {
+
+	debug_print
 
 	set_hostapd_config
 	launch_fake_ap
@@ -7061,6 +7355,8 @@ function exec_et_sniffing_sslstrip2_attack() {
 #Execute captive portal Evil Twin attack
 function exec_et_captive_portal_attack() {
 
+	debug_print
+
 	set_hostapd_config
 	launch_fake_ap
 	set_dhcp_config
@@ -7089,6 +7385,8 @@ function exec_et_captive_portal_attack() {
 #Create configuration file for hostapd
 function set_hostapd_config() {
 
+	debug_print
+
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
@@ -7106,6 +7404,8 @@ function set_hostapd_config() {
 
 #Launch hostapd fake Access Point
 function launch_fake_ap() {
+
+	debug_print
 
 	killall hostapd > /dev/null 2>&1
 	${airmon} check kill > /dev/null 2>&1
@@ -7130,6 +7430,8 @@ function launch_fake_ap() {
 
 #Create configuration file for dhcpd
 function set_dhcp_config() {
+
+	debug_print
 
 	route | grep ${ip_range} > /dev/null
 	if [ "$?" != "0" ]; then
@@ -7212,6 +7514,8 @@ function set_dhcp_config() {
 #Set routing state and firewall rules for Evil Twin attacks
 function set_std_internet_routing_rules() {
 
+	debug_print
+
 	routing_toclean=1
 	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
 	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
@@ -7256,6 +7560,8 @@ function set_std_internet_routing_rules() {
 #Launch dhcpd server
 function launch_dhcp_server() {
 
+	debug_print
+
 	killall dhcpd > /dev/null 2>&1
 
 	recalculate_windows_sizes
@@ -7277,6 +7583,8 @@ function launch_dhcp_server() {
 
 #Execute DoS for Evil Twin attacks
 function exec_et_deauth() {
+
+	debug_print
 
 	prepare_et_monitor
 
@@ -7316,6 +7624,8 @@ function exec_et_deauth() {
 
 #Create here-doc bash script used for wps pin attacks
 function set_wps_attack_script() {
+
+	debug_print
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
@@ -7676,6 +7986,8 @@ function set_wps_attack_script() {
 #Create here-doc bash script used for control windows on Evil Twin attacks
 function set_control_script() {
 
+	debug_print
+
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
 
 	exec 7>"${tmpdir}${control_file}"
@@ -7857,7 +8169,7 @@ function set_control_script() {
 
 	cat >&7 <<-EOF
 			echo -e "\t${green_color}${et_misc_texts[${language},3]}${normal_color}"
-			readarray -t DHCPCLIENTS < <(cat < "${tmpdir}clts.txt" 2> /dev/null | grep DHCPACK)
+			readarray -t DHCPCLIENTS < <(grep DHCPACK < "${tmpdir}clts.txt")
 			client_ips=()
 	EOF
 
@@ -7897,6 +8209,8 @@ function set_control_script() {
 #Launch dnsspoof dns black hole for captive portal Evil Twin attack
 function launch_dns_blackhole() {
 
+	debug_print
+
 	recalculate_windows_sizes
 	xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "DNS" -e "${optional_tools_names[12]} -i ${interface}" > /dev/null 2>&1 &
 	et_processes+=($!)
@@ -7904,6 +8218,8 @@ function launch_dns_blackhole() {
 
 #Launch control window for Evil Twin attacks
 function launch_control_window() {
+
+	debug_print
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -7934,6 +8250,8 @@ function launch_control_window() {
 #Create configuration file for lighttpd
 function set_webserver_config() {
 
+	debug_print
+
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
 
 	{
@@ -7956,6 +8274,8 @@ function set_webserver_config() {
 
 #Create captive portal files. Cgi bash scripts, css and js file
 function set_captive_portal_page() {
+
+	debug_print
 
 	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
 	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
@@ -8161,6 +8481,8 @@ function set_captive_portal_page() {
 #Launch lighttpd webserver for captive portal Evil Twin attack
 function launch_webserver() {
 
+	debug_print
+
 	killall lighttpd > /dev/null 2>&1
 	recalculate_windows_sizes
 	if [ ${captive_portal_mode} = "internet" ]; then
@@ -8175,6 +8497,8 @@ function launch_webserver() {
 #Launch sslstrip for sslstrip sniffing Evil Twin attack
 function launch_sslstrip() {
 
+	debug_print
+
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm -hold -bg black -fg green -geometry "${g4_middleright_window}" -T "Sslstrip" -e "sslstrip -w \"${tmpdir}${sslstrip_file}\" -p -l ${sslstrip_port} -f -k" > /dev/null 2>&1 &
@@ -8183,6 +8507,8 @@ function launch_sslstrip() {
 
 #Launch ettercap sniffer
 function launch_ettercap_sniffing() {
+
+	debug_print
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -8204,6 +8530,8 @@ function launch_ettercap_sniffing() {
 
 #Create configuration file for beef
 function set_beef_config() {
+
+	debug_print
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${beef_file}" > /dev/null 2>&1
@@ -8282,6 +8610,8 @@ function set_beef_config() {
 #Kill beef process
 function kill_beef() {
 
+	debug_print
+
 	killall "${optional_tools_names[19]}" > /dev/null 2>&1
 	if [ "$?" != "0" ]; then
 		beef_pid=$(ps uax | pgrep -f "${optional_tools_names[19]}")
@@ -8296,6 +8626,8 @@ function kill_beef() {
 #Detects if your beef is Flexible Brainfuck interpreter instead of BeEF
 function detect_fake_beef() {
 
+	debug_print
+
 	readarray -t BEEF_OUTPUT < <(timeout -s SIGTERM 0.5 beef -h 2> /dev/null)
 
 	for item in "${BEEF_OUTPUT[@]}"; do
@@ -8308,6 +8640,8 @@ function detect_fake_beef() {
 
 #Search for beef path
 function search_for_beef() {
+
+	debug_print
 
 	if [ "${beef_found}" -eq 0 ]; then
 		for item in "${possible_beef_known_locations[@]}"; do
@@ -8322,6 +8656,8 @@ function search_for_beef() {
 
 #Prepare system to work with beef
 function prepare_beef_start() {
+
+	debug_print
 
 	valid_possible_beef_path=0
 	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
@@ -8365,6 +8701,8 @@ function prepare_beef_start() {
 #Set beef path manually
 function manual_beef_set() {
 
+	debug_print
+
 	while [[ "${valid_possible_beef_path}" != "1" ]]; do
 		echo
 		language_strings "${language}" 402 "green"
@@ -8402,6 +8740,8 @@ function manual_beef_set() {
 #Fix for not found beef executable
 function fix_beef_executable() {
 
+	debug_print
+
 	rm -rf "/usr/bin/beef" > /dev/null 2>&1
 	{
 	echo -e "#!/bin/bash\n"
@@ -8417,6 +8757,8 @@ function fix_beef_executable() {
 #Rewrite airgeddon script in a polymorphic way adding custom beef location to array to get persistence
 function rewrite_script_with_custom_beef() {
 
+	debug_print
+
 	set_script_folder_and_name
 
 	case ${1} in
@@ -8425,7 +8767,7 @@ function rewrite_script_with_custom_beef() {
 			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		;;
 		"search")
-			beef_custom_path_line=$(cat < "${scriptfolder}${scriptname}" 2> /dev/null | grep "#[C]ustom BeEF location (set=1)" 2> /dev/null)
+			beef_custom_path_line=$(grep "#[C]ustom BeEF location (set=1)" < "${scriptfolder}${scriptname}" 2> /dev/null)
 			if [ -n "${beef_custom_path_line}" ]; then
 				[[ ${beef_custom_path_line} =~ \"(.*)\" ]] && beef_custom_path="${BASH_REMATCH[1]}"
 			fi
@@ -8436,6 +8778,8 @@ function rewrite_script_with_custom_beef() {
 #Start beef process as a service
 function start_beef_service() {
 
+	debug_print
+
 	service "${optional_tools_names[19]}" restart > /dev/null 2>&1
 	if [ "$?" != "0" ]; then
 		systemctl restart "${optional_tools_names[19]}.service" > /dev/null 2>&1
@@ -8444,6 +8788,8 @@ function start_beef_service() {
 
 #Launch beef browser exploitation framework
 function launch_beef() {
+
+	debug_print
 
 	kill_beef
 
@@ -8466,6 +8812,8 @@ function launch_beef() {
 #Launch bettercap sniffer
 function launch_bettercap_sniffing() {
 
+	debug_print
+
 	recalculate_windows_sizes
 	sniffing_scr_window_position=${g4_bottomright_window}
 
@@ -8485,6 +8833,8 @@ function launch_bettercap_sniffing() {
 
 #Parse ettercap log searching for captured passwords
 function parse_ettercap_log() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 304 "blue"
@@ -8523,6 +8873,8 @@ function parse_ettercap_log() {
 
 #Parse bettercap log searching for captured passwords
 function parse_bettercap_log() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 304 "blue"
@@ -8580,6 +8932,8 @@ function parse_bettercap_log() {
 #Write on a file the id of the captive portal Evil Twin attack processes
 function write_et_processes() {
 
+	debug_print
+
 	for item in "${et_processes[@]}"; do
 		echo "${item}" >> "${tmpdir}${webdir}${processesfile}"
 	done
@@ -8587,6 +8941,8 @@ function write_et_processes() {
 
 #Kill the Evil Twin processes
 function kill_et_windows() {
+
+	debug_print
 
 	for item in "${et_processes[@]}"; do
 		kill "${item}" &> /dev/null
@@ -8597,6 +8953,8 @@ function kill_et_windows() {
 #Convert capture file to hashcat format
 function convert_cap_to_hashcat_format() {
 
+	debug_print
+
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
 	echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
@@ -8604,6 +8962,8 @@ function convert_cap_to_hashcat_format() {
 
 #Handshake tools menu
 function handshake_tools_menu() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 120 "title"
@@ -8663,6 +9023,8 @@ function handshake_tools_menu() {
 #Execute the cleaning of a Handshake file
 function exec_clean_handshake_file() {
 
+	debug_print
+
 	echo
 	check_valid_file_to_clean "${filetoclean}"
 	if [ "$?" != "0" ]; then
@@ -8676,6 +9038,8 @@ function exec_clean_handshake_file() {
 
 #Validate and ask for the parameters used to clean a Handshake file
 function clean_handshake_file_option() {
+
+	debug_print
 
 	echo
 	readpath=0
@@ -8705,6 +9069,8 @@ function clean_handshake_file_option() {
 
 #DoS attacks menu
 function dos_attacks_menu() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 102 "title"
@@ -8805,6 +9171,8 @@ function dos_attacks_menu() {
 #Capture Handshake on Evil Twin attack
 function capture_handshake_evil_twin() {
 
+	debug_print
+
 	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
 		echo
 		language_strings "${language}" 137 "red"
@@ -8873,6 +9241,8 @@ function capture_handshake_evil_twin() {
 #Capture Handshake on Handshake tools
 function capture_handshake() {
 
+	debug_print
+
 	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
 		echo
 		language_strings "${language}" 125 "yellow"
@@ -8900,6 +9270,8 @@ function capture_handshake() {
 #Check if file exists
 function check_file_exists() {
 
+	debug_print
+
 	if [[ ! -f "${1}" || -z "${1}" ]]; then
 		language_strings "${language}" 161 "red"
 		return 1
@@ -8909,6 +9281,8 @@ function check_file_exists() {
 
 #Validate path
 function validate_path() {
+
+	debug_print
 
 	dirname=${1%/*}
 
@@ -8967,6 +9341,8 @@ function validate_path() {
 #Check for write permissions on a given path
 function check_write_permissions() {
 
+	debug_print
+
 	if [ -w "${1}" ]; then
 		return 0
 	fi
@@ -8975,6 +9351,8 @@ function check_write_permissions() {
 
 #Create a var with the name passed to the function and reading the value from the user input
 function read_and_clean_path() {
+
+	debug_print
 
 	settings="$(shopt -p extglob)"
 	shopt -s extglob
@@ -8989,6 +9367,8 @@ function read_and_clean_path() {
 
 #Read and validate a path
 function read_path() {
+
+	debug_print
 
 	echo
 	case ${1} in
@@ -9073,6 +9453,8 @@ function read_path() {
 
 #Launch the DoS selection menu before capture a Handshake and process the captured file
 function attack_handshake_menu() {
+
+	debug_print
 
 	if [ "${1}" = "handshake" ]; then
 		ask_yesno 145
@@ -9179,6 +9561,8 @@ function attack_handshake_menu() {
 #Launch the Handshake capture window
 function capture_handshake_window() {
 
+	debug_print
+
 	language_strings "${language}" 143 "blue"
 	echo
 	language_strings "${language}" 144 "yellow"
@@ -9194,6 +9578,8 @@ function capture_handshake_window() {
 
 #Manage target exploration and parse the output files
 function explore_for_targets_option() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 103 "title"
@@ -9215,7 +9601,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
-	targetline=$(cat < "${tmpdir}nws-01.csv" | egrep -a -n '(Station|Cliente)' | awk -F : '{print $1}')
+	targetline=$(awk '/(Station|Client[es])/{print NR}' < "${tmpdir}nws-01.csv")
 	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
@@ -9269,6 +9655,8 @@ function explore_for_targets_option() {
 #Manage target exploration only for Access Points with WPS activated. Parse output files and print menu with results
 function explore_for_wps_targets_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 103 "title"
 	language_strings "${language}" 65 "green"
@@ -9283,7 +9671,7 @@ function explore_for_wps_targets_option() {
 	echo
 	if ! grep -qe "${interface}" <(echo "${!wash_ifaces_already_set[@]}"); then
 		language_strings "${language}" 353 "blue"
-		set_wash_parametrization
+		set_wash_parameterization
 		language_strings "${language}" 354 "yellow"
 	else
 		language_strings "${language}" 355 "blue"
@@ -9299,15 +9687,24 @@ function explore_for_wps_targets_option() {
 
 	readarray -t WASH_PREVIEW < <(cat < "${tmpdir}wps.txt" 2> /dev/null)
 
+	wash_header_found=0
 	wash_line_counter=1
 	for item in "${WASH_PREVIEW[@]}"; do
 		if [[ ${item} =~ -{20} ]]; then
 			wash_start_data_line="${wash_line_counter}"
+			wash_header_found=1
 			break
 		else
 			wash_line_counter=$((wash_line_counter+1))
 		fi
 	done
+
+	if [ "${wash_header_found}" -eq 0 ]; then
+		echo
+		language_strings "${language}" 417 "red"
+		language_strings "${language}" 115 "read"
+		return 1
+	fi
 
 	washlines=$(wc -l "${tmpdir}wps.txt" 2> /dev/null | awk '{print $1}')
 	if [ "${washlines}" -le ${wash_start_data_line} ]; then
@@ -9436,6 +9833,8 @@ function explore_for_wps_targets_option() {
 #Create a menu to select target from the parsed data
 function select_target() {
 
+	debug_print
+
 	clear
 	language_strings "${language}" 104 "title"
 	echo
@@ -9471,7 +9870,7 @@ function select_target() {
 			sp4=""
 		fi
 
-		client=$(cat < "${tmpdir}clts.csv" | grep "${exp_mac}")
+		client=$(grep "${exp_mac}" < "${tmpdir}clts.csv")
 		if [ "${client}" != "" ]; then
 			client="*"
 			sp5=""
@@ -9522,7 +9921,9 @@ function select_target() {
 }
 
 #Perform a test to determine if fcs parameter is needed on wash scanning
-function set_wash_parametrization() {
+function set_wash_parameterization() {
+
+	debug_print
 
 	fcs=""
 	declare -gA wash_ifaces_already_set
@@ -9540,6 +9941,8 @@ function set_wash_parametrization() {
 
 #Manage and validate the prerequisites for wps pin database attacks
 function wps_pin_database_prerequisites() {
+
+	debug_print
 
 	set_wps_mac_parameters
 	include_pin_dbfile
@@ -9565,6 +9968,8 @@ function wps_pin_database_prerequisites() {
 
 #Manage and validate the prerequisites for Evil Twin attacks
 function et_prerequisites() {
+
+	debug_print
 
 	if [ ${retry_handshake_capture} -eq 1 ]; then
 		return
@@ -9699,6 +10104,8 @@ function et_prerequisites() {
 #Manage the Handshake file requirement for captive portal Evil Twin attack
 function ask_et_handshake_file() {
 
+	debug_print
+
 	echo
 	readpath=0
 
@@ -9737,6 +10144,8 @@ function ask_et_handshake_file() {
 
 #DoS Evil Twin attacks menu
 function et_dos_menu() {
+
+	debug_print
 
 	if [ ${return_to_et_main_menu} -eq 1 ]; then
 		return
@@ -9914,6 +10323,8 @@ function et_dos_menu() {
 #Selected internet interface detection
 function detect_internet_interface() {
 
+	debug_print
+
 	if [ ${internet_interface_selected} -eq 1 ]; then
 		return 0
 	fi
@@ -9939,6 +10350,8 @@ function detect_internet_interface() {
 
 #Show about and credits
 function credits_option() {
+
+	debug_print
 
 	clear
 	language_strings "${language}" 105 "title"
@@ -9967,6 +10380,8 @@ function credits_option() {
 #Show message for invalid selected language
 function invalid_language_selected() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 82 "red"
 	echo
@@ -9978,6 +10393,8 @@ function invalid_language_selected() {
 #Show message for captive portal invalid selected language
 function invalid_captive_portal_language_selected() {
 
+	debug_print
+
 	language_strings "${language}" 82 "red"
 	echo
 	language_strings "${language}" 115 "read"
@@ -9987,6 +10404,8 @@ function invalid_captive_portal_language_selected() {
 #Show message for forbidden selected option
 function forbidden_menu_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 220 "red"
 	language_strings "${language}" 115 "read"
@@ -9995,6 +10414,8 @@ function forbidden_menu_option() {
 #Show message for invalid selected option
 function invalid_menu_option() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 76 "red"
 	language_strings "${language}" 115 "read"
@@ -10002,6 +10423,8 @@ function invalid_menu_option() {
 
 #Show message for invalid selected interface
 function invalid_iface_selected() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 77 "red"
@@ -10014,6 +10437,8 @@ function invalid_iface_selected() {
 #Show message for invalid selected internet interface
 function invalid_internet_iface_selected() {
 
+	debug_print
+
 	echo
 	language_strings "${language}" 77 "red"
 	echo
@@ -10024,6 +10449,8 @@ function invalid_internet_iface_selected() {
 
 #Manage behavior of captured traps
 function capture_traps() {
+
+	debug_print
 
 	case "${1}" in
 		INT|SIGTSTP)
@@ -10056,6 +10483,8 @@ function capture_traps() {
 
 #Exit the script managing possible pending tasks
 function exit_script_option() {
+
+	debug_print
 
 	action_on_exit_taken=0
 	echo
@@ -10115,6 +10544,8 @@ function exit_script_option() {
 #Exit the script managing possible pending tasks but not showing anything
 function hardcore_exit() {
 
+	debug_print
+
 	exit_code=2
 	if [ "${ifacemode}" = "Monitor" ]; then
 		${airmon} stop "${interface}" > /dev/null 2>&1
@@ -10142,6 +10573,8 @@ function hardcore_exit() {
 #Generate a small time loop printing some dots
 function time_loop() {
 
+	debug_print
+
 	echo -ne " "
 	for (( j=1; j<=4; j++ )); do
 		echo -ne "."
@@ -10151,6 +10584,8 @@ function time_loop() {
 
 #Determine which version of airmon to use
 function airmon_fix() {
+
+	debug_print
 
 	airmon="airmon-ng"
 
@@ -10162,6 +10597,8 @@ function airmon_fix() {
 #Prepare the fix for iwconfig command depending of the wireless tools version
 function iwconfig_fix() {
 
+	debug_print
+
 	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
 	iwcmdfix=""
 	if [ "${iwversion}" -lt 30 ]; then
@@ -10171,6 +10608,8 @@ function iwconfig_fix() {
 
 #Set hashcat parameters based on version
 function set_hashcat_parameters() {
+
+	debug_print
 
 	hashcat_fix=""
 	hashcat_charset_fix_needed=0
@@ -10183,6 +10622,8 @@ function set_hashcat_parameters() {
 #Determine hashcat version
 function get_hashcat_version() {
 
+	debug_print
+
 	hashcat_version=$(hashcat -V 2> /dev/null)
 	hashcat_version=${hashcat_version#"v"}
 }
@@ -10190,11 +10631,15 @@ function get_hashcat_version() {
 #Determine bettercap version
 function get_bettercap_version() {
 
+	debug_print
+
 	bettercap_version=$(bettercap -v 2> /dev/null | egrep "^bettercap [0-9]" | awk '{print $2}')
 }
 
 #Determine bully version
 function get_bully_version() {
+
+	debug_print
 
 	bully_version=$(bully -V 2> /dev/null)
 	bully_version=${bully_version#"v"}
@@ -10202,6 +10647,8 @@ function get_bully_version() {
 
 #Determine reaver version
 function get_reaver_version() {
+
+	debug_print
 
 	reaver_version=$(reaver -h 2>&1 > /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
 	if [ -z "${reaver_version}" ]; then
@@ -10213,6 +10660,8 @@ function get_reaver_version() {
 #Set verbosity for bully based on version
 function set_bully_verbosity() {
 
+	debug_print
+
 	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_verbosity4_version}"; then
 		bully_verbosity="4"
 	else
@@ -10223,6 +10672,8 @@ function set_bully_verbosity() {
 #Validate if bully version is able to perform integrated pixiewps attack
 function validate_bully_pixiewps_version() {
 
+	debug_print
+
 	if compare_floats_greater_or_equal "${bully_version}" "${minimum_bully_pixiewps_version}"; then
 		return 0
 	fi
@@ -10232,6 +10683,8 @@ function validate_bully_pixiewps_version() {
 #Validate if reaver version is able to perform integrated pixiewps attack
 function validate_reaver_pixiewps_version() {
 
+	debug_print
+
 	if compare_floats_greater_or_equal "${reaver_version}" "${minimum_reaver_pixiewps_version}"; then
 		return 0
 	fi
@@ -10240,6 +10693,8 @@ function validate_reaver_pixiewps_version() {
 
 #Set the script folder var if necessary
 function set_script_folder_and_name() {
+
+	debug_print
 
 	if [ -z "${scriptfolder}" ]; then
 		scriptfolder=${0}
@@ -10256,6 +10711,8 @@ function set_script_folder_and_name() {
 
 #Check if pins database file exist and try to download the new one if proceed
 function check_pins_database_file() {
+
+	debug_print
 
 	if [ -f "${scriptfolder}${known_pins_dbfile}" ]; then
 		language_strings "${language}" 376 "yellow"
@@ -10323,6 +10780,8 @@ function check_pins_database_file() {
 #Download the pins database file
 function download_pins_database_file() {
 
+	debug_print
+
 	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null)
 
 	if [ "${remote_pindb_file}" != "${curl_404_error}" ]; then
@@ -10336,6 +10795,8 @@ function download_pins_database_file() {
 #Ask for try to download pin db file again and set the var to skip it
 function ask_for_pin_dbfile_download_retry() {
 
+	debug_print
+
 	ask_yesno 380
 	if [ ${yesno} = "n" ]; then
 		pin_dbfile_checked=1
@@ -10345,11 +10806,15 @@ function ask_for_pin_dbfile_download_retry() {
 #Get the checksum for local pin database file
 function get_local_pin_dbfile_checksum() {
 
+	debug_print
+
 	local_pin_dbfile_checksum=$(md5sum "${1}" | awk '{print $1}')
 }
 
 #Get the checksum for remote pin database file
 function get_remote_pin_dbfile_checksum() {
+
+	debug_print
 
 	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
 
@@ -10361,6 +10826,8 @@ function get_remote_pin_dbfile_checksum() {
 
 #Check for possible non Linux operating systems
 function non_linux_os_check() {
+
+	debug_print
 
 	case "${OSTYPE}" in
 		solaris*)
@@ -10378,6 +10845,8 @@ function non_linux_os_check() {
 #First phase of Linux distro detection based on uname output
 function detect_distro_phase1() {
 
+	debug_print
+
 	for i in "${known_compatible_distros[@]}"; do
 		uname -a | grep "${i}" -i > /dev/null
 		if [ "$?" = "0" ]; then
@@ -10389,6 +10858,8 @@ function detect_distro_phase1() {
 
 #Second phase of Linux distro detection based on architecture and version file
 function detect_distro_phase2() {
+
+	debug_print
 
 	if [ "${distro}" = "Unknown Linux" ]; then
 		if [ -f ${osversionfile_dir}"centos-release" ]; then
@@ -10406,7 +10877,7 @@ function detect_distro_phase2() {
 		elif [ -f ${osversionfile_dir}"debian_version" ]; then
 			distro="Debian"
 			if [ -f ${osversionfile_dir}"os-release" ]; then
-				extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+				extra_os_info=$(grep "PRETTY_NAME" < ${osversionfile_dir}"os-release")
 				if [[ "${extra_os_info}" =~ Raspbian ]]; then
 					distro="Raspbian"
 					is_arm=1
@@ -10418,9 +10889,13 @@ function detect_distro_phase2() {
 		fi
 	elif [ "${distro}" = "Arch" ]; then
 		if [ -f ${osversionfile_dir}"os-release" ]; then
-			extra_os_info=$(cat < ${osversionfile_dir}"os-release" | grep "PRETTY_NAME")
+			extra_os_info=$(grep "PRETTY_NAME" < ${osversionfile_dir}"os-release")
 			if [[ "${extra_os_info}" =~ BlackArch ]]; then
 				distro="BlackArch"
+			elif [[ "${extra_os_info}" =~ Kali ]]; then
+				#Kali is intentionally here too to avoid some Kali arm distro bad detection
+				distro="Kali"
+				is_arm=1
 			fi
 		fi
 	fi
@@ -10430,6 +10905,8 @@ function detect_distro_phase2() {
 
 #Detect if arm architecture is present on system
 function detect_arm_architecture() {
+
+	debug_print
 
 	distro_already_known=0
 	uname -m | grep -i "arm" > /dev/null
@@ -10446,11 +10923,15 @@ function detect_arm_architecture() {
 			distro="${distro} arm"
 			is_arm=1
 		fi
+	elif [[ "${distro}" != "Unknown Linux" ]] && [[ "${is_arm}" -eq 1 ]]; then
+		distro="${distro} arm"
 	fi
 }
 
 #Set some useful vars based on Linux distro
 function special_distro_features() {
+
+	debug_print
 
 	case ${distro} in
 		"Wifislax")
@@ -10571,6 +11052,8 @@ function special_distro_features() {
 #Determine if NetworkManager must be killed on your system. Only needed for previous versions of 1.0.12
 function check_if_kill_needed() {
 
+	debug_print
+
 	nm_min_main_version="1"
 	nm_min_subversion="0"
 	nm_min_subversion2="12"
@@ -10606,6 +11089,8 @@ function check_if_kill_needed() {
 #Do some checks for some general configuration
 function general_checkings() {
 
+	debug_print
+
 	compatible=0
 	distro="Unknown Linux"
 
@@ -10636,6 +11121,8 @@ function general_checkings() {
 #Check if the user is root
 function check_root_permissions() {
 
+	debug_print
+
 	user=$(whoami)
 
 	if [ "${user}" != "root" ]; then
@@ -10645,6 +11132,8 @@ function check_root_permissions() {
 
 #Print Linux known distros
 function print_known_distros() {
+
+	debug_print
 
 	all_known_compatible_distros=("${known_compatible_distros[@]}" "${known_arm_compatible_distros[@]}")
 	IFS=$'\n'
@@ -10659,6 +11148,8 @@ function print_known_distros() {
 
 #Check if you have installed the tools (essential and optional) that the script uses
 function check_compatibility() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 108 "blue"
@@ -10759,6 +11250,8 @@ function check_compatibility() {
 #Check for the minimum bash version requirement
 function check_bash_version() {
 
+	debug_print
+
 	echo
 	bashversion="${BASH_VERSINFO[0]}.${BASH_VERSINFO[1]}"
 	if compare_floats_greater_or_equal "${bashversion}" ${minimum_bash_version_required}; then
@@ -10773,6 +11266,8 @@ function check_bash_version() {
 #Check if you have installed the tools required to update the script
 function check_update_tools() {
 
+	debug_print
+
 	if [ ${auto_update} -eq 1 ]; then
 		if [ ${update_toolsok} -eq 1 ]; then
 			autoupdate_check
@@ -10786,6 +11281,8 @@ function check_update_tools() {
 
 #Check if window size is enough for intro
 function check_window_size_for_intro() {
+
+	debug_print
 
 	window_width=$(tput cols)
 	window_height=$(tput lines)
@@ -10808,6 +11305,8 @@ function check_window_size_for_intro() {
 #Print the script intro
 function print_intro() {
 
+	debug_print
+
 	echo -e "${yellow_color}                  .__                         .___  .___"
 	sleep 0.15 && echo -e "           _____  |__|______  ____   ____   __| _/__| _/____   ____"
 	sleep 0.15 && echo -e "           \__  \ |  \_  __ \/ ___\_/ __ \ / __ |/ __ |/  _ \ /    \\"
@@ -10822,6 +11321,8 @@ function print_intro() {
 
 #Generate the frames of the animated ascii art flying saucer
 function flying_saucer() {
+
+	debug_print
 
 	case ${1} in
 		1)
@@ -10863,6 +11364,8 @@ function flying_saucer() {
 #Print animated ascii art flying saucer
 function print_animated_flying_saucer() {
 
+	debug_print
+
 	echo -e "\033[s"
 
 	for i in $(seq 1 8); do
@@ -10878,6 +11381,8 @@ function print_animated_flying_saucer() {
 
 #Initialize script settings
 function initialize_script_settings() {
+
+	debug_print
 
 	exit_code=0
 	check_kill_needed=0
@@ -10901,6 +11406,8 @@ function initialize_script_settings() {
 #Detect screen resolution if possible
 function detect_screen_resolution() {
 
+	debug_print
+
 	resolution_detected=0
 	if hash xdpyinfo 2> /dev/null; then
 		resolution=$(xdpyinfo 2> /dev/null | grep -A 3 "screen #0" | grep "dimensions" | tr -s " " | cut -d " " -f 3 | grep "x")
@@ -10919,6 +11426,8 @@ function detect_screen_resolution() {
 
 #Set windows sizes and positions
 function set_windows_sizes() {
+
+	debug_print
 
 	set_xsizes
 	set_ysizes
@@ -10949,6 +11458,8 @@ function set_windows_sizes() {
 #Set sizes for x axis
 function set_xsizes() {
 
+	debug_print
+
 	xtotal=$(awk -v n1="${resolution_x}" "BEGIN{print n1 / ${xratio}}")
 
 	xtotaltmp=$(printf "%.0f" "${xtotal}" 2> /dev/null)
@@ -10968,6 +11479,8 @@ function set_xsizes() {
 #Set sizes for y axis
 function set_ysizes() {
 
+	debug_print
+
 	ytotal=$(awk -v n1="${resolution_y}" "BEGIN{print n1 / ${yratio}}")
 	ytotaltmp=$(printf "%.0f" "${ytotal}" 2> /dev/null)
 	if [ "$?" != "0" ]; then
@@ -10986,11 +11499,15 @@ function set_ysizes() {
 #Set positions for y axis
 function set_ypositions() {
 
+	debug_print
+
 	middle_position=$((resolution_y / 3 + ywindow_edge_pixels))
 }
 
 #Recalculate windows sizes and positions
 function recalculate_windows_sizes() {
+
+	debug_print
 
 	detect_screen_resolution
 	set_windows_sizes
@@ -10998,6 +11515,8 @@ function recalculate_windows_sizes() {
 
 #Script starting point
 function welcome() {
+
+	debug_print
 
 	clear
 	current_menu="pre_main_menu"
@@ -11068,6 +11587,8 @@ function welcome() {
 #Avoid the problem of using airmon-zc without ethtool or lspci installed
 function airmonzc_security_check() {
 
+	debug_print
+
 	if [ "${airmon}" = "airmon-zc" ]; then
 		if ! hash ethtool 2> /dev/null; then
 			echo
@@ -11090,17 +11611,23 @@ function airmonzc_security_check() {
 #Compare if first float argument is greater than float second argument
 function compare_floats_greater_than() {
 
+	debug_print
+
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>n2) exit 0; exit 1}'
 }
 
 #Compare if first float argument is greater or equal than float second argument
 function compare_floats_greater_or_equal() {
 
+	debug_print
+
 	awk -v n1="${1}" -v n2="${2}" 'BEGIN{if (n1>=n2) exit 0; exit 1}'
 }
 
 #Update and relaunch the script
 function download_last_version() {
+
+	debug_print
 
 	rewrite_script_with_custom_beef "search"
 	timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
@@ -11121,6 +11648,8 @@ function download_last_version() {
 
 #Validate if the selected internet interface has internet access
 function validate_et_internet_interface() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 287 "blue"
@@ -11151,6 +11680,8 @@ function validate_et_internet_interface() {
 #Check for active internet connection
 function check_internet_access() {
 
+	debug_print
+
 	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
 	return $?
 }
@@ -11158,12 +11689,16 @@ function check_internet_access() {
 #Check for default route on an interface
 function check_default_route() {
 
+	debug_print
+
 	route | grep "${1}" | grep "default" > /dev/null
 	return $?
 }
 
 #Update the script if your version is lower than the cloud version
 function autoupdate_check() {
+
+	debug_print
 
 	echo
 	language_strings "${language}" 210 "blue"
@@ -11199,6 +11734,8 @@ function autoupdate_check() {
 #Check if you can launch captive portal Evil Twin attack
 function check_et_without_internet_compatibility() {
 
+	debug_print
+
 	if ! hash "${optional_tools_names[12]}" 2> /dev/null; then
 		return 1
 	fi
@@ -11207,6 +11744,8 @@ function check_et_without_internet_compatibility() {
 
 #Change script language automatically if OS language is supported by the script and different from current language
 function autodetect_language() {
+
+	debug_print
 
 	[[ $(locale | grep LANG) =~ ^(.*)=\"?([a-zA-Z]+)_(.*)$ ]] && lang="${BASH_REMATCH[2]}"
 
@@ -11221,6 +11760,8 @@ function autodetect_language() {
 
 #Clean some known and controlled warnings for shellcheck tool
 function remove_warnings() {
+
+	debug_print
 
 	echo "${clean_handshake_dependencies[@]}" > /dev/null 2>&1
 	echo "${aircrack_attacks_dependencies[@]}" > /dev/null 2>&1
@@ -11243,17 +11784,23 @@ function remove_warnings() {
 #Print a simple separator
 function print_simple_separator() {
 
+	debug_print
+
 	echo_blue "---------"
 }
 
 #Print a large separator
 function print_large_separator() {
 
+	debug_print
+
 	echo_blue "-------------------------------------------------------"
 }
 
 #Add the PoT prefix on printed strings if PoT mark is found
 function check_pending_of_translation() {
+
+	debug_print
 
 	if [[ "${1}" =~ ^${escaped_pending_of_translation}([[:space:]])(.*)$ ]]; then
 		text="${cyan_color}${pending_of_translation} ${2}${BASH_REMATCH[2]}"
@@ -11275,6 +11822,8 @@ function check_pending_of_translation() {
 #Print under construction message used on some menu entries
 function under_construction_message() {
 
+	debug_print
+
 	local var_uc="${under_constructionvar^}"
 	echo
 	echo_yellow "${var_uc}..."
@@ -11283,6 +11832,8 @@ function under_construction_message() {
 
 #Canalize the echo functions
 function last_echo() {
+
+	debug_print
 
 	check_pending_of_translation "${1}" "${2}"
 	if [ "$?" != "0" ]; then
@@ -11295,11 +11846,15 @@ function last_echo() {
 #Print green messages
 function echo_green() {
 
+	debug_print
+
 	last_echo "${1}" "${green_color}"
 }
 
 #Print blue messages
 function echo_blue() {
+
+	debug_print
 
 	last_echo "${1}" "${blue_color}"
 }
@@ -11307,11 +11862,15 @@ function echo_blue() {
 #Print yellow messages
 function echo_yellow() {
 
+	debug_print
+
 	last_echo "${1}" "${yellow_color}"
 }
 
 #Print red messages
 function echo_red() {
+
+	debug_print
 
 	last_echo "${1}" "${red_color}"
 }
@@ -11319,11 +11878,15 @@ function echo_red() {
 #Print red messages using a slimmer thickness
 function echo_red_slim() {
 
+	debug_print
+
 	last_echo "${1}" "${red_color_slim}"
 }
 
 #Print black messages with background for titles
 function echo_green_title() {
+
+	debug_print
 
 	last_echo "${1}" "${green_color_title}"
 }
@@ -11331,11 +11894,15 @@ function echo_green_title() {
 #Print pink messages
 function echo_pink() {
 
+	debug_print
+
 	last_echo "${1}" "${pink_color}"
 }
 
 #Print cyan messages
 function echo_cyan() {
+
+	debug_print
 
 	last_echo "${1}" "${cyan_color}"
 }
@@ -11343,11 +11910,15 @@ function echo_cyan() {
 #Print brown messages
 function echo_brown() {
 
+	debug_print
+
 	last_echo "${1}" "${brown_color}"
 }
 
 #Print white messages
 function echo_white() {
+
+	debug_print
 
 	last_echo "${1}" "${white_color}"
 }
