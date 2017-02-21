@@ -1,12 +1,34 @@
 <!-- Change version for shield on each commit -->
 <!-- Visit https://shields.io/ for more info -->
 <!-- Shields' color scheme based on banner: colorA=273133 colorB=0093ee -->
+<!-- Below is a workaround for IE8 or older; Make <details> tag work. -->
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 # :satellite: airgeddon [![Version-shield]](CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](LICENSE.md) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
-This is a multi-use bash script for Linux systems to audit wireless networks.
+> This is a multi-use bash script for Linux systems to audit wireless networks.
 
 ![Banner]
+
+<details>
+	<summary id="TOC"><strong>Table Of Contents</strong></summary>
+- [Features]
+- [Requirements]
+ - [Essential Tools]
+ - [Optional Tools]
+ - [Update Tools]
+ - [Internal Tools]
+ - [BeEF Tips]
+- [Usage]
+- [Supported Languages]
+- [Known Incompatibilities]
+- [Contributing]
+- [Changelog]
+- [Disclaimer & License]
+- [Acknowledgments]
+ - [Hat Tip To]
+ - [Inspiration]
+</details>
 
 ---
 
@@ -36,7 +58,7 @@ This is a multi-use bash script for Linux systems to audit wireless networks.
 - Drag and drop files on console window for entering file paths
 - Dynamic screen resolution detection and windows auto-sizing for optimal viewing
 - Controlled Exit. Cleaning tasks and temp files. Option to keep monitor mode if desired
-- Multilanguage support and autodetect OS language feature (see supported [Languages] section)
+- Multilanguage support and autodetect OS language feature (see [Supported Languages] section)
 - Help hints in every zone/menu for easy use
 - Auto-update. Script checks for newer version if possible
 
@@ -48,9 +70,14 @@ Bash **4.2** or later.
 
 Compatible with any Linux that has installed the tools needed. The script checks for them at the beginning.
 
-<!-- Distribution compatibility should be written here -->
-Tested on these compatible Linux distributions:
+> `airgeddon` is already included in some Linux distributions and repositories:
+> - [Wifislax] 4.12, 64-1.0 or higher
+> - [BlackArch] 2017.01.28 or later
+> - [ArchStrike] repository
 
+<!-- Distribution compatibility should be written here -->
+<details open>
+	<summary id="distros"><strong>Tested on these compatible Linux distributions</strong></summary>
 - *Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*
 - *Wifislax 4.11.1, 4.12 and 64-1.0*
 - *Backbox 4.5.1 and 4.6*
@@ -67,11 +94,7 @@ Tested on these compatible Linux distributions:
 - *Arch 4.6.2-1 to 4.9.9-1*
 - *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
 - *OpenMandriva LX3*
-
-`airgeddon` is already included in some Linux distributions and repositories:
-- [Wifislax] 4.12, 64-1.0 or higher
-- [BlackArch] 2017.01.28 or later
-- [ArchStrike] repository
+</details>
 
 #### Essential tools &#8592; The script does not work if you don't have installed all of them
 
@@ -167,13 +190,13 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 - More WPS pins for the database
 - Testing and feedback
 
-Read [Contributing] file for more details on our code of conduct, and the process of project collaborating.
+Read [Contributing File] for more details on our code of conduct, and the process of project collaborating.
 
 ---
 
 ### Changelog
 
-Read [Changelog] file to review changes.
+Read [Changelog File] to review changes.
 
 ---
 
@@ -220,7 +243,24 @@ Use it only on your own networks or with the network's owner permission.<br/>
 - Goyfilms &#8594; Goyscript
 - [Kcdtv] &#8594; WPSPin
 
-<!-- Images -->
+<!-- Anchors -->
+[Features]: #features
+[Essential Tools]: #essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them
+[Optional Tools]: #optional-tools--not-necessary-to-work-only-needed-for-some-features
+[BeEF Tips]: #important-tips-about-beef
+[Update Tools]: #update-tools--not-necessary-to-work-only-used-for-auto-update
+[Internal Tools]: #internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have
+[Requirements]: #requirements
+[Usage]: #usage
+[Supported Languages]: #supported-languages
+[Known Incompatibilities]: #known-incompatibilities
+[Contributing]: #contributing
+[Changelog]: #changelog
+[Disclaimer & License]: #disclaimer--license
+[Acknowledgments]: #acknowledgments
+[Hat Tip To]: #hat-tip-to
+[Inspiration]: #inspiration
+<!-- Links To Images -->
 [Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [English]: /imgs/flags/us.png "English"
 [Spanish]: /imgs/flags/es.png "Spanish"
@@ -229,18 +269,10 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [Portuguese]: /imgs/flags/pt.png "Portuguese"
 [Russian]: /imgs/flags/ru.png "Russian"
 [Greek]: /imgs/flags/gr.png "Greek"
-<!-- Links -->
-[Requirements]: #requirements
-[Languages]: #supported-languages
-[License]: LICENSE.md
-[Contributing]: CONTRIBUTING.md
-[Changelog]: CHANGELOG.md
-<!-- Shields -->
-[Version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
-[Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
-[License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
-[Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
-[Bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
+<!-- Links To MDs -->
+[Changelog File]: CHANGELOG.md
+[Contributing File]: CONTRIBUTING.md
+[License File]: LICENSE.md
 <!-- URLs -->
 [Wifislax]: http://www.wifislax.com
 [BlackArch]: https://blackarch.org
@@ -250,7 +282,7 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [Wifi-libre.com]: https://www.wifi-libre.com
 [Lampiweb.com]: http://lampiweb.com/foro
 [Hackware.ru]: https://hackware.ru
-<!-- Github Links -->
+<!-- Github URLs -->
 [vk496]: https://github.com/vk496
 [MatToufoutu]: https://github.com/mattoufoutu
 [Kcdtv]: https://github.com/kcdtv
@@ -259,3 +291,9 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [MiAl]: https://github.com/Mi-Al
 [xtonousou]: https://github.com/xtonousou "xT"
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
+<!-- Badges URLs -->
+[Version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
+[License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
+[Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
+[Bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
