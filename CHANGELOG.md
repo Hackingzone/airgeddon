@@ -1,3 +1,6 @@
+###6.1
+ - Network selection menues now colorized
+
 ###6.01
  - Shebang changed to a more portable one `#!/usr/bin/env bash`
  - New extra-verbose debug mode added
