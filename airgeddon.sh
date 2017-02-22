@@ -9872,8 +9872,10 @@ function select_target() {
 			sp4=""
 		fi
 
+		airodump_color="${normal_color}"
 		client=$(grep "${exp_mac}" < "${tmpdir}clts.csv")
 		if [ "${client}" != "" ]; then
+			airodump_color="${yellow_color}"
 			client="*"
 			sp5=""
 		else
@@ -9893,7 +9895,7 @@ function select_target() {
 		channels[$i]=${exp_channel}
 		macs[$i]=${exp_mac}
 		encs[$i]=${exp_enc}
-		echo -e " ${sp1}${i})${client}  ${sp5}${exp_mac}   ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
+		echo -e "${airodump_color} ${sp1}${i})${client}  ${sp5}${exp_mac}   ${sp2}${exp_channel}    ${sp4}${exp_power}%   ${exp_enc}${sp6}   ${exp_essid}"
 	done < "${tmpdir}wnws.txt"
 
 	echo
@@ -9902,7 +9904,7 @@ function select_target() {
 		selected_target_network=1
 		language_strings "${language}" 115 "read"
 	else
-		language_strings "${language}" 71
+		language_strings "${language}" 71 "yellow"
 		print_large_separator
 		language_strings "${language}" 3 "green"
 		read -r selected_target_network
