@@ -2,7 +2,6 @@
 <!-- Visit https://shields.io/ for more info -->
 <!-- Shields' color scheme based on banner: colorA=273133 colorB=0093ee -->
 <!-- Below is a workaround for IE8 or older; Make <details> tag work. -->
-<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 # :satellite: airgeddon [![Version-shield]](CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](LICENSE.md) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
@@ -91,7 +90,7 @@ Compatible with any Linux that has installed the tools needed. The script checks
 - *Gentoo 20160514 and 20160704*
 - *Fedora 24*
 - *Red Hat 7 (Maipo)*
-- *Arch 4.6.2-1 to 4.9.9-1*
+- *Arch 4.6.2-1 to 4.9.11-1*
 - *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
 - *OpenMandriva LX3*
 </details>
