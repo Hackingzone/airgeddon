@@ -1,5 +1,7 @@
 ###6.1
  - Network selection menues now colorized
+ - Language strings now in a separated file for easy handling and translating
+ - Validation and self-downloading system for new language strings file
 
 ###6.01
  - Shebang changed to a more portable one `#!/usr/bin/env bash`

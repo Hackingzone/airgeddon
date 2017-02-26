@@ -172,7 +172,7 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 ### Known Incompatibilities
 
 - Impossible compatibility for Mac OSX at the moment:
- - *Bash version* &#8592; it can be avoided upgrading to 4 or later, this is not the real problem :smile:
+ - *Bash version* &#8592; it can be avoided upgrading it using brew or however, this is not the real problem :smile:
  - *Aircrack suite* &#8592; this suite for OSX does not support `airodump` and `aireplay`
  - *Wireless tools* &#8592; `iwconfig` does not exist for OSX, and `airport` command cannot be used. It generates different outputs
 - Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:
