@@ -814,15 +814,6 @@ function integrate_algorithms_pins() {
 	return 1
 }
 
-#Include the code of the pin database file
-function include_pin_dbfile() {
-
-	debug_print
-
-	dbfile_to_include="source \"${scriptfolder}${known_pins_dbfile}\""
-	eval "${dbfile_to_include}"
-}
-
 #Search for target wps bssid mac in pin database and set the vars to be used
 function search_in_pin_database() {
 
@@ -6429,7 +6420,10 @@ function wps_pin_database_prerequisites() {
 	debug_print
 
 	set_wps_mac_parameters
-	include_pin_dbfile
+
+	#shellcheck source=./known_pins.db
+	source "${scriptfolder}${known_pins_dbfile}"
+
 	echo
 	language_strings "${language}" 384 "blue"
 	echo
