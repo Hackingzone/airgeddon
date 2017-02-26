@@ -354,7 +354,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["GREEK"]="Σφάλμα. Το αρχείο γλωσσών δεν βρέθηκε"
 
 	declare -gA language_strings_file_mismatch
-	language_strings_file_mismatch["ENGLISH"]="Error. The language strings file found mismatchs expected version"
+	language_strings_file_mismatch["ENGLISH"]="Error. The language strings file found mismatches expected version"
 	language_strings_file_mismatch["SPANISH"]="Error. El fichero de traducciones encontrado no es la versión esperada"
 	language_strings_file_mismatch["FRENCH"]="Erreur. Les traductions trouvées ne sont pas celles attendues"
 	language_strings_file_mismatch["CATALAN"]="${pending_of_translation} Error. El fitxer de traduccions trobat no és la versió esperada"
@@ -390,7 +390,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["GREEK"]="Το αρχείο γλωσσών δεν μπορεί να κατέβει. Ελέγξτε τη σύνδεση σας με το διαδίκτυο ή κατεβάστε το χειροκίνητα ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
-	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! probably is because since version 6.1 airgeddon has different file structure. It will be automatically fixed"
+	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! It's probably because airgeddon has different file structure since version 6.1. It will be automatically fixed"
 	language_strings_first_time["SPANISH"]="Si estás viendo este mensaje tras una actualización automática, ¡no te asustes! probablemente es porque a partir de la versión 6.1 la estructura de ficheros de airgeddon ha cambiado. Se reparará automáticamente"
 	language_strings_first_time["FRENCH"]="Si vous voyez ce message après une mise à jour automatique ne vous inquiétez pas! A partir de la version 6.1 la structure de fichier d'airgeddon a changé. L'ajustement se fera automatiquement"
 	language_strings_first_time["CATALAN"]="${pending_of_translation} Si estàs veient aquest missatge després d'una actualització automàtica, no t'espantis! probablement és perquè a partir de la versió 6.1 l'estructura de fitxers de airgeddon ha canviat. Es repararà automàticament"
