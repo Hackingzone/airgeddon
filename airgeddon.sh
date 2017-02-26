@@ -8107,7 +8107,7 @@ function download_last_version() {
 	debug_print
 
 	rewrite_script_with_custom_beef "search"
-	timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
+	download_language_strings_file && timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
 		echo
