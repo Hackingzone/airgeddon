@@ -387,7 +387,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["CATALAN"]="${pending_of_translation} No s'ha pogut descarregar el fitxer de traduccions. Comprova la connexió a internet o descarrega'l manualment de ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["PORTUGUESE"]="${pending_of_translation} Não é possível baixar as traduções de arquivos. Verifique a sua ligação à internet ou baixá-lo manualmente ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["RUSSIAN"]="${pending_of_translation} Файл строка язык не может быть загружен. Проверьте подключение к Интернету или загрузить его вручную с ${normal_color}${urlgithub}"
-	language_strings_failed_downloading["GREEK"]="Το αρχείο γλωσσών δεν μπορεί να κατέβει. Ελέγξτε τη σύνδεση σας με το διαδίκτυο ή κατεβάστε το χειροκίνητα  ${normal_color}${urlgithub}"
+	language_strings_failed_downloading["GREEK"]="Το αρχείο γλωσσών δεν μπορεί να κατέβει. Ελέγξτε τη σύνδεση σας με το διαδίκτυο ή κατεβάστε το χειροκίνητα ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
 	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! probably is because since version 6.1 airgeddon has different file structure. It will be automatically fixed"
