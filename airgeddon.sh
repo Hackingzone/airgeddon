@@ -328,6 +328,9 @@ function download_language_strings_file() {
 
 	if [ "${remote_language_strings_file}" != "${curl_404_error}" ]; then
 		echo "${remote_language_strings_file}" > "${scriptfolder}${language_strings_file}"
+		chmod +x "${scriptfolder}${language_strings_file}" > /dev/null 2>&1
+		#shellcheck source=./language_strings.sh
+		source "${scriptfolder}${language_strings_file}"
 		return 0
 	else
 		return 1
@@ -8112,8 +8115,6 @@ function download_last_version() {
 	if [ "$?" = "0" ]; then
 		echo
 		language_strings "${language}" 214 "yellow"
-
-		chmod +x "${scriptfolder}${language_strings_file}" > /dev/null 2>&1
 
 		if [ -n "${beef_custom_path}" ]; then
 			rewrite_script_with_custom_beef "set" "${beef_custom_path}"
