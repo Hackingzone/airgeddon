@@ -285,6 +285,10 @@ function check_language_strings() {
 		generate_dynamic_line "airgeddon" "title"
 		if [ "${language_file_found}" -eq 0 ]; then
 			echo_red "${language_strings_no_file[${language}]}"
+			if [ "${airgeddon_version}" = "6.1" ]; then
+				echo
+				echo_yellow "${language_strings_first_time[${language}]}"
+			fi
 		elif [ "${language_file_mismatch}" -eq 1 ]; then
 			echo_red "${language_strings_file_mismatch[${language}]}"
 		fi
@@ -384,6 +388,15 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["PORTUGUESE"]="${pending_of_translation} Não é possível baixar as traduções de arquivos. Verifique a sua ligação à internet ou baixá-lo manualmente ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["RUSSIAN"]="${pending_of_translation} Файл строка язык не может быть загружен. Проверьте подключение к Интернету или загрузить его вручную с ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["GREEK"]="${pending_of_translation} Δεν μπορείτε να κατεβάσετε το αρχείο γλώσσας κορδόνι. Ελέγξτε τη σύνδεσή σας στο διαδίκτυο ή να κατεβάσετε το χέρι από ${normal_color}${urlgithub}"
+
+	declare -gA language_strings_first_time
+	language_strings_first_time["ENGLISH"]="If you are seeing this message after an automatic update, don't be scared! probably is because since version 6.1 airgeddon has different file structure. It will be automatically fixed"
+	language_strings_first_time["SPANISH"]="Si estás viendo este mensaje tras una actualización automática, ¡no te asustes! probablemente es porque a partir de la versión 6.1 la estructura de ficheros de airgeddon ha cambiado. Se reparará automáticamente"
+	language_strings_first_time["FRENCH"]="${pending_of_translation} Si vous voyez ce message, après une mise à jour automatique, ne pas avoir peur! il est probablement en raison de la version 6.1 de la structure de fichier airgeddon a changé. Il réparera automatiquement"
+	language_strings_first_time["CATALAN"]="${pending_of_translation} Si estàs veient aquest missatge després d'una actualització automàtica, no t'espantis! probablement és perquè a partir de la versió 6.1 l'estructura de fitxers de airgeddon ha canviat. Es repararà automàticament"
+	language_strings_first_time["PORTUGUESE"]="${pending_of_translation} Se você está vendo esta mensagem depois de uma atualização automática, não tenha medo! provavelmente é porque a partir da versão 6.1 da estrutura de arquivos airgeddon mudou. Ele irá reparar automaticamente"
+	language_strings_first_time["RUSSIAN"]="${pending_of_translation} Если вы видите это сообщение после автоматического обновления, не бойся! вероятно, объясняется тем, что начиная с версии 6.1 airgeddon имеет другую структуру файла. Он будет автоматически фиксируется"
+	language_strings_first_time["GREEK"]="${pending_of_translation} Εάν βλέπετε αυτό το μήνυμα μετά από μια αυτόματη ενημέρωση, δεν πρέπει να φοβάται! πιθανώς οφείλεται στο γεγονός ότι από την έκδοση 6.1 airgeddon έχει διαφορετική δομή αρχείων. Θα διορθωθεί αυτόματα"
 
 	declare -gA language_strings_exiting
 	language_strings_exiting["ENGLISH"]="Exiting airgeddon script v${airgeddon_version} - See you soon! :)"
