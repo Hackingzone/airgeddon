@@ -8113,6 +8113,8 @@ function download_last_version() {
 		echo
 		language_strings "${language}" 214 "yellow"
 
+		chmod +x "${scriptfolder}${language_strings_file}" > /dev/null 2>&1
+
 		if [ -n "${beef_custom_path}" ]; then
 			rewrite_script_with_custom_beef "set" "${beef_custom_path}"
 		fi
