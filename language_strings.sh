@@ -2560,7 +2560,7 @@ function language_strings() {
 	arr["SPANISH",283]="Interfaz con internet seleccionada: ${pink_color}Ninguna${normal_color}"
 	arr["FRENCH",283]="Interface internet sélectionnée: ${pink_color}Aucun${normal_color}"
 	arr["CATALAN",283]="Interfície amb internet seleccionat: ${pink_color}Ningú${normal_color}"
-	arr["PORTUGUESE",283]="Interface com internet selecionad: ${pink_color}Nenhuma${normal_color}"
+	arr["PORTUGUESE",283]="Interface com internet selecionada: ${pink_color}Nenhuma${normal_color}"
 	arr["RUSSIAN",283]="Выбранный Интернет интерфейс: ${pink_color}Нет${normal_color}"
 	arr["GREEK",283]="Επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο: ${pink_color}Καμία${normal_color}"
 
