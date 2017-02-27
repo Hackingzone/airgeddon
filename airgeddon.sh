@@ -349,7 +349,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["SPANISH"]="Error. No se ha encontrado el fichero de traducciones"
 	language_strings_no_file["FRENCH"]="Erreur. Fichier contenant les traductions absent"
 	language_strings_no_file["CATALAN"]="${pending_of_translation} Error. No s'ha trobat el fitxer de traduccions"
-	language_strings_no_file["PORTUGUESE"]="${pending_of_translation} Error. Não encontrou as traduções de arquivos"
+	language_strings_no_file["PORTUGUESE"]="Erro. O arquivo de tradução não foi encontrado"
 	language_strings_no_file["RUSSIAN"]="${pending_of_translation} Ошибка. Языковые строки файл не найден"
 	language_strings_no_file["GREEK"]="Σφάλμα. Το αρχείο γλωσσών δεν βρέθηκε"
 
@@ -358,7 +358,7 @@ function language_strings_handling_messages() {
 	language_strings_file_mismatch["SPANISH"]="Error. El fichero de traducciones encontrado no es la versión esperada"
 	language_strings_file_mismatch["FRENCH"]="Erreur. Les traductions trouvées ne sont pas celles attendues"
 	language_strings_file_mismatch["CATALAN"]="${pending_of_translation} Error. El fitxer de traduccions trobat no és la versió esperada"
-	language_strings_file_mismatch["PORTUGUESE"]="${pending_of_translation} Error. As traduções de arquivos encontrados não é a versão esperada"
+	language_strings_file_mismatch["PORTUGUESE"]="Erro. O a versão do arquivos de tradução encontrado é a incompatível"
 	language_strings_file_mismatch["RUSSIAN"]="${pending_of_translation} Ошибка. Файл строки языка найден mismatchs ожидается версия"
 	language_strings_file_mismatch["GREEK"]="Σφάλμα. Το αρχείο γλωσσών που έχει βρεθεί δεν αντιστοιχεί με την προαπαιτούμενη έκδοση"
 
@@ -367,7 +367,7 @@ function language_strings_handling_messages() {
 	language_strings_try_to_download["SPANISH"]="airgeddon intentará descargar el fichero de traducciones..."
 	language_strings_try_to_download["FRENCH"]="airgeddon va essayer de télécharger les fichiers de traductions..."
 	language_strings_try_to_download["CATALAN"]="${pending_of_translation} airgeddon intentarà el fitxer de traduccions..."
-	language_strings_try_to_download["PORTUGUESE"]="${pending_of_translation} airgeddon tentar baixar as traduções de arquivos..."
+	language_strings_try_to_download["PORTUGUESE"]="O airgeddon tentará baixar o arquivo de tradução..."
 	language_strings_try_to_download["RUSSIAN"]="${pending_of_translation} airgeddon попытается загрузить файл строки языка..."
 	language_strings_try_to_download["GREEK"]="Το airgeddon θα προσπαθήσει να κατεβάσει το αρχείο γλωσσών..."
 
@@ -376,7 +376,7 @@ function language_strings_handling_messages() {
 	language_strings_successfully_downloaded["SPANISH"]="Se ha descargado con éxito el fichero de traducciones"
 	language_strings_successfully_downloaded["FRENCH"]="Les fichiers traduction ont été correctement téléchargés"
 	language_strings_successfully_downloaded["CATALAN"]="${pending_of_translation} S'ha descarregat amb èxit el fitxer de traduccions"
-	language_strings_successfully_downloaded["PORTUGUESE"]="${pending_of_translation} Ele foi baixado com sucesso as traduções de arquivos"
+	language_strings_successfully_downloaded["PORTUGUESE"]="O arquivo de tradução foi baixado com sucesso"
 	language_strings_successfully_downloaded["RUSSIAN"]="${pending_of_translation} Языковые строки файл был успешно загружен"
 	language_strings_successfully_downloaded["GREEK"]="Το αρχείο γλωσσών κατέβηκε με επιτυχία"
 
@@ -385,7 +385,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["SPANISH"]="No se ha podido descargar el fichero de traducciones. Comprueba tu conexión a internet o descárgalo manualmente de ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["FRENCH"]="Impossible de télécharger le fichier traduction. Vérifiez votre connexion à internet ou téléchargez le fichier manuellement ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["CATALAN"]="${pending_of_translation} No s'ha pogut descarregar el fitxer de traduccions. Comprova la connexió a internet o descarrega'l manualment de ${normal_color}${urlgithub}"
-	language_strings_failed_downloading["PORTUGUESE"]="${pending_of_translation} Não é possível baixar as traduções de arquivos. Verifique a sua ligação à internet ou baixá-lo manualmente ${normal_color}${urlgithub}"
+	language_strings_failed_downloading["PORTUGUESE"]="Não foi possível baixar o arquivos de tradução. Verifique a sua conexão com a internet ou baixe manualmente em ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["RUSSIAN"]="${pending_of_translation} Файл строка язык не может быть загружен. Проверьте подключение к Интернету или загрузить его вручную с ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["GREEK"]="Το αρχείο γλωσσών δεν μπορεί να κατέβει. Ελέγξτε τη σύνδεση σας με το διαδίκτυο ή κατεβάστε το χειροκίνητα ${normal_color}${urlgithub}"
 
@@ -394,7 +394,7 @@ function language_strings_handling_messages() {
 	language_strings_first_time["SPANISH"]="Si estás viendo este mensaje tras una actualización automática, ¡no te asustes! probablemente es porque a partir de la versión 6.1 la estructura de ficheros de airgeddon ha cambiado. Se reparará automáticamente"
 	language_strings_first_time["FRENCH"]="Si vous voyez ce message après une mise à jour automatique ne vous inquiétez pas! A partir de la version 6.1 la structure de fichier d'airgeddon a changé. L'ajustement se fera automatiquement"
 	language_strings_first_time["CATALAN"]="${pending_of_translation} Si estàs veient aquest missatge després d'una actualització automàtica, no t'espantis! probablement és perquè a partir de la versió 6.1 l'estructura de fitxers de airgeddon ha canviat. Es repararà automàticament"
-	language_strings_first_time["PORTUGUESE"]="${pending_of_translation} Se você está vendo esta mensagem depois de uma atualização automática, não tenha medo! provavelmente é porque a partir da versão 6.1 da estrutura de arquivos airgeddon mudou. Ele irá reparar automaticamente"
+	language_strings_first_time["PORTUGUESE"]="Se você está vendo esta mensagem depois de uma atualização automática, não tenha medo! A partir da versão 6.1 da estrutura de arquivos do airgeddon mudou. Isso será corrigido automaticamente"
 	language_strings_first_time["RUSSIAN"]="${pending_of_translation} Если вы видите это сообщение после автоматического обновления, не бойся! вероятно, объясняется тем, что начиная с версии 6.1 airgeddon имеет другую структуру файла. Он будет автоматически фиксируется"
 	language_strings_first_time["GREEK"]="Εάν βλέπετε αυτό το μήνυμα μετά από κάποια αυτόματη ενημέρωση, μην τρομάξετε! Πιθανόν είναι λόγω της διαφορετικής δομής του airgeddon μετά από την έκδοση 6.1. Θα επιδιορθωθεί αυτόματα"
 
