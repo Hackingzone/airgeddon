@@ -3633,7 +3633,7 @@ function language_strings() {
 	arr["FRENCH",417]="Une erreur inattendue s'est produite, retour au menu"
 	arr["CATALAN",417]="${pending_of_translation} Hi ha hagut un error inesperat, redirigint al menú"
 	arr["PORTUGUESE",417]="Ocorreu um erro inesperado, retornando ao menu"
-	arr["RUSSIAN",417]="${pending_of_translation} Непредвиденная ошибка, перенаправляя в меню"
+	arr["RUSSIAN",417]="Случилась непредвиденная ошибка, перенаправление в меню"
 	arr["GREEK",417]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, γίνεται ανακατεύθυνση στο μενού"
 
 	case "${3}" in

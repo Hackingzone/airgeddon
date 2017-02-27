@@ -350,7 +350,7 @@ function language_strings_handling_messages() {
 	language_strings_no_file["FRENCH"]="Erreur. Fichier contenant les traductions absent"
 	language_strings_no_file["CATALAN"]="${pending_of_translation} Error. No s'ha trobat el fitxer de traduccions"
 	language_strings_no_file["PORTUGUESE"]="Erro. O arquivo de tradução não foi encontrado"
-	language_strings_no_file["RUSSIAN"]="${pending_of_translation} Ошибка. Языковые строки файл не найден"
+	language_strings_no_file["RUSSIAN"]="Ошибка. Не найден языковой файл"
 	language_strings_no_file["GREEK"]="Σφάλμα. Το αρχείο γλωσσών δεν βρέθηκε"
 
 	declare -gA language_strings_file_mismatch
@@ -359,7 +359,7 @@ function language_strings_handling_messages() {
 	language_strings_file_mismatch["FRENCH"]="Erreur. Les traductions trouvées ne sont pas celles attendues"
 	language_strings_file_mismatch["CATALAN"]="${pending_of_translation} Error. El fitxer de traduccions trobat no és la versió esperada"
 	language_strings_file_mismatch["PORTUGUESE"]="Erro. O a versão do arquivos de tradução encontrado é a incompatível"
-	language_strings_file_mismatch["RUSSIAN"]="${pending_of_translation} Ошибка. Файл строки языка найден mismatchs ожидается версия"
+	language_strings_file_mismatch["RUSSIAN"]="Ошибка. Языковой файл не соответствует ожидаемой версии"
 	language_strings_file_mismatch["GREEK"]="Σφάλμα. Το αρχείο γλωσσών που έχει βρεθεί δεν αντιστοιχεί με την προαπαιτούμενη έκδοση"
 
 	declare -gA language_strings_try_to_download
@@ -368,7 +368,7 @@ function language_strings_handling_messages() {
 	language_strings_try_to_download["FRENCH"]="airgeddon va essayer de télécharger les fichiers de traductions..."
 	language_strings_try_to_download["CATALAN"]="${pending_of_translation} airgeddon intentarà el fitxer de traduccions..."
 	language_strings_try_to_download["PORTUGUESE"]="O airgeddon tentará baixar o arquivo de tradução..."
-	language_strings_try_to_download["RUSSIAN"]="${pending_of_translation} airgeddon попытается загрузить файл строки языка..."
+	language_strings_try_to_download["RUSSIAN"]="airgeddon попытается загрузить языковой файл..."
 	language_strings_try_to_download["GREEK"]="Το airgeddon θα προσπαθήσει να κατεβάσει το αρχείο γλωσσών..."
 
 	declare -gA language_strings_successfully_downloaded
@@ -377,7 +377,7 @@ function language_strings_handling_messages() {
 	language_strings_successfully_downloaded["FRENCH"]="Les fichiers traduction ont été correctement téléchargés"
 	language_strings_successfully_downloaded["CATALAN"]="${pending_of_translation} S'ha descarregat amb èxit el fitxer de traduccions"
 	language_strings_successfully_downloaded["PORTUGUESE"]="O arquivo de tradução foi baixado com sucesso"
-	language_strings_successfully_downloaded["RUSSIAN"]="${pending_of_translation} Языковые строки файл был успешно загружен"
+	language_strings_successfully_downloaded["RUSSIAN"]="Языковой файл был успешно загружен"
 	language_strings_successfully_downloaded["GREEK"]="Το αρχείο γλωσσών κατέβηκε με επιτυχία"
 
 	declare -gA language_strings_failed_downloading
@@ -386,7 +386,7 @@ function language_strings_handling_messages() {
 	language_strings_failed_downloading["FRENCH"]="Impossible de télécharger le fichier traduction. Vérifiez votre connexion à internet ou téléchargez le fichier manuellement ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["CATALAN"]="${pending_of_translation} No s'ha pogut descarregar el fitxer de traduccions. Comprova la connexió a internet o descarrega'l manualment de ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["PORTUGUESE"]="Não foi possível baixar o arquivos de tradução. Verifique a sua conexão com a internet ou baixe manualmente em ${normal_color}${urlgithub}"
-	language_strings_failed_downloading["RUSSIAN"]="${pending_of_translation} Файл строка язык не может быть загружен. Проверьте подключение к Интернету или загрузить его вручную с ${normal_color}${urlgithub}"
+	language_strings_failed_downloading["RUSSIAN"]="Языковой файл не может быть загружен. Проверьте подключение к Интернету или загрузите его вручную с ${normal_color}${urlgithub}"
 	language_strings_failed_downloading["GREEK"]="Το αρχείο γλωσσών δεν μπορεί να κατέβει. Ελέγξτε τη σύνδεση σας με το διαδίκτυο ή κατεβάστε το χειροκίνητα ${normal_color}${urlgithub}"
 
 	declare -gA language_strings_first_time
@@ -395,7 +395,7 @@ function language_strings_handling_messages() {
 	language_strings_first_time["FRENCH"]="Si vous voyez ce message après une mise à jour automatique ne vous inquiétez pas! A partir de la version 6.1 la structure de fichier d'airgeddon a changé. L'ajustement se fera automatiquement"
 	language_strings_first_time["CATALAN"]="${pending_of_translation} Si estàs veient aquest missatge després d'una actualització automàtica, no t'espantis! probablement és perquè a partir de la versió 6.1 l'estructura de fitxers de airgeddon ha canviat. Es repararà automàticament"
 	language_strings_first_time["PORTUGUESE"]="Se você está vendo esta mensagem depois de uma atualização automática, não tenha medo! A partir da versão 6.1 da estrutura de arquivos do airgeddon mudou. Isso será corrigido automaticamente"
-	language_strings_first_time["RUSSIAN"]="${pending_of_translation} Если вы видите это сообщение после автоматического обновления, не бойся! вероятно, объясняется тем, что начиная с версии 6.1 airgeddon имеет другую структуру файла. Он будет автоматически фиксируется"
+	language_strings_first_time["RUSSIAN"]="Если вы видите это сообщение после автоматического обновления, не переживайте! Вероятно, это объясняется тем, что, начиная с версии 6.1, airgeddon имеет другую структуру файлов. Проблема будет разрешена автоматически"
 	language_strings_first_time["GREEK"]="Εάν βλέπετε αυτό το μήνυμα μετά από κάποια αυτόματη ενημέρωση, μην τρομάξετε! Πιθανόν είναι λόγω της διαφορετικής δομής του airgeddon μετά από την έκδοση 6.1. Θα επιδιορθωθεί αυτόματα"
 
 	declare -gA language_strings_exiting
