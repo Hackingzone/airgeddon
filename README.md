@@ -150,7 +150,24 @@ A command could be included in different packages, depending on the distribution
 
 ### Usage
 
-`airgeddon` should be launched with bash `bash /path/to/airgeddon.sh`. <br/>
+`airgeddon` is a bash script, so as simple as: *1. Download, 2. Extract and/or go to the directory, 3. Run as root or using sudo.*
+
+One easy method is:
+```
+git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
+cd airgeddon
+sudo bash airgeddon.sh
+```
+
+Another method:
+```
+wget https://github.com/v1s1t0r1sh3r3/airgeddon/archive/master.zip
+unzip master.zip
+cd airgeddon-master
+sudo bash airgeddon.sh
+```
+
+`airgeddon` should be launched with bash `sudo bash /path/to/airgeddon.sh`. <br/>
 If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash** instead of **sh**. <br/>
 Even with no initial error, it will maybe show itself later. Always use bash!
 
