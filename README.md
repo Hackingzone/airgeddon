@@ -140,7 +140,7 @@ Compatible with any Linux that has installed the tools needed. The script checks
  lspci    | pciutils                               
  rfkill   | rfkill                                 
 
-It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print  on windows in a better way (size and position).
+It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print on windows in a better way (size and position).
 
 Of course, the script also uses many standard basic commands that are supposed to be included in any Linux distribution, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
 
@@ -150,26 +150,19 @@ A command could be included in different packages, depending on the distribution
 
 ### Usage
 
-`airgeddon` is a bash script, so as simple as: *1. Download, 2. Extract and/or go to the directory, 3. Run as root or using sudo.*
+It is essential to run this script as **root**, otherwise `airgeddon` won't work correctly.
 
-One easy method is:
-```
-git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git
-cd airgeddon
-sudo bash airgeddon.sh
-```
+<details open>
+	<summary id="gettingStarted"><strong>Getting Started</strong></summary>
+- Clone the repository `git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git`
+- Go to the newly created directory `cd airgeddon`
+- Run it `sudo bash airgeddon.sh` or without **sudo** if you already have root permissions
+</details>
 
-Another method:
-```
-wget https://github.com/v1s1t0r1sh3r3/airgeddon/archive/master.zip
-unzip master.zip
-cd airgeddon-master
-sudo bash airgeddon.sh
-```
+`airgeddon` should be launched with bash `bash /path/to/airgeddon.sh` and not with `sh` or any other kind of shell. <br/>
 
-`airgeddon` should be launched with bash `sudo bash /path/to/airgeddon.sh`. <br/>
-If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash** instead of **sh**. <br/>
-Even with no initial error, it will maybe show itself later. Always use bash!
+If you launch the script using another shell, there will be *Syntax errors* and faulty results.
+Even with no initial errors, they will appear themselves later. Always launch with **bash**!
 
 ---
 
@@ -187,13 +180,13 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 
 ### Known Incompatibilities
 
-- Impossible compatibility for Mac OSX at the moment:
- - *Bash version* &#8592; it can be avoided upgrading it using brew or however, this is not the real problem :smile:
- - *Aircrack suite* &#8592; this suite for OSX does not support `airodump` and `aireplay`
- - *Wireless tools* &#8592; `iwconfig` does not exist for OSX, and `airport` command cannot be used. It generates different outputs
-- Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:
+- Incompatible with Mac OSX at the moment
+ - *Bash version* &#8592; it can be avoided upgrading it using `brew` or whatever, this is not the real problem :smile:
+ - *Aircrack suite* &#8592; this suite does not support `airodump` and `aireplay` for OSX
+ - *Wireless tools* &#8592; `iwconfig` does not exist in OSX, so `airport` command cannot be used. It generates different outputs
+- Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux
  - *Bash* &#8592; They have no bash. It can be installed, this is not the real problem again :sweat_smile:
- - *Wireless tools* &#8592; `iwconfig` does not exist on these systems, they use `ifconfig` instead and it generates different outputs
+ - *Wireless tools* &#8592; `iwconfig` does not exist in these systems, they use `ifconfig` instead and it generates different outputs
 
 ---
 
@@ -205,13 +198,13 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 - More WPS pins for the database
 - Testing and feedback
 
-Read [Contributing File] for more details on our code of conduct, and the process of project collaborating.
+Read the [Contributing File] for more details on the process of project collaborating and on our code of conduct.
 
 ---
 
 ### Changelog
 
-Read [Changelog File] to review changes.
+Read the [Changelog File] to review changes.
 
 ---
 
@@ -219,8 +212,8 @@ Read [Changelog File] to review changes.
 
 <a href="LICENSE.md"><img src="http://gplv3.fsf.org/gplv3-127x51.png" align="left" hspace="10" vspace="6"></a>
 
-This script must be used for educational purposes and penetration test only. <br/>
-Use it only on your own networks or with the network's owner permission.<br/>
+This script must be used for educational purposes and penetration testing only. <br/>
+Use it on your own networks or with the permission of the network's owner only.<br/>
 `airgeddon` staff is not responsible of its use in any case.
 
 ---
@@ -304,7 +297,7 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [cLn]: https://github.com/cLn73
 [Luan]: https://github.com/Luan7805
 [MiAl]: https://github.com/Mi-Al
-[xtonousou]: https://github.com/xtonousou "xT"
+[xtonousou]: https://github.com/xtonousou
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 <!-- Badges URLs -->
 [Version-shield]: https://img.shields.io/badge/version-6.1-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
