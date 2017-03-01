@@ -12,8 +12,9 @@ Please note we have a code of conduct, please follow it in all your interactions
 ## Collaborating Translators
 
 1. Translate the strings located in `language_strings.sh`.
-2. Ask by mail [v1s1t0r.1s.h3r3@gmail.com] if you have any doubt. You'll be informed about how to proceed.
-3. You can be added as a collaborator on the project.
+2. Update the date under shebang.
+3. Ask by mail [v1s1t0r.1s.h3r3@gmail.com] if you have any doubt. You'll be informed about how to proceed.
+4. You can be added as a collaborator on the project.
 
 ## Collaborating Developers
 
@@ -27,7 +28,7 @@ Please note we have a code of conduct, please follow it in all your interactions
  - *X* is a major release with a new menu (e.g. WPS menu)
  - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
  - *Z* is a minor release with new bug fixes, small modifications or code improvements
-6. Update the date on `.sh` files under shebang, if appropriate.
+6. Update the date on `.sh` and `.db` files under shebang, if appropriate.
 7. Split your commits to parts. Each part represents a unique change on files.
 8. Direct push to [Master] is not allowed.
 9. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement.
