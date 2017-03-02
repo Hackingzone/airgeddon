@@ -11,17 +11,15 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Collaborating Translators
 
-1. Translate the strings located in `language_strings.sh`.
-2. Update the date under shebang.
+1. Update the date under shebang.
+2. Translate the strings located in `language_strings.sh`.
 3. Ask by mail [v1s1t0r.1s.h3r3@gmail.com] if you have any doubt. You'll be informed about how to proceed.
 4. You can be added as a collaborator on the project.
 
 ## Collaborating Developers
 
 1. Tweak *"debug_mode"* variable to "1" for faster development skipping intro and initial checks or to "2" for verbosity and the skips mentioned before.
-2. Respect the tab indentation, code style and the encoding.
- - Tab Indentation &#8594; **2 tabs**
- - Encoding &#8594; **UTF-8**
+2. Respect the **2 width tab indentation**, code style and the **UTF-8 encoding**.
 3. Use **LF** (Unix) line break type (not CR or CRLF).
 4. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-x` argument to follow source files and from the directory where `airgeddon.sh` is. For example: `cd /path/to/airgeddon && shellcheck -x airgeddon.sh`
 5. Increase the version numbers in `airgeddon.sh`, in [Readme] and in [Changelog] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
@@ -29,7 +27,7 @@ Please note we have a code of conduct, please follow it in all your interactions
  - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
  - *Z* is a minor release with new bug fixes, small modifications or code improvements
 6. Update the date on `.sh` and `.db` files under shebang, if appropriate.
-7. Split your commits to parts. Each part represents a unique change on files.
+7. Split your commits into parts. Each part represents a unique change on files.
 8. Direct push to [Master] is not allowed.
 9. Pull Requests to [Master] are not allowed. Should be done over [Dev] or any other branch. They require revision and approvement.
 10. All the development and coding must be in English.
@@ -41,16 +39,16 @@ To be added on it you must prove first you are a *trusted collaborator* with you
 
 ## WPS PIN Database Collaborators
 
-1. Add PINs ordered by the key in the associative array. (Keys are the first 6 BSSID digits).
-2. Update the `known_pins.db` file including the date under shebang.
-3. Update the `pindb_checksum.txt` file with the calculated checksum of the database file using `md5sum` tool.
+1. Add PINs ordered by the key in the associative array located in the `known_pins.db` file. (Keys are the first 6 BSSID digits).
+2. Update the `pindb_checksum.txt` file with the calculated checksum of the database file using `md5sum` tool.
+3. Update the date under shebang.
 
-*PINs should be from devices that generate generic ones*
+*PINs should be from devices that generate generic ones.*
 
 ## Beta Testers
 
 1. Download the master version or the beta testing version from the development branch called [Dev]. Temporary branches may be existing for specific features that can be tested too.
-2. Report any issues or bugs by mail [v1s1t0r.1s.h3r3@gmail.com] or submit issues requests [Here].
+2. Report any issues or bugs by mail [v1s1t0r.1s.h3r3@gmail.com] or submit issue requests [Here].
 
 ---
 
