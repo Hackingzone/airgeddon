@@ -66,7 +66,7 @@
 
 Bash **4.2** or later.
 
-Compatible with any Linux that has installed the tools needed. The script checks for them at the beginning.
+Compatible with any Linux distribution that has installed the tools needed. The script checks for them at the beginning.
 
 > `airgeddon` is already included in some Linux distributions and repositories:
 > - [Wifislax] 4.12, 64-1.0 or higher
@@ -94,9 +94,8 @@ Compatible with any Linux that has installed the tools needed. The script checks
 - *OpenMandriva LX3*
 </details>
 
-#### Essential tools &#8592; The script does not work if you don't have installed all of them
-
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
+#### Essential tools &#8592; The script does not work if you don't have installed all of them
 
  Command     | Possible package name | &#149;  | Command     | Possible package name 
 :------------|:----------------------|:-------:|:------------|:----------------------
@@ -122,8 +121,8 @@ Compatible with any Linux that has installed the tools needed. The script checks
 
 ##### Important tips about BeEF
 
- - The right software you must install is BeEF (Browser Exploitation Framework). Be careful, do not mistake it with beef (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
- - If you use a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
+ - The right software you must install is **BeEF** (Browser Exploitation Framework). Be careful, do not mistake it with **beef** (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
+ - If you are using a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
 
 #### Update tools &#8592; Not necessary to work, only used for auto-update
 
@@ -142,7 +141,7 @@ Compatible with any Linux that has installed the tools needed. The script checks
 
 It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print on windows in a better way (size and position).
 
-Of course, the script also uses many standard basic commands that are supposed to be included in any Linux distribution, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
+Of course, the script also uses many standard basic tools that are supposed to be included in any Linux distribution, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
 
 A command could be included in different packages, depending on the distribution.
 
@@ -150,19 +149,22 @@ A command could be included in different packages, depending on the distribution
 
 ### Usage
 
-It is essential to run this script as **root**, otherwise `airgeddon` won't work correctly.
+It is essential to run this script as **root**, otherwise `airgeddon` won't work properly.
 
 <details open>
 	<summary id="gettingStarted"><strong>Getting Started</strong></summary>
-- Clone the repository `git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git`
-- Go to the newly created directory `cd airgeddon`
-- Run it `sudo bash airgeddon.sh` or without **sudo** if you already have root permissions
+- Clone the repository
+ - `git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git`
+- Go to the newly created directory
+ - `cd airgeddon`
+- Run it (remove **sudo** if you already have root permissions)
+  - `sudo bash airgeddon.sh`
 </details>
 
-`airgeddon` should be launched with bash `bash /path/to/airgeddon.sh` and not with `sh` or any other kind of shell. <br/>
+`airgeddon` should be launched with **bash** `bash /path/to/airgeddon.sh` and not with `sh` or any other kind of shell. <br/>
 
 If you launch the script using another shell, there will be *Syntax errors* and faulty results.
-Even with no initial errors, they will appear themselves later. Always launch with **bash**!
+Even with no initial errors, they will appear later. Always launch with **bash**!
 
 ---
 
@@ -181,7 +183,7 @@ Even with no initial errors, they will appear themselves later. Always launch wi
 ### Known Incompatibilities
 
 - Incompatible with Mac OSX at the moment
- - *Bash version* &#8592; it can be avoided upgrading it using `brew` or whatever, this is not the real problem :smile:
+ - *Bash version* &#8592; it can be avoided by upgrading it using `brew` or whatever, this is not the real problem :smile:
  - *Aircrack suite* &#8592; this suite does not support `airodump` and `aireplay` for OSX
  - *Wireless tools* &#8592; `iwconfig` does not exist in OSX, so `airport` command cannot be used. It generates different outputs
 - Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux
@@ -192,7 +194,7 @@ Even with no initial errors, they will appear themselves later. Always launch wi
 
 ### Contributing
 
-- Translations to other languages
+- Translations into other languages
 - More distribution support compatibility
 - New features
 - More WPS pins for the database
@@ -237,9 +239,9 @@ Use it on your own networks or with the permission of the network's owner only.<
 - The forum people of [Seguridadwireless.net], [Wifi-libre.com] and [Lampiweb.com]
 - The [Hackware.ru] admins
 - All the people who helped building the online PIN database for WPS
-- Dominique Bongard for bringing to us Pixie Dust attacks
+- Dominique Bongard for bringing to us the Pixie Dust attacks
 - Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms
-- All developers who made and designed the third-party tools that `airgeddon` uses
+- All the developers who made and designed the third-party tools that `airgeddon` uses
 
 #### Inspiration
 <!-- Links are missing, should be replaced -->
