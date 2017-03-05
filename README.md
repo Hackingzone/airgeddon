@@ -1,8 +1,6 @@
 <!-- Change version for shield on each commit -->
 <!-- Visit https://shields.io/ for more info -->
 <!-- Shields' color scheme based on banner: colorA=273133 colorB=0093ee -->
-<!-- Below is a workaround for IE8 or older; Make <details> tag work. -->
-<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 # :satellite: airgeddon [![Version-shield]](CHANGELOG.md) [![Bash4.2-shield]](http://tldp.org/LDP/abs/html/bashver4.html#AEN21220) [![License-shield]](LICENSE.md) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
@@ -68,7 +66,7 @@
 
 Bash **4.2** or later.
 
-Compatible with any Linux that has installed the tools needed. The script checks for them at the beginning.
+Compatible with any Linux distribution that has installed the tools needed. The script checks for them at the beginning.
 
 > `airgeddon` is already included in some Linux distributions and repositories:
 > - [Wifislax] 4.12, 64-1.0 or higher
@@ -91,14 +89,13 @@ Compatible with any Linux that has installed the tools needed. The script checks
 - *Gentoo 20160514 and 20160704*
 - *Fedora 24*
 - *Red Hat 7 (Maipo)*
-- *Arch 4.6.2-1 to 4.9.9-1*
+- *Arch 4.6.2-1 to 4.9.11-1*
 - *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
 - *OpenMandriva LX3*
 </details>
 
-#### Essential tools &#8592; The script does not work if you don't have installed all of them
-
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
+#### Essential tools &#8592; The script does not work if you don't have installed all of them
 
  Command     | Possible package name | &#149;  | Command     | Possible package name 
 :------------|:----------------------|:-------:|:------------|:----------------------
@@ -124,8 +121,8 @@ Compatible with any Linux that has installed the tools needed. The script checks
 
 ##### Important tips about BeEF
 
- - The right software you must install is BeEF (Browser Exploitation Framework). Be careful, do not mistake it with beef (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
- - If you use a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
+ - The right software you must install is **BeEF** (Browser Exploitation Framework). Be careful, do not mistake it with **beef** (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
+ - If you are using a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
 
 #### Update tools &#8592; Not necessary to work, only used for auto-update
 
@@ -142,9 +139,9 @@ Compatible with any Linux that has installed the tools needed. The script checks
  lspci    | pciutils                               
  rfkill   | rfkill                                 
 
-It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print  on windows in a better way (size and position).
+It is highly recommended to have the internal tools installed. They improve functionality and performance. For example, `xdpyinfo` allows the script to detect the display resolution in order to print on windows in a better way (size and position).
 
-Of course, the script also uses many standard basic commands that are supposed to be included in any Linux distribution, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
+Of course, the script also uses many standard basic tools that are supposed to be included in any Linux distribution, so they are not checked (cp, rm, grep, pgrep, egrep, md5sum, uname, echo, hash, cat, sed, etc.).
 
 A command could be included in different packages, depending on the distribution.
 
@@ -152,9 +149,22 @@ A command could be included in different packages, depending on the distribution
 
 ### Usage
 
-`airgeddon` should be launched with bash `bash /path/to/airgeddon.sh`. <br/>
-If you launch the script using sh and a *"Syntax error"* appears, launch it with **bash** instead of **sh**. <br/>
-Even with no initial error, it will maybe show itself later. Always use bash!
+It is essential to run this script as **root**, otherwise `airgeddon` won't work properly.
+
+<details open>
+	<summary id="gettingStarted"><strong>Getting Started</strong></summary>
+- Clone the repository
+ - `git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git`
+- Go to the newly created directory
+ - `cd airgeddon`
+- Run it (remove **sudo** if you already have root permissions)
+  - `sudo bash airgeddon.sh`
+</details>
+
+`airgeddon` should be launched with **bash** `bash /path/to/airgeddon.sh` and not with `sh` or any other kind of shell. <br/>
+
+If you launch the script using another shell, there will be *Syntax errors* and faulty results.
+Even with no initial errors, they will appear later. Always launch with **bash**!
 
 ---
 
@@ -172,31 +182,31 @@ Even with no initial error, it will maybe show itself later. Always use bash!
 
 ### Known Incompatibilities
 
-- Impossible compatibility for Mac OSX at the moment:
- - *Bash version* &#8592; it can be avoided upgrading to 4 or later, this is not the real problem :smile:
- - *Aircrack suite* &#8592; this suite for OSX does not support `airodump` and `aireplay`
- - *Wireless tools* &#8592; `iwconfig` does not exist for OSX, and `airport` command cannot be used. It generates different outputs
-- Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux:
+- Incompatible with Mac OSX at the moment
+ - *Bash version* &#8592; it can be avoided by upgrading it using `brew` or whatever, this is not the real problem :smile:
+ - *Aircrack suite* &#8592; this suite does not support `airodump` and `aireplay` for OSX
+ - *Wireless tools* &#8592; `iwconfig` does not exist in OSX, so `airport` command cannot be used. It generates different outputs
+- Incompatible with OpenBSD and FreeBSD. They are Unix systems but they have some differences with Linux
  - *Bash* &#8592; They have no bash. It can be installed, this is not the real problem again :sweat_smile:
- - *Wireless tools* &#8592; `iwconfig` does not exist on these systems, they use `ifconfig` instead and it generates different outputs
+ - *Wireless tools* &#8592; `iwconfig` does not exist in these systems, they use `ifconfig` instead and it generates different outputs
 
 ---
 
 ### Contributing
 
-- Translations to other languages
+- Translations into other languages
 - More distribution support compatibility
 - New features
 - More WPS pins for the database
 - Testing and feedback
 
-Read [Contributing File] for more details on our code of conduct, and the process of project collaborating.
+Read the [Contributing File] for more details on the process of project collaborating and on our code of conduct.
 
 ---
 
 ### Changelog
 
-Read [Changelog File] to review changes.
+Read the [Changelog File] to review changes.
 
 ---
 
@@ -204,8 +214,8 @@ Read [Changelog File] to review changes.
 
 <a href="LICENSE.md"><img src="http://gplv3.fsf.org/gplv3-127x51.png" align="left" hspace="10" vspace="6"></a>
 
-This script must be used for educational purposes and penetration test only. <br/>
-Use it only on your own networks or with the network's owner permission.<br/>
+This script must be used for educational purposes and penetration testing only. <br/>
+Use it on your own networks or with the permission of the network's owner only.<br/>
 `airgeddon` staff is not responsible of its use in any case.
 
 ---
@@ -229,9 +239,9 @@ Use it only on your own networks or with the network's owner permission.<br/>
 - The forum people of [Seguridadwireless.net], [Wifi-libre.com] and [Lampiweb.com]
 - The [Hackware.ru] admins
 - All the people who helped building the online PIN database for WPS
-- Dominique Bongard for bringing to us Pixie Dust attacks
+- Dominique Bongard for bringing to us the Pixie Dust attacks
 - Zhao Chunsheng and Stefan Viehböck for their wonderful algorithms
-- All developers who made and designed the third-party tools that `airgeddon` uses
+- All the developers who made and designed the third-party tools that `airgeddon` uses
 
 #### Inspiration
 <!-- Links are missing, should be replaced -->
@@ -289,10 +299,10 @@ Use it only on your own networks or with the network's owner permission.<br/>
 [cLn]: https://github.com/cLn73
 [Luan]: https://github.com/Luan7805
 [MiAl]: https://github.com/Mi-Al
-[xtonousou]: https://github.com/xtonousou "xT"
+[xtonousou]: https://github.com/xtonousou
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 <!-- Badges URLs -->
-[Version-shield]: https://img.shields.io/badge/version-6.01-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[Version-shield]: https://img.shields.io/badge/version-6.1-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
 [Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
 [License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
 [Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"

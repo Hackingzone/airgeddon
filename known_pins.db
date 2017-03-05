@@ -1,6 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#Title........: known_pins.db
+#Description..: This is a WPS PIN database for routers that generate generic passwords.
+#Author.......: v1s1t0r
+#Date.........: 20170301
+#Bash Version.: 4.2 or later
 
 #Set PIN database. Keys are the first 6 bssid digits and are ordered
+# shellcheck disable=SC2080
+# shellcheck disable=SC2034
 function set_pin_database() {
 
 	declare -gA PINDB
@@ -182,6 +189,7 @@ function set_pin_database() {
 	PINDB["CCB255"]="97354833"
 	PINDB["D0AEEC"]="12263813 36831678 43419012 46275288 49570724 58441640 67791088 76871559 63220926 23970472 04325093 35041054 31433273 97855996 11248729 52217388 59432265 77485625 06235307 78597235"
 	PINDB["D0D412"]="16538061 16702738 18355604 88202907 73767053 43297917 19756967 13409708"
+	PINDB["D47BB0"]="14550911"
 	PINDB["D85D4C"]="73448907"
 	PINDB["D8B6B7"]="49385052 12715657 66131533 96567111 18811728"
 	PINDB["DC0B1A"]="19756967 73767053 16702738 16538061 88202907 18355604 13409708 21158766 43297917"
