@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170301
+#Date.........: 20170305
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -13,7 +13,6 @@ function set_language_strings_version() {
 
 	language_strings_version="6.1-1"
 }
-
 
 #Set different language text strings
 #shellcheck disable=SC2154

@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170226
+#Date.........: 20170305
 #Version......: 6.1
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -134,8 +134,7 @@ timeout_secs_per_pixiedust="30"
 #Repository and contact vars
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
-#TODO remove after testing. Don't do pull request without restoring this to master!!
-branch="dev"
+branch="master"
 script_filename="airgeddon.sh"
 urlgithub="https://github.com/${github_user}/${github_repository}"
 urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
