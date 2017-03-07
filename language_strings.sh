@@ -1500,7 +1500,7 @@ function language_strings() {
 	arr["SPANISH",150]="No se ha detectado ningún fichero de Handshake capturado en esta sesión..."
 	arr["FRENCH",150]="Aucun fichier Handshake valide détecté durant cette session..."
 	arr["CATALAN",150]="No s'ha detectat un fitxer de Handshake capturat en aquesta sessió..."
-	arr["PORTUGUESE",150]="Nenhum Handshake capturado nessa seção..."
+	arr["PORTUGUESE",150]="Nenhum Handshake capturado nessa sessão..."
 	arr["RUSSIAN",150]="За эту сессию не обнаружено захваченного рукопожатия..."
 	arr["GREEK",150]="Δεν εντοπίστηκε κάποιο αρχείο καταγραφής Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
@@ -1516,7 +1516,7 @@ function language_strings() {
 	arr["SPANISH",152]="¿Quieres limpiar/optimizar el fichero de Handshake capturado en esta sesión? ${normal_color}[y/n]"
 	arr["FRENCH",152]="Voulez-vous nettoyer/optimiser le fichier Handshake capturé pendant cette session? ${normal_color}[y/n]"
 	arr["CATALAN",152]="¿Vols netejar/optimitzar el fitxer de Handshake capturat en aquesta sessió? ${normal_color}[y/n]"
-	arr["PORTUGUESE",152]="Quer limpar/otimizar o arquivo handshake capturado nesta seção? ${normal_color}[y/n]"
+	arr["PORTUGUESE",152]="Quer limpar/otimizar o arquivo handshake capturado nesta sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",152]="Вы хотите очистить/оптимизировать захваченный за эту сессию файл рукопожания? ${normal_color}[y/n]"
 	arr["GREEK",152]="Θέλετε να καθαρίσετε/βελτιστοποιήσετε το αρχείο καταγραφής Χειραψίας της συνεδρίας; ${normal_color}[y/n]"
 
@@ -1764,7 +1764,7 @@ function language_strings() {
 	arr["SPANISH",183]="Ya tienes seleccionado un fichero de diccionario en esta sesión [${normal_color}${DICTIONARY}${blue_color}]"
 	arr["FRENCH",183]="Vous avez déjà sélectionné un fichier dictionnaire pour cette session ${normal_color}${DICTIONARY}${blue_color}]"
 	arr["CATALAN",183]="Ja tens seleccionat un fitxer de diccionari en aquesta sessió [${normal_color}${DICTIONARY}${blue_color}]"
-	arr["PORTUGUESE",183]="Você selecionou um arquivo de dicionário nesta seção [${normal_color}${DICTIONARY}${blue_color}]"
+	arr["PORTUGUESE",183]="Você selecionou um arquivo de dicionário nesta sessão [${normal_color}${DICTIONARY}${blue_color}]"
 	arr["RUSSIAN",183]="Во время этой сессии вы выбрали файл словаря [${normal_color}${DICTIONARY}${blue_color}]"
 	arr["GREEK",183]="Έχετε ήδη επιλέξει λεξικό κατά τη διάρκεια της συνεδρίας [${normal_color}${DICTIONARY}${blue_color}]"
 
@@ -1788,7 +1788,7 @@ function language_strings() {
 	arr["SPANISH",186]="Ya tienes seleccionado un fichero de captura en esta sesión [${normal_color}${enteredpath}${blue_color}]"
 	arr["FRENCH",186]="Vous avez déjà sélectionné un fichier de capture pour cette session ${normal_color}${enteredpath}${blue_color}]"
 	arr["CATALAN",186]="Ja tens seleccionat un fitxer de captura en aquesta sessió [${normal_color}${enteredpath}${blue_color}]"
-	arr["PORTUGUESE",186]="Você selecionou um arquivo de captura nesta seção [${normal_color}${enteredpath}${blue_color}]"
+	arr["PORTUGUESE",186]="Você selecionou um arquivo de captura nesta sessão [${normal_color}${enteredpath}${blue_color}]"
 	arr["RUSSIAN",186]="Вы уже выбрали файл захвата во время этой сессии [${normal_color}${enteredpath}${blue_color}]"
 	arr["GREEK",186]="Έχετε ήδη επιλέξει αρχείο καταγραφής κατά τη διάρκεια της συνεδρίας [${normal_color}${enteredpath}${blue_color}]"
 
@@ -1836,7 +1836,7 @@ function language_strings() {
 	arr["SPANISH",192]="Ya tienes seleccionado un BSSID en esta sesión y está presente en el fichero de captura [${normal_color}${bssid}${blue_color}]"
 	arr["FRENCH",192]="Vous avez déjà sélectionné un BSSID pour la session en cours et est présent dans le fichier de capture ${normal_color}${bssid}${blue_color}]"
 	arr["CATALAN",192]="Ja tens seleccionat un BSSID en aquesta sessió i està present en el fitxer de captura [${normal_color}${bssid}${blue_color}]"
-	arr["PORTUGUESE",192]="Seleccionou um BSSID nesta seção e está presente no arquivo de captura [${normal_color}${bssid}${blue_color}]"
+	arr["PORTUGUESE",192]="Seleccionou um BSSID nesta sessão e está presente no arquivo de captura [${normal_color}${bssid}${blue_color}]"
 	arr["RUSSIAN",192]="У вас уже есть выбранная во время этой сессии BSSID и она присутствует в файле захвата [${normal_color}${bssid}${blue_color}]"
 	arr["GREEK",192]="Έχετε ήδη επιλέξει BSSID κατά τη διάρκεια της συνεδρίας και βρίσκεται στο αρχείο καταγραφής [${normal_color}${bssid}${blue_color}]"
 
@@ -2212,7 +2212,7 @@ function language_strings() {
 	arr["SPANISH",239]="Ya tienes seleccionado un fichero de reglas en esta sesión [${normal_color}${RULES}${blue_color}]"
 	arr["FRENCH",239]="Vous avez déjà sélectionné un fichier règles pour cette session ${normal_color}${RULES}${blue_color}]"
 	arr["CATALAN",239]="Ja tens seleccionat un fitxer de regles en aquesta sessió [${normal_color}${RULES}${blue_color}]"
-	arr["PORTUGUESE",239]="Você selecionou um arquivo de regras nesta seção [${normal_color}${RULES}${blue_color}]"
+	arr["PORTUGUESE",239]="Você selecionou um arquivo de regras nesta sessão [${normal_color}${RULES}${blue_color}]"
 	arr["RUSSIAN",239]="Во время этой сессии вы уже выбрали файл с правилами [${normal_color}${RULES}${blue_color}]"
 	arr["GREEK",239]="Έχετε ήδη επιλέξει αρχείο κανόνων κατά τη διάρκεια τησ συνεδρίας [${normal_color}${RULES}${blue_color}]"
 
@@ -2580,7 +2580,7 @@ function language_strings() {
 	arr["SPANISH",285]="Se ha detectado que ya tiene un interfaz con acceso a internet seleccionada en esta sesión [${normal_color}${internet_interface}${blue_color}]"
 	arr["FRENCH",285]="Une interface avec accès à internet a déjà été sélectionné pour cette session [${normal_color}${internet_interface}${blue_color}]"
 	arr["CATALAN",285]="S'ha detectat que ja té una interfície amb accés a internet seleccionada en aquesta sessió [${normal_color}${internet_interface}${blue_color}]"
-	arr["PORTUGUESE",285]="Verificou-se que há uma interface com acesso à internet seleccionado nesta seção [${normal_color}${internet_interface}${blue_color}]"
+	arr["PORTUGUESE",285]="Verificou-se que há uma interface com acesso à internet seleccionado nesta sessão [${normal_color}${internet_interface}${blue_color}]"
 	arr["RUSSIAN",285]="Во время этой сессии обнаружен выбранный интерфейс с Интернет подключением [${normal_color}${internet_interface}${blue_color}]"
 	arr["GREEK",285]="Η επιλεγμένη διεπαφή με πρόσβαση στο διαδίκτυο εντοπίστηκε κατά τη διάρκεια της συνεδρίας [${normal_color}${internet_interface}${blue_color}]"
 
@@ -2796,7 +2796,7 @@ function language_strings() {
 	arr["SPANISH",312]="No se ha detectado ningún fichero de Handshake seleccionado en esta sesión..."
 	arr["FRENCH",312]="Aucun fichier Handshake valable a été sékectionné pour cette session..."
 	arr["CATALAN",312]="No s'ha detectat un fitxer de Handshake seleccionat en aquesta sessió..."
-	arr["PORTUGUESE",312]="Nenhum arquivo de Handshake foi selecionado nesta seção..."
+	arr["PORTUGUESE",312]="Nenhum arquivo de Handshake foi selecionado nesta sessão..."
 	arr["RUSSIAN",312]="Во время этой сессии выбранный файл рукопожатия не обнаружен..."
 	arr["GREEK",312]="Δεν εντοπίστηκε κανένα αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας..."
 
@@ -2804,7 +2804,7 @@ function language_strings() {
 	arr["SPANISH",313]="Se ha detectado un fichero de Handshake seleccionado en esta sesión [${normal_color}${et_handshake}${blue_color}]"
 	arr["FRENCH",313]="Le fichier handshake suivant a été détecté comme étant sélectionné pour cette session [${normal_color}${et_handshake}${blue_color}]"
 	arr["CATALAN",313]="S'ha detectat un fitxer de Handshake seleccionat en aquesta sessió [${normal_color}${et_handshake}${blue_color}]"
-	arr["PORTUGUESE",313]="Um arquivo de Handshake foi capturado nesta seção [${normal_color}${et_handshake}${blue_color}]"
+	arr["PORTUGUESE",313]="Um arquivo de Handshake foi capturado nesta sessão [${normal_color}${et_handshake}${blue_color}]"
 	arr["RUSSIAN",313]="Обнаружен файл рукопожатия, выбранный в этой сессии [${normal_color}${et_handshake}${blue_color}]"
 	arr["GREEK",313]="Εντοπίστηκε επιλεγμένο αρχείο Χειραψίας κατά τη διάρκεια της συνεδρίας [${normal_color}${et_handshake}${blue_color}]"
 
@@ -3340,7 +3340,7 @@ function language_strings() {
 	arr["SPANISH",380]="¿Deseas que la próxima vez que lances este ataque en esta sesión se vuelva a intentar? ${normal_color}[y/n]"
 	arr["FRENCH",380]="La prochaine fois que vous relancez cette attaque pendant cette session, voulez-vous oui ou non [y/n] que l'actualisation soit lancée? ${normal_color}[y/n]"
 	arr["CATALAN",380]="¿Vols que la propera vegada que llancis aquest atac en aquesta sessió es torni a intentar? ${normal_color}[y/n]"
-	arr["PORTUGUESE",380]="Você quer buscar por atualizações na próxima vez que iniciar este ataque nessa seção? ${normal_color}[y/n]"
+	arr["PORTUGUESE",380]="Você quer buscar por atualizações na próxima vez que iniciar este ataque nessa sessão? ${normal_color}[y/n]"
 	arr["RUSSIAN",380]="Вы хотите снова продолжить эту сессию при запуске этой атаки в следующий раз? ${normal_color}[y/n]"
 	arr["GREEK",380]="Θέλετε να δοκιμάσετε ξανά την επόμενη φορά που θα ξεκινήσει αυτή η επίθεση για αυτή την συνεδρία; ${normal_color}[y/n]"
 
