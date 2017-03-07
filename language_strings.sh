@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170305
+#Date.........: 20170307
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="6.1-1"
+	language_strings_version="6.11-1"
 }
 
 #Set different language text strings
@@ -3639,6 +3639,14 @@ function language_strings() {
 	arr["PORTUGUESE",417]="Ocorreu um erro inesperado, retornando ao menu"
 	arr["RUSSIAN",417]="Случилась непредвиденная ошибка, перенаправление в меню"
 	arr["GREEK",417]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, γίνεται ανακατεύθυνση στο μενού"
+
+	arr["ENGLISH",418]="Restoring spoofed MAC"
+	arr["SPANISH",418]="Restaurando MAC falseada"
+	arr["FRENCH",418]="${pending_of_translation} Restauration de distorsion MAC"
+	arr["CATALAN",418]="${pending_of_translation} Restaurant MAC falsejada"
+	arr["PORTUGUESE",418]="${pending_of_translation} Restaurar MAC distorcida"
+	arr["RUSSIAN",418]="${pending_of_translation} Восстановление поддельного MAC"
+	arr["GREEK",418]="${pending_of_translation} Αποκατάσταση της πλαστογραφημένες MAC"
 
 	case "${3}" in
 		"yellow")
