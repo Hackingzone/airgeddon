@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170307
+#Date.........: 20170308
 #Version......: 6.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -4002,7 +4002,7 @@ function set_spoofed_mac() {
 		fi
 	fi
 
-	new_random_mac=$(hexdump -n6 -e '/1 ":%02X"' /dev/random | sed s/^://g)
+	new_random_mac=$(od -An -N6 -tx1 /dev/urandom | sed -e 's/^  *//' -e 's/  */:/g' -e 's/:$//' -e 's/^\(.\)[13579bdf]/\10/')
 
 	ifconfig "${1}" down > /dev/null 2>&1
 	ifconfig "${1}" hw ether "${new_random_mac}" > /dev/null 2>&1
