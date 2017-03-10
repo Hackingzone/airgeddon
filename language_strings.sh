@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170305
+#Date.........: 20170307
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="6.1-1"
+	language_strings_version="6.11-1"
 }
 
 #Set different language text strings
@@ -2332,7 +2332,7 @@ function language_strings() {
 	arr["SPANISH",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
 	arr["FRENCH",254]="Pour effectuer l'attaque Evil Twin combinant Rogue AP et capture des données vous avez besoin d'une interface réseau en plus de celle utilisée pour créer le point d'accès. Cette interface supplémentaire devra être connecté à l'internet afin d'en proportionner l'accès aux clients du réseau. L'interface peut être une interface ethernet ou wifi"
 	arr["CATALAN",254]="Per utilitzar els atacs d'Evil Twin només amb AP i sniffing, hauràs de tenir a més de la interfície wifi que es transformarà en el AP, una altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa. Aquesta no cal que sigui wifi, pot ser ethernet"
-	arr["PORTUGUESE",254]="Para usar ataques Evil Twin Somente AP e com sniffing, você deve ter além da interface wifi que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Não precisa ser wifi, pode ser ethernet"
+	arr["PORTUGUESE",254]="Para usar ataques Evil Twin Somente AP e com sniffing, você deve ter além da interface wifi que se tornará o AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Não precisa ser wifi, pode ser ethernet"
 	arr["RUSSIAN",254]="Чтобы использовать Злого Двойника точки доступа и атаку сниффинга, вы должны иметь другой интерфейс в дополнение к сетевому интерфейсу wifi. Сетевой интерфейс wifi станет точкой доступа, к которому будут подключаться жертвы. Для того, чтобы у этой точки доступа было Интернет-подключение и используется второй сетевой адаптер. Ему необязательно быть wifi, достаточно ethernet"
 	arr["GREEK",254]="Για να χρησιμοποιήσετε τις επιθέσεις sniffing και Evil Twin με AP, πρέπει να έχετε άλλη μία διεπαφή παράλληλα με την διεπαφή δικτύου wifi που θα γίνει AP, η οποία θα παρέχει πρόσβαση στο διαδίκτυο στους άλλες χρήστες του δικτύου. Δεν χρειάζεται να είναι wifi, μπορεί να έιναι και ethernet"
 
@@ -2412,7 +2412,7 @@ function language_strings() {
 	arr["SPANISH",264]="El ataque del portal cautivo intentará conseguir que uno de los clientes de la red nos proporcione la contraseña de la red wifi introduciéndola en nuestro portal"
 	arr["FRENCH",264]="Le portail captif d'attaque tente d'obtenir l'un des clients du réseau nous fournir le mot de passe pour le réseau sans fil en entrant sur notre site"
 	arr["CATALAN",264]="L'atac de portal captiu intenta aconseguir que un dels clients de la xarxa ens proporcioni la contrasenya de la xarxa wifi introduint-la al nostre portal"
-	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha da rede sem fio digitando-o em nosso site"
+	arr["PORTUGUESE",264]="O ataque com portal cativo tenta fazer com que um dos clientes da rede nos forneça a senha da rede sem fio digitando-a em nosso site"
 	arr["RUSSIAN",264]="Атака с перехватывающим порталом заключается в том, что мы ждём когда кто-то из пользователей введёт верный пароль от Wi-Fi на веб-странице, которую мы ему показываем"
 	arr["GREEK",264]="Η επίθεση captive portal κάνει έναν από τους χρήστες του δικτύου να μας παρέχει τον κωδικό πρόσβασης του δικτύου wifi βάζοντάς τον στο portal μας"
 
@@ -2852,7 +2852,7 @@ function language_strings() {
 	arr["SPANISH",319]="Se ha establecido el idioma del portal cautivo"
 	arr["FRENCH",319]="La langue pour le portail captif est activée"
 	arr["CATALAN",319]="S'ha establert l'idioma del portal captiu"
-	arr["PORTUGUESE",319]="A língua foi selecionada portal cativo"
+	arr["PORTUGUESE",319]="A língua do portal cativo foi selecionada"
 	arr["RUSSIAN",319]="Язык перехватывающего портала установлен"
 	arr["GREEK",319]="Εγκαταστάθηκε η γλώσσα στο captive portal"
 
@@ -2908,7 +2908,7 @@ function language_strings() {
 	arr["SPANISH",326]="¿Vas a utilizar el método de la interfaz con acceso a internet? ${pink_color}Si la respuesta es no (\"n\"), necesitarás tener instalado ${optional_tools_names[12]} para continuar. Ambas cosas se comprobarán ${normal_color}[y/n]"
 	arr["FRENCH",326]="Allez-vous choisir la méthode qui emploie une interface connectée à internet? ${pink_color}Si la réponse est non (\"n\"), vous m'avez besoin de ${optional_tools_names[12]}. Une vérication se fera à ce niveau avant de lancer l'une ou l'autre méthode${normal_color}[y/n]"
 	arr["CATALAN",326]="Vas a utilitzar el mètode de la interfície amb accés a internet? ${pink_color}Si la resposta és no (\"n\"), necessitaràs tenir instal·lat ${optional_tools_names[12]} per continuar. Totes dues coses es comprovaran ${normal_color}[y/n]"
-	arr["PORTUGUESE",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? ${pink_color}Se a resposta é não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados ${normal_color}[y/n]"
+	arr["PORTUGUESE",326]="Você gostaria de ultilizar uma interface com acesso à internet para o ataque? ${pink_color}Se a resposta for não (\"n\"), você precisa ter instalado ${optional_tools_names[12]} para continuar. Ambos serão verificados ${normal_color}[y/n]"
 	arr["RUSSIAN",326]="Собираетесь ли вы использовать этот метод с Интернет-доступом? ${pink_color}Если ответ нет (\"п\"), то для продолжения вам нужно установить ${optional_tools_names[12]}. Будут выполнены проверки обоих условий ${normal_color}[y/n]"
 	arr["GREEK",326]="Σκοπεύετε να χρησιμοποιήσετε την διεπαφή με την μέθοδο πρόσβασης στο διαδίκτυο; ${pink_color}Αν απαντήσετε όχι (\"n\"), θα πρέπει να έχετε το ${optional_tools_names[12]} εγκατεστημένο για να συνεχίσετε. Και τα δύο ελέγχονται ${normal_color}[y/n]"
 
@@ -3639,6 +3639,14 @@ function language_strings() {
 	arr["PORTUGUESE",417]="Ocorreu um erro inesperado, retornando ao menu"
 	arr["RUSSIAN",417]="Случилась непредвиденная ошибка, перенаправление в меню"
 	arr["GREEK",417]="Παρουσιάστηκε μη αναμενόμενο σφάλμα, γίνεται ανακατεύθυνση στο μενού"
+
+	arr["ENGLISH",418]="Restoring spoofed MAC"
+	arr["SPANISH",418]="Restaurando MAC falseada"
+	arr["FRENCH",418]="${pending_of_translation} Restauration de distorsion MAC"
+	arr["CATALAN",418]="${pending_of_translation} Restaurant MAC falsejada"
+	arr["PORTUGUESE",418]="Restaurando MAC falsificado"
+	arr["RUSSIAN",418]="Восстановление исходного MAC"
+	arr["GREEK",418]="${pending_of_translation} Αποκατάσταση της πλαστογραφημένες MAC"
 
 	case "${3}" in
 		"yellow")
