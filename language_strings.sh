@@ -3645,7 +3645,7 @@ function language_strings() {
 	arr["FRENCH",418]="${pending_of_translation} Restauration de distorsion MAC"
 	arr["CATALAN",418]="${pending_of_translation} Restaurant MAC falsejada"
 	arr["PORTUGUESE",418]="Restaurando MAC falsificado"
-	arr["RUSSIAN",418]="${pending_of_translation} Восстановление поддельного MAC"
+	arr["RUSSIAN",418]="Восстановление исходного MAC"
 	arr["GREEK",418]="${pending_of_translation} Αποκατάσταση της πλαστογραφημένες MAC"
 
 	case "${3}" in
