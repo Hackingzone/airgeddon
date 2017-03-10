@@ -17,6 +17,7 @@
  - [Update Tools]
  - [Internal Tools]
  - [BeEF Tips]
+ - [Hashcat Tips]
 - [Usage]
 - [Supported Languages]
 - [Known Incompatibilities]
@@ -97,7 +98,7 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
 #### Essential tools &#8592; The script does not work if you don't have installed all of them
 
- Command     | Possible package name | &#149;  | Command     | Possible package name 
+ Command     | Possible package name | &#149;  | Command     | Possible package name
 :------------|:----------------------|:-------:|:------------|:----------------------
  ifconfig    | net-tools             | &#9474; | iwconfig    | wireless-tools        
  iw          | iw                    | &#9474; | awk         | awk \| gawk           
@@ -108,8 +109,8 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 
  Command     | Possible package name    | &#149;  | Command  | Possible package name                                
 :------------|:-------------------------|:-------:|:---------|:-----------------------------------------------------
- wpaclean    | aircrack-ng              | &#9474; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical 
- crunch      | crunch                   | &#9474; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical 
+ wpaclean    | aircrack-ng              | &#9474; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical
+ crunch      | crunch                   | &#9474; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical
  aireplay-ng | aircrack-ng              | &#9474; | sslstrip | sslstrip                                             
  mdk3        | mdk3                     | &#9474; | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
  hashcat     | hashcat                  | &#9474; | dnsspoof | dsniff                                               
@@ -124,9 +125,14 @@ Compatible with any Linux distribution that has installed the tools needed. The 
  - The right software you must install is **BeEF** (Browser Exploitation Framework). Be careful, do not mistake it with **beef** (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
  - If you are using a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
 
+##### Important tips about hashcat
+
+`hashcat` is used to perform various attacks against captured files using the **CPU**.
+In order to execute `hashcat`, you need to install an **OpenCL** runtime compatible with your hardware.
+
 #### Update tools &#8592; Not necessary to work, only used for auto-update
 
- Command | Possible package name 
+ Command | Possible package name
 :--------|:----------------------
  curl    | curl                  
 
@@ -134,7 +140,7 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 
  Command  | Possible package name                  
 :---------|:---------------------------------------
- xdpyinfo | x11-utils \| xdpyinfo \| xorg-xdpyinfo 
+ xdpyinfo | x11-utils \| xdpyinfo \| xorg-xdpyinfo
  ethtool  | ethtool                                
  lspci    | pciutils                               
  rfkill   | rfkill                                 
@@ -258,6 +264,7 @@ Use it on your own networks or with the permission of the network's owner only.<
 [Essential Tools]: #essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them
 [Optional Tools]: #optional-tools--not-necessary-to-work-only-needed-for-some-features
 [BeEF Tips]: #important-tips-about-beef
+[Hashcat Tips]: #important-tips-about-hashcat
 [Update Tools]: #update-tools--not-necessary-to-work-only-used-for-auto-update
 [Internal Tools]: #internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have
 [Requirements]: #requirements
