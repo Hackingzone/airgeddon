@@ -1,6 +1,6 @@
 ###6.11
- - MAC spoofing added for all Evil Twin attacks
- - Spoofed MACs restored on exit
+ - Optional MAC spoofing added for all Evil Twin attacks
+ - Spoofed MAC addresses restored on exit
 
 ###6.1
  - Network selection menues now colorized

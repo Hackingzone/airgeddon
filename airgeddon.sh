@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170308
+#Date.........: 20170311
 #Version......: 6.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -105,7 +105,7 @@ declare -A possible_alias_names=(
 
 #General vars
 airgeddon_version="6.11"
-language_strings_expected_version="6.11-1"
+language_strings_expected_version="6.11-2"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -881,6 +881,8 @@ function restore_et_interface() {
 	language_strings "${language}" 299 "blue"
 
 	disable_rfkill
+
+	mac_spoofing_desired=0
 
 	iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
@@ -3883,7 +3885,9 @@ function launch_fake_ap() {
 	${airmon} check kill > /dev/null 2>&1
 	nm_processes_killed=1
 
-	set_spoofed_mac "${interface}"
+	if [ ${mac_spoofing_desired} -eq 1 ]; then
+		set_spoofed_mac "${interface}"
+	fi
 
 	recalculate_windows_sizes
 	case ${et_mode} in
@@ -6530,6 +6534,11 @@ function et_prerequisites() {
 		fi
 	fi
 
+	ask_yesno 419
+	if [ ${yesno} = "y" ]; then
+		mac_spoofing_desired=1
+	fi
+
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 
 		language_strings "${language}" 315 "yellow"
@@ -7929,6 +7938,7 @@ function initialize_script_settings() {
 	tmpfiles_toclean=0
 	routing_toclean=0
 	spoofed_mac=0
+	mac_spoofing_desired=0
 	dhcpd_path_changed=0
 	xratio=6.2
 	yratio=13.9

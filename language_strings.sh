@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170310
+#Date.........: 20170311
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="6.11-1"
+	language_strings_version="6.11-2"
 }
 
 #Set different language text strings
@@ -3647,6 +3647,14 @@ function language_strings() {
 	arr["PORTUGUESE",418]="Restaurando MAC falsificado"
 	arr["RUSSIAN",418]="Восстановление исходного MAC"
 	arr["GREEK",418]="Γίνεται αποκατάσταση της πλαστής MAC"
+
+	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? ${normal_color}[y/n]"
+	arr["SPANISH",419]="¿Deseas falsear la dirección MAC de tu tarjeta durante el ataque? ${normal_color}[y/n]"
+	arr["FRENCH",419]="${pending_of_translation} Vous voulez falsifier l'adresse MAC de votre carte lors de l'attaque? ${normal_color}[y/n]"
+	arr["CATALAN",419]="${pending_of_translation} ¿Vols falsejar l'adreça MAC de la targeta durant l'atac? ${normal_color}[y/n]"
+	arr["PORTUGUESE",419]="${pending_of_translation} Quer para falsificar o endereço MAC do seu cartão durante o ataque? ${normal_color}[y/n]"
+	arr["RUSSIAN",419]="${pending_of_translation} Вы хотите подменить свой MAC-адрес во время этой атаки? ${normal_color}[y/n]"
+	arr["GREEK",419]="${pending_of_translation} Θέλετε να κοροϊδία τη διεύθυνση MAC σας κατά τη διάρκεια αυτής της επίθεσης; ${normal_color}[y/n]"
 
 	case "${3}" in
 		"yellow")
