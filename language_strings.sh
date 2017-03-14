@@ -1364,7 +1364,7 @@ function language_strings() {
 	arr["SPANISH",133]="Si seleccionas una red objetivo con el ESSID oculto, no podrás usarlo, pero puedes hacer ataques basados en BSSID sobre esa red"
 	arr["FRENCH",133]="Si vous sélectionnez un réseau cible avec un ESSID caché, vous n'allez pas pouvoir utiliser l'ESSID pour attaquer, mais vous pourrez effectuer les attaques basées sur le BSSID du réseau"
 	arr["CATALAN",133]="Si selecciones una xarxa objectiu amb el ESSID ocult, no podràs usar-lo, però pots fer atacs basats en BSSID sobre aquesta xarxa"
-	arr["PORTUGUESE",133]="Se você selecionar uma rede com ESSID oculto você não pode usá-la, mas você poderá fazer ataques com base no BSSID"
+	arr["PORTUGUESE",133]="Se você selecionar uma rede com ESSID oculto você não poderá usá-la, mas você poderá fazer ataques com base no BSSID"
 	arr["RUSSIAN",133]="Если вы выбрали целевую сеть со скрытым ESSID, вы не сможете использовать её, но вы можете выполнить атаку на эту сеть на основе BSSID"
 	arr["GREEK",133]="Αν επιλέξετε ένα δίκτυο-στόχος με κρυφό ESSID, δεν μπορείτε να το χρησιμοποιήσετε, αλλά μπορείτε να εκτελέσετε επιθέσεις BSSID σε αυτό το δίκτυο"
 
@@ -1844,7 +1844,7 @@ function language_strings() {
 	arr["SPANISH",193]="¿Quieres utilizar este BSSID ya seleccionado? ${normal_color}[y/n]"
 	arr["FRENCH",193]="Souhaitez vous utiliser le BSSID déjà sélectionné? ${normal_color}[y/n]"
 	arr["CATALAN",193]="¿Vols fer servir aquest BSSID ja seleccionat? ${normal_color}[y/n]"
-	arr["PORTUGUESE",193]="Você quer usar este BSSID já selecionada? ${normal_color}[y/n]"
+	arr["PORTUGUESE",193]="Você quer usar este BSSID já selecionado? ${normal_color}[y/n]"
 	arr["RUSSIAN",193]="Вы хотите использовать эту уже выбранную BSSID? ${normal_color}[y/n]"
 	arr["GREEK",193]="Θέλετε να χρησιμοποιήσετε το ήδη επιλεγμένο BSSID; ${normal_color}[y/n]"
 
@@ -2332,7 +2332,7 @@ function language_strings() {
 	arr["SPANISH",254]="Para utilizar los ataques de Evil Twin de solo AP y con sniffing, deberás tener además de la interfaz wifi que se transformará en el AP, otra interfaz de red con acceso a internet para proporcionar este servicio a otros clientes de la red. Esta no hace falta que sea wifi, puede ser ethernet"
 	arr["FRENCH",254]="Pour effectuer l'attaque Evil Twin combinant Rogue AP et capture des données vous avez besoin d'une interface réseau en plus de celle utilisée pour créer le point d'accès. Cette interface supplémentaire devra être connecté à l'internet afin d'en proportionner l'accès aux clients du réseau. L'interface peut être une interface ethernet ou wifi"
 	arr["CATALAN",254]="Per utilitzar els atacs d'Evil Twin només amb AP i sniffing, hauràs de tenir a més de la interfície wifi que es transformarà en el AP, una altre interfície de xarxa amb accés a internet per proporcionar aquest servei a altres clients de la xarxa. Aquesta no cal que sigui wifi, pot ser ethernet"
-	arr["PORTUGUESE",254]="Para usar ataques Evil Twin Somente AP e com sniffing, você deve ter além da interface wifi que se tornará a AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Não precisa ser wifi, pode ser ethernet"
+	arr["PORTUGUESE",254]="Para usar ataques Evil Twin Somente AP e com sniffing, você deve ter além da interface wifi que se tornará o AP, uma outra interface de rede com acesso à internet para fornecer este serviço a outros clientes da rede. Não precisa ser wifi, pode ser ethernet"
 	arr["RUSSIAN",254]="Чтобы использовать Злого Двойника точки доступа и атаку сниффинга, вы должны иметь другой интерфейс в дополнение к сетевому интерфейсу wifi. Сетевой интерфейс wifi станет точкой доступа, к которому будут подключаться жертвы. Для того, чтобы у этой точки доступа было Интернет-подключение и используется второй сетевой адаптер. Ему необязательно быть wifi, достаточно ethernet"
 	arr["GREEK",254]="Για να χρησιμοποιήσετε τις επιθέσεις sniffing και Evil Twin με AP, πρέπει να έχετε άλλη μία διεπαφή παράλληλα με την διεπαφή δικτύου wifi που θα γίνει AP, η οποία θα παρέχει πρόσβαση στο διαδίκτυο στους άλλες χρήστες του δικτύου. Δεν χρειάζεται να είναι wifi, μπορεί να έιναι και ethernet"
 
