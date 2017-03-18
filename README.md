@@ -10,23 +10,25 @@
 
 <details>
 	<summary><strong>Table of Contents</strong></summary>
-	<li><a href="#features">Features</a></li>
-	<li><a href="#essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them">Essential Tools</a></li>
-	<li><a href="#optional-tools--not-necessary-to-work-only-needed-for-some-features">Optional Tools</a></li>
-	<li><a href="#important-tips-about-beef">BeEF Tips</a></li>
-	<li><a href="#important-tips-about-hashcat">Hashcat Tips</a></li>
-	<li><a href="#update-tools--not-necessary-to-work-only-used-for-auto-update">Update Tools</a></li>
-	<li><a href="#internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have">Internal Tools</a></li>
-	<li><a href="#requirements">Requirements</a></li>
-	<li><a href="#usage">Usage</a></li>
-	<li><a href="#supported-languages">Supported Languages</a></li>
-	<li><a href="#known-incompatibilities">Known Incompatibilities</a></li>
-	<li><a href="#contributing">Contributing</a></li>
-	<li><a href="#changelog">Changelog</a></li>
-	<li><a href="#disclaimer--license">Disclaimer & License</a></li>
-	<li><a href="#acknowledgments--license">Acknowledgments</a></li>
-	<li><a href="#hat-tip-to">Hat Tip To</a></li>
-	<li><a href="#inspiration">Inspiration</a></li>
+  <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them">Essential Tools</a></li>
+    <li><a href="#optional-tools--not-necessary-to-work-only-needed-for-some-features">Optional Tools</a></li>
+    <li><a href="#important-tips-about-beef">BeEF Tips</a></li>
+    <li><a href="#important-tips-about-hashcat">Hashcat Tips</a></li>
+    <li><a href="#update-tools--not-necessary-to-work-only-used-for-auto-update">Update Tools</a></li>
+    <li><a href="#internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have">Internal Tools</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#supported-languages">Supported Languages</a></li>
+    <li><a href="#known-incompatibilities">Known Incompatibilities</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+    <li><a href="#disclaimer--license">Disclaimer & License</a></li>
+    <li><a href="#acknowledgments--license">Acknowledgments</a></li>
+    <li><a href="#hat-tip-to">Hat Tip To</a></li>
+    <li><a href="#inspiration">Inspiration</a></li>
+  </ul>
 </details>
 
 ---
