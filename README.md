@@ -111,27 +111,27 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
 #### Essential tools &#8592; The script does not work if you don't have installed all of them
 
- Command     | Possible package name | &#149;  | Command     | Possible package name
+ Command     | Possible package name | &#8901; | Command     | Possible package name
 :------------|:----------------------|:-------:|:------------|:----------------------
- ifconfig    | net-tools             | &#9474; | iwconfig    | wireless-tools        
- iw          | iw                    | &#9474; | awk         | awk \| gawk           
- airmon-ng   | aircrack-ng           | &#9474; | airodump-ng | aircrack-ng           
- aircrack-ng | aircrack-ng           | &#9474; | xterm       | xterm                 
+ ifconfig    | net-tools             | &#149;  | iwconfig    | wireless-tools        
+ iw          | iw                    | &#149;  | awk         | awk \| gawk           
+ airmon-ng   | aircrack-ng           | &#149;  | airodump-ng | aircrack-ng           
+ aircrack-ng | aircrack-ng           | &#149;  | xterm       | xterm                 
 
 #### Optional tools &#8592; Not necessary to work, only needed for some features
 
- Command     | Possible package name    | &#149;  | Command  | Possible package name                                
+ Command     | Possible package name    | &#8901; | Command  | Possible package name                                
 :------------|:-------------------------|:-------:|:---------|:-----------------------------------------------------
- wpaclean    | aircrack-ng              | &#9474; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical
- crunch      | crunch                   | &#9474; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical
- aireplay-ng | aircrack-ng              | &#9474; | sslstrip | sslstrip                                             
- mdk3        | mdk3                     | &#9474; | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
- hashcat     | hashcat                  | &#9474; | dnsspoof | dsniff                                               
- hostapd     | hostapd                  | &#9474; | wash     | reaver                                               
- lighttpd    | lighttpd                 | &#9474; | reaver   | reaver                                               
- iptables    | iptables                 | &#9474; | bully    | bully                                                
- bettercap   | bettercap                | &#9474; | pixiewps | pixiewps                                             
- beef        | beef-xss \| beef-project | &#9474; | unbuffer | expect \| expect-dev                                 
+ wpaclean    | aircrack-ng              | &#149;  | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical
+ crunch      | crunch                   | &#149;  | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical
+ aireplay-ng | aircrack-ng              | &#149;  | sslstrip | sslstrip                                             
+ mdk3        | mdk3                     | &#149;  | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
+ hashcat     | hashcat                  | &#149;  | dnsspoof | dsniff                                               
+ hostapd     | hostapd                  | &#149;  | wash     | reaver                                               
+ lighttpd    | lighttpd                 | &#149;  | reaver   | reaver                                               
+ iptables    | iptables                 | &#149;  | bully    | bully                                                
+ bettercap   | bettercap                | &#149;  | pixiewps | pixiewps                                             
+ beef        | beef-xss \| beef-project | &#149;  | unbuffer | expect \| expect-dev                                 
 
 ##### Important tips about BeEF
 
