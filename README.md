@@ -9,24 +9,32 @@
 ![Banner]
 
 <details>
-	<summary id="TOC"><strong>Table Of Contents</strong></summary>
-- [Features]
-- [Requirements]
- - [Essential Tools]
- - [Optional Tools]
- - [Update Tools]
- - [Internal Tools]
- - [BeEF Tips]
- - [Hashcat Tips]
-- [Usage]
-- [Supported Languages]
-- [Known Incompatibilities]
-- [Contributing]
-- [Changelog]
-- [Disclaimer & License]
-- [Acknowledgments]
- - [Hat Tip To]
- - [Inspiration]
+	<summary><strong>Table of Contents</strong></summary>
+	<ul>
+		<li><a href="#features">Features</a></li>
+		<li><a href="#requirements">Requirements</a></li>
+		<ul>
+			<li><a href="#essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them">Essential Tools</a></li>
+			<li><a href="#optional-tools--not-necessary-to-work-only-needed-for-some-features">Optional Tools</a></li>
+			<ul>
+				<li><a href="#important-tips-about-beef">BeEF Tips</a></li>
+				<li><a href="#important-tips-about-hashcat">Hashcat Tips</a></li>
+			</ul>
+			<li><a href="#update-tools--not-necessary-to-work-only-used-for-auto-update">Update Tools</a></li>
+			<li><a href="#internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have">Internal Tools</a></li>
+		</ul>
+		<li><a href="#usage">Usage</a></li>
+		<li><a href="#supported-languages">Supported Languages</a></li>
+		<li><a href="#known-incompatibilities">Known Incompatibilities</a></li>
+		<li><a href="#contributing">Contributing</a></li>
+		<li><a href="#changelog">Changelog</a></li>
+		<li><a href="#disclaimer--license">Disclaimer & License</a></li>
+		<li><a href="#acknowledgments--license">Acknowledgments</a></li>
+		<ul>
+			<li><a href="#hat-tip-to">Hat Tip To</a></li>
+			<li><a href="#inspiration">Inspiration</a></li>
+		</ul>
+	</ul>
 </details>
 
 ---
@@ -77,49 +85,53 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 
 <!-- Distribution compatibility should be written here -->
 <details open>
-	<summary id="distros"><strong>Tested on these compatible Linux distributions</strong></summary>
-- *Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)*
-- *Wifislax 4.11.1, 4.12 and 64-1.0*
-- *Backbox 4.5.1 and 4.6*
-- *Parrot 2.2.1 to 3.4.1 and arm versions (Raspberry Pi)*
-- *BlackArch 2016.01.10 to 2017.01.28*
-- *Cyborg Hawk 1.1*
-- *Debian 7 (Wheezy) and 8 (Jessie)*
-- *Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1*
-- *OpenSUSE Leap 42.1 and 42.2*
-- *CentOS 6 and 7*
-- *Gentoo 20160514 and 20160704*
-- *Fedora 24*
-- *Red Hat 7 (Maipo)*
-- *Arch 4.6.2-1 to 4.9.11-1*
-- *Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)*
-- *OpenMandriva LX3*
+	<summary><strong>Tested on these compatible Linux distributions</strong></summary>
+	<ul>
+		<em>
+			<li>Kali 2.0, 2016.1, 2016.2 and arm versions (Raspberry Pi)</li>
+			<li>Wifislax 4.11.1, 4.12 and 64-1.0</li>
+			<li>Backbox 4.5.1 and 4.6</li>
+			<li>Parrot 2.2.1 to 3.4.1 and arm versions (Raspberry Pi)</li>
+			<li>BlackArch 2016.01.10 to 2017.01.28</li>
+			<li>Cyborg Hawk 1.1</li>
+			<li>Debian 7 (Wheezy) and 8 (Jessie)</li>
+			<li>Ubuntu/Xubuntu 15.10, 16.04 and 16.04.1</li>
+			<li>OpenSUSE Leap 42.1 and 42.2</li>
+			<li>CentOS 6 and 7</li>
+			<li>Gentoo 20160514 and 20160704</li>
+			<li>Fedora 24</li>
+			<li>Red Hat 7 (Maipo)</li>
+			<li>Arch 4.6.2-1 to 4.10.3-1</li>
+			<li>Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)</li>
+			<li>OpenMandriva LX3</li>
+		</em>
+	</ul>
 </details>
 
 <!-- HTML entities here: http://www.amp-what.com/unicode/search/%2F%26%5Cw%2F -->
 #### Essential tools &#8592; The script does not work if you don't have installed all of them
 
- Command     | Possible package name | &#149;  | Command     | Possible package name
+ Command     | Possible package name | &#8901; | Command     | Possible package name
 :------------|:----------------------|:-------:|:------------|:----------------------
- ifconfig    | net-tools             | &#9474; | iwconfig    | wireless-tools        
- iw          | iw                    | &#9474; | awk         | awk \| gawk           
- airmon-ng   | aircrack-ng           | &#9474; | airodump-ng | aircrack-ng           
- aircrack-ng | aircrack-ng           | &#9474; | xterm       | xterm                 
+ ifconfig    | net-tools             | &#8901; | iwconfig    | wireless-tools        
+ iw          | iw                    | &#8901; | awk         | awk \| gawk           
+ airmon-ng   | aircrack-ng           | &#8901; | airodump-ng | aircrack-ng           
+ aircrack-ng | aircrack-ng           | &#8901; | xterm       | xterm                 
 
 #### Optional tools &#8592; Not necessary to work, only needed for some features
 
- Command     | Possible package name    | &#149;  | Command  | Possible package name                                
+ Command     | Possible package name    | &#8901; | Command  | Possible package name                                
 :------------|:-------------------------|:-------:|:---------|:-----------------------------------------------------
- wpaclean    | aircrack-ng              | &#9474; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical
- crunch      | crunch                   | &#9474; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical
- aireplay-ng | aircrack-ng              | &#9474; | sslstrip | sslstrip                                             
- mdk3        | mdk3                     | &#9474; | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
- hashcat     | hashcat                  | &#9474; | dnsspoof | dsniff                                               
- hostapd     | hostapd                  | &#9474; | wash     | reaver                                               
- lighttpd    | lighttpd                 | &#9474; | reaver   | reaver                                               
- iptables    | iptables                 | &#9474; | bully    | bully                                                
- bettercap   | bettercap                | &#9474; | pixiewps | pixiewps                                             
- beef        | beef-xss \| beef-project | &#9474; | unbuffer | expect \| expect-dev                                 
+ wpaclean    | aircrack-ng              | &#8901; | ettercap | ettercap \| ettercap-text-only \| ettercap-graphical
+ crunch      | crunch                   | &#8901; | etterlog | ettercap \| ettercap-text-only \| ettercap-graphical
+ aireplay-ng | aircrack-ng              | &#8901; | sslstrip | sslstrip                                             
+ mdk3        | mdk3                     | &#8901; | dhcpd    | isc-dhcp-server \| dhcp-server \| dhcp               
+ hashcat     | hashcat                  | &#8901; | dnsspoof | dsniff                                               
+ hostapd     | hostapd                  | &#8901; | wash     | reaver                                               
+ lighttpd    | lighttpd                 | &#8901; | reaver   | reaver                                               
+ iptables    | iptables                 | &#8901; | bully    | bully                                                
+ bettercap   | bettercap                | &#8901; | pixiewps | pixiewps                                             
+ beef        | beef-xss \| beef-project | &#8901; | unbuffer | expect \| expect-dev                                 
 
 ##### Important tips about BeEF
 
@@ -159,13 +171,21 @@ A command could be included in different packages, depending on the distribution
 It is essential to run this script as **root**, otherwise `airgeddon` won't work properly.
 
 <details open>
-	<summary id="gettingStarted"><strong>Getting Started</strong></summary>
-- Clone the repository
- - `git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git`
-- Go to the newly created directory
- - `cd airgeddon`
-- Run it (remove **sudo** if you already have root permissions)
-  - `sudo bash airgeddon.sh`
+	<summary><strong>Getting Started</strong></summary>
+	<ul>
+		<li>Clone the repository</li>
+		<ul>
+			<li><code>git clone https://github.com/v1s1t0r1sh3r3/airgeddon.git</code></li>
+		</ul>
+		<li>Go to the newly created directory</li>
+		<ul>
+			<li><code>cd airgeddon</code></li>
+		</ul>
+		<li>Run it (remove <strong>sudo</strong> if you already have root permissions)</li>
+		<ul>
+			<li><code>sudo bash airgeddon.sh</code></li>
+		</ul>
+	</ul>
 </details>
 
 `airgeddon` should be launched with **bash** `bash /path/to/airgeddon.sh` and not with `sh` or any other kind of shell. <br/>
@@ -260,24 +280,6 @@ Use it on your own networks or with the permission of the network's owner only.<
 - Goyfilms &#8594; Goyscript
 - [Kcdtv] &#8594; WPSPin
 
-<!-- Anchors -->
-[Features]: #features
-[Essential Tools]: #essential-tools--the-script-does-not-work-if-you-dont-have-installed-all-of-them
-[Optional Tools]: #optional-tools--not-necessary-to-work-only-needed-for-some-features
-[BeEF Tips]: #important-tips-about-beef
-[Hashcat Tips]: #important-tips-about-hashcat
-[Update Tools]: #update-tools--not-necessary-to-work-only-used-for-auto-update
-[Internal Tools]: #internal-tools--these-are-internally-checked-not-necessary-to-work-good-to-have
-[Requirements]: #requirements
-[Usage]: #usage
-[Supported Languages]: #supported-languages
-[Known Incompatibilities]: #known-incompatibilities
-[Contributing]: #contributing
-[Changelog]: #changelog
-[Disclaimer & License]: #disclaimer--license
-[Acknowledgments]: #acknowledgments
-[Hat Tip To]: #hat-tip-to
-[Inspiration]: #inspiration
 <!-- Links To Images -->
 [Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [English]: /imgs/flags/us.png "English"
