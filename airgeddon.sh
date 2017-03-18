@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170305
-#Version......: 6.1
+#Date.........: 20170311
+#Version......: 6.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -104,8 +104,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.1"
-language_strings_expected_version="6.1-1"
+airgeddon_version="6.11"
+language_strings_expected_version="6.11-2"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -881,6 +881,8 @@ function restore_et_interface() {
 	language_strings "${language}" 299 "blue"
 
 	disable_rfkill
+
+	mac_spoofing_desired=0
 
 	iw dev "${iface_monitor_et_deauth}" del > /dev/null 2>&1
 
@@ -3883,6 +3885,10 @@ function launch_fake_ap() {
 	${airmon} check kill > /dev/null 2>&1
 	nm_processes_killed=1
 
+	if [ ${mac_spoofing_desired} -eq 1 ]; then
+		set_spoofed_mac "${interface}"
+	fi
+
 	recalculate_windows_sizes
 	case ${et_mode} in
 		"et_onlyap")
@@ -3981,6 +3987,42 @@ function set_dhcp_config() {
 			dhcpd_path_changed=1
 		fi
 	fi
+}
+
+#Change mac of desired interface
+function set_spoofed_mac() {
+
+	debug_print
+
+	current_original_mac=$(cat < "/sys/class/net/${1}/address" 2> /dev/null)
+
+	if [ "${spoofed_mac}" -eq 0 ]; then
+		spoofed_mac=1
+		declare -gA original_macs
+		original_macs["${1}"]="${current_original_mac}"
+	else
+		if [ -z "${original_macs[${1}]}" ]; then
+			original_macs["${1}"]="${current_original_mac}"
+		fi
+	fi
+
+	new_random_mac=$(od -An -N6 -tx1 /dev/urandom | sed -e 's/^  *//' -e 's/  */:/g' -e 's/:$//' -e 's/^\(.\)[13579bdf]/\10/')
+
+	ifconfig "${1}" down > /dev/null 2>&1
+	ifconfig "${1}" hw ether "${new_random_mac}" > /dev/null 2>&1
+	ifconfig "${1}" up > /dev/null 2>&1
+}
+
+#Restore spoofed macs to original values
+function restore_spoofed_macs() {
+
+	debug_print
+
+	for item in "${!original_macs[@]}"; do
+		ifconfig "${item}" down > /dev/null 2>&1
+		ifconfig "${item}" hw ether "${original_macs[${item}]}" > /dev/null 2>&1
+		ifconfig "${item}" up > /dev/null 2>&1
+	done
 }
 
 #Set routing state and firewall rules for Evil Twin attacks
@@ -6492,6 +6534,11 @@ function et_prerequisites() {
 		fi
 	fi
 
+	ask_yesno 419
+	if [ ${yesno} = "y" ]; then
+		mac_spoofing_desired=1
+	fi
+
 	if [ "${et_mode}" = "et_captive_portal" ]; then
 
 		language_strings "${language}" 315 "yellow"
@@ -6983,6 +7030,7 @@ function exit_script_option() {
 			action_on_exit_taken=1
 			language_strings "${language}" 167 "multiline"
 			${airmon} stop "${interface}" > /dev/null 2>&1
+			ifacemode="Managed"
 			time_loop
 			echo -e "${green_color} Ok\r${normal_color}"
 		fi
@@ -7016,6 +7064,13 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
+	if [[ ${spoofed_mac} -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
+		language_strings "${language}" 418 "multiline"
+		restore_spoofed_macs
+		time_loop
+		echo -e "${green_color} Ok\r${normal_color}"
+	fi
+
 	if [ ${action_on_exit_taken} -eq 0 ]; then
 		language_strings "${language}" 160 "yellow"
 	fi
@@ -7032,6 +7087,7 @@ function hardcore_exit() {
 	exit_code=2
 	if [ "${ifacemode}" = "Monitor" ]; then
 		${airmon} stop "${interface}" > /dev/null 2>&1
+		ifacemode="Managed"
 	fi
 
 	if [ ${nm_processes_killed} -eq 1 ]; then
@@ -7048,6 +7104,13 @@ function hardcore_exit() {
 		killall hostapd > /dev/null 2>&1
 		killall lighttpd > /dev/null 2>&1
 		kill_beef
+	fi
+
+	if [[ ${spoofed_mac} -eq 1 ]] && [[ "${ifacemode}" = "Managed" ]]; then
+		language_strings "${language}" 418 "multiline"
+		restore_spoofed_macs
+		time_loop
+		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
 	exit ${exit_code}
@@ -7874,6 +7937,8 @@ function initialize_script_settings() {
 	autochanged_language=0
 	tmpfiles_toclean=0
 	routing_toclean=0
+	spoofed_mac=0
+	mac_spoofing_desired=0
 	dhcpd_path_changed=0
 	xratio=6.2
 	yratio=13.9

@@ -1,3 +1,7 @@
+###6.11
+ - Optional MAC spoofing added for all Evil Twin attacks
+ - Spoofed MAC addresses restored on exit
+
 ###6.1
  - Network selection menues now colorized
  - Language strings now in a separated file for easy handling and translating
@@ -67,7 +71,7 @@
  - Some code improvements and refactors. Warnings removed based on shellcheck tool
  - README.md small modifications
  - Fix on language menu selecting greek language
- - Fixed problem on renew_ifaces_and_macs_list function when there are interfaces without mac (like some tunnel interfaces)
+ - Fixed problem on renew_ifaces_and_macs_list function when there are interfaces without MAC (like some tunnel interfaces)
 
 ###4.31
  - Now optionally on Evil Twin captive portal attack you can choose between to have internet access or to use a "dns trick"
