@@ -41,26 +41,27 @@
 
 ### Features
 
+<!-- Each sub list needs 2 additional followed spaces -->
 - Interface mode switcher (Monitor-Managed) keeping selection even on interface name changing
 - DoS over wireless networks using different methods
 - Assisted Handshake file capturing
 - Cleaning and optimizing Handshake captured files
 - Offline password decrypting on WPA/WPA2 captured files (dictionary, bruteforce and rule based)
 - Evil Twin attacks (Rogue AP)
- - Only Rogue/Fake AP version to sniff using external sniffer (Hostapd + DHCP + DoS)
- - Simple integrated sniffing (Hostapd + DHCP + DoS + Ettercap)
- - Integrated sniffing, sslstrip (Hostapd + DHCP + DoS + Ettercap + Sslstrip)
- - Integrated sniffing, sslstrip2 and BeEF browser exploitation framework (Hostapd + DHCP + DoS + Bettercap + BeEF)
- - Captive portal with "DNS blackhole" to capture wifi passwords (Hostapd + DHCP + DoS + Dnsspoff + Lighttpd)
- - Optional MAC spoofing for all Evil Twin attacks
+  - Only Rogue/Fake AP version to sniff using external sniffer (Hostapd + DHCP + DoS)
+  - Simple integrated sniffing (Hostapd + DHCP + DoS + Ettercap)
+  - Integrated sniffing, sslstrip (Hostapd + DHCP + DoS + Ettercap + Sslstrip)
+  - Integrated sniffing, sslstrip2 and BeEF browser exploitation framework (Hostapd + DHCP + DoS + Bettercap + BeEF)
+  - Captive portal with "DNS blackhole" to capture wifi passwords (Hostapd + DHCP + DoS + Dnsspoff + Lighttpd)
+  - Optional MAC spoofing for all Evil Twin attacks
 - WPS features
- - WPS scanning (wash). Self parameterization to avoid *"bad fcs"* problem
- - Custom PIN association (bully and reaver)
- - Pixie Dust attacks (bully and reaver)
- - Bruteforce PIN attacks (bully and reaver)
- - Parameterizable timeouts
- - Known WPS PINs attack (bully and reaver), based on online PIN database with auto-update
- - Integration of the most common PIN generation algorithms
+  - WPS scanning (wash). Self parameterization to avoid *"bad fcs"* problem
+  - Custom PIN association (bully and reaver)
+  - Pixie Dust attacks (bully and reaver)
+  - Bruteforce PIN attacks (bully and reaver)
+  - Parameterizable timeouts
+  - Known WPS PINs attack (bully and reaver), based on online PIN database with auto-update
+  - Integration of the most common PIN generation algorithms
 - Compatibility with many Linux distributions (see [Requirements] section)
 - Easy targeting and selection in every section
 - Drag and drop files on console window for entering file paths
@@ -78,7 +79,7 @@ Bash **4.2** or later.
 
 Compatible with any Linux distribution that has installed the tools needed. The script checks for them at the beginning.
 
-> `airgeddon` is already included in some Linux distributions and repositories:
+> `airgeddon` is already included in some Linux distributions and repositories
 > - [Wifislax] 4.12, 64-1.0 or higher
 > - [BlackArch] 2017.01.28 or later
 > - [ArchStrike] repository
@@ -135,7 +136,7 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 
 ##### Important tips about BeEF
 
- - The right software you must install is **BeEF** (Browser Exploitation Framework). Be careful, do not mistake it with **beef** (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and displays a warning if needed. Here is a link to the right [BeEF installation's page].
+ - The right software you must install is **BeEF** (Browser Exploitation Framework). Be careful, do not mistake it with **beef** (Flexible Brainfuck Interpreter). This package has the same name and executable file name on some distributions and can lead into confusion. Anyway, `airgeddon` is able to detect the issue and display a warning if needed. Here is a link to the right [BeEF installation's page].
  - If you are using a distribution which already has BeEF installed like Kali, BlackArch or Wifislax, there will be no problems. If you have manually installed BeEF, `airgeddon` is able to manage the integration asking for the path where it's installed, even modifying its own code in order to make updates-proof persistent changes.
 
 ##### Important tips about hashcat
