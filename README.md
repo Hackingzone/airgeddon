@@ -281,6 +281,9 @@ Use it on your own networks or with the permission of the network's owner only.<
 - Goyfilms &#8594; Goyscript
 - [Kcdtv] &#8594; WPSPin
 
+<!-- Anchors -->
+[Requirements]: #requirements
+[Supported Languages]: #supported-languageσ
 <!-- Links To Images -->
 [Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [English]: /imgs/flags/us.png "English"
