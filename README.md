@@ -283,7 +283,7 @@ Use it on your own networks or with the permission of the network's owner only.<
 
 <!-- Anchors -->
 [Requirements]: #requirements
-[Supported Languages]: #supported-languageσ
+[Supported Languages]: #supported-languages
 <!-- Links To Images -->
 [Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [English]: /imgs/flags/us.png "English"
