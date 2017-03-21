@@ -1,3 +1,7 @@
+ - Please, answer the questions to provide maximum of info.<br/>
+ - Answer ALWAYS in english.<br/>
+ - If more info is needed and requested by airgeddon staff but there is no answer in 10 days, the issue will be closed.
+
 #### What is your airgeddon version?
 
 *Insert answer here*
@@ -12,4 +16,4 @@
 
 #### Describe the issue and the steps to reproduce it
 
-*Insert description here*
+*Insert description here. Screenshots or any clarifying info are welcome too*
