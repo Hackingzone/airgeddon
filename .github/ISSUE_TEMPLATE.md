@@ -1,5 +1,5 @@
- - Please, answer the questions to provide maximum of info.<br/>
- - Answer ALWAYS in english.<br/>
+ - Please, answer the questions to provide maximum of info.
+ - Answer ALWAYS in english.
  - If more info is needed and requested by airgeddon staff but there is no answer in 10 days, the issue will be closed.
 
 #### What is your airgeddon version?
