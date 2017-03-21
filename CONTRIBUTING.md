@@ -23,9 +23,9 @@ Please note we have a code of conduct, please follow it in all your interactions
 3. Use **LF** (Unix) line break type (not CR or CRLF).
 4. Use [Shellcheck] to search for errors and warnings on code. (Thanks [xtonousou] for the tip :wink:). To avoid false positive warnings you must launch shellcheck using `-x` argument to follow source files and from the directory where `airgeddon.sh` is. For example: `cd /path/to/airgeddon && shellcheck -x airgeddon.sh`
 5. Increase the version numbers in `airgeddon.sh`, in [Readme] and in [Changelog] to the new version that the script represents. The versioning scheme we use is *X.YZ*. Where:
- - *X* is a major release with a new menu (e.g. WPS menu)
- - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
- - *Z* is a minor release with new bug fixes, small modifications or code improvements
+  - *X* is a major release with a new menu (e.g. WPS menu)
+  - *Y* is a minor release with a new feature for an existing menu or a new submenu for an existing feature
+  - *Z* is a minor release with new bug fixes, small modifications or code improvements
 6. Update the date on `.sh` and `.db` files under shebang, if appropriate.
 7. Split your commits into parts. Each part represents a unique change on files.
 8. Direct push to [Master] is not allowed.

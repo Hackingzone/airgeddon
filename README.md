@@ -102,7 +102,7 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 			<li>Gentoo 20160514 and 20160704</li>
 			<li>Fedora 24</li>
 			<li>Red Hat 7 (Maipo)</li>
-			<li>Arch 4.6.2-1 to 4.10.3-1</li>
+			<li>Arch 4.6.2-1 to 4.10.4-1</li>
 			<li>Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)</li>
 			<li>OpenMandriva LX3</li>
 		</em>
@@ -281,6 +281,9 @@ Use it on your own networks or with the permission of the network's owner only.<
 - Goyfilms &#8594; Goyscript
 - [Kcdtv] &#8594; WPSPin
 
+<!-- Anchors -->
+[Requirements]: #requirements
+[Supported Languages]: #supported-languages
 <!-- Links To Images -->
 [Banner]: /imgs/banners/airgeddon_banner.png "We will conquer the earth!!"
 [English]: /imgs/flags/us.png "English"
