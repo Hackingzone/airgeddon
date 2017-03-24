@@ -1,3 +1,6 @@
+###6.12
+ - Fixed bug on network detection
+
 ###6.11
  - Optional MAC spoofing added for all Evil Twin attacks
  - Spoofed MAC addresses restored on exit
