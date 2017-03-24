@@ -2152,7 +2152,7 @@ function initialize_optional_tools_values() {
 
 	debug_print
 
-	declare -gA optional_tools=()
+	declare -gA optional_tools
 
 	for item in "${optional_tools_names[@]}"; do
 		optional_tools[${item}]=0
