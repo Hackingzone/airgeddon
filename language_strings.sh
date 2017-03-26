@@ -139,7 +139,7 @@ function language_strings() {
 	et_misc_texts["SPANISH",8]="airgeddon. Contraseñas capturadas en ataque Evil Twin"
 	et_misc_texts["FRENCH",8]="airgeddon. Mots de passe capturés par attaque Evil Twin"
 	et_misc_texts["CATALAN",8]="airgeddon. Contrasenyes capturades amb atac Evil Twin"
-	et_misc_texts["PORTUGUESE",8]="airgeddon. Senhas capturado no ataque ataque Evil Twin"
+	et_misc_texts["PORTUGUESE",8]="airgeddon. Senhas capturadas no ataque ataque Evil Twin"
 	et_misc_texts["RUSSIAN",8]="airgeddon. Атака Злой Двойник захватила пароли"
 	et_misc_texts["GREEK",8]="airgeddon. Η επίθεση Evil Twin κατέγραψε κωδικούς πρόσβασης"
 
@@ -1012,7 +1012,7 @@ function language_strings() {
 	arr["SPANISH",89]="Acción mdk3 amok"
 	arr["FRENCH",89]="Action mdk3 amok"
 	arr["CATALAN",89]="Acció mdk3 amok"
-	arr["PORTUGUESE",89]="Acção mdk3 amok"
+	arr["PORTUGUESE",89]="Ação mdk3 amok"
 	arr["RUSSIAN",89]="Mdk3 amok в действии"
 	arr["GREEK",89]="Ενέργεια mdk3 amok"
 
@@ -1020,7 +1020,7 @@ function language_strings() {
 	arr["SPANISH",90]="Acción aireplay deauth"
 	arr["FRENCH",90]="Action aireplay deauth"
 	arr["CATALAN",90]="Acció aireplay deauth"
-	arr["PORTUGUESE",90]="Acção deauth aireplay"
+	arr["PORTUGUESE",90]="Ação deauth aireplay"
 	arr["RUSSIAN",90]="Деаутентификация Aireplay в действии"
 	arr["GREEK",90]="Ενέργεια aireplay deauth"
 
@@ -1028,7 +1028,7 @@ function language_strings() {
 	arr["SPANISH",91]="Acción WIDS / WIPS / WDS confusion"
 	arr["FRENCH",91]="Action WIDS / WIPS / WDS confusion"
 	arr["CATALAN",91]="Acció WIDS / WIPS / WDS confusion"
-	arr["PORTUGUESE",91]="Acção WIDS / WIPS / confusão WDS"
+	arr["PORTUGUESE",91]="Ação WIDS / WIPS / confusão WDS"
 	arr["RUSSIAN",91]="Смешение WIDS / WIPS / WDS в действии"
 	arr["GREEK",91]="Ενέργεια σύγχυσης WIDS / WIPS / WDS"
 
@@ -1036,7 +1036,7 @@ function language_strings() {
 	arr["SPANISH",92]="Acción Beacon flood"
 	arr["FRENCH",92]="Action Beacon flood"
 	arr["CATALAN",92]="Acció Beacon flood"
-	arr["PORTUGUESE",92]="Acção Beacon flood"
+	arr["PORTUGUESE",92]="Ação Beacon flood"
 	arr["RUSSIAN",92]="Флуд маяками в действии"
 	arr["GREEK",92]="Ενέργεια πλημμυρίσματος φάρου"
 
@@ -1044,7 +1044,7 @@ function language_strings() {
 	arr["SPANISH",93]="Acción Auth DoS"
 	arr["FRENCH",93]="Action Auth DoS"
 	arr["CATALAN",93]="Acció Auth DoS"
-	arr["PORTUGUESE",93]="Acção Auth DoS"
+	arr["PORTUGUESE",93]="Ação Auth DoS"
 	arr["RUSSIAN",93]="DoS аутентификации в действии"
 	arr["GREEK",93]="Ενέργεια Auth DoS"
 
@@ -1052,7 +1052,7 @@ function language_strings() {
 	arr["SPANISH",94]="Acción Michael Shutdown"
 	arr["FRENCH",94]="Action Michael Shutdown"
 	arr["CATALAN",94]="Acció Michael Shutdown"
-	arr["PORTUGUESE",94]="Acção Michael Shutdown"
+	arr["PORTUGUESE",94]="Ação Michael Shutdown"
 	arr["RUSSIAN",94]="Отключение Michael в действии"
 	arr["GREEK",94]="Ενέργεια Michael Shutdown"
 
@@ -1668,7 +1668,7 @@ function language_strings() {
 	arr["SPANISH",171]="El proceso de desencriptado de las claves se realiza de manera offline sobre un fichero capturado previamente"
 	arr["FRENCH",171]="Le crack de la clef s'effectue offline en utilisant le fichier capturé antérieurement"
 	arr["CATALAN",171]="El procés de desencriptació de les claus es realitza de manera offline sobre un fitxer capturat prèviament"
-	arr["PORTUGUESE",171]="O processo de descodificação é realizada de modo offline em um arquivo previamente capturado"
+	arr["PORTUGUESE",171]="O processo de descriptografia é realizada de modo offline em um arquivo previamente capturado"
 	arr["RUSSIAN",171]="Процесс расшифровки ключа выполняется офлайн на ранее захваченном файле"
 	arr["GREEK",171]="Η διεργασία αποκρυπτογράφησης κλειδιού έχει εκτελεστεί offline σε προηγούμενο αρχείο καταγραφής"
 
@@ -1676,7 +1676,7 @@ function language_strings() {
 	arr["SPANISH",172]="1.  (aircrack) Ataque de diccionario sobre fichero de captura"
 	arr["FRENCH",172]="1.  (aircrack) Attaque de dictionnaire en utilisant le fichier de capture"
 	arr["CATALAN",172]="1.  (aircrack) Atac de diccionari sobre fitxer de captura"
-	arr["PORTUGUESE",172]="1.  (aircrack) Ataque de dicionário sobre arquivo de captura"
+	arr["PORTUGUESE",172]="1.  (aircrack) Ataque de dicionário em um arquivo de captura"
 	arr["RUSSIAN",172]="1.  (aircrack) Атака по словарю в отношении захваченного файла"
 	arr["GREEK",172]="1.  (aircrack) Επίθεση με χρήση λεξικού σε αρχείο καταγραφής"
 
@@ -1700,7 +1700,7 @@ function language_strings() {
 	arr["SPANISH",175]="2.  (aircrack + crunch) Ataque de fuerza bruta sobre fichero de captura"
 	arr["FRENCH",175]="2.  (aircrack + crunch) Attaque de force brute en utilisant le fichier de capture"
 	arr["CATALAN",175]="2.  (aircrack + crunch) Atac de força bruta sobre fitxer de captura"
-	arr["PORTUGUESE",175]="2.  (aircrack + crunch) Ataque de força bruta em arquivo de captura"
+	arr["PORTUGUESE",175]="2.  (aircrack + crunch) Ataque de força bruta em um arquivo de captura"
 	arr["RUSSIAN",175]="2.  (aircrack + crunch) Атака методом грубой силы в отношении захваченного файла"
 	arr["GREEK",175]="2.  (aircrack + crunch) Επίθεση ωμής βίας σε αρχείο καταγραφής"
 
@@ -1724,7 +1724,7 @@ function language_strings() {
 	arr["SPANISH",178]="Para desencriptar la clave de una red WPA/WPA2, el fichero de captura debe contener un Handshake"
 	arr["FRENCH",178]="Pour cracker la clé d'un réseau WPA/WPA2 le fichier de capture doit contenir un Handshake"
 	arr["CATALAN",178]="Per desencriptar la clau d'una xarxa WPA/WPA2 el fitxer de captura ha de contenir un Handshake"
-	arr["PORTUGUESE",178]="Para decifrar a senha de uma rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
+	arr["PORTUGUESE",178]="Para descriptografar a senha de uma rede WPA/WPA2, o arquivo de captura deve conter um Handshake"
 	arr["RUSSIAN",178]="Для расшифровки ключа сетей WPA/WPA2, файл захвата должен содержать четырёхэтапное рукопожатие"
 	arr["GREEK",178]="Για να αποκρυπτογραφήσετε το κλειδί ενός WPA/WPA2 δικτύου, το αρχείο καταγραφής πρέπει να περιέχει μία Χειραψία"
 
@@ -1980,7 +1980,7 @@ function language_strings() {
 	arr["SPANISH",210]="El script va a comprobar si tienes acceso a internet para ver si existe una nueva versión. Por favor ten paciencia..."
 	arr["FRENCH",210]="Le script va vérifier que vous aillez accès à internet pour voir si une nouvelle version du script est disponible. Soyez patients s'il vous plaît..."
 	arr["CATALAN",210]="El script va a comprovar si tens accés a internet per veure si hi ha una nova versió. Si us plau té paciència..."
-	arr["PORTUGUESE",210]="O script irá verificar se você tem acesso a internet para ver se há uma nova versão. Por favor, seja paciente..."
+	arr["PORTUGUESE",210]="O script irá verificar se você tem acesso à internet para ver se há uma nova versão. Por favor, seja paciente..."
 	arr["RUSSIAN",210]="Скрипт проверит доступ в Интернет для поиска новой версии. Подождите немного..."
 	arr["GREEK",210]="Το script θα ελέγξει αν έχετε πρόσβαση στο διαδίκτυο και έπειτα για νεότερη έκδοση. Παρακαλώ κάντε υπομονή..."
 
@@ -2052,7 +2052,7 @@ function language_strings() {
 	arr["SPANISH",219]="Tu distro tiene las herramientas esenciales pero le faltan algunas opcionales. El script puede continuar pero no podrás utilizar algunas funcionalidades. Es recomendable instalar las herramientas que faltan"
 	arr["FRENCH",219]="Votre système contient les outils fondamentaux nécessaires à l’exécution du script mais il manque quelques outils pour pouvoir utiliser pleinement toutes les fonctionnalités proposées par le script. Le script va pouvoir être exécuté mais il est conseillé d'installer les outils manquants."
 	arr["CATALAN",219]="La teva distro té les eines essencials però li falten algunes opcionals. El script pot continuar però no podràs utilitzar algunes funcionalitats. És recomanable instal·lar les eines que faltin"
-	arr["PORTUGUESE",219]="Sua distro tem as ferramentas essenciais, mas carece de algumas opcionais. O script pode continuar, mas você não pode usar alguns recursos. É aconselhável instalar as ferramentas ausentes"
+	arr["PORTUGUESE",219]="Sua distro tem as ferramentas essenciais, mas carece de algumas opcionais. O script pode continuar, mas você não poderá usar alguns recursos. É aconselhável instalar as ferramentas ausentes"
 	arr["RUSSIAN",219]="Ваш дистрибутив имеет базовые инструменты, но не имеет некоторые опциональные. Скрипт может продолжить работу, но вы не сможете использовать некоторые функции. Рекомендуется установить отсутствующие инструменты"
 	arr["GREEK",219]="Η διανομή σας έχει τα απαραίτητα εργαλεία αλλά δεν έχει κάποια προαιρετικά. Το script μπορεί να συνεχίσει αλλά δεν θα μπορέσετε να χρησιμοποιήσετε κάποια χαρακτηριστικά. Συνιστάται να εγκαταστήσετε τα λείποντα εργαλεία"
 
@@ -2188,7 +2188,7 @@ function language_strings() {
 	arr["SPANISH",236]="Fichero de trofeo hashcat generado con éxito en [${normal_color}${potenteredpath}${blue_color}]"
 	arr["FRENCH",236]="Le fichier trophée hashcat a bien été crée dans [${normal_color}${potenteredpath}${blue_color}]"
 	arr["CATALAN",236]="Fitxer de trofeu hashcat generat amb èxit a [${normal_color}${potenteredpath}${blue_color}]"
-	arr["PORTUGUESE",236]="Arquivo troféu hashcat gerado com sucesso [${normal_color}${potenteredpath}${blue_color}]"
+	arr["PORTUGUESE",236]="Arquivo de troféu hashcat gerado com sucesso [${normal_color}${potenteredpath}${blue_color}]"
 	arr["RUSSIAN",236]="Трофейный файл hashcat был успешно сгенерирован в [${normal_color}${potenteredpath}${blue_color}]"
 	arr["GREEK",236]="Το hashcat αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}${potenteredpath}${blue_color}]"
 
@@ -2268,7 +2268,7 @@ function language_strings() {
 	arr["SPANISH",246]="Cada vez que veas un texto con el prefijo ${cyan_color}${pending_of_translation}${pink_color} acrónimo de \"Pending of Translation\", significa que su traducción ha sido generada automáticamente y que aún está pendiente de revisión"
 	arr["FRENCH",246]="Chaque fois que vous voyez un texte précédé par ${cyan_color}${pending_of_translation}${pink_color} acronyme de \"Pending of Translation\" cela signifie que la traduction a été faite automatiquement et est en attente de correction"
 	arr["CATALAN",246]="Cada vegada que vegis un text amb el prefix ${cyan_color}${pending_of_translation}${pink_color} acrònim de \"Pending of Translation\", vol dir que la traducció ha estat generada automàticament i encara està pendent de revisió"
-	arr["PORTUGUESE",246]="Cada vez que você ver um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerado automaticamente e ainda está pendente de revisão"
+	arr["PORTUGUESE",246]="Cada vez que você ver um texto com o prefixo ${cyan_color}${pending_of_translation}${pink_color} acrônimo para \"Pending of Translation\" significa que a tradução foi gerada automaticamente e ainda está pendente de revisão"
 	arr["RUSSIAN",246]="Каждый раз, когда вы видите текст с префиксом ${cyan_color}${pending_of_translation}${pink_color} (акроним для \"Ожидает перевода\"), это означает, что перевод был сгенерирован автоматически и ещё ожидает проверки"
 	arr["GREEK",246]="Κάθε φορά που θα βλέπετε κείμενο με πρόθεμα ${cyan_color}${pending_of_translation}${pink_color} ακρωνύμιο για \"Pending of Translation\", σημαίνει πως η μετάφραση δημιουργήθηκε αυτόματα και αναμένεται κριτική"
 
@@ -2276,7 +2276,7 @@ function language_strings() {
 	arr["SPANISH",247]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado ethtool y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
 	arr["FRENCH",247]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer ethtool que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"
 	arr["CATALAN",247]="Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat ethtool i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a executar el script"
-	arr["PORTUGUESE",247]="Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc vez de airmon-ng. Para funcionar você precisa instalar ethtool e você não tem neste momento. Por favor, instale e execute o script novamente"
+	arr["PORTUGUESE",247]="Apesar de ter todas as ferramentas essenciais instaladas, o sistema utiliza airmon-zc em vez de airmon-ng. Para funcionar você precisa instalar ethtool e você não tem neste momento. Por favor, instale e execute o script novamente"
 	arr["RUSSIAN",247]="Не смотря на то, что все базовые инструменты установлены, система использует airmon-zc вместо airmon-ng. Чтобы работать должным образом, должен быть установлен пакет ethtool, а в данный момент он отсутствует. Пожалуйста, установите его и запустите скрипт снова"
 	arr["GREEK",247]="Παρά του ότι είναι εγκατεστημένα όλα τα απραίτητα εργαλεία, το σύστημά σας χρησιμοποιεί το airmon-zc αντί το airmon-ng. Για να λειτουργήσει σωστά πρέπει να εγκαταστήσετε το ethtool το οποίο δεν το έχετε αυτή τη στιγμή. Παρακαλώ, εγκαταστήστε το και ξανανοίξτε το script"
 
@@ -2700,7 +2700,7 @@ function language_strings() {
 	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["FRENCH",300]="Si la commande xdpyinfo est installée dans vôtre système le script pourra calculer votre résolution d'écran et optimiser l'affichage en conséquence. Le paquet à installer pour avoir cette commande s'appelle (selon la distribution) x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["CATALAN",300]="Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
-	arr["PORTUGUESE",300]="Se você fizer o comando xdpyinfo o script será capaz de calcular a sua resolução de tela e mostrar-lhe as janelas de uma maneira melhor. Dependendo do sistema, o nome do pacote pode ser x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["PORTUGUESE",300]="Se o comando xdpyinfo funcionar em seu sistema o script será capaz de calcular a resolução da tela e mostrar-lhe as janelas de uma maneira melhor. Dependendo do sistema, o nome do pacote pode ser x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["RUSSIAN",300]="Если использовать команду xpdyinfo, скрипт сможет определить разрешение вашего экрана и выбрать наилучшее отображение окон. В зависимости от системы, имя пакета может быть x11-utils, xdpyinfo, xorg-xdpyinfo, и т.д."
 	arr["GREEK",300]="Αν δουλέψει η εντολή xpdyinfo, το script θα μπορέσει να υπολογίσει την ανάλυση της οθόνης και να δείχνει τα παράθυρα καλύτερα. Εξαρτάται από το σύστημα, το όνομα του πακέτου μπορεί να είναι x11-utils, xdpyinfo, xorg-xdpyinfo, κτλπ."
 
@@ -2708,7 +2708,7 @@ function language_strings() {
 	arr["SPANISH",301]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado lspci (pciutils) y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
 	arr["FRENCH",301]="En dépit d'avoir tous les outils essentiels installés votre système utilise airmon-zc au lieu de airmon-ng. Vous devez installer lspci (pciutils) que vous n'avez pas à ce moment. S'il vous plaît, installez-le et relancez le script"
 	arr["CATALAN",301]="Tot i tenir totes les eines essencials instal·lades, el teu sistema fa servir airmon-zc en lloc del airmon-ng. Per poder funcionar necessites tenir instal·lat lspci (pciutils) i tu no el tens en aquest moment. Si us plau, instal·la-ho i torna a executar el script"
-	arr["PORTUGUESE",301]="Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc vez de airmon-ng. Para funcionar você precisa instalar lspci (pciutils) e você não tem neste momento. Por favor, instale e execute o script novamente"
+	arr["PORTUGUESE",301]="Apesar de ter todas as ferramentas essenciais instalado, o sistema utiliza airmon-zc em vez de airmon-ng. Para funcionar você precisa instalar lspci (pciutils) e você não tem neste momento. Por favor, instale e execute o script novamente"
 	arr["RUSSIAN",301]="Не смотря на то, что установлены все необходимые основные инструменты, ваша система использует airmon-zc вместо airmon-ng. Чтобы работа проходила должным образом, вам нужно установить lspci (pciutils), которых в данный момент у вас нет. Пожалуйста, установите их и запустите скрипт снова"
 	arr["GREEK",301]="Παρά του ότι είναι εγκατεστημένα όλα τα απραίτητα εργαλεία, το σύστημά σας χρησιμοποιεί το airmon-zc αντί το airmon-ng. Για να λειτουργήσει σωστά πρέπει να εγκαταστήσετε το lspci (pciutils) το οποίο δεν το έχετε αυτή τη στιγμή. Παρακαλώ, εγκαταστήστε το και ξανανοίξτε το script"
 
@@ -2996,7 +2996,7 @@ function language_strings() {
 	arr["SPANISH",337]="ESSID WPS seleccionado: ${pink_color}${wps_essid}${blue_color} <- no se puede usar"
 	arr["FRENCH",337]="ESSID WPS sélectionné: ${pink_color}${wps_essid}${blue_color} <- ne peut pas être utilisé"
 	arr["CATALAN",337]="ESSID WPS seleccionat: ${pink_color}${wps_essid}${blue_color} <- no es pot utilitzar"
-	arr["PORTUGUESE",337]="ESSID WPS selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizada"
+	arr["PORTUGUESE",337]="ESSID WPS selecionado: ${pink_color}${wps_essid}${blue_color} <- não pode ser utilizado"
 	arr["RUSSIAN",337]="Выбран WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- не может использоваться"
 	arr["GREEK",337]="Επιλεγμένο WPS ESSID: ${pink_color}${wps_essid}${blue_color} <- δεν μπορεί να χρησιμοποιηθεί"
 
@@ -3124,7 +3124,7 @@ function language_strings() {
 	arr["SPANISH",353]="Realizando una pequeña prueba para solventar el posible problema de \"bad FCS\" si existiese. Parametrizando..."
 	arr["FRENCH",353]="Vérification de routine pour prévenir une éventuelle erreur de type \"bad FCS\""
 	arr["CATALAN",353]="Realitzant una petita prova per solucionar el possible problema de \"bad FCS\" si existís. Parametritzant..."
-	arr["PORTUGUESE",353]="Fazendo alguns teste para resolver o possível problema \"bad FCS\". Definindo parâmetro..."
+	arr["PORTUGUESE",353]="Fazendo alguns testes para resolver o possível problema \"bad FCS\". Definindo parâmetro..."
 	arr["RUSSIAN",353]="Проверка возможного решения проблемы \"bad FCS (контроля последовательности кадров)\" если она существует. Параметризация..."
 	arr["GREEK",353]="Γίνεται έλεγχος επίλυσης πιθανού σφάλματος \"bad FCS\" αν υπάρχει. Γίνεται παραμετροποίηση..."
 
@@ -3228,7 +3228,7 @@ function language_strings() {
 	arr["SPANISH",366]="Tras parar el ataque (usando [Ctrl+C]), la ventana del ataque no se cerrará automáticamente. Asi tendrás tiempo de anotar la contraseña en caso de tener éxito. Tendrás que cerrarla manualmente"
 	arr["FRENCH",366]="Après l'arrêt de l'attaque (en utilisant [Ctrl+C]), la fenêtre ne se ferme pas automatiquement. Afin de vous laisser le temps d'écrire le mot de passe en cas de succès. Vous devrez la fermer manuellement"
 	arr["CATALAN",366]="Després de parar l'atac (usant [Ctrl+C]), la finestra de l'atac no es tancarà automàticament. Així tindràs temps d'anotar la contrasenya en cas de tenir èxit. Hauràs de tancar-la manualment"
-	arr["PORTUGUESE",366]="Depois de parar o ataque (usando [Ctrl+C]), a janela não será fechada automaticamente. Então temos tempo para anotar a senha em caso ela tenha sido obtida. Em seguida você vai ter que fechar a janela manualmente"
+	arr["PORTUGUESE",366]="Depois de parar o ataque (usando [Ctrl+C]), a janela não será fechada automaticamente. Então temos tempo para anotar a senha caso ela tenha sido obtida. Em seguida você vai ter que fechar a janela manualmente"
 	arr["RUSSIAN",366]="После остановки атаки (используя [Ctrl+C]), окно автоматически не закроется. У вас будет время переписать пароль, если атака завершилась успешно. Затем вам нужно закрыть его вручную"
 	arr["GREEK",366]="Μετά τη διακοπή της επίθεσης (με [Ctrl+C]), το παράθυρο δεν θα κλείσει αυτόματα. Έτσι θα έχετε χρόνο να κρατήσετε τον κωδικό πρόσβασης σε περίπτωση επιτυχίας. Το παράθυρο θα πρέπει να το κλείσετε χειροκίνητα"
 
@@ -3508,7 +3508,7 @@ function language_strings() {
 	arr["SPANISH",401]="El paquete beef que tienes instalado no es BeEF (Browser Exploitation Framework). Tienes instalado Beef (Flexible Brainfuck interpreter). Ambos ejecutables se llaman igual y puede dar lugar a confusión. Desinstálalo e instala el que airgeddon necesita si quieres usar esa característica. Guía de instalación: ${beef_installation_url}"
 	arr["FRENCH",401]="Le paquet beef installé n'est pas le bon: Vous avez installé Beef (Flexible Brainfuck interpreter) et vous devez installer BeEF (Browser Exploitation Framework). Les deux ont le même nom et peut induire en erreur. Désinstallez et installez la version dont airgeddon a besoin si vous souhaitez utiliser cette fonctionnalité. Guide d'installation: ${beef_installation_url}"
 	arr["CATALAN",401]="El paquet beef que tens instal·lat no és BeEF (Browser Exploitation Framework). Tens instal·lat Beef (Flexible Brainfuck interpreter). Tots dos executables es diuen igual i pot donar lloc a confusió. Desinstalalo i instal·la el que airgeddon necessita si vols utilitzar aquesta característica. Guia d'instal·lació: ${beef_installation_url}"
-	arr["PORTUGUESE",401]="O pacote beef instalado instalado não é o BeEF (Browser Exploitation Framework). Você instalou Beef (Flexible Brainfuck interpreter). Ambos possuem o mesmo nome e executável o que pode levar a confusão. Desinstale-o e instale o que o airgeddon precisa se você quiser usar esse recurso. Guia de Instalação: ${beef_installation_url}"
+	arr["PORTUGUESE",401]="O pacote beef instalado não é o BeEF (Browser Exploitation Framework). Você instalou Beef (Flexible Brainfuck interpreter). Ambos possuem o mesmo nome e executável o que pode levar a confusão. Desinstale-o e instale o que o airgeddon precisa se você quiser usar esse recurso. Guia de Instalação: ${beef_installation_url}"
 	arr["RUSSIAN",401]="Установленный вами пакет beef не является пакетом BeEF (Browser Exploitation Framework). Вы установили Beef (Flexible Brainfuck interpreter). Оба исполнимых файла имеют одинаковое имя и могут вызвать путаницу. Если вы хотите использовать эту функцию, удалите его и установите тот, который требует airgeddon. Инструкция по установке: ${beef_installation_url}"
 	arr["GREEK",401]="Το πακέτο beef που έχετε εγκαταστημένο δεν είναι το BeEF (Browser Exploitation Framework). Έχετε εγκατεστημένο το Beef (Flexible Brainfuck interpreter). Και τα δύο εκτελέσιμα αρχεία έχουν το ίδιο όνομα και μπορεί να γίνει κάποιο μπέρδεμα. Απεγκαταστήστε το και εγκαταστήστε αυτό που χρειάζεται το airgeddon, αν θέλετε να χρησιμοποιήσετε αυτή την επιλογή. Οδηγός εγκατάστασης: ${beef_installation_url}"
 
