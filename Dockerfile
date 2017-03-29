@@ -3,7 +3,7 @@
 #Base image
 FROM kalilinux/kali-linux-docker:latest
 
-#Credits
+#Credits & Data
 LABEL \
 	name="airgeddon" \
 	author="v1s1t0r <v1s1t0r.1s.h3r3@gmail.com>" \
@@ -56,20 +56,15 @@ RUN \
 	pixiewps \
 	expect
 
-#Install needed ruby gems
+#Install needed Ruby gems
 RUN \
 	apt-get -y install \
 	beef-xss \
 	bettercap
 
-#Cleaning packages
-RUN \
-	apt-get autoremove && \
-	apt-get clean && \
-	apt-get autoclean
-
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
+ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
 ENV DISPLAY=":0"
 
 #Set workdir
@@ -80,12 +75,35 @@ RUN \
 	git clone ${AIRGEDDON_URL} && \
 	chmod +x airgeddon/*.sh
 
-#Cleaning files
-RUN rm -rf /opt/airgeddon/imgs && \
-	rm -rf /opt/airgeddon/.github && \
-	rm -rf /opt/airgeddon/CONTRIBUTING.md && \
-	rm -rf /opt/airgeddon/pindb_checksum.txt && \
-	rm -rf /tmp/*
+#Prepare packages to upgrade Bully
+RUN \
+	apt-get -y install libssl1.0-dev \
+	build-essential \
+	libpcap-dev
+
+#Upgrade Bully
+RUN \
+	git clone ${BULLY_URL} && \
+	cd /opt/bully/src && \
+	make && \
+	make install && \
+	cp /usr/local/bin/bully /usr/bin/ && \
+	chmod +x /usr/bin/bully
+
+#Clean packages
+RUN \
+	apt-get autoremove && \
+	apt-get clean && \
+	apt-get autoclean
+
+#Clean files
+RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/.github > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/CONTRIBUTING.md > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/pindb_checksum.txt > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
+	rm -rf /opt/bully > /dev/null 2>&1 && \
+	rm -rf /tmp/* > /dev/null 2>&1
 
 #Entrypoint
 CMD ["bash", "-c", "/opt/airgeddon/airgeddon.sh"]
