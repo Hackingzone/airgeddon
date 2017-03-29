@@ -194,6 +194,18 @@ It is essential to run this script as **root**, otherwise `airgeddon` won't work
 If you launch the script using another shell, there will be *Syntax errors* and faulty results.
 Even with no initial errors, they will appear later. Always launch with **bash**!
 
+### Docker
+
+You can pull an available official `airgeddon` [Docker image] from Dockerhub. This image is based on Kali Linux.
+
+If you prefer to build your own image, there is a [Dockerfile] present in the project.
+
+To run this docker image, be sure of using `--privileged` and `--net=host` parameters. They are needed to manage host wireless interfaces.
+It should be run on a system running X Window because it runs xterm windows for some features.
+Below, there is a `docker run` command as example, the image is going to be automatically downloaded from Dockerhub and then a Docker container is going to be run:
+
+`docker run --rm -ti --privileged --net=host --name airgeddon oscarakaelvis/airgeddon`
+
 ---
 
 ### Supported Languages
@@ -306,6 +318,9 @@ Use it on your own networks or with the permission of the network's owner only.<
 [Wifi-libre.com]: https://www.wifi-libre.com
 [Lampiweb.com]: http://lampiweb.com/foro
 [Hackware.ru]: https://hackware.ru
+<!-- Docker URLs -->
+[Docker image]: https://hub.docker.com/r/oscarakaelvis/airgeddon/
+[Dockerfile]: Dockerfile
 <!-- Github URLs -->
 [vk496]: https://github.com/vk496
 [MatToufoutu]: https://github.com/mattoufoutu
