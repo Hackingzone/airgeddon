@@ -199,12 +199,24 @@ Even with no initial errors, they will appear later. Always launch with **bash**
 
 You can pull an available official `airgeddon` [Docker image] from Dockerhub. This image is based on Kali Linux.
 
-To run a container based on this Docker image, be sure of using `--privileged` and `--net=host` parameters. They are needed to manage host wireless interfaces.
-It should be run on a system running X Window because it runs xterm windows for some features.
+To run a container based on this Docker image, bear in mind that it should be run on a system running X Window because it runs xterm windows used for some features.
+
 Below, there is a `docker run` command as example. The image is going to be automatically downloaded from Dockerhub and then a Docker container is going to be run.
 It will launch `airgeddon` script automatically inside the container:
 
-`docker run --rm -ti --privileged --net=host --name airgeddon oscarakaelvis/airgeddon`
+`docker run --rm -ti --name airgeddon --net=host --privileged -v /path/to/somewhere/on/your/host:/io oscarakaelvis/airgeddon`
+
+*Parameters explanation:*
+
+`--rm` -> Ephemeral containter. It will be removed on exit.<br/>
+`-ti` -> Attach pseudo-TTY terminal to the container as interactive.<br/>
+`--name airgeddon` -> Name for the container.<br/>
+`--net=host` -> Is needed to access to the host network interfaces.<br/>
+`--privileged` -> Needed to have permissions over wireless interfaces.<br/>
+`-v /path/to/some/folder/on/your/host:/io` -> It maps a directory from host to the container. Useful to use external files like dictionaries or whatever.
+
+Don't forget to replace "/path/to/some/folder/on/your/host" with a path of an existing folder of your choice on your host machine. That folder will be the "input/output" point for the script.
+For example, if you place a *dictionary.txt* file there, inside the script you must access to it as */io/dictionary.txt*
 
 If you prefer to build your own image, there is a [Dockerfile] present in the project.
 
