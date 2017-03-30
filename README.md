@@ -204,7 +204,7 @@ To run a container based on this Docker image, bear in mind that it should be ru
 Below, there is a `docker run` command as example. The image is going to be automatically downloaded from Dockerhub and then a Docker container is going to be run.
 It will launch `airgeddon` script automatically inside the container:
 
-`docker run --rm -ti --name airgeddon --net=host --privileged -v /path/to/somewhere/on/your/host:/io oscarakaelvis/airgeddon`
+`docker run --rm -ti --name airgeddon --net=host --privileged -p 3000:3000 -v /path/to/somewhere/on/your/host:/io oscarakaelvis/airgeddon`
 
 *Parameters explanation:*
 
@@ -213,6 +213,7 @@ It will launch `airgeddon` script automatically inside the container:
 `--name airgeddon` -> Name for the container.<br/>
 `--net=host` -> Is needed to access to the host network interfaces.<br/>
 `--privileged` -> Needed to have permissions over wireless interfaces.<br/>
+`-p 3000:3000` -> Open port to access to BeEF control panel from the host.<br/>
 `-v /path/to/some/folder/on/your/host:/io` -> It maps a directory from host to the container. Useful to use external files like dictionaries or whatever.
 
 Don't forget to replace "/path/to/some/folder/on/your/host" with a path of an existing folder of your choice on your host machine. That folder will be the "input/output" point for the script.

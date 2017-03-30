@@ -14,6 +14,21 @@ LABEL \
 RUN \
 	apt-get update
 
+#Set locales
+RUN \
+	apt-get -y install \
+	locales
+RUN \
+	locale-gen en_US.UTF-8
+RUN \
+	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+	echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
+	dpkg-reconfigure --frontend=noninteractive locales && \
+	update-locale LANG=en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
 #Install airgeddon essential tools
 RUN \
 	apt-get -y install \
@@ -116,6 +131,9 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/bully > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
+
+#Expose port
+EXPOSE 3000
 
 #Entrypoint
 CMD ["bash", "-c", "/opt/airgeddon/airgeddon.sh"]
