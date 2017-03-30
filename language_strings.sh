@@ -3642,7 +3642,7 @@ function language_strings() {
 
 	arr["ENGLISH",418]="Restoring spoofed MAC"
 	arr["SPANISH",418]="Restaurando MAC falseada"
-	arr["FRENCH",418]="${pending_of_translation} Restauration de distorsion MAC"
+	arr["FRENCH",418]="Refalsifier MAC"
 	arr["CATALAN",418]="Restaurant MAC falsejada"
 	arr["PORTUGUESE",418]="Restaurando endereço MAC"
 	arr["RUSSIAN",418]="Восстановление исходного MAC"
@@ -3650,7 +3650,7 @@ function language_strings() {
 
 	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? ${normal_color}[y/n]"
 	arr["SPANISH",419]="¿Deseas falsear la dirección MAC de tu tarjeta durante el ataque? ${normal_color}[y/n]"
-	arr["FRENCH",419]="${pending_of_translation} Vous voulez falsifier l'adresse MAC de votre carte lors de l'attaque? ${normal_color}[y/n]"
+	arr["FRENCH",419]="Voulez-vous falsifier l'adresse MAC de votre carte pendant l'attaque? ${normal_color}[y/n]"
 	arr["CATALAN",419]="¿Vols falsejar l'adreça MAC de la targeta durant l'atac? ${normal_color}[y/n]"
 	arr["PORTUGUESE",419]="Você quer modificar o endereço MAC da sua interface durante o ataque? ${normal_color}[y/n]"
 	arr["RUSSIAN",419]="Вы хотите подменить свой MAC-адрес во время этой атаки? ${normal_color}[y/n]"
