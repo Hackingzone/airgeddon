@@ -65,7 +65,12 @@ RUN \
 #Env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
 ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
+ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
 ENV DISPLAY=":0"
+
+#Create dir for external files
+RUN \
+	mkdir /io
 
 #Set workdir
 WORKDIR /opt/
@@ -90,6 +95,12 @@ RUN \
 	cp /usr/local/bin/bully /usr/bin/ && \
 	chmod +x /usr/bin/bully
 
+#Downgrade Hashcat
+RUN \
+	git clone ${HASHCAT2_URL} && \
+	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
+	chmod +x /usr/bin/hashcat
+
 #Clean packages
 RUN \
 	apt-get autoremove && \
@@ -103,6 +114,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/pindb_checksum.txt > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/bully > /dev/null 2>&1 && \
+	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
 
 #Entrypoint
