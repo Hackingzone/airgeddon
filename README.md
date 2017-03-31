@@ -204,7 +204,7 @@ To run a container based on this Docker image, bear in mind that it should be ru
 Below, there is a `docker run` command as example. The image is going to be automatically downloaded from Dockerhub and then a Docker container is going to be run.
 It will launch `airgeddon` script automatically inside the container:
 
-`docker run --rm -ti --name airgeddon --net=host --privileged -p 3000:3000 -v /path/to/somewhere/on/your/host:/io oscarakaelvis/airgeddon`
+`docker run --rm -ti --name airgeddon --net=host --privileged -p 3000:3000 -v /path/to/somewhere/on/your/host:/io v1s1t0r1sh3r3/airgeddon`
 
 *Parameters explanation:*
 
@@ -334,7 +334,7 @@ Use it on your own networks or with the permission of the network's owner only.<
 [Lampiweb.com]: http://lampiweb.com/foro
 [Hackware.ru]: https://hackware.ru
 <!-- Docker URLs -->
-[Docker image]: https://hub.docker.com/r/oscarakaelvis/airgeddon/
+[Docker image]: https://hub.docker.com/r/v1s1t0r1sh3r3/airgeddon/
 [Dockerfile]: Dockerfile
 <!-- Github URLs -->
 [vk496]: https://github.com/vk496
