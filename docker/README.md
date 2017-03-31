@@ -1,4 +1,4 @@
-### airgeddon project
+### airgeddon [![Github-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 This is the official embedded airgeddon script docker image based on Kali Linux.
 
 ![Banner](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/airgeddon_banner.png)
@@ -36,3 +36,7 @@ Don't forget to replace "/path/to/some/dir/on/your/host" with a path of an exist
 This Docker image is under GPLv3+ license.
 
 ![Gpl](http://gplv3.fsf.org/gplv3-127x51.png)
+
+[Github-shield]: https://img.shields.io/github/stars/v1s1t0r1sh3r3/airgeddon.svg?style=social&label=Github%20Stars&style=flat-square&colorA=273133&colorB=f7931a "Github Stars"
+[Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=273133&colorB=b008bb "Show me the money!"
+[Bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
