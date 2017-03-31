@@ -1,4 +1,4 @@
-### airgeddon [![Github-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
+### airgeddon [![Github-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon) [![License-shield]](https://github.com/v1s1t0r1sh3r3/airgeddon/blob/master/LICENSE.md) [![Paypal-shield]](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7ELM486P7XKKG) [![Bitcoin-shield]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 This is the official embedded airgeddon script docker image based on Kali Linux.
 
 ![Banner](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/master/imgs/banners/airgeddon_banner.png)
@@ -21,8 +21,8 @@ Parameters explanation:
 `--rm` -> Ephemeral containter. It will be removed on exit.
 `-ti` -> Attach pseudo-TTY terminal to the container as interactive.
 `--name airgeddon` -> Name for the container.
-`--net=host` -> Is needed to access to the host network interfaces.
-`--privileged` -> Needed to have permissions over wireless interfaces.
+`--net=host` -> Is needed to have access to the host network interfaces inside the container.
+`--privileged` -> Needed to have permissions over network interfaces (mode switching).
 `-p 3000:3000` -> Open port to access to BeEF control panel from the host.
 `-v /path/to/some/dir/on/your/host:/io` -> It maps a directory from host to the container. Useful to use external files like dictionaries or whatever.
 
@@ -38,5 +38,6 @@ This Docker image is under GPLv3+ license.
 ![Gpl](http://gplv3.fsf.org/gplv3-127x51.png)
 
 [Github-shield]: https://img.shields.io/github/stars/v1s1t0r1sh3r3/airgeddon.svg?style=social&label=Github%20Stars&style=flat-square&colorA=273133&colorB=f7931a "Github Stars"
+[License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
 [Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=273133&colorB=b008bb "Show me the money!"
 [Bitcoin-shield]: https://img.shields.io/badge/donate-bitcoin-blue.svg?style=flat-square&colorA=273133&colorB=f7931a "Show me the money!"
