@@ -1,7 +1,9 @@
+###6.2
+ - Docker support added
+
 ###6.12
  - Fixed bug on network detection
  - Fixed bug causing strange behaviour on some Linux handling optional_tools array
- - Docker support added
 
 ###6.11
  - Optional MAC spoofing added for all Evil Twin attacks

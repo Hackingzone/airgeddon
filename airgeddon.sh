@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170324
-#Version......: 6.12
+#Date.........: 20170331
+#Version......: 6.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -104,8 +104,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.12"
-language_strings_expected_version="6.12-1"
+airgeddon_version="6.2"
+language_strings_expected_version="6.2-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -7649,7 +7649,11 @@ function general_checkings() {
 		non_linux_os_check
 		echo -e "${yellow_color}${distro}${normal_color}"
 	else
-		echo -e "${yellow_color}${distro} Linux${normal_color}"
+		if [ "${is_docker}" -eq 1 ]; then
+			echo -e "${yellow_color}${distro} Linux ${pink_color}(docker)${normal_color}"
+		else
+			echo -e "${yellow_color}${distro} Linux${normal_color}"
+		fi
 	fi
 
 	check_compatibility
@@ -7930,6 +7934,7 @@ function initialize_script_settings() {
 
 	debug_print
 
+	is_docker=0
 	exit_code=0
 	check_kill_needed=0
 	nm_processes_killed=0
@@ -8062,6 +8067,16 @@ function recalculate_windows_sizes() {
 	set_windows_sizes
 }
 
+#Detect if airgeddon is working inside a docker container
+function docker_detection() {
+
+	debug_print
+
+	if [ -f /.dockerenv ]; then
+		is_docker=1
+	fi
+}
+
 #Script starting point
 function welcome() {
 
@@ -8070,6 +8085,7 @@ function welcome() {
 	clear
 	current_menu="pre_main_menu"
 	initialize_script_settings
+	docker_detection
 
 	if [ ${auto_change_language} -eq 1 ]; then
 		autodetect_language
