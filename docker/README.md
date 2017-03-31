@@ -28,7 +28,7 @@ Parameters explanation:
 
 Don't forget to replace "/path/to/some/dir/on/your/host" with a path of an existing directory of your choice on your host machine. That directory will be the "input/output" point for the script. For example, if you place a dictionary.txt file there, inside the script you must access to it as "/io/dictionary.txt".
 
-![Docker Banner](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/docker/imgs/banners/docker_banner.png)
+![Docker Banner](https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/docker/imgs/banners/airgeddon_docker.png)
 
 ---
 

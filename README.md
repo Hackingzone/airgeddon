@@ -197,7 +197,7 @@ Even with no initial errors, they will appear later. Always launch with **bash**
 
 ### Docker
 
-<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/docker/imgs/banners/docker_banner.png" align="left" hspace="10" vspace="6">
+<img src="https://raw.githubusercontent.com/v1s1t0r1sh3r3/airgeddon/docker/imgs/banners/airgeddon_docker.png" align="left" hspace="10" vspace="6">
 
 You can pull an available official `airgeddon` [Docker image] from Dockerhub. This image is based on Kali Linux.
 
