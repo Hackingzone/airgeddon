@@ -10,6 +10,11 @@ LABEL \
 	maintainer="OscarAkaElvis <oscar.alfonso.diaz@gmail.com>" \
 	description="This is a multi-use bash script for Linux systems to audit wireless networks."
 
+#Url env vars
+ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
+ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
+ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
+
 #Update system
 RUN \
 	apt-get update
@@ -17,17 +22,17 @@ RUN \
 #Set locales
 RUN \
 	apt-get -y install \
-	locales
-RUN \
-	locale-gen en_US.UTF-8
-RUN \
+	locales && \
+	locale-gen en_US.UTF-8 && \
 	sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
 	echo 'LANG="en_US.UTF-8"' > /etc/default/locale && \
 	dpkg-reconfigure --frontend=noninteractive locales && \
 	update-locale LANG=en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
+
+#Env vars for locales
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE="en_US:en"
+ENV LC_ALL="en_US.UTF-8"
 
 #Install airgeddon essential tools
 RUN \
@@ -77,10 +82,7 @@ RUN \
 	beef-xss \
 	bettercap
 
-#Env vars
-ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
-ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
-ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
+#Env var for display
 ENV DISPLAY=":0"
 
 #Create dir for external files
@@ -90,9 +92,24 @@ RUN \
 #Set workdir
 WORKDIR /opt/
 
-#Download airgeddon
+#airgeddon install method 1 (only one method can be used, other must be commented)
+#Install airgeddon (Dockerhub automated build process)
 RUN \
-	git clone ${AIRGEDDON_URL} && \
+	mkdir airgeddon
+COPY \
+	/ /opt/airgeddon
+
+#airgeddon install method 2 (only one method can be used, other must be commented)
+#Install airgeddon (manual image build)
+#Uncomment one of the three to select branch (master->latest, dev->beta, docker->alpha)
+#ENV BRANCH="master"
+#ENV BRANCH="dev"
+#ENV BRANCH="docker"
+#RUN \
+#	git clone -b ${BRANCH} ${AIRGEDDON_URL}
+
+#Make script executable
+RUN \
 	chmod +x airgeddon/*.sh
 
 #Prepare packages to upgrade Bully
