@@ -118,6 +118,7 @@ escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
 curl_404_error="404: Not Found"
 language_strings_file="language_strings.sh"
+docker_based_distro="Kali"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
@@ -7650,7 +7651,7 @@ function general_checkings() {
 		echo -e "${yellow_color}${distro}${normal_color}"
 	else
 		if [ "${is_docker}" -eq 1 ]; then
-			echo -e "${yellow_color}${distro} Linux ${pink_color}(docker)${normal_color}"
+			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(docker)${normal_color}"
 		else
 			echo -e "${yellow_color}${distro} Linux${normal_color}"
 		fi
