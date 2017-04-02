@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170311
-#Version......: 6.11
+#Date.........: 20170324
+#Version......: 6.12
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -104,8 +104,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.11"
-language_strings_expected_version="6.11-2"
+airgeddon_version="6.12"
+language_strings_expected_version="6.12-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -2152,7 +2152,7 @@ function initialize_optional_tools_values() {
 
 	debug_print
 
-	declare -gA optional_tools=()
+	declare -gA optional_tools
 
 	for item in "${optional_tools_names[@]}"; do
 		optional_tools[${item}]=0
@@ -6113,7 +6113,7 @@ function explore_for_targets_option() {
 	rm -rf "${tmpdir}clts.csv" > /dev/null 2>&1
 	recalculate_windows_sizes
 	xterm +j -bg black -fg white -geometry "${g1_topright_window}" -T "Exploring for targets" -e airodump-ng -w "${tmpdir}nws" "${interface}" > /dev/null 2>&1
-	targetline=$(awk '/(Station|Client[es])/{print NR}' < "${tmpdir}nws-01.csv")
+	targetline=$(awk '/(^Station[s]?|^Client[es]?)/{print NR}' < "${tmpdir}nws-01.csv")
 	targetline=$((targetline - 1))
 
 	head -n "${targetline}" "${tmpdir}nws-01.csv" &> "${tmpdir}nws.csv"
