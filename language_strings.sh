@@ -3645,7 +3645,7 @@ function language_strings() {
 	arr["FRENCH",418]="Rétablissement MAC"
 	arr["CATALAN",418]="Restaurant MAC"
 	arr["PORTUGUESE",418]="Restaurando MAC"
-	arr["RUSSIAN",418]="${pending_of_translation} Восстановление MAC-адреса"
+	arr["RUSSIAN",418]="Восстановление MAC-адреса"
 	arr["GREEK",418]="${pending_of_translation} Αποκατάσταση MAC"
 
 	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? ${normal_color}[y/n]"
