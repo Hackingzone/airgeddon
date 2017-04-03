@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170331
+#Date.........: 20170403
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3646,7 +3646,7 @@ function language_strings() {
 	arr["CATALAN",418]="Restaurant MAC"
 	arr["PORTUGUESE",418]="Restaurando MAC"
 	arr["RUSSIAN",418]="Восстановление MAC-адреса"
-	arr["GREEK",418]="${pending_of_translation} Αποκατάσταση MAC"
+	arr["GREEK",418]="Γίνεται αποκατάσταση της διεύθυνσης MAC"
 
 	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? ${normal_color}[y/n]"
 	arr["SPANISH",419]="¿Deseas falsear la dirección MAC de tu tarjeta durante el ataque? ${normal_color}[y/n]"
