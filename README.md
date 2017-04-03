@@ -102,7 +102,7 @@ Compatible with any Linux distribution that has installed the tools needed. The 
 			<li>Gentoo 20160514 and 20160704</li>
 			<li>Fedora 24</li>
 			<li>Red Hat 7 (Maipo)</li>
-			<li>Arch 4.6.2-1 to 4.10.4-1</li>
+			<li>Arch 4.6.2-1 to 4.10.6-1</li>
 			<li>Raspbian 7 (Wheezy) and 8 (Jessie) (Raspberry Pi)</li>
 			<li>OpenMandriva LX3</li>
 		</em>
@@ -316,7 +316,7 @@ Use it on your own networks or with the permission of the network's owner only.<
 [xtonousou]: https://github.com/xtonousou
 [OscarAkaElvis]: https://github.com/OscarAkaElvis
 <!-- Badges URLs -->
-[Version-shield]: https://img.shields.io/badge/version-6.11-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
+[Version-shield]: https://img.shields.io/badge/version-6.12-blue.svg?style=flat-square&colorA=273133&colorB=0093ee "Latest version"
 [Bash4.2-shield]: https://img.shields.io/badge/bash-4.2%2B-blue.svg?style=flat-square&colorA=273133&colorB=00db00 "Bash 4.2 or later"
 [License-shield]: https://img.shields.io/badge/license-GPL%20v3%2B-blue.svg?style=flat-square&colorA=273133&colorB=bd0000 "GPL v3+"
 [Paypal-shield]: https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square&colorA=002f86&colorB=009cde "Show me the money!"
