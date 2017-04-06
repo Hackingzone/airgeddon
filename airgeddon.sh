@@ -121,7 +121,7 @@ language_strings_file="language_strings.sh"
 
 #Docker vars
 docker_based_distro="Kali"
-docker_io_dir="/io/"
+docker_io_dir="/io"
 
 #WPS vars
 minimum_reaver_pixiewps_version="1.5.2"
