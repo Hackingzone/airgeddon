@@ -6910,6 +6910,7 @@ function credits_option() {
 	echo
 	language_strings "${language}" 85 "pink"
 	language_strings "${language}" 107 "pink"
+	language_strings "${language}" 421 "pink"
 	echo
 	language_strings "${language}" 115 "read"
 }

@@ -3664,6 +3664,14 @@ function language_strings() {
 	arr["RUSSIAN",420]="${pending_of_translation} Было обнаружено, что вы запускаете airgeddon внутри контейнера Docker. Во время этой атаки hostapd используется для создания поддельной AP. Этот компонент часто конфликтует с network-manager. Изнутри контейнера airgeddon не может справиться с этим. Если на вашем хост-компьютере установлен network-manager, закройте его или уберите конфликтующие процессы, иначе вы получите сообщение об ошибке. Для получения дополнительной информации см. Раздел Docker в Wiki: ${normal_color}${urlgithub_wiki}/Docker"
 	arr["GREEK",420]="${pending_of_translation} Έχει εντοπιστεί ότι τρέχετε airgeddon μέσα σε ένα δοχείο Docker. Κατά τη διάρκεια αυτής της επίθεσης hostapd χρησιμοποιείται για να δημιουργήσει ένα ψεύτικο AP. Αυτό το στοιχείο έρχεται συχνά σε σύγκρουση με το network-manager. Από το εσωτερικό του δοχείου, airgeddon δεν μπορεί να το χειριστεί. Αν έχετε network-manager εγκατεστημένο στον υπολογιστή σας φιλοξενήσει, να κλείσει ή να σκοτώσει τις αντικρουόμενες διαδικασίες ή θα πάρετε ένα λάθος. Για περισσότερες πληροφορίες, ανατρέξτε στην ενότητα Docker του Wiki: ${normal_color}${urlgithub_wiki}/Docker"
 
+	arr["ENGLISH",421]="Doubts? Visit our Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["SPANISH",421]="¿Dudas? visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["FRENCH",421]="${pending_of_translation} Des questions? visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["CATALAN",421]="${pending_of_translation} Dubtes? visita el nostre Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["PORTUGUESE",421]="${pending_of_translation} Perguntas? visite nosso Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["RUSSIAN",421]="${pending_of_translation} Вопросы? посетить наш Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["GREEK",421]="${pending_of_translation} Ερωτήσεις; επισκεφθείτε Wiki μας: ${normal_color}${urlgithub_wiki}"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
