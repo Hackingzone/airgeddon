@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170402
+#Date.........: 20170408
 #Version......: 6.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -7149,7 +7149,7 @@ function iwconfig_fix() {
 
 	debug_print
 
-	iwversion=$(iwconfig --version | grep version | awk '{print $4}')
+	iwversion=$(iwconfig --version 2> /dev/null | grep version | awk '{print $4}')
 	iwcmdfix=""
 	if [ "${iwversion}" -lt 30 ]; then
 		iwcmdfix=" 2> /dev/null | grep Mode: "
