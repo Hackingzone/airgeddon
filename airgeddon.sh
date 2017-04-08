@@ -145,6 +145,7 @@ urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
+urlgithub_wiki="https://github.com/${github_user}/${github_repository}/wiki"
 host_to_check_internet="github.com"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
@@ -6605,6 +6606,13 @@ function et_prerequisites() {
 
 	return_to_et_main_menu=1
 	return_to_et_main_menu_from_beef=1
+
+	if [ "${is_docker}" -eq 1 ]; then
+		echo
+		language_strings "${language}" 420 "pink"
+		language_strings "${language}" 115 "read"
+	fi
+
 	echo
 	language_strings "${language}" 296 "yellow"
 	language_strings "${language}" 115 "read"
@@ -7666,7 +7674,7 @@ function general_checkings() {
 		echo -e "${yellow_color}${distro}${normal_color}"
 	else
 		if [ "${is_docker}" -eq 1 ]; then
-			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(docker)${normal_color}"
+			echo -e "${yellow_color}${docker_based_distro} Linux ${pink_color}(Docker)${normal_color}"
 		else
 			echo -e "${yellow_color}${distro} Linux${normal_color}"
 		fi

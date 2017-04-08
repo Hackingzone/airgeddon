@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170403
+#Date.........: 20170408
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3655,6 +3655,14 @@ function language_strings() {
 	arr["PORTUGUESE",419]="Você quer modificar o endereço MAC da sua interface durante o ataque? ${normal_color}[y/n]"
 	arr["RUSSIAN",419]="Вы хотите подменить свой MAC-адрес во время этой атаки? ${normal_color}[y/n]"
 	arr["GREEK",419]="Θέλετε να κρύψετε την αληθινή διεύθυνση MAC, δημιουργώντας μία ψεύτικη κατά την διάρκεια αυτής της επίθεσης; ${normal_color}[y/n]"
+
+	arr["ENGLISH",420]="It has been detected that you are running airgeddon inside a Docker container. During this attack hostapd is used to create a fake AP. This component often conflicts with network-manager. From inside the container, airgeddon can't handle it. If you have network-manager installed on your host machine, close it or kill the conflicting processes or you'll get an error. For more information, see the Docker section of the Wiki: ${normal_color} ${urlgithub_wiki}/Docker"
+	arr["SPANISH",420]="Se ha detectado que estás ejecutando airgeddon en un contenedor de Docker. En este ataque se utiliza hostapd para crear un falso AP. Este componente suele dar conflicto con network-manager. Desde el contenedor, airgeddon no puede gestionarlo. Si tienes network-manager instalado en tu máquina host, ciérralo o mata los procesos en conflicto u obtendrás un error. Para más información consulta la sección Docker del Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["FRENCH",420]="${pending_of_translation} Nous avons détecté que vous utilisez airgeddon un conteneur Docker. Dans ce hostapd d'attaque est utilisé pour créer un point d'accès faux. Cette composante a tendance à entrer en conflit avec network-manager. Du récipient, airgeddon ne peut pas le gérer. Si vous avez network-manager installé sur votre machine host, fermer ou tuer des processus contradictoires ou d'obtenir une erreur. Pour plus d'informations, voir la section Docker Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["CATALAN",420]="${pending_of_translation} S'ha detectat que estàs executant airgeddon en un contenidor de Docker. En aquest atac s'utilitza hostapd per crear un fals AP. Aquest component sol donar conflicte amb network-manager. Des del contenidor, airgeddon no pot gestionar-lo. Si tens network-manager instal·lat al teu màquina host, tanca'l o mata els processos en conflicte u obtindràs un error. Per a més informació consulta la secció Docker del Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["PORTUGUESE",420]="${pending_of_translation} Detectamos que você está executando airgeddon um recipiente Docker. Neste ataque é usado hostapd para criar um AP falso. Este componente tende a entrar em conflito com network-manager. Do recipiente, airgeddon não pode controlá-lo. Se você tem network-manager instalado em sua máquina host, fechá-lo ou matar processos conflitantes ou obter um erro. Para mais informações consulte a secção Docker Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["RUSSIAN",420]="${pending_of_translation} Было обнаружено, что вы запускаете airgeddon внутри контейнера Docker. Во время этой атаки hostapd используется для создания поддельной AP. Этот компонент часто конфликтует с network-manager. Изнутри контейнера airgeddon не может справиться с этим. Если на вашем хост-компьютере установлен network-manager, закройте его или уберите конфликтующие процессы, иначе вы получите сообщение об ошибке. Для получения дополнительной информации см. Раздел Docker в Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["GREEK",420]="${pending_of_translation} Έχει εντοπιστεί ότι τρέχετε airgeddon μέσα σε ένα δοχείο Docker. Κατά τη διάρκεια αυτής της επίθεσης hostapd χρησιμοποιείται για να δημιουργήσει ένα ψεύτικο AP. Αυτό το στοιχείο έρχεται συχνά σε σύγκρουση με το network-manager. Από το εσωτερικό του δοχείου, airgeddon δεν μπορεί να το χειριστεί. Αν έχετε network-manager εγκατεστημένο στον υπολογιστή σας φιλοξενήσει, να κλείσει ή να σκοτώσει τις αντικρουόμενες διαδικασίες ή θα πάρετε ένα λάθος. Για περισσότερες πληροφορίες, ανατρέξτε στην ενότητα Docker του Wiki: ${normal_color}${urlgithub_wiki}/Docker"
 
 	case "${3}" in
 		"yellow")

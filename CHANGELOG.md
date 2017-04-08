@@ -1,6 +1,6 @@
 ###6.2
  - Docker support added
- - Default save path system detecting if executing in Docker container
+ - Default save path system detecting if executed in Docker container
 
 ###6.12
  - Fixed bug on network detection
