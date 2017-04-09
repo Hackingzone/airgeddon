@@ -28,6 +28,9 @@ All the needed info about how to install|use|enjoy `airgeddon` is present at [Gi
 - *III. Getting started*
   - [Installation & Usage]
   - [Docker]
+	 - [Linux]
+	 - [Mac OSX]
+	 - [Windows]
   - [Other Sources]
 
 
@@ -58,6 +61,9 @@ All the needed info about how to install|use|enjoy `airgeddon` is present at [Gi
 [Known incompatibilities]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Known%20incompatibilities
 [Installation & Usage]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Installation%20&%20Usage
 [Docker]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker
+[Linux]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Linux
+[Mac OSX]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Mac%20OSX
+[Windows]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Docker%20Windows
 [Other Sources]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Other%20Sources
 [Supported Languages]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Supported%20Languages
 [Contributing]: https://github.com/v1s1t0r1sh3r3/airgeddon/wiki/Contributing
