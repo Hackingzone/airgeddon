@@ -97,7 +97,7 @@ WORKDIR /opt/
 RUN \
 	mkdir airgeddon
 COPY \
-	/ /opt/airgeddon
+	. /opt/airgeddon
 
 #airgeddon install method 2 (only one method can be used, other must be commented)
 #Install airgeddon (manual image build)
@@ -108,7 +108,7 @@ COPY \
 #RUN \
 #	git clone -b ${BRANCH} ${AIRGEDDON_URL}
 
-#Make script executable
+#Make bash script files executable
 RUN \
 	chmod +x airgeddon/*.sh
 
@@ -144,7 +144,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/.github > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/CONTRIBUTING.md > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/pindb_checksum.txt > /dev/null 2>&1 && \
-	rm -rf /opt/airgeddon/docker > /dev/null 2>&1 && \
+	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/bully > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
