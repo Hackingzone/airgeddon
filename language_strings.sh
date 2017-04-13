@@ -3672,6 +3672,14 @@ function language_strings() {
 	arr["RUSSIAN",421]="${pending_of_translation} Вопросы? посетить наш Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["GREEK",421]="${pending_of_translation} Ερωτήσεις; επισκεφθείτε Wiki μας: ${normal_color}${urlgithub_wiki}"
 
+	arr["ENGLISH",422]="The automatic update has been disabled when airgeddon is running in a Docker container. If you want to update it, download the image again tagged as \"latest\""
+	arr["SPANISH",422]="La actualización automática se ha desactivado cuando airgeddon se ejecuta en un contenedor de Docker. Si deseas actualizarlo descarga de nuevo la imagen con tag \"latest\""
+	arr["FRENCH",422]="${pending_of_translation} Mise à jour automatique est désactivée lorsque airgeddon fonctionne sur un conteneur Docker. Si vous voulez le mettre à jour télécharger à nouveau tag image \"latest\""
+	arr["CATALAN",422]="${pending_of_translation} L'actualització automàtica s'ha desactivat quan airgeddon s'executa en un contenidor de Docker. Si vols actualitzar-lo descàrrega de nou la imatge amb tag \"latest\""
+	arr["PORTUGUESE",422]="${pending_of_translation} A atualização automática é desativada quando airgeddon é executado em um recipiente Docker. Se você deseja fazer o download novamente atualizar a tag de imagem \"latest\""
+	arr["RUSSIAN",422]="${pending_of_translation} Автоматическое обновление отключено, когда airgeddon работает на контейнере Докер. Если вы хотите загрузить снова обновить изображение тега \"latest\""
+	arr["GREEK",422]="${pending_of_translation} Η αυτόματη ενημέρωση είναι απενεργοποιημένη όταν airgeddon τρέχει σε ένα δοχείο Docker. Αν θέλετε να κατεβάσετε ξανά ενημερώσετε την ετικέτα εικόνας \"latest\""
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"

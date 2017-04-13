@@ -108,6 +108,10 @@ COPY \
 #RUN \
 #	git clone -b ${BRANCH} ${AIRGEDDON_URL}
 
+#Remove auto update
+RUN \
+	sed -i 's|auto_update=1|auto_update=0|' airgeddon/airgeddon.sh
+
 #Make bash script files executable
 RUN \
 	chmod +x airgeddon/*.sh

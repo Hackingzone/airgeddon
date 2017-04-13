@@ -7851,6 +7851,12 @@ function check_update_tools() {
 			language_strings "${language}" 225 "yellow"
 			language_strings "${language}" 115 "read"
 		fi
+	else
+		if [ "${is_docker}" -eq 1 ]; then
+			echo
+			language_strings "${language}" 422 "blue"
+			language_strings "${language}" 115 "read"
+		fi
 	fi
 }
 
