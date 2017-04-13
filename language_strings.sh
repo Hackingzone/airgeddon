@@ -3672,7 +3672,7 @@ function language_strings() {
 	arr["RUSSIAN",421]="${pending_of_translation} Вопросы? посетить наш Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["GREEK",421]="${pending_of_translation} Ερωτήσεις; επισκεφθείτε Wiki μας: ${normal_color}${urlgithub_wiki}"
 
-	arr["ENGLISH",422]="The automatic update has been disabled when airgeddon is running in a Docker container. If you want to update it, download the image again tagged as \"latest\""
+	arr["ENGLISH",422]="The automatic update has been disabled when airgeddon is running in a Docker container. If you want to update it, download again the image tagged as \"latest\""
 	arr["SPANISH",422]="La actualización automática se ha desactivado cuando airgeddon se ejecuta en un contenedor de Docker. Si deseas actualizarlo descarga de nuevo la imagen con tag \"latest\""
 	arr["FRENCH",422]="${pending_of_translation} Mise à jour automatique est désactivée lorsque airgeddon fonctionne sur un conteneur Docker. Si vous voulez le mettre à jour télécharger à nouveau tag image \"latest\""
 	arr["CATALAN",422]="${pending_of_translation} L'actualització automàtica s'ha desactivat quan airgeddon s'executa en un contenidor de Docker. Si vols actualitzar-lo descàrrega de nou la imatge amb tag \"latest\""
