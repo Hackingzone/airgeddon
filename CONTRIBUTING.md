@@ -3,7 +3,8 @@
 Hi there! We are thrilled that you would like to contribute to this project. Your help is essential for keeping it great.
 
 When contributing to this repository, please first discuss the change you wish to make via issue,
-email, or any other method with the owners of this repository before making a change. 
+email, or any other method with the owners of this repository before making a change.
+If an issue is opened and more info is needed, `airgeddon` staff will request it. If there is no answer in 10 days, the issue will be closed.
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
@@ -128,7 +129,7 @@ available at [http://contributor-covenant.org/version/1/4][Version]
 
 ## Donate
 
-If you enjoyed the script, feel free to donate. Invite me to a coffee through Paypal or send me a fraction of a bitcoin:
+If you enjoyed the script, feel free to donate. Support the project through Paypal or sending a fraction of a bitcoin:
 
 <table>
   <tr>

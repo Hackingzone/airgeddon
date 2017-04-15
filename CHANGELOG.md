@@ -1,3 +1,7 @@
+###6.2
+ - Docker support added
+ - Default save path system detecting if executed in Docker container
+
 ###6.12
  - Fixed bug on network detection
  - Fixed bug causing strange behaviour on some Linux handling optional_tools array
