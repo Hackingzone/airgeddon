@@ -137,6 +137,18 @@ RUN \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
 
+#Install wireless drivers
+RUN \
+	apt-get -y install \
+	firmware-brcm80211 \
+	firmware-libertas \
+	firmware-realtek \
+	firmware-samsung \
+	firmware-iwlwifi \
+	firmware-linux \
+	firmware-linux-nonfree \
+	firmware-linux-free
+
 #Clean packages
 RUN \
 	apt-get autoremove && \
