@@ -1,5 +1,6 @@
 ###6.21
  - Improved chipset detection, lsusb added to internal tools
+ - Improved internet checking. Now more methods, not only icmp
 
 ###6.2
  - Docker support added

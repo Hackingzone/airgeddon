@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170421
+#Date.........: 20170422
 #Version......: 6.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -8290,7 +8290,25 @@ function check_internet_access() {
 	debug_print
 
 	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
-	return $?
+	if [ "$?" = "0" ]; then
+		return 0
+	fi
+
+	if hash curl 2> /dev/null; then
+		timeout -s SIGTERM 15 curl -s "http://${host_to_check_internet}" > /dev/null 2>&1
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	fi
+
+	if hash wget 2> /dev/null; then
+		timeout -s SIGTERM 15 wget -q --spider "http://${host_to_check_internet}" > /dev/null 2>&1
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	fi
+
+	return 1
 }
 
 #Check for default route on an interface
