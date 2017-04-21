@@ -118,7 +118,7 @@ RUN \
 
 #Prepare packages to upgrade Bully
 RUN \
-	apt-get -y install libssl1.0-dev \
+	apt-get -y install \
 	build-essential \
 	libpcap-dev
 
