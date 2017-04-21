@@ -1,3 +1,6 @@
+###6.21
+ - Improved chipset detection, lsusb added to internal tools
+
 ###6.2
  - Docker support added
  - Default save path system detecting if executed in Docker container

@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170408
-#Version......: 6.2
+#Date.........: 20170421
+#Version......: 6.21
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -104,8 +104,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.2"
-language_strings_expected_version="6.2-1"
+airgeddon_version="6.21"
+language_strings_expected_version="6.21-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -1150,24 +1150,32 @@ function set_chipset() {
 
 		if [ "${bus_type}" = "usb" ]; then
 			vendor_and_device=$(cut -b 6-14 < "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
-			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
+			if hash lsusb 2> /dev/null; then
+				chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
+			fi
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
 
 			if [[ -f /sys/class/net/${1}/device/vendor && -f /sys/class/net/${1}/device/device ]]; then
 				vendor_and_device=$(cat "/sys/class/net/${1}/device/vendor"):$(cat "/sys/class/net/${1}/device/device")
-				chipset=$(lspci -d "${vendor_and_device}" | cut -f3- -d ":" | sed "${sedrulegeneric}")
+				if hash lspci 2> /dev/null; then
+					chipset=$(lspci -d "${vendor_and_device}" | cut -f3- -d ":" | sed "${sedrulegeneric}")
+				fi
 			else
 				if hash ethtool 2> /dev/null; then
 					ethtool_output=$(ethtool -i "${1}" 2>&1)
 					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
-					chipset=$(lspci | grep "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulegeneric}")
+					if hash lspci 2> /dev/null; then
+						chipset=$(lspci | grep "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulegeneric}")
+					fi
 				fi
 			fi
 		fi
 	elif [[ -f /sys/class/net/${1}/device/idVendor && -f /sys/class/net/${1}/device/idProduct ]]; then
 		vendor_and_device=$(cat "/sys/class/net/${1}/device/idVendor"):$(cat "/sys/class/net/${1}/device/idProduct")
-		chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedruleall}")
+		if hash lsusb 2> /dev/null; then
+			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedruleall}")
+		fi
 	fi
 }
 
