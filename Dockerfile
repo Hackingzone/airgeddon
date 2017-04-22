@@ -50,7 +50,8 @@ RUN \
 	ethtool \
 	pciutils \
 	rfkill \
-	x11-utils
+	x11-utils \
+	wget
 
 #Install update tools
 RUN \
@@ -166,7 +167,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
 
-#Expose port
+#Expose BeEF control panel port
 EXPOSE 3000
 
 #Entrypoint
