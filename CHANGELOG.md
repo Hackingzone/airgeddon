@@ -1,6 +1,7 @@
 ###6.21
  - Improved chipset detection, lsusb added to internal tools
  - Improved internet checking. Now more methods, not only icmp
+ - Fixed error executing airgeddon after auto update on some distros
 
 ###6.2
  - Docker support added

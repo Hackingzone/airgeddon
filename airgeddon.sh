@@ -5289,7 +5289,6 @@ function rewrite_script_with_custom_beef() {
 	case ${1} in
 		"set")
 			sed -ri "s:(\s+|\t+)([\"0-9a-zA-Z/\-_ ]+)?\s?(#Custom BeEF location \(set=)([01])(\)):\1\"${2}\" \31\5:" "${scriptfolder}${scriptname}" 2> /dev/null
-			chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		;;
 		"search")
 			beef_custom_path_line=$(grep "#[C]ustom BeEF location (set=1)" < "${scriptfolder}${scriptname}" 2> /dev/null)
@@ -8247,6 +8246,7 @@ function download_last_version() {
 			rewrite_script_with_custom_beef "set" "${beef_custom_path}"
 		fi
 		language_strings "${language}" 115 "read"
+		chmod +x "${scriptfolder}${scriptname}" > /dev/null 2>&1
 		exec "${scriptfolder}${scriptname}"
 	else
 		language_strings "${language}" 5 "yellow"
