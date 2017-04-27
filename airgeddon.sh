@@ -68,9 +68,9 @@ update_tools=("curl")
 
 declare -A possible_package_names=(
 									[${essential_tools_names[0]}]="net-tools" #ifconfig
-									[${essential_tools_names[1]}]="wireless-tools" #iwconfig
+									[${essential_tools_names[1]}]="wireless-tools / wireless_tools" #iwconfig
 									[${essential_tools_names[2]}]="iw" #iw
-									[${essential_tools_names[3]}]="awk" #awk
+									[${essential_tools_names[3]}]="awk / gawk" #awk
 									[${essential_tools_names[4]}]="aircrack-ng" #airmon-ng
 									[${essential_tools_names[5]}]="aircrack-ng" #airodump-ng
 									[${essential_tools_names[6]}]="aircrack-ng" #aircrack-ng
