@@ -3666,7 +3666,7 @@ function language_strings() {
 
 	arr["ENGLISH",421]="Doubts? Visit our Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["SPANISH",421]="¿Dudas? Visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["FRENCH",421]="${pending_of_translation} Des questions? visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["FRENCH",421]="${pending_of_translation} Des questions? Visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["CATALAN",421]="Dubtes? Visita el nostre Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["PORTUGUESE",421]="Dúvidas? Visite a Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["RUSSIAN",421]="Вопросы? Посетите Wiki: ${normal_color}${urlgithub_wiki}"
