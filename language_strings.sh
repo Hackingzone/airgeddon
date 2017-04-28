@@ -3665,10 +3665,10 @@ function language_strings() {
 	arr["GREEK",420]="Εντοπίστηκε πως τρέχετε το airgeddon μέσα σε Docker container. Κατά τη διάρκεια αυτής της επίθεσης χρησιμοποιείται το hostapd για να δημιουργήσει ψεύτικο AP. Η δημιουργία αυτού κάνει conflicts με τον network-manager. Το airgeddon δεν μπορεί να το χειριστεί μέσα από το container. Αν υπάρχει ο network-manager εγκατεστημένος στον host-υπολογιστή, κλείστε τον ή διακόψτε τις διεργασίες που κάνουν conflict αλλιώς θα υπάρξουν σφάλματα. Για περισσότερες πληροφορίες, ανατρέξτε στην ενότητα Docker του Wiki: ${normal_color}${urlgithub_wiki}/Docker"
 
 	arr["ENGLISH",421]="Doubts? Visit our Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["SPANISH",421]="¿Dudas? visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["SPANISH",421]="¿Dudas? Visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["FRENCH",421]="${pending_of_translation} Des questions? visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["CATALAN",421]="Dubtes? Visita el nostre Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["PORTUGUESE",421]="Dúvidas? visite a Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["PORTUGUESE",421]="Dúvidas? Visite a Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["RUSSIAN",421]="Вопросы? Посетите Wiki: ${normal_color}${urlgithub_wiki}"
 	arr["GREEK",421]="Απορίες; Επισκεφθείτε το Wiki μας: ${normal_color}${urlgithub_wiki}"
 
