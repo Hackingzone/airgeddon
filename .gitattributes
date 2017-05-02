@@ -7,8 +7,9 @@
 *.md text
 *.db text
 
-# Executable binaries
+# Executable binaries/packages
 *.deb binary
+*.xz binary
 
 # Binary image formats
 *.png binary
