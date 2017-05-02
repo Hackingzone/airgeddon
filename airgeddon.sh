@@ -8289,20 +8289,20 @@ function check_internet_access() {
 
 	debug_print
 
-	ping -c 1 ${host_to_check_internet} -W 1 > /dev/null 2>&1
+	ping -c 1 ${1} -W 1 > /dev/null 2>&1
 	if [ "$?" = "0" ]; then
 		return 0
 	fi
 
 	if hash curl 2> /dev/null; then
-		timeout -s SIGTERM 15 curl -s "http://${host_to_check_internet}" > /dev/null 2>&1
+		timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	if hash wget 2> /dev/null; then
-		timeout -s SIGTERM 15 wget -q --spider "http://${host_to_check_internet}" > /dev/null 2>&1
+		timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
