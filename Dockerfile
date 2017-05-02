@@ -50,7 +50,8 @@ RUN \
 	ethtool \
 	pciutils \
 	rfkill \
-	x11-utils
+	x11-utils \
+	wget
 
 #Install update tools
 RUN \
@@ -118,7 +119,7 @@ RUN \
 
 #Prepare packages to upgrade Bully
 RUN \
-	apt-get -y install libssl1.0-dev \
+	apt-get -y install \
 	build-essential \
 	libpcap-dev
 
@@ -137,6 +138,18 @@ RUN \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
 
+#Install wireless drivers
+RUN \
+	apt-get -y install \
+	firmware-brcm80211 \
+	firmware-libertas \
+	firmware-realtek \
+	firmware-samsung \
+	firmware-iwlwifi \
+	firmware-linux \
+	firmware-linux-nonfree \
+	firmware-linux-free
+
 #Clean packages
 RUN \
 	apt-get autoremove && \
@@ -154,7 +167,7 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
 
-#Expose port
+#Expose BeEF control panel port
 EXPOSE 3000
 
 #Entrypoint
