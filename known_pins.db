@@ -2,7 +2,7 @@
 #Title........: known_pins.db
 #Description..: This is a WPS PIN database for routers that generate generic passwords.
 #Author.......: v1s1t0r
-#Date.........: 20170301
+#Date.........: 20170422
 #Bash Version.: 4.2 or later
 
 #Set PIN database. Keys are the first 6 bssid digits and are ordered
@@ -17,6 +17,7 @@ function set_pin_database() {
 	PINDB["0005CA"]="73851738 76916144"
 	PINDB["000726"]="18625790"
 	PINDB["0008A1"]="58764015"
+	PINDB["000A26"]="81857401"
 	PINDB["000A52"]="22498403"
 	PINDB["000B3B"]="40053707"
 	PINDB["000B85"]="70066647"

@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here. 
 #Author.......: v1s1t0r
-#Date.........: 20170408
+#Date.........: 20170504
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="6.2-1"
+	language_strings_version="6.21-1"
 }
 
 #Set different language text strings
@@ -3658,27 +3658,27 @@ function language_strings() {
 
 	arr["ENGLISH",420]="It has been detected that you are running airgeddon inside a Docker container. During this attack hostapd is used to create a fake AP. This component often conflicts with network-manager. From inside the container, airgeddon can't handle it. If you have network-manager installed on your host machine, close it or kill the conflicting processes or you'll get an error. For more information, see the Docker section of the Wiki: ${normal_color} ${urlgithub_wiki}/Docker"
 	arr["SPANISH",420]="Se ha detectado que estás ejecutando airgeddon en un contenedor de Docker. En este ataque se utiliza hostapd para crear un falso AP. Este componente suele dar conflicto con network-manager. Desde el contenedor, airgeddon no puede gestionarlo. Si tienes network-manager instalado en tu máquina host, ciérralo o mata los procesos en conflicto u obtendrás un error. Para más información consulta la sección Docker del Wiki: ${normal_color}${urlgithub_wiki}/Docker"
-	arr["FRENCH",420]="${pending_of_translation} Nous avons détecté que vous utilisez airgeddon un conteneur Docker. Dans ce hostapd d'attaque est utilisé pour créer un point d'accès faux. Cette composante a tendance à entrer en conflit avec network-manager. Du récipient, airgeddon ne peut pas le gérer. Si vous avez network-manager installé sur votre machine host, fermer ou tuer des processus contradictoires ou d'obtenir une erreur. Pour plus d'informations, voir la section Docker Wiki: ${normal_color}${urlgithub_wiki}/Docker"
-	arr["CATALAN",420]="${pending_of_translation} S'ha detectat que estàs executant airgeddon en un contenidor de Docker. En aquest atac s'utilitza hostapd per crear un fals AP. Aquest component sol donar conflicte amb network-manager. Des del contenidor, airgeddon no pot gestionar-lo. Si tens network-manager instal·lat al teu màquina host, tanca'l o mata els processos en conflicte u obtindràs un error. Per a més informació consulta la secció Docker del Wiki: ${normal_color}${urlgithub_wiki}/Docker"
-	arr["PORTUGUESE",420]="${pending_of_translation} Detectamos que você está executando airgeddon um recipiente Docker. Neste ataque é usado hostapd para criar um AP falso. Este componente tende a entrar em conflito com network-manager. Do recipiente, airgeddon não pode controlá-lo. Se você tem network-manager instalado em sua máquina host, fechá-lo ou matar processos conflitantes ou obter um erro. Para mais informações consulte a secção Docker Wiki: ${normal_color}${urlgithub_wiki}/Docker"
-	arr["RUSSIAN",420]="${pending_of_translation} Было обнаружено, что вы запускаете airgeddon внутри контейнера Docker. Во время этой атаки hostapd используется для создания поддельной AP. Этот компонент часто конфликтует с network-manager. Изнутри контейнера airgeddon не может справиться с этим. Если на вашем хост-компьютере установлен network-manager, закройте его или уберите конфликтующие процессы, иначе вы получите сообщение об ошибке. Для получения дополнительной информации см. Раздел Docker в Wiki: ${normal_color}${urlgithub_wiki}/Docker"
-	arr["GREEK",420]="${pending_of_translation} Έχει εντοπιστεί ότι τρέχετε airgeddon μέσα σε ένα δοχείο Docker. Κατά τη διάρκεια αυτής της επίθεσης hostapd χρησιμοποιείται για να δημιουργήσει ένα ψεύτικο AP. Αυτό το στοιχείο έρχεται συχνά σε σύγκρουση με το network-manager. Από το εσωτερικό του δοχείου, airgeddon δεν μπορεί να το χειριστεί. Αν έχετε network-manager εγκατεστημένο στον υπολογιστή σας φιλοξενήσει, να κλείσει ή να σκοτώσει τις αντικρουόμενες διαδικασίες ή θα πάρετε ένα λάθος. Για περισσότερες πληροφορίες, ανατρέξτε στην ενότητα Docker του Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["FRENCH",420]="Il a été détecté qu'airgeddon a été lancé depuis un conteneur Docker. Cette attaque à besoin d'hostapd pour créer un Point d'Accès piège. Hostapd a tendance à entrer en conflit avec network-manager et airgeddon ne peut pas le gérer depuis le conteneur. Si network-manager est installé sur votre machine host, arrêtez ou tuez les processus conflictuels. Dans le cas contraire vous obtiendrez une erreur. Pour plus d'informations, consultez la section Docker de notre Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["CATALAN",420]="S'ha detectat que estàs executant airgeddon en un contenidor de Docker. En aquest atac s'utilitza hostapd per crear un fals AP. Aquest component sol donar conflicte amb network-manager. Des del contenidor, airgeddon no pot gestionar-lo. Si tens network-manager instal·lat a la teua màquina host, tanca'l o mata els processos en conflicte u obtindràs un error. Per a més informació consulta la secció Docker del Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["PORTUGUESE",420]="Detectamos que você está executando airgeddon em um container Docker. Neste ataque é usado hostapd para criar um AP falso. Este componente tende a entrar em conflito com network-manager. A partir do container o airgeddon não pode controlá-lo. Se você tem network-manager instalado em sua máquina host feche-o, mate os processos conflitantes ou você irá obter um erro. Para mais informações consulte a seção Docker Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["RUSSIAN",420]="Определено, что вы запускаете airgeddon внутри контейнера Docker. Во время этой атаки для создания поддельной AP используется hostapd. Этот компонент часто конфликтует с network-manager. Изнутри контейнера airgeddon не может справиться с этим. Если на вашем хост-компьютере установлен network-manager, закройте его или уберите конфликтующие процессы, иначе вы получите сообщение об ошибке. Для получения дополнительной информации см. раздел Docker в Wiki: ${normal_color}${urlgithub_wiki}/Docker"
+	arr["GREEK",420]="Εντοπίστηκε πως τρέχετε το airgeddon μέσα σε Docker container. Κατά τη διάρκεια αυτής της επίθεσης χρησιμοποιείται το hostapd για να δημιουργήσει ψεύτικο AP. Η δημιουργία αυτού κάνει conflicts με τον network-manager. Το airgeddon δεν μπορεί να το χειριστεί μέσα από το container. Αν υπάρχει ο network-manager εγκατεστημένος στον host-υπολογιστή, κλείστε τον ή διακόψτε τις διεργασίες που κάνουν conflict αλλιώς θα υπάρξουν σφάλματα. Για περισσότερες πληροφορίες, ανατρέξτε στην ενότητα Docker του Wiki: ${normal_color}${urlgithub_wiki}/Docker"
 
 	arr["ENGLISH",421]="Doubts? Visit our Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["SPANISH",421]="¿Dudas? visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["FRENCH",421]="${pending_of_translation} Des questions? visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["CATALAN",421]="${pending_of_translation} Dubtes? visita el nostre Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["PORTUGUESE",421]="${pending_of_translation} Perguntas? visite nosso Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["RUSSIAN",421]="${pending_of_translation} Вопросы? посетить наш Wiki: ${normal_color}${urlgithub_wiki}"
-	arr["GREEK",421]="${pending_of_translation} Ερωτήσεις; επισκεφθείτε Wiki μας: ${normal_color}${urlgithub_wiki}"
+	arr["SPANISH",421]="¿Dudas? Visita nuestro Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["FRENCH",421]="Des questions? Visitez notre Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["CATALAN",421]="Dubtes? Visita el nostre Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["PORTUGUESE",421]="Dúvidas? Visite a Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["RUSSIAN",421]="Вопросы? Посетите Wiki: ${normal_color}${urlgithub_wiki}"
+	arr["GREEK",421]="Απορίες; Επισκεφθείτε το Wiki μας: ${normal_color}${urlgithub_wiki}"
 
 	arr["ENGLISH",422]="The automatic update has been disabled when airgeddon is running in a Docker container. If you want to update it, download again the image tagged as \"latest\""
 	arr["SPANISH",422]="La actualización automática se ha desactivado cuando airgeddon se ejecuta en un contenedor de Docker. Si deseas actualizarlo descarga de nuevo la imagen con tag \"latest\""
-	arr["FRENCH",422]="${pending_of_translation} Mise à jour automatique est désactivée lorsque airgeddon fonctionne sur un conteneur Docker. Si vous voulez le mettre à jour télécharger à nouveau tag image \"latest\""
-	arr["CATALAN",422]="${pending_of_translation} L'actualització automàtica s'ha desactivat quan airgeddon s'executa en un contenidor de Docker. Si vols actualitzar-lo descàrrega de nou la imatge amb tag \"latest\""
-	arr["PORTUGUESE",422]="${pending_of_translation} A atualização automática é desativada quando airgeddon é executado em um recipiente Docker. Se você deseja fazer o download novamente atualizar a tag de imagem \"latest\""
-	arr["RUSSIAN",422]="${pending_of_translation} Автоматическое обновление отключено, когда airgeddon работает на контейнере Докер. Если вы хотите загрузить снова обновить изображение тега \"latest\""
-	arr["GREEK",422]="${pending_of_translation} Η αυτόματη ενημέρωση είναι απενεργοποιημένη όταν airgeddon τρέχει σε ένα δοχείο Docker. Αν θέλετε να κατεβάσετε ξανά ενημερώσετε την ετικέτα εικόνας \"latest\""
+	arr["FRENCH",422]="La mise à jour automatique est désactivée si airgeddon s'exécute depuis un conteneur Docker. Si vous voulez le mettre à jour vous devez télécharger l'image avec le label \"latest\""
+	arr["CATALAN",422]="L'actualització automàtica s'ha desactivat quan airgeddon s'executa en un contenidor de Docker. Si vols actualitzar-lo descàrrega de nou la imatge amb tag \"latest\""
+	arr["PORTUGUESE",422]="A atualização automática é desativada quando airgeddon é executado em um container Docker. Se você quiser atualizar faça o download novamente da imagem em \"latest\""
+	arr["RUSSIAN",422]="Когда airgeddon работает в контейнере Docker, то автоматическое обновление отключено,. Если вы хотите обновить программу, то снова загрузите образ отмеченный как \"latest\""
+	arr["GREEK",422]="Η διαδικασία της αυτόματης ενημέρωσης είναι απενεργοποιημένη όταν το airgeddon τρέχει σε Docker container. Εάν θέλετε να το ενημερώσετε, κατεβάστε ξανά το αρχείο με την ετικέτα \"latest\""
 
 	case "${3}" in
 		"yellow")
