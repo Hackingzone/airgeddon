@@ -1,3 +1,8 @@
+### 7.0
+ - New WEP attacks menu
+ - Added All-in-One WEP attack
+ - Fixed bug on Handshake capture validations
+
 ### 6.21
  - Improved chipset detection, lsusb added to internal tools
  - Improved internet checking. Now more methods, not only icmp

