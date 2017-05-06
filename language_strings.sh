@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #Title........: language_strings.sh
-#Description..: All the translated strings that airgeddon uses are located here. 
+#Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170504
+#Date.........: 20170505
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="6.21-1"
+	language_strings_version="7.0-1"
 }
 
 #Set different language text strings
@@ -294,6 +294,71 @@ function language_strings() {
 	et_misc_texts["PORTUGUESE",27]="Este ataque tem duas partes. Com este ataque, fique atento na tela do sniffer para ver se aparece alguma senha. Você também pode abrir o painel de controle do BeEF em ${white_color}${beef_control_panel_url}${pink_color} , login (user: ${white_color}beef${pink_color} / senha: ${white_color}${beef_pass}${pink_color}) e tentar controlar o navegador dos clientes"
 	et_misc_texts["RUSSIAN",27]="Эта атака идёт по двум направлениям. Вы можете наблюдать за окном сниффера, чтобы отследить появление пароля. Также можете перейти в панель управления BeEF ${white_color}${beef_control_panel_url}${pink_color} , учётные данные для входа (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) и попытаться управлять браузером клиентов"
 	et_misc_texts["GREEK",27]="Αυτή η επίθεση έχει δύο μέρη. Παρακολουθήστε την οθόνη του sniffer για να δείτε εαν εμφανιστεί κάποιος κωδικός. Μπορείτε επίσης να ανοίξετε τον πίνακα ελέγχου του BeEF στο ${white_color}${beef_control_panel_url}${pink_color} , συνδεθείτε (user: ${white_color}beef${pink_color} / pass: ${white_color}${beef_pass}${pink_color}) και προσπαθείστε να ελέγξετε τον browser του χρήστη-πελάτη"
+
+	declare -gA wep_texts
+	wep_texts["ENGLISH",1]="airgeddon. Captured password during WEP attack"
+	wep_texts["SPANISH",1]="airgeddon. Contraseña capturada en ataque WEP"
+	wep_texts["FRENCH",1]="airgeddon. Mot de passe obtenu lors de l'attaque WEP"
+	wep_texts["CATALAN",1]="airgeddon. Contrasenya capturada en atac WEP"
+	wep_texts["PORTUGUESE",1]="airgeddon. Senha capturada no ataque WEP"
+	wep_texts["RUSSIAN",1]="airgeddon. В атаке WEP захвачен пароль"
+	wep_texts["GREEK",1]="airgeddon. Ο κωδικός πρόσβασης κατά την διάρκεια της επίθεσης WEP"
+
+	wep_texts["ENGLISH",2]="Channel"
+	wep_texts["SPANISH",2]="Canal"
+	wep_texts["FRENCH",2]="Canal"
+	wep_texts["CATALAN",2]="Canal"
+	wep_texts["PORTUGUESE",2]="Canal"
+	wep_texts["RUSSIAN",2]="Канал"
+	wep_texts["GREEK",2]="Κανάλι"
+
+	wep_texts["ENGLISH",3]="Hexadecimal"
+	wep_texts["SPANISH",3]="Hexadecimal"
+	wep_texts["FRENCH",3]="Hexadécimal"
+	wep_texts["CATALAN",3]="Hexadecimal"
+	wep_texts["PORTUGUESE",3]="Hexadecimal"
+	wep_texts["RUSSIAN",3]="Шестнадцатеричный"
+	wep_texts["GREEK",3]="Δεκαεξαδικό"
+
+	wep_texts["ENGLISH",4]="WEP key decrypted successfully:"
+	wep_texts["SPANISH",4]="Clave WEP desencriptada con éxito:"
+	wep_texts["FRENCH",4]="Clef WEP déchiffré:"
+	wep_texts["CATALAN",4]="Clau WEP desencriptada amb èxit:"
+	wep_texts["PORTUGUESE",4]="Senha WEP descriptografada com sucesso:"
+	wep_texts["RUSSIAN",4]="Ключ WEP расшифрован:"
+	wep_texts["GREEK",4]="Το κλειδί WEP αποκρυπτογραφήθηκε με επιτυχία:"
+
+	wep_texts["ENGLISH",5]="WEP AP Info"
+	wep_texts["SPANISH",5]="Info WEP AP"
+	wep_texts["FRENCH",5]="Info WEP AP"
+	wep_texts["CATALAN",5]="Info WEP AP"
+	wep_texts["PORTUGUESE",5]="Info WEP AP"
+	wep_texts["RUSSIAN",5]="Информация о WEP ТД"
+	wep_texts["GREEK",5]="Πληροφορίες WEP AP"
+
+	wep_texts["ENGLISH",6]="Channel"
+	wep_texts["SPANISH",6]="Canal"
+	wep_texts["FRENCH",6]="Canal"
+	wep_texts["CATALAN",6]="Canal"
+	wep_texts["PORTUGUESE",6]="Canal"
+	wep_texts["RUSSIAN",6]="Канал"
+	wep_texts["GREEK",6]="Κανάλι"
+
+	wep_texts["ENGLISH",7]="The password was saved on file"
+	wep_texts["SPANISH",7]="La contraseña se ha guardado en el fichero"
+	wep_texts["FRENCH",7]="Le mot de passe est enregistré dans le fichier"
+	wep_texts["CATALAN",7]="La contrasenya s'ha guardat en el fitxer"
+	wep_texts["PORTUGUESE",7]="A senha foi salva no arquivo"
+	wep_texts["RUSSIAN",7]="Пароль был сохранён в файле"
+	wep_texts["GREEK",7]="Ο κωδικός πρόσβασης αποθηκεύτηκε σε αρχείο"
+
+	wep_texts["ENGLISH",8]="Press [Enter] on the main script window to continue, this window will be closed"
+	wep_texts["SPANISH",8]="Pulsa [Enter] en la ventana principal del script para continuar, esta ventana se cerrará"
+	wep_texts["FRENCH",8]="Appuyez sur [Entrée] dans la fenêtre principale du script pour continuer, cette fenêtre se fermera"
+	wep_texts["CATALAN",8]="Prem [Enter] a la finestra principal del script per continuar, aquesta finestra es tancarà"
+	wep_texts["PORTUGUESE",8]="Pressione [Enter] na janela principal do script para continuar e esta janela será fechada"
+	wep_texts["RUSSIAN",8]="Нажмите [Enter] в главном окне для продолжения, это окно будет закрыто"
+	wep_texts["GREEK",8]="Πατήστε [Enter] στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -776,21 +841,21 @@ function language_strings() {
 	arr["RUSSIAN",59]="11. Вернуться в главное меню"
 	arr["GREEK",59]="11. Επιστροφή στο αρχικό μενού"
 
-	arr["ENGLISH",60]="9.  About & Credits"
-	arr["SPANISH",60]="9.  Acerca de & Créditos"
-	arr["FRENCH",60]="9.  A propos de & Crédits"
-	arr["CATALAN",60]="9.  Sobre & Crédits"
-	arr["PORTUGUESE",60]="9.  Sobre & Créditos"
-	arr["RUSSIAN",60]="9.  О программе и Благодарности"
-	arr["GREEK",60]="9.  Σχετικά με & Εύσημα"
+	arr["ENGLISH",60]="10. About & Credits"
+	arr["SPANISH",60]="10. Acerca de & Créditos"
+	arr["FRENCH",60]="10. A propos de & Crédits"
+	arr["CATALAN",60]="10. Sobre & Crédits"
+	arr["PORTUGUESE",60]="10. Sobre & Créditos"
+	arr["RUSSIAN",60]="10. О программе и Благодарности"
+	arr["GREEK",60]="10. Σχετικά με & Εύσημα"
 
-	arr["ENGLISH",61]="11. Exit script"
-	arr["SPANISH",61]="11. Salir del script"
-	arr["FRENCH",61]="11. Sortir du script"
-	arr["CATALAN",61]="11. Sortir del script"
-	arr["PORTUGUESE",61]="11. Sair do script"
-	arr["RUSSIAN",61]="11. Выйти из скрипта"
-	arr["GREEK",61]="11. Έξοδος script"
+	arr["ENGLISH",61]="12. Exit script"
+	arr["SPANISH",61]="12. Salir del script"
+	arr["FRENCH",61]="12. Sortir du script"
+	arr["CATALAN",61]="12. Sortir del script"
+	arr["PORTUGUESE",61]="12. Sair do script"
+	arr["RUSSIAN",61]="12. Выйти из скрипта"
+	arr["GREEK",61]="12. Έξοδος script"
 
 	arr["ENGLISH",62]="8.  Beacon flood attack"
 	arr["SPANISH",62]="8.  Ataque Beacon flood"
@@ -920,13 +985,13 @@ function language_strings() {
 	arr["RUSSIAN",77]="Был выбран недействительный интерфейс"
 	arr["GREEK",77]="Επιλέχθηκε άκυρη διεπαφή"
 
-	arr["ENGLISH",78]="10. Change language"
-	arr["SPANISH",78]="10. Cambiar idioma"
-	arr["FRENCH",78]="10. Changer de langue"
-	arr["CATALAN",78]="10. Canviar l'idioma"
-	arr["PORTUGUESE",78]="10. Alterar idioma"
-	arr["RUSSIAN",78]="10. Сменить язык"
-	arr["GREEK",78]="10. Αλλαγή γλώσσας"
+	arr["ENGLISH",78]="11. Change language"
+	arr["SPANISH",78]="11. Cambiar idioma"
+	arr["FRENCH",78]="11. Changer de langue"
+	arr["CATALAN",78]="11. Canviar l'idioma"
+	arr["PORTUGUESE",78]="11. Alterar idioma"
+	arr["RUSSIAN",78]="11. Сменить язык"
+	arr["GREEK",78]="11. Αλλαγή γλώσσας"
 
 	arr["ENGLISH",79]="1.  English"
 	arr["SPANISH",79]="1.  Inglés"
@@ -2165,7 +2230,7 @@ function language_strings() {
 	arr["FRENCH",233]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${hashcat_potpath}]"
 	arr["CATALAN",233]="Escriu la ruta on guardarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${hashcat_potpath}]"
 	arr["PORTUGUESE",233]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${hashcat_potpath}]"
-	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите [Enter] для принятия предложения по умолчоанию ${normal_color}[${hashcat_potpath}]"
+	arr["RUSSIAN",233]="Напечатайте путь к сохранённому файлу или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${hashcat_potpath}]"
 	arr["GREEK",233]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${hashcat_potpath}]"
 
 	arr["ENGLISH",234]="Contratulations!! It seems the key has been decrypted"
@@ -3650,7 +3715,7 @@ function language_strings() {
 
 	arr["ENGLISH",419]="Do you want to spoof your MAC address during this attack? ${normal_color}[y/n]"
 	arr["SPANISH",419]="¿Deseas falsear la dirección MAC de tu tarjeta durante el ataque? ${normal_color}[y/n]"
-	arr["FRENCH",419]="Voulez-vous falsifier l'adresse MAC de votre carte pendant l'attaque? ${normal_color}[y/n]"
+	arr["FRENCH",419]="Voulez-vous falsifier l'adresse MAC de votre carte pour l'attaque? ${normal_color}[y/n]"
 	arr["CATALAN",419]="¿Vols falsejar l'adreça MAC de la targeta durant l'atac? ${normal_color}[y/n]"
 	arr["PORTUGUESE",419]="Você quer modificar o endereço MAC da sua interface durante o ataque? ${normal_color}[y/n]"
 	arr["RUSSIAN",419]="Вы хотите подменить свой MAC-адрес во время этой атаки? ${normal_color}[y/n]"
@@ -3679,6 +3744,102 @@ function language_strings() {
 	arr["PORTUGUESE",422]="A atualização automática é desativada quando airgeddon é executado em um container Docker. Se você quiser atualizar faça o download novamente da imagem em \"latest\""
 	arr["RUSSIAN",422]="Когда airgeddon работает в контейнере Docker, то автоматическое обновление отключено,. Если вы хотите обновить программу, то снова загрузите образ отмеченный как \"latest\""
 	arr["GREEK",422]="Η διαδικασία της αυτόματης ενημέρωσης είναι απενεργοποιημένη όταν το airgeddon τρέχει σε Docker container. Εάν θέλετε να το ενημερώσετε, κατεβάστε ξανά το αρχείο με την ετικέτα \"latest\""
+
+	arr["ENGLISH",423]="5.  WEP \"All-in-One\" attack"
+	arr["SPANISH",423]="5.  Ataque WEP \"Todo-en-Uno\""
+	arr["FRENCH",423]="5.  Attaque WEP \"Tout-en-Un\""
+	arr["CATALAN",423]="5.  Atac WEP \"Tot-en-Un\""
+	arr["PORTUGUESE",423]="5.  Ataque WEP \"Tudo-em-Um\""
+	arr["RUSSIAN",423]="5.  Атака на WEP \"Все-в-Одном\""
+	arr["GREEK",423]="5.  Επίθεση WEP \"All-in-One\""
+
+	arr["ENGLISH",424]="The selected network is invalid. Encryption type of target network must be WEP"
+	arr["SPANISH",424]="La red seleccionada no es válida. El tipo de encriptación de la red objetivo debe ser WEP"
+	arr["FRENCH",424]="Le réseau sélectionné est invalide . Le réseau cible doit être en WEP"
+	arr["CATALAN",424]="La xarxa seleccionada no és vàlida. El tipus d'encriptació de la xarxa objectiu ha de ser WEP"
+	arr["PORTUGUESE",424]="A rede selecionada é inválida. O tipo de criptografia da rede deve ser WEP"
+	arr["RUSSIAN",424]="Выбранная сеть не подходит. Целевая сеть должна иметь шифрование WEP"
+	arr["GREEK",424]="Το επιλεγμένο δίκτυο δεν είναι έγκυρο. Ο τύπος κρυπτογράφησης του δικτύου-στόχος πρέπει να είναι WEP"
+
+	arr["ENGLISH",425]="You have a valid WEP target network selected. Script can continue..."
+	arr["SPANISH",425]="Tienes una red objetivo WEP válida seleccionada. El script puede continuar..."
+	arr["FRENCH",425]="Choix du réseau cible WEP valide. Le script peut continuer..."
+	arr["CATALAN",425]="Tens una xarxa objectiu WEP vàlida seleccionada. El script pot continuar..."
+	arr["PORTUGUESE",425]="Você tem uma rede WEP válida selecionada. O script pode continuar..."
+	arr["RUSSIAN",425]="У вас есть подходящая целевая сеть WEP. Скрипт может продолжать..."
+	arr["GREEK",425]="Έχετε επιλέξει ένα έγκυρο WEP δίκτυο-στόχος. Το script μπορεί να συνεχίσει..."
+
+	arr["ENGLISH",426]="9.  WEP attacks menu"
+	arr["SPANISH",426]="9.  Menú de ataques WEP"
+	arr["FRENCH",426]="9.  Menu d'attaques WEP"
+	arr["CATALAN",426]="9.  Menú d'atacs WEP"
+	arr["PORTUGUESE",426]="9.  Menu de ataques WEP"
+	arr["RUSSIAN",426]="9.  Меню атак на WEP"
+	arr["GREEK",426]="9.  Μενού επιθέσεων WEP"
+
+	arr["ENGLISH",427]="WEP attacks menu"
+	arr["SPANISH",427]="Menú de ataques WEP"
+	arr["FRENCH",427]="Menu d'attaques WEP"
+	arr["CATALAN",427]="Menú d'atacs WEP"
+	arr["PORTUGUESE",427]="Menu de ataques WEP"
+	arr["RUSSIAN",427]="Меню атак на WEP"
+	arr["GREEK",427]="Μενού επιθέσεων WEP"
+
+	arr["ENGLISH",428]="If real clients exist connected to the WEP encrypted network, the process will be significantly accelerated. Enough IVs (Initialization Vectors) will be catched faster"
+	arr["SPANISH",428]="Si existen clientes reales conectados a la red con encriptación WEP, el proceso se acelerará notablemente. Se obtendrán antes suficientes IVs (Vectores de Inicialización)"
+	arr["FRENCH",428]="Si des clients légitimes sont connectés à un rseau WEP le processus ira plus vite. Les Ivs requis (vecteurs d'incitiaisation) seront plus vite obtenus."
+	arr["CATALAN",428]="Si hi ha clients reals connectats a la xarxa amb encriptació WEP, el procés s'accelerarà notablement. S'obtindran abans suficients IVs (Vectors d'Inicialització)"
+	arr["PORTUGUESE",428]="Se clientes reais estiverem conectados à rede com criptografia WEP, o processo será acelerado significativamente. Serão obtidos IVs (Vetores de Inicialização) mais rapidamente"
+	arr["RUSSIAN",428]="Если к сети с WEP шифрованием подключены реальные клиенты, то процесс будет значительно ускорен. Будет быстрее накоплено достаточное количество IVs (Векторов Инициализации)"
+	arr["GREEK",428]="Εάν υπάρχουν αληθινοί συνδεδεμένοι χρήστες στο κρυπτογραφημένο WEP δίκτυο, η διαδικασία θα επιταχυνθεί σημαντικά. Θα καταγραφθούν αρκετά IVs (Initialization Vectors) γρηγορότερα"
+
+	arr["ENGLISH",429]="The WEP \"All-in-One\" attack combines different techniques to generate enough traffic to decrypt the key (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentation, Fake association, etc.)"
+	arr["SPANISH",429]="El ataque WEP \"Todo-en-Uno\" combina diversas técnicas para generar el tráfico suficiente que hace falta para desencriptar la clave (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentación, Falsa asociación, etc.)"
+	arr["FRENCH",429]="L'attaque WEP \"Tout-en-Un\" combine plusieurs techniques pour générer le trafic nécessaire au décryptage de la clef (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentation, Fausse association, etc.)"
+	arr["CATALAN",429]="L'atac WEP \"Tot-en-Un\" combina diverses tècniques per generar el trànsit suficient que cal per desxifrar la clau (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentació, Falsa associació, etc.)"
+	arr["PORTUGUESE",429]="O ataque WEP \"Tudo-em-Um\" combina várias técnicas para gerar tráfego suficiente que é necessário para desencriptar a chave (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentação, Falsa associação, etc.)"
+	arr["RUSSIAN",429]="Атака WEP \"Все-в-Одном\" сочетает в себе различные методы генерации трафика, достаточного для расшифровки ключа (Caffe Latte, Hirte, Replay, Chop-Chop, Дробление, Фальшивые ассоциации и т.д.)"
+	arr["GREEK",429]="Η \"All-in-One\" επίθεση WEP συνδυάζει διαφορετικές τεχνικές για να παραχθεί αρκετή κίνηση για να αποκρυπτογραφήσει το κλειδί (Caffe Latte, Hirte, Replay, Chop-Chop, Fragmentation, Fake association, κλπ)"
+
+	arr["ENGLISH",430]="If the password for the wifi network is obtained with the \"All-in-One\" WEP attack, you should decide where to save it. ${green_color}Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${wep_potpath}]"
+	arr["SPANISH",430]="Si se consigue la contraseña de la red wifi con el ataque WEP \"Todo-en-Uno\", hay que decidir donde guardarla. ${green_color}Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${wep_potpath}]"
+	arr["FRENCH",430]="Si le mot de passe est obtenu par une attaque WEP \"Tout-en-Un\", il faut ensuite indiquer l'endroit pour la garder. ${green_color}Entrez la route vers l'endroit où vous voulez garder le fichier ou bien appuyez sur [Entrée] si la route proposée par défaut vous convient ${normal_color}[${wep_potpath}]"
+	arr["CATALAN",430]="Si s'aconsegueix la contrasenya de la xarxa wifi amb l'atac WEP \"Tot-en-Un \", cal decidir on guardar-la. ${green_color}Escriu la ruta on guardarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${wep_potpath}]"
+	arr["PORTUGUESE",430]="Se a senha da rede wifi for obtida com o ataque WEP \"Tudo-em-Um\", onde deseja salvá-la?. ${green_color}Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${wep_potpath}]"
+	arr["RUSSIAN",430]="Если во время WEP атаки \"Все-в-Одном\" на Wi-Fi сеть получен пароль, вы должны решить, где его сохранить. ${green_color} Наберите путь для сохранения файла или нажмите [Enter] для принятия значения по умолчанию ${normal_color}[${wep_potpath}]"
+	arr["GREEK",430]="Εάν βρεθεί ο κωδικός πρόσβασης για το ασύρματο δίκτυο με την επίθεση WEP \"All-in-One\", θα πρέπει να αποφασίσετε που θα τον αποθηκεύσετε. ${green_color}Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${wep_potpath}]"
+
+	arr["ENGLISH",431]="The WEP protocol had a bad design and can be cracked in a few minutes if we have enough generated traffic"
+	arr["SPANISH",431]="El protocolo WEP tuvo un diseño erróneo y se puede romper en pocos minutos si se genera tráfico suficiente"
+	arr["FRENCH",431]="Le protocole WEP n'est pas sûr et peut se déchiffrer en quelques minutes si suffisamment de trafic est généré"
+	arr["CATALAN",431]="El protocol WEP va tindre un disseny erroni i es pot trencar en pocs minuts si es genera trànsit suficient"
+	arr["PORTUGUESE",431]="O protocolo WEP é um projeto falho e pode ser quebrado em poucos minutos se tivermos tráfego suficiente"
+	arr["RUSSIAN",431]="Протокол WEP сделан неудачно и при достаточном количестве сгенерированного трафика может быть взломан в считанные минуты"
+	arr["GREEK",431]="Το πρωτόκολλο WEP είχε κακό σχεδιασμό και μπορεί να σπάσει μέσα σε λίγα λεπτά, αν έχουμε αρκετή κίνηση πακέτων"
+
+	arr["ENGLISH",432]="Captured IVs (Initialization Vectors) are shown on airodump capture window as \"Data\""
+	arr["SPANISH",432]="Los IVs (Vectores de Inicialización) capturados, son representados en la ventana de captura de airodump como \"Data\""
+	arr["FRENCH",432]="Les IVs (Vecteurs de Initialisation) capturés sont reportés dans la colomne \"Data\" de la console airodump-ng"
+	arr["CATALAN",432]="Els IVs (Vectors d'Inicialització) capturats, són representats en la finestra de captura de airodump com \"Data\""
+	arr["PORTUGUESE",432]="Os IVs (Vetores de Inicialização) capturados, são representados na captura de janela airodump como \"Data\""
+	arr["RUSSIAN",432]="Захваченные IVs (Векторы Инициализации) показаны в окне захвата airodump как \"Data\""
+	arr["GREEK",432]="Τα ληφθέντα IVs (Initialization Vectors) εμφανίζονται στο παράθυρο καταγραφής airodump ως \"Data\""
+
+	arr["ENGLISH",433]="Some access points are not vulnerable to certain WEP attacks. Like for example the Chop-Chop attack, that only affects some of them"
+	arr["SPANISH",433]="Algunos puntos de acceso no son vulnerables a ciertos ataques WEP. Como por ejemplo el ataque Chop-Chop, que solo afecta a algunos"
+	arr["FRENCH",433]="Certains points d'accès ne sont pas vulnérables à certaines attaques WEP. Comme par example l'attaque Chop-Chop qui affecte seulement à certains Point d'Accès"
+	arr["CATALAN",433]="Alguns punts d'accés no són vulnerables a certs atacs WEP. Com per exemple l'atac Chop-Chop, que només afecta alguns"
+	arr["PORTUGUESE",433]="Alguns pontos de acesso não são vulneráveis a certos ataques WEP. Como por exemplo o ataque Chop-Chop, que só afeta alguns"
+	arr["RUSSIAN",433]="Некоторые точки доступа не подвержены определенным атакам WEP. Например, атаке Chop-Chop подвержены только некоторые из них"
+	arr["GREEK",433]="Ορισμένα σημεία πρόσβασης δεν είναι ευάλωτα σε ορισμένες επιθέσεις WEP. Για παράδειγμα η επίθεση Chop-Chop, επηρεάζει μόνο μερικά από αυτά"
+
+	arr["ENGLISH",434]="WEP \"All-in-One\" attack has been started. Press [Enter] key on this window to stop it"
+	arr["SPANISH",434]="El ataque WEP \"Todo-en-Uno\" ha comenzado. Pulse la tecla [Enter] en esta ventana para pararlo"
+	arr["FRENCH",434]="L'attaque WEP \"Tout-en-Un\" a commencé. Pressez la touche [Entrée] dans cette console pour l'arrêter"
+	arr["CATALAN",434]="L'atac WEP \"Tot-en-Un\" ha començat. Prem [Enter] a aquesta finestra per aturar-lo"
+	arr["PORTUGUESE",434]="Ataque WEP \"Tudo-em-Um\" iniciado. Pressione a tecla [Enter] nesta janela para parar"
+	arr["RUSSIAN",434]="Атака WEP \"Все-в-Одном\" началась. Для её остановки клавишу [Enter] в этом окне"
+	arr["GREEK",434]="Η επίθεση WEP \"All-in-One\" έχει αρχίσει. Πατήστε το κουμπί [Enter] σε αυτό το παράθυρο για να την σταματήσετε"
 
 	case "${3}" in
 		"yellow")
