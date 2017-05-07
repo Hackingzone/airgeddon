@@ -1,5 +1,6 @@
 ### 7.01
  - Fixed bug while changing interface mode if the destination interface name is in use
+ - Removed util-linux dependency for rev use
 
 ### 7.0
  - New WEP attacks menu
