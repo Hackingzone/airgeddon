@@ -751,7 +751,7 @@ function calculate_easybox_algorithm() {
 	Z1=$((0x${hexi[2]} ^ hex_to_dec[3]))
 	Z2=$((0x${hexi[3]} ^ hex_to_dec[2]))
 
-	easybox_pin=$(printf '%08d\n' "$((0x$X1$X2$Y1$Y2$Z1$Z2$X3))" | awk '{ for(i=length;i!=0;i--)x=x substr($0,i,1);}END{print x}' | cut -c -7 | rev)
+	easybox_pin=$(printf '%08d\n' "$((0x$X1$X2$Y1$Y2$Z1$Z2$X3))" | awk '{ for(i=length;i!=0;i--)x=x substr($0,i,1);}END{print x}' | cut -c -7 | awk '{ for(i=length;i!=0;i--)x=x substr($0,i,1);}END{print x}')
 }
 
 #Calculate the last digit on pin following the checksum rule
