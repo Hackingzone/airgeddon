@@ -1,6 +1,7 @@
 ### 7.01
  - Fixed bug while changing interface mode if the destination interface name is in use
  - Removed util-linux dependency for rev use
+ - The existing iptables rules before the launch of airgeddon are now restored upon exiting if modified
 
 ### 7.0
  - New WEP attacks menu

@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170507
+#Date.........: 20170508
 #Version......: 7.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -2873,7 +2873,30 @@ function clean_routing_rules() {
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
 
-	clean_iptables
+	if [ "${iptables_saved}" -eq 1 ]; then
+		restore_iptables
+	else
+		clean_iptables
+	fi
+}
+
+#Save iptables rules
+function save_iptables() {
+
+	debug_print
+
+	iptables-save > "${tmpdir}ag.iptables" 2> /dev/null
+	if [ "$?" = "0" ]; then
+		iptables_saved=1
+	fi
+}
+
+#Restore iptables rules
+function restore_iptables() {
+
+	debug_print
+
+	iptables-restore < "${tmpdir}ag.iptables" 2> /dev/null
 }
 
 #Clean iptables rules
@@ -4723,9 +4746,13 @@ function set_std_internet_routing_rules() {
 
 	debug_print
 
-	routing_toclean=1
-	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
+	if [ "${routing_modified}" -eq 0 ]; then
+		original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
+		save_iptables
+	fi
+
 	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	routing_modified=1
 
 	clean_iptables
 
@@ -7765,7 +7792,7 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ ${routing_toclean} -eq 1 ]; then
+	if [ ${routing_modified} -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 297 "multiline"
 		clean_routing_rules
@@ -7811,7 +7838,7 @@ function hardcore_exit() {
 		clean_tmpfiles
 	fi
 
-	if [ ${routing_toclean} -eq 1 ]; then
+	if [ ${routing_modified} -eq 1 ]; then
 		clean_routing_rules
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
@@ -8672,7 +8699,8 @@ function initialize_script_settings() {
 	airmon_fix
 	autochanged_language=0
 	tmpfiles_toclean=0
-	routing_toclean=0
+	routing_modified=0
+	iptables_saved=0
 	spoofed_mac=0
 	mac_spoofing_desired=0
 	dhcpd_path_changed=0
