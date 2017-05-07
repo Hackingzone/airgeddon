@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170505
-#Version......: 7.0
+#Date.........: 20170705
+#Version......: 7.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.0"
-language_strings_expected_version="7.0-1"
+airgeddon_version="7.01"
+language_strings_expected_version="7.01-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -909,6 +909,14 @@ function restore_et_interface() {
 		ifacemode="Managed"
 	else
 		new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+		desired_interface_name=""
+		[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+		if [ -n "${desired_interface_name}" ]; then
+			echo
+			language_strings "${language}" 435 "red"
+			language_strings "${language}" 115 "read"
+			return
+		fi
 		ifacemode="Monitor"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
@@ -993,6 +1001,16 @@ function monitor_option() {
 	fi
 
 	new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+
+	desired_interface_name=""
+	[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+	if [ -n "${desired_interface_name}" ]; then
+		echo
+		language_strings "${language}" 435 "red"
+		language_strings "${language}" 115 "read"
+		return
+	fi
+
 	ifacemode="Monitor"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
