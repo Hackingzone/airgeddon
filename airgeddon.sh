@@ -874,7 +874,7 @@ function prepare_et_interface() {
 	et_initial_state=${ifacemode}
 
 	if [ "${ifacemode}" != "Managed" ]; then
-		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
 		ifacemode="Managed"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
@@ -951,7 +951,7 @@ function managed_option() {
 	language_strings "${language}" 17 "blue"
 	ifconfig "${interface}" up
 
-	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
 	ifacemode="Managed"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
