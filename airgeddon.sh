@@ -8363,10 +8363,9 @@ function check_if_kill_needed() {
 
 		if [ "${nm_system_version}" != "" ]; then
 
-			#TODO Add better regex to match both outputs
-			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2}) ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}"
+			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.?(([0-9]+)|.+)? ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
 
-			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]+).*?$ ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
+			[[ ${nm_system_subversion2} =~ [a-zA-Z] ]] && nm_system_subversion2="0"
 
 			if [ "${nm_main_system_version}" -lt ${nm_min_main_version} ]; then
 				check_kill_needed=1
