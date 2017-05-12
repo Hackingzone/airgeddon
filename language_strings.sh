@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170507
+#Date.........: 20170512
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3847,7 +3847,7 @@ function language_strings() {
 	arr["CATALAN",435]="${pending_of_translation} Error en intentar canviar el mode de la interfície. En el procés el nom de la interfície canvia, però sembla que ja tens una interfície ocupant el nom que es necessitaria (${normal_color}${desired_interface_name}${red_color})"
 	arr["PORTUGUESE",435]="${pending_of_translation} Erro ao tentar alterar o modo de interface. No processo, o nome das mudanças de interface, mas parece que você já tem uma interface que ocupa o nome necessário (${normal_color}${desired_interface_name}${red_color})"
 	arr["RUSSIAN",435]="${pending_of_translation} Ошибка при попытке изменить режим интерфейса. Во время процесса имя интерфейса должно быть изменено, но похоже, что у вас уже есть интерфейс, занимающий нужное имя (${normal_color}${desired_interface_name}${red_color})"
-	arr["GREEK",435]="${pending_of_translation} Σφάλμα κατά την προσπάθεια να αλλάξει την κατάσταση διασύνδεσης. Κατά τη διάρκεια της διαδικασίας, το όνομα διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που καταλαμβάνει το όνομα που θα χρειαζόταν (${normal_color}${desired_interface_name}${red_color})"
+	arr["GREEK",435]="Προέκυψε σφάλμα καθώς άλλαζε η κατάσταση της διεπαφής. Κατά τη διάρκεια της διαδικασίας, το όνομα της διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που έχει το όνομα που θα χρειαζόταν (${normal_color}${desired_interface_name}${red_color})"
 
 	case "${3}" in
 		"yellow")
