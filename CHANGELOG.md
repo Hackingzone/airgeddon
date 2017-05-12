@@ -1,3 +1,6 @@
+### 7.02
+ - Improved internet checking. Now ip address and host based methods
+ 
 ### 7.01
  - Fixed bug while changing interface mode if the destination interface name is in use
  - Removed util-linux dependency for rev use

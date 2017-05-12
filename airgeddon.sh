@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170508
-#Version......: 7.01
+#Date.........: 20170513
+#Version......: 7.02
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.01"
-language_strings_expected_version="7.01-1"
+airgeddon_version="7.02"
+language_strings_expected_version="7.02-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -146,17 +146,17 @@ timeout_secs_per_pin="30"
 timeout_secs_per_pixiedust="30"
 
 #Repository and contact vars
+repository_hostname="github.com"
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
 branch="master"
 script_filename="airgeddon.sh"
-urlgithub="https://github.com/${github_user}/${github_repository}"
+urlgithub="https://${repository_hostname}/${github_user}/${github_repository}"
 urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
-urlgithub_wiki="https://github.com/${github_user}/${github_repository}/wiki"
-host_to_check_internet="github.com"
+urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
@@ -176,6 +176,7 @@ ip_mask="255.255.255.255"
 dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
+internet_dns3="139.130.4.5"
 sslstrip_port="10000"
 bettercap_proxy_port="8080"
 bettercap_dns_port="5300"
@@ -214,6 +215,13 @@ possible_beef_known_locations=(
 									"/opt/beef-project/"
 									#Custom BeEF location (set=0)
 								)
+
+#Connection vars
+ips_to_check_internet=(
+						"${internet_dns1}"
+						"${internet_dns2}"
+						"${internet_dns3}"
+					)
 
 #Distros vars
 known_compatible_distros=(
@@ -311,7 +319,7 @@ function check_language_strings() {
 		echo
 		echo_blue "${language_strings_try_to_download[${language}]}"
 		read -p "${language_strings_key_to_continue[${language}]}" -r
-		check_internet_access "${host_to_check_internet}"
+		check_internet_access
 
 		if [ "$?" = "0" ]; then
 
@@ -8016,7 +8024,7 @@ function check_pins_database_file() {
 		language_strings "${language}" 376 "yellow"
 		echo
 		language_strings "${language}" 287 "blue"
-		check_internet_access "${host_to_check_internet}"
+		check_internet_access
 		if [ "$?" = "0" ]; then
 			get_local_pin_dbfile_checksum "${scriptfolder}${known_pins_dbfile}"
 			get_remote_pin_dbfile_checksum
@@ -8051,7 +8059,7 @@ function check_pins_database_file() {
 		echo
 		if hash curl 2> /dev/null; then
 			language_strings "${language}" 287 "blue"
-			check_internet_access "${host_to_check_internet}"
+			check_internet_access
 			if [ "$?" != "0" ]; then
 				echo
 				language_strings "${language}" 375 "yellow"
@@ -9001,7 +9009,7 @@ function validate_et_internet_interface() {
 
 	echo
 	language_strings "${language}" 287 "blue"
-	check_internet_access "${host_to_check_internet}"
+	check_internet_access
 
 	if [ "$?" != "0" ]; then
 		echo
@@ -9030,20 +9038,22 @@ function check_internet_access() {
 
 	debug_print
 
-	ping -c 1 "${1}" -W 1 > /dev/null 2>&1
-	if [ "$?" = "0" ]; then
-		return 0
-	fi
+	for item in "${ips_to_check_internet[@]}"; do
+		ping -c 1 "${item}" -W 1 > /dev/null 2>&1
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	done
 
 	if hash curl 2> /dev/null; then
-		timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
+		timeout -s SIGTERM 15 curl -s "http://${repository_hostname}" > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	if hash wget 2> /dev/null; then
-		timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
+		timeout -s SIGTERM 15 wget -q --spider "http://${repository_hostname}" > /dev/null 2>&1
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
@@ -9071,7 +9081,7 @@ function autoupdate_check() {
 	echo
 	hasinternet_access_for_update=0
 
-	check_internet_access "${host_to_check_internet}"
+	check_internet_access
 	if [ "$?" = "0" ]; then
 		hasinternet_access_for_update=1
 	fi
