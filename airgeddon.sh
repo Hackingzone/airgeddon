@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170505
-#Version......: 7.0
+#Date.........: 20170508
+#Version......: 7.01
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.0"
-language_strings_expected_version="7.0-1"
+airgeddon_version="7.01"
+language_strings_expected_version="7.01-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -751,7 +751,7 @@ function calculate_easybox_algorithm() {
 	Z1=$((0x${hexi[2]} ^ hex_to_dec[3]))
 	Z2=$((0x${hexi[3]} ^ hex_to_dec[2]))
 
-	easybox_pin=$(printf '%08d\n' "$((0x$X1$X2$Y1$Y2$Z1$Z2$X3))" | rev | cut -c -7 | rev)
+	easybox_pin=$(printf '%08d\n' "$((0x$X1$X2$Y1$Y2$Z1$Z2$X3))" | awk '{for(i=length; i!=0; i--) x=x substr($0, i, 1);} END {print x}' | cut -c -7 | awk '{for(i=length; i!=0; i--) x=x substr($0, i, 1);} END {print x}')
 }
 
 #Calculate the last digit on pin following the checksum rule
@@ -874,7 +874,7 @@ function prepare_et_interface() {
 	et_initial_state=${ifacemode}
 
 	if [ "${ifacemode}" != "Managed" ]; then
-		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+		new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
 		ifacemode="Managed"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
@@ -909,6 +909,14 @@ function restore_et_interface() {
 		ifacemode="Managed"
 	else
 		new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+		desired_interface_name=""
+		[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+		if [ -n "${desired_interface_name}" ]; then
+			echo
+			language_strings "${language}" 435 "red"
+			language_strings "${language}" 115 "read"
+			return
+		fi
 		ifacemode="Monitor"
 		[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 		if [ "${interface}" != "${new_interface}" ]; then
@@ -943,7 +951,7 @@ function managed_option() {
 	language_strings "${language}" 17 "blue"
 	ifconfig "${interface}" up
 
-	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station)
+	new_interface=$(${airmon} stop "${interface}" 2> /dev/null | grep station | head -n 1)
 	ifacemode="Managed"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
@@ -993,6 +1001,16 @@ function monitor_option() {
 	fi
 
 	new_interface=$(${airmon} start "${interface}" 2> /dev/null | grep monitor)
+
+	desired_interface_name=""
+	[[ ${new_interface} =~ ^You[[:space:]]already[[:space:]]have[[:space:]]a[[:space:]]([A-Za-z0-9]+)[[:space:]]device ]] && desired_interface_name="${BASH_REMATCH[1]}"
+	if [ -n "${desired_interface_name}" ]; then
+		echo
+		language_strings "${language}" 435 "red"
+		language_strings "${language}" 115 "read"
+		return
+	fi
+
 	ifacemode="Monitor"
 	[[ ${new_interface} =~ \]?([A-Za-z0-9]+)\)?$ ]] && new_interface="${BASH_REMATCH[1]}"
 
@@ -2855,7 +2873,30 @@ function clean_routing_rules() {
 		echo "${original_routing_state}" > /proc/sys/net/ipv4/ip_forward
 	fi
 
-	clean_iptables
+	if [ "${iptables_saved}" -eq 1 ]; then
+		restore_iptables
+	else
+		clean_iptables
+	fi
+}
+
+#Save iptables rules
+function save_iptables() {
+
+	debug_print
+
+	iptables-save > "${tmpdir}ag.iptables" 2> /dev/null
+	if [ "$?" = "0" ]; then
+		iptables_saved=1
+	fi
+}
+
+#Restore iptables rules
+function restore_iptables() {
+
+	debug_print
+
+	iptables-restore < "${tmpdir}ag.iptables" 2> /dev/null
 }
 
 #Clean iptables rules
@@ -4705,9 +4746,13 @@ function set_std_internet_routing_rules() {
 
 	debug_print
 
-	routing_toclean=1
-	original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
+	if [ "${routing_modified}" -eq 0 ]; then
+		original_routing_state=$(cat /proc/sys/net/ipv4/ip_forward)
+		save_iptables
+	fi
+
 	ifconfig "${interface}" ${et_ip_router} netmask ${std_c_mask} > /dev/null 2>&1
+	routing_modified=1
 
 	clean_iptables
 
@@ -7747,7 +7792,7 @@ function exit_script_option() {
 		echo -e "${green_color} Ok\r${normal_color}"
 	fi
 
-	if [ ${routing_toclean} -eq 1 ]; then
+	if [ ${routing_modified} -eq 1 ]; then
 		action_on_exit_taken=1
 		language_strings "${language}" 297 "multiline"
 		clean_routing_rules
@@ -7793,7 +7838,7 @@ function hardcore_exit() {
 		clean_tmpfiles
 	fi
 
-	if [ ${routing_toclean} -eq 1 ]; then
+	if [ ${routing_modified} -eq 1 ]; then
 		clean_routing_rules
 		killall dhcpd > /dev/null 2>&1
 		killall hostapd > /dev/null 2>&1
@@ -8318,7 +8363,9 @@ function check_if_kill_needed() {
 
 		if [ "${nm_system_version}" != "" ]; then
 
-			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.([0-9]+).*?$ ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
+			[[ ${nm_system_version} =~ ^([0-9]{1,2})\.([0-9]{1,2})\.?(([0-9]+)|.+)? ]] && nm_main_system_version="${BASH_REMATCH[1]}" && nm_system_subversion="${BASH_REMATCH[2]}" && nm_system_subversion2="${BASH_REMATCH[3]}"
+
+			[[ ${nm_system_subversion2} =~ [a-zA-Z] ]] && nm_system_subversion2="0"
 
 			if [ "${nm_main_system_version}" -lt ${nm_min_main_version} ]; then
 				check_kill_needed=1
@@ -8654,7 +8701,8 @@ function initialize_script_settings() {
 	airmon_fix
 	autochanged_language=0
 	tmpfiles_toclean=0
-	routing_toclean=0
+	routing_modified=0
+	iptables_saved=0
 	spoofed_mac=0
 	mac_spoofing_desired=0
 	dhcpd_path_changed=0

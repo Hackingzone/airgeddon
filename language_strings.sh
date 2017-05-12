@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170505
+#Date.........: 20170507
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="7.0-1"
+	language_strings_version="7.01-1"
 }
 
 #Set different language text strings
@@ -3840,6 +3840,14 @@ function language_strings() {
 	arr["PORTUGUESE",434]="Ataque WEP \"Tudo-em-Um\" iniciado. Pressione a tecla [Enter] nesta janela para parar"
 	arr["RUSSIAN",434]="Атака WEP \"Все-в-Одном\" началась. Для её остановки клавишу [Enter] в этом окне"
 	arr["GREEK",434]="Η επίθεση WEP \"All-in-One\" έχει αρχίσει. Πατήστε το κουμπί [Enter] σε αυτό το παράθυρο για να την σταματήσετε"
+
+	arr["ENGLISH",435]="Error trying to change interface mode. During the process the interface name must be changed, but it looks like you already have an interface occupying the name that would be needed (${normal_color}${desired_interface_name}${red_color})"
+	arr["SPANISH",435]="Error al intentar cambiar el modo de la interfaz. En el proceso el nombre del interfaz cambia, pero parece que ya tienes un interfaz ocupando el nombre que se necesitaría (${normal_color}${desired_interface_name}${red_color})"
+	arr["FRENCH",435]="${pending_of_translation} Erreur lors de la tentative de changer le mode d'interface. Dans le processus, le nom des modifications de l'interface, mais il semble que vous avez déjà une interface occupant le nom nécessaire (${normal_color}${desired_interface_name}${red_color})"
+	arr["CATALAN",435]="${pending_of_translation} Error en intentar canviar el mode de la interfície. En el procés el nom de la interfície canvia, però sembla que ja tens una interfície ocupant el nom que es necessitaria (${normal_color}${desired_interface_name}${red_color})"
+	arr["PORTUGUESE",435]="${pending_of_translation} Erro ao tentar alterar o modo de interface. No processo, o nome das mudanças de interface, mas parece que você já tem uma interface que ocupa o nome necessário (${normal_color}${desired_interface_name}${red_color})"
+	arr["RUSSIAN",435]="${pending_of_translation} Ошибка при попытке изменить режим интерфейса. Во время процесса имя интерфейса должно быть изменено, но похоже, что у вас уже есть интерфейс, занимающий нужное имя (${normal_color}${desired_interface_name}${red_color})"
+	arr["GREEK",435]="${pending_of_translation} Σφάλμα κατά την προσπάθεια να αλλάξει την κατάσταση διασύνδεσης. Κατά τη διάρκεια της διαδικασίας, το όνομα διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που καταλαμβάνει το όνομα που θα χρειαζόταν (${normal_color}${desired_interface_name}${red_color})"
 
 	case "${3}" in
 		"yellow")

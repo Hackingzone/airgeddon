@@ -102,10 +102,9 @@ COPY \
 
 #airgeddon install method 2 (only one method can be used, other must be commented)
 #Install airgeddon (manual image build)
-#Uncomment one of the three to select branch (master->latest, dev->beta, docker->alpha)
+#Uncomment one of them to select branch (master->latest, dev->beta)
 #ENV BRANCH="master"
 #ENV BRANCH="dev"
-#ENV BRANCH="docker"
 #RUN \
 #	git clone -b ${BRANCH} ${AIRGEDDON_URL}
 
