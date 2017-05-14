@@ -319,7 +319,7 @@ function check_language_strings() {
 		echo
 		echo_blue "${language_strings_try_to_download[${language}]}"
 		read -p "${language_strings_key_to_continue[${language}]}" -r
-		check_internet_access
+		check_repository_access
 
 		if [ "$?" = "0" ]; then
 
@@ -8024,7 +8024,7 @@ function check_pins_database_file() {
 		language_strings "${language}" 376 "yellow"
 		echo
 		language_strings "${language}" 287 "blue"
-		check_internet_access
+		check_repository_access
 		if [ "$?" = "0" ]; then
 			get_local_pin_dbfile_checksum "${scriptfolder}${known_pins_dbfile}"
 			get_remote_pin_dbfile_checksum
@@ -8059,7 +8059,7 @@ function check_pins_database_file() {
 		echo
 		if hash curl 2> /dev/null; then
 			language_strings "${language}" 287 "blue"
-			check_internet_access
+			check_repository_access
 			if [ "$?" != "0" ]; then
 				echo
 				language_strings "${language}" 375 "yellow"
@@ -9033,6 +9033,20 @@ function validate_et_internet_interface() {
 	return 0
 }
 
+#Check for access to airgeddon repository
+function check_repository_access() {
+
+	debug_print
+
+	if hash curl 2> /dev/null; then
+		check_url_curl ${repository_hostname}
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	fi
+	return 1
+}
+
 #Check for active internet connection
 function check_internet_access() {
 
@@ -9046,20 +9060,38 @@ function check_internet_access() {
 	done
 
 	if hash curl 2> /dev/null; then
-		timeout -s SIGTERM 15 curl -s "http://${repository_hostname}" > /dev/null 2>&1
+		check_url_curl ${repository_hostname}
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	if hash wget 2> /dev/null; then
-		timeout -s SIGTERM 15 wget -q --spider "http://${repository_hostname}" > /dev/null 2>&1
+		check_url_wget ${repository_hostname}
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	return 1
+}
+
+#Check for access to an url using curl
+function check_url_curl() {
+
+	debug_print
+
+	timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
+	return $?
+}
+
+#Check for access to an url using wget
+function check_url_wget() {
+
+	debug_print
+
+	timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
+	return $?
 }
 
 #Check for default route on an interface
@@ -9079,16 +9111,10 @@ function autoupdate_check() {
 	echo
 	language_strings "${language}" 210 "blue"
 	echo
-	hasinternet_access_for_update=0
 
-	check_internet_access
+	check_repository_access
 	if [ "$?" = "0" ]; then
-		hasinternet_access_for_update=1
-	fi
-
-	if [ ${hasinternet_access_for_update} -eq 1 ]; then
-
-		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2)
+		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -n 1 | cut -d "\"" -f 2)
 
 		if [ "${airgeddon_last_version}" != "" ]; then
 			if compare_floats_greater_than "${airgeddon_last_version}" "${airgeddon_version}"; then
