@@ -661,7 +661,7 @@ function renew_ifaces_and_macs_list() {
 
 	debug_print
 
-	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
+	readarray -t IFACES_AND_MACS < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
 		mac_item=$(cat "/sys/class/net/${iface_name}/address" 2> /dev/null)
@@ -1245,7 +1245,7 @@ function select_internet_interface() {
 		;;
 	esac
 
-	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
+	inet_ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 
 	option_counter=0
 	for item in ${inet_ifaces}; do
@@ -1319,7 +1319,7 @@ function select_interface() {
 	current_menu="select_interface_menu"
 	language_strings "${language}" 24 "green"
 	print_simple_separator
-	ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v)
+	ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v)
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$((option_counter + 1))
@@ -3769,7 +3769,7 @@ function check_valid_file_to_clean() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${nets_from_file}" = "" ]; then
 		return 1
@@ -3791,7 +3791,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "1 handshake" > /dev/null
+	echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null
 	if [ "$?" != "0" ]; then
 		return 1
 	fi
@@ -3804,7 +3804,7 @@ function check_bssid_in_captured_file() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -3844,7 +3844,7 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -4364,7 +4364,7 @@ function set_show_charset() {
 						if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
 							showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
 						else
-							showcharset+=$(hashcat --help | egrep "^  ${item#'?'} \|" | awk '{print $3}')
+							showcharset+=$(hashcat --help | grep -E "^  ${item#'?'} \|" | awk '{print $3}')
 						fi
 					done
 				;;
@@ -4372,7 +4372,7 @@ function set_show_charset() {
 					if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
 						showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
 					else
-						showcharset=$(hashcat --help | egrep "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
+						showcharset=$(hashcat --help | grep -E "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
 					fi
 				;;
 			esac
@@ -6078,7 +6078,7 @@ function parse_ettercap_log() {
 	echo
 	language_strings "${language}" 304 "blue"
 
-	readarray -t CAPTUREDPASS < <(etterlog -L -p -i "${tmp_ettercaplog}.eci" 2> /dev/null | egrep -i "USER:|PASS:")
+	readarray -t CAPTUREDPASS < <(etterlog -L -p -i "${tmp_ettercaplog}.eci" 2> /dev/null | grep -E -i "USER:|PASS:")
 
 	{
 	echo ""
@@ -6120,7 +6120,7 @@ function parse_bettercap_log() {
 
 	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE'
 	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
-	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | egrep -i ${regexp} | egrep -vi ${regexp2})
+	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | grep -E -i ${regexp} | grep -E -vi ${regexp2})
 
 	{
 	echo ""
@@ -7927,7 +7927,7 @@ function get_bettercap_version() {
 
 	debug_print
 
-	bettercap_version=$(bettercap -v 2> /dev/null | egrep "^bettercap [0-9]" | awk '{print $2}')
+	bettercap_version=$(bettercap -v 2> /dev/null | grep -E "^bettercap [0-9]" | awk '{print $2}')
 }
 
 #Determine bully version
@@ -7944,9 +7944,9 @@ function get_reaver_version() {
 
 	debug_print
 
-	reaver_version=$(reaver -h 2>&1 > /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	reaver_version=$(reaver -h 2>&1 > /dev/null | grep -E "^Reaver v[0-9]" | awk '{print $2}')
 	if [ -z "${reaver_version}" ]; then
-		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+		reaver_version=$(reaver -h 2> /dev/null | grep -E "^Reaver v[0-9]" | awk '{print $2}')
 	fi
 	reaver_version=${reaver_version#"v"}
 }
