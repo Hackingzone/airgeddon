@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170513
+#Date.........: 20170514
 #Version......: 7.02
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -664,7 +664,7 @@ function renew_ifaces_and_macs_list() {
 	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
-		mac_item=$(cat < "/sys/class/net/${iface_name}/address" 2> /dev/null)
+		mac_item=$(cat "/sys/class/net/${iface_name}/address" 2> /dev/null)
 		if [ -n "${mac_item}" ]; then
 			ifaces_and_macs[${iface_name}]=${mac_item}
 		fi
