@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170514
+#Date.........: 20170515
 #Version......: 7.02
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -1738,7 +1738,7 @@ function set_wep_key_script() {
 	EOF
 
 	cat >&8 <<-'EOF'
-			wep_script_alive=$(ps uax | awk '{print $2}' | egrep "^${1}$" 2> /dev/null)
+			wep_script_alive=$(ps uax | awk '{print $2}' | grep -E "^${1}$" 2> /dev/null)
 			if [ -z "${wep_script_alive}" ]; then
 				break
 			fi
@@ -1838,7 +1838,7 @@ function set_wep_script() {
 	cat >&6 <<-'EOF'
 						wep_chopchop_phase=2
 					else
-						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
+						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
 						if [[ ${wep_chopchop_launched} -eq 0 ]] || [ -z "${wep_chopchop_phase1_pid_alive}" ]; then
 							wep_chopchop_launched=1
 	EOF
@@ -1866,7 +1866,7 @@ function set_wep_script() {
 					wep_chopchop_phase=3
 				;;
 				3)
-					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
+					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
@@ -1901,7 +1901,7 @@ function set_wep_script() {
 	cat >&6 <<-'EOF'
 						wep_fragmentation_phase=2
 					else
-						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
+						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
 						if [[ ${wep_fragmentation_launched} -eq 0 ]] || [ -z "${wep_fragmentation_phase1_pid_alive}" ]; then
 							wep_fragmentation_launched=1
 	EOF
@@ -1929,7 +1929,7 @@ function set_wep_script() {
 					wep_fragmentation_phase=3
 				;;
 				3)
-					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
+					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
 	EOF
 
@@ -1959,7 +1959,7 @@ function set_wep_script() {
 
 	cat >&6 <<-'EOF'
 			for item in "${wep_script_processes[@]}"; do
-				egrep "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
+				grep -E "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
 	EOF
 
 	cat >&6 <<-'EOF'
@@ -1996,8 +1996,8 @@ function set_wep_script() {
 
 	cat >&6 <<-'EOF'
 		while true; do
-			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_script_capture_pid}$" 2> /dev/null)
-			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fakeauth_pid}$" 2> /dev/null)
+			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_script_capture_pid}$" 2> /dev/null)
+			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fakeauth_pid}$" 2> /dev/null)
 
 			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
 	EOF
@@ -2081,7 +2081,7 @@ function set_wep_script() {
 				write_wep_processes
 			fi
 
-			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_aircrack_pid}$" 2> /dev/null)
+			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
 			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
 				break
 			elif [[ -z "${wep_capture_pid_alive}" ]]; then
