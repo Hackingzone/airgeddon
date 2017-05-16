@@ -1,7 +1,7 @@
 ### 7.02
  - Improved internet checking. Now ip address and host based methods
  - Internet checking function splitted. Now separated from repository access
- - Fixed error shown when handling interfaces without mac address
+ - Fixed error shown when handling interfaces without MAC address
  
 ### 7.01
  - Fixed bug while changing interface mode if the destination interface name is in use
