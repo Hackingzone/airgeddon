@@ -3846,7 +3846,7 @@ function language_strings() {
 	arr["FRENCH",435]="${pending_of_translation} Erreur lors de la tentative de changer le mode d'interface. Dans le processus, le nom des modifications de l'interface, mais il semble que vous avez déjà une interface occupant le nom nécessaire (${normal_color}${desired_interface_name}${red_color})"
 	arr["CATALAN",435]="Error en intentar canviar el mode de la interfície. En el procés el nom de la interfície canvia, però sembla que ja tens una interfície ocupant el nom que es necessitaria (${normal_color}${desired_interface_name}${red_color})"
 	arr["PORTUGUESE",435]="Erro ao tentar alterar o modo da interface. No processo o nome da interface muda, mas parece que já há uma interface ocupando o mesmo nome (${normal_color}${desired_interface_name}${red_color})"
-	arr["RUSSIAN",435]="${pending_of_translation} Ошибка при попытке изменить режим интерфейса. Во время процесса имя интерфейса должно быть изменено, но похоже, что у вас уже есть интерфейс, занимающий нужное имя (${normal_color}${desired_interface_name}${red_color})"
+	arr["RUSSIAN",435]="Ошибка при попытке изменить режим интерфейса. Во время этого процесса имя интерфейса должно быть изменено, но похоже, что у вас уже есть интерфейс, занимающий нужное имя (${normal_color}${desired_interface_name}${red_color})"
 	arr["GREEK",435]="Προέκυψε σφάλμα καθώς άλλαζε η κατάσταση της διεπαφής. Κατά τη διάρκεια της διαδικασίας, το όνομα της διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που έχει το όνομα που θα χρειαζόταν (${normal_color}${desired_interface_name}${red_color})"
 
 	case "${3}" in
