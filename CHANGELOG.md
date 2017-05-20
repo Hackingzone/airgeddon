@@ -2,6 +2,7 @@
  - Improved internet checking. Now ip address and host based methods
  - Internet checking function splitted. Now separated from repository access
  - Fixed error shown when handling interfaces without MAC address
+ - Tested compatibility with Ubuntu 17.04
  
 ### 7.01
  - Fixed bug while changing interface mode if the destination interface name is in use
