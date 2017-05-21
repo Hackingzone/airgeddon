@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170508
-#Version......: 7.01
+#Date.........: 20170515
+#Version......: 7.02
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.01"
-language_strings_expected_version="7.01-1"
+airgeddon_version="7.02"
+language_strings_expected_version="7.02-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -146,17 +146,17 @@ timeout_secs_per_pin="30"
 timeout_secs_per_pixiedust="30"
 
 #Repository and contact vars
+repository_hostname="github.com"
 github_user="v1s1t0r1sh3r3"
 github_repository="airgeddon"
 branch="master"
 script_filename="airgeddon.sh"
-urlgithub="https://github.com/${github_user}/${github_repository}"
+urlgithub="https://${repository_hostname}/${github_user}/${github_repository}"
 urlscript_directlink="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${script_filename}"
 urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${known_pins_dbfile}"
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
-urlgithub_wiki="https://github.com/${github_user}/${github_repository}/wiki"
-host_to_check_internet="github.com"
+urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
@@ -176,6 +176,7 @@ ip_mask="255.255.255.255"
 dhcpd_file="ag.dhcpd.conf"
 internet_dns1="8.8.8.8"
 internet_dns2="8.8.4.4"
+internet_dns3="139.130.4.5"
 sslstrip_port="10000"
 bettercap_proxy_port="8080"
 bettercap_dns_port="5300"
@@ -214,6 +215,13 @@ possible_beef_known_locations=(
 									"/opt/beef-project/"
 									#Custom BeEF location (set=0)
 								)
+
+#Connection vars
+ips_to_check_internet=(
+						"${internet_dns1}"
+						"${internet_dns2}"
+						"${internet_dns3}"
+					)
 
 #Distros vars
 known_compatible_distros=(
@@ -311,7 +319,7 @@ function check_language_strings() {
 		echo
 		echo_blue "${language_strings_try_to_download[${language}]}"
 		read -p "${language_strings_key_to_continue[${language}]}" -r
-		check_internet_access "${host_to_check_internet}"
+		check_repository_access
 
 		if [ "$?" = "0" ]; then
 
@@ -653,10 +661,10 @@ function renew_ifaces_and_macs_list() {
 
 	debug_print
 
-	readarray -t IFACES_AND_MACS < <(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
+	readarray -t IFACES_AND_MACS < <(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 	declare -gA ifaces_and_macs
 	for iface_name in "${IFACES_AND_MACS[@]}"; do
-		mac_item=$(cat < "/sys/class/net/${iface_name}/address" 2> /dev/null)
+		mac_item=$(cat "/sys/class/net/${iface_name}/address" 2> /dev/null)
 		if [ -n "${mac_item}" ]; then
 			ifaces_and_macs[${iface_name}]=${mac_item}
 		fi
@@ -1237,7 +1245,7 @@ function select_internet_interface() {
 		;;
 	esac
 
-	inet_ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
+	inet_ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v | grep "${interface}" -v)
 
 	option_counter=0
 	for item in ${inet_ifaces}; do
@@ -1311,7 +1319,7 @@ function select_interface() {
 	current_menu="select_interface_menu"
 	language_strings "${language}" 24 "green"
 	print_simple_separator
-	ifaces=$(ip link | egrep "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v)
+	ifaces=$(ip link | grep -E "^[0-9]+" | cut -d ':' -f 2 | awk '{print $1}' | grep lo -v)
 	option_counter=0
 	for item in ${ifaces}; do
 		option_counter=$((option_counter + 1))
@@ -1730,7 +1738,7 @@ function set_wep_key_script() {
 	EOF
 
 	cat >&8 <<-'EOF'
-			wep_script_alive=$(ps uax | awk '{print $2}' | egrep "^${1}$" 2> /dev/null)
+			wep_script_alive=$(ps uax | awk '{print $2}' | grep -E "^${1}$" 2> /dev/null)
 			if [ -z "${wep_script_alive}" ]; then
 				break
 			fi
@@ -1830,7 +1838,7 @@ function set_wep_script() {
 	cat >&6 <<-'EOF'
 						wep_chopchop_phase=2
 					else
-						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
+						wep_chopchop_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase1_pid}$" 2> /dev/null)
 						if [[ ${wep_chopchop_launched} -eq 0 ]] || [ -z "${wep_chopchop_phase1_pid_alive}" ]; then
 							wep_chopchop_launched=1
 	EOF
@@ -1858,7 +1866,7 @@ function set_wep_script() {
 					wep_chopchop_phase=3
 				;;
 				3)
-					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
+					wep_chopchop_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_chopchop_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_chopchop_phase2_pid_alive}" ]; then
 	EOF
 
@@ -1893,7 +1901,7 @@ function set_wep_script() {
 	cat >&6 <<-'EOF'
 						wep_fragmentation_phase=2
 					else
-						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
+						wep_fragmentation_phase1_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase1_pid}$" 2> /dev/null)
 						if [[ ${wep_fragmentation_launched} -eq 0 ]] || [ -z "${wep_fragmentation_phase1_pid_alive}" ]; then
 							wep_fragmentation_launched=1
 	EOF
@@ -1921,7 +1929,7 @@ function set_wep_script() {
 					wep_fragmentation_phase=3
 				;;
 				3)
-					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
+					wep_fragmentation_phase2_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fragmentation_phase2_pid}$" 2> /dev/null)
 					if [ -z "${wep_fragmentation_phase2_pid_alive}" ]; then
 	EOF
 
@@ -1951,7 +1959,7 @@ function set_wep_script() {
 
 	cat >&6 <<-'EOF'
 			for item in "${wep_script_processes[@]}"; do
-				egrep "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
+				grep -E "^${item}$" "${path_to_process_file}" > /dev/null 2>&1
 	EOF
 
 	cat >&6 <<-'EOF'
@@ -1988,8 +1996,8 @@ function set_wep_script() {
 
 	cat >&6 <<-'EOF'
 		while true; do
-			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_script_capture_pid}$" 2> /dev/null)
-			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_fakeauth_pid}$" 2> /dev/null)
+			wep_capture_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_script_capture_pid}$" 2> /dev/null)
+			wep_fakeauth_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_fakeauth_pid}$" 2> /dev/null)
 
 			if [[ -n ${wep_capture_pid_alive} ]] && [[ -z ${wep_fakeauth_pid_alive} ]]; then
 	EOF
@@ -2073,7 +2081,7 @@ function set_wep_script() {
 				write_wep_processes
 			fi
 
-			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | egrep "^${wep_aircrack_pid}$" 2> /dev/null)
+			wep_aircrack_pid_alive=$(ps uax | awk '{print $2}' | grep -E "^${wep_aircrack_pid}$" 2> /dev/null)
 			if [[ -z "${wep_aircrack_pid_alive}" ]] && [[ ${wep_aircrack_launched} -eq 1 ]]; then
 				break
 			elif [[ -z "${wep_capture_pid_alive}" ]]; then
@@ -3761,7 +3769,7 @@ function check_valid_file_to_clean() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA|WEP" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	if [ "${nets_from_file}" = "" ]; then
 		return 1
@@ -3783,7 +3791,7 @@ function check_valid_file_to_clean() {
 		return 1
 	fi
 
-	echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "1 handshake" > /dev/null
+	echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "1 handshake" > /dev/null
 	if [ "$?" != "0" ]; then
 		return 1
 	fi
@@ -3796,7 +3804,7 @@ function check_bssid_in_captured_file() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -3836,7 +3844,7 @@ function select_wpa_bssid_target_from_captured_file() {
 
 	debug_print
 
-	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | egrep "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
+	nets_from_file=$(echo "1" | aircrack-ng "${1}" 2> /dev/null | grep -E "WPA \([1-9][0-9]? handshake" | awk '{ saved = $1; $1 = ""; print substr($0, 2) }')
 
 	echo
 	if [ "${nets_from_file}" = "" ]; then
@@ -4356,7 +4364,7 @@ function set_show_charset() {
 						if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
 							showcharset+=$(hashcat --help | grep "${item} =" | awk '{print $3}')
 						else
-							showcharset+=$(hashcat --help | egrep "^  ${item#'?'} \|" | awk '{print $3}')
+							showcharset+=$(hashcat --help | grep -E "^  ${item#'?'} \|" | awk '{print $3}')
 						fi
 					done
 				;;
@@ -4364,7 +4372,7 @@ function set_show_charset() {
 					if [ "${hashcat_charset_fix_needed}" -eq 0 ]; then
 						showcharset=$(hashcat --help | grep "${charset_tmp} =" | awk '{print $3}')
 					else
-						showcharset=$(hashcat --help | egrep "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
+						showcharset=$(hashcat --help | grep -E "^  ${charset_tmp#'?'} \|" | awk '{print $3}')
 					fi
 				;;
 			esac
@@ -6070,7 +6078,7 @@ function parse_ettercap_log() {
 	echo
 	language_strings "${language}" 304 "blue"
 
-	readarray -t CAPTUREDPASS < <(etterlog -L -p -i "${tmp_ettercaplog}.eci" 2> /dev/null | egrep -i "USER:|PASS:")
+	readarray -t CAPTUREDPASS < <(etterlog -L -p -i "${tmp_ettercaplog}.eci" 2> /dev/null | grep -E -i "USER:|PASS:")
 
 	{
 	echo ""
@@ -6112,7 +6120,7 @@ function parse_bettercap_log() {
 
 	local regexp='USER|PASS|CREDITCARD|COOKIE|PWD|USUARIO|CONTRASE'
 	local regexp2='USER-AGENT|COOKIES|BEEFHOOK'
-	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | egrep -i ${regexp} | egrep -vi ${regexp2})
+	readarray -t BETTERCAPLOG < <(cat < "${tmp_bettercaplog}" 2> /dev/null | grep -E -i ${regexp} | grep -E -vi ${regexp2})
 
 	{
 	echo ""
@@ -7919,7 +7927,7 @@ function get_bettercap_version() {
 
 	debug_print
 
-	bettercap_version=$(bettercap -v 2> /dev/null | egrep "^bettercap [0-9]" | awk '{print $2}')
+	bettercap_version=$(bettercap -v 2> /dev/null | grep -E "^bettercap [0-9]" | awk '{print $2}')
 }
 
 #Determine bully version
@@ -7936,9 +7944,9 @@ function get_reaver_version() {
 
 	debug_print
 
-	reaver_version=$(reaver -h 2>&1 > /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+	reaver_version=$(reaver -h 2>&1 > /dev/null | grep -E "^Reaver v[0-9]" | awk '{print $2}')
 	if [ -z "${reaver_version}" ]; then
-		reaver_version=$(reaver -h 2> /dev/null | egrep "^Reaver v[0-9]" | awk '{print $2}')
+		reaver_version=$(reaver -h 2> /dev/null | grep -E "^Reaver v[0-9]" | awk '{print $2}')
 	fi
 	reaver_version=${reaver_version#"v"}
 }
@@ -8016,7 +8024,7 @@ function check_pins_database_file() {
 		language_strings "${language}" 376 "yellow"
 		echo
 		language_strings "${language}" 287 "blue"
-		check_internet_access "${host_to_check_internet}"
+		check_repository_access
 		if [ "$?" = "0" ]; then
 			get_local_pin_dbfile_checksum "${scriptfolder}${known_pins_dbfile}"
 			get_remote_pin_dbfile_checksum
@@ -8051,7 +8059,7 @@ function check_pins_database_file() {
 		echo
 		if hash curl 2> /dev/null; then
 			language_strings "${language}" 287 "blue"
-			check_internet_access "${host_to_check_internet}"
+			check_repository_access
 			if [ "$?" != "0" ]; then
 				echo
 				language_strings "${language}" 375 "yellow"
@@ -9001,7 +9009,7 @@ function validate_et_internet_interface() {
 
 	echo
 	language_strings "${language}" 287 "blue"
-	check_internet_access "${host_to_check_internet}"
+	check_internet_access
 
 	if [ "$?" != "0" ]; then
 		echo
@@ -9025,31 +9033,65 @@ function validate_et_internet_interface() {
 	return 0
 }
 
+#Check for access to airgeddon repository
+function check_repository_access() {
+
+	debug_print
+
+	if hash curl 2> /dev/null; then
+		check_url_curl ${repository_hostname}
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	fi
+	return 1
+}
+
 #Check for active internet connection
 function check_internet_access() {
 
 	debug_print
 
-	ping -c 1 "${1}" -W 1 > /dev/null 2>&1
-	if [ "$?" = "0" ]; then
-		return 0
-	fi
+	for item in "${ips_to_check_internet[@]}"; do
+		ping -c 1 "${item}" -W 1 > /dev/null 2>&1
+		if [ "$?" = "0" ]; then
+			return 0
+		fi
+	done
 
 	if hash curl 2> /dev/null; then
-		timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
+		check_url_curl ${repository_hostname}
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	if hash wget 2> /dev/null; then
-		timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
+		check_url_wget ${repository_hostname}
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	return 1
+}
+
+#Check for access to an url using curl
+function check_url_curl() {
+
+	debug_print
+
+	timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
+	return $?
+}
+
+#Check for access to an url using wget
+function check_url_wget() {
+
+	debug_print
+
+	timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
+	return $?
 }
 
 #Check for default route on an interface
@@ -9069,16 +9111,10 @@ function autoupdate_check() {
 	echo
 	language_strings "${language}" 210 "blue"
 	echo
-	hasinternet_access_for_update=0
 
-	check_internet_access "${host_to_check_internet}"
+	check_repository_access
 	if [ "$?" = "0" ]; then
-		hasinternet_access_for_update=1
-	fi
-
-	if [ ${hasinternet_access_for_update} -eq 1 ]; then
-
-		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -1 | cut -d "\"" -f 2)
+		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -n 1 | cut -d "\"" -f 2)
 
 		if [ "${airgeddon_last_version}" != "" ]; then
 			if compare_floats_greater_than "${airgeddon_last_version}" "${airgeddon_version}"; then

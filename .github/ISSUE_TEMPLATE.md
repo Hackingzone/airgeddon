@@ -1,19 +1,19 @@
- - Please, answer the questions to provide maximum of info.
- - Answer ALWAYS in english.
- - If more info is needed and requested by airgeddon staff but there is no answer in 10 days, the issue will be closed.
+<!--- Please, answer the questions to provide maximum of info -->
+<!--- Answer in English only -->
+<!--- If additional info is required and requested by airgeddon's staff, you have 10 days to respond otherwise the issue will be closed -->
 
 #### What is your airgeddon version?
 
-*Insert answer here*
+<!--- Insert answer here -->
 
 #### What is your Linux O.S. and which version?
 
-*Insert answer here*
+<!--- Insert answer here, e.g. Kali Linux 2017.1, Ubuntu 16.04.2 -->
 
 #### Which is the chipset of your wireless card?
 
-*Insert answer here if apply*
+<!--- Insert answer here if apply -->
 
 #### Describe the issue and the steps to reproduce it
 
-*Insert description here. Screenshots or any clarifying info are welcome too*
+<!--- Insert description here. Screenshots or any clarifying info are welcome too -->
