@@ -1,5 +1,5 @@
 ### 7.1
- - Added default choice for yes/no questions
+ - Added default choice for some yes/no question. Regexp improved
  - Tested compatibility with Backbox 4.7 and Parrot 3.6
  
 ### 7.02

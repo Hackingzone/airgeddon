@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170521
+#Date.........: 20170523
 #Version......: 7.1
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -1372,9 +1372,10 @@ function ask_yesno() {
 	debug_print
 
 	if [ -z "${2}" ]; then
-		default_choice="y"
-		visual_choice="[Y/n]"
+		local regexp="^[YN]$|^YES$|^NO$"
+		visual_choice="[y/n]"
 	else
+		local regexp="^[YN]$|^YES$|^NO$|^$"
 		default_choice="${2}"
 		if [[ ${default_choice^^} =~ ^[Y]$|^YES$ ]]; then
 			default_choice="y"
@@ -1386,7 +1387,7 @@ function ask_yesno() {
 	fi
 
 	yesno="null"
-	while [[ ! ${yesno^^} =~ ^[YN]$|^YES$|^NO$|^$ ]]; do
+	while [[ ! ${yesno^^} =~ ${regexp} ]]; do
 		read_yesno "${1}"
 	done
 
@@ -3740,7 +3741,7 @@ function manage_asking_for_captured_file() {
 	if [ -n "${enteredpath}" ]; then
 		echo
 		language_strings "${language}" 186 "blue"
-		ask_yesno 187
+		ask_yesno 187 "yes"
 		if [ ${yesno} = "n" ]; then
 			ask_capture_file
 		fi
@@ -3757,7 +3758,7 @@ function manage_asking_for_dictionary_file() {
 	if [ -n "${DICTIONARY}" ]; then
 		echo
 		language_strings "${language}" 183 "blue"
-		ask_yesno 184
+		ask_yesno 184 "yes"
 		if [ ${yesno} = "n" ]; then
 			ask_dictionary
 		fi
@@ -3774,7 +3775,7 @@ function manage_asking_for_rule_file() {
 	if [ -n "${RULES}" ]; then
 		echo
 		language_strings "${language}" 239 "blue"
-		ask_yesno 240
+		ask_yesno 240 "yes"
 		if [ ${yesno} = "n" ]; then
 			ask_rules
 		fi
@@ -3884,7 +3885,7 @@ function select_wpa_bssid_target_from_captured_file() {
 	for targetbssid in "${bssids_detected[@]}"; do
 		if [ "${bssid}" = "${targetbssid}" ]; then
 			language_strings "${language}" 192 "blue"
-			ask_yesno 193
+			ask_yesno 193 "yes"
 
 			if [ ${yesno} = "y" ]; then
 				bssid=${targetbssid}
@@ -4071,7 +4072,7 @@ function manage_hashcat_pot() {
 
 		echo
 		language_strings "${language}" 234 "yellow"
-		ask_yesno 235
+		ask_yesno 235 "yes"
 		if [ ${yesno} = "y" ]; then
 
 			hashcat_potpath="${default_save_path}"
@@ -4101,7 +4102,7 @@ function manage_ettercap_log() {
 	debug_print
 
 	ettercap_log=0
-	ask_yesno 302
+	ask_yesno 302 "yes"
 	if [ ${yesno} = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
@@ -4126,7 +4127,7 @@ function manage_bettercap_log() {
 	debug_print
 
 	bettercap_log=0
-	ask_yesno 302
+	ask_yesno 302 "yes"
 	if [ ${yesno} = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
@@ -5923,7 +5924,7 @@ function prepare_beef_start() {
 	valid_possible_beef_path=0
 	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
 		language_strings "${language}" 405 "blue"
-		ask_yesno 191
+		ask_yesno 191 "yes"
 		if [ ${yesno} = "y" ]; then
 			manual_beef_set
 			search_for_beef
@@ -5945,7 +5946,7 @@ function prepare_beef_start() {
 		language_strings "${language}" 115 "read"
 	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
 		language_strings "${language}" 405 "blue"
-		ask_yesno 415
+		ask_yesno 415 "yes"
 		if [ ${yesno} = "y" ]; then
 			manual_beef_set
 			search_for_beef
@@ -6307,7 +6308,7 @@ function clean_handshake_file_option() {
 		readpath=1
 	else
 		language_strings "${language}" 151 "blue"
-		ask_yesno 152
+		ask_yesno 152 "yes"
 		if [ ${yesno} = "y" ]; then
 			filetoclean="${enteredpath}"
 		else
@@ -6462,7 +6463,7 @@ function capture_handshake_evil_twin() {
 	processidattack=$!
 	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
 
-	ask_yesno 145 "no"
+	ask_yesno 145
 	handshake_captured=${yesno}
 	kill "${processidcapture}" &> /dev/null
 	if [ "${handshake_captured}" = "y" ]; then
@@ -6728,7 +6729,7 @@ function attack_handshake_menu() {
 	debug_print
 
 	if [ "${1}" = "handshake" ]; then
-		ask_yesno 145 "no"
+		ask_yesno 145
 		handshake_captured=${yesno}
 		kill "${processidcapture}" &> /dev/null
 		if [ "${handshake_captured}" = "y" ]; then
@@ -7285,7 +7286,7 @@ function et_prerequisites() {
 		echo
 		language_strings "${language}" 276 "yellow"
 		print_simple_separator
-		ask_yesno 277
+		ask_yesno 277 "yes"
 		if [ ${yesno} = "n" ]; then
 			return_to_et_main_menu=1
 			return_to_et_main_menu_from_beef=1
@@ -7404,13 +7405,13 @@ function ask_et_handshake_file() {
 		readpath=1
 	elif [[ -z "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
-		ask_yesno 187
+		ask_yesno 187 "yes"
 		if [ ${yesno} = "n" ]; then
 			readpath=1
 		fi
 	elif [[ -n "${enteredpath}" ]] && [[ -z "${et_handshake}" ]]; then
 		language_strings "${language}" 151 "blue"
-		ask_yesno 187
+		ask_yesno 187 "yes"
 		if [ ${yesno} = "y" ]; then
 			et_handshake="${enteredpath}"
 		else
@@ -7418,7 +7419,7 @@ function ask_et_handshake_file() {
 		fi
 	elif [[ -n "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
-		ask_yesno 187
+		ask_yesno 187 "yes"
 		if [ ${yesno} = "n" ]; then
 			readpath=1
 		fi
@@ -7622,7 +7623,7 @@ function detect_internet_interface() {
 	if [ -n "${internet_interface}" ]; then
 		echo
 		language_strings "${language}" 285 "blue"
-		ask_yesno 284
+		ask_yesno 284 "yes"
 		if [ ${yesno} = "n" ]; then
 			select_internet_interface
 		fi
