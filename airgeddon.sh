@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170515
-#Version......: 7.02
+#Date.........: 20170521
+#Version......: 7.1
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,8 +106,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.02"
-language_strings_expected_version="7.02-1"
+airgeddon_version="7.1"
+language_strings_expected_version="7.1-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -1371,17 +1371,36 @@ function ask_yesno() {
 
 	debug_print
 
-	yesno=""
-	while [[ ! ${yesno} =~ ^[YyNn]$ ]]; do
+	if [ -z "${2}" ]; then
+		default_choice="y"
+		visual_choice="[Y/n]"
+	else
+		default_choice="${2}"
+		if [[ ${default_choice^^} =~ ^[Y]$|^YES$ ]]; then
+			default_choice="y"
+			visual_choice="[Y/n]"
+		else
+			default_choice="n"
+			visual_choice="[y/N]"
+		fi
+	fi
+
+	yesno="null"
+	while [[ ! ${yesno^^} =~ ^[YN]$|^YES$|^NO$|^$ ]]; do
 		read_yesno "${1}"
 	done
 
-	if [ "${yesno}" = "Y" ]; then
-		yesno="y"
-	fi
-	if [ "${yesno}" = "N" ]; then
-		yesno="n"
-	fi
+	case ${yesno^^} in
+		"Y"|"YES")
+			yesno="y"
+		;;
+		"N"|"NO")
+			yesno="n"
+		;;
+		"")
+			yesno="${default_choice}"
+		;;
+	esac
 }
 
 #Read the user input on channel questions
@@ -6443,7 +6462,7 @@ function capture_handshake_evil_twin() {
 	processidattack=$!
 	sleep ${sleeptimeattack} && kill ${processidattack} &> /dev/null
 
-	ask_yesno 145
+	ask_yesno 145 "no"
 	handshake_captured=${yesno}
 	kill "${processidcapture}" &> /dev/null
 	if [ "${handshake_captured}" = "y" ]; then
@@ -6709,7 +6728,7 @@ function attack_handshake_menu() {
 	debug_print
 
 	if [ "${1}" = "handshake" ]; then
-		ask_yesno 145
+		ask_yesno 145 "no"
 		handshake_captured=${yesno}
 		kill "${processidcapture}" &> /dev/null
 		if [ "${handshake_captured}" = "y" ]; then
@@ -7059,7 +7078,7 @@ function explore_for_wps_targets_option() {
 
 		if [[ ${selected_wps_target_network} -ge 1 ]] && [[ ${selected_wps_target_network} -le ${wash_counter} ]]; then
 			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
-				ask_yesno 350
+				ask_yesno 350 "no"
 				if [ ${yesno} = "y" ]; then
 					break
 				else
@@ -7274,7 +7293,7 @@ function et_prerequisites() {
 		fi
 	fi
 
-	ask_yesno 419
+	ask_yesno 419 "no"
 	if [ ${yesno} = "y" ]; then
 		mac_spoofing_desired=1
 	fi
@@ -7286,7 +7305,7 @@ function et_prerequisites() {
 		language_strings "${language}" 286 "pink"
 		print_simple_separator
 		if [ ${retrying_handshake_capture} -eq 0 ]; then
-			ask_yesno 321
+			ask_yesno 321 "no"
 		fi
 
 		if [[ ${yesno} = "n" ]] || [[ ${retrying_handshake_capture} -eq 1 ]]; then
@@ -7447,7 +7466,7 @@ function et_dos_menu() {
 				if [ "${et_mode}" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
-						ask_yesno 326
+						ask_yesno 326 "no"
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
@@ -7494,7 +7513,7 @@ function et_dos_menu() {
 				if [ "${et_mode}" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
-						ask_yesno 326
+						ask_yesno 326 "no"
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
@@ -7541,7 +7560,7 @@ function et_dos_menu() {
 				if [ "${et_mode}" = "et_captive_portal" ]; then
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
-						ask_yesno 326
+						ask_yesno 326 "no"
 						if [ ${yesno} = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
@@ -7734,7 +7753,7 @@ function capture_traps() {
 						exit_script_option
 					;;
 					*)
-						ask_yesno 12
+						ask_yesno 12 "no"
 						if [ ${yesno} = "y" ]; then
 							exit_code=1
 							exit_script_option
@@ -7773,7 +7792,7 @@ function exit_script_option() {
 	language_strings "${language}" 165 "blue"
 
 	if [ "${ifacemode}" = "Monitor" ]; then
-		ask_yesno 166
+		ask_yesno 166 "no"
 		if [ ${yesno} = "n" ]; then
 			action_on_exit_taken=1
 			language_strings "${language}" 167 "multiline"
@@ -8103,7 +8122,7 @@ function ask_for_pin_dbfile_download_retry() {
 
 	debug_print
 
-	ask_yesno 380
+	ask_yesno 380 "no"
 	if [ ${yesno} = "n" ]; then
 		pin_dbfile_checked=1
 	fi

@@ -1,3 +1,7 @@
+### 7.1
+ - Added default choice for yes/no questions
+ - Tested compatibility with Backbox 4.7 and Parrot 3.6
+ 
 ### 7.02
  - Improved internet checking. Now ip address and host based methods
  - Internet checking function splitted. Now separated from repository access
