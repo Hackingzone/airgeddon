@@ -9059,7 +9059,7 @@ function check_repository_access() {
 	debug_print
 
 	if hash curl 2> /dev/null; then
-		check_url_curl ${repository_hostname}
+		check_url_curl "https://${repository_hostname}"
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
@@ -9080,14 +9080,14 @@ function check_internet_access() {
 	done
 
 	if hash curl 2> /dev/null; then
-		check_url_curl ${repository_hostname}
+		check_url_curl "https://${repository_hostname}"
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
 	fi
 
 	if hash wget 2> /dev/null; then
-		check_url_wget ${repository_hostname}
+		check_url_wget "https://${repository_hostname}"
 		if [ "$?" = "0" ]; then
 			return 0
 		fi
@@ -9101,7 +9101,7 @@ function check_url_curl() {
 
 	debug_print
 
-	timeout -s SIGTERM 15 curl -s "http://${1}" > /dev/null 2>&1
+	timeout -s SIGTERM 15 curl -s "${1}" > /dev/null 2>&1
 	return $?
 }
 
@@ -9110,7 +9110,7 @@ function check_url_wget() {
 
 	debug_print
 
-	timeout -s SIGTERM 15 wget -q --spider "http://${1}" > /dev/null 2>&1
+	timeout -s SIGTERM 15 wget -q --spider "${1}" > /dev/null 2>&1
 	return $?
 }
 
