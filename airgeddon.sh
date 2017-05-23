@@ -7754,7 +7754,7 @@ function capture_traps() {
 						exit_script_option
 					;;
 					*)
-						ask_yesno 12 "no"
+						ask_yesno 12 "yes"
 						if [ ${yesno} = "y" ]; then
 							exit_code=1
 							exit_script_option
