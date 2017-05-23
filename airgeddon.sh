@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170523
+#Date.........: 20170524
 #Version......: 7.1
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -351,9 +351,23 @@ function download_language_strings_file() {
 
 	debug_print
 
+	local lang_file_downloaded=0
 	remote_language_strings_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_language_strings_file} 2> /dev/null)
 
-	if [ "${remote_language_strings_file}" != "${curl_404_error}" ]; then
+	if [[ -n "${remote_language_strings_file}" ]] && [[ "${remote_language_strings_file}" != "${curl_404_error}" ]]; then
+		lang_file_downloaded=1
+	else
+		http_proxy_detect
+		if [ "${http_proxy_set}" -eq 1 ]; then
+
+			remote_language_strings_file=$(timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_language_strings_file} 2> /dev/null)
+			if [[ -n "${remote_language_strings_file}" ]] && [[ "${remote_language_strings_file}" != "${curl_404_error}" ]]; then
+				lang_file_downloaded=1
+			fi
+		fi
+	fi
+
+	if [ "${lang_file_downloaded}" -eq 1 ]; then
 		echo "${remote_language_strings_file}" > "${scriptfolder}${language_strings_file}"
 		chmod +x "${scriptfolder}${language_strings_file}" > /dev/null 2>&1
 		#shellcheck source=./language_strings.sh
@@ -8108,9 +8122,23 @@ function download_pins_database_file() {
 
 	debug_print
 
+	local pindb_file_downloaded=0
 	remote_pindb_file=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile} 2> /dev/null)
 
-	if [ "${remote_pindb_file}" != "${curl_404_error}" ]; then
+	if [[ -n "${remote_pindb_file}" ]] && [[ "${remote_pindb_file}" != "${curl_404_error}" ]]; then
+		pindb_file_downloaded=1
+	else
+		http_proxy_detect
+		if [ "${http_proxy_set}" -eq 1 ]; then
+
+			remote_pindb_file=$(timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_pins_dbfile} 2> /dev/null)
+			if [[ -n "${remote_pindb_file}" ]] && [[ "${remote_pindb_file}" != "${curl_404_error}" ]]; then
+				pindb_file_downloaded=1
+			fi
+		fi
+	fi
+
+	if [ "${pindb_file_downloaded}" -eq 1 ]; then
 		echo "${remote_pindb_file}" > "${scriptfolder}${known_pins_dbfile}"
 		return 0
 	else
@@ -8144,8 +8172,17 @@ function get_remote_pin_dbfile_checksum() {
 
 	remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
 
-	if [ "${remote_pin_dbfile_checksum}" != "${curl_404_error}" ]; then
+	if [[ -n "${remote_pin_dbfile_checksum}" ]] && [[ "${remote_pin_dbfile_checksum}" != "${curl_404_error}" ]]; then
 		return 0
+	else
+		http_proxy_detect
+		if [ "${http_proxy_set}" -eq 1 ]; then
+
+			remote_pin_dbfile_checksum=$(timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_pins_dbfile_checksum} 2> /dev/null | head -n 1)
+			if [[ -n "${remote_pin_dbfile_checksum}" ]] && [[ "${remote_pin_dbfile_checksum}" != "${curl_404_error}" ]]; then
+				return 0
+			fi
+		fi
 	fi
 	return 1
 }
@@ -8744,6 +8781,7 @@ function initialize_script_settings() {
 	beef_found=0
 	fake_beef_found=0
 	set_script_folder_and_name
+	http_proxy_set=0
 }
 
 #Detect screen resolution if possible
@@ -9005,6 +9043,7 @@ function download_last_version() {
 	debug_print
 
 	rewrite_script_with_custom_beef "search"
+	#TODO implement curl using proxy if download fails
 	download_language_strings_file && timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
 	if [ "$?" = "0" ]; then
@@ -9102,7 +9141,16 @@ function check_url_curl() {
 	debug_print
 
 	timeout -s SIGTERM 15 curl -s "${1}" > /dev/null 2>&1
-	return $?
+	if [ "$?" = "0" ]; then
+		return 0
+	fi
+
+	http_proxy_detect
+	if [ "${http_proxy_set}" -eq 1 ]; then
+		timeout -s SIGTERM 15 curl -s --proxy "${http_proxy}" "${1}" > /dev/null 2>&1
+		return $?
+	fi
+	return 1
 }
 
 #Check for access to an url using wget
@@ -9111,7 +9159,30 @@ function check_url_wget() {
 	debug_print
 
 	timeout -s SIGTERM 15 wget -q --spider "${1}" > /dev/null 2>&1
-	return $?
+	if [ "$?" = "0" ]; then
+		return 0
+	fi
+
+	http_proxy_detect
+	if [ "${http_proxy_set}" -eq 1 ]; then
+		timeout -s SIGTERM 15 wget -q --spider -e "use_proxy=yes" -e "http_proxy=${http_proxy}" "${1}" > /dev/null 2>&1
+		return $?
+	fi
+	return 1
+}
+
+#Detect if there is a http proxy configured on system
+function http_proxy_detect() {
+
+	debug_print
+
+	http_proxy=$(env | grep HTTP_PROXY | awk -F "=" '{print $2}')
+
+	if [ -n "${http_proxy}" ]; then
+		http_proxy_set=1
+	else
+		http_proxy_set=0
+	fi
 }
 
 #Check for default route on an interface
@@ -9134,6 +9205,7 @@ function autoupdate_check() {
 
 	check_repository_access
 	if [ "$?" = "0" ]; then
+		#TODO implement curl using proxy if download fails
 		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -n 1 | cut -d "\"" -f 2)
 
 		if [ "${airgeddon_last_version}" != "" ]; then
