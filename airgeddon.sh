@@ -9194,7 +9194,7 @@ function http_proxy_detect() {
 
 	debug_print
 
-	http_proxy=$(env | grep HTTP_PROXY | awk -F "=" '{print $2}')
+	http_proxy=$(env | grep -i HTTP_PROXY | head -n 1 | awk -F "=" '{print $2}')
 
 	if [ -n "${http_proxy}" ]; then
 		http_proxy_set=1
