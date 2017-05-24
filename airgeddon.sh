@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170524
+#Date.........: 20170525
 #Version......: 7.1
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -9223,18 +9223,33 @@ function autoupdate_check() {
 
 	check_repository_access
 	if [ "$?" = "0" ]; then
-		#TODO implement curl using proxy if download fails
+		local version_checked=0
 		airgeddon_last_version=$(timeout -s SIGTERM 15 curl -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -n 1 | cut -d "\"" -f 2)
 
-		if [ "${airgeddon_last_version}" != "" ]; then
+		if [ -n "${airgeddon_last_version}" ]; then
+			version_checked=1
+		else
+			http_proxy_detect
+			if [ "${http_proxy_set}" -eq 1 ]; then
+
+				airgeddon_last_version=$(timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_directlink} 2> /dev/null | grep "airgeddon_version=" | head -n 1 | cut -d "\"" -f 2)
+				if [ -n "${airgeddon_last_version}" ]; then
+					version_checked=1
+				else
+					language_strings "${language}" 5 "yellow"
+				fi
+			else
+				language_strings "${language}" 5 "yellow"
+			fi
+		fi
+
+		if [ "${version_checked}" -eq 1 ]; then
 			if compare_floats_greater_than "${airgeddon_last_version}" "${airgeddon_version}"; then
 				language_strings "${language}" 213 "yellow"
 				download_last_version
 			else
 				language_strings "${language}" 212 "yellow"
 			fi
-		else
-			language_strings "${language}" 5 "yellow"
 		fi
 	else
 		language_strings "${language}" 211 "yellow"
