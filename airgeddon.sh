@@ -9043,10 +9043,28 @@ function download_last_version() {
 	debug_print
 
 	rewrite_script_with_custom_beef "search"
-	#TODO implement curl using proxy if download fails
-	download_language_strings_file && timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
 
+	local script_file_downloaded=0
+
+	download_language_strings_file
 	if [ "$?" = "0" ]; then
+		timeout -s SIGTERM 15 curl -L ${urlscript_directlink} -s -o "${0}"
+
+		if [ "$?" = "0" ]; then
+			script_file_downloaded=1
+		else
+			http_proxy_detect
+			if [ "${http_proxy_set}" -eq 1 ]; then
+
+				timeout -s SIGTERM 15 curl --proxy "${http_proxy}" -L ${urlscript_directlink} -s -o "${0}"
+				if [ "$?" = "0" ]; then
+					script_file_downloaded=1
+				fi
+			fi
+		fi
+	fi
+
+	if [ "${script_file_downloaded}" -eq 1 ]; then
 		echo
 		language_strings "${language}" 214 "yellow"
 
