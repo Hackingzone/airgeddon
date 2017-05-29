@@ -12,7 +12,6 @@ LABEL \
 
 #Url env vars
 ENV AIRGEDDON_URL="https://github.com/v1s1t0r1sh3r3/airgeddon.git"
-ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
 
 #Update system
@@ -110,21 +109,6 @@ RUN sed -i 's|auto_update=1|auto_update=0|' airgeddon/airgeddon.sh
 #Make bash script files executable
 RUN chmod +x airgeddon/*.sh
 
-#Prepare packages to upgrade Bully
-RUN \
-	apt-get -y install \
-	build-essential \
-	libpcap-dev
-
-#Upgrade Bully
-RUN \
-	git clone ${BULLY_URL} && \
-	cd /opt/bully/src && \
-	make && \
-	make install && \
-	cp /usr/local/bin/bully /usr/bin/ && \
-	chmod +x /usr/bin/bully
-
 #Downgrade Hashcat
 RUN \
 	git clone ${HASHCAT2_URL} && \
@@ -144,7 +128,6 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/pindb_checksum.txt > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/Dockerfile > /dev/null 2>&1 && \
 	rm -rf /opt/airgeddon/binaries > /dev/null 2>&1 && \
-	rm -rf /opt/bully > /dev/null 2>&1 && \
 	rm -rf /opt/hashcat2.0 > /dev/null 2>&1 && \
 	rm -rf /tmp/* > /dev/null 2>&1
 
