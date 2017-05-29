@@ -47,6 +47,7 @@ RUN \
 	apt-get -y install \
 	ethtool \
 	pciutils \
+	usbutils \
 	rfkill \
 	x11-utils \
 	wget
