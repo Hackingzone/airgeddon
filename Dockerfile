@@ -16,8 +16,7 @@ ENV BULLY_URL="https://github.com/v1s1t0r1sh3r3/bully.git"
 ENV HASHCAT2_URL="https://github.com/v1s1t0r1sh3r3/hashcat2.0.git"
 
 #Update system
-RUN \
-	apt-get update
+RUN apt-get update
 
 #Set locales
 RUN \
@@ -86,35 +85,30 @@ RUN \
 #Env var for display
 ENV DISPLAY=":0"
 
-#Create dir for external files
-RUN \
-	mkdir /io
+#Create volume dir for external files
+RUN mkdir /io
+VOLUME /io
 
 #Set workdir
 WORKDIR /opt/
 
 #airgeddon install method 1 (only one method can be used, other must be commented)
-#Install airgeddon (Dockerhub automated build process)
-RUN \
-	mkdir airgeddon
-COPY \
-	. /opt/airgeddon
+#Install airgeddon (Docker Hub automated build process)
+RUN mkdir airgeddon
+COPY . /opt/airgeddon
 
 #airgeddon install method 2 (only one method can be used, other must be commented)
 #Install airgeddon (manual image build)
-#Uncomment one of them to select branch (master->latest, dev->beta)
+#Uncomment git clone line and one of the ENV vars to select branch (master->latest, dev->beta)
 #ENV BRANCH="master"
 #ENV BRANCH="dev"
-#RUN \
-#	git clone -b ${BRANCH} ${AIRGEDDON_URL}
+#RUN git clone -b ${BRANCH} ${AIRGEDDON_URL}
 
 #Remove auto update
-RUN \
-	sed -i 's|auto_update=1|auto_update=0|' airgeddon/airgeddon.sh
+RUN sed -i 's|auto_update=1|auto_update=0|' airgeddon/airgeddon.sh
 
 #Make bash script files executable
-RUN \
-	chmod +x airgeddon/*.sh
+RUN chmod +x airgeddon/*.sh
 
 #Prepare packages to upgrade Bully
 RUN \
@@ -137,23 +131,11 @@ RUN \
 	cp /opt/hashcat2.0/hashcat /usr/bin/ && \
 	chmod +x /usr/bin/hashcat
 
-#Install wireless drivers
-RUN \
-	apt-get -y install \
-	firmware-brcm80211 \
-	firmware-libertas \
-	firmware-realtek \
-	firmware-samsung \
-	firmware-iwlwifi \
-	firmware-linux \
-	firmware-linux-nonfree \
-	firmware-linux-free
-
 #Clean packages
 RUN \
-	apt-get autoremove && \
 	apt-get clean && \
-	apt-get autoclean
+	apt-get autoclean && \
+	apt-get autoremove
 
 #Clean files
 RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
@@ -170,4 +152,4 @@ RUN rm -rf /opt/airgeddon/imgs > /dev/null 2>&1 && \
 EXPOSE 3000
 
 #Entrypoint
-CMD ["bash", "-c", "/opt/airgeddon/airgeddon.sh"]
+CMD ["/bin/bash", "-c", "/opt/airgeddon/airgeddon.sh"]
