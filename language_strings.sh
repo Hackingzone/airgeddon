@@ -3842,7 +3842,7 @@ function language_strings() {
 	arr["GREEK",434]="Η επίθεση WEP \"All-in-One\" έχει αρχίσει. Πατήστε το κουμπί [Enter] σε αυτό το παράθυρο για να την σταματήσετε"
 
 	arr["ENGLISH",435]="Error trying to change interface mode. During the process the interface name must be changed, but it looks like you already have an interface occupying the name that would be needed (${normal_color}${desired_interface_name}${red_color})"
-	arr["SPANISH",435]="Error al intentar cambiar el modo de la interfaz. En el proceso el nombre del interfaz cambia, pero parece que ya tienes un interfaz ocupando el nombre que se necesitaría (${normal_color}${desired_interface_name}${red_color})"
+	arr["SPANISH",435]="Error al intentar cambiar el modo de la interfaz. En el proceso el nombre de la interfaz cambia, pero parece que ya tienes una interfaz ocupando el nombre que se necesitaría (${normal_color}${desired_interface_name}${red_color})"
 	arr["FRENCH",435]="Une erreur est survenue lors de la tentative de changement du mode de l'interface. L'identifiant de l'interface est changé pendant le processus mais il semble que l'identifiant prévu n'est plus disponible car il est déjà utilisé par une autre interface (${normal_color}${desired_interface_name}${red_color})"
 	arr["CATALAN",435]="Error en intentar canviar el mode de la interfície. En el procés el nom de la interfície canvia, però sembla que ja tens una interfície ocupant el nom que es necessitaria (${normal_color}${desired_interface_name}${red_color})"
 	arr["PORTUGUESE",435]="Erro ao tentar alterar o modo da interface. No processo o nome da interface muda, mas parece que já há uma interface ocupando o mesmo nome (${normal_color}${desired_interface_name}${red_color})"
