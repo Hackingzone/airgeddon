@@ -1,5 +1,5 @@
 ### 7.11
- - Added hccapx support for hashcat 3.30 or higher
+ - Added hccapx support for hashcat 3.40 or higher
 
 ### 7.1
  - Added default choice for some yes/no question. Regexp improved
