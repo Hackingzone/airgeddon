@@ -6258,13 +6258,14 @@ function convert_cap_to_hashcat_format() {
 		for item in "${possible_hccapx_converter_known_locations[@]}"; do
 			if [ -f "${item}" ]; then
 				hccapx_converter_found=1
+				hccapx_converter_path="${item}"
 				break
 			fi
 		done
 
 		if [ "${hccapx_converter_found}" -eq 1 ]; then
 			hashcat_tmp_file="hctmp.hccapx"
-			#TODO make conversion to hccapx (set into "${tmpdir}${hashcat_tmp_file}") using hashcat-utils tool
+			"${hccapx_converter_path}" "${enteredpath}" "${tmpdir}${hashcat_tmp_file}" > /dev/null 2>&1
 			return 0
 		else
 			echo
