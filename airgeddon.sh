@@ -4460,7 +4460,7 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -4471,7 +4471,7 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -4482,7 +4482,7 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -7984,7 +7984,7 @@ function set_hashcat_parameters() {
 	hashcat_fix=""
 	hashcat_charset_fix_needed=0
 	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
-		hashcat_fix=" -D 1 --force"
+		hashcat_fix=" --weak-hash-threshold 0 -D 1 --force"
 		hashcat_charset_fix_needed=1
 		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
 			hccapx_needed=1
