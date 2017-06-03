@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170603
+#Date.........: 20170604
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -4102,7 +4102,7 @@ function manage_hashcat_pot() {
 
 	local regexp="All hashes have been recovered"
 	if [ -n "${hashcat_fix}" ]; then
-		local regexp="Status\.{1,9}:[[:space:]]Cracked"
+		local regexp="Status\.+:[[:space:]]Cracked"
 	fi
 
 	if [[ ${hashcat_output} =~ ${regexp} ]]; then
