@@ -1,3 +1,6 @@
+### 7.11
+ - Added hccapx support for hashcat 3.30 or higher
+
 ### 7.1
  - Added default choice for some yes/no question. Regexp improved
  - Tested compatibility with Backbox 4.7 and Parrot 3.6

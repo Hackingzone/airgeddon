@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170525
-#Version......: 7.1
+#Date.........: 20170603
+#Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -106,13 +106,12 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.1"
-language_strings_expected_version="7.1-1"
+airgeddon_version="7.11"
+language_strings_expected_version="7.11-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
 minimum_bash_version_required="4.2"
-hashcat3_version="3.0"
 resume_message=224
 abort_question=12
 pending_of_translation="[PoT]"
@@ -121,6 +120,16 @@ standard_resolution="1024x768"
 curl_404_error="404: Not Found"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
+
+#hashcat vars
+hashcat3_version="3.0"
+hashcat_hccapx_version="3.40"
+hashcat_tmp_simple_name_file="hctmp"
+hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccap"
+hashcat_pot_tmp="${hashcat_tmp_simple_name_file}.pot"
+possible_hccapx_converter_known_locations=(
+										"/usr/lib/hashcat-utils/cap2hccapx.bin"
+									)
 
 #WEP vars
 wep_data="wepdata"
@@ -4012,6 +4021,11 @@ function hashcat_dictionary_attack_option() {
 		return
 	fi
 
+	convert_cap_to_hashcat_format
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
 	manage_asking_for_dictionary_file
 
 	echo
@@ -4029,6 +4043,11 @@ function hashcat_bruteforce_attack_option() {
 	manage_asking_for_captured_file
 
 	select_wpa_bssid_target_from_captured_file "${enteredpath}"
+	if [ "$?" != "0" ]; then
+		return
+	fi
+
+	convert_cap_to_hashcat_format
 	if [ "$?" != "0" ]; then
 		return
 	fi
@@ -4061,8 +4080,12 @@ function hashcat_rulebased_attack_option() {
 		return
 	fi
 
-	manage_asking_for_dictionary_file
+	convert_cap_to_hashcat_format
+	if [ "$?" != "0" ]; then
+		return
+	fi
 
+	manage_asking_for_dictionary_file
 	manage_asking_for_rule_file
 
 	echo
@@ -4102,7 +4125,7 @@ function manage_hashcat_pot() {
 				read_path "hashcatpot"
 			done
 
-			cp "${tmpdir}hctmp.pot" "${potenteredpath}"
+			cp "${tmpdir}${hashcat_pot_tmp}" "${potenteredpath}"
 			echo
 			language_strings "${language}" 236 "blue"
 			language_strings "${language}" 115 "read"
@@ -4437,8 +4460,7 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	convert_cap_to_hashcat_format
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -4449,8 +4471,7 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	convert_cap_to_hashcat_format
-	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}hctmp.hccap\" \"${charset}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -4461,8 +4482,7 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	convert_cap_to_hashcat_format
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}hctmp.hccap\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}hctmp.pot\" ${hashcat_fix} | tee /dev/fd/5"
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\" ${hashcat_fix} | tee /dev/fd/5"
 	exec 5>&1
 	hashcat_output=$(eval "${hashcat_cmd}")
 	language_strings "${language}" 115 "read"
@@ -6230,7 +6250,29 @@ function convert_cap_to_hashcat_format() {
 
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
-	echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}hctmp" -b "${bssid}" > /dev/null 2>&1
+	if [ "${hccapx_needed}" -eq 0 ]; then
+		echo "1" | aircrack-ng "${enteredpath}" -J "${tmpdir}${hashcat_tmp_simple_name_file}" -b "${bssid}" > /dev/null 2>&1
+		return 0
+	else
+		hccapx_converter_found=0
+		for item in "${possible_hccapx_converter_known_locations[@]}"; do
+			if [ -f "${item}" ]; then
+				hccapx_converter_found=1
+				break
+			fi
+		done
+
+		if [ "${hccapx_converter_found}" -eq 1 ]; then
+			hashcat_tmp_file="hctmp.hccapx"
+			#TODO make conversion to hccapx (set into "${tmpdir}${hashcat_tmp_file}") using hashcat-utils tool
+			return 0
+		else
+			echo
+			language_strings "${language}" 436 "red"
+			language_strings "${language}" 115 "read"
+			return 1
+		fi
+	fi
 }
 
 #Handshake tools menu
@@ -7944,6 +7986,9 @@ function set_hashcat_parameters() {
 	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
 		hashcat_fix=" -D 1 --force"
 		hashcat_charset_fix_needed=1
+		if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
+			hccapx_needed=1
+		fi
 	fi
 }
 
@@ -8782,6 +8827,7 @@ function initialize_script_settings() {
 	fake_beef_found=0
 	set_script_folder_and_name
 	http_proxy_set=0
+	hccapx_needed=0
 }
 
 #Detect screen resolution if possible

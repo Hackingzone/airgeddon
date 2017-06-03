@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170525
+#Date.........: 20170603
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -11,7 +11,7 @@ function set_language_strings_version() {
 
 	debug_print
 
-	language_strings_version="7.1-1"
+	language_strings_version="7.11-1"
 }
 
 #Set different language text strings
@@ -3212,7 +3212,7 @@ function language_strings() {
 	arr["ENGLISH",356]="Some combinations don't work well. Such as reaver and Ralink chipset cards. If your card has this chipset is recommended to use bully"
 	arr["SPANISH",356]="Algunas combinaciones no funcionan bien. Como por ejemplo reaver y las tarjetas con chipset Ralink. Si tu tarjeta tiene este chipset es mejor utilizar bully"
 	arr["FRENCH",356]="Il existe certains problèmes spécifiques de compatibilité. L’exemple le plus marquant est sans aucun doute celui des chipsets Ralink qui ne fonctionnent pas bien avec reaver. Il est donc conseillé d'utiliser bully avec ces chipsets"
-	arr["CATALAN",356]="Algunes combinacions no funcionan bé. Com per exemple Reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
+	arr["CATALAN",356]="Algunes combinacions no funcionan bé. Com per exemple reaver i les targetes amb chipset Ralink. Si la teva targeta té aquest chipset és millor utilitzar bully"
 	arr["PORTUGUESE",356]="Algumas combinações não funcionam bem. Tais como reaver e placas de rede com chipset Ralink. Se o sua placa de rede tem este chipset é melhor usar bully"
 	arr["RUSSIAN",356]="Некоторые комбинации не работают нормально. К примеру reaver и карты с чипсетом Ralink. Если ваша карта имеет этот чипсет, то рекомендуется использовать bully"
 	arr["GREEK",356]="Μερικοί συνδυασμοί δεν λειτουργούν καλά. Όπως για παράδειγμα το reaver με κάρτες που έχουν Ralink chipset. Αν η κάρτα σας έχει αυτό το chipset είναι προτιμότερο να χρησιμοποιήσετε το bully"
@@ -3848,6 +3848,14 @@ function language_strings() {
 	arr["PORTUGUESE",435]="Erro ao tentar alterar o modo da interface. No processo o nome da interface muda, mas parece que já há uma interface ocupando o mesmo nome (${normal_color}${desired_interface_name}${red_color})"
 	arr["RUSSIAN",435]="Ошибка при попытке изменить режим интерфейса. Во время этого процесса имя интерфейса должно быть изменено, но похоже, что у вас уже есть интерфейс, занимающий нужное имя (${normal_color}${desired_interface_name}${red_color})"
 	arr["GREEK",435]="Προέκυψε σφάλμα καθώς άλλαζε η κατάσταση της διεπαφής. Κατά τη διάρκεια της διαδικασίας, το όνομα της διεπαφής πρέπει να αλλάξει, αλλά φαίνεται ότι έχετε ήδη μια διεπαφή που έχει το όνομα που θα χρειαζόταν (${normal_color}${desired_interface_name}${red_color})"
+
+	arr["ENGLISH",436]="The hashcat version you have installed (${hashcat_version}) is greater or equal than ${hashcat_hccapx_version} so you need to convert the capture files to \"hccapx\" format, airgeddon will do this automatically. To do this you need a converter that is not present on your system (hashcat-utils package), install it to be able to perform this attack"
+	arr["SPANISH",436]="La versión de hashcat que tienes instalada (${hashcat_version}) es igual o superior a la ${hashcat_hccapx_version} por lo que es necesario convertir los ficheros de captura a formato \"hccapx\", airgeddon lo hará automáticamente. Pero para ello hace falta un conversor que no está presente en tu sistema (paquete hashcat-utils), instálalo para poder realizar este ataque"
+	arr["FRENCH",436]="${pending_of_translation} Version hashcat vous avez installé (${hashcat_version}) est égal ou supérieur à la ${hashcat_hccapx_version} donc nécessaire, la conversion des fichiers de capture au format \"hccapx\" airgeddon sera automatiquement. Mais cela nécessite un convertisseur qui ne figure pas sur votre système (paquet hashcat-utils), l'installer pour effectuer cette attaque"
+	arr["CATALAN",436]="${pending_of_translation} La versió de hashcat que tens instal·lada (${hashcat_version}) és igual o superior a la ${hashcat_hccapx_version} pel que cal convertir els fitxers de captura a format \"hccapx\", airgeddon ho farà automàticament. Però per a això cal un convertidor que no està present al sistema (paquet hashcat-utils), instal·la-per poder realitzar aquest atac"
+	arr["PORTUGUESE",436]="${pending_of_translation} Versão hashcat de ter instalado (${hashcat_version}) é igual ou maior do que o ${hashcat_hccapx_version}, portanto, necessários arquivos de captura conversão formatadas \"hccapx\" airgeddon automaticamente. Mas isso requer um conversor que não está presente no seu sistema (pacote hashcat-utils), instalá-lo para realizar este ataque"
+	arr["RUSSIAN",436]="${pending_of_translation} Установленная вами версия hashcat (${hashcat_version}) больше или равна ${hashcat_hccapx_version}, поэтому вам нужно преобразовать файлы захвата в формат \"hccapx\", airgeddon сделает это автоматически. Для этого вам нужен конвертер, которого нет в вашей системе (пакет hashcat-utils), установите его, чтобы иметь возможность выполнить эту атаку"
+	arr["GREEK",436]="${pending_of_translation} Η έκδοση hashcat που έχετε εγκαταστήσει (${hashcat_version}) είναι μεγαλύτερη ή ίση από ${hashcat_hccapx_version}, ώστε να χρειαστεί να μετατρέψετε τα αρχεία καταγραφής σε \"hccapx\", airgeddon θα το κάνει αυτομάτως. Για να το κάνετε αυτό χρειάζεστε ένα μετατροπέα που δεν υπάρχει στο σύστημά σας (πακέτο hashcat-utils), εγκαταστήστε το για να εκτελέσετε αυτήν την επίθεση"
 
 	case "${3}" in
 		"yellow")
