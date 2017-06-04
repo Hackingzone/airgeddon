@@ -127,8 +127,9 @@ hashcat_hccapx_version="3.40"
 hashcat_tmp_simple_name_file="hctmp"
 hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccap"
 hashcat_pot_tmp="${hashcat_tmp_simple_name_file}.pot"
+hccapx_tool="cap2hccapx"
 possible_hccapx_converter_known_locations=(
-										"/usr/lib/hashcat-utils/cap2hccapx.bin"
+										"/usr/lib/hashcat-utils/${hccapx_tool}.bin"
 									)
 
 #WEP vars
@@ -6255,13 +6256,18 @@ function convert_cap_to_hashcat_format() {
 		return 0
 	else
 		hccapx_converter_found=0
-		for item in "${possible_hccapx_converter_known_locations[@]}"; do
-			if [ -f "${item}" ]; then
-				hccapx_converter_found=1
-				hccapx_converter_path="${item}"
-				break
-			fi
-		done
+		if hash ${hccapx_tool} 2> /dev/null; then
+			hccapx_converter_found=1
+			hccapx_converter_path="${hccapx_tool}"
+		else
+			for item in "${possible_hccapx_converter_known_locations[@]}"; do
+				if [ -f "${item}" ]; then
+					hccapx_converter_found=1
+					hccapx_converter_path="${item}"
+					break
+				fi
+			done
+		fi
 
 		if [ "${hccapx_converter_found}" -eq 1 ]; then
 			hashcat_tmp_file="hctmp.hccapx"
