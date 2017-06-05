@@ -6281,7 +6281,7 @@ function convert_cap_to_hashcat_format() {
 		fi
 
 		if [ "${hccapx_converter_found}" -eq 1 ]; then
-			hashcat_tmp_file="hctmp.hccapx"
+			hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccapx"
 			"${hccapx_converter_path}" "${enteredpath}" "${tmpdir}${hashcat_tmp_file}" > /dev/null 2>&1
 			return 0
 		else
