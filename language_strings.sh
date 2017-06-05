@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170603
+#Date.........: 20170605
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -359,6 +359,15 @@ function language_strings() {
 	wep_texts["PORTUGUESE",8]="Pressione [Enter] na janela principal do script para continuar e esta janela será fechada"
 	wep_texts["RUSSIAN",8]="Нажмите [Enter] в главном окне для продолжения, это окно будет закрыто"
 	wep_texts["GREEK",8]="Πατήστε [Enter] στο κύριο παράθυρο του script για να συνεχίσετε, το παράθυρο αυτό θα κλείσει"
+
+	declare -gA hashcat_texts
+	hashcat_texts["ENGLISH",1]="airgeddon. Decrypted password using hashcat"
+	hashcat_texts["SPANISH",1]="airgeddon. Contraseña desencriptada con hashcat"
+	hashcat_texts["FRENCH",1]="${pending_of_translation} airgeddon. Mot de passe déchiffré avec hashcat"
+	hashcat_texts["CATALAN",1]="${pending_of_translation} airgeddon. Contrasenya desencriptada amb hashcat"
+	hashcat_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com hashcat"
+	hashcat_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием hashcat"
+	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"

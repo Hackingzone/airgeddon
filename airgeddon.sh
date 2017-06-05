@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170604
+#Date.........: 20170605
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -4118,7 +4118,7 @@ function manage_hashcat_pot() {
 			if [ "${lastcharhashcat_potpath}" != "/" ]; then
 				hashcat_potpath="${hashcat_potpath}/"
 			fi
-			hashcatpot_filename="hashcat-${bssid}.pot"
+			hashcatpot_filename="hashcat-${bssid}.txt"
 			hashcat_potpath="${hashcat_potpath}${hashcatpot_filename}"
 
 			validpath=1
@@ -4126,7 +4126,18 @@ function manage_hashcat_pot() {
 				read_path "hashcatpot"
 			done
 
-			cp "${tmpdir}${hashcat_pot_tmp}" "${potenteredpath}"
+			[[ $(cat "${tmpdir}${hashcat_pot_tmp}") =~ .+:(.+)$ ]] && hashcat_key="${BASH_REMATCH[1]}"
+			{
+			echo ""
+			date +%Y-%m-%d
+			echo "${hashcat_texts[${language},1]}"
+			echo ""
+			echo "BSSID: ${bssid}"
+			echo ""
+			echo "---------------"
+			echo ""
+			echo "${hashcat_key}"
+			} >> "${potenteredpath}"
 			echo
 			language_strings "${language}" 236 "blue"
 			language_strings "${language}" 115 "read"
