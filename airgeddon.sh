@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170606
+#Date.........: 20170607
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -1500,18 +1500,33 @@ function ask_bssid() {
 	local regexp="^([a-fA-F0-9]{2}:){5}[a-zA-Z0-9]{2}$"
 
 	if [ "${1}" = "wps" ]; then
+		if [ -z "${wps_bssid}" ]; then
+			ask_yesno 439 "no"
+			if [ ${yesno} = "n" ]; then
+				return 1
+			fi
+		fi
+
 		while [[ ! ${wps_bssid} =~ ${regexp} ]]; do
 			read_bssid "wps"
 		done
 		echo
 		language_strings "${language}" 364 "blue"
 	else
+		if [ -z "${bssid}" ]; then
+			ask_yesno 439 "no"
+			if [ ${yesno} = "n" ]; then
+				return 1
+			fi
+		fi
+
 		while [[ ! ${bssid} =~ ${regexp} ]]; do
 			read_bssid
 		done
 		echo
 		language_strings "${language}" 28 "blue"
 	fi
+	return 0
 }
 
 #Read the user input on essid questions
@@ -1530,6 +1545,14 @@ function ask_essid() {
 	debug_print
 
 	if [ -z "${essid}" ]; then
+
+		if [ "${1}" = "verify" ]; then
+			ask_yesno 439 "no"
+			if [ ${yesno} = "n" ]; then
+				return 1
+			fi
+		fi
+
 		while [[ -z "${essid}" ]]; do
 			read_essid
 		done
@@ -2410,6 +2433,9 @@ function mdk3_deauth_option() {
 	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	ask_channel
 	exec_mdk3deauth
 }
@@ -2432,6 +2458,9 @@ function aireplay_deauth_option() {
 	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	ask_channel
 	exec_aireplaydeauth
 }
@@ -2453,7 +2482,10 @@ function wds_confusion_option() {
 	echo
 	language_strings "${language}" 34 "yellow"
 
-	ask_essid
+	ask_essid "verify"
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	ask_channel
 	exec_wdsconfusion
 }
@@ -2475,7 +2507,10 @@ function beacon_flood_option() {
 	echo
 	language_strings "${language}" 34 "yellow"
 
-	ask_essid
+	ask_essid "verify"
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	ask_channel
 	exec_beaconflood
 }
@@ -2498,6 +2533,9 @@ function auth_dos_option() {
 	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	exec_authdos
 }
 
@@ -2519,6 +2557,9 @@ function michael_shutdown_option() {
 	language_strings "${language}" 34 "yellow"
 
 	ask_bssid
+	if [ "$?" != "0" ]; then
+		return
+	fi
 	exec_michaelshutdown
 }
 
@@ -2572,6 +2613,9 @@ function wps_attacks_parameters() {
 	language_strings "${language}" 34 "yellow"
 
 	ask_bssid "wps"
+	if [ "$?" != "0" ]; then
+		return 1
+	fi
 	ask_channel "wps"
 
 	case ${wps_attack} in
@@ -7449,8 +7493,12 @@ function et_prerequisites() {
 		language_strings "${language}" 31 "blue"
 	else
 		ask_bssid
+		if [ "$?" != "0" ]; then
+			return_to_et_main_menu=1
+			return
+		fi
 		ask_channel
-		ask_essid
+		ask_essid "noverify"
 	fi
 
 	if [[ "${et_mode}" = "et_sniffing" ]] || [[ "${et_mode}" = "et_sniffing_sslstrip" ]]; then

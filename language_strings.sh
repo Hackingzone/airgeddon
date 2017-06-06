@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170606
+#Date.........: 20170607
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -3883,7 +3883,6 @@ function language_strings() {
 	arr["RUSSIAN",437]="${pending_of_translation} Если вам понравился сценарий и он оказался полезным, не стесняйтесь пожертвовать. Поддержите проект через Paypal (${normal_color}${mail}${pink_color}) или отправляйте часть bitcoin (${normal_color}${bitcoin}${pink_color}). Любая сумма, независимо от того, насколько мала рада (1, 2, 5, 10... $/€)"
 	arr["GREEK",437]="${pending_of_translation} Εάν σας άρεσε το σενάριο και το συναντήσατε χρήσιμο, μην διστάσετε να το δωρίσετε. Υποστηρίξτε το έργο μέσω του Paypal (${normal_color}${mail}${pink_color}) ή αποστέλλοντας ένα κλάσμα bitcoin (${normal_color}${bitcoin}${pink_color}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρός είναι ευπρόσδεκτος (1, 2, 5, 10... $/€)"
 
-
 	arr["ENGLISH",438]="We are looking for translators to other languages. If you want to see airgeddon in your native language and you also know english, contact us. More information at: ${urlgithub_wiki}/Contributing"
 	arr["SPANISH",438]="Buscamos traductores para otros idiomas. Si quieres ver airgeddon en tu lengua materna y además sabes inglés, contáctanos. Más información en: ${urlgithub_wiki}/Contributing"
 	arr["FRENCH",438]="${pending_of_translation} Nous recherchons des traducteurs pour d'autres langues. Si vous voulez voir airgeddon dans votre langue maternelle et aussi connaître l'anglais, s'il vous plaît contactez-nous. Plus d'informations: ${urlgithub_wiki}/Contributing"
@@ -3891,6 +3890,14 @@ function language_strings() {
 	arr["PORTUGUESE",438]="${pending_of_translation} Procuramos tradutores para outras línguas. Se você quiser ver airgeddon em sua língua nativa e também sabe inglês, por favor contacte-nos. Mais informações: ${urlgithub_wiki}/Contributing"
 	arr["RUSSIAN",438]="${pending_of_translation} Мы ищем переводчик для других языков. Если вы хотите увидеть airgeddon на своем родном языке, а также знать английский язык, пожалуйста, свяжитесь с нами. Дополнительная информация: ${urlgithub_wiki}/Contributing"
 	arr["GREEK",438]="${pending_of_translation} Επιδιώκουμε μεταφραστές για άλλες γλώσσες. Αν θέλετε να δείτε airgeddon στη μητρική σας γλώσσα, αλλά και να ξέρετε αγγλικά, παρακαλούμε επικοινωνήστε μαζί μας. Περισσότερες πληροφορίες: ${urlgithub_wiki}/Contributing"
+
+	arr["ENGLISH",439]="${blue_color}You don't have selected any target, you'll be prompted to input data manually. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",439]="${blue_color}Se ha detectado que no tienes seleccionado ningún objetivo, tendrás que introducir los datos manualmente. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",439]="${pending_of_translation} ${blue_color}Il semble que vous avez sélectionné aucun but, vous devez saisir les données manuellement. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",439]="${pending_of_translation} ${blue_color}S'ha detectat que no tens seleccionat cap objectiu, hauràs d'introduir les dades manualment. ${green_color}¿Voleu continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",439]="${pending_of_translation} ${blue_color}Parece que você não tiver selecionado qualquer objetivo, você tem que inserir os dados manualmente. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",439]="${pending_of_translation} ${blue_color}Вы не выбрали какую-либо цель, вам будет предложено ввести данные вручную. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",439]="${pending_of_translation} ${blue_color}Δεν έχετε επιλέξει κανένα στόχο, θα σας ζητηθεί να εισαγάγετε δεδομένα με μη αυτόματο τρόπο. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	case "${3}" in
 		"yellow")
