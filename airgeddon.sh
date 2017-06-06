@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170605
+#Date.........: 20170606
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -167,6 +167,7 @@ urlscript_pins_dbfile="https://raw.githubusercontent.com/${github_user}/${github
 urlscript_pins_dbfile_checksum="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${pins_dbfile_checksum}"
 urlscript_language_strings_file="https://raw.githubusercontent.com/${github_user}/${github_repository}/${branch}/${language_strings_file}"
 urlgithub_wiki="https://${repository_hostname}/${github_user}/${github_repository}/wiki"
+bitcoin="1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH"
 mail="v1s1t0r.1s.h3r3@gmail.com"
 author="v1s1t0r"
 
@@ -259,7 +260,7 @@ known_arm_compatible_distros=(
 							)
 
 #Hint vars
-declare main_hints=(128 134 163)
+declare main_hints=(128 134 163 437 438)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
 declare handshake_attack_hints=(142)
@@ -730,6 +731,19 @@ function check_interface_coherence() {
 	fi
 
 	return ${interface_auto_change}
+}
+
+#Add contributing footer to a file
+function add_contributing_footer_to_file() {
+
+	debug_print
+
+	{
+	echo ""
+	echo "---------------"
+	echo ""
+	echo "${footer_texts[${language},1]}"
+	} >> "${1}"
 }
 
 #Prepare the vars to be used on wps pin database attacks
@@ -1755,6 +1769,13 @@ function set_wep_key_script() {
 	EOF
 
 	cat >&8 <<-EOF
+				} >> "${weppotenteredpath}"
+				
+				{
+				echo ""
+				echo "---------------"
+				echo ""
+				echo "${footer_texts[${language},1]}"
 				} >> "${weppotenteredpath}"
 			fi
 		}
@@ -4138,6 +4159,9 @@ function manage_hashcat_pot() {
 			echo ""
 			echo "${hashcat_key}"
 			} >> "${potenteredpath}"
+
+			add_contributing_footer_to_file "${potenteredpath}"
+
 			echo
 			language_strings "${language}" 236 "blue"
 			language_strings "${language}" 115 "read"
@@ -5389,6 +5413,13 @@ function set_control_script() {
 						"${et_captive_portal_logpath}"
 					done
 				fi
+				
+				{
+				echo ""
+				echo "---------------"
+				echo ""
+				echo "${footer_texts[${language},1]}"
+				} >> "${et_captive_portal_logpath}"
 
 				sleep 2
 				killall hostapd > /dev/null 2>&1

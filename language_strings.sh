@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170605
+#Date.........: 20170606
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -368,6 +368,15 @@ function language_strings() {
 	hashcat_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com hashcat"
 	hashcat_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием hashcat"
 	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
+
+	declare -gA footer_texts
+	footer_texts["ENGLISH",1]="If you enjoyed the script and encountered it useful, feel free to donate. Support the project through Paypal (${mail}) or sending a fraction of a bitcoin (${bitcoin}). Any amount, not matter how small is welcome (1, 2, 5, 10... $/€)"
+	footer_texts["SPANISH",1]="Si te gustó el script y te pareció útil, haz una donación. Apoya el proyecto a través de Paypal (${mail}) o enviando una fracción de bitcoin (${bitcoin}). Cualquier cantidad por pequeña que sea es bien recibida (1, 2, 5, 10... $/€)"
+	footer_texts["FRENCH",1]="${pending_of_translation} Si vous avez aimé le script et je l'ai trouvé utile, faire un don. Prise en charge de projet par PayPal (${mail}) ou en envoyant une fraction de bitcoin (${bitcoin}). Tout montant qui est petit est le bienvenu (1, 2, 5, 10 ... $/€)"
+	footer_texts["CATALAN",1]="${pending_of_translation} Si et va agradar el script i et va semblar útil, fes una donació. Dóna suport al projecte a través de Paypal (${mail}) o enviant una fracció bitcoin (${bitcoin}). Qualsevol quantitat per petita que sigui és ben rebuda (1, 2, 5, 10... $/€)"
+	footer_texts["PORTUGUESE",1]="${pending_of_translation} Se você gostou do roteiro e eu achei que seria útil, fazer uma doação. Suporta projeto através de PayPal (${mail}) ou enviando uma fração do bitcoin (${bitcoin}). Qualquer quantidade que é pequena é bem-vinda (1, 2, 5, 10... $/€)"
+	footer_texts["RUSSIAN",1]="${pending_of_translation} Если вам понравился сценарий и он оказался полезным, не стесняйтесь пожертвовать. Поддержите проект через Paypal (${mail}) или отправляйте часть bitcoin (${bitcoin}). Любая сумма, независимо от того, насколько мала рада (1, 2, 5, 10... $/€)"
+	footer_texts["GREEK",1]="${pending_of_translation} Εάν σας άρεσε το σενάριο και το συναντήσατε χρήσιμο, μην διστάσετε να το δωρίσετε. Υποστηρίξτε το έργο μέσω του Paypal (${mail}) ή αποστέλλοντας ένα κλάσμα bitcoin (${bitcoin}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρός είναι ευπρόσδεκτος (1, 2, 5, 10... $/€)"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -3865,6 +3874,23 @@ function language_strings() {
 	arr["PORTUGUESE",436]="${pending_of_translation} Versão hashcat de ter instalado (${hashcat_version}) é igual ou maior do que o ${hashcat_hccapx_version}, portanto, necessários arquivos de captura conversão formatadas \"hccapx\" airgeddon automaticamente. Mas isso requer um conversor que não está presente no seu sistema (pacote hashcat-utils), instalá-lo para realizar este ataque"
 	arr["RUSSIAN",436]="${pending_of_translation} Установленная вами версия hashcat (${hashcat_version}) больше или равна ${hashcat_hccapx_version}, поэтому вам нужно преобразовать файлы захвата в формат \"hccapx\", airgeddon сделает это автоматически. Для этого вам нужен конвертер, которого нет в вашей системе (пакет hashcat-utils), установите его, чтобы иметь возможность выполнить эту атаку"
 	arr["GREEK",436]="${pending_of_translation} Η έκδοση hashcat που έχετε εγκαταστήσει (${hashcat_version}) είναι μεγαλύτερη ή ίση από ${hashcat_hccapx_version}, ώστε να χρειαστεί να μετατρέψετε τα αρχεία καταγραφής σε \"hccapx\", airgeddon θα το κάνει αυτομάτως. Για να το κάνετε αυτό χρειάζεστε ένα μετατροπέα που δεν υπάρχει στο σύστημά σας (πακέτο hashcat-utils), εγκαταστήστε το για να εκτελέσετε αυτήν την επίθεση"
+
+	arr["ENGLISH",437]="If you enjoyed the script and encountered it useful, feel free to donate. Support the project through Paypal (${normal_color}${mail}${pink_color}) or sending a fraction of a bitcoin (${normal_color}${bitcoin}${pink_color}). Any amount, not matter how small is welcome (1, 2, 5, 10... $/€)"
+	arr["SPANISH",437]="Si te gustó el script y te pareció útil, haz una donación. Apoya el proyecto a través de Paypal (${normal_color}${mail}${pink_color}) o enviando una fracción de bitcoin (${normal_color}${bitcoin}${pink_color}). Cualquier cantidad por pequeña que sea es bien recibida (1, 2, 5, 10... $/€)"
+	arr["FRENCH",437]="${pending_of_translation} Si vous avez aimé le script et je l'ai trouvé utile, faire un don. Prise en charge de projet par PayPal (${normal_color}${mail}${pink_color}) ou en envoyant une fraction de bitcoin (${normal_color}${bitcoin}${pink_color}). Tout montant qui est petit est le bienvenu (1, 2, 5, 10 ... $/€)"
+	arr["CATALAN",437]="${pending_of_translation} Si et va agradar el script i et va semblar útil, fes una donació. Dóna suport al projecte a través de Paypal (${normal_color}${mail}${pink_color}) o enviant una fracció bitcoin (${normal_color}${bitcoin}${pink_color}). Qualsevol quantitat per petita que sigui és ben rebuda (1, 2, 5, 10... $/€)"
+	arr["PORTUGUESE",437]="${pending_of_translation} Se você gostou do roteiro e eu achei que seria útil, fazer uma doação. Suporta projeto através de PayPal (${normal_color}${mail}${pink_color}) ou enviando uma fração do bitcoin (${normal_color}${bitcoin}${pink_color}). Qualquer quantidade que é pequena é bem-vinda (1, 2, 5, 10... $/€)"
+	arr["RUSSIAN",437]="${pending_of_translation} Если вам понравился сценарий и он оказался полезным, не стесняйтесь пожертвовать. Поддержите проект через Paypal (${normal_color}${mail}${pink_color}) или отправляйте часть bitcoin (${normal_color}${bitcoin}${pink_color}). Любая сумма, независимо от того, насколько мала рада (1, 2, 5, 10... $/€)"
+	arr["GREEK",437]="${pending_of_translation} Εάν σας άρεσε το σενάριο και το συναντήσατε χρήσιμο, μην διστάσετε να το δωρίσετε. Υποστηρίξτε το έργο μέσω του Paypal (${normal_color}${mail}${pink_color}) ή αποστέλλοντας ένα κλάσμα bitcoin (${normal_color}${bitcoin}${pink_color}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρός είναι ευπρόσδεκτος (1, 2, 5, 10... $/€)"
+
+
+	arr["ENGLISH",438]="We are looking for translators to other languages. If you want to see airgeddon in your native language and you also know english, contact us. More information at: ${urlgithub_wiki}/Contributing"
+	arr["SPANISH",438]="Buscamos traductores para otros idiomas. Si quieres ver airgeddon en tu lengua materna y además sabes inglés, contáctanos. Más información en: ${urlgithub_wiki}/Contributing"
+	arr["FRENCH",438]="${pending_of_translation} Nous recherchons des traducteurs pour d'autres langues. Si vous voulez voir airgeddon dans votre langue maternelle et aussi connaître l'anglais, s'il vous plaît contactez-nous. Plus d'informations: ${urlgithub_wiki}/Contributing"
+	arr["CATALAN",438]="${pending_of_translation} Busquem traductors per a altres idiomes. Si vols veure airgeddon en la teva llengua materna i més saps anglès, contacta'ns. Més informació a: ${urlgithub_wiki}/Contributing"
+	arr["PORTUGUESE",438]="${pending_of_translation} Procuramos tradutores para outras línguas. Se você quiser ver airgeddon em sua língua nativa e também sabe inglês, por favor contacte-nos. Mais informações: ${urlgithub_wiki}/Contributing"
+	arr["RUSSIAN",438]="${pending_of_translation} Мы ищем переводчик для других языков. Если вы хотите увидеть airgeddon на своем родном языке, а также знать английский язык, пожалуйста, свяжитесь с нами. Дополнительная информация: ${urlgithub_wiki}/Contributing"
+	arr["GREEK",438]="${pending_of_translation} Επιδιώκουμε μεταφραστές για άλλες γλώσσες. Αν θέλετε να δείτε airgeddon στη μητρική σας γλώσσα, αλλά και να ξέρετε αγγλικά, παρακαλούμε επικοινωνήστε μαζί μας. Περισσότερες πληροφορίες: ${urlgithub_wiki}/Contributing"
 
 	case "${3}" in
 		"yellow")
