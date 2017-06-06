@@ -3289,7 +3289,7 @@ function language_strings() {
 	arr["CATALAN",363]="${pending_of_translation} Escriu el PIN personalitzat (8 dígits):"
 	arr["PORTUGUESE",363]="${pending_of_translation} Escreva o ESSID do alvo (8 dígitos):"
 	arr["RUSSIAN",363]="${pending_of_translation} Напишите пользовательский PIN (8 цифр):"
-	arr["GREEK",363]="${pending_of_translation} Πληκτρολογήστε εξατομικευμένο PIN (8 ψηφία):"
+	arr["GREEK",363]="Πληκτρολογήστε εξατομικευμένο PIN (8 ψηφία):"
 
 	arr["ENGLISH",364]="BSSID set to ${normal_color}${wps_bssid}"
 	arr["SPANISH",364]="BSSID elegido ${normal_color}${wps_bssid}"
