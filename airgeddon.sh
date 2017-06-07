@@ -4166,12 +4166,20 @@ function manage_hashcat_pot() {
 
 	debug_print
 
-	local regexp="All hashes have been recovered"
+	pass_decrypted_by_hashcat=0
 	if [ -n "${hashcat_fix}" ]; then
 		local regexp="Status\.+:[[:space:]]Cracked"
+		if [[ ${hashcat_output} =~ ${regexp} ]] || [[ -f "${tmpdir}${hashcat_pot_tmp}" ]]; then
+			pass_decrypted_by_hashcat=1
+		fi
+	else
+		local regexp="All hashes have been recovered"
+		if [[ ${hashcat_output} =~ ${regexp} ]]; then
+			pass_decrypted_by_hashcat=1
+		fi
 	fi
 
-	if [[ ${hashcat_output} =~ ${regexp} ]]; then
+	if [ "${pass_decrypted_by_hashcat}" -eq 1 ]; then
 
 		echo
 		language_strings "${language}" 234 "yellow"
