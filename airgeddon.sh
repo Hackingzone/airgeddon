@@ -4167,10 +4167,16 @@ function manage_hashcat_pot() {
 	debug_print
 
 	pass_decrypted_by_hashcat=0
-	if [ -n "${hashcat_fix}" ]; then
+	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
 		local regexp="Status\.+:[[:space:]]Cracked"
-		if [[ ${hashcat_output} =~ ${regexp} ]] || [[ -f "${tmpdir}${hashcat_pot_tmp}" ]]; then
+		if [[ ${hashcat_output} =~ ${regexp} ]]; then
 			pass_decrypted_by_hashcat=1
+		else
+			if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat_hccapx_version}"; then
+				if [[ -f "${tmpdir}${hashcat_pot_tmp}" ]]; then
+					pass_decrypted_by_hashcat=1
+				fi
+			fi
 		fi
 	else
 		local regexp="All hashes have been recovered"
