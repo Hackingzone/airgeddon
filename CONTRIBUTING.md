@@ -146,6 +146,10 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 &nbsp;
 [![Bitcoin][Bitcoin]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
 
+Bitcoin QR code:
+
+[![BitcoinQR][BitcoinQR]](https://blockchain.info/address/1AKnTXbomtwUzrm81FRzi5acSSXxGteGTH)
+
 <!-- MDs -->
 [Readme]: README.md
 [Changelog]: CHANGELOG.md
@@ -164,3 +168,4 @@ If you enjoyed the script, feel free to donate. Support the project through Payp
 <!-- Images -->
 [Paypal]: /imgs/banners/paypal_donate.png "Show me the money!"
 [Bitcoin]: /imgs/banners/bitcoin_donate.png "Show me the money!"
+[BitcoinQR]: /imgs/banners/bitcoin_qr.png "Show me the money!"
