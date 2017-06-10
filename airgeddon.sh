@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170609
+#Date.........: 20170610
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -120,6 +120,10 @@ standard_resolution="1024x768"
 curl_404_error="404: Not Found"
 language_strings_file="language_strings.sh"
 broadcast_mac="FF:FF:FF:FF:FF:FF"
+
+#aircrack vars
+aircrack_tmp_simple_name_file="aircrack"
+aircrack_pot_tmp="${aircrack_tmp_simple_name_file}.pot"
 
 #hashcat vars
 hashcat3_version="3.0"
@@ -2956,6 +2960,7 @@ function clean_tmpfiles() {
 	rm -rf "${tmpdir}clts"* > /dev/null 2>&1
 	rm -rf "${tmpdir}wnws.txt" > /dev/null 2>&1
 	rm -rf "${tmpdir}hctmp"* > /dev/null 2>&1
+	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${dhcpd_file}" > /dev/null 2>&1
 	rm -rf "${tmpdir}${control_file}" > /dev/null 2>&1
@@ -4046,6 +4051,7 @@ function aircrack_dictionary_attack_option() {
 	language_strings "${language}" 190 "yellow"
 	language_strings "${language}" 115 "read"
 	exec_aircrack_dictionary_attack
+	manage_aircrack_pot
 }
 
 #Validate and ask for the different parameters used in an aircrack bruteforce based attack
@@ -4073,6 +4079,7 @@ function aircrack_bruteforce_attack_option() {
 	language_strings "${language}" 190 "yellow"
 	language_strings "${language}" 115 "read"
 	exec_aircrack_bruteforce_attack
+	manage_aircrack_pot
 }
 
 #Validate and ask for the different parameters used in a hashcat dictionary based attack
@@ -4222,6 +4229,57 @@ function manage_hashcat_pot() {
 
 			echo
 			language_strings "${language}" 236 "blue"
+			language_strings "${language}" 115 "read"
+		fi
+	fi
+}
+
+#Check if the password was decrypted using aircrack and manage to save it on a file
+function manage_aircrack_pot() {
+
+	debug_print
+
+	pass_decrypted_by_aircrack=0
+	if [ -f "${tmpdir}${aircrack_pot_tmp}" ]; then
+		pass_decrypted_by_aircrack=1
+	fi
+
+	if [ "${pass_decrypted_by_aircrack}" -eq 1 ]; then
+
+		echo
+		language_strings "${language}" 234 "yellow"
+		ask_yesno 235 "yes"
+		if [ ${yesno} = "y" ]; then
+			aircrack_potpath="${default_save_path}"
+			lastcharaircrack_potpath=${aircrack_potpath: -1}
+			if [ "${lastcharaircrack_potpath}" != "/" ]; then
+				aircrack_potpath="${aircrack_potpath}/"
+			fi
+			aircrackpot_filename="aircrack-${bssid}.txt"
+			aircrack_potpath="${aircrack_potpath}${aircrackpot_filename}"
+
+			validpath=1
+			while [[ "${validpath}" != "0" ]]; do
+				read_path "aircrackpot"
+			done
+
+			aircrack_key=$(cat "${tmpdir}${aircrack_pot_tmp}")
+			{
+			echo ""
+			date +%Y-%m-%d
+			echo "${aircrack_texts[${language},1]}"
+			echo ""
+			echo "BSSID: ${bssid}"
+			echo ""
+			echo "---------------"
+			echo ""
+			echo "${aircrack_key}"
+			} >> "${aircrackpotenteredpath}"
+
+			add_contributing_footer_to_file "${aircrackpotenteredpath}"
+
+			echo
+			language_strings "${language}" 440 "blue"
 			language_strings "${language}" 115 "read"
 		fi
 	fi
@@ -4535,8 +4593,8 @@ function set_show_charset() {
 function exec_aircrack_bruteforce_attack() {
 
 	debug_print
-
-	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -w - "${enteredpath}"
+	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
+	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -l "${tmpdir}${aircrack_pot_tmp}" -w - "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -4545,7 +4603,8 @@ function exec_aircrack_dictionary_attack() {
 
 	debug_print
 
-	aircrack-ng -a 2 -b "${bssid}" -w "${DICTIONARY}" "${enteredpath}"
+	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
+	aircrack-ng -a 2 -b "${bssid}" -l "${tmpdir}${aircrack_pot_tmp}" -w "${DICTIONARY}" "${enteredpath}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -6734,6 +6793,10 @@ function validate_path() {
 				enteredpath="${pathname}${standardhandshake_filename}"
 				suggested_filename="${standardhandshake_filename}"
 			;;
+			"aircrackpot")
+				suggested_filename="${aircrackpot_filename}"
+				aircrackpotenteredpath+="${aircrackpot_filename}"
+			;;
 			"hashcatpot")
 				suggested_filename="${hashcatpot_filename}"
 				potenteredpath+="${hashcatpot_filename}"
@@ -6826,6 +6889,14 @@ function read_path() {
 			language_strings "${language}" 242 "green"
 			read_and_clean_path "RULES"
 			check_file_exists "${RULES}"
+		;;
+		"aircrackpot")
+			language_strings "${language}" 441 "green"
+			read_and_clean_path "aircrackpotenteredpath"
+			if [ -z "${aircrackpotenteredpath}" ]; then
+				aircrackpotenteredpath="${aircrack_potpath}"
+			fi
+			validate_path "${aircrackpotenteredpath}" "${1}"
 		;;
 		"hashcatpot")
 			language_strings "${language}" 233 "green"

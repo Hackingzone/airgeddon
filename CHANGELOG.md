@@ -2,6 +2,7 @@
  - Added hccapx support for hashcat 3.40 or higher
  - Decrypted hashcat trophy files beautified
  - Added confirm questions before attacks if no target selected
+ - WPA/WPA2 decrypted files using aircrack now have trophy file
 
 ### 7.1
  - Added default choice for some yes/no question. Regexp improved

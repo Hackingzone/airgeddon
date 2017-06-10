@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170609
+#Date.........: 20170610
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -368,6 +368,15 @@ function language_strings() {
 	hashcat_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com hashcat"
 	hashcat_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием hashcat"
 	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
+
+	declare -gA aircrack_texts
+	aircrack_texts["ENGLISH",1]="airgeddon. Decrypted password using aircrack"
+	aircrack_texts["SPANISH",1]="airgeddon. Contraseña desencriptada con aircrack"
+	aircrack_texts["FRENCH",1]="${pending_of_translation} airgeddon. Mot de passe déchiffré avec aircrack"
+	aircrack_texts["CATALAN",1]="${pending_of_translation} airgeddon. Contrasenya desencriptada amb aircrack"
+	aircrack_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com aircrack"
+	aircrack_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием aircrack"
+	aircrack_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση aircrack"
 
 	declare -gA footer_texts
 	footer_texts["ENGLISH",1]="If you enjoyed the script and found it useful, you can support the project making a donation. Through Paypal (${mail}) or sending a fraction of a bitcoin (${bitcoin}). Any amount, not matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${urlgithub_wiki}/Contributing"
@@ -3898,6 +3907,22 @@ function language_strings() {
 	arr["PORTUGUESE",439]="${pending_of_translation} ${blue_color}Parece que você não tiver selecionado qualquer objetivo, você tem que inserir os dados manualmente. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",439]="${pending_of_translation} ${blue_color}Вы не выбрали какую-либо цель, вам будет предложено ввести данные вручную. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
 	arr["GREEK",439]="${pending_of_translation} ${blue_color}Δεν έχετε επιλέξει κανένα στόχο, θα σας ζητηθεί να εισαγάγετε δεδομένα με μη αυτόματο τρόπο. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",440]="Aircrack trophy file generated successfully at [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["SPANISH",440]="Fichero de trofeo aircrack generado con éxito en [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["FRENCH",440]="Le fichier trophée aircrack a bien été crée dans [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["CATALAN",440]="Fitxer de trofeu aircrack generat amb èxit a [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["PORTUGUESE",440]="Arquivo de troféu aircrack gerado com sucesso [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["RUSSIAN",440]="Трофейный файл aircrack был успешно сгенерирован в [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+	arr["GREEK",440]="Το aircrack αρχείο τρόπαιο δημιουργήθηκε επιτυχώς [${normal_color}${aircrackpotenteredpath}${blue_color}]"
+
+	arr["ENGLISH",441]="Type the path to store the file or press [Enter] to accept the default proposal ${normal_color}[${aircrack_potpath}]"
+	arr["SPANISH",441]="Escribe la ruta donde guardaremos el fichero o pulsa [Enter] para aceptar la propuesta por defecto ${normal_color}[${aircrack_potpath}]"
+	arr["FRENCH",441]="Entrez le chemin où vous voulez enregistrer le fichier ou bien appuyez sur [Entrée] pour utiliser le chemin proposé ${normal_color}[${aircrack_potpath}]"
+	arr["CATALAN",441]="Escriu la ruta on guardarem el fitxer o prem [Enter] per acceptar la proposta per defecte ${normal_color}[${aircrack_potpath}]"
+	arr["PORTUGUESE",441]="Digite o caminho onde armazenar o arquivo ou pressione [Enter] para aceitar o padrão ${normal_color}[${aircrack_potpath}]"
+	arr["RUSSIAN",441]="Напечатайте путь к сохранённому файлу или нажмите [Enter] для принятия предложения по умолчанию ${normal_color}[${aircrack_potpath}]"
+	arr["GREEK",441]="Πληκτρολογήστε το μονοπάτι για την αποθήκευση του αρχείου ή πατήστε [Enter] για την προεπιλεγμένη επιλογή ${normal_color}[${aircrack_potpath}]"
 
 	case "${3}" in
 		"yellow")
