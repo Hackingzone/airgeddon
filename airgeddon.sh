@@ -5127,6 +5127,7 @@ function set_wps_attack_script() {
 		script_interface="${interface}"
 		script_wps_bssid="${wps_bssid}"
 		script_wps_channel="${wps_channel}"
+		colorize="${colorize}"
 	EOF
 
 	cat >&7 <<-'EOF'
@@ -5315,7 +5316,7 @@ function set_wps_attack_script() {
 					fi
 
 					this_pin_timeout=0
-					(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}")
+					(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2} ${colorize}")
 					if [ "$?" = "124" ]; then
 						if [ "${script_wps_attack_tool}" = "reaver" ]; then
 							this_pin_timeout=1
@@ -5357,7 +5358,7 @@ function set_wps_attack_script() {
 					echo
 				fi
 
-				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2}")
+				(set -o pipefail && eval "${script_attack_cmd1}${current_pin}${script_attack_cmd2} ${colorize}")
 				if [ "$?" = "124" ]; then
 					if [ "${script_wps_attack_tool}" = "reaver" ]; then
 						this_pin_timeout=1
@@ -5387,7 +5388,7 @@ function set_wps_attack_script() {
 					echo
 				fi
 
-				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2}")
+				(set -o pipefail && eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}")
 				if [ "$?" = "124" ]; then
 					this_pin_timeout=1
 				fi
@@ -5399,7 +5400,7 @@ function set_wps_attack_script() {
 				if [ "${script_wps_attack_tool}" = "bully" ]; then
 					echo
 				fi
-				eval "${script_attack_cmd1}${script_attack_cmd2}"
+				eval "${script_attack_cmd1}${script_attack_cmd2} ${colorize}"
 				parse_output
 			;;
 		esac
