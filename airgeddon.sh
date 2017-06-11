@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170610
+#Date.........: 20170612
 #Version......: 7.11
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -15,6 +15,9 @@ auto_update=1
 
 #Enabled 1 / Disabled 0 - Auto change language feature - Default value 1
 auto_change_language=1
+
+#Enabled 1 / Disabled 0 - Allow colorized output - Default value 1
+allow_colorization=1
 
 #Language vars
 #Change this line to select another default language. Select one from available values in array
@@ -131,6 +134,7 @@ hashcat_hccapx_version="3.40"
 hashcat_tmp_simple_name_file="hctmp"
 hashcat_tmp_file="${hashcat_tmp_simple_name_file}.hccap"
 hashcat_pot_tmp="${hashcat_tmp_simple_name_file}.pot"
+hashcat_output_file="${hashcat_tmp_simple_name_file}.out"
 hccapx_tool="cap2hccapx"
 possible_hccapx_converter_known_locations=(
 										"/usr/lib/hashcat-utils/${hccapx_tool}.bin"
@@ -264,7 +268,7 @@ known_arm_compatible_distros=(
 							)
 
 #Hint vars
-declare main_hints=(128 134 163 437 438)
+declare main_hints=(128 134 163 437 438 442)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
 declare handshake_attack_hints=(142)
@@ -4173,6 +4177,8 @@ function manage_hashcat_pot() {
 
 	debug_print
 
+	hashcat_output=$(cat "${tmpdir}${hashcat_output_file}")
+
 	pass_decrypted_by_hashcat=0
 	if compare_floats_greater_or_equal "${hashcat_version}" "${hashcat3_version}"; then
 		local regexp="Status\.+:[[:space:]]Cracked"
@@ -4594,7 +4600,8 @@ function exec_aircrack_bruteforce_attack() {
 
 	debug_print
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
-	crunch "${minlength}" "${maxlength}" "${charset}" | aircrack-ng -a 2 -b "${bssid}" -l "${tmpdir}${aircrack_pot_tmp}" -w - "${enteredpath}"
+	aircrack_cmd="crunch \"${minlength}\" \"${maxlength}\" \"${charset}\" | aircrack-ng -a 2 -b \"${bssid}\" -l \"${tmpdir}${aircrack_pot_tmp}\" -w - \"${enteredpath}\" ${colorize}"
+	eval "${aircrack_cmd}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -4604,7 +4611,8 @@ function exec_aircrack_dictionary_attack() {
 	debug_print
 
 	rm -rf "${tmpdir}${aircrack_pot_tmp}" > /dev/null 2>&1
-	aircrack-ng -a 2 -b "${bssid}" -l "${tmpdir}${aircrack_pot_tmp}" -w "${DICTIONARY}" "${enteredpath}"
+	aircrack_cmd="aircrack-ng -a 2 -b \"${bssid}\" -l \"${tmpdir}${aircrack_pot_tmp}\" -w \"${DICTIONARY}\" \"${enteredpath}\" ${colorize}"
+	eval "${aircrack_cmd}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -4613,9 +4621,8 @@ function exec_hashcat_dictionary_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
-	exec 5>&1
-	hashcat_output=$(eval "${hashcat_cmd}")
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -4624,9 +4631,8 @@ function exec_hashcat_bruteforce_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
-	exec 5>&1
-	hashcat_output=$(eval "${hashcat_cmd}")
+	hashcat_cmd="hashcat -m 2500 -a 3 \"${tmpdir}${hashcat_tmp_file}\" \"${charset}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -4635,9 +4641,8 @@ function exec_hashcat_rulebased_attack() {
 
 	debug_print
 
-	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee /dev/fd/5"
-	exec 5>&1
-	hashcat_output=$(eval "${hashcat_cmd}")
+	hashcat_cmd="hashcat -m 2500 -a 0 \"${tmpdir}${hashcat_tmp_file}\" \"${DICTIONARY}\" -r \"${RULES}\" --potfile-disable -o \"${tmpdir}${hashcat_pot_tmp}\"${hashcat_fix} | tee \"${tmpdir}${hashcat_output_file}\" ${colorize}"
+	eval "${hashcat_cmd}"
 	language_strings "${language}" 115 "read"
 }
 
@@ -9150,6 +9155,19 @@ function docker_detection() {
 	fi
 }
 
+#Set colorization output if set
+function initialize_colorized_output() {
+
+	debug_print
+
+	colorize=""
+	if [ "${allow_colorization}" -eq 1 ]; then
+		if hash ccze 2> /dev/null; then
+			colorize="| ccze -A"
+		fi
+	fi
+}
+
 #Script starting point
 function welcome() {
 
@@ -9218,6 +9236,7 @@ function welcome() {
 		check_update_tools
 	fi
 
+	initialize_colorized_output
 	set_windows_sizes
 	select_interface
 	initialize_menu_options_dependencies
