@@ -365,7 +365,7 @@ function language_strings() {
 	hashcat_texts["SPANISH",1]="airgeddon. Contraseña desencriptada con hashcat"
 	hashcat_texts["FRENCH",1]="${pending_of_translation} airgeddon. Mot de passe déchiffré avec hashcat"
 	hashcat_texts["CATALAN",1]="${pending_of_translation} airgeddon. Contrasenya desencriptada amb hashcat"
-	hashcat_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com hashcat"
+	hashcat_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando hashcat"
 	hashcat_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием hashcat"
 	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
 
@@ -374,7 +374,7 @@ function language_strings() {
 	aircrack_texts["SPANISH",1]="airgeddon. Contraseña desencriptada con aircrack"
 	aircrack_texts["FRENCH",1]="${pending_of_translation} airgeddon. Mot de passe déchiffré avec aircrack"
 	aircrack_texts["CATALAN",1]="${pending_of_translation} airgeddon. Contrasenya desencriptada amb aircrack"
-	aircrack_texts["PORTUGUESE",1]="${pending_of_translation} airgeddon. Senha descodificada com aircrack"
+	aircrack_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando aircrack"
 	aircrack_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием aircrack"
 	aircrack_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση aircrack"
 
@@ -383,7 +383,7 @@ function language_strings() {
 	footer_texts["SPANISH",1]="Si te gustó el script y te pareció útil, puedes apoyar el proyecto haciendo una donación. A través de Paypal (${mail}) o enviando una fracción de bitcoin (${bitcoin}). Cualquier cantidad por pequeña que sea (1, 2, 5 $/€) es bien recibida. Más información y enlaces directos para realizarla en: ${urlgithub_wiki}/Contributing"
 	footer_texts["FRENCH",1]="${pending_of_translation} Si vous avez aimé le script et je l'ai trouvé utile, vous pouvez soutenir le projet en faisant un don. Par PayPal (${mail}) ou en envoyant une fraction de bitcoin (${bitcoin}). Tout montant toutefois faible (1, 2, 5 $/€) est bien reçu. Plus d'informations et des liens directs et de l'exécuter dans: ${urlgithub_wiki}/Contributing"
 	footer_texts["CATALAN",1]="${pending_of_translation} Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${mail}) o enviant una fracció bitcoin (${bitcoin}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes a per realitzar-la en: ${urlgithub_wiki}/Contributing"
-	footer_texts["PORTUGUESE",1]="${pending_of_translation} Se você gostou do roteiro e eu achei que seria útil, você pode apoiar o projeto, fazendo uma doação. Através do PayPal (${mail}) ou enviando uma fração do bitcoin (${bitcoin}). Qualquer quantidade no entanto pequena (1, 2, 5 $/€) é bem recebido. Mais links diretos e para realizá-lo em: ${urlgithub_wiki}/Contributing"
+	footer_texts["PORTUGUESE",1]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${mail}) ou enviando uma fração de bitcoin (${bitcoin}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
 	footer_texts["RUSSIAN",1]="${pending_of_translation} Если вам понравился сценарий и нашел его полезным, вы можете поддержать проект, делающий пожертвование. Через Paypal (${mail}) или отправив часть биткойна (${bitcoin}). Любая сумма, неважно, насколько малы (1, 2, 5 $/€) приветствуются. Более подробную информацию и прямые ссылки можно получить по адресу: ${urlgithub_wiki}/Contributing"
 	footer_texts["GREEK",1]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${mail}) ή αποστέλλοντας ένα κλάσμα bitcoin (${bitcoin}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${urlgithub_wiki}/Contributing"
 
@@ -3888,7 +3888,7 @@ function language_strings() {
 	arr["SPANISH",437]="Si te gustó el script y te pareció útil, puedes apoyar el proyecto haciendo una donación. A través de Paypal (${normal_color}${mail}${pink_color}) o enviando una fracción de bitcoin (${normal_color}${bitcoin}${pink_color}). Cualquier cantidad por pequeña que sea (1, 2, 5 $/€) es bien recibida. Más información y enlaces directos para realizarla en: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["FRENCH",437]="${pending_of_translation} Si vous avez aimé le script et je l'ai trouvé utile, vous pouvez soutenir le projet en faisant un don. Par PayPal (${normal_color}${mail}${pink_color}) ou en envoyant une fraction de bitcoin (${normal_color}${bitcoin}${pink_color}). Tout montant toutefois faible (1, 2, 5 $/€) est bien reçu. Plus d'informations et des liens directs et de l'exécuter dans: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["CATALAN",437]="${pending_of_translation} Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${normal_color}${mail}${pink_color}) o enviant una fracció bitcoin (${normal_color}${bitcoin}${pink_color}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes a per realitzar-la en: ${normal_color}${urlgithub_wiki}/Contributing"
-	arr["PORTUGUESE",437]="Se você gostou do script e o achou útil, você pode apoiar o projeto, fazendo uma doação. Através do PayPal (${normal_color}${mail}${pink_color}) ou enviando uma fração de bitcoin (${normal_color}${bitcoin}${pink_color}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${normal_color}${urlgithub_wiki}/Contributing"
+	arr["PORTUGUESE",437]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${normal_color}${mail}${pink_color}) ou enviando uma fração de bitcoin (${normal_color}${bitcoin}${pink_color}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
 	arr["RUSSIAN",437]="${pending_of_translation} Если вам понравился сценарий и нашел его полезным, вы можете поддержать проект, делающий пожертвование. Через Paypal (${normal_color}${mail}${pink_color}) или отправив часть биткойна (${normal_color}${bitcoin}${pink_color}). Любая сумма, неважно, насколько малы (1, 2, 5 $/€) приветствуются. Более подробную информацию и прямые ссылки можно получить по адресу: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["GREEK",437]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${normal_color}${mail}${pink_color}) ή αποστέλλοντας ένα κλάσμα bitcoin (${normal_color}${bitcoin}${pink_color}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${normal_color}${urlgithub_wiki}/Contributing"
 
@@ -3928,7 +3928,7 @@ function language_strings() {
 	arr["SPANISH",442]="Si instalas el paquete ccze podrás ver algunas partes de airgeddon colorizadas y con mejor aspecto. No es un requerimiento ni una dependencia, pero mejorará la experiencia de usuario"
 	arr["FRENCH",442]="${pending_of_translation} Si vous installez le package ccze vous verrez certaines parties de colorisée airgeddon et plus beau. Il n'est pas une exigence ou une dépendance, mais d'améliorer l'expérience utilisateur"
 	arr["CATALAN",442]="${pending_of_translation} Si instal·les el paquet ccze podràs veure algunes parts de airgeddon colorizadas i amb millor aspecte. No és un requeriment ni una dependència, però millorarà l'experiència d'usuari"
-	arr["PORTUGUESE",442]="${pending_of_translation} Se você instalar o pacote ccze você vai ver algumas partes do airgeddon colorida e mais bonito. Não é uma exigência ou dependência, mas irá melhorar a experiência do usuário"
+	arr["PORTUGUESE",442]="Se você instalar o pacote ccze poderá ver algumas partes do airgeddon coloridas e mais bonitas. Não é uma exigência nem uma dependência, mas melhora a experiência do usuário"
 	arr["RUSSIAN",442]="${pending_of_translation} Если вы установите ccze, вы увидите некоторые части airgeddon в раскрашенном виде с лучшим аспектом. Это не требование или зависимость, но это улучшит работу пользователя"
 	arr["GREEK",442]="${pending_of_translation} Αν εγκαταστήσετε το ccze θα δείτε μερικά μέρη του airgeddon με έναν πολύχρωμο τρόπο με καλύτερη εμφάνιση. Δεν είναι απαίτηση ή εξάρτηση, αλλά θα βελτιώσει την εμπειρία του χρήστη"
 
