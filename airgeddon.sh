@@ -1797,6 +1797,7 @@ function set_wep_key_script() {
 
 	cat >&8 <<-'EOF'
 				echo -en " ${wep_hex_key}"
+				echo ""
 	EOF
 
 	cat >&8 <<-EOF
