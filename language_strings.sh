@@ -366,7 +366,7 @@ function language_strings() {
 	hashcat_texts["FRENCH",1]="airgeddon. Mot de passe déchiffré avec hashcat"
 	hashcat_texts["CATALAN",1]="airgeddon. Contrasenya desencriptada amb hashcat"
 	hashcat_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando hashcat"
-	hashcat_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием hashcat"
+	hashcat_texts["RUSSIAN",1]="airgeddon. Пароль расшифрован с использованием hashcat"
 	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
 
 	declare -gA aircrack_texts
@@ -375,7 +375,7 @@ function language_strings() {
 	aircrack_texts["FRENCH",1]="airgeddon. Mot de passe déchiffré avec aircrack"
 	aircrack_texts["CATALAN",1]="airgeddon. Contrasenya desencriptada amb aircrack"
 	aircrack_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando aircrack"
-	aircrack_texts["RUSSIAN",1]="${pending_of_translation} airgeddon. Расшифрованный пароль с использованием aircrack"
+	aircrack_texts["RUSSIAN",1]="airgeddon. Пароль расшифрован с использованием aircrack"
 	aircrack_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση aircrack"
 
 	declare -gA footer_texts
@@ -384,7 +384,7 @@ function language_strings() {
 	footer_texts["FRENCH",1]="Si le script vous a plus et que vous l'avez trouvé utile; vous pouvez soutenir le projet en faisant un don PayPal (${normal_color}${mail}${pink_color}) ou en envoyant une fraction de bitcoin (${normal_color}${bitcoin}${pink_color}). Toute contribution  (1, 2, 5 $/€) est bienvenue. Pour faire un don allez à: ${normal_color}${urlgithub_wiki}/Contributing"
 	footer_texts["CATALAN",1]="Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${mail}) o enviant una fracció bitcoin (${bitcoin}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes per a realitzar-la en: ${urlgithub_wiki}/Contributing"
 	footer_texts["PORTUGUESE",1]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${mail}) ou enviando uma fração de bitcoin (${bitcoin}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
-	footer_texts["RUSSIAN",1]="${pending_of_translation} Если вам понравился сценарий и нашел его полезным, вы можете поддержать проект, делающий пожертвование. Через Paypal (${mail}) или отправив часть биткойна (${bitcoin}). Любая сумма, неважно, насколько малы (1, 2, 5 $/€) приветствуются. Более подробную информацию и прямые ссылки можно получить по адресу: ${urlgithub_wiki}/Contributing"
+	footer_texts["RUSSIAN",1]="Если вам понравилась эта программа и она оказался для вас полезной, вы можете поддержать проект, сделав пожертвование. Через PayPal (${normal_color}${mail}${pink_color}) или отправив часть биткойна на (${normal_color}${bitcoin}${pink_color}). Приветствуется любая сумма, даже небольшая (1, 2, 5 $/€). Более подробную информацию и прямые ссылки можно получить по адресу: ${normal_color}${urlgithub_wiki}/Contributing"
 	footer_texts["GREEK",1]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${mail}) ή αποστέλλοντας ένα κλάσμα bitcoin (${bitcoin}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${urlgithub_wiki}/Contributing"
 
 	declare -A arr
@@ -3297,7 +3297,7 @@ function language_strings() {
 	arr["FRENCH",363]="${pending_of_translation} Rentrez PIN personnalisé (8 chiffres):"
 	arr["CATALAN",363]="${pending_of_translation} Escriu el PIN personalitzat (8 dígits):"
 	arr["PORTUGUESE",363]="Digite o PIN personalizado (8 dígitos):"
-	arr["RUSSIAN",363]="${pending_of_translation} Напишите пользовательский PIN (8 цифр):"
+	arr["RUSSIAN",363]="Введите пользовательский PIN (8 цифр):"
 	arr["GREEK",363]="Πληκτρολογήστε εξατομικευμένο PIN (8 ψηφία):"
 
 	arr["ENGLISH",364]="BSSID set to ${normal_color}${wps_bssid}"
@@ -3881,7 +3881,7 @@ function language_strings() {
 	arr["FRENCH",436]="La Version d'hashcat installée (${hashcat_version}) est égale ou supérieure à la version ${hashcat_hccapx_version}. Il est nécessaire dans ce cas de convertir les captures au format \"hccapx\", ce que fera automatiquement airgeddon. Il faut pour cela un convertisseur qui n'est pas installé dans votre système (paquet hashcat-utils). Veuilez l'installer pour effectuer cette attaque"
 	arr["CATALAN",436]="La versió de hashcat que tens instal·lada (${hashcat_version}) és igual o superior a la ${hashcat_hccapx_version} pel que cal convertir els fitxers de captura a format \"hccapx\", airgeddon ho farà automàticament. Però per a això cal un convertidor que no està present al sistema (paquet hashcat-utils), instal·lal per poder realitzar aquest atac"
 	arr["PORTUGUESE",436]="A versão do hashcat instalada (${hashcat_version}) é maior ou igual a ${hashcat_hccapx_version}, portanto é necessário convertermos o arquivo de captura para o formato \"hccapx\", airgeddon fará isso automaticamente. Mas isso requer um conversor que não está instalado no seu sistema (pacote hashcat-utils), instale-o para realizar este ataque"
-	arr["RUSSIAN",436]="${pending_of_translation} Установленная вами версия hashcat (${hashcat_version}) больше или равна ${hashcat_hccapx_version}, поэтому вам нужно преобразовать файлы захвата в формат \"hccapx\", airgeddon сделает это автоматически. Для этого вам нужен конвертер, которого нет в вашей системе (пакет hashcat-utils), установите его, чтобы иметь возможность выполнить эту атаку"
+	arr["RUSSIAN",436]="Установленная версия hashcat (${hashcat_version}) больше или равна ${hashcat_hccapx_version}, поэтому вам нужно конвертировать файлы захвата в формат \"hccapx\", airgeddon сделает это автоматически. Для этого вам нужен конвертер, которого нет в вашей системе (пакет hashcat-utils), установите его, чтобы иметь возможность выполнить эту атаку"
 	arr["GREEK",436]="Η έκδοση του hashcat που έχετε εγκαταστήσει (${hashcat_version}) είναι ίδια ή νεότερη από την έκδοση ${hashcat_hccapx_version}, άρα το airgeddon θα μετατρέψει τα αρχεία καταγραφής σε \"hccapx\" για να συνεχιστεί η διαδικασία. Για να επιτευχθεί αυτό χρειάζεστε ένα μετατροπέα που δεν υπάρχει στο σύστημά σας (περιέχεται στο πακέτο hashcat-utils), εγκαταστήστε το για να εκτελέσετε αυτήν την επίθεση"
 
 	arr["ENGLISH",437]="If you enjoyed the script and found it useful, you can support the project making a donation. Through Paypal (${normal_color}${mail}${pink_color}) or sending a fraction of a bitcoin (${normal_color}${bitcoin}${pink_color}). Any amount, not matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${normal_color}${urlgithub_wiki}/Contributing"
@@ -3889,7 +3889,7 @@ function language_strings() {
 	arr["FRENCH",437]="Si le script vous a plus et que vous l'avez trouvé utile; vous pouvez soutenir le projet en faisant un don PayPal (${normal_color}${mail}${pink_color}) ou en envoyant une fraction de bitcoin (${normal_color}${bitcoin}${pink_color}). Toute contribution  (1, 2, 5 $/€) est bienvenue. Pour faire un don allez à: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["CATALAN",437]="Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${normal_color}${mail}${pink_color}) o enviant una fracció bitcoin (${normal_color}${bitcoin}${pink_color}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes a per realitzar-la en: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["PORTUGUESE",437]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${normal_color}${mail}${pink_color}) ou enviando uma fração de bitcoin (${normal_color}${bitcoin}${pink_color}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
-	arr["RUSSIAN",437]="${pending_of_translation} Если вам понравился сценарий и нашел его полезным, вы можете поддержать проект, делающий пожертвование. Через Paypal (${normal_color}${mail}${pink_color}) или отправив часть биткойна (${normal_color}${bitcoin}${pink_color}). Любая сумма, неважно, насколько малы (1, 2, 5 $/€) приветствуются. Более подробную информацию и прямые ссылки можно получить по адресу: ${normal_color}${urlgithub_wiki}/Contributing"
+	arr["RUSSIAN",437]="Если вам понравилась эта программа и она оказался для вас полезной, вы можете поддержать проект, сделав пожертвование. Через PayPal (${normal_color}${mail}${pink_color}) или отправив часть биткойна на (${normal_color}${bitcoin}${pink_color}). Приветствуется любая сумма, даже небольшая (1, 2, 5 $/€). Более подробную информацию и прямые ссылки можно получить по адресу: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["GREEK",437]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${normal_color}${mail}${pink_color}) ή αποστέλλοντας ένα κλάσμα bitcoin (${normal_color}${bitcoin}${pink_color}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${normal_color}${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",438]="We are looking for translators to other languages. If you want to see airgeddon in your native language and you also know english, contact us. More information at: ${normal_color}${urlgithub_wiki}/Contributing"
@@ -3897,7 +3897,7 @@ function language_strings() {
 	arr["FRENCH",438]="Nous recherchons des traducteurs pour d'autres langues. Si vous voulez voir airgeddon dans votre langue maternelle et que vous connaissez l'anglais contactez-nous: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["CATALAN",438]="Busquem traductors per a altres idiomes. Si vols veure airgeddon en la teva llengua materna i més saps anglès, contacta'ns. Més informació a: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["PORTUGUESE",438]="Procuramos tradutores para outros idiomas. Se você quiser ver airgeddon em sua língua nativa e também sabe inglês, por favor contacte-nos. Mais informações: ${normal_color}${urlgithub_wiki}/Contributing"
-	arr["RUSSIAN",438]="${pending_of_translation} Мы ищем переводчик для других языков. Если вы хотите увидеть airgeddon на своем родном языке, а также знать английский язык, пожалуйста, свяжитесь с нами. Дополнительная информация: ${normal_color}${urlgithub_wiki}/Contributing"
+	arr["RUSSIAN",438]="Мы ищем переводчиков на другие языки. Если вы хотите увидеть airgeddon на своем родном языке, и вы знаете английский язык, пожалуйста, свяжитесь с нами. Дополнительная информация: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["GREEK",438]="${pending_of_translation} Επιδιώκουμε μεταφραστές για άλλες γλώσσες. Αν θέλετε να δείτε airgeddon στη μητρική σας γλώσσα, αλλά και να ξέρετε αγγλικά, παρακαλούμε επικοινωνήστε μαζί μας. Περισσότερες πληροφορίες: ${normal_color}${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",439]="${blue_color}You don't have selected any target, you'll be prompted to input data manually. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
@@ -3905,7 +3905,7 @@ function language_strings() {
 	arr["FRENCH",439]="${blue_color}Aucun objectif n'a été sélectionnéIl semble que vous avez sélectionné aucun but, vous devez saisir les données manuellement. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
 	arr["CATALAN",439]="${blue_color}S'ha detectat que no tens seleccionat cap objectiu, hauràs d'introduir les dades manualment. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",439]="${blue_color}Nenhum alvo foi selecionou, você será direcionado para inserir os dados manualmente. ${green_color}deseja continuar? ${normal_color}${visual_choice}"
-	arr["RUSSIAN",439]="${pending_of_translation} ${blue_color}Вы не выбрали какую-либо цель, вам будет предложено ввести данные вручную. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",439]="${blue_color}Вы не выбрали какую-либо цель, вам будет предложено ввести данные вручную. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
 	arr["GREEK",439]="${pending_of_translation} ${blue_color}Δεν έχετε επιλέξει κανένα στόχο, θα σας ζητηθεί να εισαγάγετε δεδομένα με μη αυτόματο τρόπο. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",440]="Aircrack trophy file generated successfully at [${normal_color}${aircrackpotenteredpath}${blue_color}]"
