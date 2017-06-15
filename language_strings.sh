@@ -3295,7 +3295,7 @@ function language_strings() {
 	arr["ENGLISH",363]="Type custom PIN (8 digits):"
 	arr["SPANISH",363]="Escribe el PIN personalizado (8 dígitos):"
 	arr["FRENCH",363]="Rentrez PIN personnalisé (8 chiffres):"
-	arr["CATALAN",363]="${pending_of_translation} Escriu el PIN personalitzat (8 dígits):"
+	arr["CATALAN",363]="Escriu el PIN personalitzat (8 dígits):"
 	arr["PORTUGUESE",363]="Digite o PIN personalizado (8 dígitos):"
 	arr["RUSSIAN",363]="Введите пользовательский PIN (8 цифр):"
 	arr["GREEK",363]="Πληκτρολογήστε εξατομικευμένο PIN (8 ψηφία):"
