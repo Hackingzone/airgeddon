@@ -3930,7 +3930,7 @@ function language_strings() {
 	arr["CATALAN",442]="Si instal·les el paquet ccze podràs veure algunes parts de airgeddon coloriçades i amb millor aspecte. No és un requeriment ni una dependència, però millorarà l'experiència d'usuari"
 	arr["PORTUGUESE",442]="Se você instalar o pacote ccze poderá ver algumas partes do airgeddon coloridas e mais bonitas. Não é uma exigência nem uma dependência, mas melhora a experiência do usuário"
 	arr["RUSSIAN",442]="Если вы установите ccze, то некоторые цветные элементы airgeddon будут выглядеть лучше. Это не требование или зависимость, но это улучшит работу пользователя"
-	arr["GREEK",442]="${pending_of_translation} Αν εγκαταστήσετε το ccze θα δείτε μερικά μέρη του airgeddon με έναν πολύχρωμο τρόπο με καλύτερη εμφάνιση. Δεν είναι απαίτηση ή εξάρτηση, αλλά θα βελτιώσει την εμπειρία του χρήστη"
+	arr["GREEK",442]="Αν εγκαταστήσετε το ccze θα δείτε μερικά κομμάτια του airgeddon, πολύχρωμα με καλύτερη εμφάνιση. Δεν είναι απαραίτητο dependency, αλλά θα βελτιώσει την εμπειρία του χρήστη"
 
 	case "${3}" in
 		"yellow")
