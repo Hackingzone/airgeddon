@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170614
+#Date.........: 20170615
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -367,7 +367,7 @@ function language_strings() {
 	hashcat_texts["CATALAN",1]="airgeddon. Contrasenya desencriptada amb hashcat"
 	hashcat_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando hashcat"
 	hashcat_texts["RUSSIAN",1]="airgeddon. Пароль расшифрован с использованием hashcat"
-	hashcat_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
+	hashcat_texts["GREEK",1]="airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση hashcat"
 
 	declare -gA aircrack_texts
 	aircrack_texts["ENGLISH",1]="airgeddon. Decrypted password using aircrack"
@@ -376,7 +376,7 @@ function language_strings() {
 	aircrack_texts["CATALAN",1]="airgeddon. Contrasenya desencriptada amb aircrack"
 	aircrack_texts["PORTUGUESE",1]="airgeddon descriptografou a senha usando aircrack"
 	aircrack_texts["RUSSIAN",1]="airgeddon. Пароль расшифрован с использованием aircrack"
-	aircrack_texts["GREEK",1]="${pending_of_translation} airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση aircrack"
+	aircrack_texts["GREEK",1]="airgeddon. Αποκρυπτογραφημένος κωδικός πρόσβασης με χρήση aircrack"
 
 	declare -gA footer_texts
 	footer_texts["ENGLISH",1]="If you enjoyed the script and found it useful, you can support the project making a donation. Through Paypal (${mail}) or sending a fraction of a bitcoin (${bitcoin}). Any amount, not matter how small (1, 2, 5 $/€) is welcome. More information and direct links to do it at: ${urlgithub_wiki}/Contributing"
@@ -385,7 +385,7 @@ function language_strings() {
 	footer_texts["CATALAN",1]="Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${mail}) o enviant una fracció bitcoin (${bitcoin}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes per a realitzar-la en: ${urlgithub_wiki}/Contributing"
 	footer_texts["PORTUGUESE",1]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${mail}) ou enviando uma fração de bitcoin (${bitcoin}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
 	footer_texts["RUSSIAN",1]="Если вам понравилась эта программа и она оказался для вас полезной, вы можете поддержать проект, сделав пожертвование. Через PayPal (${mail}) или отправив часть биткойна на (${bitcoin}). Приветствуется любая сумма, даже небольшая (1, 2, 5 $/€). Более подробную информацию и прямые ссылки можно получить по адресу: ${urlgithub_wiki}/Contributing"
-	footer_texts["GREEK",1]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${mail}) ή αποστέλλοντας ένα κλάσμα bitcoin (${bitcoin}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${urlgithub_wiki}/Contributing"
+	footer_texts["GREEK",1]="Εαν ευχαριστηθήκατε το script και το βρήκατε χρήσιμο, μπορείτε να υποστηρίξετε το project κάνοντας κάποια δωρεά. Μέσω του Paypal (${normal_color}${mail}${pink_color}) ή στέλνοντας κάποιο ποσοστό bitcoin (${normal_color}${bitcoin}${pink_color}). Είναι καλοδεχούμενο οποιοδήποτε ποσό (1, 2, 5 $/€), δεν έχει σημασία το πόσο λίγο μπορεί να είναι. Δίνονται περισσότερες πληροφορίες και links για να κάνετε δωρεά στη διεύθυνση: ${normal_color}${urlgithub_wiki}/Contributing"
 
 	declare -A arr
 	arr["ENGLISH",0]="This interface ${interface} is already in managed mode"
@@ -3890,7 +3890,7 @@ function language_strings() {
 	arr["CATALAN",437]="Si et va agradar el script i et va semblar útil, pots donar suport al projecte fent una donació. A través de Paypal (${normal_color}${mail}${pink_color}) o enviant una fracció bitcoin (${normal_color}${bitcoin}${pink_color}). Qualsevol quantitat per petita que sigui (1, 2, 5 $/€) és ben rebuda. Més informació i enllaços directes per a realitzar-la en: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["PORTUGUESE",437]="Se você gostou do script e o achou útil, apoie o projeto fazendo uma doação, através: do PayPal (${normal_color}${mail}${pink_color}) ou enviando uma fração de bitcoin (${normal_color}${bitcoin}${pink_color}). Qualquer quantidade, mesmo pequena (1, 2, 5 $/€) é bem-vinda. Links diretos e de com realizar em: ${urlgithub_wiki}/Contributing"
 	arr["RUSSIAN",437]="Если вам понравилась эта программа и она оказался для вас полезной, вы можете поддержать проект, сделав пожертвование. Через PayPal (${normal_color}${mail}${pink_color}) или отправив часть биткойна на (${normal_color}${bitcoin}${pink_color}). Приветствуется любая сумма, даже небольшая (1, 2, 5 $/€). Более подробную информацию и прямые ссылки можно получить по адресу: ${normal_color}${urlgithub_wiki}/Contributing"
-	arr["GREEK",437]="${pending_of_translation} Εάν απολάβατε το σενάριο και το θεωρήσατε χρήσιμο, μπορείτε να υποστηρίξετε το έργο κάνοντας μια δωρεά. Μέσω του Paypal (${normal_color}${mail}${pink_color}) ή αποστέλλοντας ένα κλάσμα bitcoin (${normal_color}${bitcoin}${pink_color}). Οποιοδήποτε ποσό, δεν έχει σημασία πόσο μικρό (1, 2, 5 $/€) είναι ευπρόσδεκτο. Περισσότερες πληροφορίες και άμεσες συνδέσεις για να το κάνετε στη διεύθυνση: ${normal_color}${urlgithub_wiki}/Contributing"
+	arr["GREEK",437]="Εαν ευχαριστηθήκατε το script και το βρήκατε χρήσιμο, μπορείτε να υποστηρίξετε το project κάνοντας κάποια δωρεά. Μέσω του Paypal (${normal_color}${mail}${pink_color}) ή στέλνοντας κάποιο ποσοστό bitcoin (${normal_color}${bitcoin}${pink_color}). Είναι καλοδεχούμενο οποιοδήποτε ποσό (1, 2, 5 $/€), δεν έχει σημασία το πόσο λίγο μπορεί να είναι. Δίνονται περισσότερες πληροφορίες και links για να κάνετε δωρεά στη διεύθυνση: ${normal_color}${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",438]="We are looking for translators to other languages. If you want to see airgeddon in your native language and you also know english, contact us. More information at: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["SPANISH",438]="Buscamos traductores para otros idiomas. Si quieres ver airgeddon en tu lengua materna y además sabes inglés, contáctanos. Más información en: ${normal_color}${urlgithub_wiki}/Contributing"
@@ -3898,7 +3898,7 @@ function language_strings() {
 	arr["CATALAN",438]="Busquem traductors per a altres idiomes. Si vols veure airgeddon en la teva llengua materna i més saps anglès, contacta'ns. Més informació a: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["PORTUGUESE",438]="Procuramos tradutores para outros idiomas. Se você quiser ver airgeddon em sua língua nativa e também sabe inglês, por favor contacte-nos. Mais informações: ${normal_color}${urlgithub_wiki}/Contributing"
 	arr["RUSSIAN",438]="Мы ищем переводчиков на другие языки. Если вы хотите увидеть airgeddon на своем родном языке, и вы знаете английский язык, пожалуйста, свяжитесь с нами. Дополнительная информация: ${normal_color}${urlgithub_wiki}/Contributing"
-	arr["GREEK",438]="${pending_of_translation} Επιδιώκουμε μεταφραστές για άλλες γλώσσες. Αν θέλετε να δείτε airgeddon στη μητρική σας γλώσσα, αλλά και να ξέρετε αγγλικά, παρακαλούμε επικοινωνήστε μαζί μας. Περισσότερες πληροφορίες: ${normal_color}${urlgithub_wiki}/Contributing"
+	arr["GREEK",438]="Ψάχνουμε μεταφραστές για την υποστήριξη περισσότερων γλωσσών. Αν θέλετε να χρησιμοποιείτε το airgeddon στη μητρική σας γλώσσα, αλλά ξέρετε και αγγλικά, παρακαλούμε επικοινωνήστε μαζί μας. Περισσότερες πληροφορίες: ${normal_color}${urlgithub_wiki}/Contributing"
 
 	arr["ENGLISH",439]="${blue_color}You don't have selected any target, you'll be prompted to input data manually. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",439]="${blue_color}Se ha detectado que no tienes seleccionado ningún objetivo, tendrás que introducir los datos manualmente. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -3906,7 +3906,7 @@ function language_strings() {
 	arr["CATALAN",439]="${blue_color}S'ha detectat que no tens seleccionat cap objectiu, hauràs d'introduir les dades manualment. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",439]="${blue_color}Nenhum alvo foi selecionou, você será direcionado para inserir os dados manualmente. ${green_color}deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",439]="${blue_color}Вы не выбрали какую-либо цель, вам будет предложено ввести данные вручную. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",439]="${pending_of_translation} ${blue_color}Δεν έχετε επιλέξει κανένα στόχο, θα σας ζητηθεί να εισαγάγετε δεδομένα με μη αυτόματο τρόπο. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",439]="${blue_color}Δεν έχετε επιλέξει κάποιο στόχο, θα σας ζητηθεί να εισάγετε τα δεδομένα χειροκίνητα. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",440]="Aircrack trophy file generated successfully at [${normal_color}${aircrackpotenteredpath}${blue_color}]"
 	arr["SPANISH",440]="Fichero de trofeo aircrack generado con éxito en [${normal_color}${aircrackpotenteredpath}${blue_color}]"
