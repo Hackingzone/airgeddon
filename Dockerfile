@@ -50,7 +50,8 @@ RUN \
 	usbutils \
 	rfkill \
 	x11-utils \
-	wget
+	wget \
+	ccze
 
 #Install update tools
 RUN \
