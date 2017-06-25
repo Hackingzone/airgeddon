@@ -510,7 +510,6 @@ function debug_print() {
 			return 1
 		fi
 
-		#TODO "${@}" to print parameters
 		echo "Line:${BASH_LINENO[1]}" "${FUNCNAME[1]}"
 		return 0
 	fi
