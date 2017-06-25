@@ -2,8 +2,8 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170614
-#Version......: 7.11
+#Date.........: 20170625
+#Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
 
@@ -109,8 +109,8 @@ declare -A possible_alias_names=(
 								)
 
 #General vars
-airgeddon_version="7.11"
-language_strings_expected_version="7.11-1"
+airgeddon_version="7.2"
+language_strings_expected_version="7.2-1"
 standardhandshake_filename="handshake-01.cap"
 tmpdir="/tmp/"
 osversionfile_dir="/etc/"
@@ -6320,6 +6320,8 @@ function parse_ettercap_log() {
 		pass_counter=$((pass_counter + 1))
 	done
 
+	add_contributing_footer_to_file "${tmpdir}parsed_file"
+
 	if [ ${pass_counter} -eq 0 ]; then
 		language_strings "${language}" 305 "yellow"
 	else
@@ -6377,6 +6379,8 @@ function parse_bettercap_log() {
 			pass_counter=$((pass_counter + 1))
 		fi
 	done
+
+	add_contributing_footer_to_file "${tmpdir}parsed_file"
 
 	if [ ${pass_counter} -eq 0 ]; then
 		language_strings "${language}" 305 "yellow"
