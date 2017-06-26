@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170625
+#Date.........: 20170626
 #Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -1211,52 +1211,45 @@ function set_chipset() {
 	debug_print
 
 	chipset=""
-	sedrule1="s/^....//"
-	sedrule2="s/ Network Connection//g"
-	sedrule3="s/ Wireless Adapter//"
-	sedrule4="s/Wireless LAN Controller //g"
-	sedrule5="s/ Wireless Adapter//"
-	sedrule6="s/^ //"
-	sedrule7="s/ Gigabit Ethernet.*//"
-	sedrule8="s/ Fast Ethernet.*//"
-	sedrule9="s/ \[.*//"
-	sedrule10="s/ (.*//"
+	sedrule1="s/^[0-9a-f]\{1,4\} \|^ //Ig"
+	sedrule2="s/ Network Connection.*//Ig"
+	sedrule3="s/ Wireless.*//Ig"
+	sedrule4="s/ PCI Express.*//Ig"
+	sedrule5="s/ \(Gigabit\|Fast\) Ethernet.*//Ig"
+	sedrule6="s/ \[.*//"
+	sedrule7="s/ (.*//"
 
-	sedrulewifi="${sedrule1};${sedrule2};${sedrule3};${sedrule6}"
-	sedrulegeneric="${sedrule4};${sedrule2};${sedrule5};${sedrule6};${sedrule7};${sedrule8};${sedrule9};${sedrule10}"
-	sedruleall="${sedrule1};${sedrule2};${sedrule3};${sedrule6};${sedrule7};${sedrule8};${sedrule9};${sedrule10}"
+	sedruleall="${sedrule1};${sedrule2};${sedrule3};${sedrule4};${sedrule5};${sedrule6};${sedrule7}"
 
 	if [ -f "/sys/class/net/${1}/device/modalias" ]; then
-
-		bus_type=$(cut -d ":" -f 1 < "/sys/class/net/${1}/device/modalias")
+		bus_type=$(cut -f 1 -d ":" < "/sys/class/net/${1}/device/modalias")
 
 		if [ "${bus_type}" = "usb" ]; then
 			vendor_and_device=$(cut -b 6-14 < "/sys/class/net/${1}/device/modalias" | sed 's/^.//;s/p/:/')
 			if hash lsusb 2> /dev/null; then
-				chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulewifi}")
+				chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
 			fi
 
 		elif [[ "${bus_type}" =~ pci|ssb|bcma|pcmcia ]]; then
-
-			if [[ -f /sys/class/net/${1}/device/vendor && -f /sys/class/net/${1}/device/device ]]; then
+			if [[ -f /sys/class/net/${1}/device/vendor ]] && [[ -f /sys/class/net/${1}/device/device ]]; then
 				vendor_and_device=$(cat "/sys/class/net/${1}/device/vendor"):$(cat "/sys/class/net/${1}/device/device")
 				if hash lspci 2> /dev/null; then
-					chipset=$(lspci -d "${vendor_and_device}" | cut -f3- -d ":" | sed "${sedrulegeneric}")
+					chipset=$(lspci -d "${vendor_and_device}" | cut -f 3 -d ":" | sed -e "${sedruleall}")
 				fi
 			else
 				if hash ethtool 2> /dev/null; then
 					ethtool_output=$(ethtool -i "${1}" 2>&1)
-					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep bus-info | cut -d ":" -f "3-" | sed 's/^ //')
+					vendor_and_device=$(printf "%s" "${ethtool_output}" | grep "bus-info" | cut -f 3 -d ":" | sed 's/^ //')
 					if hash lspci 2> /dev/null; then
-						chipset=$(lspci | grep "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedrulegeneric}")
+						chipset=$(lspci | grep "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
 					fi
 				fi
 			fi
 		fi
-	elif [[ -f /sys/class/net/${1}/device/idVendor && -f /sys/class/net/${1}/device/idProduct ]]; then
+	elif [[ -f /sys/class/net/${1}/device/idVendor ]] && [[ -f /sys/class/net/${1}/device/idProduct ]]; then
 		vendor_and_device=$(cat "/sys/class/net/${1}/device/idVendor"):$(cat "/sys/class/net/${1}/device/idProduct")
 		if hash lsusb 2> /dev/null; then
-			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n1 - | cut -f3- -d ":" | sed "${sedruleall}")
+			chipset=$(lsusb | grep -i "${vendor_and_device}" | head -n 1 | cut -f 3 -d ":" | sed -e "${sedruleall}")
 		fi
 	fi
 }
@@ -1308,7 +1301,7 @@ function select_internet_interface() {
 		fi
 		set_chipset "${item}"
 		echo -ne "${option_counter}.${spaceiface}${item} "
-		if [ "${chipset}" = "" ]; then
+		if [ -z "${chipset}" ]; then
 			language_strings "${language}" 245 "blue"
 		else
 			echo -e "${blue_color}// ${yellow_color}Chipset:${normal_color} ${chipset}"
@@ -4800,7 +4793,7 @@ function set_hostapd_config() {
 	tmpfiles_toclean=1
 	rm -rf "${tmpdir}${hostapd_file}" > /dev/null 2>&1
 
-	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n100 | grep -v "${bssid:10:1}" | head -c 1)
+	different_mac_digit=$(tr -dc A-F0-9 < /dev/urandom | fold -w2 | head -n 100 | grep -v "${bssid:10:1}" | head -c 1)
 	et_bssid=${bssid::10}${different_mac_digit}${bssid:11:6}
 
 	{

@@ -1,3 +1,6 @@
+### 7.2
+ - Improved chipset detection
+
 ### 7.11
  - Added hccapx support for hashcat 3.40 or higher
  - Decrypted hashcat trophy files beautified
