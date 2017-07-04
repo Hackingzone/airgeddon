@@ -1,5 +1,6 @@
 ### 7.2
  - Improved chipset detection
+ - New language and options menu
 
 ### 7.11
  - Added hccapx support for hashcat 3.40 or higher
@@ -37,7 +38,7 @@
 ### 6.21
  - Improved chipset detection, lsusb added to internal tools
  - Improved internet checking. Now more methods, not only icmp
- - Fixed error executing airgeddon after auto update on some distros
+ - Fixed error executing airgeddon after auto-update on some distros
  - Added LICENSE.md and README.md files to Kali package
 
 ### 6.2

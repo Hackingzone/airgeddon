@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170626
+#Date.........: 20170704
 #Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -268,13 +268,14 @@ known_arm_compatible_distros=(
 							)
 
 #Hint vars
-declare main_hints=(128 134 163 437 438 442)
+declare main_hints=(128 134 163 437 438 442 445)
 declare dos_hints=(129 131 133)
 declare handshake_hints=(127 130 132 136)
 declare handshake_attack_hints=(142)
 declare decrypt_hints=(171 178 179 208 244)
 declare select_interface_hints=(246)
-declare language_hints=(250)
+declare language_hints=(250 438)
+declare option_hints=(445 250 448)
 declare evil_twin_hints=(254 258 264 269 309 328 400)
 declare evil_twin_dos_hints=(267 268)
 declare beef_hints=(408)
@@ -471,6 +472,27 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["PORTUGUESE"]="Pressione a tecla [Enter] para continuar..."
 	language_strings_key_to_continue["RUSSIAN"]="Нажмите клавишу [Enter] для продолжения..."
 	language_strings_key_to_continue["GREEK"]="Πατήστε το κουμπί [Enter] για να συνεχίσετε..."
+}
+
+#Toggle auto-update feature
+function auto_update_toggle() {
+
+	if [ "${auto_update}" -eq 1 ]; then
+		sed -ri 's:(auto_update)=(1):\1=0:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "auto_[u]pdate=0" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		auto_update=$((auto_update-1))
+	else
+		sed -ri 's:(auto_update)=(0):\1=1:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "auto_[u]pdate=1" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		auto_update=$((auto_update+1))
+	fi
+	return 0
 }
 
 #Print the current line of where this was called and the function's name. Applies to some (which are useful) functions
@@ -1112,6 +1134,83 @@ function check_interface_mode() {
 	exit_script_option
 }
 
+#Option menu
+function option_menu() {
+
+	debug_print
+
+	clear
+	language_strings "${language}" 443 "title"
+	current_menu="option_menu"
+	initialize_menu_and_print_selections
+	echo
+	language_strings "${language}" 47 "green"
+	print_simple_separator
+	language_strings "${language}" 78
+	print_simple_separator
+	if [ "${auto_update}" -eq 1 ]; then
+		language_strings "${language}" 455
+	else
+		language_strings "${language}" 449
+	fi
+	if [ "${allow_colorization}" -eq 1 ]; then
+		language_strings "${language}" 456 "under_construction"
+	else
+		language_strings "${language}" 450 "under_construction"
+	fi
+	print_simple_separator
+	language_strings "${language}" 447
+	print_hint ${current_menu}
+
+	read -r option_selected
+	case ${option_selected} in
+		1)
+			language_menu
+		;;
+		2)
+			if [ "${auto_update}" -eq 1 ]; then
+				ask_yesno 457 "no"
+				if [ ${yesno} = "y" ]; then
+					auto_update_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 461 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				language_strings "${language}" 459 "yellow"
+				ask_yesno 458 "no"
+				if [ ${yesno} = "y" ]; then
+					auto_update_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 460 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		3)
+			under_construction_message
+		;;
+		4)
+			return
+		;;
+		*)
+			invalid_menu_option
+		;;
+	esac
+
+	option_menu
+}
+
 #Language change menu
 function language_menu() {
 
@@ -1131,6 +1230,8 @@ function language_menu() {
 	language_strings "${language}" 249
 	language_strings "${language}" 308
 	language_strings "${language}" 320
+	print_simple_separator
+	language_strings "${language}" 446
 	print_hint ${current_menu}
 
 	read -r language_selected
@@ -1199,10 +1300,15 @@ function language_menu() {
 			fi
 			language_strings "${language}" 115 "read"
 		;;
+		8)
+			return
+		;;
 		*)
 			invalid_language_selected
 		;;
 	esac
+
+	language_menu
 }
 
 #Read the chipset for an interface
@@ -2635,6 +2741,24 @@ function wps_attacks_parameters() {
 	return 0
 }
 
+#Print selected options
+function print_options() {
+
+	debug_print
+
+	if [ "${auto_update}" -eq 1 ]; then
+		language_strings "${language}" 451 "blue"
+	else
+		language_strings "${language}" 452 "blue"
+	fi
+
+	if [ "${allow_colorization}" -eq 1 ]; then
+		language_strings "${language}" 453 "blue"
+	else
+		language_strings "${language}" 454 "blue"
+	fi
+}
+
 #Print selected interface
 function print_iface_selected() {
 
@@ -2939,6 +3063,10 @@ function initialize_menu_and_print_selections() {
 			print_iface_selected
 			print_all_target_vars_et
 		;;
+		"option_menu")
+			print_iface_selected
+			print_options
+		;;
 		*)
 			print_iface_selected
 			print_all_target_vars
@@ -3109,6 +3237,13 @@ function print_hint() {
 			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
 			strtoprint=${hints[language_hints|${randomhint}]}
 		;;
+		"option_menu")
+			store_array hints option_hints "${option_hints[@]}"
+			hintlength=${#option_hints[@]}
+			((hintlength--))
+			randomhint=$(shuf -i 0-"${hintlength}" -n 1)
+			strtoprint=${hints[option_hints|${randomhint}]}
+		;;
 		"evil_twin_attacks_menu")
 			store_array hints evil_twin_hints "${evil_twin_hints[@]}"
 			hintlength=${#evil_twin_hints[@]}
@@ -3175,7 +3310,7 @@ function main_menu() {
 	language_strings "${language}" 426
 	print_simple_separator
 	language_strings "${language}" 60
-	language_strings "${language}" 78
+	language_strings "${language}" 444
 	language_strings "${language}" 61
 	print_hint ${current_menu}
 
@@ -3212,7 +3347,7 @@ function main_menu() {
 			credits_option
 		;;
 		11)
-			language_menu
+			option_menu
 		;;
 		12)
 			exit_script_option
@@ -7920,8 +8055,6 @@ function invalid_language_selected() {
 	language_strings "${language}" 82 "red"
 	echo
 	language_strings "${language}" 115 "read"
-	echo
-	language_menu
 }
 
 #Show message for captive portal invalid selected language
@@ -8803,7 +8936,7 @@ function check_compatibility() {
 	done
 
 	update_toolsok=1
-	if [ ${auto_update} -eq 1 ]; then
+	if [ "${auto_update}" -eq 1 ]; then
 
 		echo
 		language_strings "${language}" 226 "blue"
@@ -8867,7 +9000,7 @@ function check_update_tools() {
 
 	debug_print
 
-	if [ ${auto_update} -eq 1 ]; then
+	if [ "${auto_update}" -eq 1 ]; then
 		if [ ${update_toolsok} -eq 1 ]; then
 			autoupdate_check
 		else
