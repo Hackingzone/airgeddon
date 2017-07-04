@@ -1608,7 +1608,7 @@ function ask_bssid() {
 	if [ "${1}" = "wps" ]; then
 		if [ -z "${wps_bssid}" ]; then
 			ask_yesno 439 "no"
-			if [ ${yesno} = "n" ]; then
+			if [ "${yesno}" = "n" ]; then
 				return 1
 			fi
 		fi
@@ -1621,7 +1621,7 @@ function ask_bssid() {
 	else
 		if [ -z "${bssid}" ]; then
 			ask_yesno 439 "no"
-			if [ ${yesno} = "n" ]; then
+			if [ "${yesno}" = "n" ]; then
 				return 1
 			fi
 		fi
@@ -1654,7 +1654,7 @@ function ask_essid() {
 
 		if [ "${1}" = "verify" ]; then
 			ask_yesno 439 "no"
-			if [ ${yesno} = "n" ]; then
+			if [ "${yesno}" = "n" ]; then
 				return 1
 			fi
 		fi
@@ -3968,7 +3968,7 @@ function manage_asking_for_captured_file() {
 		echo
 		language_strings "${language}" 186 "blue"
 		ask_yesno 187 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			ask_capture_file
 		fi
 	else
@@ -3985,7 +3985,7 @@ function manage_asking_for_dictionary_file() {
 		echo
 		language_strings "${language}" 183 "blue"
 		ask_yesno 184 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			ask_dictionary
 		fi
 	else
@@ -4002,7 +4002,7 @@ function manage_asking_for_rule_file() {
 		echo
 		language_strings "${language}" 239 "blue"
 		ask_yesno 240 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			ask_rules
 		fi
 	else
@@ -7659,7 +7659,7 @@ function et_prerequisites() {
 		language_strings "${language}" 276 "yellow"
 		print_simple_separator
 		ask_yesno 277 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			return_to_et_main_menu=1
 			return_to_et_main_menu_from_beef=1
 			return
@@ -7782,7 +7782,7 @@ function ask_et_handshake_file() {
 	elif [[ -z "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
 		ask_yesno 187 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			readpath=1
 		fi
 	elif [[ -n "${enteredpath}" ]] && [[ -z "${et_handshake}" ]]; then
@@ -7796,7 +7796,7 @@ function ask_et_handshake_file() {
 	elif [[ -n "${enteredpath}" ]] && [[ -n "${et_handshake}" ]]; then
 		language_strings "${language}" 313 "blue"
 		ask_yesno 187 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			readpath=1
 		fi
 	fi
@@ -7844,7 +7844,7 @@ function et_dos_menu() {
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
 						ask_yesno 326 "no"
-						if [ ${yesno} = "n" ]; then
+						if [ "${yesno}" = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
 								captive_portal_mode="dnsblackhole"
@@ -7891,7 +7891,7 @@ function et_dos_menu() {
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
 						ask_yesno 326 "no"
-						if [ ${yesno} = "n" ]; then
+						if [ "${yesno}" = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
 								captive_portal_mode="dnsblackhole"
@@ -7938,7 +7938,7 @@ function et_dos_menu() {
 					if [ ${internet_interface_selected} -eq 0 ]; then
 						language_strings "${language}" 330 "blue"
 						ask_yesno 326 "no"
-						if [ ${yesno} = "n" ]; then
+						if [ "${yesno}" = "n" ]; then
 							check_et_without_internet_compatibility
 							if [ "$?" = "0" ]; then
 								captive_portal_mode="dnsblackhole"
@@ -8000,7 +8000,7 @@ function detect_internet_interface() {
 		echo
 		language_strings "${language}" 285 "blue"
 		ask_yesno 284 "yes"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			select_internet_interface
 		fi
 	else
@@ -8168,7 +8168,7 @@ function exit_script_option() {
 
 	if [ "${ifacemode}" = "Monitor" ]; then
 		ask_yesno 166 "no"
-		if [ ${yesno} = "n" ]; then
+		if [ "${yesno}" = "n" ]; then
 			action_on_exit_taken=1
 			language_strings "${language}" 167 "multiline"
 			${airmon} stop "${interface}" > /dev/null 2>&1
@@ -8515,7 +8515,7 @@ function ask_for_pin_dbfile_download_retry() {
 	debug_print
 
 	ask_yesno 380 "no"
-	if [ ${yesno} = "n" ]; then
+	if [ "${yesno}" = "n" ]; then
 		pin_dbfile_checked=1
 	fi
 }
