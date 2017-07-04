@@ -1170,7 +1170,7 @@ function option_menu() {
 		2)
 			if [ "${auto_update}" -eq 1 ]; then
 				ask_yesno 457 "no"
-				if [ ${yesno} = "y" ]; then
+				if [ "${yesno}" = "y" ]; then
 					auto_update_toggle
 					if [ "$?" = "0" ]; then
 						echo
@@ -1184,7 +1184,7 @@ function option_menu() {
 			else
 				language_strings "${language}" 459 "yellow"
 				ask_yesno 458 "no"
-				if [ ${yesno} = "y" ]; then
+				if [ "${yesno}" = "y" ]; then
 					auto_update_toggle
 					if [ "$?" = "0" ]; then
 						echo
@@ -4113,7 +4113,7 @@ function select_wpa_bssid_target_from_captured_file() {
 			language_strings "${language}" 192 "blue"
 			ask_yesno 193 "yes"
 
-			if [ ${yesno} = "y" ]; then
+			if [ "${yesno}" = "y" ]; then
 				bssid=${targetbssid}
 				return 0
 			fi
@@ -4331,7 +4331,7 @@ function manage_hashcat_pot() {
 		echo
 		language_strings "${language}" 234 "yellow"
 		ask_yesno 235 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 
 			hashcat_potpath="${default_save_path}"
 			lastcharhashcat_potpath=${hashcat_potpath: -1}
@@ -4383,7 +4383,7 @@ function manage_aircrack_pot() {
 		echo
 		language_strings "${language}" 234 "yellow"
 		ask_yesno 235 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 			aircrack_potpath="${default_save_path}"
 			lastcharaircrack_potpath=${aircrack_potpath: -1}
 			if [ "${lastcharaircrack_potpath}" != "/" ]; then
@@ -4426,7 +4426,7 @@ function manage_ettercap_log() {
 
 	ettercap_log=0
 	ask_yesno 302 "yes"
-	if [ ${yesno} = "y" ]; then
+	if [ "${yesno}" = "y" ]; then
 		ettercap_log=1
 		default_ettercap_logpath="${default_save_path}"
 		lastcharettercaplogpath=${default_ettercap_logpath: -1}
@@ -4451,7 +4451,7 @@ function manage_bettercap_log() {
 
 	bettercap_log=0
 	ask_yesno 302 "yes"
-	if [ ${yesno} = "y" ]; then
+	if [ "${yesno}" = "y" ]; then
 		bettercap_log=1
 		default_bettercap_logpath="${default_save_path}"
 		lastcharbettercaplogpath=${default_bettercap_logpath: -1}
@@ -6253,7 +6253,7 @@ function prepare_beef_start() {
 	if [[ ${beef_found} -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 0 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 191 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 			manual_beef_set
 			search_for_beef
 		fi
@@ -6275,7 +6275,7 @@ function prepare_beef_start() {
 	elif [[ "${beef_found}" -eq 0 ]] && [[ ${optional_tools[${optional_tools_names[19]}]} -eq 1 ]]; then
 		language_strings "${language}" 405 "blue"
 		ask_yesno 415 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 			manual_beef_set
 			search_for_beef
 			if [[ ${beef_found} -eq 1 ]] && [[ ${valid_possible_beef_path} -eq 1 ]]; then
@@ -6669,7 +6669,7 @@ function clean_handshake_file_option() {
 	else
 		language_strings "${language}" 151 "blue"
 		ask_yesno 152 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 			filetoclean="${enteredpath}"
 		else
 			readpath=1
@@ -7452,7 +7452,7 @@ function explore_for_wps_targets_option() {
 		if [[ ${selected_wps_target_network} -ge 1 ]] && [[ ${selected_wps_target_network} -le ${wash_counter} ]]; then
 			if [ "${wps_lockeds[${selected_wps_target_network}]}" = "Yes" ]; then
 				ask_yesno 350 "no"
-				if [ ${yesno} = "y" ]; then
+				if [ "${yesno}" = "y" ]; then
 					break
 				else
 					echo
@@ -7667,7 +7667,7 @@ function et_prerequisites() {
 	fi
 
 	ask_yesno 419 "no"
-	if [ ${yesno} = "y" ]; then
+	if [ "${yesno}" = "y" ]; then
 		mac_spoofing_desired=1
 	fi
 
@@ -7788,7 +7788,7 @@ function ask_et_handshake_file() {
 	elif [[ -n "${enteredpath}" ]] && [[ -z "${et_handshake}" ]]; then
 		language_strings "${language}" 151 "blue"
 		ask_yesno 187 "yes"
-		if [ ${yesno} = "y" ]; then
+		if [ "${yesno}" = "y" ]; then
 			et_handshake="${enteredpath}"
 		else
 			readpath=1
@@ -8129,7 +8129,7 @@ function capture_traps() {
 					;;
 					*)
 						ask_yesno 12 "yes"
-						if [ ${yesno} = "y" ]; then
+						if [ "${yesno}" = "y" ]; then
 							exit_code=1
 							exit_script_option
 						else
