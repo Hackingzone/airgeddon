@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170706
+#Date.........: 20170707
 #Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -472,6 +472,29 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["PORTUGUESE"]="Pressione a tecla [Enter] para continuar..."
 	language_strings_key_to_continue["RUSSIAN"]="Нажмите клавишу [Enter] для продолжения..."
 	language_strings_key_to_continue["GREEK"]="Πατήστε το κουμπί [Enter] για να συνεχίσετε..."
+}
+
+#Toggle language auto-detection feature
+function auto_change_language_toggle() {
+
+	debug_print
+
+	if [ "${auto_change_language}" -eq 1 ]; then
+		sed -ri 's:(auto_change_language)=(1):\1=0:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "auto_[c]hange_language=0" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		auto_change_language=$((auto_change_language-1))
+	else
+		sed -ri 's:(auto_change_language)=(0):\1=1:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "auto_[c]hange_language=1" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		auto_change_language=$((auto_change_language+1))
+	fi
+	return 0
 }
 
 #Toggle allow colorization feature
@@ -1184,6 +1207,11 @@ function option_menu() {
 	else
 		language_strings "${language}" 450
 	fi
+	if [ "${auto_change_language}" -eq 1 ]; then
+		language_strings "${language}" 468
+	else
+		language_strings "${language}" 467
+	fi
 	print_simple_separator
 	language_strings "${language}" 447
 	print_hint ${current_menu}
@@ -1258,6 +1286,37 @@ function option_menu() {
 			fi
 		;;
 		4)
+			if [ "${auto_change_language}" -eq 1 ]; then
+				ask_yesno 469 "no"
+				if [ "${yesno}" = "y" ]; then
+					auto_change_language_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 473 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				echo
+				language_strings "${language}" 471 "yellow"
+				ask_yesno 470 "no"
+				if [ "${yesno}" = "y" ]; then
+					auto_change_language_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 472 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
+		;;
+		5)
 			return
 		;;
 		*)
@@ -2814,6 +2873,12 @@ function print_options() {
 	else
 		language_strings "${language}" 454 "blue"
 	fi
+
+	if [ "${auto_change_language}" -eq 1 ]; then
+		language_strings "${language}" 474 "blue"
+	else
+		language_strings "${language}" 475 "blue"
+	fi
 }
 
 #Print selected interface
@@ -3121,7 +3186,6 @@ function initialize_menu_and_print_selections() {
 			print_all_target_vars_et
 		;;
 		"option_menu")
-			print_iface_selected
 			print_options
 		;;
 		*)

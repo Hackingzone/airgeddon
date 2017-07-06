@@ -1,7 +1,7 @@
 ### 7.2
  - Improved chipset detection
  - New language and options menu
- - Colorization and auto-update now can be disabled persistently from menu
+ - Colorization, auto-update and startup language autodetection now can be enabled/disabled persistently from menu
 
 ### 7.11
  - Added hccapx support for hashcat 3.40 or higher

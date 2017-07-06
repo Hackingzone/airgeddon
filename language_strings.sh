@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170706
+#Date.........: 20170707
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -1305,8 +1305,8 @@ function language_strings() {
 	arr["FRENCH",114]="Utilisez-le seulement dans vos propres réseaux!!"
 	arr["CATALAN",114]="Utilitza'l només a les teves pròpies xarxes!!"
 	arr["PORTUGUESE",114]="Use-o apenas em suas próprias redes!!"
-	arr["RUSSIAN",114]="Используйте только на ваших собственных сетях!!!"
-	arr["GREEK",114]="Χρησιμοποιήστε το μόνο σε δικά σας δίκτυα!!!"
+	arr["RUSSIAN",114]="Используйте только на ваших собственных сетях!!"
+	arr["GREEK",114]="Χρησιμοποιήστε το μόνο σε δικά σας δίκτυα!!"
 
 	arr["ENGLISH",115]="Press [Enter] key to continue..."
 	arr["SPANISH",115]="Pulsa la tecla [Enter] para continuar..."
@@ -3964,13 +3964,13 @@ function language_strings() {
 	arr["RUSSIAN",446]="${pending_of_translation} 8.  Возврат в опций меню"
 	arr["GREEK",446]="${pending_of_translation} 8.  Επιστροφή στο μενού επιλογών"
 
-	arr["ENGLISH",447]="4.  Return to main menu"
-	arr["SPANISH",447]="4.  Volver al menú principal"
-	arr["FRENCH",447]="4.  Retourner au menu principal"
-	arr["CATALAN",447]="4.  Tornar al menú principal"
-	arr["PORTUGUESE",447]="4.  Voltar ao menu principal"
-	arr["RUSSIAN",447]="4.  Возврат в главное меню"
-	arr["GREEK",447]="4.  Επιστροφή στο αρχικό μενού"
+	arr["ENGLISH",447]="5.  Return to main menu"
+	arr["SPANISH",447]="5.  Volver al menú principal"
+	arr["FRENCH",447]="5.  Retourner au menu principal"
+	arr["CATALAN",447]="5.  Tornar al menú principal"
+	arr["PORTUGUESE",447]="5.  Voltar ao menu principal"
+	arr["RUSSIAN",447]="5.  Возврат в главное меню"
+	arr["GREEK",447]="5.  Επιστροφή στο αρχικό μενού"
 
 	arr["ENGLISH",448]="If you installed airgeddon from a repository, you should not enable automatic updates. airgeddon will be updated when there is a new version in the repository"
 	arr["SPANISH",448]="Si instalaste airgeddon desde un repositorio, no deberías activar la actualización automática. airgeddon se actualizará cuando haya una nueva versión en el repositorio"
@@ -4123,6 +4123,78 @@ function language_strings() {
 	arr["PORTUGUESE",466]="${pending_of_translation} Ele foi desativado colorização"
 	arr["RUSSIAN",466]="${pending_of_translation} Раскраска отключена"
 	arr["GREEK",466]="${pending_of_translation} Ο χρωματισμός έχει απενεργοποιηθεί"
+
+	arr["ENGLISH",467]="4.  Enable startup language autodetection"
+	arr["SPANISH",467]="4.  Habilitar la autodetección de idioma al inicio"
+	arr["FRENCH",467]="${pending_of_translation} 4.  Activer la langue de découverte automatique au début"
+	arr["CATALAN",467]="${pending_of_translation} 4.  Habilitar la autodetecció d'idioma a l'inici"
+	arr["PORTUGUESE",467]="${pending_of_translation} 4.  Ativar linguagem descoberta automática no início"
+	arr["RUSSIAN",467]="${pending_of_translation} 4.  Включить автообнаружение автозапуска"
+	arr["GREEK",467]="${pending_of_translation} 4.  Ενεργοποίηση αυτόματης ανίχνευσης γλωσσών εκκίνησης"
+
+	arr["ENGLISH",468]="4.  Disable startup language autodetection"
+	arr["SPANISH",468]="4.  Deshabilitar la autodetección de idioma al inicio"
+	arr["FRENCH",468]="${pending_of_translation} 4.  Désactiver la langue autosensing au début"
+	arr["CATALAN",468]="${pending_of_translation} 4.  Deshabilitar la autodetecció d'idioma a l'inici"
+	arr["PORTUGUESE",468]="${pending_of_translation} 4.  Linguagem autosensing Disable no início"
+	arr["RUSSIAN",468]="${pending_of_translation} 4.  Отключить автозапуск автозагрузки"
+	arr["GREEK",468]="${pending_of_translation} 4.  Απενεργοποίηση αυτόματης ανίχνευσης γλωσσών εκκίνησης"
+
+	arr["ENGLISH",469]="${blue_color}Startup language autodetection will be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",469]="${blue_color}Se va a deshabilitar la autodetección de idioma al inicio. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",469]="${pending_of_translation} ${blue_color}Désactivera la langue d'auto-détection au début. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",469]="${pending_of_translation} ${blue_color}Es va a desactivar la detecció automàtica d'idioma a l'inici. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",469]="${pending_of_translation} ${blue_color}Irá desativar linguagem autodetection no início. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",469]="${pending_of_translation} ${blue_color}Автоопределение автозапуска будет отключено. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",469]="${pending_of_translation} ${blue_color}Η αυτόματη εκκίνηση της γλώσσας εκκίνησης θα απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",470]="${blue_color}Startup language autodetection will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",470]="${blue_color}Se va a habilitar la autodetección de idioma al inicio. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",470]="${pending_of_translation} ${blue_color}Permettra la langue d'auto-détection au début. ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",470]="${pending_of_translation} ${blue_color}Es va a habilitar la detecció automàtica d'idioma a l'inici. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",470]="${pending_of_translation} ${blue_color}Permitirá linguagem autodetection no início. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",470]="${pending_of_translation} ${blue_color}Автозапуск автозапуска активируется. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",470]="${pending_of_translation} ${blue_color}Η αυτόματη εντολή γλώσσας εκκίνησης θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",471]="Any permanent change of language you have will be lost on the next start if you enable this option!!"
+	arr["SPANISH",471]="Cualquier cambio permanente de idioma que tenga se perderá en el siguiente inicio si activa esta opción!!"
+	arr["FRENCH",471]="${pending_of_translation} Tout changement permanent dans la langue qui a perdu dans le prochain démarrage si vous activez cette option!!"
+	arr["CATALAN",471]="${pending_of_translation} Qualsevol canvi permanent d'idioma que tingui es perdrà en el següent inici si actives aquesta opció!!"
+	arr["PORTUGUESE",471]="${pending_of_translation} Qualquer mudança permanente na linguagem que se perder na próxima partida se você ativar essa opção!!"
+	arr["RUSSIAN",471]="${pending_of_translation} Любое постоянное изменение языка будет Вы потеряли при следующем запуске, если вы включите эту опцию!!"
+	arr["GREEK",471]="${pending_of_translation} Οποιαδήποτε μόνιμη αλλαγή της γλώσσας θα έχετε χάσει την επόμενη εκκίνηση Αν ενεργοποιήσετε αυτή την επιλογή!!"
+
+	arr["ENGLISH",472]="Startup language autodetection has been enabled"
+	arr["SPANISH",472]="Se ha activado la autodetección de idioma al inicio"
+	arr["FRENCH",472]="${pending_of_translation} Est activée langue détection automatique au début"
+	arr["CATALAN",472]="${pending_of_translation} S'ha activat la detecció automàtica d'idioma a l'inici"
+	arr["PORTUGUESE",472]="${pending_of_translation} Autosensing está habilitado linguagem no início"
+	arr["RUSSIAN",472]="${pending_of_translation} Автозапуск автозагрузки включен"
+	arr["GREEK",472]="${pending_of_translation} Η αυτόματη εντολή γλώσσας εκκίνησης έχει ενεργοποιηθεί"
+
+	arr["ENGLISH",473]="Startup language autodetection has been disabled"
+	arr["SPANISH",473]="Se ha desactivado la autodetección de idioma al inicio"
+	arr["FRENCH",473]="${pending_of_translation} Il a été désactivé à la détection automatique de la langue au début"
+	arr["CATALAN",473]="${pending_of_translation} S'ha desactivat l'autodetecció d'idioma a l'inici"
+	arr["PORTUGUESE",473]="${pending_of_translation} Tem sido desativado no autodetection linguagem início"
+	arr["RUSSIAN",473]="${pending_of_translation} Автоматическое определение автозагрузки отключено"
+	arr["GREEK",473]="${pending_of_translation} Η αυτόματη εκκίνηση της γλώσσας εκκίνησης έχει απενεργοποιηθεί"
+
+	arr["ENGLISH",474]="Startup language autodetection: ${pink_color}Enabled${normal_color}"
+	arr["SPANISH",474]="Autodetección de idioma al inicio: ${pink_color}Activada${normal_color}"
+	arr["FRENCH",474]="${pending_of_translation} Langue autodetection au début: ${pink_color}Déclenchée${normal_color}"
+	arr["CATALAN",474]="${pending_of_translation} Autodetecció d'idioma a l'inici: ${pink_color}Activade${normal_color}"
+	arr["PORTUGUESE",474]="${pending_of_translation} Idioma a detecção automática no início: ${pink_color}Provocado${normal_color}"
+	arr["RUSSIAN",474]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Включено${normal_color}"
+	arr["GREEK",474]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ενεργοποιημένο${normal_color}"
+
+	arr["ENGLISH",475]="Startup language autodetection: ${pink_color}Disabled${normal_color}"
+	arr["SPANISH",475]="Autodetección de idioma al inicio: ${pink_color}Desactivada${normal_color}"
+	arr["FRENCH",475]="${pending_of_translation} Langue autodetection au début: ${pink_color}Désactivé${normal_color}"
+	arr["CATALAN",475]="${pending_of_translation} Autodetecció d'idioma a l'inici: ${pink_color}Desactivade${normal_color}"
+	arr["PORTUGUESE",475]="${pending_of_translation} Idioma a detecção automática no início: ${pink_color}Desativado${normal_color}"
+	arr["RUSSIAN",475]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Инвалид${normal_color}"
+	arr["GREEK",475]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ανάπηρος${normal_color}"
 
 	case "${3}" in
 		"yellow")
