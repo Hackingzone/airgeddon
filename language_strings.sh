@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170704
+#Date.........: 20170706
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -4083,6 +4083,46 @@ function language_strings() {
 	arr["PORTUGUESE",461]="${pending_of_translation} Eles ter desativado as atualizações automáticas"
 	arr["RUSSIAN",461]="${pending_of_translation} Автоматические обновления отключены"
 	arr["GREEK",461]="${pending_of_translation} Οι αυτόματες ενημερώσεις έχουν απενεργοποιηθεί"
+
+	arr["ENGLISH",462]="${blue_color}Colorization (on some screen's output) is going to be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",462]="${blue_color}Se va a desactivar la colorización (en la salida de algunas pantallas). ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",462]="${pending_of_translation} ${blue_color}Il désactive colorisation (à la sortie de certains écrans). ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",462]="${pending_of_translation} ${blue_color}Es va a desactivar le colorización (a la sortida d'algunes pantalles). ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",462]="${pending_of_translation} ${blue_color}Ele irá desativar colorização (na saída de algumas telas). ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",462]="${pending_of_translation} ${blue_color}Раскраска (на выходе какого-либо экрана) будет отключена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",462]="${pending_of_translation} ${blue_color}Ο χρωματισμός (σε κάποια έξοδο οθόνης) πρόκειται να απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",463]="${blue_color}Colorization (on some screen's output) is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
+	arr["SPANISH",463]="${blue_color}Se va a activar la colorización (en la salida de algunas pantallas). ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
+	arr["FRENCH",463]="${pending_of_translation} ${blue_color}Elle permettra la colorisation (à la sortie de certains écrans). ${green_color}Voulez-vous continuer? ${normal_color}${visual_choice}"
+	arr["CATALAN",463]="${pending_of_translation} ${blue_color}Es va a activar la colorización (a la sortida d'algunes pantalles). ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
+	arr["PORTUGUESE",463]="${pending_of_translation} ${blue_color}Ela irá permitir colorização (na saída de algumas telas). ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
+	arr["RUSSIAN",463]="${pending_of_translation} ${blue_color}Раскраска (на выходе какого-либо экрана) будет включена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
+	arr["GREEK",463]="${pending_of_translation} ${blue_color}Ο χρωματισμός (σε κάποια έξοδο οθόνης) πρόκειται να ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+
+	arr["ENGLISH",464]="You don't have ccze package installed so any change on this option will have no effect until you install it"
+	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
+	arr["FRENCH",464]="${pending_of_translation} Vous n'avez pas installé le paquet ccze donc toutes les modifications apportées sur cette option n'a aucun effet jusqu'à ce que l'installation"
+	arr["CATALAN",464]="${pending_of_translation} No tens instal·lat el paquet ccze pel que qualsevol canvi que facis sobre aquesta opció no tindrà efecte fins que el instal"
+	arr["PORTUGUESE",464]="${pending_of_translation} Você não tiver instalado o ccze pacote para que todas as alterações feitas nesta opção, não terá efeito até que você instale"
+	arr["RUSSIAN",464]="${pending_of_translation} У вас не установлен пакет ccze, поэтому любое изменение этой опции не будет иметь никакого эффекта, пока вы его не установите"
+	arr["GREEK",464]="${pending_of_translation} Δεν έχετε εγκατεστημένο το πακέτο ccze, οπότε οποιαδήποτε αλλαγή σε αυτήν την επιλογή δεν θα έχει αποτέλεσμα μέχρι να την εγκαταστήσετε"
+
+	arr["ENGLISH",465]="Colorization has been enabled"
+	arr["SPANISH",465]="Se ha activado la colorización"
+	arr["FRENCH",465]="${pending_of_translation} Il a permis à la colorisation"
+	arr["CATALAN",465]="${pending_of_translation} S'ha activat la colorización"
+	arr["PORTUGUESE",465]="${pending_of_translation} Permitiu a colorização"
+	arr["RUSSIAN",465]="${pending_of_translation} Раскрашивание включено"
+	arr["GREEK",465]="${pending_of_translation} Έχει ενεργοποιηθεί το χρωματισμό"
+
+	arr["ENGLISH",466]="Colorization has been disabled"
+	arr["SPANISH",466]="Se ha desactivado la colorización"
+	arr["FRENCH",466]="${pending_of_translation} Il a été désactivé colorisation"
+	arr["CATALAN",466]="${pending_of_translation} S'ha desactivat la colorización"
+	arr["PORTUGUESE",466]="${pending_of_translation} Ele foi desativado colorização"
+	arr["RUSSIAN",466]="${pending_of_translation} Раскраска отключена"
+	arr["GREEK",466]="${pending_of_translation} Ο χρωματισμός έχει απενεργοποιηθεί"
 
 	case "${3}" in
 		"yellow")

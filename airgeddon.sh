@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170704
+#Date.........: 20170706
 #Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -474,8 +474,34 @@ function language_strings_handling_messages() {
 	language_strings_key_to_continue["GREEK"]="Πατήστε το κουμπί [Enter] για να συνεχίσετε..."
 }
 
+#Toggle allow colorization feature
+function allow_colorization_toggle() {
+
+	debug_print
+
+	if [ "${allow_colorization}" -eq 1 ]; then
+		sed -ri 's:(allow_colorization)=(1):\1=0:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "allow_[c]olorization=0" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		allow_colorization=$((allow_colorization-1))
+	else
+		sed -ri 's:(allow_colorization)=(0):\1=1:' "${scriptfolder}${scriptname}" 2> /dev/null
+		grep -E "allow_[c]olorization=1" "${scriptfolder}${scriptname}" > /dev/null
+		if [ "$?" != "0" ]; then
+			return 1
+		fi
+		allow_colorization=$((allow_colorization+1))
+	fi
+	initialize_colorized_output
+	return 0
+}
+
 #Toggle auto-update feature
 function auto_update_toggle() {
+
+	debug_print
 
 	if [ "${auto_update}" -eq 1 ]; then
 		sed -ri 's:(auto_update)=(1):\1=0:' "${scriptfolder}${scriptname}" 2> /dev/null
@@ -1154,9 +1180,9 @@ function option_menu() {
 		language_strings "${language}" 449
 	fi
 	if [ "${allow_colorization}" -eq 1 ]; then
-		language_strings "${language}" 456 "under_construction"
+		language_strings "${language}" 456
 	else
-		language_strings "${language}" 450 "under_construction"
+		language_strings "${language}" 450
 	fi
 	print_simple_separator
 	language_strings "${language}" 447
@@ -1198,7 +1224,38 @@ function option_menu() {
 			fi
 		;;
 		3)
-			under_construction_message
+			if ! hash ccze 2> /dev/null; then
+				echo
+				language_strings "${language}" 464 "yellow"
+			fi
+
+			if [ "${allow_colorization}" -eq 1 ]; then
+				ask_yesno 462 "yes"
+				if [ "${yesno}" = "y" ]; then
+					allow_colorization_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 466 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			else
+				ask_yesno 463 "yes"
+				if [ "${yesno}" = "y" ]; then
+					allow_colorization_toggle
+					if [ "$?" = "0" ]; then
+						echo
+						language_strings "${language}" 465 "blue"
+					else
+						echo
+						language_strings "${language}" 417 "red"
+					fi
+					language_strings "${language}" 115 "read"
+				fi
+			fi
 		;;
 		4)
 			return
