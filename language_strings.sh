@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170707
+#Date.........: 20170710
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -2788,13 +2788,13 @@ function language_strings() {
 	arr["RUSSIAN",299]="Восстановление интерфейса..."
 	arr["GREEK",299]="Γίνεται επαναφορά διεπαφής..."
 
-	arr["ENGLISH",300]="If make work xpdyinfo command, the script will be able to calculate your screen resolution and show you the windows in a better way. Depending of the system, the package name could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
-	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["ENGLISH",300]="If make work xpdyinfo command, the script will be able to calculate your screen resolution and show you the windows in a better way. Depending of the system, the package name containing it could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete que lo contiene puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["FRENCH",300]="Si la commande xdpyinfo est installée dans vôtre système le script pourra calculer votre résolution d'écran et optimiser l'affichage en conséquence. Le paquet à installer pour avoir cette commande s'appelle (selon la distribution) x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
-	arr["CATALAN",300]="Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
-	arr["PORTUGUESE",300]="Se o comando xdpyinfo funcionar em seu sistema o script será capaz de calcular a resolução da tela e mostrar-lhe as janelas de uma maneira melhor. Dependendo do sistema, o nome do pacote pode ser x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
-	arr["RUSSIAN",300]="Если использовать команду xpdyinfo, скрипт сможет определить разрешение вашего экрана и выбрать наилучшее отображение окон. В зависимости от системы, имя пакета может быть x11-utils, xdpyinfo, xorg-xdpyinfo, и т.д."
-	arr["GREEK",300]="Αν δουλέψει η εντολή xpdyinfo, το script θα μπορέσει να υπολογίσει την ανάλυση της οθόνης και να δείχνει τα παράθυρα καλύτερα. Εξαρτάται από το σύστημα, το όνομα του πακέτου μπορεί να είναι x11-utils, xdpyinfo, xorg-xdpyinfo, κτλπ."
+	arr["CATALAN",300]="${pending_of_translation} Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet que el conté pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["PORTUGUESE",300]="${pending_of_translation} Se o comando xdpyinfo funcionar em seu sistema o script será capaz de calcular a resolução da tela e mostrar-lhe as janelas de uma maneira melhor. Dependendo do sistema, o nome do pacote que contém ele pode ser x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["RUSSIAN",300]="${pending_of_translation} Если использовать команду xpdyinfo, скрипт сможет определить разрешение вашего экрана и выбрать наилучшее отображение окон. В зависимости от системы, имя пакета содержащее его может быть x11-utils, xdpyinfo, xorg-xdpyinfo, и т.д."
+	arr["GREEK",300]="${pending_of_translation} Αν δουλέψει η εντολή xpdyinfo, το script θα μπορέσει να υπολογίσει την ανάλυση της οθόνης και να δείχνει τα παράθυρα καλύτερα. Εξαρτάται από το σύστημα, το όνομα του πακέτου που περιέχει θα μπορούσε να είναι x11-utils, xdpyinfo, xorg-xdpyinfo, κτλπ."
 
 	arr["ENGLISH",301]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install lspci (pciutils) and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",301]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado lspci (pciutils) y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -4195,6 +4195,14 @@ function language_strings() {
 	arr["PORTUGUESE",475]="${pending_of_translation} Idioma a detecção automática no início: ${pink_color}Desativado${normal_color}"
 	arr["RUSSIAN",475]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Инвалид${normal_color}"
 	arr["GREEK",475]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ανάπηρος${normal_color}"
+
+	arr["ENGLISH",476]="A graphical X window system has not been detected. If you already have one, check its working properly. It's essential for airgeddon. The script can't continue"
+	arr["SPANISH",476]="No se ha detectado un sistema gráfico de ventanas X. Si lo tienes, comprueba su que esté funcionando correctamente. Es esencial para airgeddon. El script no puede continuar"
+	arr["FRENCH",476]="${pending_of_translation} N'a pas été détecté un système graphique X window Si vous l'avez, vérifiez qu'il fonctionne correctement. Il est essentiel pour airgeddon. Le script ne peut pas continuer"
+	arr["CATALAN",476]="${pending_of_translation} No s'ha detectat un sistema gràfic de finestres X. Si el tens, comprova el seu que estigui funcionant correctament. És essencial per a airgeddon. El script no pot continuar"
+	arr["PORTUGUESE",476]="${pending_of_translation} Não foi detectado um sistema X window gráfica. Se você tem isso, verifique o que está funcionando corretamente. É essencial para airgeddon. O script não pode continuar"
+	arr["RUSSIAN",476]="${pending_of_translation} Графическая система окон X не обнаружена. Если у вас его уже есть, проверьте его работоспособность. Это важно для airgeddon. Скрипт не может продолжить"
+	arr["GREEK",476]="${pending_of_translation} Δεν έχει εντοπιστεί γραφικό σύστημα παραθύρου X. Αν έχετε ήδη ένα, ελέγξτε την σωστή λειτουργία του. Είναι απαραίτητο για airgeddon. Το script δεν μπορεί να συνεχίσει"
 
 	case "${3}" in
 		"yellow")

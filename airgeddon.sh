@@ -2,7 +2,7 @@
 #Title........: airgeddon.sh
 #Description..: This is a multi-use bash script for Linux systems to audit wireless networks.
 #Author.......: v1s1t0r
-#Date.........: 20170707
+#Date.........: 20170710
 #Version......: 7.2
 #Usage........: bash airgeddon.sh
 #Bash Version.: 4.2 or later
@@ -9267,6 +9267,20 @@ function initialize_script_settings() {
 	set_script_folder_and_name
 	http_proxy_set=0
 	hccapx_needed=0
+	xterm_ok=1
+}
+
+#Detect if there is a working X window system
+function check_xwindow_system() {
+
+	debug_print
+
+	if hash xset 2> /dev/null; then
+		xset -q > /dev/null 2>&1
+		if [ "$?" != "0" ]; then
+			xterm_ok=0
+		fi
+	fi
 }
 
 #Detect screen resolution if possible
@@ -9277,7 +9291,6 @@ function detect_screen_resolution() {
 	resolution_detected=0
 	if hash xdpyinfo 2> /dev/null; then
 		resolution=$(xdpyinfo 2> /dev/null | grep -A 3 "screen #0" | grep "dimensions" | tr -s " " | cut -d " " -f 3 | grep "x")
-
 		if [ "$?" = "0" ]; then
 			resolution_detected=1
 		fi
@@ -9437,6 +9450,7 @@ function welcome() {
 
 	check_language_strings
 
+	check_xwindow_system
 	detect_screen_resolution
 	set_possible_aliases
 	initialize_optional_tools_values
@@ -9468,12 +9482,18 @@ function welcome() {
 		check_bash_version
 
 		echo
-		if [ ${resolution_detected} -eq 1 ]; then
+		if [[ ${resolution_detected} -eq 1 ]] && [[ "${xterm_ok}" -eq 1 ]]; then
 			language_strings "${language}" 294 "blue"
 		else
-			language_strings "${language}" 295 "red"
-			echo
-			language_strings "${language}" 300 "yellow"
+			if [ "${xterm_ok}" -eq 0 ]; then
+				language_strings "${language}" 476 "red"
+				exit_code=1
+				exit_script_option
+			else
+				language_strings "${language}" 295 "red"
+				echo
+				language_strings "${language}" 300 "yellow"
+			fi
 		fi
 
 		echo
