@@ -4204,6 +4204,14 @@ function language_strings() {
 	arr["RUSSIAN",476]="${pending_of_translation} Графическая система окон X не обнаружена. Если у вас его уже есть, проверьте его работоспособность. Это важно для airgeddon. Скрипт не может продолжить"
 	arr["GREEK",476]="${pending_of_translation} Δεν έχει εντοπιστεί γραφικό σύστημα παραθύρου X. Αν έχετε ήδη ένα, ελέγξτε την σωστή λειτουργία του. Είναι απαραίτητο για airgeddon. Το script δεν μπορεί να συνεχίσει"
 
+	arr["ENGLISH",477]="The options on this menu containing the word \"permanently\" modify airgeddon even for next time to be launched keep saved settings. However, you can always return to this menu to change the value of the option again"
+	arr["SPANISH",477]="Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
+	arr["FRENCH",477]="${pending_of_translation} Les options de ce menu contenant le mot \"définitivement\" airgeddon modifiés de sorte que même la prochaine fois qu'il est commencé continuer d'enregistrer la configuration. Cependant, vous pouvez toujours revenir à ce menu pour revenir à la valeur de l'option"
+	arr["CATALAN",477]="${pending_of_translation} Les opcions d'aquest menú que contenen la paraula \"permanentment\", modifiquen airgeddon perquè fins i tot la següent vegada que sigui iniciat segueixi guardant la configuració. No obstant això, sempre pots tornar a aquest menú a canviar de nou el valor de l'opció"
+	arr["PORTUGUESE",477]="${pending_of_translation} As opções neste menu contendo a palavra \"permanentemente\" airgeddon modificado de modo que mesmo na próxima vez que for iniciado continuar a guardar a configuração. No entanto, você pode sempre voltar a este menu para alterar de volta o valor da opção"
+	arr["RUSSIAN",477]="${pending_of_translation} Параметры в этом меню, содержащие слово \"навсегда\" изменить airgeddon даже для следующего запуска, сохраняют сохраненные настройки. Однако вы всегда можете вернуться в это меню, чтобы снова изменить значение параметра"
+	arr["GREEK",477]="${pending_of_translation} Οι επιλογές σε αυτό το μενού που περιέχουν τη λέξη \"μόνιμα\" τροποποιούν το airgeddon ακόμα και για την επόμενη φορά που θα ξεκινήσει διατηρούν αποθηκευμένες ρυθμίσεις. Ωστόσο, μπορείτε πάντα να επιστρέψετε σε αυτό το μενού για να αλλάξετε ξανά την τιμή της επιλογής"
+
 	case "${3}" in
 		"yellow")
 			interrupt_checkpoint "${2}" "${3}"
