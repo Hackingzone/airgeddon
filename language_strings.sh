@@ -4126,7 +4126,7 @@ function language_strings() {
 
 	arr["ENGLISH",467]="4.  Enable startup language autodetection permanently"
 	arr["SPANISH",467]="4.  Habilitar permanentemente la autodetección de idioma al inicio"
-	arr["FRENCH",467]="4.  Activer de façon permanante de détection de langue au lancement"
+	arr["FRENCH",467]="4.  Activer de façon permanente la détection de langue au lancement"
 	arr["CATALAN",467]="${pending_of_translation} 4.  Habilitar permanentment la autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",467]="${pending_of_translation} 4.  Ativar permanentemente linguagem descoberta automática no início"
 	arr["RUSSIAN",467]="${pending_of_translation} 4.  Автоматическое определение автозапуска автозапуска"
@@ -4134,7 +4134,7 @@ function language_strings() {
 
 	arr["ENGLISH",468]="4.  Disable startup language autodetection permanently"
 	arr["SPANISH",468]="4.  Deshabilitar permanentemente la autodetección de idioma al inicio"
-	arr["FRENCH",468]="4.  Désactiver de façon permanante la détection de langue au lancement"
+	arr["FRENCH",468]="4.  Désactiver de façon permanente la détection de langue au lancement"
 	arr["CATALAN",468]="${pending_of_translation} 4.  Deshabilitar permanentment la autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",468]="${pending_of_translation} 4.  Desactivar permanentemente linguagem descoberta automática no início"
 	arr["RUSSIAN",468]="${pending_of_translation} 4.  Автоматически отключить автоопределение автозапуска"
@@ -4158,7 +4158,7 @@ function language_strings() {
 
 	arr["ENGLISH",471]="Any permanent change of language you have will be lost on the next start if you enable this option!!"
 	arr["SPANISH",471]="Cualquier cambio permanente de idioma que tenga se perderá en el siguiente inicio si activa esta opción!!"
-	arr["FRENCH",471]="Les configurations de langue permanentes seront perdues au prochain démarrage si vous choisssez cette option!!"
+	arr["FRENCH",471]="Les configurations permanentes de langue seront perdues au prochain démarrage si vous choisssez cette option!!"
 	arr["CATALAN",471]="${pending_of_translation} Qualsevol canvi permanent d'idioma que tingui es perdrà en el següent inici si actives aquesta opció!!"
 	arr["PORTUGUESE",471]="${pending_of_translation} Qualquer mudança permanente na linguagem que se perder na próxima partida se você ativar essa opção!!"
 	arr["RUSSIAN",471]="${pending_of_translation} Любое постоянное изменение языка будет Вы потеряли при следующем запуске, если вы включите эту опцию!!"
@@ -4206,7 +4206,7 @@ function language_strings() {
 
 	arr["ENGLISH",477]="The options on this menu containing the word \"permanently\" modify airgeddon even for next time to be launched keep saved settings. However, you can always return to this menu to change the value of the option again"
 	arr["SPANISH",477]="Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
-	arr["FRENCH",477]="Les options contenant le mot \"permanent\" modifiént airgeddon de sorte que les paramétrages persisteront lors des prochains redémarrages. Vous pourrez cependant toujours modifier la configuration permanante depuis ce même menu"
+	arr["FRENCH",477]="Les options contenant le mot \"permanente\" modifiént airgeddon de sorte que les paramétrages persisteront lors des prochains redémarrages. Vous pourrez cependant toujours modifier la configuration permanante depuis ce même menu"
 	arr["CATALAN",477]="${pending_of_translation} Les opcions d'aquest menú que contenen la paraula \"permanentment\", modifiquen airgeddon perquè fins i tot la següent vegada que sigui iniciat segueixi guardant la configuració. No obstant això, sempre pots tornar a aquest menú a canviar de nou el valor de l'opció"
 	arr["PORTUGUESE",477]="${pending_of_translation} As opções neste menu contendo a palavra \"permanentemente\" airgeddon modificado de modo que mesmo na próxima vez que for iniciado continuar a guardar a configuração. No entanto, você pode sempre voltar a este menu para alterar de volta o valor da opção"
 	arr["RUSSIAN",477]="${pending_of_translation} Параметры в этом меню, содержащие слово \"навсегда\" изменить airgeddon даже для следующего запуска, сохраняют сохраненные настройки. Однако вы всегда можете вернуться в это меню, чтобы снова изменить значение параметра"
