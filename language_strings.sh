@@ -2794,7 +2794,7 @@ function language_strings() {
 	arr["CATALAN",300]="${pending_of_translation} Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet que el conté pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["PORTUGUESE",300]="${pending_of_translation} Se o comando xdpyinfo funcionar em seu sistema o script será capaz de calcular a resolução da tela e mostrar-lhe as janelas de uma maneira melhor. Dependendo do sistema, o nome do pacote que contém ele pode ser x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["RUSSIAN",300]="${pending_of_translation} Если использовать команду xpdyinfo, скрипт сможет определить разрешение вашего экрана и выбрать наилучшее отображение окон. В зависимости от системы, имя пакета содержащее его может быть x11-utils, xdpyinfo, xorg-xdpyinfo, и т.д."
-	arr["GREEK",300]="${pending_of_translation} Αν δουλέψει η εντολή xpdyinfo, το script θα μπορέσει να υπολογίσει την ανάλυση της οθόνης και να δείχνει τα παράθυρα καλύτερα. Εξαρτάται από το σύστημα, το όνομα του πακέτου που περιέχει θα μπορούσε να είναι x11-utils, xdpyinfo, xorg-xdpyinfo, κτλπ."
+	arr["GREEK",300]="Αν δουλέψει η εντολή xpdyinfo, το script θα μπορέσει να υπολογίσει την ανάλυση της οθόνης και να δείχνει τα παράθυρα καλύτερα. Εξαρτάται από το σύστημα, το όνομα του πακέτου που το περιέχει θα μπορούσε να είναι x11-utils, xdpyinfo, xorg-xdpyinfo, κτλπ."
 
 	arr["ENGLISH",301]="Despite having all essential tools installed, your system uses airmon-zc instead of airmon-ng. In order to work properly you need to install lspci (pciutils) and you don't have it right now. Please, install it and launch the script again"
 	arr["SPANISH",301]="A pesar de tener todas las herramientas esenciales instaladas, tu sistema usa airmon-zc en lugar de airmon-ng. Para poder funcionar necesitas tener instalado lspci (pciutils) y tú no lo tienes en este momento. Por favor, instálalo y vuelve a lanzar el script"
@@ -3938,7 +3938,7 @@ function language_strings() {
 	arr["CATALAN",443]="${pending_of_translation} Menú d'opcions i idioma"
 	arr["PORTUGUESE",443]="${pending_of_translation} Opções de menu e linguagem"
 	arr["RUSSIAN",443]="${pending_of_translation} Вариант и языковое меню"
-	arr["GREEK",443]="${pending_of_translation} Μενού επιλογών και γλώσσας"
+	arr["GREEK",443]="Μενού επιλογών και γλώσσας"
 
 	arr["ENGLISH",444]="11. Options and language menu"
 	arr["SPANISH",444]="11. Menú de opciones e idioma"
@@ -3946,7 +3946,7 @@ function language_strings() {
 	arr["CATALAN",444]="${pending_of_translation} 11. Menú d'opcions i idioma"
 	arr["PORTUGUESE",444]="${pending_of_translation} 11. Opções de menu e linguagem"
 	arr["RUSSIAN",444]="${pending_of_translation} 11. Вариант и языковое меню"
-	arr["GREEK",444]="${pending_of_translation} 11. Μενού επιλογών και γλώσσας"
+	arr["GREEK",444]="11. Μενού επιλογών και γλώσσας"
 
 	arr["ENGLISH",445]="If you have ccze installed and are experiencing display errors or glitches on some windows, you should disable colorization in the option and language menu"
 	arr["SPANISH",445]="Si tienes instalado ccze y experimentas errores de visualización o parpadeos en algunas ventanas, desactiva la colorización en el menú de opciones e idioma"
@@ -3954,7 +3954,7 @@ function language_strings() {
 	arr["CATALAN",445]="${pending_of_translation} Si tens instal·lat ccze i experimentes errors de visualització o pampallugues en algunes finestres, desactiva l'colorización al menú d'opcions i idioma"
 	arr["PORTUGUESE",445]="${pending_of_translation} Se você tiver instalado erros ccze e exibição experiência ou piscando em algumas janelas, colorização off no menu de opções e linguagem"
 	arr["RUSSIAN",445]="${pending_of_translation} Если у вас установлен ccze и возникают ошибки отображения или сбои в некоторых окнах, вы должны отключить раскраску в меню параметров и языков"
-	arr["GREEK",445]="${pending_of_translation} Εάν έχετε εγκαταστήσει ccze και αντιμετωπίζετε σφάλματα εμφάνισης ή δυσλειτουργίες σε ορισμένα παράθυρα, θα πρέπει να απενεργοποιήσετε τον χρωματισμό στο μενού επιλογών και γλώσσας"
+	arr["GREEK",445]="Εάν έχετε εγκαταστήσει το ccze και αντιμετωπίζετε σφάλματα εμφάνισης ή δυσλειτουργίες σε ορισμένα παράθυρα, θα πρέπει να απενεργοποιήσετε τον χρωματισμό στο μενού επιλογών και γλώσσας"
 
 	arr["ENGLISH",446]="8.  Return to options menu"
 	arr["SPANISH",446]="8.  Volver al menú de opciones"
@@ -3962,7 +3962,7 @@ function language_strings() {
 	arr["CATALAN",446]="${pending_of_translation} 8.  Tornar al menú d'opcions"
 	arr["PORTUGUESE",446]="${pending_of_translation} 8.  Voltar ao menu de opções"
 	arr["RUSSIAN",446]="${pending_of_translation} 8.  Возврат в опций меню"
-	arr["GREEK",446]="${pending_of_translation} 8.  Επιστροφή στο μενού επιλογών"
+	arr["GREEK",446]="8.  Επιστροφή στο μενού επιλογών"
 
 	arr["ENGLISH",447]="5.  Return to main menu"
 	arr["SPANISH",447]="5.  Volver al menú principal"
@@ -3978,7 +3978,7 @@ function language_strings() {
 	arr["CATALAN",448]="${pending_of_translation} Si vas instal·lar airgeddon des d'un repositori, no hauries activar l'actualització automàtica. airgeddon s'actualitzarà quan hi hagi una nova versió al repositori"
 	arr["PORTUGUESE",448]="${pending_of_translation} Se você instalou airgeddon partir de um repositório, você não deve ativar a atualização automática. airgeddon ser atualizado quando uma nova versão no repositório"
 	arr["RUSSIAN",448]="${pending_of_translation} Если вы установили airgeddon из репозитория, вам не следует включать автоматические обновления. airgeddon будет обновляться, когда в репозитории будет новая версия"
-	arr["GREEK",448]="${pending_of_translation} Αν εγκαταστήσατε airgeddon από έναν αποθετήριο, δεν θα πρέπει να ενεργοποιείτε τις αυτόματες ενημερώσεις. Το airgeddon θα ενημερωθεί όταν υπάρχει μια νέα έκδοση στο χώρο αποθήκευσης"
+	arr["GREEK",448]="Αν εγκαταστήσατε το airgeddon από κάποιο official repository, δεν θα πρέπει να ενεργοποιήσετε τις αυτόματες ενημερώσεις. Το airgeddon θα ενημερωθεί όταν υπάρξει κάποια νέα έκδοση στο official repository"
 
 	arr["ENGLISH",449]="2.  Enable automatic updates permanently"
 	arr["SPANISH",449]="2.  Habilitar permanentemente la actualización automática"
@@ -3986,7 +3986,7 @@ function language_strings() {
 	arr["CATALAN",449]="${pending_of_translation} 2.  Habilita permanentment l'actualització automàtica"
 	arr["PORTUGUESE",449]="${pending_of_translation} 2.  Activar permanentemente a actualização automática"
 	arr["RUSSIAN",449]="${pending_of_translation} 2.  Постоянное включение автоматических обновлений"
-	arr["GREEK",449]="${pending_of_translation} 2.  Ενεργοποιήστε τις αυτόματες ενημερώσεις μόνιμα"
+	arr["GREEK",449]="2.  Ενεργοποιήστε τις αυτόματες ενημερώσεις μόνιμα"
 
 	arr["ENGLISH",450]="3.  Enable colorization permanently (on some screen's output)"
 	arr["SPANISH",450]="3.  Habilitar permanentemente la colorización (en la salida de algunas pantallas)"
@@ -3994,7 +3994,7 @@ function language_strings() {
 	arr["CATALAN",450]="${pending_of_translation} 3.  Habilita permanentment la colorización (a la sortida d'algunes pantalles)"
 	arr["PORTUGUESE",450]="${pending_of_translation} 3.  Activar permanentemente colorização (na produção de algumas telas)"
 	arr["RUSSIAN",450]="${pending_of_translation} 3.  Включить раскраску навсегда (на выходе некоторых экранов)"
-	arr["GREEK",450]="${pending_of_translation} 3.  Ενεργοποιήστε τον χρωματισμό μόνιμα (στην έξοδο του ορισμένες οθόνες)"
+	arr["GREEK",450]="3.  Ενεργοποιήστε τον χρωματισμό μόνιμα (σε κάποια σημεία)"
 
 	arr["ENGLISH",451]="Automatic updates: ${pink_color}Enabled${normal_color}"
 	arr["SPANISH",451]="Actualizaciones automáticas: ${pink_color}Activadas${normal_color}"
@@ -4002,7 +4002,7 @@ function language_strings() {
 	arr["CATALAN",451]="${pending_of_translation} Actualitzacions automàtiques: ${pink_color}Activades${normal_color}"
 	arr["PORTUGUESE",451]="${pending_of_translation} Atualizações Automáticas: ${pink_color}Provocado${normal_color}"
 	arr["RUSSIAN",451]="${pending_of_translation} Автоматическое обновление: ${pink_color}Включено${normal_color}"
-	arr["GREEK",451]="${pending_of_translation} Αυτόματη ενημέρωση: ${pink_color}Ενεργοποιημένο${normal_color}"
+	arr["GREEK",451]="Αυτόματη ενημέρωση: ${pink_color}Ενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",452]="Automatic updates: ${pink_color}Disabled${normal_color}"
 	arr["SPANISH",452]="Actualizaciones automáticas: ${pink_color}Desactivadas${normal_color}"
@@ -4010,7 +4010,7 @@ function language_strings() {
 	arr["CATALAN",452]="${pending_of_translation} Actualitzacions automàtiques: ${pink_color}Desactivades${normal_color}"
 	arr["PORTUGUESE",452]="${pending_of_translation} Atualizações Automáticas: ${pink_color}Desativado${normal_color}"
 	arr["RUSSIAN",452]="${pending_of_translation} Автоматическое обновление: ${pink_color}Инвалид${normal_color}"
-	arr["GREEK",452]="${pending_of_translation} Αυτόματη ενημέρωση: ${pink_color}Ανάπηρος${normal_color}"
+	arr["GREEK",452]="Αυτόματη ενημέρωση: ${pink_color}Απενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",453]="Colorization (on some screen's output): ${pink_color}Enabled${normal_color}"
 	arr["SPANISH",453]="Colorización (en la salida de algunas pantallas): ${pink_color}Activada${normal_color}"
@@ -4018,7 +4018,7 @@ function language_strings() {
 	arr["CATALAN",453]="${pending_of_translation} Colorización (a la sortida d'algunes pantalles): ${pink_color}Activade${normal_color}"
 	arr["PORTUGUESE",453]="${pending_of_translation} Colorização (na produção de algumas telas): ${pink_color}Provocado${normal_color}"
 	arr["RUSSIAN",453]="${pending_of_translation} Раскрашивание (на выходе некоторых экранов): ${pink_color}Включено${normal_color}"
-	arr["GREEK",453]="${pending_of_translation} χρωματισμού (στην έξοδο του ορισμένες οθόνες): ${pink_color}Ενεργοποιημένο${normal_color}"
+	arr["GREEK",453]="Χρωματισμός (σε κάποια σημεία): ${pink_color}Ενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",454]="Colorization (on some screen's output): ${pink_color}Disabled${normal_color}"
 	arr["SPANISH",454]="Colorización (en la salida de algunas pantallas): ${pink_color}Desactivada${normal_color}"
@@ -4026,7 +4026,7 @@ function language_strings() {
 	arr["CATALAN",454]="${pending_of_translation} Colorización (a la sortida d'algunes pantalles): ${pink_color}Desactivade${normal_color}"
 	arr["PORTUGUESE",454]="${pending_of_translation} Colorização (na produção de algumas telas): ${pink_color}Desativado${normal_color}"
 	arr["RUSSIAN",454]="${pending_of_translation} Раскрашивание (на выходе некоторых экранов): ${pink_color}Инвалид${normal_color}"
-	arr["GREEK",454]="${pending_of_translation} χρωματισμού (στην έξοδο του ορισμένες οθόνες): ${pink_color}Ανάπηρος${normal_color}"
+	arr["GREEK",454]="Χρωματισμός (σε κάποια σημεία): ${pink_color}Απενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",455]="2.  Disable automatic updates permanently"
 	arr["SPANISH",455]="2.  Deshabilitar permanentemente la actualización automática"
@@ -4034,7 +4034,7 @@ function language_strings() {
 	arr["CATALAN",455]="${pending_of_translation} 2.  Deshabilita permanentment l'actualització automàtica"
 	arr["PORTUGUESE",455]="${pending_of_translation} 2.  Desactivar permanentemente a actualização automática"
 	arr["RUSSIAN",455]="${pending_of_translation} 2.  Постоянно отключать автоматические обновления"
-	arr["GREEK",455]="${pending_of_translation} 2.  Απενεργοποιήστε μόνιμα τις αυτόματες ενημερώσεις"
+	arr["GREEK",455]="2.  Απενεργοποιήστε μόνιμα τις αυτόματες ενημερώσεις"
 
 	arr["ENGLISH",456]="3.  Disable colorization (on some screen's output)"
 	arr["SPANISH",456]="3.  Deshabilitar permanentemente la colorización (en la salida de algunas pantallas)"
@@ -4042,7 +4042,7 @@ function language_strings() {
 	arr["CATALAN",456]="${pending_of_translation} 3.  Deshabilita permanentment la colorización (a la sortida d'algunes pantalles)"
 	arr["PORTUGUESE",456]="${pending_of_translation} 3.  Desactivar permanentemente colorização (na produção de algumas telas)"
 	arr["RUSSIAN",456]="${pending_of_translation} 3.  Отключить раскраску навсегда (на выходе некоторых экранов)"
-	arr["GREEK",456]="${pending_of_translation} 3.  Απενεργοποιήστε τον χρωματισμό μόνιμα (στην έξοδο του ορισμένες οθόνες)"
+	arr["GREEK",456]="3.  Απενεργοποιήστε μόνιμα τον χρωματισμό (σε κάποια σημεία)"
 
 	arr["ENGLISH",457]="${blue_color}Automatic updates are going to be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",457]="${blue_color}Se van a desactivar las actualizaciones automáticas. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4050,7 +4050,7 @@ function language_strings() {
 	arr["CATALAN",457]="${pending_of_translation} ${blue_color}Es van a desactivar les actualitzacions automàtiques. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",457]="${pending_of_translation} ${blue_color}Eles estão indo para desativar as atualizações automáticas. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",457]="${pending_of_translation} ${blue_color}Автоматические обновления будут отключены. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",457]="${pending_of_translation} ${blue_color}Οι αυτόματες ενημερώσεις πρόκειται να απενεργοποιηθούν. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",457]="${blue_color}Οι αυτόματες ενημερώσεις πρόκειται να απενεργοποιηθούν. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",458]="${blue_color}Automatic updates are going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",458]="${blue_color}Se van a activar las actualizaciones automáticas. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4058,7 +4058,7 @@ function language_strings() {
 	arr["CATALAN",458]="${pending_of_translation} ${blue_color}Es van a activar les actualitzacions automàtiques. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",458]="${pending_of_translation} ${blue_color}Eles estão indo para ativar as atualizações automáticas. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",458]="${pending_of_translation} ${blue_color}Автоматические обновления будут включены. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",458]="${pending_of_translation} ${blue_color}Οι αυτόματες ενημερώσεις πρόκειται να ενεργοποιηθούν. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",458]="${blue_color}Οι αυτόματες ενημερώσεις πρόκειται να ενεργοποιηθούν. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",459]="If you installed airgeddon from a repository you shouldn't enable this option. airgeddon will be updated when the repositories do. If you continue, make sure you know what you are doing, or you could cause problems with update flow"
 	arr["SPANISH",459]="Si instalaste airgeddon desde un repositorio no deberías activar esta opción. airgeddon se actualizará cuando lo hagan los repositorios. Si continuas, asegúrate de saber bien lo que haces o podrías causar problemas con flujo de actualizaciones"
@@ -4066,7 +4066,7 @@ function language_strings() {
 	arr["CATALAN",459]="${pending_of_translation} Si vas instal·lar airgeddon des d'un repositori no hauries activar aquesta opció. airgeddon s'actualitzarà quan ho facin els repositoris. Si continues, assegura't de saber bé el que fas o podries causar problemes amb flux d'actualitzacions"
 	arr["PORTUGUESE",459]="${pending_of_translation} Se você instalou airgeddon partir de um repositório que você não deve ativar essa opção. airgeddon ser atualizado quando você faz os repositórios. Se você continuar, verifique se você sabe bem o que você faz ou poderia causar problemas com atualizações fluir"
 	arr["RUSSIAN",459]="${pending_of_translation} Если вы установили airgeddon из репозитория, вы не должны включать эту опцию. airgeddon будет обновляться, когда репозитории будут. Если вы продолжаете, убедитесь, что знаете, что делаете, или вы можете вызвать проблемы с потоком обновления"
-	arr["GREEK",459]="${pending_of_translation} Εάν εγκαταστήσατε airgeddon από ένα αποθετήριο, δεν πρέπει να ενεργοποιήσετε αυτή την επιλογή. airgeddon θα ενημερωθεί όταν τα αποθετήρια κάνουν. Αν συνεχίσετε, βεβαιωθείτε ότι γνωρίζετε τι κάνετε ή ότι θα μπορούσατε να προκαλέσετε προβλήματα με τη ροή ενημέρωσης"
+	arr["GREEK",459]="Εάν εγκαταστήσατε το airgeddon από κάποιο official repository, δεν πρέπει να ενεργοποιήσετε αυτή την επιλογή. Το airgeddon θα ενημερωθεί όταν ενημερωθούν και τα repositories. Αν συνεχίσετε, βεβαιωθείτε ότι γνωρίζετε τι κάνετε και ότι θα μπορεί να προκαλέσετε προβλήματα με τη ροή ενημέρωσης"
 
 	arr["ENGLISH",460]="Automatic updates have been enabled"
 	arr["SPANISH",460]="Se han activado las actualizaciones automáticas"
@@ -4074,7 +4074,7 @@ function language_strings() {
 	arr["CATALAN",460]="${pending_of_translation} S'han activat les actualitzacions automàtiques"
 	arr["PORTUGUESE",460]="${pending_of_translation} Eles permitiram que as atualizações automáticas"
 	arr["RUSSIAN",460]="${pending_of_translation} Автоматические обновления включены"
-	arr["GREEK",460]="${pending_of_translation} Οι αυτόματες ενημερώσεις έχουν ενεργοποιηθεί"
+	arr["GREEK",460]="Οι αυτόματες ενημερώσεις έχουν ενεργοποιηθεί"
 
 	arr["ENGLISH",461]="Automatic updates have been disabled"
 	arr["SPANISH",461]="Se han desactivado las actualizaciones automáticas"
@@ -4082,7 +4082,7 @@ function language_strings() {
 	arr["CATALAN",461]="${pending_of_translation} S'han desactivat les actualitzacions automàtiques"
 	arr["PORTUGUESE",461]="${pending_of_translation} Eles ter desativado as atualizações automáticas"
 	arr["RUSSIAN",461]="${pending_of_translation} Автоматические обновления отключены"
-	arr["GREEK",461]="${pending_of_translation} Οι αυτόματες ενημερώσεις έχουν απενεργοποιηθεί"
+	arr["GREEK",461]="Οι αυτόματες ενημερώσεις έχουν απενεργοποιηθεί"
 
 	arr["ENGLISH",462]="${blue_color}Colorization (on some screen's output) is going to be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",462]="${blue_color}Se va a desactivar la colorización (en la salida de algunas pantallas). ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4090,7 +4090,7 @@ function language_strings() {
 	arr["CATALAN",462]="${pending_of_translation} ${blue_color}Es va a desactivar le colorización (a la sortida d'algunes pantalles). ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",462]="${pending_of_translation} ${blue_color}Ele irá desativar colorização (na saída de algumas telas). ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",462]="${pending_of_translation} ${blue_color}Раскраска (на выходе какого-либо экрана) будет отключена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",462]="${pending_of_translation} ${blue_color}Ο χρωματισμός (σε κάποια έξοδο οθόνης) πρόκειται να απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",462]="${blue_color}Ο χρωματισμός (σε κάποια σημεία) πρόκειται να απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",463]="${blue_color}Colorization (on some screen's output) is going to be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",463]="${blue_color}Se va a activar la colorización (en la salida de algunas pantallas). ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4098,7 +4098,7 @@ function language_strings() {
 	arr["CATALAN",463]="${pending_of_translation} ${blue_color}Es va a activar la colorización (a la sortida d'algunes pantalles). ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",463]="${pending_of_translation} ${blue_color}Ela irá permitir colorização (na saída de algumas telas). ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",463]="${pending_of_translation} ${blue_color}Раскраска (на выходе какого-либо экрана) будет включена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",463]="${pending_of_translation} ${blue_color}Ο χρωματισμός (σε κάποια έξοδο οθόνης) πρόκειται να ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",463]="${blue_color}Ο χρωματισμός (σε κάποια σημεία) πρόκειται να ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",464]="You don't have the ccze package installed so any change on this option will have no effect until you install it"
 	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
@@ -4106,7 +4106,7 @@ function language_strings() {
 	arr["CATALAN",464]="${pending_of_translation} No tens instal·lat el paquet ccze pel que qualsevol canvi que facis sobre aquesta opció no tindrà efecte fins que el instal"
 	arr["PORTUGUESE",464]="${pending_of_translation} Você não tiver instalado o ccze pacote para que todas as alterações feitas nesta opção, não terá efeito até que você instale"
 	arr["RUSSIAN",464]="${pending_of_translation} У вас не установлен пакет ccze, поэтому любое изменение этой опции не будет иметь никакого эффекта, пока вы его не установите"
-	arr["GREEK",464]="${pending_of_translation} Δεν έχετε εγκατεστημένο το πακέτο ccze, οπότε οποιαδήποτε αλλαγή σε αυτήν την επιλογή δεν θα έχει αποτέλεσμα μέχρι να την εγκαταστήσετε"
+	arr["GREEK",464]="Δεν έχετε εγκατεστημένο το πακέτο ccze, οπότε οποιαδήποτε αλλαγή σε αυτήν την επιλογή δεν θα έχει αποτέλεσμα μέχρι να το εγκαταστήσετε"
 
 	arr["ENGLISH",465]="Colorization has been enabled"
 	arr["SPANISH",465]="Se ha activado la colorización"
@@ -4114,7 +4114,7 @@ function language_strings() {
 	arr["CATALAN",465]="${pending_of_translation} S'ha activat la colorización"
 	arr["PORTUGUESE",465]="${pending_of_translation} Permitiu a colorização"
 	arr["RUSSIAN",465]="${pending_of_translation} Раскрашивание включено"
-	arr["GREEK",465]="${pending_of_translation} Έχει ενεργοποιηθεί το χρωματισμό"
+	arr["GREEK",465]="Ο χρωματισμός ενεργοποιήθηκε"
 
 	arr["ENGLISH",466]="Colorization has been disabled"
 	arr["SPANISH",466]="Se ha desactivado la colorización"
@@ -4122,7 +4122,7 @@ function language_strings() {
 	arr["CATALAN",466]="${pending_of_translation} S'ha desactivat la colorización"
 	arr["PORTUGUESE",466]="${pending_of_translation} Ele foi desativado colorização"
 	arr["RUSSIAN",466]="${pending_of_translation} Раскраска отключена"
-	arr["GREEK",466]="${pending_of_translation} Ο χρωματισμός έχει απενεργοποιηθεί"
+	arr["GREEK",466]="Ο χρωματισμός απενεργοποιήθηκε"
 
 	arr["ENGLISH",467]="4.  Enable startup language autodetection permanently"
 	arr["SPANISH",467]="4.  Habilitar permanentemente la autodetección de idioma al inicio"
@@ -4130,7 +4130,7 @@ function language_strings() {
 	arr["CATALAN",467]="${pending_of_translation} 4.  Habilitar permanentment la autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",467]="${pending_of_translation} 4.  Ativar permanentemente linguagem descoberta automática no início"
 	arr["RUSSIAN",467]="${pending_of_translation} 4.  Автоматическое определение автозапуска автозапуска"
-	arr["GREEK",467]="${pending_of_translation} 4.  Ενεργοποίηση της αυτόματης εντοπισμού γλώσσας εκκίνησης μόνιμα"
+	arr["GREEK",467]="4.  Ενεργοποίηση του αυτόματου εντοπισμού γλώσσας κατά την εκκίνηση μόνιμα"
 
 	arr["ENGLISH",468]="4.  Disable startup language autodetection permanently"
 	arr["SPANISH",468]="4.  Deshabilitar permanentemente la autodetección de idioma al inicio"
@@ -4138,7 +4138,7 @@ function language_strings() {
 	arr["CATALAN",468]="${pending_of_translation} 4.  Deshabilitar permanentment la autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",468]="${pending_of_translation} 4.  Desactivar permanentemente linguagem descoberta automática no início"
 	arr["RUSSIAN",468]="${pending_of_translation} 4.  Автоматически отключить автоопределение автозапуска"
-	arr["GREEK",468]="${pending_of_translation} 4.  Απενεργοποιήστε μόνιμα την αυτόματη ανίχνευση γλώσσας εκκίνησης"
+	arr["GREEK",468]="4.  Απενεργοποίηση του αυτόματου εντοπισμού γλώσσας κατά την εκκίνηση μόνιμα"
 
 	arr["ENGLISH",469]="${blue_color}Startup language autodetection will be disabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",469]="${blue_color}Se va a deshabilitar la autodetección de idioma al inicio. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4146,7 +4146,7 @@ function language_strings() {
 	arr["CATALAN",469]="${pending_of_translation} ${blue_color}Es va a desactivar la detecció automàtica d'idioma a l'inici. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",469]="${pending_of_translation} ${blue_color}Irá desativar linguagem autodetection no início. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",469]="${pending_of_translation} ${blue_color}Автоопределение автозапуска будет отключено. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",469]="${pending_of_translation} ${blue_color}Η αυτόματη εκκίνηση της γλώσσας εκκίνησης θα απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",469]="${blue_color}Ο αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση θα απενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",470]="${blue_color}Startup language autodetection will be enabled. ${green_color}Do you want to continue? ${normal_color}${visual_choice}"
 	arr["SPANISH",470]="${blue_color}Se va a habilitar la autodetección de idioma al inicio. ${green_color}¿Deseas continuar? ${normal_color}${visual_choice}"
@@ -4154,7 +4154,7 @@ function language_strings() {
 	arr["CATALAN",470]="${pending_of_translation} ${blue_color}Es va a habilitar la detecció automàtica d'idioma a l'inici. ${green_color}¿Vols continuar? ${normal_color}${visual_choice}"
 	arr["PORTUGUESE",470]="${pending_of_translation} ${blue_color}Permitirá linguagem autodetection no início. ${green_color}Você deseja continuar? ${normal_color}${visual_choice}"
 	arr["RUSSIAN",470]="${pending_of_translation} ${blue_color}Автозапуск автозапуска активируется. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
-	arr["GREEK",470]="${pending_of_translation} ${blue_color}Η αυτόματη εντολή γλώσσας εκκίνησης θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
+	arr["GREEK",470]="${blue_color}Ο αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση θα ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
 	arr["ENGLISH",471]="Any permanent change of language you have will be lost on the next start if you enable this option!!"
 	arr["SPANISH",471]="Cualquier cambio permanente de idioma que tenga se perderá en el siguiente inicio si activa esta opción!!"
@@ -4162,7 +4162,7 @@ function language_strings() {
 	arr["CATALAN",471]="${pending_of_translation} Qualsevol canvi permanent d'idioma que tingui es perdrà en el següent inici si actives aquesta opció!!"
 	arr["PORTUGUESE",471]="${pending_of_translation} Qualquer mudança permanente na linguagem que se perder na próxima partida se você ativar essa opção!!"
 	arr["RUSSIAN",471]="${pending_of_translation} Любое постоянное изменение языка будет Вы потеряли при следующем запуске, если вы включите эту опцию!!"
-	arr["GREEK",471]="${pending_of_translation} Οποιαδήποτε μόνιμη αλλαγή της γλώσσας θα έχετε χάσει την επόμενη εκκίνηση Αν ενεργοποιήσετε αυτή την επιλογή!!"
+	arr["GREEK",471]="Οποιαδήποτε μόνιμη αλλαγή της γλώσσας θα χαθεί κατά την επόμενη εκκίνηση, αν ενεργοποιήσετε αυτή την επιλογή!!"
 
 	arr["ENGLISH",472]="Startup language autodetection has been enabled"
 	arr["SPANISH",472]="Se ha activado la autodetección de idioma al inicio"
@@ -4170,7 +4170,7 @@ function language_strings() {
 	arr["CATALAN",472]="${pending_of_translation} S'ha activat la detecció automàtica d'idioma a l'inici"
 	arr["PORTUGUESE",472]="${pending_of_translation} Autosensing está habilitado linguagem no início"
 	arr["RUSSIAN",472]="${pending_of_translation} Автозапуск автозагрузки включен"
-	arr["GREEK",472]="${pending_of_translation} Η αυτόματη εντολή γλώσσας εκκίνησης έχει ενεργοποιηθεί"
+	arr["GREEK",472]="Ο αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση έχει ενεργοποιηθεί"
 
 	arr["ENGLISH",473]="Startup language autodetection has been disabled"
 	arr["SPANISH",473]="Se ha desactivado la autodetección de idioma al inicio"
@@ -4178,7 +4178,7 @@ function language_strings() {
 	arr["CATALAN",473]="${pending_of_translation} S'ha desactivat l'autodetecció d'idioma a l'inici"
 	arr["PORTUGUESE",473]="${pending_of_translation} Tem sido desativado no autodetection linguagem início"
 	arr["RUSSIAN",473]="${pending_of_translation} Автоматическое определение автозагрузки отключено"
-	arr["GREEK",473]="${pending_of_translation} Η αυτόματη εκκίνηση της γλώσσας εκκίνησης έχει απενεργοποιηθεί"
+	arr["GREEK",473]="Ο αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση έχει απενεργοποιηθεί"
 
 	arr["ENGLISH",474]="Startup language autodetection: ${pink_color}Enabled${normal_color}"
 	arr["SPANISH",474]="Autodetección de idioma al inicio: ${pink_color}Activada${normal_color}"
@@ -4186,7 +4186,7 @@ function language_strings() {
 	arr["CATALAN",474]="${pending_of_translation} Autodetecció d'idioma a l'inici: ${pink_color}Activade${normal_color}"
 	arr["PORTUGUESE",474]="${pending_of_translation} Idioma a detecção automática no início: ${pink_color}Provocado${normal_color}"
 	arr["RUSSIAN",474]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Включено${normal_color}"
-	arr["GREEK",474]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ενεργοποιημένο${normal_color}"
+	arr["GREEK",474]="Αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση: ${pink_color}Ενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",475]="Startup language autodetection: ${pink_color}Disabled${normal_color}"
 	arr["SPANISH",475]="Autodetección de idioma al inicio: ${pink_color}Desactivada${normal_color}"
@@ -4194,7 +4194,7 @@ function language_strings() {
 	arr["CATALAN",475]="${pending_of_translation} Autodetecció d'idioma a l'inici: ${pink_color}Desactivade${normal_color}"
 	arr["PORTUGUESE",475]="${pending_of_translation} Idioma a detecção automática no início: ${pink_color}Desativado${normal_color}"
 	arr["RUSSIAN",475]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Инвалид${normal_color}"
-	arr["GREEK",475]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ανάπηρος${normal_color}"
+	arr["GREEK",475]="Αυτόματος εντοπισμός γλώσσας κατά την εκκίνηση: ${pink_color}Απενεργοποιημένο${normal_color}"
 
 	arr["ENGLISH",476]="A graphical X window system has not been detected. If you already have one, check it's working properly. It's essential for airgeddon. The script can't continue"
 	arr["SPANISH",476]="No se ha detectado un sistema gráfico de ventanas X. Si lo tienes, comprueba su que esté funcionando correctamente. Es esencial para airgeddon. El script no puede continuar"
@@ -4202,7 +4202,7 @@ function language_strings() {
 	arr["CATALAN",476]="${pending_of_translation} No s'ha detectat un sistema gràfic de finestres X. Si el tens, comprova el seu que estigui funcionant correctament. És essencial per a airgeddon. El script no pot continuar"
 	arr["PORTUGUESE",476]="${pending_of_translation} Não foi detectado um sistema X window gráfica. Se você tem isso, verifique o que está funcionando corretamente. É essencial para airgeddon. O script não pode continuar"
 	arr["RUSSIAN",476]="${pending_of_translation} Графическая система окон X не обнаружена. Если у вас его уже есть, проверьте его работоспособность. Это важно для airgeddon. Скрипт не может продолжить"
-	arr["GREEK",476]="${pending_of_translation} Δεν έχει εντοπιστεί γραφικό σύστημα παραθύρου X. Αν έχετε ήδη ένα, ελέγξτε την σωστή λειτουργία του. Είναι απαραίτητο για airgeddon. Το script δεν μπορεί να συνεχίσει"
+	arr["GREEK",476]="Δεν έχει εντοπιστεί κάποιο γραφικό σύστημα παραθύρων X. Αν έχετε ήδη ένα, ελέγξτε ότι λειτουργεί σωστά. Είναι απαραίτητο για το airgeddon. Το script δεν μπορεί να συνεχίσει"
 
 	arr["ENGLISH",477]="The options in this menu containing the word \"permanently\" modify airgeddon to save the settings for the next time that is to be launched. However, you can always return to this menu to change the value of the option again"
 	arr["SPANISH",477]="${pending_of_translation} Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
@@ -4210,7 +4210,7 @@ function language_strings() {
 	arr["CATALAN",477]="${pending_of_translation} Les opcions d'aquest menú que contenen la paraula \"permanentment\", modifiquen airgeddon perquè fins i tot la següent vegada que sigui iniciat segueixi guardant la configuració. No obstant això, sempre pots tornar a aquest menú a canviar de nou el valor de l'opció"
 	arr["PORTUGUESE",477]="${pending_of_translation} As opções neste menu contendo a palavra \"permanentemente\" airgeddon modificado de modo que mesmo na próxima vez que for iniciado continuar a guardar a configuração. No entanto, você pode sempre voltar a este menu para alterar de volta o valor da opção"
 	arr["RUSSIAN",477]="${pending_of_translation} Параметры в этом меню, содержащие слово \"навсегда\" изменить airgeddon даже для следующего запуска, сохраняют сохраненные настройки. Однако вы всегда можете вернуться в это меню, чтобы снова изменить значение параметра"
-	arr["GREEK",477]="${pending_of_translation} Οι επιλογές σε αυτό το μενού που περιέχουν τη λέξη \"μόνιμα\" τροποποιούν το airgeddon ακόμα και για την επόμενη φορά που θα ξεκινήσει διατηρούν αποθηκευμένες ρυθμίσεις. Ωστόσο, μπορείτε πάντα να επιστρέψετε σε αυτό το μενού για να αλλάξετε ξανά την τιμή της επιλογής"
+	arr["GREEK",477]="Οι επιλογές σε αυτό το μενού που περιέχουν τη λέξη \"μόνιμα\" τροποποιούν το airgeddon ώστε να αποθηκεύει τις ρυθμίσεις για την επόμενη φορά. Ωστόσο, μπορείτε πάντα να επιστρέψετε σε αυτό το μενού για να αλλάξετε ξανά την τιμή της επιλογής"
 
 	case "${3}" in
 		"yellow")
