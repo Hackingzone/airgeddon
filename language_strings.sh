@@ -2,7 +2,7 @@
 #Title........: language_strings.sh
 #Description..: All the translated strings that airgeddon uses are located here.
 #Author.......: v1s1t0r
-#Date.........: 20170712
+#Date.........: 20170714
 #Bash Version.: 4.2 or later
 
 #Set language_strings file version
@@ -2788,7 +2788,7 @@ function language_strings() {
 	arr["RUSSIAN",299]="Восстановление интерфейса..."
 	arr["GREEK",299]="Γίνεται επαναφορά διεπαφής..."
 
-	arr["ENGLISH",300]="If make work xpdyinfo command, the script will be able to calculate your screen resolution and show you the windows in a better way. Depending of the system, the package name containing it could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
+	arr["ENGLISH",300]="If the xpdyinfo command works, the script will be able to calculate your screen resolution and display the windows in a better way. Depending of the system, the package name containing it could be x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["SPANISH",300]="Si haces que funcione en tu sistema el comando xdpyinfo, el script podrá calcular tu resolución de pantalla y mostrarte las ventanas de forma más optimizada. Dependiendo del sistema el paquete que lo contiene puede llamarse x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["FRENCH",300]="Si la commande xdpyinfo est installée dans vôtre système le script pourra calculer votre résolution d'écran et optimiser l'affichage en conséquence. Le paquet à installer pour avoir cette commande s'appelle (selon la distribution) x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
 	arr["CATALAN",300]="${pending_of_translation} Si fas que funcioni en el teu sistema l'ordre xdpyinfo, el script podrà calcular la teva resolució de pantalla i mostrar-te les finestres de forma més optimitzada. Depenent del sistema el paquet que el conté pot dir-se x11-utils, xdpyinfo, xorg-xdpyinfo, etc."
@@ -3932,7 +3932,7 @@ function language_strings() {
 	arr["RUSSIAN",442]="Если вы установите ccze, то некоторые цветные элементы airgeddon будут выглядеть лучше. Это не требование или зависимость, но это улучшит работу пользователя"
 	arr["GREEK",442]="Αν εγκαταστήσετε το ccze θα δείτε μερικά κομμάτια του airgeddon, πολύχρωμα με καλύτερη εμφάνιση. Δεν είναι απαραίτητο dependency, αλλά θα βελτιώσει την εμπειρία του χρήστη"
 
-	arr["ENGLISH",443]="Option and language menu"
+	arr["ENGLISH",443]="Options and language menu"
 	arr["SPANISH",443]="Menú de opciones e idioma"
 	arr["FRENCH",443]="${pending_of_translation} Options de menu et la langue"
 	arr["CATALAN",443]="${pending_of_translation} Menú d'opcions i idioma"
@@ -3940,7 +3940,7 @@ function language_strings() {
 	arr["RUSSIAN",443]="${pending_of_translation} Вариант и языковое меню"
 	arr["GREEK",443]="${pending_of_translation} Μενού επιλογών και γλώσσας"
 
-	arr["ENGLISH",444]="11. Option and language menu"
+	arr["ENGLISH",444]="11. Options and language menu"
 	arr["SPANISH",444]="11. Menú de opciones e idioma"
 	arr["FRENCH",444]="11. Menu options et langues"
 	arr["CATALAN",444]="${pending_of_translation} 11. Menú d'opcions i idioma"
@@ -3956,7 +3956,7 @@ function language_strings() {
 	arr["RUSSIAN",445]="${pending_of_translation} Если у вас установлен ccze и возникают ошибки отображения или сбои в некоторых окнах, вы должны отключить раскраску в меню параметров и языков"
 	arr["GREEK",445]="${pending_of_translation} Εάν έχετε εγκαταστήσει ccze και αντιμετωπίζετε σφάλματα εμφάνισης ή δυσλειτουργίες σε ορισμένα παράθυρα, θα πρέπει να απενεργοποιήσετε τον χρωματισμό στο μενού επιλογών και γλώσσας"
 
-	arr["ENGLISH",446]="8.  Return to option menu"
+	arr["ENGLISH",446]="8.  Return to options menu"
 	arr["SPANISH",446]="8.  Volver al menú de opciones"
 	arr["FRENCH",446]="8.  Retourner au menu options"
 	arr["CATALAN",446]="${pending_of_translation} 8.  Tornar al menú d'opcions"
@@ -4100,7 +4100,7 @@ function language_strings() {
 	arr["RUSSIAN",463]="${pending_of_translation} ${blue_color}Раскраска (на выходе какого-либо экрана) будет включена. ${green_color}Вы хотите продолжить? ${normal_color}${visual_choice}"
 	arr["GREEK",463]="${pending_of_translation} ${blue_color}Ο χρωματισμός (σε κάποια έξοδο οθόνης) πρόκειται να ενεργοποιηθεί. ${green_color}Θέλετε να συνεχίσετε; ${normal_color}${visual_choice}"
 
-	arr["ENGLISH",464]="You don't have ccze package installed so any change on this option will have no effect until you install it"
+	arr["ENGLISH",464]="You don't have the ccze package installed so any change on this option will have no effect until you install it"
 	arr["SPANISH",464]="No tienes instalado el paquete ccze por lo que cualquier cambio que realices sobre esta opción no tendrá efecto hasta que lo instales"
 	arr["FRENCH",464]="Ccze n'est pas installé, les paramétrages effectués avec cette option seront effectifs une fois czze installé"
 	arr["CATALAN",464]="${pending_of_translation} No tens instal·lat el paquet ccze pel que qualsevol canvi que facis sobre aquesta opció no tindrà efecte fins que el instal"
@@ -4196,7 +4196,7 @@ function language_strings() {
 	arr["RUSSIAN",475]="${pending_of_translation} Автоопределение автозапуска: ${pink_color}Инвалид${normal_color}"
 	arr["GREEK",475]="${pending_of_translation} Αυτόματη ανίχνευση γλώσσας εκκίνησης: ${pink_color}Ανάπηρος${normal_color}"
 
-	arr["ENGLISH",476]="A graphical X window system has not been detected. If you already have one, check its working properly. It's essential for airgeddon. The script can't continue"
+	arr["ENGLISH",476]="A graphical X window system has not been detected. If you already have one, check it's working properly. It's essential for airgeddon. The script can't continue"
 	arr["SPANISH",476]="No se ha detectado un sistema gráfico de ventanas X. Si lo tienes, comprueba su que esté funcionando correctamente. Es esencial para airgeddon. El script no puede continuar"
 	arr["FRENCH",476]="Aucun système graphique X window détecté. Si un tel système est installé vérifiez qu'il fonctionne correctement. Le script ne peut pas continuer sans ça."
 	arr["CATALAN",476]="${pending_of_translation} No s'ha detectat un sistema gràfic de finestres X. Si el tens, comprova el seu que estigui funcionant correctament. És essencial per a airgeddon. El script no pot continuar"
@@ -4204,9 +4204,9 @@ function language_strings() {
 	arr["RUSSIAN",476]="${pending_of_translation} Графическая система окон X не обнаружена. Если у вас его уже есть, проверьте его работоспособность. Это важно для airgeddon. Скрипт не может продолжить"
 	arr["GREEK",476]="${pending_of_translation} Δεν έχει εντοπιστεί γραφικό σύστημα παραθύρου X. Αν έχετε ήδη ένα, ελέγξτε την σωστή λειτουργία του. Είναι απαραίτητο για airgeddon. Το script δεν μπορεί να συνεχίσει"
 
-	arr["ENGLISH",477]="The options on this menu containing the word \"permanently\" modify airgeddon even for next time to be launched keep saved settings. However, you can always return to this menu to change the value of the option again"
-	arr["SPANISH",477]="Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
-	arr["FRENCH",477]="Les options contenant le mot \"permanente\" modifiént airgeddon de sorte que les paramétrages persisteront lors des prochains redémarrages. Vous pourrez cependant toujours modifier la configuration permanante depuis ce même menu"
+	arr["ENGLISH",477]="The options in this menu containing the word \"permanently\" modify airgeddon to save the settings for the next time that is to be launched. However, you can always return to this menu to change the value of the option again"
+	arr["SPANISH",477]="${pending_of_translation} Las opciones de este menú que contienen la palabra \"permanentemente\", modifican airgeddon para que incluso la siguiente vez que sea iniciado siga guardando la configuración. No obstante, siempre puedes volver a este menú a cambiar de nuevo el valor de la opción"
+	arr["FRENCH",477]="${pending_of_translation} Les options contenant le mot \"permanente\" modifiént airgeddon de sorte que les paramétrages persisteront lors des prochains redémarrages. Vous pourrez cependant toujours modifier la configuration permanante depuis ce même menu"
 	arr["CATALAN",477]="${pending_of_translation} Les opcions d'aquest menú que contenen la paraula \"permanentment\", modifiquen airgeddon perquè fins i tot la següent vegada que sigui iniciat segueixi guardant la configuració. No obstant això, sempre pots tornar a aquest menú a canviar de nou el valor de l'opció"
 	arr["PORTUGUESE",477]="${pending_of_translation} As opções neste menu contendo a palavra \"permanentemente\" airgeddon modificado de modo que mesmo na próxima vez que for iniciado continuar a guardar a configuração. No entanto, você pode sempre voltar a este menu para alterar de volta o valor da opção"
 	arr["RUSSIAN",477]="${pending_of_translation} Параметры в этом меню, содержащие слово \"навсегда\" изменить airgeddon даже для следующего запуска, сохраняют сохраненные настройки. Однако вы всегда можете вернуться в это меню, чтобы снова изменить значение параметра"
